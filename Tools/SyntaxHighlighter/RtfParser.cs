@@ -147,6 +147,11 @@ namespace SyntaxHighlighter
         /// </summary>
         Regex regTailWhite = new Regex(@"\s*$", RegexOptions.Singleline | RegexOptions.Compiled);
 
+        /// <summary>
+        /// 未対応のタグ削除用。
+        /// </summary>
+        Regex regOther = new Regex(@"\\\w+\s", RegexOptions.Singleline | RegexOptions.Compiled);
+
         #endregion
         #region RTF の \cf* → XML タグ
 
@@ -198,7 +203,6 @@ namespace SyntaxHighlighter
             body = regPar.Replace(body, Environment.NewLine);
             body = body.Replace(@"\{", "{");
             body = body.Replace(@"\}", "}");
-            body = body.Replace(@"\\", @"\");
 
             if (!string.IsNullOrEmpty(prevTag_))
                 body = "<" + prevTag_ + ">" + body;
@@ -207,8 +211,22 @@ namespace SyntaxHighlighter
             body = regPairTag1.Replace(body, RemoveWhiteSpaceElement);
             body = regPairTag2.Replace(body, RemoveWhiteSpaceElement);
             body = regTailWhite.Replace(body, "");
+            body = ReplaceUnicodeEscape(body);
+            body = regOther.Replace(body, "");
+
+            body = body.Replace(@"\\", @"\");
 
             return body;
+        }
+
+        #endregion
+        #region Unicode Escape
+
+        private static readonly Regex regUnicodeEscape = new Regex(@"\\uc1\\u(?<code>\d+)\?", RegexOptions.Singleline | RegexOptions.Compiled);
+
+        private static string ReplaceUnicodeEscape(string s)
+        {
+            return regUnicodeEscape.Replace(s, m => char.ConvertFromUtf32(int.Parse(m.Groups["code"].ToString())));
         }
 
         #endregion
@@ -249,7 +267,7 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の \cf* を抽出。
         /// </summary>
-        Regex regCf = new Regex(@"(?<=[^\\])\\cf(?<n>\d+) ?", RegexOptions.Singleline | RegexOptions.Compiled);
+        Regex regCf = new Regex(@"(?<=[^\\])\\cf(?<n>\d+)?", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// RTF の \cf* を XML タグに置き換える。
