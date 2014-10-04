@@ -222,11 +222,18 @@ namespace SyntaxHighlighter
         #endregion
         #region Unicode Escape
 
-        private static readonly Regex regUnicodeEscape = new Regex(@"\\uc1\\u(?<code>\d+)\?", RegexOptions.Singleline | RegexOptions.Compiled);
+        private static readonly Regex regUnicodeEscape = new Regex(@"\\uc1\\u(?<code>-?\d+)\?", RegexOptions.Singleline | RegexOptions.Compiled);
 
         private static string ReplaceUnicodeEscape(string s)
         {
-            return regUnicodeEscape.Replace(s, m => char.ConvertFromUtf32(int.Parse(m.Groups["code"].ToString())));
+            return regUnicodeEscape.Replace(s, ReplaceUnicodeEscape);
+        }
+
+        private static string ReplaceUnicodeEscape(Match m)
+        {
+            var code = int.Parse(m.Groups["code"].ToString());
+            if (code < 0) code += 65536; // サロゲートペア文字の時、なぜかマイナスの値になってるっぽい。65536足したらちゃんとした Unicode (UTF16)になるみたい。
+            return ((char)code).ToString();
         }
 
         #endregion
