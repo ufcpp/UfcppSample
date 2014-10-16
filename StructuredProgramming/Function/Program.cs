@@ -7,6 +7,7 @@ class Program
         NoParameterNoReturn.Run();
         MyMath.Test();
         InputNumberSample.Run();
+        OverloadSample.Run();
     }
 
 }
