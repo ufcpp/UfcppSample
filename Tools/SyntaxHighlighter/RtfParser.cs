@@ -274,7 +274,7 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の \cf* を抽出。
         /// </summary>
-        Regex regCf = new Regex(@"(?<=[^\\])\\cf(?<n>\d+)?", RegexOptions.Singleline | RegexOptions.Compiled);
+        Regex regCf = new Regex(@"(?<=[^\\])\\cf(?<n>\d+)? ", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// RTF の \cf* を XML タグに置き換える。
