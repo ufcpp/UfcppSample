@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\ExtensionMethodSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp3\LinqToObjectSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\QueryExpressionSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp4\DefaultParameterSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\AsyncSample.cs" />
