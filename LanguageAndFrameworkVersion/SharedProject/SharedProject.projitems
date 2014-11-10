@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0391960f-dd89-4ced-b8b0-c1d9c2898369</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VersionSample</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp3\ExtensionMethodSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp3\QueryExpressionSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp4\DefaultParameterSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp5\AsyncSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp6\IndexInitializerSample.cs" />
+  </ItemGroup>
+</Project>
