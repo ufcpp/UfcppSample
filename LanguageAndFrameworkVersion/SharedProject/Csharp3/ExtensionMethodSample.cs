@@ -5,6 +5,10 @@ using System.Text;
 
 namespace VersionSample.Csharp3
 {
+    /// <summary>
+    /// 拡張メソッドは、<see cref="System.Runtime.CompilerServices.ExtensionAttribute"/> が付いているだけの普通の静的メソッド。
+    /// この属性は、同名であれば自作のものでもよくて、.NET 2.0 ターゲットでも、自作さえすれば拡張メソッドが使える。
+    /// </summary>
     public static class ExtensionMethodSample
     {
         public static string SnakeToPascal(this string snake_case)

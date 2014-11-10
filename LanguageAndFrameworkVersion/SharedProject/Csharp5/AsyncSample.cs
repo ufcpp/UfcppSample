@@ -5,7 +5,15 @@ using System.Threading.Tasks;
 
 namespace VersionSample.Csharp5
 {
-    class AsyncSample
+    /// <summary>
+    /// async/await は、原理的にはどんな型であも await 可能(awaitable)にできるんだけども、実際のところ、自作するのはかなり大変。
+    /// まず無理。
+    ///
+    /// ただし、.NET 4 上で await が使えるように、.NET 4.5 相当の <see cref="System.Threading.Tasks.Task"/> クラス機能や、IO 系クラスの非同期メソッドなどを .NET 4 向けにバックポーティングしたものを、Microsoft が公式に提供してる。
+    /// (NuGet パッケージとして参照可能。Microsoft.Bcl.Async。)
+    /// これを使えば、.NET 4 以上であれば async/await を使える。
+    /// </summary>
+    public class AsyncSample
     {
         public static async Task RunAsync()
         {

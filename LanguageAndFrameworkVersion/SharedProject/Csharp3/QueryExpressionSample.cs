@@ -3,6 +3,11 @@ using System.Text;
 
 namespace VersionSample.Csharp3
 {
+    /// <summary>
+    /// クエリ式は、単に、 Select や Where っていう名前のメソッド呼び出し(拡張メソッド可)に展開されるだけ。
+    /// 拡張メソッドを使ってしまうと <see cref="System.Runtime.CompilerServices.ExtensionAttribute"/> が必要になるものの、
+    /// 通常のインスタンス メソッドで Select や Where を持っているなら、普通に .NET 2.0 でもクエリ式を使える。
+    /// </summary>
     public class QueryExpressionSample
     {
         public static void Run()
