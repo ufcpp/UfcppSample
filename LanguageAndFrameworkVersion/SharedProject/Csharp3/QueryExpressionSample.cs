@@ -10,14 +10,19 @@ namespace VersionSample.Csharp3
     /// </summary>
     public class QueryExpressionSample
     {
-        public static void Run()
+        public static void X()
         {
             var output =
                 from x in new QueryLog<int>()
                 where true
                 select new QueryLog<string>();
 
-            var theSameAsAbove = new QueryLog<int>()
+            Console.WriteLine(output);
+        }
+
+        public static void SameAsX()
+        {
+            var output = new QueryLog<int>()
                 .Where(x => true)
                 .Select(x => new QueryLog<string>());
 

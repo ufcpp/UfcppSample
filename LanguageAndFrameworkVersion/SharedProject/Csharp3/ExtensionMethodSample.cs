@@ -34,6 +34,14 @@ namespace VersionSample.Csharp3
             }
             return sb.ToString();
         }
+
+        // この書き方は認められてない(属性のところがエラーに。素直に拡張メソッドを使えと怒られる)けど、拡張メソッドの展開結果は以下のようになる
+
+        //[System.Runtime.CompilerServices.Extension]
+        public static string SameAsSnakeToPascal(string snake_case)
+        {
+            return string.Join("", Enumerable.ToArray(Enumerable.Select(snake_case.Split('_'), ToInitialUpper)));
+        }
     }
 }
 
