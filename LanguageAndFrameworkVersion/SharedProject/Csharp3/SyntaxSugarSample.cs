@@ -30,8 +30,8 @@ namespace VersionSample.Csharp3
             // オブジェクト初期化子
             var p = new Point
             {
-                X = 10,
-                Y = 20,
+                X = 10 * n,
+                Y = (int)(20 * x),
             };
 
             // コレクション初期化子
@@ -63,8 +63,8 @@ namespace VersionSample.Csharp3
 
             // オブジェクト初期化子
             var p = new Point();
-            p.X = 10;
-            p.Y = 20;
+            p.X = 10 * n;
+            p.Y = (int)(20 * x);
 
             // コレクション初期化子
             var list = new List<Point>();

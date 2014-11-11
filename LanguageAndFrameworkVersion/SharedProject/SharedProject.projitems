@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\LinqToObjectSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\QueryExpressionSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp4\DefaultParameterSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp4\DynamicSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp4\VarianceSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\AsyncSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp6\IndexInitializerSample.cs" />
   </ItemGroup>
