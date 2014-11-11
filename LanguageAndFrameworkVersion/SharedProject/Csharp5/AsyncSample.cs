@@ -15,7 +15,7 @@ namespace VersionSample.Csharp5
     /// </summary>
     public class AsyncSample
     {
-        public static async Task RunAsync()
+        public static async Task XAsync()
         {
             using (var w = new StreamWriter("out.txt"))
             {
