@@ -1,4 +1,4 @@
-﻿#if Ver4Plus
+﻿#if Ver4 && Plus
 
 using System.IO;
 using System.Threading.Tasks;

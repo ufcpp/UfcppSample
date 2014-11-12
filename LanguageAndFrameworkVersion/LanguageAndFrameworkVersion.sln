@@ -17,9 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ver 4.5", "Ver4_5\Ver 4.5.c
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedProject", "SharedProject\SharedProject.shproj", "{0391960F-DD89-4CED-B8B0-C1D9C2898369}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ver 3 Plus", "Ver3Plus\Ver 3 Plus.csproj", "{D4F2FBB6-EC3D-4BFC-9F2D-F3DC1BF3B419}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProject\SharedProject.projitems*{15237782-9295-44e9-bf36-1b57a8d2294e}*SharedItemsImports = 4
+		SharedProject\SharedProject.projitems*{d4f2fbb6-ec3d-4bfc-9f2d-f3dc1bf3b419}*SharedItemsImports = 4
 		SharedProject\SharedProject.projitems*{710e59fc-a21f-4d0c-96b9-db19f9ed2e84}*SharedItemsImports = 4
 		SharedProject\SharedProject.projitems*{0391960f-dd89-4ced-b8b0-c1d9c2898369}*SharedItemsImports = 13
 		SharedProject\SharedProject.projitems*{0707d397-91f3-4622-84ff-b3d87e016ec7}*SharedItemsImports = 4
@@ -56,6 +59,10 @@ Global
 		{0707D397-91F3-4622-84FF-B3D87E016EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0707D397-91F3-4622-84FF-B3D87E016EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0707D397-91F3-4622-84FF-B3D87E016EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4F2FBB6-EC3D-4BFC-9F2D-F3DC1BF3B419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4F2FBB6-EC3D-4BFC-9F2D-F3DC1BF3B419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4F2FBB6-EC3D-4BFC-9F2D-F3DC1BF3B419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4F2FBB6-EC3D-4BFC-9F2D-F3DC1BF3B419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
