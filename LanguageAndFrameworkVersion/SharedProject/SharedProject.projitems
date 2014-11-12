@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Csharp4\DynamicSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp4\VarianceSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\AsyncSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp5\CallerInfoSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp6\IndexInitializerSample.cs" />
   </ItemGroup>
   <ItemGroup>
