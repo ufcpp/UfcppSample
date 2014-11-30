@@ -1,4 +1,4 @@
-﻿#if Ver2 && Plus
+﻿#if Ver3 || (Ver2 && Plus)
 
 using System.Linq;
 using System.Text;

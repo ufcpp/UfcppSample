@@ -21,6 +21,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\AsyncSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\CallerInfoSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp5\ForeachBreakingChangeSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp6\AsyncSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp6\ExtensionListInitializerSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp6\NullConditionalSample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csharp6\StringInterpolationSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp6\SyntaxSugarSample.cs" />
   </ItemGroup>
   <ItemGroup>

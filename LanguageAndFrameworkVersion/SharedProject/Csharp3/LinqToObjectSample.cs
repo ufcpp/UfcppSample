@@ -1,4 +1,4 @@
-﻿#if Ver2 && Plus
+﻿#if Ver3 || (Ver2 && Plus)
 
 using System;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace VersionSample.Csharp3
     /// </summary>
     public class LinqToObjectSample
     {
-        public void Run()
+        public static void X()
         {
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8 };
             var output =

@@ -8,7 +8,7 @@ namespace VersionSample.Csharp3
     /// </summary>
     public partial class PartialMethodSample
     {
-        public void X()
+        public static void X()
         {
             OnBeginX("call iif the OnBeginX body is defined in anather part of the class");
 
@@ -20,8 +20,8 @@ namespace VersionSample.Csharp3
         // 部分メソッド
         // この状態だけだと呼び出されない。というか、引数の評価すらしない。
         // 普通は機械生成のコードの中で宣言する。
-        partial void OnBeginX(string message);
-        partial void OnEndX(string message);
+        static partial void OnBeginX(string message);
+        static partial void OnEndX(string message);
     }
 }
 
@@ -31,12 +31,12 @@ namespace VersionSample.Csharp3
     {
         // こういう風に、別の部分クラス定義の中で部分メソッドの本体定義があったら、そこで初めてこのメソッドが呼ばれるようになる。
         // 機械生成のコードに対して、手書きで何らかの処理を挟みたい場合に重宝する。
-        partial void OnBeginX(string message)
+        static partial void OnBeginX(string message)
         {
             Console.WriteLine(message);
         }
 
-        partial void OnEndX(string message)
+        static partial void OnEndX(string message)
         {
             Console.WriteLine(message);
         }

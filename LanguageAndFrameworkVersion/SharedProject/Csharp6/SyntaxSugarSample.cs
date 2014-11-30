@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
+//【注意】次のプレビュー リリースで、
+// using static System.Math;
+// に変わる予定。
+using System.Math;
 
 namespace VersionSample.Csharp6
 {
@@ -24,6 +30,31 @@ namespace VersionSample.Csharp6
             var dic = new Dictionary<string, int>();
             dic["one"] = 1;
             dic["two"] = 2;
+        }
+
+        public static double Length(double x, double y)
+        {
+            return Sqrt(x * x + y * y);
+        }
+
+        public static double SameAsLength(double x, double y)
+        {
+            // 単に Math. が省略できるだけ
+            return Math.Sqrt(x * x + y * y);
+        }
+
+        public static void Y()
+        {
+            try
+            {
+            }
+            catch (ArgumentException e) if (e.ParamName == "x")
+            {
+                // パラメーター名が x の時だけはエラー無視
+            }
+
+            // この構文は、これまでの C# では書く方法ない。
+            // IL レベルでは、元々 catch 句にフィルターが書けた。その機能に C# も対応しただけ。
         }
     }
 

@@ -11,7 +11,7 @@ namespace VersionSample.Csharp4
     /// </summary>
     class DynamicSample
     {
-        public void X()
+        public static void X()
         {
             var x1 = new Csharp3.Point(10, 20);
             var x2 = new { X = 10, Y = 20 };
@@ -24,7 +24,7 @@ namespace VersionSample.Csharp4
             DynamicX(x4);
         }
 
-        public void DynamicX(dynamic x)
+        private static void DynamicX(dynamic x)
         {
             Console.WriteLine(x.X + x.Y);
         }
