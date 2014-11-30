@@ -21,6 +21,8 @@ namespace VersionSample.Csharp6
                 ["one"] = 1,
                 ["two"] = 2,
             };
+
+            Console.WriteLine(nameof(dic) + " in " + nameof(X));
         }
 
         public static void SameAsX()
@@ -30,6 +32,10 @@ namespace VersionSample.Csharp6
             var dic = new Dictionary<string, int>();
             dic["one"] = 1;
             dic["two"] = 2;
+
+            // nameof は普通に文字列リテラルに展開。
+            // 要は、静的コード解析とかリファクタリングのターゲットにできるというだけの文字列リテラル。
+            Console.WriteLine("dic" + " in " + "X");
         }
 
         public static double Length(double x, double y)
