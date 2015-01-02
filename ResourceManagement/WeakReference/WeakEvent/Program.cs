@@ -20,10 +20,10 @@
             if (manualDispose) Console.WriteLine("ちゃんと Dispose");
             else Console.WriteLine("GC 任せ");
 
-                // イベントを、
-                // d1: 通常のイベント購読
-                // d2: 弱イベント購読
-                var x = new Subject<int>();
+            // イベントを、
+            // d1: 通常のイベント購読
+            // d2: 弱イベント購読
+            var x = new Subject<int>();
             var d1 = x.Subscribe(i => Console.WriteLine("subscribe " + i));
             var d2 = x.WeakSubscribe(i => Console.WriteLine("weak subscribe " + i));
             var cts = new CancellationTokenSource();
