@@ -1,17 +1,4 @@
-﻿namespace Observable
-{
-    using System;
-
-    /// <summary>
-    /// 自動実装。
-    /// </summary>
-    class EventInternal
-    {
-        public event EventHandler X;
-    }
-}
-
-namespace Observable
+﻿namespace Observable.EventInternal.Csharp1
 {
     using System;
     using System.Runtime.CompilerServices;
@@ -21,7 +8,7 @@ namespace Observable
     /// <see cref="MethodImplOptions.Synchronized"/>を付けると、そのメソッドがスレッド安全になる。
     /// 簡単ではあるものの、実行性能上の問題があって…
     /// </summary>
-    class UsedToBeSameAsEventInternal
+    class EventSample
     {
         private EventHandler _X;
 
@@ -41,10 +28,9 @@ namespace Observable
     }
 }
 
-namespace Observable
+namespace Observable.EventInternal.Csharp1Lock
 {
     using System;
-    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// ちなみに、<see cref="System.Runtime.CompilerServices.MethodImplOptions.Synchronized"/> は、さらに、lock ステートメント相当のコードに展開されます。
@@ -54,7 +40,7 @@ namespace Observable
     /// <code>lock(this)</code> はやっちゃいけないコード。
     /// 外からロック獲得できちゃう。大変まずい。
     /// </summary>
-    class UsedToBeSameAsSynchronizedEventInternal
+    class EventSample
     {
         private EventHandler _X;
 
@@ -62,12 +48,11 @@ namespace Observable
         {
             add
             {
-                lock(this)
+                lock (this)
                 {
                     _X = (EventHandler)Delegate.Combine(_X, value);
                 }
             }
-            [MethodImpl(MethodImplOptions.Synchronized)]
             remove
             {
                 lock (this)
@@ -79,18 +64,20 @@ namespace Observable
     }
 }
 
-namespace Observable
+namespace Observable.EventInternal.Csharp1Monitor
 {
     using System;
     using System.Threading;
 
+
     /// <summary>
-    /// そして、C# 4.0 以降では、自動実装がこんな感じに展開される。
-    /// いわゆる「lock-free アルゴリズム」っていうやつ。
-    /// <see cref="Interlocked.CompareExchange(ref object, object, object)"/> を使うと lock を避けれる。
-    /// lock を使うよりはだいぶ低負荷なもの。
+    /// lock、はさらに言うと、<see cref="System.Threading.Monitor.Enter(object, ref bool)"/> に展開。
+    ///
+    /// lock の展開結果も、実は C# コンパイラーのバージョンによって何回か変更かかってるけども、今の実装はこう。
+    /// Monitor.Enter の実行中に例外が出ることがある(<see cref="ThreadAbortException"/> のせい)とか、
+    /// それを検出するためには ref で flag を渡さないとダメとか。
     /// </summary>
-    class SameAsEventInternal
+    class EventSample
     {
         private EventHandler _X;
 
@@ -98,27 +85,35 @@ namespace Observable
         {
             add
             {
-                EventHandler x2;
-                var x1 = _X;
-                do
+                bool flag = false;
+                try
                 {
-                    x2 = x1;
-                    var x3 = (EventHandler)Delegate.Combine(x2, value);
-                    x1 = Interlocked.CompareExchange(ref _X, x3, x2);
+                    Monitor.Enter(this, ref flag);
+                    _X = (EventHandler)Delegate.Combine(_X, value);
                 }
-                while (x1 != x2);
+                finally
+                {
+                    if (flag)
+                    {
+                        Monitor.Exit(this);
+                    }
+                }
             }
             remove
             {
-                EventHandler x2;
-                var x1 = _X;
-                do
+                bool flag = false;
+                try
                 {
-                    x2 = x1;
-                    var x3 = (EventHandler)Delegate.Remove(x2, value);
-                    x1 = Interlocked.CompareExchange(ref _X, x3, x2);
+                    Monitor.Enter(this, ref flag);
+                    _X = (EventHandler)Delegate.Remove(_X, value);
                 }
-                while (x1 != x2);
+                finally
+                {
+                    if (flag)
+                    {
+                        Monitor.Exit(this);
+                    }
+                }
             }
         }
     }

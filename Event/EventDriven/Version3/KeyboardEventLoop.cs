@@ -45,7 +45,7 @@
                 string line = Console.ReadLine();
                 char eventCode = (line == null || line.Length == 0) ? '\0' : line[0];
 
-                // イベント処理はデリゲートを通して他のメソッドに任せる。
+                // イベント処理は event を通して他のメソッドに任せる。
                 OnKeyDown(eventCode);
             }
         }

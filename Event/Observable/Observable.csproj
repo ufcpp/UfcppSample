@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnonymousFunction.cs" />
-    <Compile Include="EventInternal.cs" />
+    <Compile Include="EventInternal\Cshap4\EventSample.cs" />
+    <Compile Include="EventInternal\Csharp1\EventSample.cs" />
+    <Compile Include="EventInternal\EventSample.cs" />
     <Compile Include="EventSource.cs" />
     <Compile Include="ParameterProbrem.cs" />
     <Compile Include="Program.cs" />
