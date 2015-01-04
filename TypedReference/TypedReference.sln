@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22013.1
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeRef", "MakeRef\MakeRef.csproj", "{FEE71315-2E15-49F6-AE92-67F17F1F4129}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgList", "ArgList\ArgList.csproj", "{1827D93A-3096-463C-BF0F-D804B504FE24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteropArgList", "InteropArgList\InteropArgList.csproj", "{0C1ADBDE-3BFA-4413-BD89-CAA9CEAF7744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceUsage", "ReferenceUsage\ReferenceUsage.csproj", "{7133B58F-DC91-4F7D-9FD7-95EDB699723B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,18 @@ Global
 		{0C1ADBDE-3BFA-4413-BD89-CAA9CEAF7744}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0C1ADBDE-3BFA-4413-BD89-CAA9CEAF7744}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0C1ADBDE-3BFA-4413-BD89-CAA9CEAF7744}.Release|Win32.ActiveCfg = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Debug|Win32.Build.0 = Debug|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Win32.ActiveCfg = Release|Any CPU
+		{7133B58F-DC91-4F7D-9FD7-95EDB699723B}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
