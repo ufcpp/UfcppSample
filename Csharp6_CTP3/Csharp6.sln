@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22013.1
+VisualStudioVersion = 14.0.22512.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build2014Demo", "Build2014Demo\Build2014Demo.csproj", "{99450994-4B2D-406E-8D92-57D68A7A07C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoProperty", "AutoProperty\AutoProperty.csproj", "{D8364F52-F9A7-4295-8163-9EA7F1E2B37E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimaryConstructor", "PrimaryConstructor\PrimaryConstructor.csproj", "{FA3D11E4-7DFE-4298-9589-D9DAFDCCBB9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09309FA3-F9B2-4056-BD81-4E751564D0C9}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,13 +13,10 @@ namespace VersionSample.Csharp6
     {
         public static void X()
         {
-            //【注意】 次のプレビュー リリースで文法が変わる予定。
-            // "\{x}" → $"{x}"
-
             var x = 10;
             var y = 20;
 
-            var s = "\{x}, \{y}";
+            var s = $"{x}, {y}";
 
             Console.WriteLine(s);
         }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-//【注意】次のプレビュー リリースで、
-// using static System.Math;
-// に変わる予定。
-using System.Math;
+using static System.Math;
 
 namespace VersionSample.Csharp6
 {
