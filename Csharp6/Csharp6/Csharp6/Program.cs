@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using static System.Console;
-using static Csharp6.Csharp6.PointJson;
-
-namespace Csharp6.Csharp6
+﻿namespace Csharp6.Csharp6
 {
+    using System.Collections.Generic;
+    using static System.Console;
+    using static PointJson;
+
     class Program
     {
-        public static void Run()
+        static void Main()
         {
             var points = new List<Point>
             {

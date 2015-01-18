@@ -4,7 +4,7 @@
     /// (X, Y) なクラス。X も Y も immutable に作りたい。
     /// その場合、結構煩雑な定型文になってしまう…
     /// </summary>
-    class Point
+    public class Point
     {
         private readonly int _x; // ←ここと
         private readonly int _y;
@@ -17,6 +17,15 @@
 
         public int X { get { return _x; } } // ←ここ、何回 x 書けばいいんだよ！
         public int Y { get { return _y; } }
+
+        public int InnerProduct(Point p)
+        {
+            return X * p.X + Y * p.Y;
+        }
+        public static Point operator -(Point p)
+        {
+            return new Point(-p.X, -p.Y);
+        }
 
         public override string ToString()
         {
@@ -88,6 +97,25 @@
             {
                 X = 10;
                 Y = 20;
+            }
+        }
+    }
+
+    namespace ExpressionBodiedFunction
+    {
+        public class Point
+        {
+            public int X { get; set; }
+            public int Y { get; set; }
+            public Point(int x = 0, int y = 0) { X = x; Y = y; }
+
+            public int InnerProduct(Point p)
+            {
+                return X * p.X + Y * p.Y;
+            }
+            public static Point operator -(Point p)
+            {
+                return new Point(-p.X, -p.Y);
             }
         }
     }

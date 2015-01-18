@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Csharp6.Csharp5
+﻿namespace Csharp6.Csharp5
 {
+    using System;
+    using System.Collections.Generic;
+
     class Program
     {
-        public static void Run()
+        static void Main()
         {
             var points = new List<Point>
             {

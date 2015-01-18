@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Csharp6.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -44,12 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Csharp5\IndexInitializerSample.cs" />
+    <Compile Include="Csharp5\NameOfSample.cs" />
+    <Compile Include="Csharp5\NullConditional.cs" />
     <Compile Include="Csharp5\Point.cs" />
     <Compile Include="Csharp5\PointJson.cs" />
+    <Compile Include="Csharp5\Polygon.cs" />
     <Compile Include="Csharp5\Program.cs" />
+    <Compile Include="Csharp5\StaticUsingSample.cs" />
+    <Compile Include="Csharp5\StringInterpolationSample.cs" />
+    <Compile Include="Csharp6\AwaitInCatchFinally.cs" />
+    <Compile Include="Csharp6\ExceptionFilter.cs" />
+    <Compile Include="Csharp6\ExtensionCollectionInitializer.cs" />
+    <Compile Include="Csharp6\IndexInitializerSample.cs" />
+    <Compile Include="Csharp6\NameOfSample.cs" />
+    <Compile Include="Csharp6\NullConditional.cs" />
+    <Compile Include="Csharp6\ParameterlessConstructor.cs" />
     <Compile Include="Csharp6\Point.cs" />
     <Compile Include="Csharp6\PointJson.cs" />
+    <Compile Include="Csharp6\Polygon.cs" />
     <Compile Include="Csharp6\Program.cs" />
+    <Compile Include="Csharp6\StaticUsingSample.cs" />
+    <Compile Include="Csharp6\StringInterpolationSample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

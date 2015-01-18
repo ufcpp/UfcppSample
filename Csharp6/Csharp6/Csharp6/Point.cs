@@ -5,7 +5,7 @@
     /// getter-only auto-property
     /// property initializer
     /// </summary>
-    class Point
+    public class Point
     {
         public int X { get; } = 0;
         public int Y { get; } = 0;
@@ -15,6 +15,9 @@
             X = x;
             Y = y;
         }
+
+        public int InnerProduct(Point p) => X * p.X + Y * p.Y;
+        public static Point operator -(Point p) => new Point(-p.X, -p.Y);
 
         public override string ToString() => $"({X}, {Y})";
     }
@@ -38,5 +41,19 @@
             public int Y { get; } = 20;
 
         }
+    }
+
+    namespace ExpressionBodiedFunction
+    {
+        public class Point
+        {
+            public int X { get; set; }
+            public int Y { get; set; }
+            public Point(int x = 0, int y = 0) { X = x; Y = y; }
+
+            public int InnerProduct(Point p) => X * p.X + Y * p.Y;
+            public static Point operator -(Point p) => new Point(-p.X, -p.Y);
+        }
+
     }
 }
