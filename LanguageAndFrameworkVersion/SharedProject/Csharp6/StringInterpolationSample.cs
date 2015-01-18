@@ -16,7 +16,7 @@ namespace VersionSample.Csharp6
             var x = 10;
             var y = 20;
 
-            var s = $"{x}, {y}";
+            var s = $"{x}, {y}, {x :c}, {x :n}";
 
             Console.WriteLine(s);
         }
@@ -26,7 +26,7 @@ namespace VersionSample.Csharp6
             var x = 10;
             var y = 20;
 
-            var s = string.Format("{0}, {1}", x, y);
+            var s = string.Format("{0}, {1}, {2 :c}, {3 :n}", x, y, x, x);
 
             Console.WriteLine(s);
         }
