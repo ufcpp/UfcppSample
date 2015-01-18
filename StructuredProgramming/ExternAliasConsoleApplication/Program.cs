@@ -16,7 +16,7 @@ namespace UsingStandard
         public static void Run()
         {
             var x = new[] { 1, 2, 3, 4, 5 };
-            var y = x.Where(i => (i & 1) != 0).Select(i => i * i);
+            var y = x.Where(i => (i & 1) != 0).Select(i => i * i); // 標準の LINQ
             Console.WriteLine(string.Join(", ", y));
         }
     }
@@ -24,7 +24,7 @@ namespace UsingStandard
 
 namespace UsingBackport
 {
-    extern alias Backport;
+    extern alias Backport; // コンパイル オプションで BackportEnumerable.dll を指定
     using Backport::System.Linq;
 
     class Sample
@@ -32,7 +32,7 @@ namespace UsingBackport
         public static void Run()
         {
             var x = new[] { 1, 2, 3, 4, 5 };
-            var y = x.Where(i => (i & 1) != 0).Select(i => i * i);
+            var y = x.Where(i => (i & 1) != 0).Select(i => i * i); // 自作のパックポート LINQ
             Console.WriteLine(string.Join(", ", y));
         }
     }
