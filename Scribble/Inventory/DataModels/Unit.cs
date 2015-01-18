@@ -1,13 +1,16 @@
 ﻿using Inventories;
 using System.Collections.Generic;
 
-namespace InventoriesSample
+namespace InventoriesSample.DataModels
 {
     /// <summary>
     /// A battle unit.
     /// </summary>
-    class Unit : IIdentifiable
+    public class Unit : IIdentifiable
     {
+        /// <summary>
+        /// The instance id.
+        /// </summary>
         public int Id { get; set; }
 
         public int MasterId { get; set; }
@@ -23,7 +26,7 @@ namespace InventoriesSample
     /// - the leader has special skills effective on the party.
     /// - the leader is always active.
     /// </summary>
-    class LeaderUnit : Unit
+    public class LeaderUnit : Unit
     {
         public IEnumerable<int> SpecialSkillIds { get; }
     }
@@ -33,7 +36,7 @@ namespace InventoriesSample
     /// - you can pay costs to summon servants to the party.
     /// - only summoned servants are active.
     /// </summary>
-    class ServantUnit : Unit
+    public class ServantUnit : Unit
     {
         public bool IsSummoned { get; }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
@@ -10,7 +11,7 @@ namespace Inventories
     /// A simple implementation of <see cref="IInventory{T}"/> by using <see cref="Dictionary{TKey, TValue}"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DictionaryInventory<T> : IObservableInventory<T>, IChangeable<T>
+    public class DictionaryInventory<T> : IObservableInventory<T>, IChangeable<T>, IEnumerable<T>
         where T : IIdentifiable
     {
         Dictionary<int, T> _items = new Dictionary<int, T>();
@@ -81,5 +82,8 @@ namespace Inventories
             }
             _Changed.OnNext(this, args);
         }
+
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
     }
 }

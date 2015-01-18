@@ -65,7 +65,7 @@ namespace Inventories
         /// <returns></returns>
         public static IDisposable Subscribe<T>(this IObservableEnumerable<T> source, Action<T> observer)
         {
-            observer(source.Items.First());
+            foreach (var item in source.Items) observer(item);
             return source.Updated.Subscribe(observer);
         }
     }

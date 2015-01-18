@@ -53,9 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModels\SyncResult.cs" />
+    <Compile Include="DataModels\IApi.cs" />
+    <Compile Include="Dummy\DummyApi.cs" />
+    <Compile Include="Dummy\DummyMasters.cs" />
+    <Compile Include="Dummy\UnitMaster.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.cs" />
+    <Compile Include="DataModels\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -67,6 +72,7 @@
       <Name>Inventories</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
