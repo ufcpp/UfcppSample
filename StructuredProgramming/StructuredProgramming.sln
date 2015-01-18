@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22129.1
+VisualStudioVersion = 14.0.22512.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Function", "Function\Function.csproj", "{6F24F522-37B0-422E-93F2-F9617C253987}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternAlias", "ExternAlias", "{03A242C1-5AFC-4912-9557-DE0FBBA5E4E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternAliasConsoleApplication", "ExternAliasConsoleApplication\ExternAliasConsoleApplication.csproj", "{134218F9-5B38-4E19-A74D-F05A3F179B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackportEnumerable", "BackportEnumerable\BackportEnumerable.csproj", "{B63BA635-EA21-4D00-B7C1-2104FCDD169D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +21,20 @@ Global
 		{6F24F522-37B0-422E-93F2-F9617C253987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F24F522-37B0-422E-93F2-F9617C253987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F24F522-37B0-422E-93F2-F9617C253987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134218F9-5B38-4E19-A74D-F05A3F179B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134218F9-5B38-4E19-A74D-F05A3F179B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134218F9-5B38-4E19-A74D-F05A3F179B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134218F9-5B38-4E19-A74D-F05A3F179B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B63BA635-EA21-4D00-B7C1-2104FCDD169D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B63BA635-EA21-4D00-B7C1-2104FCDD169D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B63BA635-EA21-4D00-B7C1-2104FCDD169D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B63BA635-EA21-4D00-B7C1-2104FCDD169D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{134218F9-5B38-4E19-A74D-F05A3F179B53} = {03A242C1-5AFC-4912-9557-DE0FBBA5E4E2}
+		{B63BA635-EA21-4D00-B7C1-2104FCDD169D} = {03A242C1-5AFC-4912-9557-DE0FBBA5E4E2}
 	EndGlobalSection
 EndGlobal
