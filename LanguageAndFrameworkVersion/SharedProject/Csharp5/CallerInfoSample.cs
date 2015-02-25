@@ -1,4 +1,4 @@
-﻿#if Ver2 && Plus
+﻿#if Ver4_5 || (Ver2 && Plus)
 
 using System;
 using System.Runtime.CompilerServices;

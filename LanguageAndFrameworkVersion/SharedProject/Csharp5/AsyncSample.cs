@@ -1,4 +1,4 @@
-﻿#if Ver4 && Plus
+﻿#if Ver4_5 || (Ver4 && Plus)
 
 using System.IO;
 using System.Threading.Tasks;
