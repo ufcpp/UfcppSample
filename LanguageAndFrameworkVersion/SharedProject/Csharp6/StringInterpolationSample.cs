@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VersionSample.Csharp6
 {
@@ -40,29 +41,37 @@ namespace VersionSample.Csharp6
         // この機能には、System.Runtime.CompilerServices.FormattedString 型が必要になるので、.NET 4.6 (もしくは同等の FormattedString の自前実装)が必要に。
         // C# 6.0 の機能の中で、.NET 4.6/.NET Core 5を要求する唯一の機能。
 
-#if false//Ver4_5
+#if Ver4_6
+
+        private static readonly IEnumerable<string> Cultures = new[] { "en-us", "fr", "zh-hk", "ja-jp" };
 
         public static void Y()
         {
             var x = 10;
 
             IFormattable f = $"{x :c}, {x :n}";
-            var s = Culture(f, "en-us");
 
-            Console.WriteLine(s);
+            foreach (var c in Cultures)
+            {
+                var s = WithCulture(f, c);
+                Console.WriteLine(s);
+            }
         }
 
         public static void SameAsY()
         {
             var x = 10;
-            var y = 20;
 
-            var s = string.Format("{0}, {1}", x, y);
+            IFormattable f = System.Runtime.CompilerServices.FormattableStringFactory.Create("{0:c}, {1:n}", x, x);
 
-            Console.WriteLine(s);
+            foreach (var c in Cultures)
+            {
+                var s = WithCulture(f, c);
+                Console.WriteLine(s);
+            }
         }
 
-        private static string Culture(IFormattable f, string cultureName)
+        private static string WithCulture(IFormattable f, string cultureName)
         {
             return f.ToString(null, System.Globalization.CultureInfo.CreateSpecificCulture(cultureName));
         }

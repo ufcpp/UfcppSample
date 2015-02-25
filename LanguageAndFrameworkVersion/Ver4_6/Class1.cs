@@ -18,6 +18,8 @@
             Csharp6.NullConditionalSample.SameAsY(entry);
             Csharp6.StringInterpolationSample.X();
             Csharp6.StringInterpolationSample.SameAsX();
+            Csharp6.StringInterpolationSample.Y();
+            Csharp6.StringInterpolationSample.SameAsY();
 
             Csharp5.ForeachBreakingChangeSample.X();
             Csharp5.CallerInfoSample.X();
