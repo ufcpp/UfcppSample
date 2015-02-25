@@ -51,7 +51,7 @@ namespace VersionSample.Csharp6
             try
             {
             }
-            catch (ArgumentException e) if (e.ParamName == "x")
+            catch (ArgumentException e) when (e.ParamName == "x")
             {
                 // パラメーター名が x の時だけはエラー無視
             }
