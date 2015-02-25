@@ -54,6 +54,16 @@
             //return name?.Length;
             // は意味が変わるので注意。
         }
+
+#if false
+        // 残念ながら、null 条件演算子は式ツリー化できない。
+        // SameAsY とかの例を見ての通り、複文に展開されるので。
+
+        public static void Z()
+        {
+            System.Linq.Expressions.Expression<System.Func<Entry, int>> e = x => x?.Name?.Length ?? 0;
+        }
+#endif
     }
 
     public class Entry
