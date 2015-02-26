@@ -1,8 +1,8 @@
 ﻿namespace VersionSample
 {
-    class Class1
+    class Program
     {
-        public void X()
+        static void Main()
         {
             // C# コンパイラーのレベルで実現している機能(.NET のバージョンは問わない)
             Csharp6.SyntaxSugarSample.X();

@@ -9,7 +9,7 @@
     <Import_RootNamespace>VersionSample</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Class1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Program.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\AnonymousTypeSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\PartialMethodSample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Csharp3\SyntaxSugarSample.cs" />
