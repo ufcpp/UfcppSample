@@ -1,4 +1,3 @@
 ﻿.NET 3.5 ターゲット。
 
-自作で
-・Caller Info 属性が使えるように自作している。
+Caller Info が使えるように、Compatibility 3 プロジェクトを参照。

@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ver 4.5 Plus", "Ver4_5Plus\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ver 4.6", "Ver4_6\Ver 4.6.csproj", "{91939A00-FB43-4317-9392-3FD1A43CCEB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compatibility 2", "Compatibility 2\Compatibility 2.csproj", "{895A0C44-DC4B-4A70-A807-9320925F719D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compatibility 3", "Compatibility 3\Compatibility 3.csproj", "{52D42322-D7F7-46B9-BB69-97A33D1D24AB}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProject\SharedProject.projitems*{15237782-9295-44e9-bf36-1b57a8d2294e}*SharedItemsImports = 4
@@ -77,6 +81,14 @@ Global
 		{91939A00-FB43-4317-9392-3FD1A43CCEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91939A00-FB43-4317-9392-3FD1A43CCEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91939A00-FB43-4317-9392-3FD1A43CCEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{895A0C44-DC4B-4A70-A807-9320925F719D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{895A0C44-DC4B-4A70-A807-9320925F719D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{895A0C44-DC4B-4A70-A807-9320925F719D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{895A0C44-DC4B-4A70-A807-9320925F719D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D42322-D7F7-46B9-BB69-97A33D1D24AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D42322-D7F7-46B9-BB69-97A33D1D24AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D42322-D7F7-46B9-BB69-97A33D1D24AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D42322-D7F7-46B9-BB69-97A33D1D24AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
