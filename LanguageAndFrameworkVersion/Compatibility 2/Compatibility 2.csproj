@@ -31,13 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallerInfoAttributes.cs" />
     <Compile Include="Enumerable.cs" />
     <Compile Include="ExtensionAttribute.cs" />
+    <Compile Include="FormattableString.cs" />
     <Compile Include="Func.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

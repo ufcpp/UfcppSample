@@ -41,7 +41,7 @@ namespace VersionSample.Csharp6
         // この機能には、System.Runtime.CompilerServices.FormattedString 型が必要になるので、.NET 4.6 (もしくは同等の FormattedString の自前実装)が必要に。
         // C# 6.0 の機能の中で、.NET 4.6/.NET Core 5を要求する唯一の機能。
 
-#if Ver4_6
+#if Ver4_6 || (Ver2 && Plus)
 
         private static readonly IEnumerable<string> Cultures = new[] { "en-us", "fr", "zh-hk", "ja-jp" };
 

@@ -39,6 +39,9 @@
     <Compile Include="..\Compatibility 2\CallerInfoAttributes.cs">
       <Link>CallerInfoAttributes.cs</Link>
     </Compile>
+    <Compile Include="..\Compatibility 2\FormattableString.cs">
+      <Link>FormattableString.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
