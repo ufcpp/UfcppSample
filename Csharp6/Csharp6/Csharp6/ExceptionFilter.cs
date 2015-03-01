@@ -10,7 +10,7 @@
             {
                 SomeMethod(1, 2);
             }
-            catch (ArgumentException e) if (e.ParamName == "x")
+            catch (ArgumentException e) when (e.ParamName == "x")
             {
                 // パラメーター名が x の時だけはエラー無視
             }

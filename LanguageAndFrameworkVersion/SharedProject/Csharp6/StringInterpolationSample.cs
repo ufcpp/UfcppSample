@@ -18,8 +18,13 @@ namespace VersionSample.Csharp6
             var y = 20;
 
             var s = $"{x}, {y}, {x :c}, {x :n}";
-
             Console.WriteLine(s);
+
+            var verbatim = $@"
+verbatim (here) string
+{x}, {y}, {x:c}, {x:n}
+";
+            Console.WriteLine(verbatim);
         }
 
         public static void SameAsX()
@@ -28,8 +33,13 @@ namespace VersionSample.Csharp6
             var y = 20;
 
             var s = string.Format("{0}, {1}, {2 :c}, {3 :n}", x, y, x, x);
-
             Console.WriteLine(s);
+
+            var verbatim = string.Format(@"
+verbatim (here) string
+{0}, {1}, {2:c}, {3:n}
+", x, y, x, x);
+            Console.WriteLine(verbatim);
         }
 
         //【注意】この構文だとカルチャー指定とかができない(IFormatProviders を与えるオーバーロードを呼べない)。
