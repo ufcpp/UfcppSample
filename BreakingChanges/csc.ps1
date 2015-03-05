@@ -1,11 +1,11 @@
 ﻿param([string] $src)
 
 $compilers = @(
-    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v2.0.50727\csc.exe'; 'color' = 'DarkCyan' }
-    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v3.5\csc.exe'      ; 'color' = 'DarkMagenta' }
-    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe'; 'color' = 'DarkGreen' }
-    @{ 'compiler' = 'C:\Program Files (x86)\MSBuild\12.0\Bin\csc.exe'        ; 'color' = 'DarkRed' }
-    @{ 'compiler' = 'C:\Program Files (x86)\MSBuild\14.0\Bin\csc.exe'        ; 'color' = 'DarkBlue' }
+    @{ 'compiler' = $env:windir + '\Microsoft.NET\Framework64\v2.0.50727\csc.exe'; 'color' = 'DarkCyan' }
+    @{ 'compiler' = $env:windir + '\Microsoft.NET\Framework64\v3.5\csc.exe'      ; 'color' = 'DarkMagenta' }
+    @{ 'compiler' = $env:windir + '\Microsoft.NET\Framework64\v4.0.30319\csc.exe'; 'color' = 'DarkGreen' }
+    @{ 'compiler' = ${env:ProgramFiles(x86)} + '\MSBuild\12.0\Bin\csc.exe'       ; 'color' = 'DarkRed' }
+    @{ 'compiler' = ${env:ProgramFiles(x86)} + '\MSBuild\14.0\Bin\csc.exe'       ; 'color' = 'DarkBlue' }
 )
 
 $line = '━' * 40
