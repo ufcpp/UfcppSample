@@ -1,9 +1,26 @@
 ﻿param([string] $src)
 
+$compilers = @(
+    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v2.0.50727\csc.exe'; 'color' = 'DarkCyan' }
+    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v3.5\csc.exe'      ; 'color' = 'DarkMagenta' }
+    @{ 'compiler' = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe'; 'color' = 'DarkGreen' }
+    @{ 'compiler' = 'C:\Program Files (x86)\MSBuild\12.0\Bin\csc.exe'        ; 'color' = 'DarkRed' }
+    @{ 'compiler' = 'C:\Program Files (x86)\MSBuild\14.0\Bin\csc.exe'        ; 'color' = 'DarkBlue' }
+)
+
 $line = '━' * 40
 
-Write-Host $line; . C:\Windows\Microsoft.NET\Framework64\v2.0.50727\csc.exe -t:library $src | Write-Host -ForegroundColor DarkCyan
-Write-Host $line; . C:\Windows\Microsoft.NET\Framework64\v3.5\csc.exe       -t:library $src | Write-Host -ForegroundColor DarkMagenta
-Write-Host $line; . C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe -t:library $src | Write-Host -ForegroundColor DarkGreen
-Write-Host $line; . 'C:\Program Files (x86)\MSBuild\12.0\Bin\csc.exe'       -t:library $src | Write-Host -ForegroundColor DarkRed
-Write-Host $line; . 'C:\Program Files (x86)\MSBuild\14.0\Bin\csc.exe'       -t:library $src | Write-Host -ForegroundColor DarkBlue
+foreach($item in $compilers)
+{
+    . {
+        $line
+
+        . $item.compiler -out:out.exe $src
+
+        if(Test-Path out.exe)
+        {
+            .\out.exe
+            [void](rm out.exe)
+        }
+    } | Write-Host -ForegroundColor $item.color
+}
