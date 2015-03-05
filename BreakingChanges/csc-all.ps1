@@ -1,13 +1,21 @@
-$sourceCodes = @(
-    '.\VS2015_CS6\KatakanaMiddleDot.cs';
-    '.\VS2015_CS6\DefiniteAssignment.cs';
-)
+$sourceCodes = ls *.cs -Recurse | ?{ ($_ -notmatch '\\obj\\') -and ($_ -notmatch '\\Properties\\') }
 
 foreach ($src in $sourceCodes)
 {
     cls
-    Write-Host $src
+
+    $x = $src.FullName.Split('\\')
+    $name = $x[$x.Length - 2] + '/' + $x[$x.Length - 1]
+    Write-Host $name
+    Write-Host
+
+    .\read-summary.ps1 $src
+    Write-Host
+
     .\csc.ps1 $src
+
+    Write-Host
+    Write-Host [press enter to continue]
     Read-Host
 }
 
