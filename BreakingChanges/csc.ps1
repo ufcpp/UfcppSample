@@ -15,7 +15,7 @@ foreach($item in $compilers)
     . {
         $line
 
-        . $item.compiler -out:out.exe $src
+        . $item.compiler -out:out.exe $src /unsafe+
 
         if(Test-Path out.exe)
         {
