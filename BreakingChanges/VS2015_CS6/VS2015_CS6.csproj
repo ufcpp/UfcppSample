@@ -39,6 +39,7 @@
     <Compile Include="DefiniteAssignment.cs" />
     <Compile Include="EnumBaseTypeSystemInt32.cs" />
     <Compile Include="KatakanaMiddleDot.cs" />
+    <Compile Include="LockUnconstrainedTypeParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
