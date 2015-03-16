@@ -39,6 +39,7 @@
     <Compile Include="CyclicalConstructorChaining.cs" />
     <Compile Include="DefiniteAssignment.cs" />
     <Compile Include="EnumBaseTypeSystemInt32.cs" />
+    <Compile Include="FuncOfFuncTypeInference.cs" />
     <Compile Include="KatakanaMiddleDot.cs" />
     <Compile Include="LockUnconstrainedTypeParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
