@@ -4,10 +4,13 @@ class FuncOfFuncTypeInference
 {
     static void Main()
     {
-        X(() => 10);
         X(() => () => 10);
+        Y(() => () => 10);
     }
 
-    private static T X<T>(Func<Func<T>> f) { return f()(); }
-    private static T X<T>(Func<T> f) { return f(); }
+    private static int X(Func<Func<int>> f) { return f()(); }
+    private static int X(Func<Func<int?>> f) { return f()() ?? 0; }
+
+    private static int Y(Func<Func<int>> f) { return f()(); }
+    private static double Y(Func<Func<double>> f) { return f()(); }
 }

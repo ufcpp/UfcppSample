@@ -1,4 +1,4 @@
-$sourceCodes = ls *.cs -Recurse | ?{ ($_ -notmatch '\\obj\\') -and ($_ -notmatch '\\Properties\\') }
+$sourceCodes = ls Func*.cs -Recurse | ?{ ($_ -notmatch '\\obj\\') -and ($_ -notmatch '\\Properties\\') }
 
 foreach ($src in $sourceCodes)
 {
