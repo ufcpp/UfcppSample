@@ -3,12 +3,18 @@ class Driver
 {
     public void DoSomething<T>(T data)
     {
-        lock (data) // << Generates CS0185 
+        lock (data) // << Generates CS0185
         { }
     }
     public void DoSomethingElse(SOptions data)
     {
-        lock (data) // << Works fine 
+        lock (data) // << Works fine
+        { }
+    }
+    public void DoSomething<T>(T data)
+        where T : class
+    {
+        lock (data) // Works fine
         { }
     }
 }
