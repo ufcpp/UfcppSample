@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FindSingleStatementBody
+namespace CodeAnalysisForCSharp6
 {
     class Programs
     {
@@ -25,42 +25,48 @@ namespace FindSingleStatementBody
 
         private static async Task ReadCsharpSourceCodes(string path)
         {
-            var w = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();
-            var solution = await w.OpenSolutionAsync(path);
+            Console.WriteLine("Build started");
 
-            var solutionName = Path.GetFileName(solution.FilePath);
-            var c = CSharpCompilation.Create(solutionName + ".dll");
+            var s = await SolutionLoader.LoadAsync(path);
 
-            FindGetOnlyPropertyWhichHasSingleStatement(solution);
-            FindMethodWhichHasSingleStatement(solution);
+            FindGetOnlyPropertyWhichHasSingleStatement(s);
+            FindMethodWhichHasSingleStatement(s);
         }
 
-        private static void FindGetOnlyPropertyWhichHasSingleStatement(Solution solution)
+        private static void FindGetOnlyPropertyWhichHasSingleStatement(SolutionLoader solution)
         {
             var items = (
-                from p in GetProperties(solution)
-                where !HasNoBody(p)
-                let getter = p.AccessorList.Accessors.Count != 1 ? null : p.AccessorList.Accessors.SingleOrDefault(a => a.Keyword.Text == "get")
-                let IsGetOnly = getter != null
-                let HasSingleStatement = getter != null && getter.Body != null && getter.Body.Statements.Count == 1
-                select new { IsGetOnly, HasSingleStatement }
+                from p in solution.GetProperties()
+                where p.HasBody
+                select p
                 ).ToArray();
 
             var total = 0;
             var getOnly = 0;
             var singleStatement = 0;
+            var fieldAccess = 0;
+            var auto = 0;
+            var privateSet = 0;
 
             foreach (var x in items)
             {
                 total++;
                 if (x.IsGetOnly) getOnly++;
                 if (x.HasSingleStatement) singleStatement++;
+                if (x.BackingField != null) fieldAccess++;
+                if (x.IsAuto) auto++;
+                if (x.IsAuto && x.HasPrivateSet) privateSet++;
             }
 
-            Console.WriteLine($"total: {total}, get-only: {getOnly}, single stetement: {singleStatement}");
-            Console.WriteLine($"プロパティのうち {singleStatement}個({(double)singleStatement / total * 100: 0.00}%) がステートメント1個だけ");
+            Console.WriteLine($"total: {total}, get-only: {getOnly}, single stetement: {singleStatement}, field access: {fieldAccess}, auto: {auto}, private set: {privateSet}");
+            Console.WriteLine($"プロパティ全体の {singleStatement}個({(double)singleStatement / total * 100: 0.00}%) がステートメント1個だけ");
             Console.WriteLine($"プロパティ全体の {(double)singleStatement / total * 100: 0.00}%");
-            Console.WriteLine($"get だけのプロパティのうち {(double)singleStatement / getOnly * 100: 0.00}%");
+
+            Console.WriteLine($"get だけのプロパティのうち {(double)singleStatement / getOnly * 100: 0.00}% が式1個だけ");
+            Console.WriteLine($"式1つだけプロパティのうち {(double)fieldAccess / singleStatement * 100: 0.00}% が単なるフィールド アクセス");
+
+            Console.WriteLine($"プロパティ全体の {auto}個({(double)auto / total * 100: 0.00}%) が自動実装");
+            Console.WriteLine($"自動プロパティのうち {privateSet}個({(double)privateSet / auto * 100: 0.00}%) が private set");
         }
 
         private static bool HasNoBody(PropertyDeclarationSyntax p)
@@ -68,12 +74,12 @@ namespace FindSingleStatementBody
             return p.Modifiers.Any(x => x.Text == "abstract");
         }
 
-        private static void FindMethodWhichHasSingleStatement(Solution solution)
+        private static void FindMethodWhichHasSingleStatement(SolutionLoader solution)
         {
             var groups = (
-                from m in GetMethods(solution)
-                where !HasNoBody(m)
-                group m by m.Body.Statements.Count into g
+                from m in solution.GetMethods()
+                where m.HasBody
+                group m by m.StatementCount into g
                 orderby g.Key
                 select new { g.Key, Count = g.Count() }
                 ).ToArray();

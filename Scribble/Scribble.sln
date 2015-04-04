@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22728.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoriesSample", "Inventory\InventoriesSample.csproj", "{098B70B7-1F79-45FE-8207-271625511C4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventories", "Inventories\Inventories.csproj", "{B4FC97A2-812E-40E8-ABFA-5EECADD60F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindSingleStatementBody", "FindSingleStatementBody\FindSingleStatementBody.csproj", "{250D56BB-432A-4CF7-BE6A-6C5FF542D0E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeAnalysisForCSharp6", "FindSingleStatementBody\CodeAnalysisForCSharp6.csproj", "{250D56BB-432A-4CF7-BE6A-6C5FF542D0E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

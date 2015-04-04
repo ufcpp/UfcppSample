@@ -7,8 +7,8 @@
     <ProjectGuid>{250D56BB-432A-4CF7-BE6A-6C5FF542D0E6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FindSingleStatementBody</RootNamespace>
-    <AssemblyName>FindSingleStatementBody</AssemblyName>
+    <RootNamespace>CodeAnalysisForCSharp6</RootNamespace>
+    <AssemblyName>CodeAnalysisForCSharp6</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -87,8 +87,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MethodAnalyzer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyAnalysis.cs" />
+    <Compile Include="SolutionLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
