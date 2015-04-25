@@ -20,6 +20,19 @@ class InvariantMeaningInBlock
         }
     }
 
+#if false
+    // FYI
+    void F1(bool b)
+    {
+        if (b)
+        {
+            int x; // generates CS0136 still in C# 6.0.
+            x = 1;
+        }
+        int x = 1.0;
+    }
+#endif
+
     static void Main()
     {
         var x = new InvariantMeaningInBlock();
