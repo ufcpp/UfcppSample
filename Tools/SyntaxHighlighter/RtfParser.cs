@@ -291,12 +291,12 @@ namespace SyntaxHighlighter
                 if (string.IsNullOrEmpty(tag))
                     ret = string.Empty;
                 else
-                    ret = "<" + tag + ">";
+                    ret = String.Format("<span class=\"{0}\">", tag);
             else
                 if (string.IsNullOrEmpty(tag))
-                    ret = "</" + prevTag_ + ">";
-                else
-                    ret = "</" + prevTag_ + "><" + tag + ">";
+                ret = "</span>";
+            else
+                ret = "</span>" + String.Format("<span class=\"{0}\">", tag);
 
             prevTag_ = tag;
             return ret;

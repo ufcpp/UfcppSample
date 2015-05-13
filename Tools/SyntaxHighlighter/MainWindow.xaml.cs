@@ -48,10 +48,11 @@ namespace SyntaxHighlighter
             {
                 var tag = tagNames[comboType.SelectedIndex];
 
-                var source =
-                    "<" + tag + " title=\"\" xml:space=\"preserve\">"
-                    + Environment.NewLine + converted + Environment.NewLine +
-                    "</" + tag + ">";
+                var source = String.Format("<pre class=\"{0}\" title=\"\">{1}<code>{2}{3}</code></pre>",
+                        tag,
+                        Environment.NewLine,
+                        converted,
+                        Environment.NewLine);
 
                 this.block.Text = source;
                 Clipboard.SetDataObject(source);
