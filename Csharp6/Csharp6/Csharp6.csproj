@@ -63,7 +63,6 @@
     <Compile Include="Csharp6\IndexInitializerSample.cs" />
     <Compile Include="Csharp6\NameOfSample.cs" />
     <Compile Include="Csharp6\NullConditional.cs" />
-    <Compile Include="Csharp6\ParameterlessConstructor.cs" />
     <Compile Include="Csharp6\Point.cs" />
     <Compile Include="Csharp6\PointJson.cs" />
     <Compile Include="Csharp6\Polygon.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="Csharp6\StaticUsingSample.cs" />
     <Compile Include="Csharp6\StringInterpolationSample.cs" />
     <Compile Include="Misc\SmallChanges.cs" />
+    <Compile Include="Misc\StringInterpolationSample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
