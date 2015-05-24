@@ -70,6 +70,7 @@
     <Compile Include="Csharp6\Program.cs" />
     <Compile Include="Csharp6\StaticUsingSample.cs" />
     <Compile Include="Csharp6\StringInterpolationSample.cs" />
+    <Compile Include="Misc\SmallChanges.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
