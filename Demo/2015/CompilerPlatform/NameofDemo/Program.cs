@@ -4,13 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        WriteLine(nameof(Person.Key) == "Id");
+        WriteLine(nameof(Person.Id) == "Id");
     }
 }
 
 class Person
 {
-    public string Key { get; set; }
+    public string Id { get; set; }
     public string Name { get; set; }
     public int Age { get; set; }
 }
