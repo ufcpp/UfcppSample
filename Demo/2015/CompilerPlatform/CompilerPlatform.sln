@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordDemo", "RecordDemo\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpEssentialsDemo", "CsharpEssentialsDemo\CsharpEssentialsDemo.csproj", "{F80205EC-033C-4653-9D7A-79EA873D21DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyPropertyChangedGeneratorDemo", "NotifyPropertyChangedGeneratorDemo\NotifyPropertyChangedGeneratorDemo.csproj", "{0F979A2A-5DD9-42D3-B531-8AA9CCD9DF2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F979A2A-5DD9-42D3-B531-8AA9CCD9DF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F979A2A-5DD9-42D3-B531-8AA9CCD9DF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F979A2A-5DD9-42D3-B531-8AA9CCD9DF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F979A2A-5DD9-42D3-B531-8AA9CCD9DF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
