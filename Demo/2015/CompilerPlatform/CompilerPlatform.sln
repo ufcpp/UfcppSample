@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickActions", "QuickAction
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMixinDemo", "LazyMixinDemo\LazyMixinDemo.csproj", "{45A8F3E7-187A-4B11-8470-1BF61F6FA9E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordDemo", "RecordDemo\RecordDemo.csproj", "{00459108-23F2-4A1C-ABF3-9746D87DF7EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{45A8F3E7-187A-4B11-8470-1BF61F6FA9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A8F3E7-187A-4B11-8470-1BF61F6FA9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45A8F3E7-187A-4B11-8470-1BF61F6FA9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
