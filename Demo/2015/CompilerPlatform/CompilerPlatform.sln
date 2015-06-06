@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMixinDemo", "LazyMixinD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordDemo", "RecordDemo\RecordDemo.csproj", "{00459108-23F2-4A1C-ABF3-9746D87DF7EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpEssentialsDemo", "CsharpEssentialsDemo\CsharpEssentialsDemo.csproj", "{F80205EC-033C-4653-9D7A-79EA873D21DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00459108-23F2-4A1C-ABF3-9746D87DF7EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F80205EC-033C-4653-9D7A-79EA873D21DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
