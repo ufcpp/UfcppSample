@@ -36,6 +36,16 @@ namespace Csharp6.Misc
 }}
 ""
 ";
+
+            {
+                var data = new[] { 1, 2, 3 };
+                var s = $"{string.Join(", ", data)} => {string.Join(", ", data.Select(i => i * i))}";
+                Console.WriteLine(s);
+            }
+            {
+                //var s1 = $"p = {p == null ? "null" : p.ToString()}"; // エラー
+                var s2 = $"p = {(p == null ? "null" : p.ToString())}"; // 1段 () でくくればOK
+            }
         }
     }
 }
