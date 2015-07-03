@@ -14,7 +14,7 @@ namespace System
         {
             if (formattable == null)
             {
-                throw new ArgumentNullException("formattable");
+                throw new ArgumentNullException(nameof(formattable));
             }
             return formattable.ToString(CultureInfo.InvariantCulture);
         }
@@ -44,8 +44,8 @@ namespace System.Runtime.CompilerServices
         }
         public static FormattableString Create(string format, params object[] arguments)
         {
-            if (format == null) throw new ArgumentNullException("format");
-            if (arguments == null) throw new ArgumentNullException("arguments");
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (arguments == null) throw new ArgumentNullException(nameof(arguments));
             return new ConcreteFormattableString(format, arguments);
         }
     }
