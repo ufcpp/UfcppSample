@@ -71,6 +71,9 @@
     <Compile Include="Csharp6\StringInterpolationSample.cs" />
     <Compile Include="Misc\SmallChanges.cs" />
     <Compile Include="Misc\StringInterpolationSample.cs" />
+    <Compile Include="Misc\UsingStaticEnum.cs" />
+    <Compile Include="Misc\UsingStaticNormalClass.cs" />
+    <Compile Include="Misc\UsingStaticExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
