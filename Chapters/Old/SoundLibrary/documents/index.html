@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="style.css" />
+<title>SoundLibrary</title>
+</head>
+<body>
+
+<h1>SoundLibrary</h1>
+
+<h2>サブフォルダ</h2>
+
+<table>
+<tr>
+<td><a href="Mathematics/index.html">Mathematics</a></td>
+<td>
+他のライブラリで使う数学関数や複素数クラスなどを定義。
+</td>
+</tr>
+<tr>
+<td><a href="Filter/index.html">Filter</a></td>
+<td>
+音声フィルタライブラリ。
+遅延、FIR/IIRフィルタおよび係数設計用のコードが含まれています。
+</td>
+</tr>
+<tr>
+<td><a href="Wave/index.html">Wave</a></td>
+<td>
+8bit/16bit PCM 形式の Wave ファイルを読み書きするライブラリ。
+ADPCM とかには未対応。
+</td>
+</tr>
+<tr>
+<td><a href="SpectrumAnalysis/index.html">SpectrumAnalysis</a></td>
+<td>
+周波数解析用ライブラリ。
+FFT を使用。
+</td>
+</tr>
+<tr>
+<td><a href="Music/index.html">Music</a></td>
+<td>
+音を作るライブラリ。
+正弦波を重ねて作った倍音にビブラートやエンベロープをかけたり出来る。
+</td>
+</tr>
+<td><a href="Data/index.html">Data</a></td>
+<td>
+正弦波などのデータを生成。
+音声フィルタのデバッグ用に作ったもの（ころころと仕様変更するかも）。
+Music と統合したりするかも。
+</td>
+</tr>
+<tr>
+<td><a href="Pipe/index.html">Pipe</a></td>
+<td>
+FIFO でデータを読み出し→処理→書き出しを行うクラス群を定義。
+音声データの、再生速度変更・移調・ピッチシフトなどを行う。
+</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>
+コマンドライン型アプリケーション製作用ライブラリ。
+コマンドライン引数などを解釈するためのパーサー。
+</td>
+</tr>
+<tr>
+<td>WaveAnalysis</td>
+<td>
+Wave から読み出したデータの周波数解析を行なう。
+Wave や SpectrumAnalysis を使って、
+左右のチャネルの差とかを計算したりするだけ。
+</td>
+</tr>
+<tr>
+<td>Stream</td>
+<td>
+Obsolete。
+Pipe に移行。
+</td>
+</tr>
+<tr>
+<td>Misc</td>
+<td>
+その他諸々。
+デバッグ用のクラスなど。
+</td>
+</tr>
+</table>
+
+<h2>主要なクラス</h2>
+<table>
+<tr>
+<td>Util</td>
+<td>ユーティリティ関数群。デシベル値 ⇔ リニア値や、ミリ秒 ⇔ サンプル数の変換など。</td>
+</tr>
+<tr>
+<td>BitOperation</td>
+<td>ビット操作用クラス。ビットマスクや、2の冪などを計算。</td>
+</tr>
+</table>
+
+<hr />
+<p><a href="../../index.html">戻る</a></p>
+
+</body>
+</html>
