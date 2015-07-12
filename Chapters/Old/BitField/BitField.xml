@@ -1,0 +1,547 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BitField</name>
+    </assembly>
+    <members>
+        <member name="T:BitField.BitFieldException">
+            <summary>
+            BitField がらみの例外
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldException.#ctor">
+            <summary>
+            デフォルトコンストラクタ。
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldException.#ctor(System.String)">
+            <summary>
+            メッセージ付きコンストラクタ。
+            </summary>
+            <param name="msg">エラーメッセージ</param>
+        </member>
+        <member name="T:BitField.BitField">
+            <summary>
+            ビットフィールドクラス。
+            Verilog っぽい操作が可能。
+            64ビットが限界(仕様です)。
+            </summary>
+            <example>
+            reg [31:0] z;
+            z &lt;= {z[30:1], z[31]};
+            ↓
+            BitField z = BitField.Create(31, 0);
+            z.Assign(BitField.Concat(z[30, 1], z[31])); 
+            </example>
+            <example>
+            wire [3:0] a;
+            assign a = 4'hA;
+            ↓
+            BitField a = BitField.Create(3, 0);
+            a.Assign(0xA);
+            </example>
+        </member>
+        <member name="M:BitField.BitField.Create(System.Int32,System.Int32)">
+            <summary>
+            MSB が m、LSB が l のビットフィールドを作成。
+            verilog の <c>wire [m:l] z;</c> に相当。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>MSB が m、LSB が l のビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Create(System.Int32,System.Int32,System.UInt64)">
+            <summary>
+            MSB が m、LSB が l のビットフィールドを作成。
+            verilog の <c>wire [m:l] z;</c> に相当。
+            val で値を初期化する。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <param name="val">初期値</param>
+            <returns>MSB が m、LSB が l、値が val のビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Create(System.Boolean)">
+            <summary>
+            1 びっとのビットフィールドを作成。
+            </summary>
+            <param name="b">ビットの真理値</param>
+            <returns>1ビットのビットフィールド</returns>
+        </member>
+        <member name="M:BitField.BitField.GetValue">
+            <summary>
+            格納されている値を ulong 化して返す。
+            </summary>
+            <returns>格納されている値</returns>
+        </member>
+        <member name="M:BitField.BitField.GetValue(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目に格納されている値を ulong 化して返す。
+            verilog の <c>z[m:l]</c> に相当。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>格納されている値</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Assign(System.UInt64)">
+            <summary>
+            値を割り当てる。
+            </summary>
+            <param name="val">割り当てたい値(ulong)</param>
+        </member>
+        <member name="M:BitField.BitField.Assign(BitField.BitField)">
+            <summary>
+            値を割り当てる。
+            </summary>
+            <param name="a">割り当てたい値の入ったビットフィールド。</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Assign(System.Int32,System.Int32,BitField.BitField)">
+            <summary>
+            m～l ビット目に値を割り当てる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <param name="a">割り当てたい値の入ったビットフィールド</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Sub(m, l).Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Sub(System.Int32)">
+            <summary>
+            i ビット目のみを切り出す。
+            verilog の <c>z[i]</c> に相当。
+            <c>z.Sub(i)</c> を書き換えると <c>z</c> そのものも書き換えられる。
+            </summary>
+            <param name="i">切り出したいビットのインデックス</param>
+            <returns>切り出されたビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            i が範囲外のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Sub(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目のみを切り出す。
+            verilog の <c>z[m:l]</c> に相当。
+            <c>z.Sub(m, l)</c> を書き換えると <c>z</c> そのものも書き換えられる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>切り出されたビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m, l  が範囲外のときと m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.Concat(BitField.BitField[])">
+            <summary>
+            2つのビットフィールドを結合する。
+            verilog の <c>{x, y, z}</c> に相当。
+            いくつでもつなげられる。
+            </summary>
+            <param name="a">つなげたいビットフィールド</param>
+            <returns>つながったビットフィールド</returns>
+        </member>
+        <member name="M:BitField.BitField.op_BitwiseAnd(BitField.BitField,BitField.BitField)">
+            <summary>
+            各ビットに対して AND 演算。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>計算結果</returns>
+            <exception cref="T:BitField.BitFieldException">
+            a.Width != b.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.op_BitwiseOr(BitField.BitField,BitField.BitField)">
+            <summary>
+            各ビットに対して OR 演算。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>計算結果</returns>
+            <exception cref="T:BitField.BitFieldException">
+            a.Width != b.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.op_ExclusiveOr(BitField.BitField,BitField.BitField)">
+            <summary>
+            各ビットに対して XOR 演算。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>計算結果</returns>
+            <exception cref="T:BitField.BitFieldException">
+            a.Width != b.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitField.op_Addition(BitField.BitField,BitField.BitField)">
+            <summary>
+            加算。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>計算結果</returns>
+        </member>
+        <member name="M:BitField.BitField.op_Subtraction(BitField.BitField,BitField.BitField)">
+            <summary>
+            減算。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>計算結果</returns>
+        </member>
+        <member name="M:BitField.BitField.op_UnaryNegation(BitField.BitField)">
+            <summary>
+            符号反転。
+            </summary>
+            <param name="a">オペランド</param>
+            <returns>計算結果</returns>
+        </member>
+        <member name="M:BitField.BitField.op_OnesComplement(BitField.BitField)">
+            <summary>
+            補数。
+            </summary>
+            <param name="a">オペランド</param>
+            <returns>計算結果</returns>
+        </member>
+        <member name="M:BitField.BitField.op_Implicit(System.Boolean)~BitField.BitField">
+            <summary>
+            ブール値からビットフィールドに変換
+            </summary>
+            <param name="b">ビットフィールドの真理値</param>
+            <returns>ビットフィールド</returns>
+        </member>
+        <member name="M:BitField.BitField.op_Implicit(BitField.BitField)~System.Boolean">
+            <summary>
+            ビットフィールドからブール値に変換
+            </summary>
+            <param name="bf">ビットフィールド</param>
+            <returns>ビットフィールドの真偽</returns>
+        </member>
+        <member name="M:BitField.BitField.ToString">
+            <summary>
+            文字列化。
+            0 と 1 の羅列。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BitField.BitField.Width">
+            <summary>
+            ビット幅。
+            </summary>
+        </member>
+        <member name="P:BitField.BitField.Msb">
+            <summary>
+            MSBを取得。
+            </summary>
+        </member>
+        <member name="P:BitField.BitField.Lsb">
+            <summary>
+            LSBを取得。
+            </summary>
+        </member>
+        <member name="P:BitField.BitField.Item(System.Int32)">
+            <summary>
+            i ビット目の値を読み書き。
+            </summary>
+            <exception cref="T:BitField.BitFieldException">
+            i が範囲外のとき発生。
+            </exception>
+        </member>
+        <member name="P:BitField.BitField.Item(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目の値を読み書き。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <exception cref="T:BitField.BitFieldException">
+            m, l  が範囲外のときと m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="P:BitField.BitField.Value">
+            <summary>
+            格納されている値を ulong 化して返す。
+            </summary>
+        </member>
+        <member name="T:BitField.BitFieldImmediate">
+            <summary>
+            値を直接格納しているビットフィールド。
+            普通に <c>BitFiled.Create()</c> で BitField を作るとこいつができる。
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.#ctor(System.Int32,System.Int32)">
+            <summary>
+            MSB が m、 LSB が l のビットフィールドを作成。
+            </summary>
+            <param name="msb">MSB</param>
+            <param name="lsb">LSB</param>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.#ctor(System.Int32,System.Int32,System.UInt64)">
+            <summary>
+            MSB が m、 LSB が l のビットフィールドを作成。
+            値の初期化も行う。
+            </summary>
+            <param name="msb">MSB</param>
+            <param name="lsb">LSB</param>
+            <param name="n">初期値</param>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.GetValue">
+            <summary>
+            格納されている値を ulong 化して返す。
+            </summary>
+            <returns>格納されている値</returns>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.GetValue(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目に格納されている値を ulong 化して返す。
+            verilog の <c>z[m:l]</c> に相当。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>格納されている値</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.Assign(BitField.BitField)">
+            <summary>
+            値を割り当てる。
+            </summary>
+            <param name="a">割り当てたい値の入ったビットフィールド。</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.Assign(System.Int32,System.Int32,BitField.BitField)">
+            <summary>
+            m～l ビット目に値を割り当てる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <param name="a">割り当てたい値の入ったビットフィールド</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Sub(m, l).Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.Sub(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目のみを切り出す。
+            verilog の <c>z[m:l]</c> に相当。
+            <c>z.Sub(m, l)</c> を書き換えると <c>z</c> そのものも書き換えられる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>切り出されたビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m, l  が範囲外のときと m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldImmediate.GetMask(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目のみ 1 のマスクを生成。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>マスク</returns>
+        </member>
+        <member name="P:BitField.BitFieldImmediate.Msb">
+            <summary>
+            MSBを取得。
+            </summary>
+        </member>
+        <member name="P:BitField.BitFieldImmediate.Lsb">
+            <summary>
+            LSBを取得。
+            </summary>
+        </member>
+        <member name="T:BitField.BitFieldSub">
+            <summary>
+            <c>BitField.Sub</c> で取り出す部分ビットフィールド。
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldSub.#ctor(System.Int32,System.Int32,BitField.BitField)">
+            <summary>
+            bf の msb～lsb 目。
+            </summary>
+            <param name="msb">MSB</param>
+            <param name="lsb">LSB</param>
+            <param name="bf">元となるビットフィールド</param>
+        </member>
+        <member name="M:BitField.BitFieldSub.GetValue">
+            <summary>
+            格納されている値を ulong 化して返す。
+            </summary>
+            <returns>格納されている値</returns>
+        </member>
+        <member name="M:BitField.BitFieldSub.GetValue(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目に格納されている値を ulong 化して返す。
+            verilog の <c>z[m:l]</c> に相当。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>格納されている値</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldSub.Assign(BitField.BitField)">
+            <summary>
+            値を割り当てる。
+            </summary>
+            <param name="a">割り当てたい値の入ったビットフィールド。</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldSub.Assign(System.Int32,System.Int32,BitField.BitField)">
+            <summary>
+            m～l ビット目に値を割り当てる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <param name="a">割り当てたい値の入ったビットフィールド</param>
+            <exception cref="T:BitField.BitFieldException">
+            this.Sub(m, l).Width != a.Width のとき発生。
+            </exception>
+        </member>
+        <member name="M:BitField.BitFieldSub.Sub(System.Int32,System.Int32)">
+            <summary>
+            m～l ビット目のみを切り出す。
+            verilog の <c>z[m:l]</c> に相当。
+            <c>z.Sub(m, l)</c> を書き換えると <c>z</c> そのものも書き換えられる。
+            </summary>
+            <param name="m">MSB</param>
+            <param name="l">LSB</param>
+            <returns>切り出されたビットフィールド</returns>
+            <exception cref="T:BitField.BitFieldException">
+            m, l  が範囲外のときと m &lt; l のとき発生。
+            </exception>
+        </member>
+        <member name="P:BitField.BitFieldSub.Msb">
+            <summary>
+            MSBを取得。
+            </summary>
+        </member>
+        <member name="P:BitField.BitFieldSub.Lsb">
+            <summary>
+            LSBを取得。
+            </summary>
+        </member>
+        <member name="T:BitField.BitFieldTest">
+            <summary>
+            BitField クラスのテスト用プログラム。
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldTest.Main">
+            <summary>
+            アプリケーションのメイン エントリ ポイントです。
+            </summary>
+        </member>
+        <member name="M:BitField.BitFieldTest.TestBcd(System.UInt64)">
+            <summary>
+            BinToBcd および BcdToBin のチェック
+            </summary>
+            <param name="m">テスト入力値</param>
+        </member>
+        <member name="M:BitField.BitFieldTest.TestMulDiv(System.UInt64,System.UInt64)">
+            <summary>
+            MulDiv のテスト
+            </summary>
+            <param name="m">テスト入力(オペランド1)</param>
+            <param name="n">テスト入力(オペランド2)</param>
+        </member>
+        <member name="M:BitField.BitFieldTest.TestMul(System.UInt64,System.UInt64)">
+            <summary>
+            Mul のテスト
+            </summary>
+            <param name="m">テスト入力(オペランド1)</param>
+            <param name="n">テスト入力(オペランド2)</param>
+        </member>
+        <member name="M:BitField.BitFieldTest.TestDiv(System.UInt64,System.UInt64)">
+            <summary>
+            Div のテスト
+            </summary>
+            <param name="m">テスト入力(オペランド1)</param>
+            <param name="n">テスト入力(オペランド2)</param>
+        </member>
+        <member name="T:BitField.SampleLogic">
+            <summary>
+            ビットフィールドクラスのサンプルモジュール集。
+            乗除算器とBCD⇔バイナリ変換器。
+            </summary>
+        </member>
+        <member name="M:BitField.SampleLogic.MulDiv(BitField.BitField,BitField.BitField,System.Boolean)">
+            <summary>
+            乗除算器。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <param name="mul">true のとき乗算、 false のとき除算</param>
+            <returns>演算結果(乗算の場合、下位32ビットに商、上位32ビットに剰余)</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.Mul(BitField.BitField,BitField.BitField)">
+            <summary>
+            乗算器。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>演算結果</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.Div(BitField.BitField,BitField.BitField)">
+            <summary>
+            除算器。
+            </summary>
+            <param name="a">オペランド1</param>
+            <param name="b">オペランド2</param>
+            <returns>演算結果(下位32ビットに商、上位32ビットに剰余)</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.Negate(BitField.BitField)">
+            <summary>
+            符号反転器。
+            </summary>
+            <param name="a">オペランド</param>
+            <returns>演算結果</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.BcdToBin(BitField.BitField)">
+            <summary>
+            BCD → Binary 変換
+            </summary>
+            <param name="bcd">変換元</param>
+            <returns>変換結果</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.BcdToBinAddIn(BitField.BitField)">
+            <summary>
+            BCD →バイナリ変換の補正値求める。
+            </summary>
+            <param name="a">1桁(4ビット)BCD</param>
+            <returns>補正値</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.BinToBcd(BitField.BitField,System.Boolean@)">
+            <summary>
+            Binary → BCD 変換
+            </summary>
+            <param name="bin">変換元</param>
+            <param name="overflow">オーバーフローが起きたらtrueにセットされる。</param>
+            <returns>変換結果</returns>
+        </member>
+        <member name="M:BitField.SampleLogic.BinToBcdAddIn(BitField.BitField)">
+            <summary>
+            バイナリ→BCD 変換の補正値求める。
+            </summary>
+            <param name="a">4ビットバイナリ</param>
+            <returns>補正値</returns>
+        </member>
+    </members>
+</doc>

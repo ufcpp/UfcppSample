@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitField", "BitField.csproj", "{57195281-6BB6-47EA-AA8D-4F4C63E846C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{57195281-6BB6-47EA-AA8D-4F4C63E846C6}.Debug.ActiveCfg = Debug|.NET
+		{57195281-6BB6-47EA-AA8D-4F4C63E846C6}.Debug.Build.0 = Debug|.NET
+		{57195281-6BB6-47EA-AA8D-4F4C63E846C6}.Release.ActiveCfg = Release|.NET
+		{57195281-6BB6-47EA-AA8D-4F4C63E846C6}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

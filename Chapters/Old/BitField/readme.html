@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>read me</title>
+</head>
+<body>
+
+<h1>BitField クラス</h1>
+<p>
+研究室の課題で Verilog HDL でソース書いてたんですが、
+途中でエラーチェック甘いし、動作の重たいシミュレーションツールにぶち切れて、
+ソフトウェアでアルゴリズムのチェックをしてから HDL 記述を書くことにしました。
+その際に作ったのが、Verilog の変数みたいなビット操作を行うことの出来るビットフィールドクラスです。
+</p>
+<p>
+このビットフィールドクラスの使用例を以下にあげます。
+</p>
+<table border="1" cellpadding="5">
+<tr><th>Verilog風記述</th><th><code>BitField</code>クラス</th></tr>
+<tr>
+<td><code>wire [31:0]w;</code></td>
+<td><code>BitField w = BitField.Create(31, 0);</code></td>
+</tr>
+<tr>
+<td><code>assign w = x[4:0];</code></td>
+<td><code>w.Assign(x[4, 0]);</code></td>
+</tr>
+<tr>
+<td><code>assign w = {x, y, z};</code></td>
+<td><code>w.Assign(BitField.Concat(x, y, z));</code></td>
+</tr>
+<tr>
+<td><code>assign w = {w[0], w[31:1]};</code></td>
+<td><code>w.Assign(BitField.Concat(w[0], w[31, 1]));</code></td>
+</tr>
+<tr>
+<td><code>assign w[0] = x[0] &amp; y[0];</code></td>
+<td><code>w[0] = x[0] &amp; y[0];</code></td>
+</tr>
+<tr>
+<td><code>assign w[4:0] = x[4:0] &amp; y[4:0];</code></td>
+<td><code>w[4, 0].Assign(x[4, 0] &amp; y[4, 0])</code></td>
+</tr>
+</table>
+
+<h2>BitFieldクラスサンプル</h2>
+<p>
+とりあえず、BitField クラスを使って逐次計算型の乗算器と非復元型の除算器をまとめたものを作ってみました。
+ソースは以下の通り。
+</p>
+
+<pre title="C#版 乗除算器">
+public static BitField MulDiv(BitField a, BitField b, bool mul)
+{
+  bool sgn = a[a.Msb] ^ b[b.Msb];
+  BitField p = BitField.Create(63, 0);
+  BitField q = BitField.Create(31, 0);
+
+  if(a[a.Msb]) a = Negate(a);
+  if(b[b.Msb]) b = Negate(b);
+
+  p.Assign(BitField.Concat(BitField.Create(31, 0, 0), a));
+  q.Assign(b);
+
+  for(int i=0; i&lt;32; ++i)
+  {
+    BitField addin1, addin2, addout;
+    addin1 = mul ? p[63, 32] : p[62, 31];
+    addin2 = mul | p[63] ? q : Negate(q);
+    addout = addin1 + addin2;
+
+    if(mul)
+      if(p[0])
+        p.Assign(BitField.Concat(BitField.Create(0, 0, 0), addout, p[31, 1]));
+      else
+        p.Assign(BitField.Concat(BitField.Create(0, 0, 0), p[63, 1]));
+    else
+      p.Assign(BitField.Concat(addout, p[30, 0], ~addout[addout.Msb]));
+  }
+  if(!mul &amp; !p[0])
+  {
+    BitField tmp = q + p[63,32];
+    p.Assign(BitField.Concat(tmp, p[31, 0]));
+  }
+
+  if(sgn) p = Negate(p);
+
+  return p;
+}
+</pre>
+<p>
+注: <code>Negate</code> は符号反転回路です。
+</p>
+<p>
+この C# のコードを元に、以下の Verilog HDL 記述を書きました。
+</p>
+
+<pre title="verilog HDL版 乗除算器">
+module MulDiv32(xreset, clk, start, multiply, a, b, valid, result, overflow);
+input xreset;
+input clk;
+
+input start;          //この信号が1のとき計算を開始する
+input multiply;       //この信号が1のとき乗算、0のとき除算
+input [31:0] a, b;    //乗算/除算したい数
+output valid;         //計算が終わったら1に
+output [31:0] result; //result = a * b または result = a / b
+output overflow;      //(乗算時)計算結果が32bitに収まらない場合1
+
+reg mul;
+reg sgn;
+reg [6:0] count;
+
+reg [63:0] p; //乗数＆乗算結果
+reg [31:0] q; //被乗数
+
+wire [31:0] add_in1, add_in2;
+wire [31:0] add_out;
+wire add_cin;
+wire add_cout;
+
+wire [31:0] neg_a_in, neg_a, neg_b_in, neg_b;
+
+//module
+  Add32 add32(add_in1, add_in2, add_cin, add_out, add_cout);
+  Negate32 negA(neg_a_in, neg_a);
+  Negate32 negB(neg_b_in, neg_b);
+
+//add wire
+  assign add_in1 = mul ? p[63:32] : p[62:31];
+  assign add_in2 = (mul | p[63]) ? q : ~q;
+  assign add_cin = (mul | p[63]) ? 1'b0 : 1'b1;
+
+//neg wire
+  assign neg_a_in = start ? a : p[31:0];
+  assign neg_b_in = b;
+
+//output wire
+  assign result = sgn ? neg_a : p[31:0];
+  assign overflow = mul &amp; (|p[63:31]) &amp; !(&p[63:31]);
+  assign valid = count == 6'd1;
+
+//reg
+  //mul
+  always @(posedge clk or negedge xreset)
+  begin
+    if(!xreset)
+      mul &lt;= 0;
+    else if(start)
+      mul &lt;= multiply;
+    else
+      mul &lt;= mul;
+  end
+
+  //sgn
+  always @(posedge clk or negedge xreset)
+  begin
+    if(!xreset)
+      sgn &lt;= 0;
+    else if(start)
+      sgn &lt;= a[31] ^ b[31];
+    else
+      sgn &lt;= sgn;
+  end
+
+  //p
+  always @(posedge clk or negedge xreset)
+  begin
+    if(!xreset)
+      p &lt;= 0;
+    else if(start)
+      p &lt;= {32'h0, a[31] ? neg_a : a};
+    else if(mul)
+      p &lt;= p[0] ? {1'b0, add_out, p[31:1]} : {1'b0, p[63:1]};
+    else
+      p &lt;= {add_out, p[30:0], ~add_out[31]};
+  end
+
+  //q
+  always @(posedge clk or negedge xreset)
+  begin
+    if(!xreset)
+      q &lt;= 0;
+    else if(start)
+      q &lt;= b[31] ? neg_b : b;
+    else
+      q &lt;= q;
+  end
+
+  //count
+  always @(posedge clk or negedge xreset)
+  begin
+    if(!xreset)
+      count &lt;= 6'd0;
+    else if(start)
+      count &lt;= 6'd33;
+    else if(count == 6'd0)
+      count &lt;= count;
+    else
+      count &lt;= count-1;
+  end
+endmodule
+</pre>
+<p>
+注: <code>Add32</code> は32ビット加算器、<code>Negate32</code> は32ビット符号反転回路です。
+</p>
+
+</body>
+</html>
