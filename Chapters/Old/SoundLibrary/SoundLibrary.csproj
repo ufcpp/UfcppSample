@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>7.10.3077</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3ED647C-1985-4020-B27C-2AA8F8F059F8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>SoundLibrary</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SoundLibrary</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\bin\Debug\SoundLibrary\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\bin\Release\SoundLibrary\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="fft">
+      <Name>fft</Name>
+      <HintPath>fft\fft.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BitOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\CommandParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DataGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\FourierSeriesGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ImpulseGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\MixedDataGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\RampGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\RandomGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\SinusoidGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\StepGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\TspGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\WhiteNoiseGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\BandPassFir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Basic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Comb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Common.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Connector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Equalizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Fir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Iir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterGenerator\Mixer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\BandPass\BandPassFir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\CircularBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Connector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Delay\Delay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Delay\FractionalDelay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Delay\IDelay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\ButterworthFilterDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\ChebyshevFilterDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\EllipticFilterDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\FilterDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\ParametricEqualizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Equalizer\Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Filter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Fir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\FractionalCombFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Iir.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Misc\AllPassFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Misc\Amplifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Misc\CombFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Misc\Equalizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Misc\MultiDelay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter\Mixer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Array.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Complex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\ComplexMath.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Constant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Continuous\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Continuous\Range.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\CircularConvolution.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\CircularCorrelation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\Convolution.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\Correlation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\Differential.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Discrete\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Elliptic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Expression\Polynomial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Expression\Rational.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Algorithm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Binary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\CachedFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\ComplexVariable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Constant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Elementary\Exp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Elementary\GeneralPolynomial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Elementary\Polynomial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Fraction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Imaginary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Multiple.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Product.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Series.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Sum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Unary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\Variable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Function\VariableTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Misc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\Statistics.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\ThreeDimension\AffineMatrix.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\ThreeDimension\Matrix.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\ThreeDimension\Quaternion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mathematics\ThreeDimension\Vector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Misc\Trace.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Amplifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\CompoundSound.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Envelope.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\HarmonicTone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\PeriodicSound.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\PureTone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Sound.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\SoundFromData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\SoundWithFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Temperament.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Tremolo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Music\Vibrato.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\CascadePipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Monaural\FilteredPipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Monaural\RateTransposer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Monaural\TimeStretcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Pipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Queue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Stereo\FilteredPipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Stereo\PitchShifter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Stereo\RateTransposer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pipe\Stereo\TimeStretcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpectrumAnalysis\Fft.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpectrumAnalysis\Spectrum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stream\Monaural\FilteredStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stream\Monaural\RateTransposer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stream\Monaural\TimeStretcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stream\Monaural\WaveStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stream\Stream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\DataList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveFrequency.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveMonaural.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveMS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WaveAnalysis\WaveTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wave\FilterAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wave\Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wave\Wave.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wave\WaveReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wave\WaveWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>
