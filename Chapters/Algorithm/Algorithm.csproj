@@ -64,7 +64,7 @@
     <Compile Include="Sort\InsertSort.cs" />
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Sort\QuickSort.cs" />
-    <Compile Include="Sort\RadixSort10.cs" />
+    <Compile Include="Sort\RadixSort.cs" />
     <Compile Include="Sort\SelectSort.cs" />
     <Compile Include="Sort\ShellSort.cs" />
     <Compile Include="Sort\Sort.cs" />
