@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nested.cs" />
     <Compile Include="Publics.cs" />
     <Compile Include="Internals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
