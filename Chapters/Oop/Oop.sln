@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23103.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{AB9184CF-DAE4-4F7A-BF14-7E7140C2DD57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevelAccessibility", "TopLevelAccessibility", "{B1135A7C-9C78-4492-94C1-5590A04E4E16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferredClassLibrary", "TopLevelAccessibility\ReferredClassLibrary\ReferredClassLibrary.csproj", "{56B750BA-36B5-453C-A288-4783C48F9FD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "TopLevelAccessibility\ConsoleApplication\ConsoleApplication.csproj", "{1E06949A-F394-4BE8-853A-94BBAB8AA836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +15,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB9184CF-DAE4-4F7A-BF14-7E7140C2DD57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB9184CF-DAE4-4F7A-BF14-7E7140C2DD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB9184CF-DAE4-4F7A-BF14-7E7140C2DD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB9184CF-DAE4-4F7A-BF14-7E7140C2DD57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56B750BA-36B5-453C-A288-4783C48F9FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B750BA-36B5-453C-A288-4783C48F9FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B750BA-36B5-453C-A288-4783C48F9FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B750BA-36B5-453C-A288-4783C48F9FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56B750BA-36B5-453C-A288-4783C48F9FD4} = {B1135A7C-9C78-4492-94C1-5590A04E4E16}
+		{1E06949A-F394-4BE8-853A-94BBAB8AA836} = {B1135A7C-9C78-4492-94C1-5590A04E4E16}
 	EndGlobalSection
 EndGlobal
