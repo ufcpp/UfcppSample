@@ -12,7 +12,7 @@ namespace ValueTuples
     public static partial class ValueTuple
     {
 <#
-    for (var arity = 2; arity <= 20; arity++)
+    for (var arity = 1; arity <= 8; arity++)
     {
         var nums = Enumerable.Range(1, arity);
         var typeParameters = string.Join(", ", nums.Select(i => "T" + i));
@@ -26,14 +26,15 @@ namespace ValueTuples
     }
 
 <#
-    for (var arity = 2; arity <= 20; arity++)
+    for (var arity = 1; arity <= 8; arity++)
     {
         var nums = Enumerable.Range(1, arity);
         var typeParameters = string.Join(", ", nums.Select(i => "T" + i));
         var parameters = string.Join(", ", nums.Select(i => "T" + i + " item" + i));
+        var clones = string.Join(", ", nums.Select(i => "Item" + i + ".DeepClone()"));
         var count = string.Join(" + ", nums.Select(i => "Count(ref Item" + i + ")"));
 #>
-    public struct ValueTuple<<#= typeParameters #>> : ITuple
+    public struct ValueTuple<<#= typeParameters #>> : ITuple, IDeepCloneable<ValueTuple<<#= typeParameters #>>>
     {
 <#
         foreach (var num in nums)
@@ -100,6 +101,8 @@ namespace ValueTuples
 #>
             }
         }
+
+        ValueTuple<<#= typeParameters #>> IDeepCloneable<ValueTuple<<#= typeParameters #>>>.Clone() => Create(<#= clones #>);
     }
 <#
     }

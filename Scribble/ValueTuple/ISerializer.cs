@@ -7,8 +7,8 @@ namespace ValueTuples
     {
         Stream Stream { get; set; }
 
-        void Serialize(ITuple value, Func<int, string> getKey);
+        void Serialize(IRecord record);
 
-        void Deserialize(ITuple output, Func<string, int> getIndex);
+        void Deserialize(IRecord record);
     }
 }
