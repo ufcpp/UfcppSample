@@ -4,32 +4,24 @@ using ValueTuples.Reflection;
 
 namespace ValueTuples.Sample
 {
-    public enum UnitType
+    public class Mage : Unit
     {
-        Fighter,
-        Mage,
-        Thief,
-    }
+        public string Spell { get; set; }
 
-    public class Unit
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Mage() { }
+        public Mage(int id, string name, string spell) : base(id, name) { Spell = spell; }
 
-        public Unit() { }
-        public Unit(int id, string name) { Id = id; Name = name; }
-
-        static Unit()
+        static Mage()
         {
-            TypeRepository.Register(typeof(Unit), new UnitInfo());
+            TypeRepository.Register(typeof(Mage), new MageInfo());
         }
     }
 
-    internal struct UnitAccessor : IRecordAccessor
+    internal struct MageAccessor : IRecordAccessor
     {
-        Unit _value;
+        Mage _value;
 
-        public UnitAccessor(Unit value) { _value = value; }
+        public MageAccessor(Mage value) { _value = value; }
 
         public int Count => 2;
 
@@ -39,6 +31,7 @@ namespace ValueTuples.Sample
             {
                 case "Id": return _value.Id;
                 case "Name": return _value.Name;
+                case "Spell": return _value.Spell;
                 default: return null;
             }
         }
@@ -49,6 +42,7 @@ namespace ValueTuples.Sample
             {
                 case 0: return _value.Id;
                 case 1: return _value.Name;
+                case 2: return _value.Spell;
                 default: return null;
             }
         }
@@ -59,6 +53,7 @@ namespace ValueTuples.Sample
             {
                 case "Id": _value.Id = (int)value; break;
                 case "Name": _value.Name = (string)value; break;
+                case "Spell": _value.Spell = (string)value; break;
             }
         }
 
@@ -68,41 +63,27 @@ namespace ValueTuples.Sample
             {
                 case 0: _value.Id = (int)value; break;
                 case 1: _value.Name = (string)value; break;
+                case 2: _value.Spell = (string)value; break;
             }
         }
     }
 
-    internal class UnitInfo : RecordTypeInfo
+    internal class MageInfo : RecordTypeInfo
     {
-        public override Type Type => typeof(Unit);
+        public override Type Type => typeof(Mage);
 
         private static readonly RecordFieldInfo[] _fields =
         {
             new RecordFieldInfo(TypeRepository.Int32, "Id", 0),
             new RecordFieldInfo(TypeRepository.String, "Name", 1),
+            new RecordFieldInfo(TypeRepository.String, "Spell", 2),
         };
 
         public override IEnumerable<RecordFieldInfo> Fields => _fields;
 
-        public override object GetInstance() => new Unit();
-        public override Array GetArray(int length) => new Unit[length];
+        public override object GetInstance() => new Mage();
+        public override Array GetArray(int length) => new Mage[length];
 
-        public override IRecordAccessor GetAccessor(object instance) => new UnitAccessor((Unit)instance);
-
-        public override RecordTypeInfo GetType(int discriminator)
-        {
-            switch ((UnitType)discriminator)
-            {
-                case UnitType.Fighter:
-                    break;
-                case UnitType.Mage:
-                    break;
-                case UnitType.Thief:
-                    break;
-                default:
-                    break;
-            }
-            return null;
-        }
+        public override IRecordAccessor GetAccessor(object instance) => new MageAccessor((Mage)instance);
     }
 }

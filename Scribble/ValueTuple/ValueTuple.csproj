@@ -51,9 +51,12 @@
     <Compile Include="Reflection\RecordTypeInfo.cs" />
     <Compile Include="Reflection\Primitives.cs" />
     <Compile Include="Reflection\TypeRepository.cs" />
+    <Compile Include="Sample\Thief.cs" />
+    <Compile Include="Sample\Mage.cs" />
     <Compile Include="Sample\Pair.cs" />
     <Compile Include="Sample\Point.cs" />
     <Compile Include="Sample\PolyLine.cs" />
+    <Compile Include="Sample\Fighter.cs" />
     <Compile Include="Sample\Unit.cs" />
     <Compile Include="Serialization\IDeserializer.cs" />
     <Compile Include="Serialization\ISerializer.cs" />

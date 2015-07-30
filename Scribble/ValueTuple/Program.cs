@@ -23,6 +23,13 @@ namespace ValueTuples
             WriteSerializedData(new PolyLine(new[] { new Sample.Point(1, 2), new Sample.Point(3, 4) }, new[] { 1.5, 1.41421356 }));
             WriteSerializedData(new Pair<Sample.Point, string>(new Sample.Point(10, 20), "abcd"));
             WriteSerializedData(new Sample.Point(10, 20));
+            WriteSerializedData(new[] { 1, 2, 3, 4, 5 });
+            WriteSerializedData(new Unit[]
+            {
+                new Fighter(1, "Duran", 3.14),
+                new Mage(2, "Angela", "Earthquake"),
+                new Thief(3, "Hawk", 12, 15),
+            });
         }
 
         private static Serialization.ISerializerFactory _factory = new Serialization.MyFactory();

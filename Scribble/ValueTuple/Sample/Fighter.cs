@@ -4,32 +4,24 @@ using ValueTuples.Reflection;
 
 namespace ValueTuples.Sample
 {
-    public enum UnitType
+    public class Fighter : Unit
     {
-        Fighter,
-        Mage,
-        Thief,
-    }
+        public double Strength { get; set; }
 
-    public class Unit
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Fighter() { }
+        public Fighter(int id, string name, double strength) : base(id, name) { Strength = strength; }
 
-        public Unit() { }
-        public Unit(int id, string name) { Id = id; Name = name; }
-
-        static Unit()
+        static Fighter()
         {
-            TypeRepository.Register(typeof(Unit), new UnitInfo());
+            TypeRepository.Register(typeof(Fighter), new FighterInfo());
         }
     }
 
-    internal struct UnitAccessor : IRecordAccessor
+    internal struct FighterAccessor : IRecordAccessor
     {
-        Unit _value;
+        Fighter _value;
 
-        public UnitAccessor(Unit value) { _value = value; }
+        public FighterAccessor(Fighter value) { _value = value; }
 
         public int Count => 2;
 
@@ -39,6 +31,7 @@ namespace ValueTuples.Sample
             {
                 case "Id": return _value.Id;
                 case "Name": return _value.Name;
+                case "Strength": return _value.Strength;
                 default: return null;
             }
         }
@@ -49,6 +42,7 @@ namespace ValueTuples.Sample
             {
                 case 0: return _value.Id;
                 case 1: return _value.Name;
+                case 2: return _value.Strength;
                 default: return null;
             }
         }
@@ -59,6 +53,7 @@ namespace ValueTuples.Sample
             {
                 case "Id": _value.Id = (int)value; break;
                 case "Name": _value.Name = (string)value; break;
+                case "Strength": _value.Strength = (double)value; break;
             }
         }
 
@@ -68,41 +63,27 @@ namespace ValueTuples.Sample
             {
                 case 0: _value.Id = (int)value; break;
                 case 1: _value.Name = (string)value; break;
+                case 2: _value.Strength = (double)value; break;
             }
         }
     }
 
-    internal class UnitInfo : RecordTypeInfo
+    internal class FighterInfo : RecordTypeInfo
     {
-        public override Type Type => typeof(Unit);
+        public override Type Type => typeof(Fighter);
 
         private static readonly RecordFieldInfo[] _fields =
         {
             new RecordFieldInfo(TypeRepository.Int32, "Id", 0),
             new RecordFieldInfo(TypeRepository.String, "Name", 1),
+            new RecordFieldInfo(TypeRepository.Double, "Strength", 2),
         };
 
         public override IEnumerable<RecordFieldInfo> Fields => _fields;
 
-        public override object GetInstance() => new Unit();
-        public override Array GetArray(int length) => new Unit[length];
+        public override object GetInstance() => new Fighter();
+        public override Array GetArray(int length) => new Fighter[length];
 
-        public override IRecordAccessor GetAccessor(object instance) => new UnitAccessor((Unit)instance);
-
-        public override RecordTypeInfo GetType(int discriminator)
-        {
-            switch ((UnitType)discriminator)
-            {
-                case UnitType.Fighter:
-                    break;
-                case UnitType.Mage:
-                    break;
-                case UnitType.Thief:
-                    break;
-                default:
-                    break;
-            }
-            return null;
-        }
+        public override IRecordAccessor GetAccessor(object instance) => new FighterAccessor((Fighter)instance);
     }
 }
