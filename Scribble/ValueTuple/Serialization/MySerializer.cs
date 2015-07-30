@@ -73,6 +73,7 @@ namespace ValueTuples.Serialization
         public object Deserialize(Type t)
         {
             if (t == typeof(int)) { return int.Parse(_s.ReadLine()); }
+            if (t == typeof(double)) { return double.Parse(_s.ReadLine()); }
             if (t == typeof(string)) { return _s.ReadLine(); }
 
             var info = TypeRepository.Get(t);

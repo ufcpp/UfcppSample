@@ -7,15 +7,16 @@ namespace ValueTuples.Sample
 {
     public partial class PolyLine
     {
-        public override string ToString() => string.Join(" - ", Points.AsEnumerable());
+        public override string ToString() => string.Join(" - ", Points.AsEnumerable()) + " / " + string.Join(", ", Weights.AsEnumerable());
     }
 
     public partial class PolyLine
     {
         public Point[] Points { get; set; }
+        public double[] Weights { get; set; }
 
-        public PolyLine() { Points = new Point[0]; }
-        public PolyLine(Point[] points) { Points = points; }
+        public PolyLine() { }
+        public PolyLine(Point[] points, double[] weights) { Points = points; Weights = weights; }
 
         static PolyLine()
         {
@@ -36,6 +37,7 @@ namespace ValueTuples.Sample
             switch (key)
             {
                 case "Points": return _value.Points;
+                case "Weights": return _value.Weights;
                 default: return null;
             }
         }
@@ -45,6 +47,7 @@ namespace ValueTuples.Sample
             switch (index)
             {
                 case 0: return _value.Points;
+                case 1: return _value.Weights;
                 default: return null;
             }
         }
@@ -54,6 +57,7 @@ namespace ValueTuples.Sample
             switch (key)
             {
                 case "Points": _value.Points = (Point[])value; break;
+                case "Weights": _value.Weights = (double[])value; break;
             }
         }
 
@@ -62,6 +66,7 @@ namespace ValueTuples.Sample
             switch (index)
             {
                 case 0: _value.Points = (Point[])value; break;
+                case 1: _value.Weights = (double[])value; break;
             }
         }
     }
@@ -74,6 +79,7 @@ namespace ValueTuples.Sample
         private static readonly RecordFieldInfo[] _fields =
         {
             new RecordFieldInfo(TypeRepository.Get(typeof(Point[])), "Points", 0),
+            new RecordFieldInfo(TypeRepository.Get(typeof(double[])), "Weights", 1),
         };
 
         public override IEnumerable<RecordFieldInfo> Fields => _fields;

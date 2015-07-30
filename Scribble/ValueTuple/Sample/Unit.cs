@@ -70,7 +70,6 @@ namespace ValueTuples.Sample
         }
     }
 
-
     internal class UnitInfo : RecordTypeInfo
     {
         public override Type Type => typeof(Unit);
