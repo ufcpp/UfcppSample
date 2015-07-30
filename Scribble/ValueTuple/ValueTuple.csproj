@@ -45,13 +45,16 @@
   <ItemGroup>
     <Compile Include="IDeepCloneable.cs" />
     <Compile Include="IRecord.cs" />
-    <Compile Include="ISerializer.cs" />
+    <Compile Include="Serialization\IDeserializer.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="ITuple.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\MySerializer.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="ValueTuple.cs" />
     <Compile Include="ValueTuples.cs">
       <AutoGen>True</AutoGen>

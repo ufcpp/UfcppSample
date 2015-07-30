@@ -1,30 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace ValueTuples
+﻿namespace ValueTuples
 {
-    public class Line : IRecord, IDeepCloneable<Line>
+    public partial class Line : ITypedRecord, IDeepCloneable<Line>
     {
         ValueTuple<Point, Point> _value;
 
         public ValueTuple<Point, Point> Value => _value;
 
         ITuple IRecord.Value { get { return _value; } set { _value = (ValueTuple<Point, Point>)value; } }
-
-        private static readonly string[] _keys = new[] { "a", "b" };
-
-        string IRecord.GetKey(int index) => _keys[index];
-
-        int IRecord.GetIndex(string key)
-        {
-            switch (key)
-            {
-                default: return -1;
-                case "a": return 0;
-                case "b": return 1;
-            }
-        }
-
-        int? IRecord.Discriminator => null;
+        IRecordInfo ITypedRecord.GetInfo() => LineInfo.Instance;
 
         Line IDeepCloneable<Line>.Clone() => new Line(_value.DeepClone());
 
@@ -36,5 +19,37 @@ namespace ValueTuples
         public Point B { get { return _value.Item2; } set { _value.Item2 = value; } }
 
         public override string ToString() => $"{A} - {B}";
+    }
+
+
+    internal class LineInfo : IRecordInfo
+    {
+        public static readonly IRecordInfo Instance = new LineInfo();
+
+        private static readonly string[] _keys = new[] { "a", "b" };
+
+        string IRecordInfo.GetKey(int index) => _keys[index];
+
+        int IRecordInfo.GetIndex(string key)
+        {
+            switch (key)
+            {
+                default: return -1;
+                case "a": return 0;
+                case "b": return 1;
+            }
+        }
+
+        object IRecordInfo.NewInstance(int index, int? discriminator)
+        {
+            switch (index)
+            {
+                default: return null;
+                case 0: return new Point();
+                case 1: return new Point();
+            }
+        }
+
+        int? IRecordInfo.Discriminator => null;
     }
 }

@@ -1,30 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace ValueTuples
+﻿namespace ValueTuples
 {
-    public class Point : IRecord, IDeepCloneable<Point>
+    public partial class Point : ITypedRecord, IDeepCloneable<Point>
     {
         ValueTuple<int, int> _value;
 
         public ValueTuple<int, int> Value => _value;
 
         ITuple IRecord.Value { get { return _value; } set { _value = (ValueTuple<int, int>)value; } }
-
-        private static readonly string[] _keys = new[] { "x", "y" };
-
-        string IRecord.GetKey(int index) => _keys[index];
-
-        int IRecord.GetIndex(string key)
-        {
-            switch (key)
-            {
-                default: return -1;
-                case "x": return 0;
-                case "y": return 1;
-            }
-        }
-
-        int? IRecord.Discriminator => null;
+        IRecordInfo ITypedRecord.GetInfo() => PointInfo.Instance;
 
         Point IDeepCloneable<Point>.Clone() => new Point(_value.DeepClone());
 
@@ -36,5 +19,28 @@ namespace ValueTuples
         public int Y { get { return _value.Item2; } set { _value.Item2 = value; } }
 
         public override string ToString() => $"({X}, {Y})";
+    }
+
+    internal class PointInfo : IRecordInfo
+    {
+        public static readonly IRecordInfo Instance = new PointInfo();
+
+        private static readonly string[] _keys = new[] { "x", "y" };
+
+        string IRecordInfo.GetKey(int index) => _keys[index];
+
+        int IRecordInfo.GetIndex(string key)
+        {
+            switch (key)
+            {
+                default: return -1;
+                case "x": return 0;
+                case "y": return 1;
+            }
+        }
+
+        object IRecordInfo.NewInstance(int index, int? discriminator) => null;
+
+        int? IRecordInfo.Discriminator => null;
     }
 }
