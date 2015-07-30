@@ -106,12 +106,6 @@ packages.config から project.json に自動的に置き替えるプログラ�
 
 ### 注意点
 
-project.json に書き替えた時点ではビルド通らない。
+Visual Studio Tools for Windows が必須。
 
-project.json から自動的に作られるはずの project.lock.json ってファイルが必要なんだけども、
-このファイルが作られるタイミングが、NuGet パッケージ参照を書き替えた時だけ。
-ビルド時には生成してくれない。
-
-なので、各プロジェクト、1度は NuGet パッケージ マネージャーを開いて、何かしら(ダウングレード→アップグレードし直しとか、アンインストール→インストールし直しとか)の操作をしないとダメ。
-
-ソースコード バージョン管理をしている場合、現状だと、project.lock.json もコミットしてしまうしかなさそう。
+[開発者センター ダウンロードページ](https://dev.windows.com/ja-jp/downloads)で、「Windows 開発者ツールが付属した Visual Studio 2015」のところからダウンロード。
