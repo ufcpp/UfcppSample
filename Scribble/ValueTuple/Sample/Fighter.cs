@@ -23,8 +23,6 @@ namespace ValueTuples.Sample
 
         public FighterAccessor(Fighter value) { _value = value; }
 
-        public int Count => 2;
-
         public object Get(string key)
         {
             switch (key)
@@ -71,6 +69,8 @@ namespace ValueTuples.Sample
     internal class FighterInfo : RecordTypeInfo
     {
         public override Type Type => typeof(Fighter);
+
+        public override int? Discriminator => (int)UnitType.Fighter;
 
         private static readonly RecordFieldInfo[] _fields =
         {

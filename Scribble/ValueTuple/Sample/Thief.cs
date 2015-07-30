@@ -24,8 +24,6 @@ namespace ValueTuples.Sample
 
         public ThiefAccessor(Thief value) { _value = value; }
 
-        public int Count => 2;
-
         public object Get(string key)
         {
             switch (key)
@@ -77,12 +75,14 @@ namespace ValueTuples.Sample
     {
         public override Type Type => typeof(Thief);
 
+        public override int? Discriminator => (int)UnitType.Thief;
+
         private static readonly RecordFieldInfo[] _fields =
         {
             new RecordFieldInfo(TypeRepository.Int32, "Id", 0),
             new RecordFieldInfo(TypeRepository.String, "Name", 1),
             new RecordFieldInfo(TypeRepository.Int32, "Agility", 2),
-            new RecordFieldInfo(TypeRepository.Int32, "Skill", 2),
+            new RecordFieldInfo(TypeRepository.Int32, "Skill", 3),
         };
 
         public override IEnumerable<RecordFieldInfo> Fields => _fields;

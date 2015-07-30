@@ -47,6 +47,11 @@ namespace ValueTuples.Serialization
                 return;
             }
 
+            if(info.IsChild)
+            {
+                _s.WriteLine(info.Discriminator.Value);
+            }
+
             var accessor = info.GetAccessor(value);
 
             foreach (var f in info.Fields)
@@ -92,9 +97,16 @@ namespace ValueTuples.Serialization
                 return array;
             }
 
+            if(info.IsBase)
+            {
+                var line = _s.ReadLine();
+                var discriminator = int.Parse(line);
+                info = info.GetType(discriminator);
+            }
+
             var value = info.GetInstance();
             var accessor = info.GetAccessor(value);
-            var count = accessor.Count;
+            var count = info.Fields.Count();
 
             while (true)
             {

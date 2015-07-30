@@ -29,8 +29,6 @@ namespace ValueTuples.Sample
 
         public PairAccessor(Pair<T1, T2> value) { _value = value; }
 
-        public int Count => 2;
-
         public object Get(string key)
         {
             switch (key)

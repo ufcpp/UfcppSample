@@ -31,8 +31,6 @@ namespace ValueTuples.Sample
 
         public UnitAccessor(Unit value) { _value = value; }
 
-        public int Count => 2;
-
         public object Get(string key)
         {
             switch (key)
@@ -76,6 +74,8 @@ namespace ValueTuples.Sample
     {
         public override Type Type => typeof(Unit);
 
+        public override bool IsBase => true;
+
         private static readonly RecordFieldInfo[] _fields =
         {
             new RecordFieldInfo(TypeRepository.Int32, "Id", 0),
@@ -93,16 +93,11 @@ namespace ValueTuples.Sample
         {
             switch ((UnitType)discriminator)
             {
-                case UnitType.Fighter:
-                    break;
-                case UnitType.Mage:
-                    break;
-                case UnitType.Thief:
-                    break;
-                default:
-                    break;
+                case UnitType.Fighter: return TypeRepository.Get(typeof(Fighter));
+                case UnitType.Mage: return TypeRepository.Get(typeof(Mage));
+                case UnitType.Thief: return TypeRepository.Get(typeof(Thief));
+                default: return null; // throw
             }
-            return null;
         }
     }
 }

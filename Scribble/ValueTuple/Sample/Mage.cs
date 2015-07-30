@@ -23,8 +23,6 @@ namespace ValueTuples.Sample
 
         public MageAccessor(Mage value) { _value = value; }
 
-        public int Count => 2;
-
         public object Get(string key)
         {
             switch (key)
@@ -71,6 +69,8 @@ namespace ValueTuples.Sample
     internal class MageInfo : RecordTypeInfo
     {
         public override Type Type => typeof(Mage);
+
+        public override int? Discriminator => (int)UnitType.Mage;
 
         private static readonly RecordFieldInfo[] _fields =
         {

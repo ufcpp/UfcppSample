@@ -7,11 +7,6 @@
     public interface IRecordAccessor
     {
         /// <summary>
-        /// フィールドの数。
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
         /// インデックス指定でフィールドの値を取り出す。
         /// </summary>
         /// <param name="index">インデックス</param>
