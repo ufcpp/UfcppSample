@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDeepCloneable.cs" />
-    <Compile Include="IRecord.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="旧\IDeepCloneable.cs" />
+    <Compile Include="旧\IRecord.cs" />
     <Compile Include="Reflection\ArrayTypeInfo.cs" />
     <Compile Include="Reflection\IRecordAccessor.cs" />
     <Compile Include="Reflection\RecordFieldInfo.cs" />
@@ -62,25 +63,25 @@
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\ISerializerFactory.cs" />
     <Compile Include="Serialization\MySerializer.cs" />
-    <Compile Include="Serialization旧\IDeserializer.cs" />
-    <Compile Include="Serialization旧\ISerializer.cs" />
-    <Compile Include="ITuple.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="Point.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="旧\Serialization旧\IDeserializer.cs" />
+    <Compile Include="旧\Serialization旧\ISerializer.cs" />
+    <Compile Include="旧\ITuple.cs" />
+    <Compile Include="旧\Person.cs" />
+    <Compile Include="旧\Line.cs" />
+    <Compile Include="旧\Point.cs" />
+    <Compile Include="旧\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization旧\MySerializer.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="ValueTuple.cs" />
-    <Compile Include="ValueTuples.cs">
+    <Compile Include="旧\Serialization旧\MySerializer.cs" />
+    <Compile Include="旧\Student.cs" />
+    <Compile Include="旧\ValueTuple.cs" />
+    <Compile Include="旧\ValueTuples.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValueTuples.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ValueTuples.tt">
+    <Content Include="旧\ValueTuples.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ValueTuples.cs</LastGenOutput>
     </Content>

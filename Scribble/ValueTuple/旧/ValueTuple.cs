@@ -1,4 +1,4 @@
-﻿namespace ValueTuples
+﻿namespace ValueTuples.旧
 {
     /// <summary>
     /// <see cref="ValueTuple{T1, T2}"/> とかのファクトリ。

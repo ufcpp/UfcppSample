@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ValueTuples
+namespace ValueTuples.旧
 {
     /// <summary>
     /// loosely-typed タプル。

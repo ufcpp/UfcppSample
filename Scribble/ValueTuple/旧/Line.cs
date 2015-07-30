@@ -1,4 +1,4 @@
-﻿namespace ValueTuples
+﻿namespace ValueTuples.旧
 {
     public partial class Line : ITypedRecord, IDeepCloneable<Line>
     {

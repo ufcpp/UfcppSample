@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using static ValueTuples.ValueTuple;
 
-namespace ValueTuples
+namespace ValueTuples.旧
 {
+    using static ValueTuple;
+
     public static partial class ValueTuple
     {
         public static ValueTuple<T1> Create<T1>(T1 item1) => new ValueTuple<T1>(item1);

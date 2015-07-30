@@ -1,4 +1,4 @@
-﻿namespace ValueTuples
+﻿namespace ValueTuples.旧
 {
     public class Student : Person, ITypedRecord, IDeepCloneable<Student>
     {

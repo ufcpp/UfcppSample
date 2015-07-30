@@ -5,10 +5,11 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 using System.Collections.Generic;
-using static ValueTuples.ValueTuple;
 
-namespace ValueTuples
+namespace ValueTuples.旧
 {
+    using static ValueTuple;
+
     public static partial class ValueTuple
     {
 <#

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ValueTuples.Serialization旧
+namespace ValueTuples.旧.Serialization
 {
     public class MySerializer : ISerializer
     {
