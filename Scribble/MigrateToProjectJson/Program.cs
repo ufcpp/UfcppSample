@@ -133,7 +133,7 @@ namespace MigrateToProjectJson
 
             foreach (var p in packages)
             {
-                d[p.Id] = p.AnyVersion;
+                d[p.Id] = p.Version;
             }
 
             return d;
