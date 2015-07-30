@@ -1,0 +1,107 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System.Collections.Generic;
+using static ValueTuples.ValueTuple;
+
+namespace ValueTuples
+{
+    public static partial class ValueTuple
+    {
+<#
+    for (var arity = 2; arity <= 20; arity++)
+    {
+        var nums = Enumerable.Range(1, arity);
+        var typeParameters = string.Join(", ", nums.Select(i => "T" + i));
+        var parameters = string.Join(", ", nums.Select(i => "T" + i + " item" + i));
+        var arguments = string.Join(", ", nums.Select(i => "item" + i));
+#>
+        public static ValueTuple<<#= typeParameters #>> Create<<#= typeParameters #>>(<#= parameters #>) => new ValueTuple<<#= typeParameters #>>(<#= arguments #>);
+<#
+    }
+#>
+    }
+
+<#
+    for (var arity = 2; arity <= 20; arity++)
+    {
+        var nums = Enumerable.Range(1, arity);
+        var typeParameters = string.Join(", ", nums.Select(i => "T" + i));
+        var parameters = string.Join(", ", nums.Select(i => "T" + i + " item" + i));
+        var count = string.Join(" + ", nums.Select(i => "Count(ref Item" + i + ")"));
+#>
+    public struct ValueTuple<<#= typeParameters #>> : ITuple
+    {
+<#
+        foreach (var num in nums)
+        {
+#>
+        public T<#= num #> Item<#= num #>;
+<#
+        }
+#>
+
+        public ValueTuple(<#= parameters #>)
+        {
+<#
+        foreach (var num in nums)
+        {
+#>
+            Item<#= num #> = item<#= num #>;
+<#
+        }
+#>
+        }
+
+        int ITuple.Count => <#= count #>;
+
+        IEnumerable<object> ITuple.Values
+        {
+            get
+            {
+<#
+        foreach (var num in nums)
+        {
+#>
+                { var x = Item<#= num #> as ITuple; if (x == null) yield return Item<#= num #>; else foreach (var y in x.Values) yield return y; }
+<#
+        }
+#>
+            }
+        }
+
+        object ITuple.this[int index]
+        {
+            get
+            {
+                object output;
+<#
+        foreach (var num in nums)
+        {
+#>
+                if (Get(ref Item<#= num #>, ref index, out output)) return output;
+<#
+        }
+#>
+                return output;
+            }
+            set
+            {
+<#
+        foreach (var num in nums)
+        {
+#>
+                if (Set(ref Item<#= num #>, ref index, value)) return;
+<#
+        }
+#>
+            }
+        }
+    }
+<#
+    }
+#>
+}
