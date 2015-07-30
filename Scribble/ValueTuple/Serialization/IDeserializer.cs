@@ -1,7 +1,9 @@
-﻿namespace ValueTuples.Serialization
+﻿using System;
+
+namespace ValueTuples.Serialization
 {
-    public interface IDeserializer
+    public interface IDeserializer : IDisposable
     {
-        void Deserialize(IRecord record);
+        object Deserialize(Type t);
     }
 }

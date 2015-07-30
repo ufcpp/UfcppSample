@@ -7,41 +7,84 @@ using System.Threading.Tasks;
 
 namespace ValueTuples
 {
+    using Sample;
+
     class Program
     {
         static void Main()
         {
             //WriteTuples();
             WriteSerializedData();
+            //WriteSerializedData旧();
         }
 
         private static void WriteSerializedData()
         {
-            WriteSerializedData(new Person(123, "abc def", "東京都千代田区千代田1-1"));
-            WriteSerializedData(new Student(999, "あｗせｄｒｆｔｇｙ ふじこ", "千葉県浦安市舞浜1-1", 5, 2));
-            WriteSerializedData(new Point(10, 20));
-            WriteSerializedData(new Line(new Point(1, 2), new Point(3, 4)));
+            WriteSerializedData(new Sample.Point(10, 20));
+            WriteSerializedData(new Pair<Sample.Point, string>(new Sample.Point(10, 20), "abcd"));
+            WriteSerializedData(new PolyLine(new[] { new Sample.Point(1, 2), new Sample.Point(3, 4) }));
         }
 
-        private static void WriteSerializedData(IRecord record)
+        private static Serialization.ISerializerFactory _factory = new Serialization.MyFactory();
+
+        private static byte[] Serialize(object value)
         {
-            byte[] buffer;
             using (var s = new MemoryStream())
-            using (var sw = new StreamWriter(s))
             {
-                var serializer = new Serialization.MySerializer(sw);
-                serializer.Serialize(record);
-                sw.Flush();
+                using (var serializer = _factory.GetSerializer(s))
+                    serializer.Serialize(value);
 
-                var len = s.Length;
-                s.Seek(0, SeekOrigin.Begin);
-                buffer = new byte[len];
-                s.Read(buffer, 0, (int)len);
+                return s.ToArray();
             }
-
-            var serialized = Encoding.UTF8.GetString(buffer);
-            Console.WriteLine(serialized);
         }
+
+        private static object Deserialize(Type t, byte[] data)
+        {
+            using (var s = new MemoryStream(data))
+            {
+                using (var deserializer = _factory.GetDeserializer(s))
+                    return deserializer.Deserialize(t);
+            }
+        }
+
+        private static void WriteSerializedData(object value)
+        {
+            var data = Serialize(value);
+
+            var serialized = Encoding.UTF8.GetString(data);
+            Console.WriteLine(serialized);
+
+            var deserialized = Deserialize(value.GetType(), data);
+            Console.WriteLine(deserialized);
+        }
+
+        //private static void WriteSerializedData旧()
+        //{
+        //    WriteSerializedData旧(new Person(123, "abc def", "東京都千代田区千代田1-1"));
+        //    WriteSerializedData旧(new Student(999, "あｗせｄｒｆｔｇｙ ふじこ", "千葉県浦安市舞浜1-1", 5, 2));
+        //    WriteSerializedData旧(new Point(10, 20));
+        //    WriteSerializedData旧(new Line(new Point(1, 2), new Point(3, 4)));
+        //}
+
+        //private static void WriteSerializedData旧(IRecord record)
+        //{
+        //    byte[] buffer;
+        //    using (var s = new MemoryStream())
+        //    using (var sw = new StreamWriter(s))
+        //    {
+        //        var serializer = new Serialization旧.MySerializer(sw);
+        //        serializer.Serialize(record);
+        //        sw.Flush();
+
+        //        var len = s.Length;
+        //        s.Seek(0, SeekOrigin.Begin);
+        //        buffer = new byte[len];
+        //        s.Read(buffer, 0, (int)len);
+        //    }
+
+        //    var serialized = Encoding.UTF8.GetString(buffer);
+        //    Console.WriteLine(serialized);
+        //}
 
         private static void WriteTuples()
         {

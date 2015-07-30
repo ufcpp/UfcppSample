@@ -1,9 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
+using System.Linq;
+using ValueTuples.Reflection;
 
 namespace ValueTuples.Serialization
 {
-    public class MySerializer : ISerializer
+    public class MyFactory : ISerializerFactory
+    {
+        public IDeserializer GetDeserializer(Stream stream) => new MyDeserializer(new StreamReader(stream));
+
+        public ISerializer GetSerializer(Stream stream) => new MySerializer(new StreamWriter(stream));
+    }
+
+    internal class MySerializer : ISerializer
     {
         StreamWriter _s;
 
@@ -12,41 +22,44 @@ namespace ValueTuples.Serialization
             _s = s;
         }
 
-        public void Serialize(IRecord record)
+        public void Dispose() => _s.Dispose();
+
+        public void Serialize(object value)
         {
-            var tr = record as ITypedRecord;
-            if (tr == null) throw new NotSupportedException();
-            var info = tr.GetInfo();
-            var value = record.Value;
-            var count = value.Count;
+            if (value == null) return;
 
-            //_s.WriteLine(count);
+            var info = TypeRepository.Get(value.GetType());
 
-            for (int i = 0; i < count; i++)
+            if(info.IsSimple)
             {
-                _s.Write(info.GetKey(i));
+                _s.WriteLine(value.ToString());
+                return;
+            }
 
-                var x = value[i];
-                if(x != null)
+            if (info.IsArray)
+            {
+                var array = (IList)value;
+                _s.WriteLine(array.Count);
+                foreach (var item in array)
                 {
-                    var xr = x as IRecord;
-                    if(xr == null)
-                    {
-                        _s.Write('\t');
-                        _s.Write(x.ToString());
-                        _s.WriteLine();
-                    }
-                    else
-                    {
-                        _s.WriteLine('\\');
-                        Serialize(xr);
-                    }
+                    Serialize(item);
                 }
+                return;
+            }
+
+            var accessor = info.GetAccessor(value);
+
+            foreach (var f in info.Fields)
+            {
+                _s.WriteLine(f.Name);
+
+                var x = accessor.Get(f.Index);
+                Serialize(x);
             }
         }
     }
 
-    public class MyDeserializer : IDeserializer
+    internal class MyDeserializer : IDeserializer
     {
         StreamReader _s;
 
@@ -55,44 +68,47 @@ namespace ValueTuples.Serialization
             _s = s;
         }
 
-        public void Deserialize(IRecord record)
+        public void Dispose() => _s.Dispose();
+
+        public object Deserialize(Type t)
         {
-            var tr = record as ITypedRecord;
-            if (tr == null) throw new NotSupportedException();
-            var info = tr.GetInfo();
-            var value = record.Value;
-            var count = value.Count;
+            if (t == typeof(int)) { return int.Parse(_s.ReadLine()); }
+            if (t == typeof(string)) { return _s.ReadLine(); }
 
-            for (int i = 0; i < count; i++)
+            var info = TypeRepository.Get(t);
+
+            if(info.IsArray)
             {
-                var line = _s.ReadLine();
-                var tab = line.IndexOf('\t');
-                if(tab >0)
+                var length = int.Parse(_s.ReadLine());
+                var array = info.GetArray(length);
+                var elem = ((ArrayTypeInfo)info).ElementType.Type;
+
+                for (int i = 0; i < length; i++)
                 {
-
+                    var item = Deserialize(elem);
+                    array.SetValue(item, i);
                 }
-
-                //_s.Write(info.GetKey(i));
-
-                //var x = value[i];
-                //if (x != null)
-                //{
-                //    var xr = x as IRecord;
-                //    if (xr == null)
-                //    {
-                //        _s.Write('/');
-                //        _s.Write(x.ToString());
-                //        _s.WriteLine();
-                //    }
-                //    else
-                //    {
-                //        _s.WriteLine('\\');
-                //        Serialize(xr);
-                //    }
-                //}
+                return array;
             }
 
-            record.Value = value;
+            var value = info.GetInstance();
+            var accessor = info.GetAccessor(value);
+            var count = accessor.Count;
+
+            while (true)
+            {
+                var line = _s.ReadLine();
+                if (line == null) break;
+
+                var field = info.Fields.First(f => f.Name == line);
+                var x = Deserialize(field.Type.Type);
+                accessor.Set(field.Index, x);
+
+                --count;
+                if (count == 0) break;
+            }
+
+            return value;
         }
     }
 }
