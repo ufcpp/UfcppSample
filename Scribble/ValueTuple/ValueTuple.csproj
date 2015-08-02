@@ -44,6 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="Serialization\MiniMessagePack.cs" />
+    <Compile Include="Serialization\MyBinarySerializer.cs" />
+    <Compile Include="Serialization\Number1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Number.tt</DependentUpon>
+    </Compile>
     <Compile Include="旧\IDeepCloneable.cs" />
     <Compile Include="旧\IRecord.cs" />
     <Compile Include="Reflection\ArrayTypeInfo.cs" />
@@ -81,6 +88,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Serialization\Number.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Number1.cs</LastGenOutput>
+    </Content>
     <Content Include="旧\ValueTuples.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ValueTuples.cs</LastGenOutput>

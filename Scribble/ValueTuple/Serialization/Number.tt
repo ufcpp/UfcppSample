@@ -1,0 +1,146 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+var types = new[]
+{
+    "bool",
+    "byte",
+    "sbyte",
+    "short",
+    "ushort",
+    "int",
+    "uint",
+    "long",
+    "ulong",
+    "float",
+    "double",
+};
+
+var integers = new[]
+{
+    "byte",
+    "sbyte",
+    "short",
+    "ushort",
+    "int",
+    "uint",
+    "long",
+    "ulong",
+};
+
+var floats = new[]
+{
+    "float",
+    "double",
+};
+#>
+using System;
+using System.Runtime.InteropServices;
+
+namespace MiniMessagePack
+{
+    public enum NumberType : byte
+    {
+<#
+foreach (var t in types)
+{
+#>
+        _<#= t #>,
+<#
+}
+#>
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct Number
+    {
+<#
+foreach (var t in types)
+{
+#>
+        [FieldOffset(0)] <#= t #> _<#= t #>;
+        public Number(<#= t #> b) : this() { _<#= t #> = b; _type = NumberType._<#= t #>; }
+        public static explicit operator Number (<#= t #> n) => new Number(n);
+<#
+}
+#>
+<#
+foreach (var dst in integers)
+{
+#>
+        public static explicit operator <#= dst #> (Number n)
+        {
+            switch (n._type)
+            {
+<#
+    foreach (var src in integers)
+    {
+#>
+            case NumberType._<#= src #>: return unchecked((<#= dst #>)n._<#= src #>);
+<#
+    }
+#>
+            }
+            throw new InvalidCastException();
+        }
+
+<#
+}
+#>
+<#
+foreach (var dst in floats)
+{
+#>
+        public static explicit operator <#= dst #> (Number n)
+        {
+            switch (n._type)
+            {
+<#
+    foreach (var src in floats)
+    {
+#>
+            case NumberType._<#= src #>: return unchecked((<#= dst #>)n._<#= src #>);
+<#
+    }
+#>
+            }
+            throw new InvalidCastException();
+        }
+
+<#
+}
+#>
+
+        public static explicit operator bool (Number n)
+        {
+            if (n._type != NumberType._byte)
+                throw new InvalidCastException();
+            return n._bool;
+        }
+
+        public override string ToString()
+        {
+            switch (_type)
+            {
+            default:
+<#
+    foreach (var t in types)
+    {
+#>
+            case NumberType._<#= t #>: return _<#= t #>.ToString();
+<#
+    }
+#>
+            }
+        }
+
+        [FieldOffset(8)]
+        NumberType _type;
+
+        public NumberType Type => _type;
+    }
+}
