@@ -69,6 +69,7 @@
     <Compile Include="Csharp6\Program.cs" />
     <Compile Include="Csharp6\StaticUsingSample.cs" />
     <Compile Include="Csharp6\StringInterpolationSample.cs" />
+    <Compile Include="Misc\AwaitOptimization.cs" />
     <Compile Include="Misc\SmallChanges.cs" />
     <Compile Include="Misc\StringInterpolationSample.cs" />
     <Compile Include="Misc\UsingStaticEnum.cs" />
