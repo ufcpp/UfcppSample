@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sample>
+    <Item Name="a" Value="1"/>
+    <Item Name="b" Value="2"/>
+    <Item Name="c" Value="3"/>
+    <Item Name="d" Value="4"/>
+</Sample>
