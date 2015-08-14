@@ -1,0 +1,27 @@
+﻿<Window x:Class="KeyLogger.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Key Logger" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <!--<RowDefinition Height="30" />-->
+        </Grid.RowDefinitions>
+        <ListBox Name="listHistory"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Name="buttonRecord">記録開始（右Ctrl）</Button>
+            <Button Name="buttonReplay" ToolTip="F12 キーでも再生できるよ" >再生（右Alt）</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <CheckBox Name="checkShowLog" VerticalAlignment="Center">ログの表示</CheckBox>
+            <Button Name="buttonSave" ToolTip="記録をファイルに書き出します" >Save</Button>
+            <Button Name="buttonLoad" ToolTip="記録をファイルから読み込みます">Load</Button>
+            <Button Name="buttonClear" ToolTip="記録をクリアします" >Clear</Button>
+            <Button Name="buttonReduce" ToolTip="余計な KeyDown イベントを削除します">Reduce</Button>
+            <!--<Label Name="labelDebug"></Label>-->
+        </StackPanel>
+        <!--<TextBox Name="textResult" Grid.Row="3"></TextBox>-->
+    </Grid>
+</Window>
