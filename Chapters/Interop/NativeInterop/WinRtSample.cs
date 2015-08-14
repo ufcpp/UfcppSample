@@ -8,7 +8,12 @@ namespace NativeInterop
 {
     class WinRtSample
     {
-        public static async Task MainAsync()
+        public static void Main()
+        {
+            MainAsync().Wait();
+        }
+
+        static async Task MainAsync()
         {
             var allUsers = await User.FindAllAsync();
 
@@ -39,6 +44,5 @@ namespace NativeInterop
             };
             return tcs.Task;
         }
-
     }
 }

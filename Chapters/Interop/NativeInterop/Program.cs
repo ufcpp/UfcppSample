@@ -7,7 +7,7 @@
             DllImportSample.Main();
             ComImportSample.Main();
             ComLateBindingSample.Main();
-            WinRtSample.MainAsync().Wait();
+            WinRtSample.Main();
         }
     }
 }
