@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23103.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevelAccessibility", "TopLevelAccessibility", "{B1135A7C-9C78-4492-94C1-5590A04E4E16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferredClassLibrary", "TopLevelAccessibility\ReferredClassLibrary\ReferredClassLibrary.csproj", "{56B750BA-36B5-453C-A288-4783C48F9FD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "TopLevelAccessibility\ConsoleApplication\ConsoleApplication.csproj", "{1E06949A-F394-4BE8-853A-94BBAB8AA836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceSample", "InterfaceSample\InterfaceSample.csproj", "{BFFD4218-2CD6-488E-A01F-77B4DA544F20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E06949A-F394-4BE8-853A-94BBAB8AA836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFFD4218-2CD6-488E-A01F-77B4DA544F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFD4218-2CD6-488E-A01F-77B4DA544F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFD4218-2CD6-488E-A01F-77B4DA544F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFD4218-2CD6-488E-A01F-77B4DA544F20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

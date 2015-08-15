@@ -17,8 +17,10 @@ namespace C
 {
     internal class InternalClass { }
 
+#if false
     // コンパイル エラー
     public class PublicClass : InternalClass
     {
     }
+#endif
 }
