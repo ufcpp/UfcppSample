@@ -58,6 +58,9 @@
             {
                 Accumulate(a, i);
                 AddItem(a, i);
+
+                // 通常の実装なので、普通に Add(i) を呼ぶことも可能
+                //a.Add(i);
             }
             Console.WriteLine($"sum = {a.Sum}, items = {string.Join(", ", a.Items)}");
 
@@ -67,6 +70,10 @@
             {
                 Accumulate(b, i);
                 AddItem(b, i);
+
+                // 明示的実装の場合、一度インターフェイスにキャストしてからでないと Add(i) は呼べない。
+                // 例えば以下のコメントを外すとコンパイル エラー。
+                //b.Add(i);
             }
             Console.WriteLine($"sum = {b.Sum}, items = {string.Join(", ", b.Items)}");
         }
