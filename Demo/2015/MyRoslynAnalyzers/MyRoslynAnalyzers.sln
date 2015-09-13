@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordConstructor", "Record
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructPitfall", "StructPitfall\StructPitfall.csproj", "{4F41FB57-27F8-4179-B4E5-3325DF0E3DE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyPropertyChanged", "NotifyPropertyChanged\NotifyPropertyChanged.csproj", "{5DA9B0DE-F515-4608-95F8-60DD3DFFA47A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4F41FB57-27F8-4179-B4E5-3325DF0E3DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F41FB57-27F8-4179-B4E5-3325DF0E3DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F41FB57-27F8-4179-B4E5-3325DF0E3DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA9B0DE-F515-4608-95F8-60DD3DFFA47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA9B0DE-F515-4608-95F8-60DD3DFFA47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA9B0DE-F515-4608-95F8-60DD3DFFA47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA9B0DE-F515-4608-95F8-60DD3DFFA47A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
