@@ -98,6 +98,22 @@ namespace ProjectModels
         public XDocument Content => _content ?? (_content = XDocument.Load(Path));
         private XDocument _content;
 
+        public CsprojOutputType OutputType
+        {
+            get
+            {
+                var type = Content.Root.Elements(Namespace + "PropertyGroup").SelectMany(x => x.Elements(Namespace + "OutputType")).FirstOrDefault()?.Value;
+
+                switch (type)
+                {
+                    default:
+                    case "Exe": return CsprojOutputType.Exe;
+                    case "WinExe": return CsprojOutputType.WinExe;
+                    case "Library": return CsprojOutputType.Library;
+                }
+            }
+        }
+
         public IEnumerable<XElement> GetItemGroups() => Content.Root.Elements(Namespace + "ItemGroup");
 
         public IEnumerable<XElement> GetElements(string elementName) => GetItemGroups().SelectMany(g => g.Elements(Namespace + elementName)).ToArray();

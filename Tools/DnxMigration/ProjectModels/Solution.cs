@@ -69,7 +69,7 @@ namespace ProjectModels
             var wrapFolder = WrapFolder;
             Directory.CreateDirectory(wrapFolder);
 
-            foreach (var csproj in CsharpProjcts)
+            foreach (var csproj in CsharpProjcts.Where(p => p.OutputType == CsprojOutputType.Library))
             {
                 csproj.GenerateWrapJson(wrapFolder);
             }
