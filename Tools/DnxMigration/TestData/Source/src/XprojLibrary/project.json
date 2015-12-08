@@ -1,0 +1,17 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "XprojLibrary Class Library",
+  "authors": [ "iwanaga" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "net46": {
+      "dependencies": {
+        "MinimumAsyncBridge": "0.9.20.1",
+        "CommonNet35": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "frameworks": {
+    "net35": { }
+  },
+  "runtimes": {
+    "win": { },
+    "win-anycpu": { }
+  },
+  "dependencies": {
+    "MinimumAsyncBridge": "0.9.20.1"
+  }
+}

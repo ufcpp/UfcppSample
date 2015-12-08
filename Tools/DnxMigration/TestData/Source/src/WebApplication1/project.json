@@ -1,0 +1,38 @@
+﻿{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
+  },
+
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel"
+  },
+
+  "frameworks": {
+    "dnx46": {
+
+      "dependencies": {
+        "MinimumAsyncBridge": "0.9.20.1",
+        "XprojLibrary": "",
+        "ClassLibraryNet35": "",
+        "ClassLibraryNet35X": "",
+        "ClassLibraryNet46": "",
+        "ClassLibraryNet46X": ""
+      }
+    }
+  },
+
+  "exclude": [
+    "wwwroot",
+    "node_modules"
+  ],
+  "publishExclude": [
+    "**.user",
+    "**.vspscc"
+  ]
+}
