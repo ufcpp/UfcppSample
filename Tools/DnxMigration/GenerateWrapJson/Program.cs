@@ -17,7 +17,7 @@ namespace GenerateWrapJson
                 : @"path to a solution which you want to migrate from packages.config to project.json";
 
             var sln = new Solution(slnPath);
-            sln.MigrateToProjectJson();
+            sln.GenerateWrapJson();
         }
     }
 }
