@@ -25,7 +25,7 @@ namespace ProjectModels
         /// </summary>
         public string Folder => System.IO.Path.GetDirectoryName(Path);
 
-        public IEnumerable<Csproj> CsharpProjcts => _csprojs ?? (_csprojs = GetProjectPaths(Path).Select(p => new Csproj(p)).ToArray());
+        public IEnumerable<Csproj> CsharpProjcts => _csprojs ?? (_csprojs = GetProjectPaths(Path).ToArray());
         private IEnumerable<Csproj> _csprojs;
 
         private static readonly Regex regProject = new Regex(@" = "".*?"", ""(?<csproj>.*?\.csproj)""");
@@ -35,7 +35,7 @@ namespace ProjectModels
         /// </summary>
         /// <param name="slnPath"></param>
         /// <returns></returns>
-        private static IEnumerable<string> GetProjectPaths(string slnPath)
+        private static IEnumerable<Csproj> GetProjectPaths(string slnPath)
         {
             var baseFolder = System.IO.Path.GetDirectoryName(slnPath);
             var slnLines = File.ReadAllLines(slnPath);
@@ -45,10 +45,11 @@ namespace ProjectModels
                 var m = regProject.Match(line);
                 if (!m.Success) continue;
 
-                var csprojPath = System.IO.Path.Combine(baseFolder, m.Groups["csproj"].Value);
+                var relative = m.Groups["csproj"].Value;
+                var csprojPath = System.IO.Path.Combine(baseFolder, relative);
                 if (!File.Exists(csprojPath)) continue;
 
-                yield return csprojPath;
+                yield return new Csproj(baseFolder, relative);
             }
         }
 

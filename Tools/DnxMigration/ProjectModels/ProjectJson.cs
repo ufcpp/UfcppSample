@@ -99,17 +99,20 @@ namespace ProjectModels
         /// <param name="targetVersion"></param>
         /// <param name="csprojFolder"></param>
         /// <param name="packages"></param>
-        public static void GenerateWrapJson(string targetVersion, string wrapFolder, string projectName, IEnumerable<Package> packages)
+        public static void GenerateWrapJson(string targetVersion, string wrapFolder, string projectPath, IEnumerable<Package> packages)
         {
-            var folder = System.IO.Path.Combine(wrapFolder, projectName);
-            Directory.CreateDirectory(folder);
+            var name = System.IO.Path.GetFileNameWithoutExtension(projectPath);
+            var projectFolder = System.IO.Path.GetDirectoryName(projectPath);
 
-            var json = GetWrapJson(targetVersion, projectName, packages);
-            var jsonPath = System.IO.Path.Combine(folder, ProjectJsonName);
+            var destinationFolder = System.IO.Path.Combine(wrapFolder, name);
+            Directory.CreateDirectory(destinationFolder);
+
+            var json = GetWrapJson(targetVersion, projectFolder, name, packages);
+            var jsonPath = System.IO.Path.Combine(destinationFolder, ProjectJsonName);
             File.WriteAllText(jsonPath, json);
         }
 
-        private static string GetWrapJson(string targetVersion, string projectName, IEnumerable<Package> packages)
+        private static string GetWrapJson(string targetVersion, string projectFolder, string projectName, IEnumerable<Package> packages)
         {
             return JsonConvert.SerializeObject(new D
             {
@@ -118,11 +121,11 @@ namespace ProjectModels
                 {
                     [targetVersion] = new D
                     {
-                        ["wrappedProject"] = $"../../{projectName}/{projectName}.csproj",
+                        ["wrappedProject"] = $"../../{projectFolder}/{projectName}.csproj",
                         ["bin"] = new D
                         {
-                            ["assembly"] = $"../../{projectName}/obj/{{configuration}}/{projectName}.dll",
-                            ["pdb"] = $"../../{projectName}/obj/{{configuration}}/{projectName}.pdb",
+                            ["assembly"] = $"../../{projectFolder}/obj/{{configuration}}/{projectName}.dll",
+                            ["pdb"] = $"../../{projectFolder}/obj/{{configuration}}/{projectName}.pdb",
                         },
                     },
                 },

@@ -19,9 +19,15 @@ namespace ProjectModels
         /// </summary>
         public string Path { get; }
 
-        public Csproj(string csprojPath)
+        /// <summary>
+        /// relative path from sln to csproj
+        /// </summary>
+        public string RelativePath { get; }
+
+        public Csproj(string basePath, string relativePath)
         {
-            Path = csprojPath;
+            Path = System.IO.Path.Combine(basePath, relativePath);
+            RelativePath = relativePath;
         }
 
         /// <summary>
@@ -176,8 +182,7 @@ namespace ProjectModels
 
         public void GenerateWrapJson(string wrapFolder)
         {
-            var name = System.IO.Path.GetFileNameWithoutExtension(Path);
-            ProjectJson.GenerateWrapJson(TargetFrameworkVersion, wrapFolder, name, Dependencies);
+            ProjectJson.GenerateWrapJson(TargetFrameworkVersion, wrapFolder, RelativePath, Dependencies);
         }
     }
 }
