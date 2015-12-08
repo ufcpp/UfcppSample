@@ -27,7 +27,7 @@ namespace ProjectModels
         public Csproj(string basePath, string relativePath)
         {
             Path = System.IO.Path.Combine(basePath, relativePath);
-            RelativePath = relativePath;
+            RelativePath = relativePath.Replace("\\", "/");
         }
 
         /// <summary>

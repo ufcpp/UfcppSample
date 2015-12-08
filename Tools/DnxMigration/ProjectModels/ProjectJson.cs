@@ -102,7 +102,7 @@ namespace ProjectModels
         public static void GenerateWrapJson(string targetVersion, string wrapFolder, string projectPath, IEnumerable<Package> packages)
         {
             var name = System.IO.Path.GetFileNameWithoutExtension(projectPath);
-            var projectFolder = System.IO.Path.GetDirectoryName(projectPath);
+            var projectFolder = System.IO.Path.GetDirectoryName(projectPath).Replace("\\", "/");
 
             var destinationFolder = System.IO.Path.Combine(wrapFolder, name);
             Directory.CreateDirectory(destinationFolder);
