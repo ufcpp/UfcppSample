@@ -10,6 +10,7 @@
             Bcl.IDisposableSample.Main();
             Explicit.GenericInterfaceSample.Main();
             Explicit.ExpliciteImplementationSample.Main();
+            Explicit.PolymorphicIEquatableSample.Main();
         }
     }
 }

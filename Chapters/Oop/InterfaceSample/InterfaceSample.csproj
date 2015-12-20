@@ -52,6 +52,8 @@
     <Compile Include="Bcl\IReadOnlyListSample.cs" />
     <Compile Include="Explicit\ExpliciteImplementationSample.cs" />
     <Compile Include="Explicit\GenericInterfaceSample.cs" />
+    <Compile Include="Explicit\MultipleImplementationSample.cs" />
+    <Compile Include="Explicit\PolymorphicIEquatableSample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
