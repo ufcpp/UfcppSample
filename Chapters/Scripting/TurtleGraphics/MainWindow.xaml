@@ -1,0 +1,51 @@
+﻿<Window x:Class="TurtleGraphics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurtleGraphics"
+        xmlns:vm="clr-namespace:TurtleGraphics.ViewModels"
+        mc:Ignorable="d"
+        Title="Turtle Graphics" SizeToContent="WidthAndHeight">
+    <Grid Width="200">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+
+        <TextBox AcceptsReturn="True" TextChanged="TextBox_TextChanged" />
+
+        <ItemsControl ItemsSource="{Binding Lines}" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas></Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:Line">
+                    <Line
+                        X1="{Binding X1, Mode=OneWay}" Y1="{Binding Y1, Mode=OneWay}" X2="{Binding X2, Mode=OneWay}" Y2="{Binding Y2, Mode=OneWay}"
+                        Stroke="Green"
+                        StrokeThickness="1"
+                        />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Canvas Grid.Row="1">
+            <Canvas Width="18" Height="20" Canvas.Left="{Binding Cursor.X, Mode=OneWay}" Canvas.Top="{Binding Cursor.Y, Mode=OneWay}">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform X="-9" Y="-10" />
+                        <RotateTransform Angle="{Binding Cursor.Direction, Mode=OneWay}" />
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Ellipse Fill="LightBlue" Width="14" Height="16" Canvas.Left="2" Canvas.Top="4" />
+                <Ellipse Fill="LightBlue" Width="6" Height="10" Canvas.Left="6" Canvas.Top="0" />
+                <Ellipse Fill="LightBlue" Width="6" Height="6" Canvas.Left="12" Canvas.Top="14" />
+                <Ellipse Fill="LightBlue" Width="6" Height="6" Canvas.Left="0" Canvas.Top="14" />
+                <Ellipse Fill="LightBlue" Width="6" Height="6" Canvas.Left="0" Canvas.Top="4" />
+                <Ellipse Fill="LightBlue" Width="6" Height="6" Canvas.Left="12" Canvas.Top="4" />
+            </Canvas>
+        </Canvas>
+    </Grid>
+</Window>
