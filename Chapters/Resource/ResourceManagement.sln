@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23103.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.25302.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxing", "Boxing\Boxing.csproj", "{EB51A057-60F6-44C8-AEDD-6591B5DC88A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeakReference", "WeakReference\WeakReference.csproj", "{83481B0E-62A6-4427-B645-FCE090A3F8C3}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ClassOrStruct", "ClassOrStruct\ClassOrStruct.xproj", "{3A412CF5-C377-4EF9-BD73-8CF27950C990}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructPerformance", "StructPerformance\StructPerformance.csproj", "{4E3E8CFD-6DB9-4D95-845D-1E955796C061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefReturns", "RefReturns\RefReturns.csproj", "{A080169A-A2C3-498C-A64C-CEB1CBDB925A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{3A412CF5-C377-4EF9-BD73-8CF27950C990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A412CF5-C377-4EF9-BD73-8CF27950C990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A412CF5-C377-4EF9-BD73-8CF27950C990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E3E8CFD-6DB9-4D95-845D-1E955796C061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E3E8CFD-6DB9-4D95-845D-1E955796C061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E3E8CFD-6DB9-4D95-845D-1E955796C061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E3E8CFD-6DB9-4D95-845D-1E955796C061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
