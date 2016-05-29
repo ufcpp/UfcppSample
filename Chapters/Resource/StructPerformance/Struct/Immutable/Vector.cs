@@ -1,7 +1,7 @@
 ﻿namespace Struct.Immutable
 {
     /// <summary>
-    /// クラス(参照型) かつ 自己書き換え
+    /// 構造体(値型) かつ 書き換え不能
     /// </summary>
     public struct Vector
     {

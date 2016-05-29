@@ -1,7 +1,7 @@
 ﻿namespace Class.Immutable
 {
     /// <summary>
-    /// クラス(参照型) かつ 自己書き換え
+    /// クラス(参照型) かつ 書き換え不能
     /// </summary>
     public class Vector
     {
