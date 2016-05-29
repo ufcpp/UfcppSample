@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructPerformance", "Struct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefReturns", "RefReturns\RefReturns.csproj", "{A080169A-A2C3-498C-A64C-CEB1CBDB925A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByRef", "ByRef\ByRef.csproj", "{BEEF5270-1266-4164-AE0A-C0E5E301B687}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A080169A-A2C3-498C-A64C-CEB1CBDB925A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEF5270-1266-4164-AE0A-C0E5E301B687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEF5270-1266-4164-AE0A-C0E5E301B687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEF5270-1266-4164-AE0A-C0E5E301B687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEF5270-1266-4164-AE0A-C0E5E301B687}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
