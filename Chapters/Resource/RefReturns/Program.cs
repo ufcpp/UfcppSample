@@ -1,6 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using RefReturns.ValueTypePassedByReference;
+using System;
 
 namespace RefReturns
 {
@@ -8,6 +7,8 @@ namespace RefReturns
     {
         static void Main(string[] args)
         {
+            CircularBufferSample.Main();
+            ValueTypePassedByReference.Program.Main();
             RefReturns.Program.Main();
             RefLocal.Program.Main();
         }
