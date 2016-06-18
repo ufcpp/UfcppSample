@@ -35,7 +35,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>StructLayoutSample.AbuseUnion.Program</StartupObject>
+    <StartupObject>StructLayoutSample.IllegalLayout.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IllegalLayout.cs" />
     <Compile Include="ExplicitLayout.cs" />
     <Compile Include="IllegalAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
