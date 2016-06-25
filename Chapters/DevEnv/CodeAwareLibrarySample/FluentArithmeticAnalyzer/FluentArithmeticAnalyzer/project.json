@@ -1,0 +1,10 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Microsoft.CodeAnalysis.Analyzers": "1.1.0",
+    "Microsoft.CodeAnalysis.CSharp.Workspaces": "1.2.2"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.5,Profile=Profile7": {}
+  }
+}

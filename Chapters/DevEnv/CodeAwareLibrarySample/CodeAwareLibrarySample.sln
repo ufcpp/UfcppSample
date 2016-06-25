@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentArithmeticAnalyzer", "FluentArithmeticAnalyzer\FluentArithmeticAnalyzer\FluentArithmeticAnalyzer.csproj", "{F08AC1C8-AA28-49FB-8D92-FF9BE827E75E}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentArithmeticAnalyzer.Vsix", "FluentArithmeticAnalyzer\FluentArithmeticAnalyzer.Vsix\FluentArithmeticAnalyzer.Vsix.csproj", "{F56992C4-EA05-4DBA-95E0-2FF1CA329606}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentArithmetic", "FluentArithmetic\FluentArithmetic.csproj", "{CFD35C67-C0D4-4196-92E8-14975FD3A7A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentArithmetic.Nupkg", "FluentArithmetic.Nupkg\FluentArithmetic.Nupkg.csproj", "{8F889DE0-C9AB-4626-BFCE-72AD1DF72603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{CFD35C67-C0D4-4196-92E8-14975FD3A7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD35C67-C0D4-4196-92E8-14975FD3A7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD35C67-C0D4-4196-92E8-14975FD3A7A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F889DE0-C9AB-4626-BFCE-72AD1DF72603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F889DE0-C9AB-4626-BFCE-72AD1DF72603}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F889DE0-C9AB-4626-BFCE-72AD1DF72603}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F889DE0-C9AB-4626-BFCE-72AD1DF72603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

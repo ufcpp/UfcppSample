@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryNet35", "ClassLibraryNet35\ClassLibraryNet35.csproj", "{51B540E9-C2DD-4FA3-87E2-C0CD1BE43BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryNet45", "ClassLibraryNet45\ClassLibraryNet45.csproj", "{2E15ACA8-8A5D-4438-8FCE-085A507F678F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryProfileBased", "ClassLibraryProfileBased\ClassLibraryProfileBased.csproj", "{A6254B75-CD23-4903-9642-BE95FD41DB45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryStandardBased", "ClassLibraryStandardBased\ClassLibraryStandardBased.csproj", "{18FAD28B-3EBF-4C04-8669-6750697785F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationNet46", "ConsoleApplicationNet46\ConsoleApplicationNet46.csproj", "{1FD4D082-2BAB-4F47-BB82-BF521721822A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryAndroid", "ClassLibraryAndroid\ClassLibraryAndroid.csproj", "{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B540E9-C2DD-4FA3-87E2-C0CD1BE43BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B540E9-C2DD-4FA3-87E2-C0CD1BE43BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B540E9-C2DD-4FA3-87E2-C0CD1BE43BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B540E9-C2DD-4FA3-87E2-C0CD1BE43BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E15ACA8-8A5D-4438-8FCE-085A507F678F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E15ACA8-8A5D-4438-8FCE-085A507F678F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E15ACA8-8A5D-4438-8FCE-085A507F678F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E15ACA8-8A5D-4438-8FCE-085A507F678F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6254B75-CD23-4903-9642-BE95FD41DB45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6254B75-CD23-4903-9642-BE95FD41DB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6254B75-CD23-4903-9642-BE95FD41DB45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6254B75-CD23-4903-9642-BE95FD41DB45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FAD28B-3EBF-4C04-8669-6750697785F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FAD28B-3EBF-4C04-8669-6750697785F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FAD28B-3EBF-4C04-8669-6750697785F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FAD28B-3EBF-4C04-8669-6750697785F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD4D082-2BAB-4F47-BB82-BF521721822A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD4D082-2BAB-4F47-BB82-BF521721822A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD4D082-2BAB-4F47-BB82-BF521721822A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD4D082-2BAB-4F47-BB82-BF521721822A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
