@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationNet46", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryAndroid", "ClassLibraryAndroid\ClassLibraryAndroid.csproj", "{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ClassLibraryNetCore", "ClassLibraryNetCore\ClassLibraryNetCore.xproj", "{3451EF12-1B90-4BDC-B2B5-E26B0F72EFA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA08C6E-5BD9-4D7D-8133-F1B64A8BD9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3451EF12-1B90-4BDC-B2B5-E26B0F72EFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3451EF12-1B90-4BDC-B2B5-E26B0F72EFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3451EF12-1B90-4BDC-B2B5-E26B0F72EFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3451EF12-1B90-4BDC-B2B5-E26B0F72EFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
