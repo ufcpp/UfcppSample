@@ -1,0 +1,28 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FluentArithmetic</id>
+    <version>0.1.0</version>
+    <title>Arithmetics with Fluent Inteface</title>
+    <authors>Nobuyuki Iwanaga</authors>
+    <owners>Nobuyuki Iwanaga</owners>
+    <licenseUrl>https://github.com/ufcpp/UfcppSample/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ufcpp/UfcppSample/tree/master/DevEnv/CodeAwareLibrarySample</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>A sample package for a Code-Aware library</summary>
+    <description>
+      A sample package for a Code-Aware library.
+      This package includes:
+
+      - FluentArithmetic: arithmetic operations with fluent interfaces, e.g. x.Add(y).
+      - FluentArithmeticAnalyzer: Some analyzers and code fixes for FluentArithmetic.
+    </description>
+    <releaseNotes>Update to netstandard1.1. Remove supporting NuGet 2.X.</releaseNotes>
+    <copyright>Copyright 2015 Nobuyuki Iwanaga</copyright>
+    <tags>sample</tags>
+  </metadata>
+  <files>
+    <file src="bin/FluentArithmetic.dll" target="lib\netstandard1.1" />
+    <file src="bin/FluentArithmeticAnalyzer.dll" target="analyzers\C#" />
+  </files>
+</package>
