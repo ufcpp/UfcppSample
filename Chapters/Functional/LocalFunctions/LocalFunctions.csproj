@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>LocalFunctions.Capture.Program</StartupObject>
+    <StartupObject>LocalFunctions.TaskCache2.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,6 +61,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursiveFunction\Program.cs" />
     <Compile Include="RecursiveFunction\Tree.cs" />
+    <Compile Include="TaskCache\Program2.cs" />
+    <Compile Include="TaskCache\Program1.cs" />
+    <Compile Include="ToArray\Program2.cs" />
+    <Compile Include="ToArray\Program1.cs" />
     <Compile Include="Usage\Usage.cs" />
   </ItemGroup>
   <ItemGroup>

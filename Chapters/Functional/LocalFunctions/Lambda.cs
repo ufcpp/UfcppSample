@@ -34,7 +34,7 @@ namespace LocalFunctions.Lambda
                 ;
         }
 
-        static void M2()
+        static void 再帰()
         {
             // 再帰呼び出し
             // ローカル関数は素直に書ける
@@ -43,7 +43,10 @@ namespace LocalFunctions.Lambda
             // 匿名関数はひと手間必要
             Func<int, int> f2 = null;
             f2 = n => n >= 1 ? n * f2(n - 1) : 1;
+        }
 
+        static void イテレーター()
+        {
             // イテレーター
             // ローカル関数なら使える
             IEnumerable<int> g1(IEnumerable<int> items)
@@ -59,6 +62,41 @@ namespace LocalFunctions.Lambda
                 foreach (var x in items)
                     yield return 2 * x;
             }
+#endif
+        }
+
+        static void ジェネリック()
+        {
+            // ジェネリック(polymorphic lambda)
+            // ローカル関数ならジェネリックに使える
+            bool eq1<T>(T x, T y) where T : IComparable<T> => x.CompareTo(y) == 0;
+            Console.WriteLine(eq1(1, 2));
+            Console.WriteLine(eq1("aaa", "aaa"));
+
+#if false
+            // 匿名関数はジェネリックにならない
+            // Func<T, T, bool> の時点でコンパイル エラー
+            // where 制約を付ける構文もない
+            Func<T, T, bool> eq2 = (x, y) => x.CompareTo(y) == 0;
+            // 当然、呼べない
+            Console.WriteLine(eq2(1, 2));
+            Console.WriteLine(eq2("aaa", "aaa"));
+#endif
+        }
+
+        static void 引数の規定値()
+        {
+            // ローカル関数の引数には規定値を与えられる
+            int f1(int n = 0) => 2 * n;
+            Console.WriteLine(f1());
+            Console.WriteLine(f1(5));
+
+#if true
+            // 匿名関数は無理
+            Func<int, int> f2 = (x, y) => x.CompareTo(y) == 0;
+            // 当然、呼べない
+            Console.WriteLine(eq2(1, 2));
+            Console.WriteLine(eq2("aaa", "aaa"));
 #endif
         }
     }
