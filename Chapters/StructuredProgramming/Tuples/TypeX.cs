@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Tuples.X
+﻿namespace Tuples.TypeX
 {
+    using System;
+    using System.Collections.Generic;
+
     class Program
     {
         static X Measure(IEnumerable<int> items)
