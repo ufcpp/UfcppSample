@@ -91,7 +91,7 @@ namespace LocalFunctions.Lambda
             Console.WriteLine(f1());
             Console.WriteLine(f1(5));
 
-#if true
+#if false
             // 匿名関数は無理
             Func<int, int> f2 = (x, y) => x.CompareTo(y) == 0;
             // 当然、呼べない
