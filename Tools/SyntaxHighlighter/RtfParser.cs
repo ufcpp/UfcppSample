@@ -192,8 +192,6 @@ namespace SyntaxHighlighter
         /// <returns>変換結果</returns>
         private string TagReplace(string text)
         {
-            prevTag_ = GetTag(regCf.Match(text));
-
             text = regU.Replace(text, DecodeU);
             var body = regBody.Match(text).Groups["body"].Value;
 
@@ -203,9 +201,6 @@ namespace SyntaxHighlighter
             body = regPar.Replace(body, Environment.NewLine);
             body = body.Replace(@"\{", "{");
             body = body.Replace(@"\}", "}");
-
-            if (!string.IsNullOrEmpty(prevTag_))
-                body = "<" + prevTag_ + ">" + body;
 
             body = regCf.Replace(body, InsertTag);
             body = regPairTag1.Replace(body, RemoveWhiteSpaceElement);
@@ -274,7 +269,9 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の \cf* を抽出。
         /// </summary>
-        Regex regCf = new Regex(@"(?<=[^\\])\\cf(?<n>\d+)? ", RegexOptions.Singleline | RegexOptions.Compiled);
+        static Regex regCf = new Regex(@"(^|(?<=[^\\]))\\cf(?<n>\d+)? ", RegexOptions.Singleline | RegexOptions.Compiled);
+
+
 
         /// <summary>
         /// RTF の \cf* を XML タグに置き換える。
@@ -291,16 +288,18 @@ namespace SyntaxHighlighter
                 if (string.IsNullOrEmpty(tag))
                     ret = string.Empty;
                 else
-                    ret = String.Format("<span class=\"{0}\">", tag);
+                    ret = FormatTag(tag);
             else
                 if (string.IsNullOrEmpty(tag))
-                ret = "</span>";
-            else
-                ret = "</span>" + String.Format("<span class=\"{0}\">", tag);
+                    ret = "</span>";
+                else
+                    ret = "</span>" + FormatTag(tag);
 
             prevTag_ = tag;
             return ret;
         }
+
+        private static string FormatTag(string tag) => string.Format("<span class=\"{0}\">", tag);
 
         #endregion
         #endregion
