@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="InstanceAndExtension.cs" />
     <Compile Include="Instance.cs" />
+    <Compile Include="MyApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
