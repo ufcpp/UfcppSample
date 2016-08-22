@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.25612.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "Tuples\Tuples.csproj", "{9851C940-EF7D-414C-89DC-441A3B22B5B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deconstruction", "Deconstruction\Deconstruction.csproj", "{A3E46235-D020-4AEC-918A-F315DA6E9012}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9851C940-EF7D-414C-89DC-441A3B22B5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9851C940-EF7D-414C-89DC-441A3B22B5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9851C940-EF7D-414C-89DC-441A3B22B5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

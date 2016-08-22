@@ -133,7 +133,7 @@ namespace Tuples
                 object x = "abc"; // string → object は OK
                 long y = 1; // int → long は OK
                 int? z = 2; // int → int? は OK
-                            // ↓
+                // ↓
                 (object x, long y, int? z) t = ("abc", 1, 2); // OK
             }
 #if false
