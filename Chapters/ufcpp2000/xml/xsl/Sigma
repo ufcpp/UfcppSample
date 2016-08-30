@@ -1,0 +1,7 @@
+<xsl:template match="ufcpp:Sigma">
+	<table class="sigma" summary="sum">
+		<tr><td class="sigmasub"><xsl:apply-templates select="ufcpp:sup"/></td></tr>
+		<tr><td class="sigma">&#8721;</td></tr>
+		<tr><td class="sigmasub"><xsl:apply-templates select="ufcpp:sub"/></td></tr>
+	</table>
+</xsl:template>

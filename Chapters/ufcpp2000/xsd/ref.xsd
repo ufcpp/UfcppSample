@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ref"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <!-- link, ref -->
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:attribute name="area" type="xs:string" />
+      <xs:attribute name="doc" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ref">
+    <xs:complexType>
+      <xs:attribute name="area" type="xs:string" />
+      <xs:attribute name="doc" type="xs:string" use="required" />
+      <xs:attribute name="id" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

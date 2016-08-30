@@ -1,0 +1,8 @@
+<StackPanel
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	>
+
+	<Slider Name="slider1" Width="200"/>
+	<TextBox Width="80" Text="{Binding ElementName=slider1, Path=Value}"/>
+</StackPanel>

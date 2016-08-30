@@ -1,0 +1,8 @@
+table.subsup
+{
+	display:inline;
+	vertical-align:middle;
+	font-size:80%;
+	font-style:italic;
+	padding-left:1em;
+}

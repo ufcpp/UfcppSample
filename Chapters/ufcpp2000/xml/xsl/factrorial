@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:factorial">
+	<span class="normal">!</span>
+</xsl:template>

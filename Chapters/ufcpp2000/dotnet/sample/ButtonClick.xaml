@@ -1,0 +1,69 @@
+<Canvas
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Background="LightGray"
+	>
+	<Canvas.Resources>
+		<Storyboard x:Key="canvasRed">
+			<ColorAnimation
+				Storyboard.TargetName="canvas"
+				Storyboard.TargetProperty="Background.Color"
+				To="Red" Duration="0:0:0"/>
+		</Storyboard>
+		<Storyboard x:Key="canvasBlue">
+			<ColorAnimation
+				Storyboard.TargetName="canvas"
+				Storyboard.TargetProperty="Background.Color"
+				To="Blue" Duration="0:0:0"/>
+		</Storyboard>
+		<Storyboard x:Key="canvasGreen">
+			<ColorAnimation
+				Storyboard.TargetName="canvas"
+				Storyboard.TargetProperty="Background.Color"
+			To="Green" Duration="0:0:0"/>
+		</Storyboard>
+		<Storyboard x:Key="canvasWhite">
+			<ColorAnimation
+				Storyboard.TargetName="canvas"
+				Storyboard.TargetProperty="Background.Color"
+				To="White" Duration="0:0:0"/>
+		</Storyboard>
+	</Canvas.Resources>
+
+	<Canvas Name="canvas"
+		Canvas.Top="8" Canvas.Left="8" Width="128" Height="128"
+		Background="White"
+		/>
+
+	<StackPanel Canvas.Top="144" Canvas.Left="8" Width="128">
+
+		<Button Name="buttonRed" Content="赤">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click" >
+					<BeginStoryboard Storyboard="{StaticResource canvasRed}" />
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<Button Name="buttonBlue" Content="青">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click" >
+					<BeginStoryboard Storyboard="{StaticResource canvasBlue}" />
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<Button Name="buttonGrean" Content="緑">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click" >
+					<BeginStoryboard Storyboard="{StaticResource canvasGreen}" />
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+		<Button Name="buttonWhite" Content="白">
+			<Button.Triggers>
+				<EventTrigger RoutedEvent="Button.Click" >
+					<BeginStoryboard Storyboard="{StaticResource canvasWhite}" />
+				</EventTrigger>
+			</Button.Triggers>
+		</Button>
+	</StackPanel>
+</Canvas>

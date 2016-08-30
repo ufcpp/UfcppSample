@@ -1,0 +1,13 @@
+留数
+----
+留数を表す記号Resを表示
+----
+Res
+----
+span.paren
+span.normal
+----
+<Res>留数を求めたい関数,極</Res>
+----
+<int><sub>C</sub></int>f(z)<d/>z = 2πi<Sigma><sub>i</sub></Sigma><Res>f,a<sub>i</sub></Res>
+----

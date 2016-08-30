@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:branch/ufcpp:case/ufcpp:cond">
+	<xsl:apply-templates/>
+</xsl:template>

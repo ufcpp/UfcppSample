@@ -1,0 +1,13 @@
+時間偏微分
+----
+時間微分記号∂/∂tを表示する
+----
+pddt
+----
+table.frac
+td.num
+----
+<pddt/>
+----
+<pddt/>T = α<nabra/><sup>2</sup>T
+----

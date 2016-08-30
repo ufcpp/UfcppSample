@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="../style.css" />
+<title>SoundLibrary.Pipe</title>
+</head>
+<body>
+
+<h1>Pipe</h1>
+
+<h2>主要なクラス</h2>
+<table>
+<tr>
+<td>Queue</td>
+<td>
+データ格納用のキュー。
+</td>
+</tr>
+<tr>
+<td>Pipe</td>
+<td>
+FIFO でデータをキューから読み込み → 処理 → キューに書き出しするクラスの抽象基底。
+</td>
+</tr>
+<tr>
+<td>FilteredPipe</td>
+<td>
+読み込み → フィルターをかける → 書き出し。
+モノラル用とステレオ用あり。
+（Monaural/FilteredPipe と Stereo/FilteredPipe）
+</td>
+</tr>
+<tr>
+<td>RateTransposer</td>
+<td>
+移調（音程を変更、再生時間も同時に変わる）を行う。
+モノラル用とステレオ用あり。
+</td>
+</tr>
+<tr>
+<td>TimeStretcher</td>
+<td>
+時間伸縮（音程を変えずに再生時間を変える）を行う。
+モノラル用とステレオ用あり。
+</td>
+</tr>
+<tr>
+<td>PitchShifter</td>
+<td>
+ピッチシフト（再生時間を変えずに音程を変える）を行う。
+（現時点ではステレオ用のみ。）
+</td>
+</tr>
+<tr>
+<td>CascadePipe</td>
+<td>
+複数の Pipe を直列に繋ぐクラス。
+</td>
+</tr>
+</table>
+
+<hr />
+<p><a href="../index.html">戻る</a></p>
+
+</body>
+</html>

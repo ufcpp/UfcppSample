@@ -1,0 +1,45 @@
+
+正しく動いてないくさいので削除した、検索ツールバー。
+
+
+<!-- ページ内検索 -->
+<div style="padding:0pt; margin:0pt; position:relative; width:100%; text-align:right;">
+
+<!-- Live Search -->
+<meta name="Search.WLSearchBox" content="1.1, ja-JP" />
+<div id="WLSearchBoxDiv">
+<table cellpadding="0" cellspacing="0" style="width: 322px; display:inline;"><tr id="WLSearchBoxPlaceholder"><td style="width: 100%; border:solid 2px #4B7B9F;border-right-style: none;"><input id="WLSearchBoxInput" type="text" value="&#x8aad;&#x307f;&#x8fbc;&#x307f;&#x4e2d;&#x2e;&#x2e;&#x2e;" disabled="disabled" style="padding:0;background-image: url(http://search.live.com//siteowner/s/siteowner/searchbox_background.png);background-position: right;background-repeat: no-repeat;height: 16px; width: 100%; border:none 0 Transparent" /></td><td style="border:solid 2px #4B7B9F;"><input id="WLSearchBoxButton" type="image" src="http://search.live.com//siteowner/s/siteowner/searchbutton_normal.png" align="absBottom" style="padding:0;border-style: none" /></td></tr></table>
+	<script type="text/javascript" charset="utf-8"><![CDATA[
+	var WLSearchBoxConfiguration=
+	{
+		"global":{
+			"serverDNS":"search.live.com",
+			"market":"ja-JP"
+		},
+		"appearance":{
+			"autoHideTopControl":false,
+			"width":600,
+			"height":400,
+			"theme":"Blue"
+		},
+		"scopes":[
+			{
+				"type":"web",
+				"caption":"&#x2b;&#x2b;&#x43;&#x2b;&#x2b;&#x3b;",
+				"searchParam":"site:ufcpp.net"
+			}
+			,
+			{
+				"type":"web",
+				"caption":"&#x30a6;&#x30a7;&#x30d6;",
+				"searchParam":""
+			}
+		]
+	}
+	]]></script>
+	<script type="text/javascript" charset="utf-8" src="http://search.live.com/bootstrap.js?market=ja-JP&amp;ServId=SearchBox&amp;ServId=SearchBoxWeb&amp;Callback=WLSearchBoxScriptReady"></script>
+</div>
+
+<!-- Live Search -->
+
+</div>

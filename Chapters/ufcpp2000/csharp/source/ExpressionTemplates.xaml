@@ -1,0 +1,327 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:q="clr-namespace:System.Linq.Expressions;assembly=System.Core"
+  xmlns:c="clr-namespace:System;assembly=mscorlib"
+  xmlns:l="clr-namespace:LinqTreeView"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+  <l:LightenConverter x:Key="lighten1" Factor="20"/>
+
+  <l:LightenConverter x:Key="lighten2" Factor="5"/>
+  
+  <l:ToStringConverter x:Key="toString"/>
+
+  <ControlTemplate
+    x:Key="contentWithRect"
+    TargetType="{x:Type ContentControl}"
+    >
+    <Grid
+      Margin="10, 5, 10, 5"
+      ToolTip="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=DataContext, Converter={StaticResource toString}}"
+      >
+      <Rectangle
+        StrokeThickness="1"
+        RadiusX="5" RadiusY="5">
+        <Rectangle.Stroke>
+          <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=Background.Color}"/>
+        </Rectangle.Stroke>
+        <Rectangle.Fill>
+          <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Offset="0" Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=Background.Color, Converter={StaticResource lighten1}}"/>
+            <GradientStop Offset="1" Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=Background.Color, Converter={StaticResource lighten2}}"/>
+          </LinearGradientBrush>
+        </Rectangle.Fill>
+      </Rectangle>
+      <ContentPresenter />
+    </Grid>
+  </ControlTemplate>
+  
+  <DataTemplate
+    DataType="{x:Type c:Type}"
+    >
+    <Label
+      Content="{Binding Path=Name}"
+      ToolTip="{Binding Path=FullName}"
+      />
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:LambdaExpression}"
+    >
+    <ContentControl
+      Background="Silver"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <Label>Lamba (</Label>
+        <ItemsControl ItemsSource="{Binding Path=Parameters}"/>
+        <Label>) => </Label>
+        <ContentControl Content="{Binding Path=Body}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:ParameterExpression}"
+    >
+    <ContentControl
+      Background="Black"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel Orientation="Horizontal">
+        <Label Content="{Binding Path=Name}"/>
+        <Label>:</Label>
+        <ContentControl Content="{Binding Path=Type}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:ConstantExpression}"
+    >
+    <ContentControl
+      Background="Gold"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel Orientation="Horizontal">
+        <Label Content="{Binding Path=Value}"/>
+        <Label>:</Label>
+        <ContentControl Content="{Binding Path=Type}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:BinaryExpression}"
+    >
+    <ContentControl
+      Background="Blue"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <Label Content="{Binding Path=NodeType}"/>
+        <ContentControl Content="{Binding Path=Left}"/>
+        <ContentControl Content="{Binding Path=Right}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:UnaryExpression}"
+    >
+    <ContentControl
+      Background="DodgerBlue"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <Label Content="{Binding Path=NodeType}"/>
+        <ContentControl Content="{Binding Path=Operand}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:ConditionalExpression}"
+    >
+    <ContentControl
+      Background="Green"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <Label>if(</Label>
+        <ContentControl Content="{Binding Path=Test}"/>
+        <Label>) {</Label>
+        <ContentControl Content="{Binding Path=IfTrue}"/>
+        <Label>} else {</Label>
+        <ContentControl Content="{Binding Path=IfFalse}"/>
+        <Label>}</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MemberExpression}"
+    >
+    <ContentControl
+      Background="Violet"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label>Member</Label>
+          <Label Content="{Binding Path=Member.Name}"/>
+          <ContentControl Content="{Binding Path=Member.Type}"/>
+          <Label>of</Label>
+        </StackPanel>
+        <ContentControl Content="{Binding Path=Expression}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:NewExpression}"
+    >
+    <ContentControl
+      Background="Indigo"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label>New </Label>
+          <ContentControl Content="{Binding Path=Type}"/>
+          <Label>(</Label>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=Arguments}"/>
+        <Label>)</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:NewArrayExpression}"
+    >
+    <ContentControl
+      Background="DarkViolet"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label>New</Label>
+          <ContentControl Content="{Binding Path=Type}"/>
+          <Label>[] {</Label>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=Expressions}"/>
+        <Label>}</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MemberInitExpression}"
+    >
+    <ContentControl
+      Background="Navy"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <ContentControl Content="{Binding Path=NewExpression}"/>
+        <Label>{</Label>
+        <ItemsControl ItemsSource="{Binding Path=Bindings}"/>
+        <Label>}</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:ListInitExpression}"
+    >
+    <ContentControl
+      Background="Purple"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <ContentControl Content="{Binding Path=NewExpression}"/>
+        <Label>{</Label>
+        <ItemsControl ItemsSource="{Binding Path=Initializers}"/>
+        <Label>}</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:ElementInit}"
+    >
+    <ItemsControl ItemsSource="{Binding Path=Arguments}" />
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MemberBinding}"
+    >
+    <ContentControl
+      Background="GreenYellow"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Content="{Binding Path=Member.Name}"/>
+          <Label> = </Label>
+        </StackPanel>
+        <ContentControl Content="{Binding Path=Expression}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MemberMemberBinding}"
+    >
+    <ContentControl
+      Background="YellowGreen"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Content="{Binding Path=Member.Name}"/>
+          <Label>=</Label>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=Bindings}"/>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MemberListBinding}"
+    >
+    <ContentControl
+      Background="Aquamarine"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Content="{Binding Path=Member.Name}"/>
+          <Label>= {</Label>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=Initializers}"/>
+        <Label>}</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:MethodCallExpression}"
+    >
+    <ContentControl
+      Background="Red"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label>Method </Label>
+          <Label Content="{Binding Path=Method.Name}"/>
+          <Label> : </Label>
+          <ContentControl Content="{Binding Path=Method.ReturnType}"/>
+          <Label> (</Label>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Path=Arguments}"/>
+        <Label>)</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+  <DataTemplate
+    DataType="{x:Type q:InvocationExpression}"
+    >
+    <ContentControl
+      Background="Crimson"
+      Template="{StaticResource contentWithRect}"
+      >
+      <StackPanel>
+        <Label>Invoke</Label>
+        <Label Content="{Binding Path=Expression}"/>
+        <Label>(</Label>
+        <ItemsControl ItemsSource="{Binding Path=Arguments}"/>
+        <Label>)</Label>
+      </StackPanel>
+    </ContentControl>
+  </DataTemplate>
+
+</ResourceDictionary>

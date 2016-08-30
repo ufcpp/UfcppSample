@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:dV">
+	<span class="normal">d</span>V
+</xsl:template>

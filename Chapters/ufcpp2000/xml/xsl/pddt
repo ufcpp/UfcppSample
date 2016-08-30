@@ -1,0 +1,13 @@
+<xsl:template match="ufcpp:pddt">
+	<table class="frac" summary="differential">
+		<tr><td class="num">∂<xsl:choose><xsl:when test="@var != ''"><xsl:value-of select="@var"/></xsl:when><xsl:when test="@v != ''"><xsl:value-of select="@v"/></xsl:when><xsl:otherwise><xsl:apply-templates/></xsl:otherwise></xsl:choose></td></tr>
+		<tr><td>∂t</td></tr>
+	</table>
+</xsl:template>
+
+<xsl:template match="ufcpp:math//ufcpp:pdd|ufcpp:Math//ufcpp:pdd">
+	<table class="frac" summary="differential">
+		<tr><td class="num">∂<xsl:choose><xsl:when test="@num != ''"><xsl:value-of select="@num"/></xsl:when><xsl:when test="@n != ''"><xsl:value-of select="@n"/></xsl:when><xsl:otherwise><xsl:apply-templates select="ufcpp:num"/></xsl:otherwise></xsl:choose></td></tr>
+		<tr><td>∂<xsl:choose><xsl:when test="@denom != ''"><xsl:value-of select="@denom"/></xsl:when><xsl:when test="@d != ''"><xsl:value-of select="@d"/></xsl:when><xsl:otherwise><xsl:apply-templates select="ufcpp:denom"/></xsl:otherwise></xsl:choose></td></tr>
+	</table>
+</xsl:template>

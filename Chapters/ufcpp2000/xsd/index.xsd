@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="index"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="css" schemaLocation="css.xsd"/>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <xs:element name="index">
+    <xs:annotation>
+      <xs:documentation>インデックス ページのルート要素</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="1" name="summary" type="division_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="section" type="index_section_type"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="document" type="index_document_type"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="extern" type="index_document_type"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="css"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="Ads" type="division_type"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="IAds" type="division_type"/>
+      </xs:choice>
+      <xs:attribute name="title" type="xs:string" use="required"/>
+      <xs:attribute name="keyword" type="xs:string"/>
+      <xs:attribute name="description" type="xs:string"/>
+      <xs:attribute name="since" type="xs:string"/>
+      <xs:attribute name="update" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="index_section_type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="document" type="index_document_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="refindex" type="index_document_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="extern" type="index_extern_type"/>
+    </xs:choice>
+    <xs:attribute name="title" type="xs:string"/>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="index_document_type">
+    <xs:annotation>
+      <xs:documentation>ドキュメントへのリンク。</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="href" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>ドキュメント名。".xml" は不要。</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="indexid" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="index_extern_type">
+    <xs:annotation>
+      <xs:documentation>別サイトへのリンク。</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="title" type="xs:string"/>
+  </xs:complexType>
+
+</xs:schema>

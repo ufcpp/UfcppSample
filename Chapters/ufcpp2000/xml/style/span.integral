@@ -1,0 +1,14 @@
+span.integral
+{
+	font-size:140%;
+	font-style:normal;
+	vertical-align:middle;
+	margin-right:-0.1em;
+}
+span.ointegral
+{
+	font-size:140%;
+	font-style:normal;
+	vertical-align:middle;
+	margin-right:-0.4em;
+}

@@ -1,0 +1,6 @@
+<xsl:template match="ufcpp:lim">
+	<table class="sigma" summary="limitation">
+		<tr><td><span class="normal">lim</span></td></tr>
+		<tr><td class="sigmasub"><xsl:apply-templates/></td></tr>
+	</table>
+</xsl:template>

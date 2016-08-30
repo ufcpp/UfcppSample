@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="css"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="css">
+    <xs:complexType>
+      <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

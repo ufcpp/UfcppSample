@@ -1,0 +1,55 @@
+<xsl:template match="ufcpp:math//ufcpp:bracket|ufcpp:math//ufcpp:bra|ufcpp:Math//ufcpp:bracket|ufcpp:Math//ufcpp:bra">
+<xsl:variable name="t"><xsl:choose><xsl:when test="@type != ''"><xsl:value-of select="@type"/></xsl:when><xsl:otherwise><xsl:value-of select="@t"/></xsl:otherwise></xsl:choose></xsl:variable>
+
+<xsl:variable name="l">
+ <xsl:choose>
+  <xsl:when test="$t = 'p'">(</xsl:when>
+  <xsl:when test="$t = 'paren'">(</xsl:when>
+  <xsl:when test="$t = 'r'">(</xsl:when>
+  <xsl:when test="$t = 'round'">(</xsl:when>
+  <xsl:when test="$t = 'c'">{</xsl:when>
+  <xsl:when test="$t = 'curl'">{</xsl:when>
+  <xsl:when test="$t = 'b'">{</xsl:when>
+  <xsl:when test="$t = 'brace'">{</xsl:when>
+  <xsl:when test="$t = 'angle'">&#9001;</xsl:when>
+  <xsl:when test="$t = 'square'">[</xsl:when>
+  <xsl:when test="$t = 'sq'">[</xsl:when>
+  <xsl:when test="$t = 'abs'">|</xsl:when>
+  <xsl:when test="$t = 'norm'">||</xsl:when>
+  <xsl:when test="$t = 'ceil'">&#8968;</xsl:when>
+  <xsl:when test="$t = 'floor'">&#8970;</xsl:when>
+  <xsl:otherwise>&#9001;</xsl:otherwise>
+ </xsl:choose>
+</xsl:variable>
+
+<xsl:variable name="r">
+ <xsl:choose>
+  <xsl:when test="$t = 'p'">)</xsl:when>
+  <xsl:when test="$t = 'paren'">)</xsl:when>
+  <xsl:when test="$t = 'r'">)</xsl:when>
+  <xsl:when test="$t = 'round'">)</xsl:when>
+  <xsl:when test="$t = 'c'">}</xsl:when>
+  <xsl:when test="$t = 'curl'">}</xsl:when>
+  <xsl:when test="$t = 'b'">}</xsl:when>
+  <xsl:when test="$t = 'brace'">}</xsl:when>
+  <xsl:when test="$t = 'angle'">&#9002;</xsl:when>
+  <xsl:when test="$t = 'square'">]</xsl:when>
+  <xsl:when test="$t = 'sq'">]</xsl:when>
+  <xsl:when test="$t = 'abs'">|</xsl:when>
+  <xsl:when test="$t = 'norm'">||</xsl:when>
+  <xsl:when test="$t = 'ceil'">&#8969;</xsl:when>
+  <xsl:when test="$t = 'floor'">&#8971;</xsl:when>
+  <xsl:otherwise>&#9002;</xsl:otherwise>
+ </xsl:choose>
+</xsl:variable>
+
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		<xsl:value-of select="$l"/>
+	</span>
+	<xsl:apply-templates/>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		<xsl:value-of select="$r"/>
+	</span>
+</xsl:template>

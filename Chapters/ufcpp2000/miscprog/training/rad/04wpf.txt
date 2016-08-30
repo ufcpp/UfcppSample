@@ -1,0 +1,25 @@
+----------------------------------------
+概要
+
+・最近話題の GUI 開発プラットフォーム
+	・WPF: Windows Presentation Foundation
+
+・WPF の特徴
+	・ビジュアルとロジックの分離
+		・視覚的な部分は XML ベースの GUI 記述言語「XAML」を利用
+		・ロジックコードは C# などのプログラミング言語を利用
+	・多彩な GUI
+		・2D / 3D / 動画を統合
+	・柔軟なカスタマイズ性
+		・任意の形をしたボタンを作れたり
+		・背景に動画を使えたり
+
+----------------------------------------
+デモ
+
+・Visual Studio による開発
+	・resources\XamlApplication\XamlApplication.sln
+
+・Loose XAML
+	・resources\LineArt.xaml
+	・resources\viewport3d.xaml

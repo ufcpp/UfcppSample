@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="other"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <xs:element name="amazon">
+    <xs:complexType>
+      <xs:attribute name="asin" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="amazontext">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="inline_type">
+          <xs:attribute name="asin" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

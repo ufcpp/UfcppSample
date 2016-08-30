@@ -1,0 +1,5 @@
+<xsl:template match="ufcpp:bar">
+	<span class="bar">
+		<xsl:apply-templates/>
+	</span>
+</xsl:template>

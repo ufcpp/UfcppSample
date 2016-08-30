@@ -1,0 +1,15 @@
+演算子
+----
+演算子。
+（短縮形: o）
+----
+operator
+----
+span.normal
+----
+<operator name="name">operator</operator>
+----
+x <o>+</o> y,
+x <o name="pm"/> y,
+x <o n="mp"/> y
+----

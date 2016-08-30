@@ -1,0 +1,14 @@
+時間微分
+----
+時間微分記号d/dtを表示する
+----
+ddt
+----
+table.frac
+td.num
+span.normal
+----
+<ddt/>
+----
+<ddt/>x = -kx
+----

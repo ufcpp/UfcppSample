@@ -1,0 +1,199 @@
+----------------------------------------
+概要
+
+・タイマー使ったアニメーションとかもやってみる。
+・Timer クラス
+	・初期化と更新処理
+↓
+・ラインアート
+
+----------------------------------------
+手順
+
+・プロジェクト作成
+	・プロジェクト名 LineArt
+
+・設定ウィンドウ
+	・[ソリューション]を右クリック → 追加 → Windows フォーム
+	・名前: SettingForm
+
+	・設定
+		・ShowIcon: false
+		・Text: 設定
+	・コントロール配置
+		・以下のような見た目に
+
+			頂点の数   [      ]
+			線の本数   [      ]
+			タイマ間隔 [      ]
+			    [OK] [Cancel]
+
+		・コントロールの名前は上から順に
+			textVertex
+			textLines
+			textWeight
+			buttonOk
+			buttonCancel
+
+	・Form の
+		AcceptButton = buttonOk
+		CancelButton = buttonCancel
+	・On [OK] Click
+			this.DialogResult = DialogResult.OK;
+			this.Close();
+	・On [Cancel] Click
+			this.Close();
+
+	・設定値の読み書き
+		・以下のコードをコピペ
+
+		public void SetVertexNum(int num){this.textVertex.Text = num.ToString();}
+		public void SetLineNum(int num){this.textLines.Text = num.ToString();}
+		public void SetWaitTime(int num){this.textWait.Text = num.ToString();}
+		public bool GetVertexNum(out int num){return int.TryParse(this.textVertex.Text, out num);}
+		public bool GetLineNum(out int num){return int.TryParse(this.textLines.Text, out num);}
+		public bool GetWaitTime(out int num){return int.TryParse(this.textWait.Text, out num);}
+
+・Form1 設定
+	・Text: Line Art
+	・Size: 640, 480
+	・BackColor: White
+	・アイコンとかも設定してみよう
+		・Form1 をクリック
+		・プロパティウィンドから [Icon] 参照
+		・resources\App.ico を選択。
+
+・メンバ変数と初期化関数の追加
+	・以下のコードをコピペ
+
+		int vertex = 4;      // 1つの多角形あたりの頂点数
+		int lines = 4;       // 何セットの多角形を表示するか
+		int wait_time = 100; // タイマー間隔[ms]
+
+		public Point[][] p; // 点
+		public Size[] v;    // 各点の速度
+
+		void InitializeObjects()
+		{
+			Random rnd = new Random();
+
+			this.p = new Point[this.lines][];
+			this.p[0] = new Point[this.vertex];
+			this.v = new Size[this.vertex];
+			for (int j = 0; j < this.vertex; ++j)
+			{
+				this.p[0][j].X = (rnd.Next() >> 3) % this.ClientSize.Width;
+				this.p[0][j].Y = (rnd.Next() >> 3) % this.ClientSize.Height;
+				double theta = rnd.NextDouble() * 2 * Math.PI;
+				double r = rnd.NextDouble() * 5 + 2;
+				this.v[j].Width = (int)(r * Math.Cos(theta));
+				this.v[j].Height = (int)(r * Math.Sin(theta));
+			}
+			for (int i = 1; i < this.lines; ++i)
+			{
+				this.p[i] = new Point[this.vertex];
+				for (int j = 0; j < this.vertex; ++j)
+				{
+					this.p[i][j] = this.p[i - 1][j];
+				}
+			}
+		}
+
+・更新処理
+	・↓コピペ
+
+		void Update(object o, EventArgs e)
+		{
+			for (int j = 0; j < this.vertex; ++j)
+			{
+				//残像を作る
+				for (int i = this.lines - 1; i > 0; --i)
+				{
+					this.p[i][j] = this.p[i - 1][j];
+				}
+				//点の位置の更新
+				this.p[0][j] += this.v[j];
+				//画面からはみ出したときの処理
+				if (this.p[0][j].X >= this.ClientSize.Width)
+				{
+					this.p[0][j].X = this.ClientSize.Width * 2 - this.p[0][j].X;
+					this.v[j].Width = -this.v[j].Width;
+				}
+				else if (this.p[0][j].X < 0)
+				{
+					this.p[0][j].X = -this.p[0][j].X;
+					this.v[j].Width = -this.v[j].Width;
+				}
+				if (this.p[0][j].Y >= this.ClientSize.Height)
+				{
+					this.p[0][j].Y = this.ClientSize.Height * 2 - this.p[0][j].Y;
+					this.v[j].Height = -this.v[j].Height;
+				}
+				else if (this.p[0][j].Y < 0)
+				{
+					this.p[0][j].Y = -this.p[0][j].Y;
+					this.v[j].Height = -this.v[j].Height;
+				}
+			}
+		}
+
+
+・右クリックメニュー追加
+	・ツールボックス → メニューとツールバー → ContextMenuStrip
+	・項目[設定] を追加
+	・ダブルクリックしてハンドラ追加（以下のコードをコピペ）
+
+			SettingForm dlg = new SettingForm();
+			dlg.SetVertexNum(this.vertex);
+			dlg.SetLineNum(this.lines);
+			dlg.SetWaitTime(this.wait_time);
+
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				int x;
+				if (dlg.GetVertexNum(out x)) this.vertex = x;
+				if (dlg.GetLineNum(out x)  ) this.lines  = x;
+				if (dlg.GetWaitTime(out x) ) this.wait_time = x;
+
+				this.InitializeObjects();
+			}
+
+	・Form をクリックして、プロパティ → ContextMenuStrip を設定
+
+・アニメーション用のタイマ設定
+	・メンバ変数追加
+		Timer timer;
+
+	・InitializeObjects の末尾に↓追加
+
+			if (this.timer != null && this.timer.Enabled)
+			{
+				this.timer.Stop();
+				this.timer.Dispose();
+			}
+			this.timer = new Timer();
+			this.timer.Interval = this.wait_time;
+			this.timer.Tick += this.Update;
+			this.timer.Start();
+
+	・Update() 末尾に↓追加
+			this.Invalidate();
+
+	・コンストラクタにも
+			InitializeObjects();
+
+・再描画処理
+	・OnPaintBackground をオーバーライド
+
+		protected override void OnPaintBackground(PaintEventArgs e)
+		{
+			Bitmap bmp = new Bitmap(this.Width, this.Height);
+			Graphics g = Graphics.FromImage(bmp);
+
+			g.FillRectangle(new SolidBrush(Color.White), 0, 0, this.Width, this.Height);
+			for (int i = 0; i < this.lines; ++i)
+			{
+				g.DrawPolygon(new Pen(Color.Black), this.p[i]);
+			}
+			e.Graphics.DrawImage(bmp, 0, 0, bmp.Width, bmp.Height);
+		}

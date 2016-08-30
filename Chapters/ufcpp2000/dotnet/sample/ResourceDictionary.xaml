@@ -1,0 +1,20 @@
+<WrapPanel
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	>
+	<WrapPanel.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="StyleForButton.xaml"/>
+				<ResourceDictionary Source="StyleForLabel.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</WrapPanel.Resources>
+
+	<Button Content="button 1"/>
+	<Label Content="label 1"/>
+	<Button Content="button 2"/>
+	<Label Content="label 2"/>
+	<Button Content="button 3"/>
+	<Label Content="label 3"/>
+</WrapPanel>

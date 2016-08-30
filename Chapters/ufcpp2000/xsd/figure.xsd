@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="figure"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <!-- table -->
+  <xs:element name="table" type="table_type"/>
+  <xs:element name="layouttable" type="table_type"/>
+
+  <xs:complexType name="table_type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="caption" type="inline_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="thead" type="table_rows_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="tbody" type="table_rows_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="tfoot" type="table_rows_type"/>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="tr">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="th" type="table_element_type"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="td" type="table_element_type"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="summary" type="xs:string" />
+    <xs:attribute name="class" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="table_rows_type">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="tr">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="th" type="table_element_type"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="td" type="table_element_type"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="class" type="xs:string" />
+    <xs:attribute name="style" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="table_element_type">
+    <xs:complexContent>
+      <xs:extension base="division_type">
+        <xs:attribute name="colspan" type="xs:int" />
+        <xs:attribute name="rowspan" type="xs:int" />
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <!-- figure -->
+  <xs:element name="figure">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="image">
+          <xs:complexType>
+            <xs:attribute name="src" type="xs:string" use="required"/>
+            <xs:attribute name="width" type="xs:int" use="required"/>
+            <xs:attribute name="height" type="xs:int" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="legend" type="block_type"/>
+        <xs:group ref="block_elements"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

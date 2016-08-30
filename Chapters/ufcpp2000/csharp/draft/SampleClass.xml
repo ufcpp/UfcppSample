@@ -1,0 +1,9 @@
+<Definition
+    Namespace="ConsoleApplication1"
+    Class="SampleClass"
+    Description="特性値データ"
+    >
+
+   <Properties Name="X" Type="double" Description="特性 X" />
+   <Properties Name="Y" Type="int" Description="特性 Y" />
+</Definition>

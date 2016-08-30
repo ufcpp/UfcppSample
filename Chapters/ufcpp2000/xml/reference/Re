@@ -1,0 +1,13 @@
+実部・虚部
+----
+実部を表す記号Reおよび、虚部を表す記号Imを表示
+----
+Re
+Im
+----
+span.script
+----
+<Re/> <Im/>
+----
+<exp/>(z) = <exp/>(<Re/>(z))<paren size="1.2"><cos/><Im/>(z) + i<sin/><Im/>(z)</paren>
+----

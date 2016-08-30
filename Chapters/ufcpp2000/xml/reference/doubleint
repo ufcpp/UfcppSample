@@ -1,0 +1,17 @@
+重積分記号
+----
+重積分記号を表示する
+----
+doubleint
+int sup
+int sub
+----
+span.integral
+table.integral
+td.intsup
+td.intsub
+----
+<doubleint><sub>積分記号の下に来る文字</sub><sup>積分記号の上に来る文字</sup></doubleint>
+----
+<doubleint/> f(x,y) <d/>x<d/>y
+----

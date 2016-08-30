@@ -1,0 +1,9 @@
+<xsl:template match="ufcpp:sqrt">
+	<span class="normal">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+	√
+	</span>
+	<span class="bar">
+		<xsl:apply-templates/>
+	</span>
+</xsl:template>

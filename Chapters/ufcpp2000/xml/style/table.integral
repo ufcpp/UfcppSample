@@ -1,0 +1,9 @@
+table.integral
+{
+	display:inline;
+	vertical-align:middle;
+	font-size:80%;
+	font-style:italic;
+	padding-right:0.3em;
+	padding-left:0.1em;
+}

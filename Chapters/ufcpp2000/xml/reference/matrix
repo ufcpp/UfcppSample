@@ -1,0 +1,27 @@
+行列
+----
+テーブル状の行列を表示
+----
+matrix
+matrix row
+matrix row elem
+----
+table.matrix
+span.paren
+----
+<matrix size="行列の高さ">
+	<row><elem>1,1成分</elem>...<elem>1,n成分</elem>
+	.
+	.
+	.
+	<row><elem>m,1成分</elem>...<elem>m,n成分</elem>
+</matrix>
+----
+<vervec size="3"><elem>x'</elem><elem>y'</elem><elem>z'</elem></vervec> = 
+<matrix size="3">
+<row><elem>a</elem><elem>b</elem><elem>c</elem></row>
+<row><elem>d</elem><elem>e</elem><elem>f</elem></row>
+<row><elem>g</elem><elem>h</elem><elem>i</elem></row>
+</matrix>
+<vervec size="3"><elem>x</elem><elem>y</elem><elem>z</elem></vervec>
+----

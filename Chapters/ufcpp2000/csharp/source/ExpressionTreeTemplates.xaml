@@ -1,0 +1,260 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:q="clr-namespace:System.Linq.Expressions;assembly=System.Core"
+  xmlns:c="clr-namespace:System;assembly=mscorlib"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate
+        x:Key="contentWithRect"
+        TargetType="{x:Type ContentControl}">
+
+        <Grid Margin="10, 5, 10, 5">
+            <Grid.ToolTip>
+                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=DataContext}" />
+            </Grid.ToolTip>
+            <Rectangle
+                StrokeThickness="1"
+                Stroke="Black"
+                Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=Background}"
+                RadiusX="5" RadiusY="5">
+            </Rectangle>
+            <ContentPresenter Margin="3" />
+        </Grid>
+    </ControlTemplate>
+
+    <DataTemplate DataType="{x:Type c:Type}">
+        <TextBlock
+            Text="{Binding Name}"
+            ToolTip="{Binding FullName}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:LambdaExpression}">
+        <ContentControl
+            Background="AntiqueWhite"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <TextBlock>Lamba (</TextBlock>
+                <ItemsControl ItemsSource="{Binding Parameters}" />
+                <TextBlock>) =></TextBlock>
+                <ContentControl Content="{Binding Body}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:ParameterExpression}">
+        <ContentControl
+            Background="AliceBlue"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" />
+                <TextBlock>:</TextBlock>
+                <ContentControl Content="{Binding Type}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:ConstantExpression}">
+        <ContentControl
+            Background="LightGoldenrodYellow"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Value}" />
+                <TextBlock>:</TextBlock>
+                <ContentControl Content="{Binding Type}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:BinaryExpression}">
+        <ContentControl
+            Background="LightBlue"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <TextBlock Text="{Binding NodeType}" />
+                <ContentControl Content="{Binding Left}" />
+                <ContentControl Content="{Binding Right}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:UnaryExpression}">
+        <ContentControl
+            Background="LightCoral"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <TextBlock Text="{Binding NodeType}" />
+                <ContentControl Content="{Binding Operand}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:ConditionalExpression}">
+        <ContentControl
+            Background="LightGreen"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <TextBlock>if(</TextBlock>
+                <ContentControl Content="{Binding Test}" />
+                <TextBlock>) {</TextBlock>
+                <ContentControl Content="{Binding IfTrue}" />
+                <TextBlock>} else {</TextBlock>
+                <ContentControl Content="{Binding IfFalse}" />
+                <TextBlock>}</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MemberExpression}">
+        <ContentControl
+            Background="Violet"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Member</TextBlock>
+                    <TextBlock Text="{Binding Member.Name}" />
+                    <ContentControl Content="{Binding Member.Type}" />
+                    <TextBlock>of</TextBlock>
+                </StackPanel>
+                <ContentControl Content="{Binding Expression}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:NewExpression}">
+        <ContentControl
+            Background="LightCyan"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>New</TextBlock>
+                    <ContentControl Content="{Binding Type}" />
+                    <TextBlock>(</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Arguments}" />
+                <TextBlock>)</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:NewArrayExpression}">
+        <ContentControl
+            Background="LightPink"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>New</TextBlock>
+                    <ContentControl Content="{Binding Type}" />
+                    <TextBlock>[] {</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Expressions}" />
+                <TextBlock>}</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MemberInitExpression}">
+        <ContentControl
+            Background="LemonChiffon"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <ContentControl Content="{Binding NewExpression}" />
+                <TextBlock>{</TextBlock>
+                <ItemsControl ItemsSource="{Binding Bindings}" />
+                <TextBlock>}</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:ListInitExpression}">
+        <ContentControl
+            Background="LightSteelBlue"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <ContentControl Content="{Binding NewExpression}" />
+                <TextBlock>{</TextBlock>
+                <ItemsControl ItemsSource="{Binding Initializers}" />
+                <TextBlock>}</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:ElementInit}">
+        <ItemsControl ItemsSource="{Binding Arguments}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MemberBinding}">
+        <ContentControl
+            Background="LightSeaGreen"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Member.Name}" />
+                    <TextBlock> =</TextBlock>
+                </StackPanel>
+                <ContentControl Content="{Binding Expression}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MemberMemberBinding}">
+        <ContentControl
+            Background="Lavender"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Member.Name}" />
+                    <TextBlock>=</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Bindings}" />
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MemberListBinding}">
+        <ContentControl
+            Background="Aquamarine"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Member.Name}" />
+                    <TextBlock>= {</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Initializers}" />
+                <TextBlock>}</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:MethodCallExpression}">
+        <ContentControl
+            Background="Salmon"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Method</TextBlock>
+                    <TextBlock Text="{Binding Method.Name}" />
+                    <TextBlock> :</TextBlock>
+                    <ContentControl Content="{Binding Method.ReturnType}" />
+                    <TextBlock> (</TextBlock>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding Arguments}" />
+                <TextBlock>)</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type q:InvocationExpression}">
+        <ContentControl
+            Background="Orange"
+            Template="{StaticResource contentWithRect}">
+            <StackPanel>
+                <TextBlock>Invoke</TextBlock>
+                <TextBlock Text="{Binding Expression}" />
+                <TextBlock>(</TextBlock>
+                <ItemsControl ItemsSource="{Binding Arguments}" />
+                <TextBlock>)</TextBlock>
+            </StackPanel>
+        </ContentControl>
+    </DataTemplate>
+
+</ResourceDictionary>

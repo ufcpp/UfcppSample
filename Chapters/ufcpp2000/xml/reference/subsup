@@ -1,0 +1,20 @@
+上付き・下付き文字
+----
+上付き・下付き文字を表示する。
+----
+sub
+sup
+subsup
+subsup sub
+----
+table.subsup
+common
+----
+<sup>上付き</sup>
+<sub>下付き</sub>
+<subsup><sub>下</sub><sup>上</sup></subsup>
+----
+x<sup>2</sup>, 
+a<sub>0</sub> , 
+p<subsup><sub>1</sub><sup>2</sup></subsup>
+----

@@ -1,0 +1,12 @@
+アレフ
+----
+無限基数アレフを表示。
+----
+aleph
+----
+----
+<aleph sub="subscript"/>
+----
+<aleph/>, 
+<aleph sub="1"/> ＝ 2<sup><aleph sub="0"/></sup>
+----

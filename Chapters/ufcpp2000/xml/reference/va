@@ -1,0 +1,47 @@
+ベクトル解析用記号
+----
+線素、面素、体積素。
+勾配、発散、回転。
+ナブラ記号。
+----
+dV
+dS
+dl
+gradient
+divergence
+rotation
+textgrad
+textdiv
+textrot
+nabra
+----
+span.normal
+----
+<dV/>
+<dS/>
+<dl/>
+<gradient/>
+<divergence/>
+<rotation/>
+<textgrad/>
+<textdiv/>
+<textrot/>
+<nabra/>
+----
+<int><sub>V</sub></int> <divergence/><vec>f</vec> <dV/>
+＝
+<oint><sub>∂V</sub></oint> <vec>f</vec>・<dS/>
+,
+<int><sub>S</sub></int> <rotation/><vec>f</vec>・<dS/>
+＝
+<oint><sub>∂S</sub></oint> <vec>f</vec>・<dl/>
+,
+<d/>f
+＝
+<gradient/>f
+・<dl/>,
+<gradient/> ＝ <textgrad/>, 
+<divergence/> ＝ <textdiv/>, 
+<rotation/> ＝ <textrot/>, 
+<nabra/>
+----

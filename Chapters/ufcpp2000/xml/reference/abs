@@ -1,0 +1,13 @@
+絶対値
+----
+絶対値記号||の表示
+（obsolete。bracket に移行。）
+----
+abs
+----
+span.normal
+----
+<abs>絶対値記号内の式</abs>
+----
+<int/><inv>x</inv><d/>x = <log/><abs>x</abs> + C
+----

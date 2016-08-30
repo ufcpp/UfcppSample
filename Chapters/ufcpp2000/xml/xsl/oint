@@ -1,0 +1,8 @@
+<xsl:template match="ufcpp:oint">
+	<span class="ointegral">∮</span>
+	<table class="integral" summary="integral">
+		<tr><td class="intsup">&#xA0;<xsl:apply-templates select="ufcpp:sup"/></td></tr>
+		<tr><td style="font-size:30%;">&#xA0;</td></tr>
+		<tr><td class="intsub"><xsl:apply-templates select="ufcpp:sub"/></td></tr>
+	</table>
+</xsl:template>

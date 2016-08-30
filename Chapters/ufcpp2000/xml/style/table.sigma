@@ -1,0 +1,7 @@
+table.sigma
+{
+	display:inline;
+	text-align:center;
+	vertical-align:middle;
+	font-style:italic;
+}

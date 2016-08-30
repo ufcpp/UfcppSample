@@ -1,0 +1,15 @@
+記号
+----
+記号類。
+（短縮形: sym）
+主に、MS IME の変換で出せない文字。
+----
+symbol
+----
+span.normal
+----
+<symbol name="name"></symbol>
+----
+<symbol n="forall"/>x s.t. <symbol n="vtheta"/><paren>x</paren> <op>=</op> 0
+
+----

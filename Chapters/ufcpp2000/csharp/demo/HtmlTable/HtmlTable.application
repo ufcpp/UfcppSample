@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <assemblyIdentity name="HtmlTable.application" version="1.0.0.0" publicKeyToken="a74ba0782196df4a" language="neutral" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:publisher="++C++;" asmv2:product="HtmlTable" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <deployment install="true" mapFileExtensions="true">
+    <subscription>
+      <update>
+        <beforeApplicationStartup />
+      </update>
+    </subscription>
+    <deploymentProvider codebase="http://ufcpp.net/study/csharp/demo/HtmlTable/HtmlTable.application" />
+  </deployment>
+  <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
+    <framework targetVersion="4.0" profile="Client" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
+  </compatibleFrameworks>
+  <dependency>
+    <dependentAssembly dependencyType="install" codebase="Application Files\HtmlTable_1_0_0_0\HtmlTable.exe.manifest" size="6699">
+      <assemblyIdentity name="HtmlTable.exe" version="1.0.0.0" publicKeyToken="a74ba0782196df4a" language="neutral" processorArchitecture="x86" type="win32" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>FLF0Y/H9gWddZKLE6RO7wr+eRRs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=galois\Iwanaga" issuerKeyHash="f46bdd99f3593f78aec8b4ce19115e1addd7e35a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>UUkHIrqDK1AKf0UioIhOVms5ypU=</DigestValue></Reference></SignedInfo><SignatureValue>C1UWWU4osaxiX3//6REqGZyxuxY6Imtom+sn2c3recXhFashfBlj5oWgCVExjTs5JZIKeU6fdpQMcF1L5rQwyY9/O65rGr1csdiCMZh9QnaRjgsLSm9AfkMrJUEDJgm7COzBtDzeGLUvykdpp2wFjRzJ7ftlRBSbWUKtP7cxems=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>nGy8uJbvqCAu9Zs8QLMfNEeDKC/zg4+weYJG770G6ThbBZHfdOfgQkB344c3fU4fEymdf7LJOK3ePygIup+/EmFNZ31FiWa9FuZquenf7vuzdQiCPS3aUEYO2WtYE2UAwHFYZVMWA6ODZFlYXr4MnL917QkjJ9xlRctvLlNuzU8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="95ca396b564e88a022457f0a502b83ba22074951" Description="" Url=""><as:assemblyIdentity name="HtmlTable.application" version="1.0.0.0" publicKeyToken="a74ba0782196df4a" language="neutral" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=galois\Iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Riepye4lRqG6kKo15HlHXkD88n4=</DigestValue></Reference></SignedInfo><SignatureValue>HPQsY6L3UuKiGA0qpzu1xWq4XOFblzqEtKQ2vaKAtzXkHUGQJwEEQ4hhQheUglKHMToM3KPih6cluZBT1qL+8eoTRmN8/H1IF1wEqmJgcqOw5CFb3Ph8EjYJrNIrkMAdLn1rzQP/Ygca8LdULXIRZIY9TdYjHXZLS/i7ZfFZbH8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>nGy8uJbvqCAu9Zs8QLMfNEeDKC/zg4+weYJG770G6ThbBZHfdOfgQkB344c3fU4fEymdf7LJOK3ePygIup+/EmFNZ31FiWa9FuZquenf7vuzdQiCPS3aUEYO2WtYE2UAwHFYZVMWA6ODZFlYXr4MnL917QkjJ9xlRctvLlNuzU8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQObbxH60Jdo1PL91yLTgJPDANBgkqhkiG9w0BAQUFADAnMSUwIwYDVQQDHhwAZwBhAGwAbwBpAHMAXABJAHcAYQBuAGEAZwBhMB4XDTExMDYwMTE4NTcxM1oXDTEyMDYwMTAwNTcxM1owJzElMCMGA1UEAx4cAGcAYQBsAG8AaQBzAFwASQB3AGEAbgBhAGcAYTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAnGy8uJbvqCAu9Zs8QLMfNEeDKC/zg4+weYJG770G6ThbBZHfdOfgQkB344c3fU4fEymdf7LJOK3ePygIup+/EmFNZ31FiWa9FuZquenf7vuzdQiCPS3aUEYO2WtYE2UAwHFYZVMWA6ODZFlYXr4MnL917QkjJ9xlRctvLlNuzU8CAwEAATANBgkqhkiG9w0BAQUFAAOBgQADH9D+PCyBaSSNpK7WyD1samh3ggVvvXtb7eZUXs2qWxeAs2yGfoi3qWSIQK3ecc5r7f1Sxxus3weOZr351wCA4ClCVxYmksMPpR0t9NFnpVFTt2H+DgNsTL1U7eJd4ol96tEBrQtUAJWGDVMxEYmak85SLkZK2nyU/774he45Vg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

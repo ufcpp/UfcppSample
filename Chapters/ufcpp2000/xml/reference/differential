@@ -1,0 +1,20 @@
+微分
+----
+d/dx や ∂/∂x 等を表示する
+----
+differential
+----
+table.frac
+td.num
+span.normal
+----
+<dd var="x" func="y"/> <pdd var="x" func="y/>
+----
+<dd var="s"/>f
+＝
+<pdd var="x" func="f"/><d/>x
+＋
+<pdd var="y" func="f"/><d/>y
+＋
+<pdd var="y" func="f"/><d/>x
+----

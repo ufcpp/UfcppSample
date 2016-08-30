@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="silverlight"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="silverlight">
+    <xs:complexType>
+      <xs:attribute name="width" type="xs:string"/>
+      <xs:attribute name="height" type="xs:string"/>
+      <xs:attribute name="source" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="wmv">
+    <xs:complexType>
+      <xs:attribute name="width" type="xs:string"/>
+      <xs:attribute name="height" type="xs:string"/>
+      <xs:attribute name="source" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="id_element">
+      <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:dl">
+	<span class="normal">d</span><span class="vector">l</span>
+</xsl:template>

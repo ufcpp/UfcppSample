@@ -1,0 +1,29 @@
+静磁場のところにビオサバールの法則を追加しとく
+
+磁気回路
+permeance 浸透って言う意味。
+reluctance(磁気抵抗) 気が向かないこと、嫌気、不承不承、不本意
+
+
+起磁力 : magnetomotive force
+
+
+    双極子
+        electric dipole
+        magnetic dipole
+        set of electric poles
+        set of magnetic poles
+
+
+    分極
+        polarization
+
+
+    磁化
+        magnetization
+
+電磁波
+
+電磁エネルギー(生電場に蓄えるエネルギーとかを個別に解説)
+
+磁化モデル

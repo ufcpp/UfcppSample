@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="division"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="ref" schemaLocation="ref.xsd"/>
+  <xs:include id="link" schemaLocation="link.xsd"/>
+  <xs:include id="source" schemaLocation="source.xsd"/>
+  <xs:include id="keyword" schemaLocation="keyword.xsd"/>
+  <xs:include id="figure" schemaLocation="figure.xsd"/>
+  <xs:include id="html" schemaLocation="html.xsd"/>
+  <xs:include id="exercise" schemaLocation="exercise.xsd"/>
+  <xs:include id="math" schemaLocation="math.xsd"/>
+  <xs:include id="other" schemaLocation="other.xsd"/>
+  <xs:include id="silverlight" schemaLocation="silverlight.xsd"/>
+
+  <xs:complexType name="division_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="division_elements"/>
+      <xs:group ref="block_elements"/>
+      <xs:group ref="inline_elements"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID" />
+  </xs:complexType>
+
+  <xs:group name="division_elements">
+    <xs:choice>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="div" type="division_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="blockquote" type="division_type"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="expand_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="block_elements"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="description" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <!-- ブロック要素 -->
+  <xs:complexType name="block_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="inline_elements"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:group name="block_elements">
+    <xs:choice>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="head" type="block_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="p" type="block_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="expand" type="expand_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="pre" />
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="figure" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="table" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="layouttable" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="silverlight" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="wmv" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="youtube" type="id_element" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="webppt" type="id_element" />
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ul" type="list_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ol" type="list_type"/>
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="sources" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="source" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="xsource" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="console" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="exercise" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="reflinks"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="links" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sample" />
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Math" type="math_type"/>
+    </xs:choice>
+  </xs:group>
+
+  <!-- インライン要素 -->
+  <xs:complexType name="inline_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="inline_elements"/>
+    </xs:choice>
+    <xs:attribute name="class" type="xs:string" />
+    <xs:attribute name="style" type="xs:string" />
+  </xs:complexType>
+
+  <xs:group name="inline_elements">
+    <xs:choice>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver3"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver4"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver5"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver6"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver7"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver8"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ver9"/>
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="link" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="ref" />
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="keyword"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="refkey"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="refex"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="refsource"/>
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="math" type="math_type"/>
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="span"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="a"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="em" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="code" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="br"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="sup" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="sub" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="img" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="ruby" />
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="csp"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="pros"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="cons"/>
+
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="amazon" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="amazontext" />
+    </xs:choice>
+  </xs:group>
+
+  <!-- list -->
+  <xs:complexType name="list_type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="li" type="list_item_type"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="list_item_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="inline_elements"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ul" type="list_type"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ol" type="list_type"/>
+    </xs:choice>
+  </xs:complexType>
+
+</xs:schema>

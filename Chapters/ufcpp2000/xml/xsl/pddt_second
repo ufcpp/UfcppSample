@@ -1,0 +1,6 @@
+<xsl:template match="ufcpp:pddt_second">
+	<table class="frac" summary="differential">
+		<tr><td class="num">∂<sup>2</sup></td></tr>
+		<tr><td>∂t<sup>2</sup></td></tr>
+	</table>
+</xsl:template>

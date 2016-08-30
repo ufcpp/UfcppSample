@@ -1,0 +1,15 @@
+Π
+----
+積の記号Πを表示
+----
+Pi
+Sigma sub
+----
+table.sigma
+td.sigma
+td.sigmasub
+----
+<Pi><sub>Πの下にくる式</sub><sup>Πの上にくる式</sup></Pi>
+----
+n<factorial/> = <Pi><sub>k=0</sub><sup>n</sup></Pi>k
+----

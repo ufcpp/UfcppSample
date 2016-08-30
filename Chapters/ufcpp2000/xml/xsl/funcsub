@@ -1,0 +1,6 @@
+<xsl:template match="ufcpp:funcsub">
+	<table class="sigma" summary="statement under a function">
+		<tr><td><span class="normal"><xsl:value-of select="@name"/></span></td></tr>
+		<tr><td class="sigmasub"><xsl:apply-templates/></td></tr>
+	</table>
+</xsl:template>

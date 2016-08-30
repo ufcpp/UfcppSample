@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="../../style.css" />
+<title>SoundLibrary.Filter.Equalizer</title>
+</head>
+<body>
+
+<h1>Equalizer</h1>
+
+<h2>主要なクラス</h2>
+<table>
+<tr>
+<td>ParametricEqualizer</td>
+<td>
+パラメトリックイコライザ。
+2次 IIR フィルタを直列に並べた構造を持つ。
+IIR フィルタを用いたローパス・ハイパス・バンドパスフィルタや、
+ピーキング・シェルビングフィルタなどの設計機能付き。
+</td>
+</tr>
+<tr>
+<td>FilterDesigner</td>
+<td>
+IIR フィルタの係数設計を行うクラスの抽象基底。
+ButterworthFilterDesigner 等はこのクラスのサブクラスとして定義される。
+フィルタの零点/極、アナログプロトタイプ係数、
+ディジタルフィルタ係数、ParametricEqualizer クラス互換形式の係数等を計算可能。
+</td>
+</tr>
+<tr>
+<td>ButterworthFilterDesigner</td>
+<td>
+バターワースフィルタの係数設計を行う。
+</td>
+</tr>
+<tr>
+<td>ChebyshevFilterDesigner</td>
+<td>
+チェビシェフ/逆チェビシェフフィルタの係数設計を行う。
+</td>
+</tr>
+<tr>
+<td>EllipticFilterDesigner</td>
+<td>
+楕円フィルタの係数設計を行う。
+</td>
+</tr>
+</table>
+
+<hr />
+<p><a href="../index.html">戻る</a></p>
+
+</body>
+</html>

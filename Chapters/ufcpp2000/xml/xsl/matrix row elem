@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:matrix/ufcpp:row/ufcpp:elem|ufcpp:array/ufcpp:row/ufcpp:elem">
+	<td><xsl:apply-templates/></td>
+</xsl:template>

@@ -1,0 +1,15 @@
+括弧
+----
+括弧の表示。
+(a), {a}, &lt;a&gt;, [a], |a|, ||a|| など、全て bracket にまとめました。
+（短縮形 bra）
+（type: paren (round), brace (curl), angle, square(sq), abs, norm, ceil, floor）
+----
+bracket
+----
+span.paren
+----
+<bracket size="括弧の大きさ" type="type">括弧内の式</bracket>
+----
+<bracket>x</bracket> = <inv>N</inv><Sigma><sub>i</sub><sup>N</sup></Sigma>x<sub>i</sub>
+----

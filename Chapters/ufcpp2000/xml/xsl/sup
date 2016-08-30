@@ -1,0 +1,29 @@
+<xsl:template match="ufcpp:sup0"><sup><span class="normal">0</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup1"><sup><span class="normal">1</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup2"><sup><span class="normal">2</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup2"><sup><span class="normal">2</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup3"><sup><span class="normal">3</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup4"><sup><span class="normal">4</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup5"><sup><span class="normal">5</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup6"><sup><span class="normal">6</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup7"><sup><span class="normal">7</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup8"><sup><span class="normal">8</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup9"><sup><span class="normal">9</span></sup></xsl:template>
+<xsl:template match="ufcpp:sup10"><sup><span class="normal">10</span></sup></xsl:template>
+
+<xsl:template match="ufcpp:sub0"><sub><span class="normal">0</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub1"><sub><span class="normal">1</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub2"><sub><span class="normal">2</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub2"><sub><span class="normal">2</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub3"><sub><span class="normal">3</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub4"><sub><span class="normal">4</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub5"><sub><span class="normal">5</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub6"><sub><span class="normal">6</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub7"><sub><span class="normal">7</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub8"><sub><span class="normal">8</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub9"><sub><span class="normal">9</span></sub></xsl:template>
+<xsl:template match="ufcpp:sub10"><sub><span class="normal">10</span></sub></xsl:template>
+
+<xsl:template match="ufcpp:supinv">
+	<sup><span class="normal">&#8722;1</span></sup>
+</xsl:template>

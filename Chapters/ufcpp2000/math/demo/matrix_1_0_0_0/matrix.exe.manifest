@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <asmv1:assemblyIdentity name="matrix.exe" version="1.0.0.0" publicKeyToken="6d6225026df53465" language="neutral" processorArchitecture="msil" type="win32" />
+    <application />
+    <entryPoint>
+        <assemblyIdentity name="matrix" version="1.0.2721.3177" language="neutral" processorArchitecture="msil" />
+        <commandLine file="matrix.exe" parameters="" />
+        <hostInBrowser xmlns="urn:schemas-microsoft-com:asm.v3" />
+    </entryPoint>
+    <trustInfo>
+        <security>
+            <applicationRequestMinimum>
+                <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site">
+                    <IPermission class="System.Security.Permissions.FileDialogPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Access="Open" />
+                    <IPermission class="System.Security.Permissions.IsolatedStorageFilePermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Allowed="ApplicationIsolationByUser" UserQuota="512000" />
+                    <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Execution" />
+                    <IPermission class="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Window="SafeTopLevelWindows" Clipboard="OwnClipboard" />
+                    <IPermission class="System.Drawing.Printing.PrintingPermission, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" version="1" Level="SafePrinting" />
+                    <IPermission class="System.Security.Permissions.MediaPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Audio="SafeAudio" Video="SafeVideo" Image="SafeImage" />
+                    <IPermission class="System.Security.Permissions.WebBrowserPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Level="Safe" />
+                </PermissionSet>
+                <defaultAssemblyRequest permissionSetReference="Custom" />
+            </applicationRequestMinimum>
+        </security>
+    </trustInfo>
+    <dependency>
+        <dependentOS>
+            <osVersionInfo>
+                <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+            </osVersionInfo>
+        </dependentOS>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="PresentationFramework" version="3.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="matrix.exe" size="28672">
+            <assemblyIdentity name="matrix" version="1.0.2721.3177" language="neutral" processorArchitecture="msil" />
+            <hash>
+                <dsig:Transforms>
+                    <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+                </dsig:Transforms>
+                <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                <dsig:DigestValue>53cEOxmO/6JJfMnxQw2coLl50wQ=</dsig:DigestValue>
+            </hash>
+        </dependentAssembly>
+    </dependency>
+<publisherIdentity name="CN=GALOIS\iwanaga" issuerKeyHash="61faa0e6ed0d1fa3d31f527705c0a24ab01daa73" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>1RpZNEgFBCTysiQZYyDr1Ley5mc=</DigestValue></Reference></SignedInfo><SignatureValue>Gzzog1hqfdDPfhun0Hvi8HN57LF9cR0kU3HofMN4Sx5xLGk7vWncDKTc3LGrk3aAVCCOOrylPK5edqR+GiF6T1vHMAD7CeTzW4rlLD16ugNuEXnmE+eI2v2fIFUBBWgftMJH5qOBa8KCKhGWMIaayOJwc1fhrI8aYAtFJoV0xr0=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>53kznLpmNEE5y6i4U4lyeH2QgDn1gQLpfTc93keUpWyAWXZxPW85YQJwlSb+vRD6h9ljSok8UfnvKMcZSm0bmTb4A9k4r/Pwg6C4DfcoQpZckWwKsJqDWuzXOzHz9noVbMCod8MAjtU4MwibFq9fup+7LEp2ak0AE520unQ8l4E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="67e6b2b7d4eb20631924b2f22404054834591ad5" Description="" Url=""><as:assemblyIdentity name="matrix.exe" version="1.0.0.0" publicKeyToken="6d6225026df53465" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=GALOIS\iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>TniVUNWsuG56XkP+nzsy1dERCbs=</DigestValue></Reference></SignedInfo><SignatureValue>hHu08Up1xoIshFaMk85HAkz+veAT0PX/39OQEw7M/Aif4UqRfRpqLqe9YQKSZYEnoW3VB9kZr0mCuXhVu7sIkYaCKvFBFh5PsKd+sPzDS9aEl0OVkLBHlupnQNSqJWhhyb15rR2stuGfk/F2jEuOnm9m4MSnIHCFHIu34uJpMRA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>53kznLpmNEE5y6i4U4lyeH2QgDn1gQLpfTc93keUpWyAWXZxPW85YQJwlSb+vRD6h9ljSok8UfnvKMcZSm0bmTb4A9k4r/Pwg6C4DfcoQpZckWwKsJqDWuzXOzHz9noVbMCod8MAjtU4MwibFq9fup+7LEp2ak0AE520unQ8l4E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIByTCCATagAwIBAgIQDP9gDVl0/INJ9F9Xuj0kXzAJBgUrDgMCHQUAMCcxJTAjBgNVBAMeHABHAEEATABPAEkAUwBcAGkAdwBhAG4AYQBnAGEwHhcNMDcwNjEzMDYxMTUzWhcNMDgwNjEyMTIxMTUzWjAnMSUwIwYDVQQDHhwARwBBAEwATwBJAFMAXABpAHcAYQBuAGEAZwBhMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDneTOcumY0QTnLqLhTiXJ4fZCAOfWBAul9Nz3eR5SlbIBZdnE9bzlhAnCVJv69EPqH2WNKiTxR+e8oxxlKbRuZNvgD2Tiv8/CDoLgN9yhCllyRbAqwmoNa7Nc7MfP2ehVswKh3wwCO1TgzCJsWr1+6n7ssSnZqTQATnbS6dDyXgQIDAQABMAkGBSsOAwIdBQADgYEArMfXye9dorzI0gaJHjG6v45sll8BJ1DzthJ83DaYJzA1yBQSf435tzn6xRfc2P/J3EMS8fpN+ynj+APVXcZTb6yyH/79iAiqERnsldFzwzmpejqhDPCthppOhgfnpzoSI1MYP48fCXYALIo0CDTCA+M4QaWscW5OX34aXx6CUK0=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

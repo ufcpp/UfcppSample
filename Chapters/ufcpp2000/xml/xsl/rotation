@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:rotation">
+	<span class="vector">∇</span>×
+</xsl:template>

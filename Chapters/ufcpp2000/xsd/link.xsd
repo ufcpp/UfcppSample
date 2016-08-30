@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="link"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <xs:element name="reflinks">
+    <xs:complexType>
+      <xs:attribute name="area" type="xs:string" />
+      <xs:attribute name="doc" type="xs:string" use="required" />
+      <xs:attribute name="id" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="links">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" name="site">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="block_type">
+                <xs:attribute name="url" type="xs:string" use="required"/>
+                <xs:attribute name="name" type="xs:string" use="required"/>
+              </xs:extension>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

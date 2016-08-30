@@ -1,0 +1,15 @@
+三角関数
+----
+sin,cos,tanの表示
+----
+sin
+cos
+tan
+----
+span.normal
+----
+<sin/> <cos/> <tan/>
+----
+<sin/>x = <cos/>(x-<frac><num>π</num><denom>2</denom></frac>),
+<tan/>x = <frac><num><sin/>x</num><denom><cos/>x</denom></frac>
+----

@@ -1,0 +1,20 @@
+書体
+----
+通常の文字列（text）、
+太字（bold）、
+筆記体（cursive）
+----
+text
+bold
+script
+----
+span.text
+span.bold
+span.cursive
+----
+<text>通常の文字列</text> <bold>太字</bold> <cursive>筆記体</cursive>
+----
+α ∈ <bold>C</bold>,
+<cursive>Re</cursive><paren>α</paren> ∈ <bold>R</bold>
+<text>（C や R は太字、Re は筆記体で書く。）</text>
+----

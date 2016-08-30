@@ -1,0 +1,30 @@
+<xsl:template match="ufcpp:dd">
+	<table class="frac" summary="differential">
+		<tr><td class="num"><span class="normal">d</span><xsl:value-of select="@func"/></td></tr>
+		<tr><td><span class="normal">d</span>
+		<xsl:choose>
+			<xsl:when test="@var != ''">
+				<xsl:value-of select="@var"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates/>
+			</xsl:otherwise>
+		</xsl:choose>
+		</td></tr>
+	</table>
+</xsl:template>
+<xsl:template match="ufcpp:pdd">
+	<table class="frac" summary="differential">
+		<tr><td class="num">Å›<xsl:value-of select="@func"/></td></tr>
+		<tr><td>Å›
+		<xsl:choose>
+			<xsl:when test="@var != ''">
+				<xsl:value-of select="@var"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates/>
+			</xsl:otherwise>
+		</xsl:choose>
+		</td></tr>
+	</table>
+</xsl:template>

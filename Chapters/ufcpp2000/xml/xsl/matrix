@@ -1,0 +1,19 @@
+<xsl:template match="ufcpp:matrix">
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		[
+	</span>
+	<table class="matrix" summary="matrix">
+		<xsl:apply-templates select="ufcpp:row"/>
+	</table>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size" />em;</xsl:attribute>
+		]
+	</span>
+</xsl:template>
+
+<xsl:template match="ufcpp:array">
+	<table class="matrix" summary="array">
+		<xsl:apply-templates select="ufcpp:row"/>
+	</table>
+</xsl:template>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="exercise"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <xs:element name="exercise">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="1" maxOccurs="1" name="question" type="division_type"/>
+        <xs:element minOccurs="1" maxOccurs="unbounded" name="answer" type="division_type"/>
+      </xs:choice>
+      <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="refex">
+    <xs:complexType>
+      <xs:attribute name="doc" type="xs:string" use="required"/>
+      <xs:attribute name="pos" type="xs:int" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

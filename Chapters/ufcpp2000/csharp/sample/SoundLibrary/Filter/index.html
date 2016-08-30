@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="../style.css" />
+<title>SoundLibrary.Filter</title>
+</head>
+<body>
+
+<h1>Filter</h1>
+
+<h2>サブフォルダ</h2>
+<table>
+<tr>
+<td><a href="Delay/index.html">Delay</a></td>
+<td>
+遅延器。整数遅延も分数遅延もあり。
+</td>
+</tr>
+<tr>
+<td><a href="BandPass/index.html">BandPass</a></td>
+<td>
+線形位相 FIR を用いたローパス・バンドパス・ハイパスフィルタ。
+今の所、窓掛け法のみ（等リプル法等には未対応）。
+</td>
+</tr>
+<tr>
+<td><a href="Equalizer/index.html">Equalizer</a></td>
+<td>
+2次 IIR フィルタの直列接続を用いたイコライザ。
+RBJ Audio EQ Cookbook で紹介されているフィルタや、
+バターワース、チェビシェフ、楕円フィルタ等を使える。
+</td>
+</tr>
+<tr>
+<td><a href="Misc/index.html">Misc</a></td>
+<td>
+その他のフィルタ。
+コムフィルタなど。
+</td>
+</tr>
+</table>
+
+<h2>主要なクラス</h2>
+<table>
+<tr>
+<td>IFilter</td>
+<td>
+全てのフィルタの基本インタフェース。
+</td>
+</tr>
+<tr>
+<td>CircularBuffer</td>
+<td>
+循環バッファ。
+</td>
+</tr>
+<tr>
+<td>SerialConnector, PallarelConnector</td>
+<td>
+フィルタを直列/並列に繋いだフィルタを作る。
+</td>
+</tr>
+</table>
+
+<hr />
+<p><a href="../index.html">戻る</a></p>
+
+</body>
+</html>

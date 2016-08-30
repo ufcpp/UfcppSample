@@ -1,0 +1,17 @@
+3重積分記号
+----
+3重積分記号を表示する
+----
+tripleint
+int sup
+int sub
+----
+span.integral
+table.integral
+td.intsup
+td.intsub
+----
+<tripleint><sub>積分記号の下に来る文字</sub><sup>積分記号の上に来る文字</sup></tripleint>
+----
+<tripleint/> f(x,y,z) <d/>x<d/>y<d/>z
+----

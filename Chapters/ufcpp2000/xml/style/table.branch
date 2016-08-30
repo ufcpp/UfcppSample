@@ -1,0 +1,7 @@
+table.branch
+{
+	display:inline;
+	font-style:italic;
+	vertical-align:bottom;
+	vertical-align:middle;
+}

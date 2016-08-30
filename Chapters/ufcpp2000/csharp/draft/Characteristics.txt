@@ -1,0 +1,25 @@
+module TypeDefinition.Models
+{
+    // 特性データ
+    type Characteristics
+        requres Norm >= 1
+    {
+        // 特性 X
+        X : double
+        requires 0 <= X && X <= 1;
+
+        // 特性 Y
+        Y : double
+        requires 0 <= Y && Y <= 1;
+
+        // 特性 Z
+        Z : double
+        requires 0 <= Z && Z <= 1;
+
+        // 一次ノルム
+        Norm = X + Y + Z;
+
+        // 変更の適用操作
+        command Submit excuted on this.Valid;
+    }
+}

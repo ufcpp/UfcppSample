@@ -1,0 +1,13 @@
+()括弧
+----
+()の表示
+obsolete
+----
+paren
+----
+span.paren
+----
+<paren size="括弧の大きさ">括弧内の式</paren>
+----
+f<sup>(n)</sup> = <paren size="2"><ddt/></paren><sup>n</sup>f
+----

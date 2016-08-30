@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+
+<!-- インデックスページヘッダ -->
+<p class="head">
+<a href="../../index.html"><img src="../common/sitelogo.jpg" width="450" height="65" alt="++C++; // 未確認飛行 C" /></a>
+</p>
+
+<div style="padding:0pt; margin:0pt; position:relative; width:100%; text-align:center;">
+
+
+<!-- Ads Google -->
+<script type="text/javascript"><![CDATA[
+google_ad_client = "ca-pub-0946654941616827";
+google_ad_slot = "4805833742";
+google_ad_width = 728;
+google_ad_height = 90;
+]]>
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+</content>

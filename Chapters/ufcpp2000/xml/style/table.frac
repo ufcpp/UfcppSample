@@ -1,0 +1,8 @@
+table.frac
+{
+	display:inline;
+	vertical-align:middle;
+	font-style:italic;
+	font-size:90%;
+	text-align:center;
+}

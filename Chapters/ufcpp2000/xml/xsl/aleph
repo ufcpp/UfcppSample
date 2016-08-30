@@ -1,0 +1,6 @@
+<xsl:template match="ufcpp:aleph">
+	&#x202D;&#x05D0;
+	<xsl:if test="@sub!=''">
+		<sub><xsl:value-of select="@sub"/></sub>
+	</xsl:if>
+</xsl:template>

@@ -1,0 +1,68 @@
+<WrapPanel
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	>
+
+	<WrapPanel.Resources>
+		<LinearGradientBrush x:Key="brush1"
+			StartPoint="0,0" EndPoint="0,1">
+			<GradientStop Color="#F3F3F3" Offset="0" />
+			<GradientStop Color="#EBEBEB" Offset="0.5" />
+			<GradientStop Color="#DDDDDD" Offset="0.5" />
+			<GradientStop Color="#CECECE" Offset="1" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="brush2"
+			StartPoint="0,0" EndPoint="0,1">
+			<GradientStop Color="#EAF6FD" Offset="0" />
+			<GradientStop Color="#D9F0FC" Offset="0.5" />
+			<GradientStop Color="#BEE6FD" Offset="0.5" />
+			<GradientStop Color="#BEE6FD" Offset="1" />
+		</LinearGradientBrush>
+
+		<ControlTemplate x:Key="buttonTemplate" TargetType="Button">
+			<ControlTemplate.Resources>
+				<Style x:Key="buttonBorder" TargetType="{x:Type Border}">
+					<Setter Property="CornerRadius" Value="4"/>
+					<Setter Property="BorderThickness" Value="1"/>
+					<Setter Property="BorderBrush" Value="#707070"/>
+					<Setter Property="Background"
+						Value="{StaticResource brush1}"/>
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background"
+								Value="{StaticResource brush2}"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</ControlTemplate.Resources>
+			<Border Style="{StaticResource buttonBorder}">
+				<ContentPresenter
+					Margin="2"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					RecognizesAccessKey="True"/>
+			</Border>
+			
+		</ControlTemplate>
+
+		<Style TargetType="Button">
+			<Setter Property="Template" Value="{StaticResource buttonTemplate}"/>
+		</Style>
+	</WrapPanel.Resources>
+
+	<Button Margin="5"
+		Width="100" Height="100" Content="test1"
+		/>
+	<Button Margin="5"
+		Width="50" Height="100" Content="test2"
+		/>
+	<Button Margin="5"
+		Width="100" Height="50" Content="test3"
+		/>
+	<Button Margin="5"
+		Width="100" Height="100"
+		>
+		<Ellipse Width="30" Height="30" Fill="Red"/>
+	</Button>
+
+</WrapPanel>

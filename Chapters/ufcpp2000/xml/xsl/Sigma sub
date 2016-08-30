@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:Sigma/ufcpp:sup|ufcpp:Pi/ufcpp:sup|ufcpp:Sigma/ufcpp:sub|ufcpp:Pi/ufcpp:sub">
+	<xsl:apply-templates/>
+</xsl:template>

@@ -1,0 +1,27 @@
+条件分岐
+----
+条件によって値の違う式を表示
+----
+branch
+branch case equ
+branch case cond
+----
+table.branch
+span.paren
+span.normal
+----
+<branch size="条件の数">
+	<case><equ>式1</equ><cond>条件1</cond></case>
+	<case><equ>式2</equ><cond>条件2</cond></case>
+	.
+	.
+	.
+	<case><equ>式n</equ><cond>条件n</cond></case>
+</branch>
+----
+<abs>x</abs>=
+<branch size="2">
+	<case><equ>x</equ><cond><math>x≧0</math></cond></case>
+	<case><equ>&#x2212;x</equ><cond><math>x&lt;0</math></cond></case>
+</branch>
+----

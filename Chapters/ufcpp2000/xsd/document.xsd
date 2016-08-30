@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="document"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+
+  <xs:include id="css" schemaLocation="css.xsd"/>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+  <xs:include id="variable" schemaLocation="variable.xsd"/>
+
+  <!-- document -->
+  <xs:element name="document">
+    <xs:annotation>
+      <xs:documentation>ドキュメント ページのルート要素</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="section" type="section_type"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="keyword-list"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="exercise-list"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="var-group"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="css"/>
+      </xs:choice>
+      <xs:attribute name="title" type="xs:string" use="required" />
+      <xs:attribute name="since" type="xs:string" />
+      <xs:attribute name="update" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  <!-- section -->
+
+  <xs:complexType name="section_type">
+    <xs:annotation>
+      <xs:documentation>章</xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="division_elements"/>
+      <xs:group ref="block_elements"/>
+      <xs:element name="section" type="section_type"/>
+      
+    </xs:choice>
+    <xs:attribute name="title" type="xs:string" use="required" />
+    <xs:attribute name="id" type="xs:string" use="required" />
+  </xs:complexType>
+
+</xs:schema>

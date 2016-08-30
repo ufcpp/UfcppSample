@@ -1,0 +1,14 @@
+縦ベクトル
+----
+縦ベクトルを表示する
+----
+vervec
+vervec elem
+----
+table.matrix
+span.paren
+----
+<vervec size="ベクトルの要素数"><elem>要素1</elem>...<elem>要素n<elem></vervec>
+----
+<vec>r</vec> = <vervec size="2"><elem>x</elem><elem>y</elem></vervec>
+----

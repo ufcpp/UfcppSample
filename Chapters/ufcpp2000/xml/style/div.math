@@ -1,0 +1,6 @@
+div.math
+{
+	font-style:italic;
+	font-family:"Times New Roman",serif;
+	margin:0.2em 1.5em 0.5em 1.5em;
+}

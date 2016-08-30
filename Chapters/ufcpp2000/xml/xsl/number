@@ -1,0 +1,37 @@
+<xsl:template match="ufcpp:math//ufcpp:n|ufcpp:math//ufcpp:number|ufcpp:Math//ufcpp:n|ufcpp:Math//ufcpp:number">
+<span class="normal"><xsl:value-of select="text()"/></span>
+</xsl:template>
+
+<xsl:template match="ufcpp:math//ufcpp:n0|ufcpp:Math//ufcpp:n0">
+<span class="normal">0</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n1|ufcpp:Math//ufcpp:n1">
+<span class="normal">1</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n2|ufcpp:Math//ufcpp:n2">
+<span class="normal">2</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n3|ufcpp:Math//ufcpp:n3">
+<span class="normal">3</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n4|ufcpp:Math//ufcpp:n4">
+<span class="normal">4</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n5|ufcpp:Math//ufcpp:n5">
+<span class="normal">5</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n6|ufcpp:Math//ufcpp:n6">
+<span class="normal">6</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n7|ufcpp:Math//ufcpp:n7">
+<span class="normal">7</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n8|ufcpp:Math//ufcpp:n8">
+<span class="normal">8</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n9|ufcpp:Math//ufcpp:n9">
+<span class="normal">9</span>
+</xsl:template>
+<xsl:template match="ufcpp:math//ufcpp:n10|ufcpp:Math//ufcpp:n10">
+<span class="normal">10</span>
+</xsl:template>

@@ -1,0 +1,5 @@
+span.bar
+{
+	display:inline-block;
+	border-top:1pt solid #000000;
+}

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="KeyLogger.exe" version="1.0.0.3" publicKeyToken="948a8cc1761bcbbe" language="neutral" processorArchitecture="x86" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="KeyLogger" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="KeyLogger.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC マニフェスト オプション
+          Windows のユーザー アカウント制御のレベルを変更するには、
+          requestedExecutionLevel ノードを以下のいずれかで置換します。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         下位互換性を保つためにファイルおよびレジストリの仮想化を使用する場合、
+         requestedExecutionLevel ノードを削除します。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gma.UserActivityMonitor.dll" size="32768">
+      <assemblyIdentity name="Gma.UserActivityMonitor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>Ra9KoIC5/Uch6n/zgdMY+UqnDuE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeyLogger.exe" size="21504">
+      <assemblyIdentity name="KeyLogger" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>mESJBqGBjdc7Ef7k9lYgTDSXO/M=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="KeyLogger.exe.config" size="159">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>1MarUy3RuVvHLdw5ozZo3o7j39I=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=feynman\iwanaga" issuerKeyHash="b9b4e23c8b5e61d10e5a305d70fd6fcb28067e22" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>tdgZLaL4HBxTIXAfqIse09zBYos=</DigestValue></Reference></SignedInfo><SignatureValue>aEU5X4QWR8WXgn9bi8voTALFbmpvjeIFhHbsSsVFpbcI12i+XRDSSLVwiZaKTZU+1BCnjSP8N6WGhceGYC55THoe2FM/wJsU8JYC9TU8oGBq+IwcXKMvVTJXDB5zmONO0qYR9P60JdpHnfvNdare/ZP7MVZVzWvckG6ZW6fmB70=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>uw35Ms1jrrlrWhl97tLFrt5eHCfeP4m161panLKd5E5vOpaj+Q7V9b6TomRD8WliwXV/3u5iYuv9ExqdP5l+OGHhNX0YKDxEstn7+R8B/hy7XSOhpjATyUuEyDpw8OoX+SUXfmuaNjUprr1IzgKa8WasCTYPjCaG6I6uxcbK3as=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="8b62c1dcd31e8ba81f7021531c1cf8a22d19d8b5" Description="" Url=""><as:assemblyIdentity name="KeyLogger.exe" version="1.0.0.3" publicKeyToken="948a8cc1761bcbbe" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=feynman\iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>P7FASZ1xXghVKDaAa+OAb69FUgw=</DigestValue></Reference></SignedInfo><SignatureValue>N/AncS3S/pRhNnwwtmeaUy21WD19R2oJWFo3coGQtHdecg6psdZSuLlY9yqifH0CUtBr3C3XSfYkyxMakBdPO5tHyWS9sJB235l/Y6VUcBXk0KrIlpONVbOXPIPn7RS5wwxt3C+/L+aem91B1aBCvm02gey72DUEkmOfq9eCNhE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>uw35Ms1jrrlrWhl97tLFrt5eHCfeP4m161panLKd5E5vOpaj+Q7V9b6TomRD8WliwXV/3u5iYuv9ExqdP5l+OGHhNX0YKDxEstn7+R8B/hy7XSOhpjATyUuEyDpw8OoX+SUXfmuaNjUprr1IzgKa8WasCTYPjCaG6I6uxcbK3as=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQFcrSYaGMZpNKwUzhietvYzANBgkqhkiG9w0BAQUFADApMScwJQYDVQQDHh4AZgBlAHkAbgBtAGEAbgBcAGkAdwBhAG4AYQBnAGEwHhcNMTEwOTE1MTMxMzA2WhcNMTIwOTE0MTkxMzA2WjApMScwJQYDVQQDHh4AZgBlAHkAbgBtAGEAbgBcAGkAdwBhAG4AYQBnAGEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALsN+TLNY665a1oZfe7Sxa7eXhwn3j+JtetaWpyyneRObzqWo/kO1fW+k6JkQ/FpYsF1f97uYmLr/RManT+Zfjhh4TV9GCg8RLLZ+/kfAf4cu10joaYwE8lLhMg6cPDqF/klF35rmjY1Ka69SM4CmvFmrAk2D4wmhuiOrsXGyt2rAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAZCY8PR8t/tEf9U4+wNf8F64WnNWwwQjX9N3WLPSQAZIawAZu7nufL+2yxWnr7inJ+Is+QVAOTVVBGw3Btj02Ow++p2jHU4F/4pvHHY0lA3Lom0YaW6mQtQTtG4jyWEtf+5kxld+ekjDDpPXJ6sjzUu+gy3DVUenVJ0WD6Z8lrBw=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

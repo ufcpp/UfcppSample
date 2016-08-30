@@ -1,0 +1,17 @@
+<xsl:template match="ufcpp:Z">
+	<span class="script">
+		Z
+	</span>
+	<xsl:if test="@inv!=''">
+	<sup>Å|1</sup>
+	</xsl:if>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		[
+	</span>
+	<xsl:apply-templates/>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		]
+	</span>
+</xsl:template>

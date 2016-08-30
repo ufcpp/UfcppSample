@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:cite">
+	　　　<span class="normal">・・・(<xsl:number level="any" count="cite" format="1"/>)</span>
+</xsl:template>

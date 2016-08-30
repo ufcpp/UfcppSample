@@ -1,0 +1,5 @@
+<xsl:template match="ufcpp:math//ufcpp:f|ufcpp:math//ufcpp:func|ufcpp:Math//ufcpp:f|ufcpp:Math//ufcpp:func">
+<xsl:variable name="n"><xsl:choose><xsl:when test="@name != ''"><xsl:value-of select="@name"/></xsl:when><xsl:when test="@n != ''"><xsl:value-of select="@n"/></xsl:when><xsl:otherwise><xsl:value-of select="text()"/></xsl:otherwise></xsl:choose></xsl:variable>
+
+<span class="normal"><xsl:value-of select="$n"/></span>
+</xsl:template>

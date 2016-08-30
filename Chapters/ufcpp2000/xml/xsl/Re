@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:Re">
+	<span class="script">Re</span>
+</xsl:template>

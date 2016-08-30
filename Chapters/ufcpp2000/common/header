@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+<!-- 本文ヘッダ -->
+
+<p class="head">
+
+<a href="../../index.html"><img src="../common/sitelogo.jpg" width="450" height="65" alt="++C++; // 未確認飛行 C" /></a>
+
+<a href="http://www.atmarkit.co.jp/fdotnet/chushin/introsl_04/introsl_04_01.html"><img src="../common/sl.jpg" width="64" height="64" alt="避けて通れない「非同期処理」を克服しよう" /></a>
+
+<!--
+<a href="http://www.atmarkit.co.jp/fdotnet/chushin/xamlfamily_02/xamlfamily_02_01.html"><img src="../common/wpf.jpg" width="64" height="64" alt="MVVMパターンを使ったクロス・ターゲット開発" /></a>
+<a href="http://www.atmarkit.co.jp/fdotnet/chushin/comparedataproc_01/comparedataproc_01_01.html"><img src="../common/linq.jpg" width="64" height="64" alt="データ処理の比較" /></a>
+<a href="http://www.atmarkit.co.jp/fdotnet/chushin/introsl_03/introsl_03_01.html"><img src="../common/sl.jpg" width="64" height="64" alt="連載：次世代技術につながるSilverlight入門" /></a>
+
+<a href="http://codezine.jp/article/detail/6019"><img src="../common/cstan.jpg" width="64" height="64" alt="C#たんと学ぶ／わりと硬派なソフトウェア開発講座 第2-2回「デスクトップアプリケーション」 " /></a>
+<a href="http://codezine.jp/article/detail/6179"><img src="../common/cstan.jpg" width="64" height="64" alt="C#たんと学ぶ わりと硬派なソフトウェア開発講座 番外編「Windows Phone 7」 " /></a>
+<a href="http://codezine.jp/article/detail/6411"><img src="../common/cstan.jpg" width="64" height="64" alt="C#たんと学ぶ／わりと硬派なソフトウェア開発講座 第3回「Webアプリケーション」（前編）" /></a>
+
+<a href="http://www.atmarkit.co.jp/fdotnet/chushin/introwpf_11/introwpf_11_01.html"><img src="../common/wpf.jpg" width="64" height="64" alt="連載 WPF 入門" /></a>
+-->
+
+</p>
+
+<!-- Ads Google -->
+<script type="text/javascript"><![CDATA[
+google_ad_client = "ca-pub-0946654941616827";
+google_ad_slot = "4805833742";
+google_ad_width = 728;
+google_ad_height = 90;
+]]>
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</content>

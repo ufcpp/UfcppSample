@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="Shift_Jis" ?>
+<?xml-stylesheet type="text/xsl" href="reversedic.xsl" ?>
+
+<ReverseDictionary>
+
+<category name="フォルダ">
+<item name="プログラムを起動したフォルダを取得する">
+<p>
+パスは起動したフォルダを基準とした相対パスになります。
+したがって、<code>new DirectoryInfo(".");</code>
+でプログラムを起動したフォルダを取得できます。
+</p>
+</item>
+<item name="プログラムを置いてあるフォルダを取得する">
+<p>
+プログラムの実行ファイルを置いてあるフォルダは
+<code>Application.StartupPath</code> で取得できます。
+</p>
+</item>
+<item name="特殊なフォルダのパスを取得する">
+<p>
+<code>System.Environment.GetFolderPath</code> を利用することで
+デスクトップやマイドキュメントなどの特殊なフォルダのパスを取得できます。
+</p>
+</item>
+</category>
+
+<category name="ファイル操作">
+<item name="シフトJISのテキストを読み書きしたい。">
+<p>
+文字コードを指定してファイルを読み書きするには、
+<code>StreamReader/StreamWriter</code> クラスのコンストラクタで <code>Encoding</code> クラスを渡してやります。
+</p>
+<pre>
+StreamReader fin  = <span class="keyword">new</span> StreamReader(<span class="string">"in file"</span>, Encoding.GetEncoding(932));
+StreamWriter fout = <span class="keyword">new</span> StreamWriter(<span class="string">"out file"</span>, <span class="keyword">false</span>, Encoding.GetEncoding(932));
+</pre>
+</item>
+</category>
+
+<category name="文字列操作">
+<item name="stringからシフトJISコードのbyte配列に変換したい">
+<p>
+文字コードの指定は <code>Encoding</code> クラスを用いて行います。
+シフトJISのコードページは 932 です。
+また、日本語 Windows 環境では <code>Encoding.Default</code> によってシフトJISのエンコーディングクラスを取得できます。
+</p>
+<pre>
+Encoding.GetEncoding(932).GetBytes(str);
+Encoding.Default.GetBytes(str);
+</pre>
+</item>
+<item name="正規表現を使いたい">
+<p>
+<code>System.Text.RegularExpressions</code> クラスを用いることで文字列の正規表現検索が出来ます。
+.NET Framework の正規表現は Perl5 の正規表現と親和性の高いデザインになっています。
+</p>
+<p>
+詳しくはヘルプの「<a href="ms-help://MS.NETFrameworkSDK.JA/cpguidenf/html/cpconcomregularexpressions.htm">.NET Framework の正規表現</a>」や「<a href="ms-help://MS.NETFrameworkSDK.JA/cpgenref/html/cpconregularexpressionslanguageelements.htm">正規表現言語要素</a>」をご覧ください。
+</p>
+</item>
+<item name="文字が平仮名・片仮名・漢字かどうか調べたい">
+<p>
+正規表現を使って文字のクラスを調べられる。
+平仮名は文字クラス IsHiraganaに、
+片仮名は IsKatakana、漢字は IsCJKUnifiedIdeographs にマッチする。
+</p>
+<pre>
+Regex hira  = new Regex(<span class="string">@"\b\p{IsHiragana}+\b"</span>);        <span class="comment">// 平仮名だけからなる単語にマッチ</span>
+Regex kata  = new Regex(<span class="string">@"\p{IsKatakana}"</span>);             <span class="comment">// 片仮名にマッチ</span>
+Regex kanji = new Regex(<span class="string">@"\p{IsCJKUnifiedIdeographs}"</span>); <span class="comment">// 漢字にマッチ</span>
+</pre>
+<p>
+その他にも文字クラス名を指定することでさまざまな文字クラスが判定可能。
+文字クラス名は<a href="http://www.unicode.org/">unicode.org</a>にある<a href="http://www.unicode.org/Public/UNIDATA/Blocks.txt">ブロック名一覧</a>のブロック名にIsをつけたもの。
+</p>
+</item>
+</category>
+
+<category name="時刻">
+<item name="任意形式で文字列かされている時刻を読みたい">
+<p>
+<code>DateTime.ParseExact</code> メソッドで、
+以下のようにしてフォーマットを指定。
+</p>
+<pre>
+string str = "08/Jul/2006:03:28:50 +0900";
+
+Date d = DateTime.ParseExact(str,
+  "d'/'MMM'/'yyyy':'HH':'mm':'ss zzz",
+  System.Globalization.DateTimeFormatInfo.InvariantInfo,
+  System.Globalization.DateTimeStyles.None);
+</pre>
+</item>
+</category>
+
+<category name="出力">
+<item name="C の printf みたいにフォーマット出力したい">
+<p>
+<code>System.Console.Write(string, params object[])</code> を使えばフォーマット出力が可能です。
+パラメータの書式は以下の通り
+</p>
+<pre>
+{N,M:format}
+</pre>
+<ul>
+<li><code>N</code>: パラメータのインデックス</li>
+<li><code>M</code>: 表示する幅。不足分はスペースで埋められる。正の数の場合右詰、負の数の場合左詰。</li>
+<li><code>format</code>: 書式指定。パラメータが <code>IFormattable</code> インターフェースを実装している場合、この書式に従って整形される。</li>
+</ul>
+<p>
+詳細は<a href="ms-help://MS.NETFrameworkSDK.JA/cpguidenf/html/cpconformattingoverview.htm">ヘルプ</a>で見ることが出来ます。
+</p>
+</item>
+</category>
+
+<category name="入力">
+<item name="C の scanf みたいなことをしたい">
+<p>例)</p>
+<pre>
+int width, height;
+scanf("width %d height %d", &amp;width, &amp;height);
+</pre>
+<p>1)正規表現を使う</p>
+<pre>
+<span class="keyword">const string</span> pattern = @<span class="string">"height (?&lt;height&gt;\w+) width (?&lt;width&gt;\w+)"</span>; 
+
+Regex x = new Regex(pattern);
+<span class="keyword">string</span> str = Console.ReadLine();
+Match m = x.Match(str); 
+
+<span class="keyword">int</span> width = m.Group(<span class="string">"width"</span>);
+<span class="keyword">int</span> height = m.Group(<span class="string">"height"</span>);
+</pre>
+<p>2) Split を使う</p>
+<pre>
+<span class="keyword">string</span> str = Console.ReadLine();
+<span class="keyword">sring</span> strs = str.Split(<span class="string">' '</span>);
+<span class="keyword">int</span> width = <span class="keyword">int</span>.Parse(strs[1]);
+<span class="keyword">int</span> height = <span class="keyword">int</span>.Parse(strs[3]);
+</pre>
+</item>
+</category>
+
+<category name="リソース">
+<item name="リソースファイルの作成">
+<pre>
+<span class="keyword">using</span> System.Drawing;
+<span class="keyword">using</span> System.Resources; 
+
+<span class="keyword">class</span> CreateResource
+{
+  <span class="keyword">public static void</span> Main()
+  {
+    <span class="keyword">using</span>(ResourceWriter writer = <span class="keyword">new</span> ResourceWriter(<span class="input">"リソースファイル.resources"</span>))
+    {
+      writer.AddResource(<span class="input">"リソース名"</span>, <span class="keyword">new</span> Icon(<span class="input">"ファイル.ico"</span>));
+      writer.Generate();
+    }
+  }
+}
+</pre>
+<p>
+後はコンパイル時に <code>/res</code> を指定するだけ。
+</p>
+</item>
+<item name="リソースの利用">
+<pre>
+  ResourceManager rm = <span class="keyword">new</span> ResourceManager(<span class="input">"アセンブリ名"</span>, <span class="keyword">this</span>.GetType().Assembly);
+  <span class="keyword">this</span>.Icon = (System.Drawing.Icon)rm.GetObject(<span class="input">"リソース名"</span>);
+</pre>
+</item>
+</category>
+
+<category name="ネイティブコードとの相互運用性">
+<item name="構造体のレイアウト">
+<p>
+<code>System.Runtime.InteropServices.StructLayout</code> アトリビュートを使って構造体のレイアウトを指定できます。
+</p>
+<ul>
+<li><code>LayoutKind.Auto</code> … 自動レイアウト</li>
+<li><code>LayoutKind.Explicit</code> … <code>FieldOffset</code> アトリビュートを使って明示的にレイアウト</li>
+<li><code>LayoutKind.Sequential</code> … 宣言した順にレイアウト</li>
+</ul>
+<p>
+<code>LayoutKind.Sequential</code> をコンストラクタに渡した場合、
+<code>Pack</code> プロパティでパッキングサイズを調整できます。
+デフォルトの <code>Pack</code> の値は 8 です。
+</p>
+</item>
+<item name="構造体を C 言語の共用体のように使う">
+<p>
+構造体のレイアウトを <code>LayoutKind.Explicit</code> にすることで
+C 言語の共用体のような使い方が出来ます。
+</p>
+<pre>
+<span class="keyword">using</span> System;
+<span class="keyword">using</span> System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+<span class="keyword">struct</span> Hoge
+{
+  [FieldOffset(0)] <span class="keyword">public byt</span>e B;
+  [FieldOffset(0)] <span class="keyword">public in</span>t N;
+} 
+
+<span class="keyword">class</span> Test 
+{ 
+  <span class="keyword">public static void</span> Main() { 
+    Hoge h = <span class="keyword">new</span> Hoge(); 
+    h.N = 257; 
+
+    Console.WriteLine(h.B); <span class="comment">// 1 が表示される</span>
+  } 
+} 
+</pre>
+</item>
+</category>
+
+<category name="シリアライズ">
+<item name="オブジェクトをシリアライズする">
+<ul>
+<li>バイナリで … System.Runtime.Serialization.Formatters.Binary.BinaryFormatter</li>
+<li>SOAPメッセージで … System.Runtime.Serialization.Formatters.Soap.SoapFormatter</li>
+<li>XMで … System.Xml.Serialization.XmlSerializer</li>
+</ul>
+</item>
+</category>
+
+<category name="Win32">
+<item name="システムイベントを拾う">
+<p>
+<code>Microsoft.Win32.SystemEvents</code> クラスのパブリックイベントで表示設定変更、時刻の変更、メモリ不足などのイベントを拾える。
+</p>
+</item>
+</category>
+
+<category name="GUI">
+<item name="Windows XP のビジュアルスタイルを使用する">
+<p>
+マニフェストを使用して Comctl32.dll version 6 がバインディングされるように設定する。
+具体的な方法は以下の通り。
+</p>
+<p>
+以下のXMLを「[実行ファイル名].manifest」という名前で保存し、
+実行ファイルと同じディレクトリに置く。
+</p>
+<pre>
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;
+&lt;dependency&gt;
+   &lt;dependentAssembly&gt;
+     &lt;assemblyIdentity
+       type="win32"
+       name="Microsoft.Windows.Common-Controls"
+       version="6.0.0.0"
+       processorArchitecture="X86"
+       publicKeyToken="6595b64144ccf1df"
+       language="*"
+     /&gt;
+   &lt;/dependentAssembly&gt;
+&lt;/dependency&gt;
+&lt;/assembly&gt;
+</pre>
+<p>
+マニフェストを実行ファイル中に埋め込むためには、
+リソースタイプ「RT_MANIFEST」、ID「1」のリソースとして埋め込む。
+Visual Studio .NET を使えば、以下の手順で簡単にマニフェストの埋め込みが出来る。
+</p>
+<ul>
+<li>メニューの[ファイル]から[ファイルを開く]を選び、マニフェストを埋め込みたい実行ファイルを開く。</li>
+<li>開いた実行ファイルを右クリックし[リソースの追加]を選び、[インポート]をクリックする。</li>
+<li>埋め込みたいマニフェストファイルを選ぶ。</li>
+<li>マニフェストタイプに[RT_MANIFEST]と入力する。</li>
+<li>追加されたマニフェストリソースのプロパティを開き、IDを「1」に変更する。</li>
+</ul>
+</item>
+<item name="フォームの再描写がちらつく">
+<p>
+Paint イベントを使ってフォームの際描写を行うと描写がちらついてしまう。
+(OnPait メソッドでは、背景の塗りつぶしを行ってから Paint イベントハンドラを呼び出すため。)
+OnPaintBackground メソッドをオーバーライドして描写を行えばちらつきはなくなる。
+</p>
+</item>
+</category>
+
+<category name="ツール">
+<item name="PreJIT って出来ないの？">
+<p>
+Ngen.exe (native image generater)で出来ます。
+詳しくは
+<a href="ms-help://MS.NETFrameworkSDK.JA/cptools/html/cpgrfnativeimagegeneratorngenexe.htm">ms-help://MS.NETFrameworkSDK.JA/cptools/html/cpgrfnativeimagegeneratorngenexe.htm</a>を参照してください。
+</p>
+</item>
+<item name="フリーの開発環境はないの？">
+<p>
+https://sourceforge.jp/projects/sharpdevelop-jp
+</p>
+<p>
+Visual C# 2005 Express Edision が無料で利用可能になった。
+</p>
+</item>
+</category>
+
+</ReverseDictionary>

@@ -1,0 +1,13 @@
+[]括弧
+----
+[]の表示
+（obsolete。bracket に移行。）
+----
+sqbracket
+----
+span.paren
+----
+<sqbracket size="括弧の大きさ">括弧内の式</sqbracket>
+----
+<sqbracket>H,G</sqbracket> = HG &#x2212; GH
+----

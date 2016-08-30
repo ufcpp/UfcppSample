@@ -1,0 +1,13 @@
+<xsl:template match="ufcpp:inv">
+	<table class="frac" summary="fraction">
+		<tr><td class="num"><span class="normal">1</span></td></tr>
+		<tr><td><xsl:choose><xsl:when test="@var != ''"><xsl:value-of select="@var"/></xsl:when><xsl:when test="@v != ''"><xsl:value-of select="@v"/></xsl:when><xsl:otherwise><xsl:apply-templates/></xsl:otherwise></xsl:choose></td></tr>
+	</table>
+</xsl:template>
+
+<xsl:template match="ufcpp:inv2">
+	<table class="frac" summary="fraction">
+		<tr><td class="num"><span class="normal">1</span></td></tr>
+		<tr><td><span class="normal">2</span></td></tr>
+	</table>
+</xsl:template>

@@ -1,0 +1,13 @@
+2階時間偏微分
+----
+2階時間微分記号(∂/∂t)<sup>2</sup>を表示する
+----
+pddt_second
+----
+table.frac
+td.num
+----
+<pddt_second/>
+----
+<pddt_second/>φ = c<sup>2</sup><nabra/><sup>2</sup>φ
+----

@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:vec">
+	<span class="vector"><xsl:apply-templates/></span>
+</xsl:template>

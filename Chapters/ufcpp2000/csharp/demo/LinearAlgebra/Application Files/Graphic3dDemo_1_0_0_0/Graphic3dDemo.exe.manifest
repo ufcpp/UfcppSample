@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity version="1.0.0.0" name="Graphic3dDemo.exe" publicKeyToken="66491d88e95a1267" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Graphic3dDemo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Graphic3dDemo.exe" parameters="" />
+    <hostInBrowser xmlns="urn:schemas-microsoft-com:asm.v3" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site">
+          <IPermission class="System.Security.Permissions.FileDialogPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Access="Open" />
+          <IPermission class="System.Security.Permissions.IsolatedStorageFilePermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Allowed="ApplicationIsolationByUser" UserQuota="512000" />
+          <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Execution" />
+          <IPermission class="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Window="SafeTopLevelWindows" Clipboard="OwnClipboard" />
+          <IPermission class="System.Drawing.Printing.PrintingPermission, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" version="1" Level="SafePrinting" />
+          <IPermission class="System.Security.Permissions.MediaPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Audio="SafeAudio" Video="SafeVideo" Image="SafeImage" />
+          <IPermission class="System.Security.Permissions.WebBrowserPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Level="Safe" />
+        </PermissionSet>
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC マニフェスト オプション
+            Windows のユーザー アカウント制御のレベルを変更するには、
+            requestedExecutionLevel ノードを以下のいずれかで置換します。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            旧バージョンとの互換性のためにファイルおよびレジストリの仮想化
+            を使用する場合は、requestedExecutionLevel ノードを削除します。
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Graphic3dDemo.exe" size="116736">
+      <assemblyIdentity name="Graphic3dDemo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>wwCnIQiXmVfL9kPTXxHdnlCTEG0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=galois\Iwanaga" issuerKeyHash="47eddef32b060a01c0b350be025d47d3e99f5758" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>zf7/kZ3fK/SPU8vQBH2cxRuFt28=</DigestValue></Reference></SignedInfo><SignatureValue>bBXF6XKFowrT4D0nbp65vLveY7bxZ4MyCzgfkwGYnPjl5s1w8CI7u6r3boD8QBcKOA0/URwG/cY8NNpX9uU601NjHldcWSyU9kFMkZaBOTn45NYAA1hYPJviBm/MJ2Mp7r/LKZIYoY7AR1dfZRcZYnvE3a8rofZdlv+a8tJBMT0=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>vqvOoOY9r/qIBwrzEQb8Bl4v6Z8Pqba3R5fisxdcwhmGcPEo6y1CcxGVg1Q5ECNikYO9DG4LJXhoUEjUDsX9ZxFIvC6XixPtulkuaonK4ehmZdVWRwPEOB4Yyn7OEuA0TuQ4TvONnlZD4G0HZwXtYOoJFpCcbu1osYTmsdKB8xU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="6fb7851bc59c7d04d0cb538ff42bdf9d91fffecd" Description="" Url=""><as:assemblyIdentity version="1.0.0.0" name="Graphic3dDemo.exe" publicKeyToken="66491d88e95a1267" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=galois\Iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>iTYSMwdkW1G/uHx/VyIPpW3Ktlg=</DigestValue></Reference></SignedInfo><SignatureValue>o6wZgaTwOPnzCXFIXlmEsKIHRXFzUZurJgnnYSr/g0HtS86Q401ul+zw4GVkuzwk+R1X7WmoY2p/0ZMjjWoLZOYFL5XEvbbTpH34wCLhY4QSK3d1i0j9/SD54GuE//4Rx57iy5jF7RzrKRm/hMJiQfBHwHDzhOJw0eo6N8YJuIs=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>vqvOoOY9r/qIBwrzEQb8Bl4v6Z8Pqba3R5fisxdcwhmGcPEo6y1CcxGVg1Q5ECNikYO9DG4LJXhoUEjUDsX9ZxFIvC6XixPtulkuaonK4ehmZdVWRwPEOB4Yyn7OEuA0TuQ4TvONnlZD4G0HZwXtYOoJFpCcbu1osYTmsdKB8xU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQPaKzvlmASKtCwWdVhzP2pzANBgkqhkiG9w0BAQUFADAnMSUwIwYDVQQDHhwAZwBhAGwAbwBpAHMAXABJAHcAYQBuAGEAZwBhMB4XDTEwMDMxMzEwMDU0NloXDTExMDMxMzE2MDU0NlowJzElMCMGA1UEAx4cAGcAYQBsAG8AaQBzAFwASQB3AGEAbgBhAGcAYTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAvqvOoOY9r/qIBwrzEQb8Bl4v6Z8Pqba3R5fisxdcwhmGcPEo6y1CcxGVg1Q5ECNikYO9DG4LJXhoUEjUDsX9ZxFIvC6XixPtulkuaonK4ehmZdVWRwPEOB4Yyn7OEuA0TuQ4TvONnlZD4G0HZwXtYOoJFpCcbu1osYTmsdKB8xUCAwEAATANBgkqhkiG9w0BAQUFAAOBgQADE41O0N7A44IMhqsPPkfwrNw8KPVNveNFMG6g4yDr0t9Z+67TrjDbNNTvAHBeSGli1BcB8+qNDKYHCvMXl8qXNnJ6xZgYQTjcDL+f3BskQuPXgCE7eIS0tpShqSifNp4+X1TeswPp2adSk8sCyDJ+eYUwPPc8sdoUaE0iVlQxag==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

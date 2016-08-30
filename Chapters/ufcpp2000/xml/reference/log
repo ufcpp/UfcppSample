@@ -1,0 +1,14 @@
+指数・対数
+----
+log,expの表示
+----
+log
+exp
+----
+span.normal
+----
+<log/> <exp/>
+----
+<exp/>At = <Sigma><sub>n=0</sub><sup>∞</sup></Sigma><inv>n<factorial/></inv>A<sup>n</sup>t<sup>n</sup>,
+<log/>z = <log/><abs>z</abs> + i<arg/>z
+----

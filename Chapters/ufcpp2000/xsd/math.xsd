@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="math"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="variable" schemaLocation="variable.xsd"/>
+
+  <xs:complexType name="math_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="math_elements"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:group name="math_elements">
+    <xs:choice>
+      <xs:element name="em" type="math_type"/>
+
+      <xs:element name="e"/>
+      <xs:element name="pi"/>
+      <xs:element name="exp"/>
+      <xs:element name="log"/>
+      <xs:element name="sin"/>
+      <xs:element name="cos"/>
+      <xs:element name="tan"/>
+      <xs:element name="arg"/>
+      <xs:element name="factorial"/>
+      <xs:element name="sqrt" type="math_type"/>
+      <xs:element name="inv" type="var_math_type"/>
+      <xs:element name="lim" type="math_type"/>
+
+      <xs:element name="gradient"/>
+      <xs:element name="textgrad"/>
+      <xs:element name="divergence"/>
+      <xs:element name="textdiv"/>
+      <xs:element name="rotation"/>
+      <xs:element name="textrot"/>
+      <xs:element name="nabra"/>
+
+      <xs:element name="func" type="named_math_type"/>
+      <xs:element name="f" type="math_type"/>
+      <xs:element name="funcsub" type="named_math_type"/>
+
+      <xs:element name="Res" type="math_type"/>
+
+      <xs:element ref="branch" />
+      <xs:element name="text" type="xs:string"/>
+
+      <xs:element name="n0"/>
+      <xs:element name="n1"/>
+      <xs:element name="n2"/>
+      <xs:element name="n3"/>
+      <xs:element name="n4"/>
+      <xs:element name="n5"/>
+      <xs:element name="n6"/>
+      <xs:element name="n7"/>
+      <xs:element name="n8"/>
+      <xs:element name="n9"/>
+      <xs:element name="n10"/>
+
+      <xs:element name="sub0"/>
+      <xs:element name="sub1"/>
+      <xs:element name="sub2"/>
+      <xs:element name="sub3"/>
+      <xs:element name="sub4"/>
+      <xs:element name="sub5"/>
+      <xs:element name="sub6"/>
+      <xs:element name="sub7"/>
+      <xs:element name="sub8"/>
+      <xs:element name="sub9"/>
+      <xs:element name="sub10"/>
+
+      <xs:element name="sup0"/>
+      <xs:element name="sup1"/>
+      <xs:element name="sup2"/>
+      <xs:element name="sup3"/>
+      <xs:element name="sup4"/>
+      <xs:element name="sup5"/>
+      <xs:element name="sup6"/>
+      <xs:element name="sup7"/>
+      <xs:element name="sup8"/>
+      <xs:element name="sup9"/>
+      <xs:element name="sup10"/>
+
+      <xs:element name="supinv"/>
+      <xs:element name="inv2"/>
+
+      <xs:element name="sup" type="math_type"/>
+      <xs:element name="sub" type="math_type"/>
+      <xs:element name="conjugate" type="math_type"/>
+      <xs:element name="bar" type="math_type"/>
+      <xs:element name="bold" type="math_type"/>
+      <xs:element name="cursive" type="math_type"/>
+      <xs:element name="span" type="mathspan_type"/>
+
+      <xs:element name="abs" type="simplebracket_type"/>
+      <xs:element name="paren" type="simplebracket_type"/>
+      <xs:element name="brace" type="simplebracket_type"/>
+      <xs:element name="sqbracket" type="simplebracket_type"/>
+      <xs:element name="bracket" type="bracket_type"/>
+      <xs:element name="bra" type="bracket_type"/>
+
+      <xs:element name="vec" type="vec_type"/>
+
+      <xs:element ref="frac"/>
+      <xs:element ref="pdd"/>
+      <xs:element ref="dd"/>
+      <xs:element name="d"/>
+      <xs:element name="dl"/>
+      <xs:element name="ds"/>
+      <xs:element name="dS"/>
+      <xs:element name="dV"/>
+      <xs:element name="ddt" type="var_math_type"/>
+      <xs:element name="pddt" type="var_math_type"/>
+      <xs:element name="pddt_second"/>
+
+      <xs:element name="int" type="subsup_type"/>
+      <xs:element name="oint" type="subsup_type"/>
+      <xs:element name="doubleint" type="subsup_type"/>
+      <xs:element name="tripleint" type="subsup_type"/>
+
+      <xs:element name="subsup" type="subsup_type"/>
+      <xs:element name="Sigma" type="subsup_type"/>
+      <xs:element name="Pi" type="subsup_type"/>
+      
+      <xs:element name="Fourier" type="fourier_type"/>
+      <xs:element name="Laplace" type="fourier_type"/>
+      <xs:element name="Z" type="fourier_type"/>
+
+      <xs:element ref="aleph" />
+
+      <xs:element name="sym" type="symbol_type"/>
+      <xs:element name="symbol" type="symbol_type"/>
+
+      <xs:element name="n" type="xs:string"/>
+      <xs:element name="number" type="xs:string"/>
+      <xs:element name="o" type="operator_type"/>
+      <xs:element name="operator" type="operator_type"/>
+
+      <xs:element ref="use"/>
+      <xs:element name="sp"/>
+      <xs:element name="matrix" type="matrix_type"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="matrix_type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="row">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="elem" type="math_type" />
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="size" type="xs:double"/>
+  </xs:complexType>
+
+  <xs:complexType name="simplebracket_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="size" type="positiveFloat"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="bracket_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <!--
+        <xs:attribute name="l" type="xs:string"/>
+        <xs:attribute name="r" type="xs:string"/>
+        -->
+        <xs:attribute name="t" type="bracket_string"/>
+        <xs:attribute name="size" type="positiveFloat"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="bracket_string">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="p" />
+      <xs:enumeration value="paren" />
+      <xs:enumeration value="r" />
+      <xs:enumeration value="round" />
+      <xs:enumeration value="c" />
+      <xs:enumeration value="curl" />
+      <xs:enumeration value="b" />
+      <xs:enumeration value="brace" />
+      <xs:enumeration value="angle" />
+      <xs:enumeration value="square" />
+      <xs:enumeration value="sq" />
+      <xs:enumeration value="abs" />
+      <xs:enumeration value="norm" />
+      <xs:enumeration value="ceil" />
+      <xs:enumeration value="floor" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="positiveFloat">
+    <xs:restriction base="xs:float">
+      <xs:minExclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="vec_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="size" type="positiveFloat"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="named_math_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="name" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="var_math_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="var" type="xs:string"/>
+        <xs:attribute name="v" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="frac" type="frac_type"/>
+  <xs:element name="pdd" type="frac_type"/>
+  <xs:element name="dd" type="frac_type"/>
+
+  <xs:complexType name="frac_type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="num" type="math_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="denom" type="math_type"/>
+    </xs:choice>
+    <xs:attribute name="num" type="xs:string"/>
+    <xs:attribute name="denom" type="xs:string"/>
+    <xs:attribute name="n" type="xs:string"/>
+    <xs:attribute name="d" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="subsup_type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="sup" type="math_type"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="sub" type="math_type"/>
+    </xs:choice>
+    <xs:attribute name="sup" type="xs:string"/>
+    <xs:attribute name="sub" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="mathspan_type">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="branch">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="case">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="equ" type="math_type"/>
+              <xs:element name="cond" type="math_type"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="size" type="xs:float"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="fourier_type">
+    <xs:attribute name="inv" type="xs:boolean" />
+    <xs:attribute name="size" type="positiveFloat" />
+  </xs:complexType>
+
+  <xs:complexType name="operator_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="math_type">
+        <xs:attribute name="n" type="operator_string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="operator_string">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in" />
+      <xs:enumeration value="nin" />
+      <xs:enumeration value="ni" />
+      <xs:enumeration value="nni" />
+
+      <xs:enumeration value="wedge" />
+      <xs:enumeration value="vee" />
+      <xs:enumeration value="cap" />
+      <xs:enumeration value="cup" />
+
+      <xs:enumeration value="sub" />
+      <xs:enumeration value="sup" />
+      <xs:enumeration value="nsub" />
+      <xs:enumeration value="nsup" />
+      <xs:enumeration value="sube" />
+      <xs:enumeration value="supe" />
+
+      <xs:enumeration value="perp" />
+      <xs:enumeration value="para" />
+
+      <xs:enumeration value="eq" />
+      <xs:enumeration value="sim" />
+      <xs:enumeration value="approx" />
+      <xs:enumeration value="asymp" />
+      <xs:enumeration value="ne" />
+      <xs:enumeration value="equiv" />
+      <xs:enumeration value="prop" />
+
+      <xs:enumeration value="lt" />
+      <xs:enumeration value="gt" />
+      <xs:enumeration value="le" />
+      <xs:enumeration value="ge" />
+      <xs:enumeration value="lE" />
+      <xs:enumeration value="gE" />
+      <xs:enumeration value="lnE" />
+      <xs:enumeration value="gnE" />
+      <xs:enumeration value="Lt" />
+      <xs:enumeration value="Gt" />
+
+      <xs:enumeration value="p" />
+      <xs:enumeration value="plus" />
+      <xs:enumeration value="m" />
+      <xs:enumeration value="minus" />
+      <xs:enumeration value="times" />
+      <xs:enumeration value="div" />
+      <xs:enumeration value="slash" />
+      <xs:enumeration value="mp" />
+      <xs:enumeration value="pm" />
+
+      <xs:enumeration value="oplus" />
+      <xs:enumeration value="ominus" />
+      <xs:enumeration value="otimes" />
+      <xs:enumeration value="bs" />
+
+      <xs:enumeration value="dot" />
+      <xs:enumeration value="cross" />
+      <xs:enumeration value="wedge" />
+      <xs:enumeration value="ring" />
+      <xs:enumeration value="aster" />
+      <xs:enumeration value="star" />
+      <xs:enumeration value="not" />
+
+      <xs:enumeration value="larr" />
+      <xs:enumeration value="uarr" />
+      <xs:enumeration value="rarr" />
+      <xs:enumeration value="darr" />
+      <xs:enumeration value="harr" />
+
+      <xs:enumeration value="lArr" />
+      <xs:enumeration value="uArr" />
+      <xs:enumeration value="rArr" />
+      <xs:enumeration value="dArr" />
+      <xs:enumeration value="hArr" />
+
+      <xs:enumeration value="prec" />
+      <xs:enumeration value="succ" />
+
+      <xs:enumeration value="cr" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="aleph">
+    <xs:complexType>
+      <xs:attribute name="sub" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="symbol_type">
+    <xs:attribute name="name" type="symbol_string"/>
+    <xs:attribute name="n" type="symbol_string"/>
+  </xs:complexType>
+
+  <xs:simpleType name="symbol_string">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="forall" />
+      <xs:enumeration value="exist" />
+      <xs:enumeration value="partial" />
+      <xs:enumeration value="part" />
+      <xs:enumeration value="nabla" />
+      <xs:enumeration value="infinity" />
+      <xs:enumeration value="infty" />
+      <xs:enumeration value="infin" />
+      <xs:enumeration value="ang" />
+      <xs:enumeration value="therefore" />
+      <xs:enumeration value="because" />
+
+      <xs:enumeration value="empty" />
+      <xs:enumeration value="weierp" />
+      <xs:enumeration value="image" />
+      <xs:enumeration value="real" />
+      <xs:enumeration value="alef" />
+      <xs:enumeration value="planck" />
+
+      <xs:enumeration value="dots" />
+      <xs:enumeration value="vdots" />
+      <xs:enumeration value="updots" />
+      <xs:enumeration value="downdots" />
+
+      <xs:enumeration value="vbeta" />
+      <xs:enumeration value="vepsilon" />
+      <xs:enumeration value="vtheta" />
+      <xs:enumeration value="vkappa" />
+      <xs:enumeration value="vpi" />
+      <xs:enumeration value="vrho" />
+      <xs:enumeration value="vsigma" />
+      <xs:enumeration value="vphi" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

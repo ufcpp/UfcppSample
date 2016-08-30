@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:arg">
+	<span class="normal">arg</span>
+</xsl:template>

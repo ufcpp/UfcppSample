@@ -1,0 +1,3 @@
+<xsl:template match="ufcpp:oint/ufcpp:sub|ufcpp:int/ufcpp:sub|ufcpp:doubleint/ufcpp:sub|ufcpp:tripleint/ufcpp:sub">
+	<xsl:apply-templates/>
+</xsl:template>

@@ -1,0 +1,316 @@
+<Canvas
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Width="640" Height="480" Background="#000000">
+
+	<Canvas.Resources>
+		<!-- 色は Style で指定 -->
+		<Style TargetType="{x:Type Line}">
+			<Setter Property="Stroke" Value="#ff0000"/>
+			<Setter Property="StrokeThickness" Value="1"/>
+
+			<Style.Triggers>
+				<EventTrigger RoutedEvent="Polygon.Loaded">
+					<BeginStoryboard>
+						<Storyboard>
+							<ColorAnimationUsingKeyFrames
+								Storyboard.TargetProperty="Stroke.Color"
+								Duration="0:0:12" RepeatBehavior="Forever">
+								<LinearColorKeyFrame Value="#ff0000" KeyTime="0:0:0" />
+								<LinearColorKeyFrame Value="#ff8000" KeyTime="0:0:1" />
+								<LinearColorKeyFrame Value="#ffff00" KeyTime="0:0:2" />
+								<LinearColorKeyFrame Value="#80ff00" KeyTime="0:0:3" />
+								<LinearColorKeyFrame Value="#00ff00" KeyTime="0:0:4" />
+								<LinearColorKeyFrame Value="#00ff80" KeyTime="0:0:5" />
+								<LinearColorKeyFrame Value="#00ffff" KeyTime="0:0:6" />
+								<LinearColorKeyFrame Value="#0080ff" KeyTime="0:0:7" />
+								<LinearColorKeyFrame Value="#0000ff" KeyTime="0:0:8" />
+								<LinearColorKeyFrame Value="#8000ff" KeyTime="0:0:9" />
+								<LinearColorKeyFrame Value="#ff00ff" KeyTime="0:0:10" />
+								<LinearColorKeyFrame Value="#ff0080" KeyTime="0:0:11" />
+								<LinearColorKeyFrame Value="#ff0000" KeyTime="0:0:12" />
+							</ColorAnimationUsingKeyFrames>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+			</Style.Triggers>
+		</Style>
+
+		<!-- 四角形の4頂点のアニメーション -->
+		<DoubleAnimationUsingKeyFrames x:Key="AniX1"
+			Storyboard.TargetProperty="X1"
+			Duration="0:0:3.41" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="640" KeyTime="0:0:1.651719" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:3.356719" />
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:3.410000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniY1"
+			Storyboard.TargetProperty="Y1"
+			Duration="0:0:2.11" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="480" KeyTime="0:0:1.011042" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:2.066042" />
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:2.110000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniX2"
+			Storyboard.TargetProperty="X2"
+			Duration="0:0:3.77" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="320" KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:0.763544" />
+			<LinearDoubleKeyFrame Value="640" KeyTime="0:0:2.290633" />
+			<LinearDoubleKeyFrame Value="320" KeyTime="0:0:3.770000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniY2"
+			Storyboard.TargetProperty="Y2"
+			Duration="0:0:2.99" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="480" KeyTime="0:0:1.432708" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:2.927708" />
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:2.990000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniX3"
+			Storyboard.TargetProperty="X1"
+			Duration="0:0:3.95" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="320" KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:0.987500" />
+			<LinearDoubleKeyFrame Value="640" KeyTime="0:0:2.962500" />
+			<LinearDoubleKeyFrame Value="320" KeyTime="0:0:3.950000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniY3"
+			Storyboard.TargetProperty="Y1"
+			Duration="0:0:3.19" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="420" KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="480" KeyTime="0:0:0.199375" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:1.794375" />
+			<LinearDoubleKeyFrame Value="420" KeyTime="0:0:3.190000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniX4"
+			Storyboard.TargetProperty="X2"
+			Duration="0:0:4.01" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="640" KeyTime="0:0:1.942344" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:3.947344" />
+			<LinearDoubleKeyFrame Value="20"  KeyTime="0:0:4.010000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<DoubleAnimationUsingKeyFrames x:Key="AniY4"
+			Storyboard.TargetProperty="Y2"
+			Duration="0:0:3.37" RepeatBehavior="Forever">
+			<LinearDoubleKeyFrame Value="420" KeyTime="0:0:0" />
+			<LinearDoubleKeyFrame Value="480" KeyTime="0:0:0.210625" />
+			<LinearDoubleKeyFrame Value="0"   KeyTime="0:0:1.895625" />
+			<LinearDoubleKeyFrame Value="420" KeyTime="0:0:3.370000" />
+		</DoubleAnimationUsingKeyFrames>
+
+		<!-- BeginTime をちょっとづつずらした StoryBoard を何組か作ろう -->
+
+		<!-- 1組目 -->
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L11">
+			<BeginStoryboard>
+				<Storyboard>
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L12">
+			<BeginStoryboard>
+				<Storyboard>
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L13">
+			<BeginStoryboard>
+				<Storyboard>
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L14">
+			<BeginStoryboard>
+				<Storyboard>
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<!-- 2組目 -->
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L21">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.05">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L22">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.05">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L23">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.05">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L24">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.05">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<!-- 3組目 -->
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L31">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.1">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L32">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.1">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L33">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.1">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L34">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.1">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<!-- 4組目 -->
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L41">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.15">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L42">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.15">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX2"/>
+					<StaticResource ResourceKey="AniY2"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L43">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.15">
+					<StaticResource ResourceKey="AniX3"/>
+					<StaticResource ResourceKey="AniY3"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+		<EventTrigger RoutedEvent="Line.Loaded" x:Key="L44">
+			<BeginStoryboard>
+				<Storyboard BeginTime="0:0:0.15">
+					<StaticResource ResourceKey="AniX1"/>
+					<StaticResource ResourceKey="AniY1"/>
+					<StaticResource ResourceKey="AniX4"/>
+					<StaticResource ResourceKey="AniY4"/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+
+	</Canvas.Resources>
+
+	<Line><Line.Triggers><StaticResource ResourceKey="L11"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L12"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L13"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L14"/></Line.Triggers></Line>
+
+	<Line><Line.Triggers><StaticResource ResourceKey="L21"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L22"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L23"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L24"/></Line.Triggers></Line>
+
+	<Line><Line.Triggers><StaticResource ResourceKey="L31"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L32"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L33"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L34"/></Line.Triggers></Line>
+
+	<Line><Line.Triggers><StaticResource ResourceKey="L41"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L42"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L43"/></Line.Triggers></Line>
+	<Line><Line.Triggers><StaticResource ResourceKey="L44"/></Line.Triggers></Line>
+
+</Canvas>

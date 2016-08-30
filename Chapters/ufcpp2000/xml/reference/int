@@ -1,0 +1,17 @@
+積分記号
+----
+積分記号を表示する
+----
+int
+int sup
+int sub
+----
+span.integral
+table.integral
+td.intsup
+td.intsub
+----
+<int><sub>積分記号の下に来る文字</sub><sup>積分記号の上に来る文字</sup></int>
+----
+<int><sub>a</sub><sup>b</sup></int> f(x) <d/>x
+----

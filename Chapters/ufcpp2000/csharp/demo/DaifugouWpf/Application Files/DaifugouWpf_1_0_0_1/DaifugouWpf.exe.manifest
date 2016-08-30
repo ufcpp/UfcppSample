@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="DaifugouWpf.exe" version="1.0.0.1" publicKeyToken="af58a66a7abdf810" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="DaifugouWpf" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="DaifugouWpf.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC マニフェスト オプション
+          Windows のユーザー アカウント制御のレベルを変更するには、
+          requestedExecutionLevel ノードを以下のいずれかで置換します。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         下位互換性を保つためにファイルおよびレジストリの仮想化を使用する場合、
+         requestedExecutionLevel ノードを削除します。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Management.Automation" version="1.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Daifugou.dll" size="26112">
+      <assemblyIdentity name="Daifugou" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>4JIrYnq8fSXvTPJgm/2APack9kY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DaifugouGui.dll" size="20480">
+      <assemblyIdentity name="DaifugouGui" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>u8UAK4KRfbdgnLyjOnwsEzngdI8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DaifugouWpf.exe" size="18944">
+      <assemblyIdentity name="DaifugouWpf" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>fMfa9PuPCniVAA2m61OaYpIUi7Q=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Scripting.dll" size="875344">
+      <assemblyIdentity name="Microsoft.Scripting" version="0.9.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>n4DxMZvqS4uu5D/oIQ+gkgecTcI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Scripting.Core.dll" size="441168">
+      <assemblyIdentity name="Microsoft.Scripting.Core" version="0.9.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>pTg0tCay9/ShxatLd7KMDDWzCPc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Scripting.ExtensionAttribute.dll" size="12112">
+      <assemblyIdentity name="Microsoft.Scripting.ExtensionAttribute" version="0.9.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>vMhJvLz+T+jo7UTLRoQbrfJuaTQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="DaifugouWpf.exe.config" size="1260">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>VOTHcKOOLtC3TXapKTPRokCGKC0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IronPython.dll" size="990032">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>utwg+523fM7wp7JfMUXZnmsWZbc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IronPython.Modules.dll" size="318288">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>In2wasjAAop1E8nnk98J1g4/RZc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IronPythonTest.dll" size="162640">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>YOcpfsNpXC7tdmmtcMPsjOVoIMY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IronRuby.dll" size="609104">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Rhs+VXnSEHBXikUyFWTKY6lHL7E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IronRuby.Libraries.dll" size="527184">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>XY1syK0v2a3SeXHl7z29TD+Jiho=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ToyScript.dll" size="52048">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>aImNyiY4hisq/q6BbW0U7WRJFr4=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=dirac\iwanaga" issuerKeyHash="da4e54b25e021d65ecd96d9200b20ca408c96f1b" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>nNlzVQb7YA/PAv7+shy+25+8i2w=</DigestValue></Reference></SignedInfo><SignatureValue>MDOoEPwWGcKcKzY9P40DqCMGBHYxqUmsonMOMNFi1yAwrmAWxlevnGGxRRS9EX6G1L7clyw95e4KTFPiocLn/SV4matTEicNzOCl6N7AXDhJqcYuuFmujoghfjwqE69GPV9+RKwkSZIgB6x19TCXjv9flJeh1HCbu03UeZ5xjUk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>5BUuFZuiQvAYJ984fWkj0uJy7D8lK3jMkw1qVL6pT4O+/gpZsi3sjxuWSDh7u0Idv4v5TXSbQqVTo4SqdcEQ/0YhY5JjOcynP1GhHlZSd43TFAqpE+/eNlY9YepNoS+Kzv8wvnQwvRDepPg0d88NwT2J1fMoCrn0x4v6k2f3BT0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="6c8bbc9fdbbe1cb2fefe02cf0f60fb065573d99c" Description="" Url=""><as:assemblyIdentity name="DaifugouWpf.exe" version="1.0.0.1" publicKeyToken="af58a66a7abdf810" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=dirac\iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>unzjir9B3p/SdbGnWXdWZaPBY0s=</DigestValue></Reference></SignedInfo><SignatureValue>FtUQjg3XTlZG5RSrqygN5OlkRrB6gpovVaVdF2JjorJuESeypq6+zhn/S+VuIZ2UW4deQrRRDUW47k0mnuVgYk0d1Z2YP2UdlZkgeEYvYEJEF8uwZ2H5w3wEvR26h8OD4r5YoRJYLOR3rEXNoXC+bqnuJoB6PmIaLZepFGkawaQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>5BUuFZuiQvAYJ984fWkj0uJy7D8lK3jMkw1qVL6pT4O+/gpZsi3sjxuWSDh7u0Idv4v5TXSbQqVTo4SqdcEQ/0YhY5JjOcynP1GhHlZSd43TFAqpE+/eNlY9YepNoS+Kzv8wvnQwvRDepPg0d88NwT2J1fMoCrn0x4v6k2f3BT0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBzTCCATagAwIBAgIQcsTKyf6DKbdChliW9waOoTANBgkqhkiG9w0BAQUFADAlMSMwIQYDVQQDHhoAZABpAHIAYQBjAFwAaQB3AGEAbgBhAGcAYTAeFw0wOTAxMDMxMjA4NDVaFw0xMDAxMDMxODA4NDVaMCUxIzAhBgNVBAMeGgBkAGkAcgBhAGMAXABpAHcAYQBuAGEAZwBhMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDkFS4Vm6JC8Bgn3zh9aSPS4nLsPyUreMyTDWpUvqlPg77+ClmyLeyPG5ZIOHu7Qh2/i/lNdJtCpVOjhKp1wRD/RiFjkmM5zKc/UaEeVlJ3jdMUCqkT7942Vj1h6k2hL4rO/zC+dDC9EN6k+DR3zw3BPYnV8ygKufTHi/qTZ/cFPQIDAQABMA0GCSqGSIb3DQEBBQUAA4GBACyaI75J5IvhxygYkUysSFjPYGyWqWK0fGCQOGxbd41Ju9qiKo9vOl/Ai51HCi4FJxpRUHQOKSFqI7SFCd1oRZhjiij2Ei6B2k8W1eU6Onszf6nE68y3dCIJBQ/XOBP4PhzzwscbuZ36aWPnw40ak/XzIQHyUxbI5KdP2nYR5Ewb</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

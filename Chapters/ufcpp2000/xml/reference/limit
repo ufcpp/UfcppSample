@@ -1,0 +1,14 @@
+lim
+----
+極限記号limを表示
+----
+lim
+----
+table.sigma
+td.sigmasub
+----
+<lim>lim記号の下に来る式</lim>
+----
+<frac><num><d/>f</num><denom><d/>x</denom></frac> = 
+<lim>Δx→0</lim><frac><num>f(x+Δx) &#x2212; f(x)</num><denom>Δx</denom></frac>
+----

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <asmv1:assemblyIdentity name="FullBullet.exe" version="1.0.0.1" publicKeyToken="615957b7ed0e307a" language="neutral" processorArchitecture="msil" type="win32" />
+    <application />
+    <entryPoint>
+        <assemblyIdentity name="FullBullet" version="1.0.2831.26690" language="neutral" processorArchitecture="msil" />
+        <commandLine file="FullBullet.exe" parameters="" />
+        <hostInBrowser xmlns="urn:schemas-microsoft-com:asm.v3" />
+        <hostInBrowser xmlns="urn:schemas-microsoft-com:asm.v3" />
+    </entryPoint>
+    <trustInfo>
+        <security>
+            <applicationRequestMinimum>
+                <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site">
+                    <IPermission class="System.Security.Permissions.FileDialogPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Access="Open" />
+                    <IPermission class="System.Security.Permissions.IsolatedStorageFilePermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Allowed="ApplicationIsolationByUser" UserQuota="512000" />
+                    <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="Execution" />
+                    <IPermission class="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Window="SafeTopLevelWindows" Clipboard="OwnClipboard" />
+                    <IPermission class="System.Drawing.Printing.PrintingPermission, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" version="1" Level="SafePrinting" />
+                    <IPermission class="System.Security.Permissions.MediaPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Audio="SafeAudio" Video="SafeVideo" Image="SafeImage" />
+                    <IPermission class="System.Security.Permissions.WebBrowserPermission, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" version="1" Level="Safe" />
+                </PermissionSet>
+                <defaultAssemblyRequest permissionSetReference="Custom" />
+            </applicationRequestMinimum>
+        </security>
+    </trustInfo>
+    <dependency>
+        <dependentOS>
+            <osVersionInfo>
+                <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+            </osVersionInfo>
+        </dependentOS>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="PresentationFramework" version="3.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+            <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FullBullet.exe" size="32768">
+            <assemblyIdentity name="FullBullet" version="1.0.2831.26690" language="neutral" processorArchitecture="msil" />
+            <hash>
+                <dsig:Transforms>
+                    <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+                </dsig:Transforms>
+                <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                <dsig:DigestValue>PZe9d9C2QUvHB8GsneIHVD28l00=</dsig:DigestValue>
+            </hash>
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MicroThread.dll" size="20480">
+            <assemblyIdentity name="MicroThread" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+            <hash>
+                <dsig:Transforms>
+                    <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+                </dsig:Transforms>
+                <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                <dsig:DigestValue>RrsFmuv6z86o0yHoJCjUghi5nDQ=</dsig:DigestValue>
+            </hash>
+        </dependentAssembly>
+    </dependency>
+    <dependency>
+        <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Shooting2D.dll" size="20480">
+            <assemblyIdentity name="Shooting2D" version="1.0.2831.26529" language="neutral" processorArchitecture="msil" />
+            <hash>
+                <dsig:Transforms>
+                    <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+                </dsig:Transforms>
+                <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                <dsig:DigestValue>7Z3KZst/SKWv5ed1KWH+s3EJF8c=</dsig:DigestValue>
+            </hash>
+        </dependentAssembly>
+    </dependency>
+    <publisherIdentity name="CN=leblanc\iwanaga" issuerKeyHash="5390d5398131fcb8d4530f52cda495f5f8cd4bbd" />
+    
+<Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>SdscalAJgL6WTNmmKjpuGLd7MGI=</DigestValue></Reference></SignedInfo><SignatureValue>X7pQr6pgvAe3Xco72Yp4LtmCZ6KJPIBwJzLPHjDhtdU8oNNs91niYCXojD++kbz7wTR8VOXEmFlofv16GA2936jcJ/rQvyepRLoaaK2qOQ1soDdqqNJ8sOEYtUIWuJ1RRnVuazUugNhskCc4GMd3FfcQPskpw9vCVIzLLoBcMRs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>jLLvTvz6V8L8E8vHP8uJguCollbu5zUEjiQy9xEQC+flnRrccXa223LYUJnp9Gn5o63hqceuB9UejOgs2P6B5uOmNyIh3d1e/e7BgJ2pPTDNWrfmkf+jcz7oO3CKKkyVj6D0wYtLomwRbc74vVXoxOIrVSwlI6i6JxE9A7lObA0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="62307bb7186e3a2aa6d94c96be8009506a1cdb49" Description="" Url=""><as:assemblyIdentity name="FullBullet.exe" version="1.0.0.1" publicKeyToken="615957b7ed0e307a" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=leblanc\iwanaga</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Z4XH7cWh762wEgpid8D1r14zLEA=</DigestValue></Reference></SignedInfo><SignatureValue>h+90eUez23tHgSjHyn6A6DDxOjbb0NCPzNpX+bcw3+/9Zm4pfngckMFKHQ8JDV1k3rwZf4N3hIBYZcarvMp0eTqgN/c0nj0FCthGaDTmsZup+GmrZ4bqfUtKbZ+XYutC1YHqnL9hIsU1OhpBWbpSv0Ev8RTs5buvKGvyllZo1Eg=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>jLLvTvz6V8L8E8vHP8uJguCollbu5zUEjiQy9xEQC+flnRrccXa223LYUJnp9Gn5o63hqceuB9UejOgs2P6B5uOmNyIh3d1e/e7BgJ2pPTDNWrfmkf+jcz7oO3CKKkyVj6D0wYtLomwRbc74vVXoxOIrVSwlI6i6JxE9A7lObA0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQ5K8lQYlqy5tKelwYuxBj9DANBgkqhkiG9w0BAQUFADApMScwJQYDVQQDHh4AbABlAGIAbABhAG4AYwBcAGkAdwBhAG4AYQBnAGEwHhcNMDcxMDAxMjM0ODExWhcNMDgxMDAxMDU0ODExWjApMScwJQYDVQQDHh4AbABlAGIAbABhAG4AYwBcAGkAdwBhAG4AYQBnAGEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAIyy7078+lfC/BPLxz/LiYLgqJZW7uc1BI4kMvcREAvn5Z0a3HF2ttty2FCZ6fRp+aOt4anHrgfVHozoLNj+gebjpjciId3dXv3uwYCdqT0wzVq35pH/o3M+6DtwiipMlY+g9MGLS6JsEW3O+L1V6MTiK1UsJSOouicRPQO5TmwNAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAb2SFisISSBfldj4km9PJ5Uwo2IJv6RazPyavXgeUvkZ1uLyoxOvNdR0ketCCQGEFwDTp34YP7mmjGQ6ZW3D8PhW9ZWHgOKLxHiErXJLnnvP9ly4Ic7TY3XAPbDUN5dQnEFSbJUpmsrSeRZrDcui45FjNuAxosY2J8dv1641sSik=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

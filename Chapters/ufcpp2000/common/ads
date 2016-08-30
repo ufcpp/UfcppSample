@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+<!-- 広告コラム -->
+
+<div style="text-align:center;">
+
+
+<!-- Amazon お任せ 
+<div style="margin-top:10pt;">
+<script type="text/javascript"><![CDATA[
+
+amazon_ad_tag = "cunflc-22";
+amazon_ad_width = "160"; amazon_ad_height = "600";
+amazon_ad_logo = "hide"; amazon_ad_link_target = "new";
+amazon_color_border = "CCCCFF"; amazon_color_link = "2B91AF"; amazon_color_price = "A31515";
+]]></script>
+
+<script type="text/javascript" src="http://www.assoc-amazon.jp/s/ads.js"></script>
+</div>
+-->
+
+<!-- Ads by Google -->
+<div style="margin-top:10pt;">
+<script type="text/javascript"
+  src="../common/googlecolor.js">
+</script>
+<script type="text/javascript"><![CDATA[
+google_ad_client = "pub-0946654941616827";
+google_ad_slot = "5079031097";
+google_ad_width = 160;
+google_ad_height = 600;
+]]>
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+<!-- Amazon お気に入りウィジェット - 自著 -->
+<div style="margin-top:10pt;">
+<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?rt=tf_mfw&amp;ServiceVersion=20070822&amp;MarketPlace=JP&amp;ID=V20070822/JP/cunflc-22/8001/d4869e13-8d5a-43b3-bdd0-f8372da0ca84"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?rt=tf_mfw&amp;ServiceVersion=20070822&amp;MarketPlace=JP&amp;ID=V20070822%2FJP%2Fcunflc-22%2F8001%2Fd4869e13-8d5a-43b3-bdd0-f8372da0ca84&amp;Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
+</div>
+
+<!-- Google AdSense リンクユニット -->
+<div style="margin-top:10pt;">
+<script type="text/javascript"
+  src="../common/googlecolor.js">
+</script>
+<script type="text/javascript"><![CDATA[
+google_ad_client = "pub-0946654941616827";
+google_ad_slot = "8981007993";
+google_ad_width = 160;
+google_ad_height = 90;
+]]></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+</div>
+
+</content>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="source"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+  
+  <!-- sources -->
+
+  <xs:element name="sources" type="sources_type" />
+
+  <xs:complexType name="sources_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="source" type="headerd_source_type" />
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional" />
+  </xs:complexType>
+
+    <xs:simpleType name="languages">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C#" />
+      <xs:enumeration value="VB" />
+      <xs:enumeration value="C++" />
+      <xs:enumeration value="F#" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="headerd_source_type" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="source_type">
+        <xs:attribute name="header" type="languages" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+    <!-- source, console, xsource-->
+  <xs:element name="source" type="source_type" />
+  
+  <xs:complexType name="source_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="reserved" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="comment" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="literal" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inactive" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="type" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="input" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="em" type="source_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="span" type="sourcespan_type" />
+    </xs:choice>
+    <xs:attribute name="title" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="sourcespan_type">
+    <xs:complexContent>
+      <xs:extension base="source_type">
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="xsource" type="xsource_type" />
+
+  <xs:complexType name="xsource_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="lt"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="gt"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="element" type="xsource_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attribute" type="xsource_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attvalue" type="xsource_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="em" type="xsource_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="symbol" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="comment" type="xsource_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inactive" type="source_type" />
+    </xs:choice>
+    <xs:attribute name="title" type="xs:string" />
+  </xs:complexType>
+
+  <xs:element name="console" type="console_type" />
+
+  <xs:complexType name="console_type" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="comment" type="console_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" type="console_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="input" type="console_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="em" type="console_type" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="prompt">
+        <xs:complexType>
+          <xs:attribute name="char" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="title" type="xs:string" />
+  </xs:complexType>
+
+  <xs:element name="refsource">
+    <xs:complexType>
+      <xs:attribute name="src" type="xs:string" use="required"/>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

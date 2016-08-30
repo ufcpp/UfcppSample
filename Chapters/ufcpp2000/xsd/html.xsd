@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="html"
+    targetNamespace="http://ufcpp.net/study/document"
+    elementFormDefault="qualified"
+    xmlns="http://ufcpp.net/study/document"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include id="division" schemaLocation="division.xsd"/>
+
+  <xs:element name="a">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="inline_type">
+          <xs:attribute name="href" type="xs:string"/>
+          <xs:attribute name="id" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="img">
+    <xs:complexType>
+      <xs:attribute name="src" type="xs:string" use="required" />
+      <xs:attribute name="width" type="xs:string"/>
+      <xs:attribute name="height" type="xs:string"/>
+      <xs:attribute name="alt" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="code">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="reserved" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="comment" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="string" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="input" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="em" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="span" type="inline_type" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="br"/>
+      </xs:choice>
+      <xs:attribute name="class" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="pre" type="block_type"/>
+  <xs:element name="em" type="inline_type"/>
+  <xs:element name="sup" type="inline_type"/>
+  <xs:element name="sub" type="inline_type"/>
+  <xs:element name="span" type="inline_type"/>
+
+  <xs:element name="ruby">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="1" name="rb" type="inline_type"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="rt" type="inline_type"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="rp" type="inline_type"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

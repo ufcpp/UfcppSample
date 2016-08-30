@@ -1,0 +1,18 @@
+<xsl:template match="ufcpp:branch">
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		{
+	</span>
+	<table class="branch" summary="conditional">
+		<xsl:for-each select="ufcpp:case">
+			<tr>
+				<td><span class="math"><xsl:apply-templates select="ufcpp:equ"/></span>&#xA0;&#xA0;</td>
+				<td>
+					<span class="paren">(</span>
+					<span class="math"><xsl:apply-templates select="ufcpp:cond"/></span>
+					<span class="paren">)</span>
+				</td>
+			</tr>
+		</xsl:for-each>
+	</table>
+</xsl:template>

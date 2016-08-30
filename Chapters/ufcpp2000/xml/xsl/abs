@@ -1,0 +1,5 @@
+<xsl:template match="ufcpp:abs">
+	<span class="normal">|</span>
+	<xsl:apply-templates/>
+	<span class="normal">|</span>
+</xsl:template>

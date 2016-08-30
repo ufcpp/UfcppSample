@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+<!-- 本分下、＜＜前 次＞＞ の直前-->
+
+<!-- Amazon 広告 -->
+<div>
+<script type="text/javascript"><![CDATA[
+
+
+amazon_ad_tag = "cunflc-22";
+amazon_ad_width = "728"; amazon_ad_height = "90";
+amazon_ad_link_target = "new"; amazon_color_link = "2B91AF"; amazon_color_price = "A31515";
+]]></script>
+
+<script type="text/javascript" src="http://www.assoc-amazon.jp/s/ads.js"></script>
+</div>
+
+</content>

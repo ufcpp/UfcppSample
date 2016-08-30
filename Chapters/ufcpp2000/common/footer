@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<content>
+<!-- 本文フッタ -->
+
+<!-- Windows Live Translation -->
+<div id="MicrosoftTranslatorWidget" style="width: 360px; min-height: 57px; border-color: #404040; background-color: #A0A0A0;"><noscript><a href="http://www.microsofttranslator.com/bv.aspx?a=http%3a%2f%2fufcpp.net%2f">このページを翻訳します</a><br />提供: <a href="http://www.microsofttranslator.com">Microsoft® Translator</a></noscript></div> <script type="text/javascript"> /* <![CDATA[ */ setTimeout(function() { var s = document.createElement("script"); s.type = "text/javascript"; s.charset = "UTF-8"; s.src = "http://www.microsofttranslator.com/Ajax/V2/Widget.aspx?mode=notify&from=ja&layout=ts"; var p = document.getElementsByTagName('head')[0] || document.documentElement; p.insertBefore(s, p.firstChild); }, 0); /* ]]> */ </script>
+
+<p class="foot">
+<a href="http://ufcpp.net/index.html#contact" accesskey="q">[お問い合わせ](<span class="accesskey">q</span>)</a>
+</p>
+
+</content>

@@ -1,0 +1,18 @@
+分数
+----
+分数を表示
+----
+frac
+frac num
+frac denom
+----
+table.frac
+td.num
+----
+<frac>
+	<num>分子</num>
+	<denom>分母</denom>
+</frac>
+----
+<frac><num>f(b)&#x2212;f(a)</num><denom>b&#x2212;a</denom></frac> = f'(c)
+----

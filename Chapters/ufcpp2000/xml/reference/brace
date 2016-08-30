@@ -1,0 +1,13 @@
+{}括弧
+----
+{}の表示。
+（obsolete。bracket に移行。）
+----
+brace
+----
+span.paren
+----
+<brace size="括弧の大きさ">括弧内の式</brace>
+----
+<brace size="1.2"><paren>x-ξ</paren><sup>2</sup>+<paren>y-η</paren><sup>2</sup></brace><sup>1/2</sup>
+----

@@ -1,0 +1,13 @@
+<xsl:template match="ufcpp:vervec">
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		[
+	</span>
+	<table class="matrix" summary="vector">
+		<xsl:apply-templates select="ufcpp:elem"/>
+	</table>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size" />em;</xsl:attribute>
+		]
+	</span>
+</xsl:template>

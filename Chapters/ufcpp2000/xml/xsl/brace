@@ -1,0 +1,11 @@
+<xsl:template match="ufcpp:brace">
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		{
+	</span>
+	<xsl:apply-templates/>
+	<span class="paren">
+		<xsl:attribute name="style">font-size:<xsl:value-of select="@size"/>em;</xsl:attribute>
+		}
+	</span>
+</xsl:template>

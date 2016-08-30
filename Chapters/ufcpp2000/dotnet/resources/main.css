@@ -1,0 +1,55 @@
+body
+{
+	background-color: #EEF0FF;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+p
+{
+	margin: 0px;
+	padding: 3px;
+}
+
+p.head
+{
+	background-color: #AABBCC;
+	margin: 0px;
+	padding: 0px;
+}
+
+div.menu
+{
+	background-color: #A0A080;
+	text-align: left;
+}
+
+span.menuItem
+{
+	display: inline-block;
+	width: 90px;
+	height: 25px;
+	margin: 0px;
+	padding: 5px;
+	background-color: #808060;
+	color: #FFFFFF;
+	border: solid 1px #000000;
+	vertical-align: middle;
+	text-align: center;
+}
+
+div.content
+{
+	width: 60%;
+	padding: 10px;
+	text-align: left;
+	border: dotted 1px #8080a0;
+}
+
+div.foot
+{
+	background-color: #AABBCC;
+	margin: 20px 0px 0px 0px;
+	padding: 0px;
+}

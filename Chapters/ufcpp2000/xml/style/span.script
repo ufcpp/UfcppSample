@@ -1,0 +1,6 @@
+span.cursive
+{
+	font-family:cursive;
+	font-style:italic;
+	padding-right:0.2em;
+}
