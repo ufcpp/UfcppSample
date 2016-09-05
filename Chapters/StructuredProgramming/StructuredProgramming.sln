@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.25612.2
+VisualStudioVersion = 15.0.25618.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Function", "Function\Function.csproj", "{6F24F522-37B0-422E-93F2-F9617C253987}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "Tuples\Tuples.csproj", "{33BE0F4E-B7DC-45F1-8386-CC79EAD1E185}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namespaces", "Namespaces\Namespaces.csproj", "{44CB7746-43BB-47FD-B2B9-D0CD2E15E2AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Params", "Params\Params.csproj", "{9ED86973-D986-40DD-9068-627FE33D9F5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{44CB7746-43BB-47FD-B2B9-D0CD2E15E2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CB7746-43BB-47FD-B2B9-D0CD2E15E2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CB7746-43BB-47FD-B2B9-D0CD2E15E2AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
