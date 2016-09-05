@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.25612.2
+VisualStudioVersion = 15.0.25618.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "Tuples\Tuples.csproj", "{9851C940-EF7D-414C-89DC-441A3B22B5B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deconstruction", "Deconstruction\Deconstruction.csproj", "{A3E46235-D020-4AEC-918A-F315DA6E9012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutVar", "OutVar\OutVar.csproj", "{4A20CE71-0214-4289-A730-0D90C5E009B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3E46235-D020-4AEC-918A-F315DA6E9012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
