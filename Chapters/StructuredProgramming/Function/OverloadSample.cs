@@ -32,4 +32,16 @@ class OverloadSample
     {
         Console.Write("実数   : {0}\n", x);
     }
+
+    // F は、引数の型が違うので大丈夫
+    static void F(int x) { }
+    static void F(string x) { }
+
+    // G は、引数の型まで一緒で、名前だけ違う。これはコンパイル エラー
+    static void G(int x) { }
+    static void G(int y) { }
+
+    // H は、引数が一致していて、戻り値だけ違う。これもコンパイル エラー
+    static int H() => 1;
+    static string H() => "";
 }
