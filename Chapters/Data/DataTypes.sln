@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deconstruction", "Deconstru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutVar", "OutVar\OutVar.csproj", "{4A20CE71-0214-4289-A730-0D90C5E009B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeSwitch", "TypeSwitch\TypeSwitch.csproj", "{A953159C-7BFB-4BF2-897D-45FE4886C2F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A20CE71-0214-4289-A730-0D90C5E009B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A953159C-7BFB-4BF2-897D-45FE4886C2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A953159C-7BFB-4BF2-897D-45FE4886C2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A953159C-7BFB-4BF2-897D-45FE4886C2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A953159C-7BFB-4BF2-897D-45FE4886C2F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
