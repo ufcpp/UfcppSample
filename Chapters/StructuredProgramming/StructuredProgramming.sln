@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namespaces", "Namespaces\Na
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Params", "Params\Params.csproj", "{9ED86973-D986-40DD-9068-627FE33D9F5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressions", "Expressions\Expressions.csproj", "{99FD4D50-6E34-4C43-9730-DAB97F81ED8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ED86973-D986-40DD-9068-627FE33D9F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FD4D50-6E34-4C43-9730-DAB97F81ED8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FD4D50-6E34-4C43-9730-DAB97F81ED8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FD4D50-6E34-4C43-9730-DAB97F81ED8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FD4D50-6E34-4C43-9730-DAB97F81ED8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
