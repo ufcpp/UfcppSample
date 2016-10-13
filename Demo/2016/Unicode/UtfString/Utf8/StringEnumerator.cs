@@ -8,78 +8,20 @@ namespace UtfString.Utf8
     {
         private readonly byte[] _buffer;
         private int _index;
+        private CodePoint _current;
 
         public StringEnumerator(byte[] buffer)
         {
             _buffer = buffer;
             _index = 0;
-            Current = default(CodePoint);
+            _current = default(CodePoint);
         }
 
-        public CodePoint Current { get; private set; }
-
-        public bool MoveNext()
-        {
-            if (_index >= _buffer.Length) return false;
-
-            uint x = _buffer[_index++];
-
-            if (x >= 0b1111_0000)
-            {
-                // 4バイト文字
-                var code = x & 0b0111;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-
-                Current = new CodePoint(code);
-                return true;
-            }
-            if (x >= 0b1110_0000)
-            {
-                // 3バイト文字
-                var code = x & 0b1111;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-
-                Current = new CodePoint(code);
-                return true;
-            }
-            if (x >= 0b1100_0000)
-            {
-                // 2バイト文字
-                var code = x & 0b1_1111;
-                if (!TryNext(out x)) return false;
-                code = (code << 6) | x;
-
-                Current = new CodePoint(code);
-                return true;
-            }
-
-            // ASCII 文字
-            Current = new CodePoint(x);
-            return true;
-        }
-
-        private bool TryNext(out uint code)
-        {
-            code = 0;
-            if (_index >= _buffer.Length) return false;
-
-            var c = _buffer[_index++];
-            if ((c & 0b1100_0000) != 0b1000_0000) return false;
-
-            code = (uint)(c & 0b0011_1111);
-            return true;
-        }
+        public CodePoint Current => _current;
+        public bool MoveNext() => Decoder.TryDecode(_buffer, ref _index, out _current);
 
         object IEnumerator.Current => Current;
         void IDisposable.Dispose() { }
-        public void Reset() => _index = 0;
+        public void Reset() { throw new NotSupportedException(); }
     }
 }
