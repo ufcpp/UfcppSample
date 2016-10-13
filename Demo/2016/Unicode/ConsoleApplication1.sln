@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtfString", "UtfString\UtfString.csproj", "{0D031BE1-34D0-4765-A9FF-6FB42C967F6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestUtfString", "UnitTestUtfString\UnitTestUtfString.csproj", "{DF0A2CD2-D921-4D43-8334-97C18BD22375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0D031BE1-34D0-4765-A9FF-6FB42C967F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D031BE1-34D0-4765-A9FF-6FB42C967F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D031BE1-34D0-4765-A9FF-6FB42C967F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0A2CD2-D921-4D43-8334-97C18BD22375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0A2CD2-D921-4D43-8334-97C18BD22375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0A2CD2-D921-4D43-8334-97C18BD22375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0A2CD2-D921-4D43-8334-97C18BD22375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
