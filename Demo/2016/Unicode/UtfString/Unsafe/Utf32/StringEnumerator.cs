@@ -2,23 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Utf8
+namespace UtfString.Unsafe.Utf32
 {
     public struct StringEnumerator : IEnumerator<CodePoint>
     {
-        private readonly byte[] _buffer;
+        private readonly UIntAccessor _buffer;
         private int _index;
-        private CodePoint _current;
+        private bool _init;
 
-        public StringEnumerator(byte[] buffer)
+        public StringEnumerator(UIntAccessor buffer)
         {
             _buffer = buffer;
             _index = 0;
-            _current = default(CodePoint);
+            _init = false;
         }
 
-        public CodePoint Current => _current;
-        public bool MoveNext() => Decoder.TryDecode(_buffer, ref _index, out _current);
+        public CodePoint Current => new CodePoint(_buffer[_index]);
+
+        public bool MoveNext()
+        {
+            if (!_init) _init = true;
+            else _index++;
+            return _index < _buffer.Length;
+        }
 
         object IEnumerator.Current => Current;
         void IDisposable.Dispose() { }

@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Utf8
+namespace UtfString.Unsafe.Utf32
 {
     public struct String : IEnumerable<CodePoint>, IString<Index, StringEnumerator, IndexEnumerable, IndexEnumerable>
     {
-        private readonly byte[] _buffer;
+        private readonly UIntAccessor _buffer;
 
-        public String(byte[] encodedBytes) : this()
+        public String(byte[] encodedBytes)
         {
-            _buffer = encodedBytes;
+            _buffer = new UIntAccessor(encodedBytes);
         }
 
         public StringEnumerator GetEnumerator() => new StringEnumerator(_buffer);
@@ -18,8 +18,8 @@ namespace UtfString.Utf8
         IEnumerator<CodePoint> IEnumerable<CodePoint>.GetEnumerator() => GetEnumerator();
 
         public IndexEnumerable Indexes => new IndexEnumerable(_buffer);
-        public CodePoint this[Index index] => Decoder.Decode(_buffer, index);
+        public CodePoint this[Index index] => new CodePoint(_buffer[index.index]);
 
-        public int Length => Decoder.GetByteCount(_buffer);
+        public int Length => _buffer.Length;
     }
 }

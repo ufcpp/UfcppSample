@@ -1,19 +1,20 @@
-﻿using System;
-
-namespace UtfString.Utf16
+﻿namespace UtfString.Unsafe.Utf16
 {
     public static class Decoder
     {
-        public static int GetCount(ushort[] buffer)
+        public static int GetCount(UShortAccessor buffer)
         {
             var count = 0;
-            foreach (var x in buffer)
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                var x = buffer[i];
                 if ((x & 0b1111_1100_0000_0000) != 0b1101_1100_0000_0000)
                     count++;
+            }
             return count;
         }
 
-        public static bool TryGetCount(ushort[] buffer, int index, out byte wordCount)
+        public static bool TryGetCount(UShortAccessor buffer, int index, out byte wordCount)
         {
             wordCount = 0;
 
@@ -30,7 +31,7 @@ namespace UtfString.Utf16
             return true;
         }
 
-        public static CodePoint Decode(ushort[] buffer, Index index)
+        public static CodePoint Decode(UShortAccessor buffer, Index index)
         {
             var i = index.index;
             uint x = buffer[i];

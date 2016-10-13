@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Utf16
+namespace UtfString.ArrayImplementation.Utf16
 {
     public struct StringEnumerator : IEnumerator<CodePoint>
     {
@@ -46,6 +46,6 @@ namespace UtfString.Utf16
 
         object IEnumerator.Current => Current;
         void IDisposable.Dispose() { }
-        public void Reset() => _index = 0;
+        void IEnumerator.Reset() { throw new NotSupportedException(); }
     }
 }

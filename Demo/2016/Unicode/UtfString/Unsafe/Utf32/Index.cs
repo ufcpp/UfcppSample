@@ -1,8 +1,7 @@
-﻿namespace UtfString.Utf16
+﻿namespace UtfString.Unsafe.Utf32
 {
     public struct Index
     {
         internal int index;
-        internal byte wordCount;
     }
 }
