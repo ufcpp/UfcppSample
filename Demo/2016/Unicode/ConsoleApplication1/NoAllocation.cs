@@ -1,8 +1,8 @@
-﻿using ConsoleApplication1.StringUtilities;
-using System;
-using System.Globalization;
+﻿using System;
 using System.Linq;
 using static System.Text.Encoding;
+using Utf16String = UtfString.Utf16.String;
+using Utf8String = UtfString.Utf8.String;
 
 namespace ConsoleApplication1
 {

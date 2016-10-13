@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApplication1.StringUtilities
+namespace UtfString
 {
     public struct CodePoint : IEquatable<CodePoint>
     {

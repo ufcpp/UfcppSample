@@ -2,29 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ConsoleApplication1.StringUtilities
+namespace UtfString.Utf8
 {
-    struct Utf8String : IEnumerable<CodePoint>
-    {
-        private readonly byte[] _buffer;
-
-        public Utf8String(byte[] encodedBytes) : this()
-        {
-            _buffer = encodedBytes;
-        }
-
-        public Utf8StringEnumerator GetEnumerator() => new Utf8StringEnumerator(_buffer);
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        IEnumerator<CodePoint> IEnumerable<CodePoint>.GetEnumerator() => GetEnumerator();
-    }
-
-    struct Utf8StringEnumerator : IEnumerator<CodePoint>
+    public struct StringEnumerator : IEnumerator<CodePoint>
     {
         private readonly byte[] _buffer;
         private int _index;
 
-        public Utf8StringEnumerator(byte[] buffer)
+        public StringEnumerator(byte[] buffer)
         {
             _buffer = buffer;
             _index = 0;
