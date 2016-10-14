@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="ArrayImplementation\readme.md" />
+    <None Include="Generic\readme.md" />
     <None Include="project.json" />
     <None Include="readme.md" />
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -49,6 +50,9 @@
     <Compile Include="ArrayImplementation\Utf16\IndexEnumerable.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DebugInterfaces.cs" />
+    <Compile Include="Generic\ArrayAccessor.cs" />
+    <Compile Include="Generic\Decoder.cs" />
+    <Compile Include="Generic\String.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ArrayImplementation\Utf16\StringEnumerator.cs" />
     <Compile Include="ArrayImplementation\Utf16\String.cs" />

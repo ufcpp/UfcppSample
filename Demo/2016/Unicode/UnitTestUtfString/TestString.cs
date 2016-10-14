@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define GENERIC
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Utf8StringA = UtfString.ArrayImplementation.Utf8.String;
 using Utf16StringA = UtfString.ArrayImplementation.Utf16.String;
@@ -6,6 +8,12 @@ using Utf8String = UtfString.Utf8.String;
 using Utf16StringU = UtfString.Utf16.String;
 using Utf32String = UtfString.Utf32.String;
 using CompactString = UtfString.DualEncoding.String;
+#if GENERIC
+using Utf8StringG = UtfString.Generic.String<byte, UtfString.Generic.ByteAccessor, UtfString.Generic.Utf8Decoder>;
+using Utf16StringG = UtfString.Generic.String<ushort, UtfString.Generic.ShortAccessor, UtfString.Generic.Utf16Decoder<UtfString.Generic.ShortAccessor>>;
+using CompactStringG = UtfString.Generic.String<ushort, UtfString.Generic.DualAccessor, UtfString.Generic.Utf16Decoder<UtfString.Generic.DualAccessor>>;
+using Utf32StringG = UtfString.Generic.String<uint, UtfString.Generic.IntAccessor, UtfString.Generic.Utf32Decoder>;
+#endif
 using System.Collections.Generic;
 using System.Linq;
 using UtfString;
@@ -39,6 +47,17 @@ namespace UnitTestUtfString
             {
                 ShouldBeIdentical1(new CompactString(false, s.Latin1), s.Utf32I);
             }
+
+#if GENERIC
+            ShouldBeIdentical1(new Utf8StringG(s.Utf8), s.Utf32I);
+            ShouldBeIdentical1(new Utf16StringG(s.Utf16B), s.Utf32I);
+            ShouldBeIdentical1(new Utf32StringG(s.Utf32B), s.Utf32I);
+            ShouldBeIdentical1(new CompactStringG(s.Utf16B), s.Utf32I);
+            if (s.Latin1 != null)
+            {
+                ShouldBeIdentical1(new CompactStringG((false, s.Latin1)), s.Utf32I);
+            }
+#endif
         }
 
         private static void ShouldBeIdentical1<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator>(IString<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator> s, uint[] expected)
@@ -84,6 +103,17 @@ namespace UnitTestUtfString
             {
                 NoAllocationWithForeach(new CompactString(false, s.Latin1), N);
             }
+
+#if GENERIC
+            NoAllocationWithForeach(new Utf8StringG(s.Utf8), N);
+            NoAllocationWithForeach(new Utf16StringG(s.Utf16B), N);
+            NoAllocationWithForeach(new Utf32StringG(s.Utf32B), N);
+            NoAllocationWithForeach(new CompactStringG(s.Utf16B), N);
+            if (s.Latin1 != null)
+            {
+                NoAllocationWithForeach(new CompactStringG((false, s.Latin1)), N);
+            }
+#endif
         }
 
         private static void NoAllocationWithForeach<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator>(IString<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator> s, int n)
