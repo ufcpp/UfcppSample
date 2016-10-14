@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Utf8
+namespace UtfString.ArrayImplementation.Utf8
 {
     public struct StringEnumerator : IEnumerator<CodePoint>
     {

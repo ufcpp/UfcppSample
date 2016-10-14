@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Utf8String = UtfString.Utf8.String;
+using Utf8StringA = UtfString.ArrayImplementation.Utf8.String;
 using Utf16StringA = UtfString.ArrayImplementation.Utf16.String;
-using Utf16StringU = UtfString.Unsafe.Utf16.String;
-using Utf32String = UtfString.Unsafe.Utf32.String;
-using CompactString = UtfString.Unsafe.DualEncoding.String;
+using Utf8String = UtfString.Utf8.String;
+using Utf16StringU = UtfString.Utf16.String;
+using Utf32String = UtfString.Utf32.String;
+using CompactString = UtfString.DualEncoding.String;
 using System.Collections.Generic;
 using System.Linq;
 using UtfString;
@@ -28,6 +29,7 @@ namespace UnitTestUtfString
         private void ShouldBeIdentical(TestData s)
         {
             ShouldBeIdentical1(new Utf8String(s.Utf8), s.Utf32I);
+            ShouldBeIdentical1(new Utf8StringA(s.Utf8), s.Utf32I);
             ShouldBeIdentical1(new Utf16StringA(s.Utf16S), s.Utf32I);
             ShouldBeIdentical1(new Utf16StringU(s.Utf16B), s.Utf32I);
             ShouldBeIdentical1(new Utf32String(s.Utf32B), s.Utf32I);
@@ -52,8 +54,9 @@ namespace UnitTestUtfString
 
             for (int i = 0; i < codePoints.Length; i++)
             {
+                Assert.AreEqual(expected[i], codePoints[i].Value);
+                Assert.AreEqual(expected[i], s[indexes[i]].Value);
                 Assert.AreEqual(codePoints[i], s[indexes[i]]);
-                Assert.AreEqual(codePoints[i].Value, expected[i]);
             }
         }
 
@@ -71,6 +74,7 @@ namespace UnitTestUtfString
             const int N = 1000;
 
             NoAllocationWithForeach(new Utf8String(s.Utf8), N);
+            NoAllocationWithForeach(new Utf8StringA(s.Utf8), N);
             NoAllocationWithForeach(new Utf16StringA(s.Utf16S), N);
             NoAllocationWithForeach(new Utf16StringU(s.Utf16B), N);
             NoAllocationWithForeach(new Utf32String(s.Utf32B), N);

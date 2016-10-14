@@ -1,44 +1,42 @@
 ﻿using System;
 
-namespace UtfString.Utf8
+namespace UtfString.ArrayImplementation.Utf8
 {
     public static class Decoder
     {
-        public static int GetLength(ArrayAccessor buffer)
+        public static int GetByteCount(byte[] buffer)
         {
             var count = 0;
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                var x = buffer[i];
+            foreach (var x in buffer)
                 if ((x & 0b1100_0000) != 0b1000_0000)
                     count++;
-            }
             return count;
         }
 
-        public static byte TyrGetCount(ArrayAccessor buffer, int index)
+        public static bool TryGetByteCount(byte[] buffer, int index, out byte byteCount)
         {
-            if (index >= buffer.Length) return Constants.InvalidCount;
+            byteCount = 0;
+
+            if (index >= buffer.Length) return false;
 
             uint x = buffer[index];
 
-            var byteCount =
-                (x >= 0b1111_0000U) ? (byte)4 :
-                (x >= 0b1110_0000U) ? (byte)3 :
-                (x >= 0b1100_0000U) ? (byte)2 :
-                (byte)1;
+            if (x >= 0b1111_0000U) byteCount = 4;
+            else if (x >= 0b1110_0000U) byteCount = 3;
+            else if (x >= 0b1100_0000U) byteCount = 2;
+            else byteCount = 1;
 
-            if (index + byteCount > buffer.Length) return Constants.InvalidCount;
+            if (index + byteCount > buffer.Length) return false;
 
-            return byteCount;
+            return true;
         }
 
-        public static CodePoint Decode(ArrayAccessor buffer, Index index)
+        public static CodePoint Decode(byte[] buffer, Index index)
         {
             var i = index.index;
             uint x = buffer[i++];
             uint code = 0;
-            switch (index.count)
+            switch (index.byteCount)
             {
                 case 1:
                     return new CodePoint(x);
@@ -62,9 +60,11 @@ namespace UtfString.Utf8
             }
         }
 
-        public static (CodePoint cp, byte count) TryDecode(ArrayAccessor buffer, int index)
+        public static bool TryDecode(byte[] buffer, ref int index, out CodePoint codePoint)
         {
-            if (index >= buffer.Length) return Constants.End;
+            codePoint = default(CodePoint);
+
+            if (index >= buffer.Length) return false;
 
             uint code = buffer[index++];
 
@@ -72,32 +72,36 @@ namespace UtfString.Utf8
             {
                 // 4バイト文字
                 code &= 0b0111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                return (new CodePoint(code), 4);
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                codePoint = new CodePoint(code);
+                return true;
             }
             if (code >= 0b1110_0000)
             {
                 // 3バイト文字
                 code &= 0b1111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                return (new CodePoint(code), 3);
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                codePoint = new CodePoint(code);
+                return true;
             }
             if (code >= 0b1100_0000)
             {
                 // 2バイト文字
                 code &= 0b1_1111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                return (new CodePoint(code), 2);
+                if (!TryNext(buffer, ref index, ref code)) return false;
+                codePoint = new CodePoint(code);
+                return true;
             }
 
             // ASCII 文字
-            return (new CodePoint(code), 1);
+            codePoint = new CodePoint(code);
+            return true;
         }
 
-        private static bool TryNext(ArrayAccessor buffer, ref int index, ref uint code)
+        private static bool TryNext(byte[] buffer, ref int index, ref uint code)
         {
             if (index >= buffer.Length) return false;
 

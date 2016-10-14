@@ -12,15 +12,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Utf8
+namespace UtfString.DualEncoding
 {
     public struct String : IEnumerable<CodePoint>, IString<Index, StringEnumerator, IndexEnumerable, IndexEnumerable>
     {
         private readonly ArrayAccessor _buffer;
 
-        public String(byte[] encodedBytes)
+        public String(bool isWideChar, byte[] encodedBytes)
         {
-            _buffer = new ArrayAccessor(encodedBytes);
+            _buffer = new ArrayAccessor(isWideChar, encodedBytes);
         }
 
         public StringEnumerator GetEnumerator() => new StringEnumerator(_buffer);

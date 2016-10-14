@@ -1,4 +1,4 @@
-﻿namespace UtfString.Utf8
+﻿namespace UtfString.ArrayImplementation.Utf8
 {
     public struct Index
     {

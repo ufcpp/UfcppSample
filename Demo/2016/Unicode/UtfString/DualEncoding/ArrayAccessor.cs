@@ -1,4 +1,4 @@
-﻿namespace UtfString.Unsafe.DualEncoding
+﻿namespace UtfString.DualEncoding
 {
     public struct ArrayAccessor
     {

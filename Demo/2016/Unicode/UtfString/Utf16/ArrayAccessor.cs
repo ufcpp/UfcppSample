@@ -1,4 +1,4 @@
-﻿namespace UtfString.Unsafe.Utf16
+﻿namespace UtfString.Utf16
 {
     public struct ArrayAccessor
     {

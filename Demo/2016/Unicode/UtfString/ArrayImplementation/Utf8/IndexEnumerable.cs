@@ -2,27 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Unsafe.Utf32
+namespace UtfString.ArrayImplementation.Utf8
 {
     public struct IndexEnumerable : IEnumerator<Index>, IEnumerable<Index>, IIndexEnumerable<Index, IndexEnumerable>
     {
-        private readonly ArrayAccessor _buffer;
+        private readonly byte[] _buffer;
         private Index _i;
-        private bool _init;
 
-        public IndexEnumerable(ArrayAccessor buffer)
+        public IndexEnumerable(byte[] buffer)
         {
             _buffer = buffer;
             _i = default(Index);
-            _init = false;
         }
 
         public Index Current => _i;
         public bool MoveNext()
         {
-            if (!_init) _init = true;
-            else _i.index++;
-            return _i.index < _buffer.Length;
+            _i.index += _i.byteCount;
+            return Decoder.TryGetByteCount(_buffer, _i.index, out _i.byteCount);
         }
 
         object IEnumerator.Current => Current;
