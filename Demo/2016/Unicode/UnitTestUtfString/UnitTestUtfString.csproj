@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterInfo.cs" />
+    <Compile Include="TestData.cs" />
     <Compile Include="TestString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

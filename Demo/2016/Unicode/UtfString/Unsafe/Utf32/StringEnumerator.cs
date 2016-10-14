@@ -6,11 +6,11 @@ namespace UtfString.Unsafe.Utf32
 {
     public struct StringEnumerator : IEnumerator<CodePoint>
     {
-        private readonly UIntAccessor _buffer;
+        private readonly ArrayAccessor _buffer;
         private int _index;
         private bool _init;
 
-        public StringEnumerator(UIntAccessor buffer)
+        public StringEnumerator(ArrayAccessor buffer)
         {
             _buffer = buffer;
             _index = 0;

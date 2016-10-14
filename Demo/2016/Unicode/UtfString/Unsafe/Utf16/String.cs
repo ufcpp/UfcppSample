@@ -5,11 +5,11 @@ namespace UtfString.Unsafe.Utf16
 {
     public struct String : IEnumerable<CodePoint>, IString<Index, StringEnumerator, IndexEnumerable, IndexEnumerable>
     {
-        private readonly UShortAccessor _buffer;
+        private readonly ArrayAccessor _buffer;
 
         public String(byte[] encodedBytes)
         {
-            _buffer = new UShortAccessor(encodedBytes);
+            _buffer = new ArrayAccessor(encodedBytes);
         }
 
         public StringEnumerator GetEnumerator() => new StringEnumerator(_buffer);

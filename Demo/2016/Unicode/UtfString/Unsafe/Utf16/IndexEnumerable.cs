@@ -6,10 +6,10 @@ namespace UtfString.Unsafe.Utf16
 {
     public struct IndexEnumerable : IEnumerator<Index>, IEnumerable<Index>, IIndexEnumerable<Index, IndexEnumerable>
     {
-        private readonly UShortAccessor _buffer;
+        private readonly ArrayAccessor _buffer;
         private Index _i;
 
-        public IndexEnumerable(UShortAccessor buffer)
+        public IndexEnumerable(ArrayAccessor buffer)
         {
             _buffer = buffer;
             _i = default(Index);

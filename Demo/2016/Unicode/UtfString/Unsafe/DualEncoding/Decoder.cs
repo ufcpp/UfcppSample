@@ -1,4 +1,4 @@
-﻿namespace UtfString.Unsafe.Utf16
+﻿namespace UtfString.Unsafe.DualEncoding
 {
     public static class Decoder
     {

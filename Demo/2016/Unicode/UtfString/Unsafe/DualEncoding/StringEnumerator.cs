@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UtfString.Unsafe.Utf16
+namespace UtfString.Unsafe.DualEncoding
 {
     public struct StringEnumerator : IEnumerator<CodePoint>
     {
