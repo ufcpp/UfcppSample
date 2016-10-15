@@ -1,12 +1,14 @@
-﻿using System.Linq;
-
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            NoAllocation.Test();
+            DecodeSample.Decode();
+            Performance.Check();
+            return;
+            CompatibleWithBstr.WriteLayout();
+            NoAllocation.AllocationCheck();
             AllCharactersInUnicodeData.Count().Wait();
             CharacterLength.WriteLength();
         }

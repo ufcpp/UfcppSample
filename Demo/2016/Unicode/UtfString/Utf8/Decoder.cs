@@ -23,10 +23,10 @@ namespace UtfString.Utf8
             uint x = buffer[index];
 
             var byteCount =
-                (x >= 0b1111_0000U) ? (byte)4 :
-                (x >= 0b1110_0000U) ? (byte)3 :
-                (x >= 0b1100_0000U) ? (byte)2 :
-                (byte)1;
+                (x < 0b1100_0000U) ? (byte)1 :
+                (x < 0b1110_0000U) ? (byte)2 :
+                (x < 0b1111_0000U) ? (byte)3 :
+                (byte)4;
 
             if (index + byteCount > buffer.Length) return Constants.InvalidCount;
 
@@ -66,35 +66,38 @@ namespace UtfString.Utf8
         {
             if (index >= buffer.Length) return Constants.End;
 
-            uint code = buffer[index++];
+            uint code = buffer[index];
 
-            if (code >= 0b1111_0000)
+            if (code < 0b1100_0000)
             {
-                // 4バイト文字
-                code &= 0b0111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                return (new CodePoint(code), 4);
+                // ASCII 文字
+                return (new CodePoint(code), 1);
             }
-            if (code >= 0b1110_0000)
-            {
-                // 3バイト文字
-                code &= 0b1111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
-                return (new CodePoint(code), 3);
-            }
-            if (code >= 0b1100_0000)
+            if (code < 0b1110_0000)
             {
                 // 2バイト文字
+                if (index + 1 >= buffer.Length) return Constants.End;
                 code &= 0b1_1111;
-                if (!TryNext(buffer, ref index, ref code)) return Constants.End;
+                code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
                 return (new CodePoint(code), 2);
             }
+            if (code < 0b1111_0000)
+            {
+                // 3バイト文字
+                if (index + 2 >= buffer.Length) return Constants.End;
+                code &= 0b1111;
+                code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
+                code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
+                return (new CodePoint(code), 3);
+            }
 
-            // ASCII 文字
-            return (new CodePoint(code), 1);
+            // 4バイト文字
+            if (index + 3 >= buffer.Length) return Constants.End;
+            code &= 0b0111;
+            code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
+            code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
+            code = (code << 6) | (uint)(buffer[++index] & 0b0011_1111);
+            return (new CodePoint(code), 4);
         }
 
         private static bool TryNext(ArrayAccessor buffer, ref int index, ref uint code)

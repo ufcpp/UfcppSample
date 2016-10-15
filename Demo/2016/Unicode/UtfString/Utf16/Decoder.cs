@@ -18,13 +18,9 @@
         {
             if (index >= buffer.Length) return Constants.InvalidCount;
             uint x = buffer[index];
-            if ((x & 0b1111_1100_0000_0000) == 0b1101_1000_0000_0000)
-            {
-                if (index + 1 >= buffer.Length) return Constants.InvalidCount;
-                return 2;
-            }
-            else
-                return 1;
+            var count = (x & 0b1111_1100_0000_0000) == 0b1101_1000_0000_0000 ? (byte)2 : (byte)1;
+            if (index + count > buffer.Length) return Constants.InvalidCount;
+            return count;
         }
 
         public static CodePoint Decode(ArrayAccessor buffer, Index index)
@@ -34,10 +30,8 @@
 
             if (index.count == 2)
             {
-                uint y = buffer[i + 1];
-
                 var code = (x & 0b0011_1111_1111) + 0b0100_0000;
-                code = (code << 10) | (y & 0b0011_1111_1111);
+                code = (code << 10) | ((uint)buffer[i + 1] & 0b0011_1111_1111);
                 return new CodePoint(code);
             }
             else
@@ -54,7 +48,6 @@
 
             if ((x & 0b1111_1100_0000_0000) == 0b1101_1000_0000_0000)
             {
-                // サロゲート ペアの処理
                 var code = (x & 0b0011_1111_1111) + 0b0100_0000;
                 if (index >= buffer.Length) return Constants.End;
                 x = buffer[index++];
@@ -65,8 +58,6 @@
             }
             else
             {
-                // 利用頻度が高い文字はほぼこちら側に来る
-                // バッファー内の値を素通し。
                 return (new CodePoint(x), 1);
             }
         }

@@ -1,28 +1,83 @@
-﻿using System;
-using System.Linq;
-using static System.Text.Encoding;
-using Utf8String = UtfString.Generic.String<byte, UtfString.Generic.ByteAccessor, UtfString.Generic.Utf8Decoder>;
-using Utf16String = UtfString.Generic.String<ushort, UtfString.Generic.ShortAccessor, UtfString.Generic.Utf16Decoder<UtfString.Generic.ShortAccessor>>;
+﻿#define USE_UTF8
+
+using System;
+
+#if USE_UTF8
+using MyString = UtfString.Utf8.String;
+#else
+using MyString = UtfString.Utf16.String;
+#endif
 
 namespace ConsoleApplication1
 {
     class NoAllocation
     {
-        public static void Test()
+        public static void AllocationCheck()
         {
-            var testString = "aáαℵあáあ゙亜👩👩🏽";
-            var s1 = new Utf8String(UTF8.GetBytes(testString));
-            var s2 = new Utf16String(Unicode.GetBytes(testString));
+            const int N = 10000;
+            var str = "aáαℵあáあ゙亜👩👩🏽👨🏻‍👩🏿‍👦🏽‍👦🏼";
+#if USE_UTF8
+            var encoding = System.Text.Encoding.UTF8;
+#else
+            var encoding = System.Text.Encoding.Unicode;
+#endif
+            var data = encoding.GetBytes(str);
 
-            foreach (var c in s1) Console.WriteLine(c);
-            foreach (var c in s2) Console.WriteLine(c);
+            Console.WriteLine(data.Length);
+            Console.WriteLine(str);
+            Console.WriteLine(str.Length);
 
-            AssertIsTrue(s1.SequenceEqual(s2));
-        }
+            GC.Collect();
+            {
+                Console.WriteLine("--------");
+                var begin = GC.GetTotalMemory(false);
+                Console.WriteLine(begin);
+                (int total, int ascii, int latin1, int utf16, int surrogatePair) len = (0, 0, 0, 0, 0);
 
-        private static void AssertIsTrue(bool condition)
-        {
-            if (!condition) throw new InvalidOperationException();
+                for (int i = 0; i < N; i++)
+                {
+                    var s = new MyString(data);
+                    len = (0, 0, 0, 0, 0);
+                    foreach (var x in s)
+                    {
+                        len.total++;
+                        if (x.Value < 0x80) len.ascii++;
+                        else if (x.Value < 0x100) len.latin1++;
+                        else if (x.Value < 0x10000) len.utf16++;
+                        else len.surrogatePair++;
+                    }
+                }
+                var end = GC.GetTotalMemory(false);
+                Console.WriteLine(end);
+                Console.WriteLine($"{end - begin} {(end - begin) / N}");
+                Console.WriteLine("\t" + len);
+            }
+
+            GC.Collect();
+            {
+                Console.WriteLine("--------");
+                var begin = GC.GetTotalMemory(false);
+                Console.WriteLine(begin);
+                (int total, int ascii, int latin1, int utf16, int surrogatePair) len = (0, 0, 0, 0, 0);
+
+                for (int i = 0; i < N; i++)
+                {
+                    var s = encoding.GetString(data);
+                    len = (0, 0, 0, 0, 0);
+                    foreach (var x in s)
+                    {
+                        if (!char.IsLowSurrogate(x)) len.total++;
+                        if (x < 0x80) len.ascii++;
+                        else if (x < 0x100) len.latin1++;
+                        else if (!char.IsSurrogate(x)) len.utf16++;
+                        else if (char.IsHighSurrogate(x)) len.surrogatePair++;
+                    }
+                }
+                var end = GC.GetTotalMemory(false);
+                Console.WriteLine(end);
+                Console.WriteLine($"{end - begin} {(end - begin) / N}");
+                Console.WriteLine("\t" + len);
+            }
         }
     }
 }

@@ -88,7 +88,6 @@ namespace UtfString.Generic
 
             if ((x & 0b1111_1100_0000_0000) == 0b1101_1000_0000_0000)
             {
-                // サロゲート ペアの処理
                 var code = (x & 0b0011_1111_1111) + 0b0100_0000;
                 if (index >= buffer.Length) return Constants.End;
                 x = buffer[index++];
@@ -99,8 +98,6 @@ namespace UtfString.Generic
             }
             else
             {
-                // 利用頻度が高い文字はほぼこちら側に来る
-                // バッファー内の値を素通し。
                 return (new CodePoint(x), 1);
             }
         }
