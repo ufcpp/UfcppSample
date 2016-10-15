@@ -6,7 +6,6 @@
         {
             DecodeSample.Decode();
             Performance.Check();
-            return;
             CompatibleWithBstr.WriteLayout();
             NoAllocation.AllocationCheck();
             AllCharactersInUnicodeData.Count().Wait();

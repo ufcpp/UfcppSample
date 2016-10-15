@@ -9,6 +9,7 @@ namespace ConsoleApplication1
     {
         public static void WriteLength()
         {
+            WriteLength("{ \"key\": \"value\" }");
             WriteLength("aαあ😀");
             WriteLength("아조선글");
             WriteLength("👨‍👨‍👨‍👨‍👨‍👨‍👨");
