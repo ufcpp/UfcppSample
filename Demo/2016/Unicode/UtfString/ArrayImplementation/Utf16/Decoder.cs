@@ -31,19 +31,17 @@
         public static CodePoint Decode(ushort[] buffer, Index index)
         {
             var i = index.index;
-            uint x = buffer[i];
+            uint code = buffer[i];
 
             if (index.wordCount == 2)
             {
-                uint y = buffer[i + 1];
-
-                var code = (x & 0b0011_1111_1111) + 0b0100_0000;
-                code = (code << 10) | (y & 0b0011_1111_1111);
+                code = (code & 0b0011_1111_1111) + 0b0100_0000;
+                code = (code << 10) | ((uint)buffer[i + 1] & 0b0011_1111_1111);
                 return new CodePoint(code);
             }
             else
             {
-                return new CodePoint(x);
+                return new CodePoint(code);
             }
         }
 

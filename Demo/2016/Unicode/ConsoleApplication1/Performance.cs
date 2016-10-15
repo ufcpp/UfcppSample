@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.Text;
+using System.Linq;
 
 #if !ArrayImplementation
 // こっちの実装だと、UTF-16の方がいちいちfixedが必要でちょっと性能悪い
@@ -19,6 +20,22 @@ namespace ConsoleApplication1
     {
         public static void Check()
         {
+            var s = "a";
+            var utf8 = Encoding.UTF8.GetBytes(s);
+#if !ArrayImplementation
+            var utf16 = Encoding.Unicode.GetBytes(s);
+#else
+            var utf16 = Copy8To16(Encoding.Unicode.GetBytes(s));
+#endif
+
+            // JIT の時間カウントしないように最初に1度アクセス
+            var s1 = new Utf8String(utf8);
+            var i1 = s1.Indexes;
+            var c1 = s1[i1.First()];
+            var s2 = new Utf16String(utf16);
+            var i2 = s2.Indexes;
+            var c2 = s2[i2.First()];
+
             Console.WriteLine("絵文字あり");
             Check("ASCII: abcABC, Latin-1: ÀÁÂÃÄÅ, ελληνικά кириллица עִברִית ひらがな 한글 漢字, combining: áあ゙, emoji: 👩👩🏽👨‍👨‍👨‍👨‍👨‍👨‍👨👨🏻‍👩🏿‍👦🏽‍👦🏼");
 
@@ -55,51 +72,61 @@ namespace ConsoleApplication1
 #endif
             GC.Collect();
 
-            var sw = new Stopwatch();
-
-            sw.Start();
-            for (int i = 0; i < N; i++)
-                foreach (var c in new Utf8String(utf8))
-                    ;
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
-
-            sw.Reset();
-
-            sw.Start();
-            for (int i = 0; i < N; i++)
-                foreach (var c in new Utf16String(utf16))
-                    ;
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
-
-            sw.Reset();
-
-            sw.Start();
-            for (int i = 0; i < N; i++)
+            for (int n = 0; n < 3; n++)
             {
-                var x = new Utf8String(utf8);
-                foreach (var index in x.Indexes)
+                Console.WriteLine("---- " + n + " ----");
+                using (SW.New("  utf-8  code point: "))
                 {
-                    var c = x[index];
+                    for (int i = 0; i < N; i++)
+                        foreach (var c in new Utf8String(utf8))
+                            ;
+                }
+                using (SW.New("  utf-16 code point: "))
+                {
+                    for (int i = 0; i < N; i++)
+                        foreach (var c in new Utf16String(utf16))
+                            ;
+                }
+                using (SW.New("  utf-8  index     : "))
+                {
+                    for (int i = 0; i < N; i++)
+                    {
+                        var x = new Utf8String(utf8);
+                        foreach (var index in x.Indexes)
+                        {
+                            var c = x[index];
+                        }
+                    }
+                }
+                using (SW.New("  utf-16 index     : "))
+                {
+                    for (int i = 0; i < N; i++)
+                    {
+                        var x = new Utf16String(utf16);
+                        foreach (var index in x.Indexes)
+                        {
+                            var c = x[index];
+                        }
+                    }
                 }
             }
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
+        }
 
-            sw.Reset();
-
-            sw.Start();
-            for (int i = 0; i < N; i++)
+        struct SW : IDisposable
+        {
+            private Stopwatch _sw;
+            private string _caption;
+            private SW(Stopwatch sw, string caption)
             {
-                var x = new Utf16String(utf16);
-                foreach (var index in x.Indexes)
-                {
-                    var c = x[index];
-                }
+                _sw = sw; sw.Start();
+                _caption = caption;
             }
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
+            public static SW New(string caption) => new SW(new Stopwatch(), caption);
+            public void Dispose()
+            {
+                _sw.Stop();
+                Console.WriteLine(_caption + _sw.Elapsed);
+            }
         }
 
         private static ushort[] Copy8To16(byte[] encodedBytes)
