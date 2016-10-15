@@ -1,13 +1,17 @@
-﻿namespace NativeInterop
+﻿using System.Runtime.InteropServices;
+
+namespace NativeInterop
 {
     class Program
     {
         static void Main(string[] args)
         {
-            DllImportSample.Main();
-            ComImportSample.Main();
-            ComLateBindingSample.Main();
-            WinRtSample.Main();
+            YourOwnDllImport.Main();
+
+            //DllImportSample.Main();
+            //ComImportSample.Main();
+            //ComLateBindingSample.Main();
+            //WinRtSample.Main();
         }
     }
 }
