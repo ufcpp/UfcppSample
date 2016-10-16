@@ -4,12 +4,12 @@
     {
         static void Main(string[] args)
         {
-            //DecodeSample.Decode();
-            //Performance.Check();
-            //CompatibleWithBstr.WriteLayout();
-            //NoAllocation.AllocationCheck();
-            //AllCharactersInUnicodeData.Count().Wait();
-            //CharacterLength.WriteLength();
+            DecodeSample.Decode();
+            Performance.Check();
+            CompatibleWithBstr.WriteLayout();
+            NoAllocation.AllocationCheck();
+            AllCharactersInUnicodeData.Count().Wait();
+            CharacterLength.WriteLength();
             ComparisonWithSystemString.Run();
         }
     }

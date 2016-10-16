@@ -10,6 +10,7 @@
             var utf8RawData = new byte[] { 0x7B, 0x20, 0x22, 0x6B, 0x65, 0x79, 0x22, 0x3A, 0x20, 0x22, 0x61, 0xE3, 0x81, 0x82, 0xF0, 0x9F, 0x98, 0x80, 0x22, 0x20, 0x7D };
             var utf16RawData = new char[] { '{', ' ', '"', 'k', 'e', 'y', '"', ':', ' ', '"', 'a', 'あ', (char)0xD83D, (char)0xDE00, '"', ' ', '}' };
 
+            // string 型
             {
                 // UTF-8 → UTF-16 の変換でメモリ確保が必要
                 var s1 = System.Text.Encoding.UTF8.GetString(utf8RawData);
@@ -23,13 +24,14 @@
                 Console.WriteLine(sub);
             }
 
+            // Utf8String 型
             {
                 // メモリ確保しない実装
                 var s = new Utf8String(utf8RawData);
 
                 // インデックスでの文字取得(s[0] とか)はできないんで、foreach を使う
                 // foreach もすべて構造体で展開されるのでメモリ確保不要
-                foreach (var c in s)
+                foreach (var c in s.CodePoints)
                 {
                     Console.WriteLine(c);
                 }
@@ -37,12 +39,13 @@
                 // Substring もコピー不要な実装になっている
                 var sub = s.Substring(10, 8);
 
-                foreach (var c in sub)
+                foreach (var c in sub.CodePoints)
                 {
                     Console.WriteLine(c);
                 }
             }
 
+            // string 型
             {
                 // 内部でコピーしているので…
                 var s1 = new string(utf16RawData);
@@ -57,6 +60,7 @@
                 Console.WriteLine(s2); // { "key": "aあ😀" }
             }
 
+            // Utf8String 型
             {
                 // データを共有しているので…
                 var s1 = new Utf8String(utf8RawData);

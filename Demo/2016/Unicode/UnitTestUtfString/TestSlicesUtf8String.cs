@@ -21,7 +21,7 @@ namespace UnitTestUtfString
 
         private static void ShouldBeIdentical(Utf8String s, uint[] expected)
         {
-            var codePoints = ((IEnumerable<CodePoint>)s).ToArray();
+            var codePoints = s.CodePoints.ToArray();
 
             Assert.AreEqual(expected.Length, codePoints.Length);
 
@@ -48,7 +48,7 @@ namespace UnitTestUtfString
 
             for (int i = 0; i < n; i++)
             {
-                foreach (var x in s)
+                foreach (var x in s.CodePoints)
                     ;
 
                 if (s.Length > 3)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace UtfString.Slices
 {
-    public struct Utf8String : IEnumerable<CodePoint>
+    public struct Utf8String
     {
         private readonly ReadOnlySpan _buffer;
 
@@ -13,23 +13,31 @@ namespace UtfString.Slices
             _buffer = buffer;
         }
 
-        public Enumerator GetEnumerator() => new Enumerator(_buffer);
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        IEnumerator<CodePoint> IEnumerable<CodePoint>.GetEnumerator() => GetEnumerator();
-
         public int Length => Decoder.GetByteCount(_buffer);
 
         // この index/length は byte 配列のインデックスなので注意。文字数ベースじゃない。
         public Utf8String Substring(int index) => new Utf8String(_buffer.Slice(index));
         public Utf8String Substring(int index, int length) => new Utf8String(_buffer.Slice(index, length));
 
-        public struct Enumerator : IEnumerator<CodePoint>
+        public CodePointEnumerable CodePoints => new CodePointEnumerable(_buffer);
+
+        public struct CodePointEnumerable : IEnumerable<CodePoint>
+        {
+            private readonly ReadOnlySpan _buffer;
+            public CodePointEnumerable(ReadOnlySpan buffer) { _buffer = buffer; }
+            public CodePointEnumerator GetEnumerator() => new CodePointEnumerator(_buffer);
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            IEnumerator<CodePoint> IEnumerable<CodePoint>.GetEnumerator() => GetEnumerator();
+        }
+
+        public struct CodePointEnumerator : IEnumerator<CodePoint>
         {
             private readonly ReadOnlySpan _buffer;
             private int _index;
             private CodePoint _current;
 
-            public Enumerator(ReadOnlySpan buffer)
+            public CodePointEnumerator(ReadOnlySpan buffer)
             {
                 _buffer = buffer;
                 _index = 0;
@@ -41,13 +49,13 @@ namespace UtfString.Slices
 
             object IEnumerator.Current => Current;
             void IDisposable.Dispose() { }
-            void IEnumerator.Reset() { throw new NotSupportedException(); }
+            void IEnumerator.Reset() { throw new NotImplementedException(); }
         }
 
         public override string ToString()
         {
             var sb = new System.Text.StringBuilder();
-            foreach (var c in this)
+            foreach (var c in CodePoints)
             {
                 var v = c.Value;
                 if (v < 0x10000)
