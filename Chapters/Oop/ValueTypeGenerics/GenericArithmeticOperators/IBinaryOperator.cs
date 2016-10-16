@@ -5,12 +5,12 @@
         T Operate(T x, T y);
     }
 
-    struct AddOperation : IBinaryOperator<int>
+    struct Add : IBinaryOperator<int>
     {
         public int Operate(int x, int y) => x + y;
     }
 
-    struct MulOperation : IBinaryOperator<int>
+    struct Mul : IBinaryOperator<int>
     {
         public int Operate(int x, int y) => x * y;
     }

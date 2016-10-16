@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ValueTypeGenerics.GenericArithmeticOperators.Generics.GenericArithmeticOperators</StartupObject>
+    <StartupObject>ValueTypeGenerics.GenericArithmeticOperators.PseudoStatic.GenericArithmeticOperators</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AvoidBoxing.cs" />
     <Compile Include="Foreach\Struct\Program.cs" />
     <Compile Include="Foreach\Iterator\Program.cs" />
+    <Compile Include="GenericArithmeticOperators\Program.cs" />
+    <Compile Include="GenericArithmeticOperators\PseudoStatic\Program.cs" />
     <Compile Include="GenericArithmeticOperators\Generics\Program.cs" />
     <Compile Include="GenericArithmeticOperators\IBinaryOperator.cs" />
     <Compile Include="GenericArithmeticOperators\Interface\Program.cs" />

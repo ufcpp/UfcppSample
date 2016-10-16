@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
+namespace ValueTypeGenerics.GenericArithmeticOperators.PseudoStatic
 {
     class Program
     {
@@ -14,31 +14,31 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
 
                 for (int i = 0; i < N; i++)
                 {
-                    // ジェネリックを介せばボックス化を避けれる
-                    var sum = Sum(items, default(Add));
-                    var prod = Sum(items, default(Mul));
+                    // default(T) せず、型引数だけ書く
+                    var sum = Sum<int, Add>(items);
+                    var prod = Sum<int, Mul>(items);
                 }
 
                 var end = GC.GetTotalMemory(false);
-                Console.WriteLine($"interface: {end - begin}"); // 0 にはならない
+                Console.WriteLine($"pseudo-static: {end - begin}"); // 0 って出るはず
             }
         }
 
-        static T Sum<T, TOperator>(T[] items, TOperator op)
+        static T Sum<T, TOperator>(T[] items)
             where TOperator : struct, IBinaryOperator<T>
         {
             var sum = default(T);
             foreach (var item in items)
-                sum = op.Operate(sum, item);
+                sum = default(TOperator).Operate(sum, item); // 空の構造体なのでほぼノーコスト
             return sum;
         }
 
         static void M()
         {
             var items = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            // ジェネリックを介せばボックス化を避けれる
-            var sum = Sum(items, default(Add));
-            var prod = Sum(items, default(Mul));
+            // default(T) せず、型引数だけ書く
+            var sum = Sum<int, Add>(items);
+            var prod = Sum<int, Mul>(items);
         }
     }
 }

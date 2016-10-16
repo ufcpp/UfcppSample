@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
 
-namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
+namespace ValueTypeGenerics.GenericArithmeticOperators
 {
     class Program
     {
@@ -15,8 +16,8 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
                 for (int i = 0; i < N; i++)
                 {
                     // ジェネリックを介せばボックス化を避けれる
-                    var sum = Sum(items, default(Add));
-                    var prod = Sum(items, default(Mul));
+                    var sum = Sum(items);
+                    var prod = Prod(items);
                 }
 
                 var end = GC.GetTotalMemory(false);
@@ -24,21 +25,34 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
             }
         }
 
-        static T Sum<T, TOperator>(T[] items, TOperator op)
-            where TOperator : struct, IBinaryOperator<T>
+        static int Sum(int[] items)
         {
-            var sum = default(T);
+            var sum = 0;
             foreach (var item in items)
-                sum = op.Operate(sum, item);
+                sum = sum + item;
+            return sum;
+        }
+
+        static int Prod(int[] items)
+        {
+            var sum = 0;
+            foreach (var item in items)
+                sum = sum * item;
             return sum;
         }
 
         static void M()
         {
             var items = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            // ジェネリックを介せばボックス化を避けれる
-            var sum = Sum(items, default(Add));
-            var prod = Sum(items, default(Mul));
+            var sum = Sum(items);
+            var prod = Prod(items);
+        }
+
+        static void M2()
+        {
+            var items = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var sum = items.Aggregate(0, (x, y) => x + y);
+            var prod = items.Aggregate(0, (x, y) => x * y);
         }
     }
 }

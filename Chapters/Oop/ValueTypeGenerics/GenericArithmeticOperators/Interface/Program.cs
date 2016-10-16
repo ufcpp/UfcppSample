@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
+namespace ValueTypeGenerics.GenericArithmeticOperators.Interface
 {
-    class GenericArithmeticOperators
+    class Program
     {
         static void Main()
         {
@@ -12,23 +12,32 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
             {
                 var begin = GC.GetTotalMemory(false);
 
-                var sum = 0;
                 for (int i = 0; i < N; i++)
-                    sum += Sum<int, AddOperation>(items); // ジェネリックを介せばボックス化を避けれる
+                {
+                    // インターフェイスを介した時点でボックス化発生
+                    var sum = Sum(items, default(Add));
+                    var prod = Sum(items, default(Mul));
+                }
 
                 var end = GC.GetTotalMemory(false);
-                Console.WriteLine($"generics: {end - begin}"); // 0 って出るはず
-
+                Console.WriteLine($"interface: {end - begin}"); // 0 にはならない
             }
         }
 
-        public static T Sum<T, TOperator>(T[] items)
-            where TOperator : struct, IBinaryOperator<T>
+        static T Sum<T>(T[] items, IBinaryOperator<T> op)
         {
             var sum = default(T);
             foreach (var item in items)
-                sum = default(TOperator).Operate(sum, item); // 空の構造体なのでほぼノーコスト
+                sum = op.Operate(sum, item);
             return sum;
+        }
+
+        static void M()
+        {
+            var items = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            // インターフェイスを介した時点でボックス化発生
+            var sum = Sum(items, default(Add));
+            var prod = Sum(items, default(Mul));
         }
     }
 }
