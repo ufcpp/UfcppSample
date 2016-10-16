@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25401.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevelAccessibility", "TopLevelAccessibility", "{B1135A7C-9C78-4492-94C1-5590A04E4E16}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericsSample", "GenericsSample\GenericsSample.csproj", "{4D36C405-ACFB-45E1-9F65-A8C1DA4F527C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Variance", "Variance\Variance.csproj", "{491A0653-DCF1-43A9-8589-E5422E7C9279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueTypeGenerics", "ValueTypeGenerics\ValueTypeGenerics.csproj", "{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{491A0653-DCF1-43A9-8589-E5422E7C9279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{491A0653-DCF1-43A9-8589-E5422E7C9279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{491A0653-DCF1-43A9-8589-E5422E7C9279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
