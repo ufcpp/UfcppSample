@@ -23,8 +23,6 @@ namespace UnitTestUtfString
     [TestClass]
     public partial class TestString
     {
-
-
         [TestMethod]
         public void ShouldBeIdentical()
         {
