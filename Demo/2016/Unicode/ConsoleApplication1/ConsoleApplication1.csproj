@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AllCharactersInUnicodeData.cs" />
     <Compile Include="CharacterLength.cs" />
+    <Compile Include="ComparisonWithSystemString.cs" />
     <Compile Include="CompatibleWithBstr.cs" />
     <Compile Include="DecodeSample.cs" />
     <Compile Include="NoAllocation.cs" />
