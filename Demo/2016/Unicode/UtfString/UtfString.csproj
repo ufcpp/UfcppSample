@@ -61,7 +61,7 @@
     <Compile Include="DualEncoding\String.cs" />
     <Compile Include="Slices\Decoder.cs" />
     <Compile Include="Slices\ReadOnlySpan.cs" />
-    <Compile Include="Slices\String.cs" />
+    <Compile Include="Slices\Utf8String.cs" />
     <Compile Include="Utf8\ArrayAccessor.cs" />
     <Compile Include="Utf8\Decoder.cs" />
     <Compile Include="Utf8\String.cs" />
