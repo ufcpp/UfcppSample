@@ -29,7 +29,9 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.PseudoStatic
         {
             var sum = default(T);
             foreach (var item in items)
-                sum = default(TOperator).Operate(sum, item); // 空の構造体なのでほぼノーコスト
+                sum = default(TOperator).Operate(sum, item);
+            // ↑ メソッド内で default()
+            // 空の構造体なのでほぼノーコスト
             return sum;
         }
 
