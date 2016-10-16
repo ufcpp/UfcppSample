@@ -12,10 +12,10 @@
 
             // string 型
             {
-                // UTF-8 → UTF-16 の変換でメモリ確保が必要
+                // UTF-8 → UTF-16 の変換でヒープ確保が必要
                 var s1 = System.Text.Encoding.UTF8.GetString(utf8RawData);
 
-                // string 型は char[] を受け取る場合でも、内部でコピーを作るのでメモリ確保発生
+                // string 型は char[] を受け取る場合でも、内部でコピーを作るのでヒープ確保発生
                 var s2 = new string(utf16RawData);
 
                 // string.Substring もコピー発生
@@ -26,11 +26,12 @@
 
             // Utf8String 型
             {
-                // メモリ確保しない実装
+                // ヒープ確保しない実装
                 var s = new Utf8String(utf8RawData);
 
-                // インデックスでの文字取得(s[0] とか)はできないんで、foreach を使う
-                // foreach もすべて構造体で展開されるのでメモリ確保不要
+                // インデックスでの文字取得はできない。s[0] は byte 単位のアクセスになる
+                // コード ポイントの取り出しには CodePoints を使う
+                // foreach もすべて構造体で展開されるのでヒープ確保不要
                 foreach (var c in s.CodePoints)
                 {
                     Console.WriteLine(c);
