@@ -47,8 +47,17 @@ namespace UnitTestUtfString
             var start = GC.GetTotalMemory(false);
 
             for (int i = 0; i < n; i++)
+            {
                 foreach (var x in s)
                     ;
+
+                if (s.Length > 3)
+                {
+                    var sub1 = s.Substring(1, 1);
+                    var sub2 = s.Substring(2);
+                    var sub3 = s.Substring(3);
+                }
+            }
 
             var end = GC.GetTotalMemory(false);
 

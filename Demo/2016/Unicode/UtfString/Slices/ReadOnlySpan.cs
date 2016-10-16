@@ -24,6 +24,7 @@
         public byte this[int index] => _array[_index + index];
         public int Length => _length;
 
+        public ReadOnlySpan Slice(int index) => new ReadOnlySpan(_array, _index + index, _length - index);
         public ReadOnlySpan Slice(int index, int length) => new ReadOnlySpan(_array, _index + index, length);
 
         public struct Enumerator
