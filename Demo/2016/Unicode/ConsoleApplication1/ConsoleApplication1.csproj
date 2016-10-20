@@ -51,6 +51,7 @@
     <Compile Include="ComparisonWithSystemString.cs" />
     <Compile Include="CompatibleWithBstr.cs" />
     <Compile Include="DecodeSample.cs" />
+    <Compile Include="DualEncoding.cs" />
     <Compile Include="NoAllocation.cs" />
     <Compile Include="Performance.cs" />
     <Compile Include="Program.cs" />

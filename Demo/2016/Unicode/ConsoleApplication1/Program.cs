@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            DualEncoding.Run();
             DecodeSample.Decode();
             Performance.Check();
             CompatibleWithBstr.WriteLayout();
