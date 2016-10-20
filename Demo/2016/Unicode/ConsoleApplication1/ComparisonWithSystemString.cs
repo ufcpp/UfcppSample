@@ -1,7 +1,7 @@
 ﻿namespace ConsoleApplication1
 {
     using System;
-    using UtfString.Slices;
+    using System.Text.Utf8;
 
     class ComparisonWithSystemString
     {
