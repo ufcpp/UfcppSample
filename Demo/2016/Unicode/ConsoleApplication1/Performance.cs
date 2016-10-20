@@ -14,6 +14,8 @@ using Utf8String = UtfString.ArrayImplementation.Utf8.String;
 using Utf16String = UtfString.ArrayImplementation.Utf16.String;
 #endif
 
+using LabUtf8String = System.Text.Utf8.Utf8String;
+
 namespace ConsoleApplication1
 {
     class Performance
@@ -75,6 +77,12 @@ namespace ConsoleApplication1
             for (int n = 0; n < 3; n++)
             {
                 Console.WriteLine("---- " + n + " ----");
+                using (SW.New("corefxlab code point: "))
+                {
+                    for (int i = 0; i < N; i++)
+                        foreach (var c in new LabUtf8String(utf8))
+                            ;
+                }
                 using (SW.New("  utf-8  code point: "))
                 {
                     for (int i = 0; i < N; i++)
