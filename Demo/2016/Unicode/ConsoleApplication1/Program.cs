@@ -5,6 +5,9 @@
         static void Main(string[] args)
         {
             DualEncoding.Run();
+            GraphemeIdentifiers.DiacriticalMark();
+            GraphemeIdentifiers.ZeroWidthJoiner();
+            GraphemeIdentifiers.IdeographicVariationSelector();
             DecodeSample.Decode();
             Performance.Check();
             CompatibleWithBstr.WriteLayout();

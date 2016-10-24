@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E95AB122-4543-4D5E-88CE-4F9B122B1B6B}</ProjectGuid>
+    <ProjectGuid>{183C51EE-B17B-4607-991B-16A01FE5A66E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>IdentifierScope</RootNamespace>
+    <AssemblyName>IdentifierScope</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +31,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,28 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllCharactersInUnicodeData.cs" />
-    <Compile Include="CharacterLength.cs" />
-    <Compile Include="ComparisonWithSystemString.cs" />
-    <Compile Include="CompatibleWithBstr.cs" />
-    <Compile Include="DecodeSample.cs" />
-    <Compile Include="DualEncoding.cs" />
-    <Compile Include="GraphemeIdentifiers.cs" />
-    <Compile Include="NoAllocation.cs" />
-    <Compile Include="Performance.cs" />
+    <Compile Include="AfterDeclaration.cs" />
+    <Compile Include="AnonymousFunction.cs" />
+    <Compile Include="EmbeddedStatement.cs" />
+    <Compile Include="For.cs" />
+    <Compile Include="Foreach.cs" />
+    <Compile Include="IsOperator.cs" />
+    <Compile Include="Iterator.cs" />
+    <Compile Include="Lifetime.cs" />
+    <Compile Include="Loop.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="Method.cs" />
+    <Compile Include="Nest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SurrogatePair.cs" />
+    <Compile Include="Scope.cs" />
+    <Compile Include="TypeName.cs" />
+    <Compile Include="TypeName1.cs" />
+    <Compile Include="TypeName2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UtfString\UtfString.csproj">
-      <Project>{0d031be1-34d0-4765-a9ff-6fb42c967f6a}</Project>
-      <Name>UtfString</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

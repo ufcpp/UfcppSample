@@ -24,7 +24,7 @@ namespace ConsoleApplication1
             WriteLength("𩸽");
         }
 
-        static void WriteLength(string s)
+        public static void WriteLength(string s)
         {
             var codes = GetCodePoints(s).ToArray();
             Console.WriteLine("文字: " + s);
