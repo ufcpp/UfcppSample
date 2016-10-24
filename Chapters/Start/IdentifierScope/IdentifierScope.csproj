@@ -51,6 +51,7 @@
     <Compile Include="IsOperator.cs" />
     <Compile Include="Iterator.cs" />
     <Compile Include="Lifetime.cs" />
+    <Compile Include="LocalFunctions.cs" />
     <Compile Include="Loop.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Method.cs" />
