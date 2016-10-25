@@ -40,6 +40,8 @@ namespace Tuples
             var t = s.GetValue();
         }
 
+#if false
+        // VS 15 RC 以降書けなくなった
         static void New()
         {
             // var t = new T(1, 2); みたいなのと同じノリ
@@ -48,6 +50,7 @@ namespace Tuples
             // var t = new T { x = 1, y = 2}; みたいなのと同じノリ
             var t2 = new (int x, int y) { x = 1, y = 2 };
         }
+#endif
 
         static void Deconstruct()
         {
