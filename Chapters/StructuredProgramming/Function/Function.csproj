@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionBodied.cs" />
     <Compile Include="FuncAction.cs" />
     <Compile Include="InputNumberSample.cs" />
     <Compile Include="MultipleReturns.cs" />
