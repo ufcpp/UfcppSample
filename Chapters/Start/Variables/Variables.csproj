@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A080169A-A2C3-498C-A64C-CEB1CBDB925A}</ProjectGuid>
+    <ProjectGuid>{C1933686-B6BC-49A4-87FA-69AAB0C1500B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RefReturns</RootNamespace>
-    <AssemblyName>RefReturns</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Variables</RootNamespace>
+    <AssemblyName>Variables</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;__DEMO__</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -28,12 +28,9 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;__DEMO__</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>RefReturns.Summary.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,24 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MultiStepRef\Program.cs" />
+    <Compile Include="Literals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefLocals\Program.cs" />
-    <Compile Include="RefReturns\Program.cs" />
-    <Compile Include="Summary.cs" />
-    <Compile Include="ValueTypePassedByReference\ArraySample.cs" />
-    <Compile Include="ValueTypePassedByReference\Capsuled\Program.cs" />
-    <Compile Include="ValueTypePassedByReference\CircularBuffer.cs" />
-    <Compile Include="ValueTypePassedByReference\ImmutablePoint.cs" />
-    <Compile Include="ValueTypePassedByReference\Ref\Program.cs" />
-    <Compile Include="ValueTypePassedByReference\Raw\Program.cs" />
-    <Compile Include="ValueTypePassedByReference\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
