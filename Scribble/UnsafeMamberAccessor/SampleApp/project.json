@@ -1,0 +1,17 @@
+﻿{
+  "frameworks": {
+    "net462": {}
+  },
+  "runtimes": {
+    "win": {},
+    "win-anycpu": {},
+    "win-x64": {}
+  },
+  "dependencies": {
+    "System.Runtime.CompilerServices.Unsafe": "4.3.0",
+    "System.Slices": "0.1.0-e161117-1",
+    "System.Text.Json": "0.1.0-e161117-1",
+    "System.Text.Utf8": "0.1.0-e161117-1",
+    "System.ValueTuple": "4.3.0"
+  }
+}
