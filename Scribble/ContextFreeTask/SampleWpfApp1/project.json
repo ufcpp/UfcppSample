@@ -7,5 +7,7 @@
     "win-anycpu": {},
     "win-x64": {}
   },
-  "dependencies": {}
+  "dependencies": {
+    "ContextFreeTasks": "0.1.0"
+  }
 }

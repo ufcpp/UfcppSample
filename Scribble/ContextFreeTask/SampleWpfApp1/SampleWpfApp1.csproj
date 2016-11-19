@@ -90,11 +90,5 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContextFreeTask.Net46\ContextFreeTask.Net46.csproj">
-      <Project>{3ec436a8-2fd9-4cdd-9974-795eee536d5f}</Project>
-      <Name>ContextFreeTask.Net46</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
