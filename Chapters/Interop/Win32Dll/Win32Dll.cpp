@@ -5,6 +5,7 @@
 
 extern "C"
 {
+	// UTF-16 null終端文字列
 	__declspec(dllexport) void __stdcall FillA16(wchar_t* str)
 	{
 		for (auto p = str; *p; p++)
@@ -13,6 +14,7 @@ extern "C"
 		}
 	}
 
+	// ANSI null終端文字列
 	__declspec(dllexport) void __stdcall FillA8(char* str)
 	{
 		for (auto p = str; *p; p++)
