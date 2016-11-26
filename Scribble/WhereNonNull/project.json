@@ -1,0 +1,14 @@
+﻿{
+  "frameworks": {
+    "net462": {}
+  },
+  "runtimes": {
+    "win": {},
+    "win-anycpu": {},
+    "win-x64": {}
+  },
+  "dependencies": {
+    "BenchmarkDotNet": "0.10.0",
+    "System.Reflection.Metadata": "1.2.0"
+  }
+}
