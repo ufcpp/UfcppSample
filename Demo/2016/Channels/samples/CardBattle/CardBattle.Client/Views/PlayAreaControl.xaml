@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="CardBattle.Views.PlayAreaControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CardBattle.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             FontSize="20">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" DataContext="{Binding Boss}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="30" Grid.Row="0">ボス</TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock>HP: </TextBlock>
+                <TextBlock Text="{Binding Hp}" />
+            </StackPanel>
+            <StackPanel x:Name="bossAttackPanel" Grid.Row="2" Visibility="Collapsed">
+                <ItemsControl ItemsSource="{Binding Attacks}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>P(</TextBlock>
+                                <TextBlock Text="{Binding Player.Id}" />
+                                <TextBlock>)に</TextBlock>
+                                <TextBlock Text="{Binding Damage}" />
+                                <TextBlock>ダメージ</TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            <StackPanel x:Name="playerAttackPanel" Grid.Row="2" HorizontalAlignment="Center" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>プレイヤー(</TextBlock>
+                    <TextBlock Text="{Binding Player.Id}" />
+                    <TextBlock>)の攻撃</TextBlock>
+                </StackPanel>
+                <TextBlock Text="{Binding Damage}"/>
+                <ItemsControl ItemsSource="{Binding Cards}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{Binding Suit, Converter={StaticResource suitBrush}}" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock TextAlignment="Center" FontSize="10" Text="{Binding Suit, Converter={StaticResource suitString}}" Foreground="{Binding Suit, Converter={StaticResource suitBrush}}" />
+                                    <TextBlock TextAlignment="Center" FontSize="10" Text="{Binding Number, Converter={StaticResource numString}}" Foreground="{Binding Suit, Converter={StaticResource suitBrush}}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" DataContext="{Binding Players}">
+            <ItemsControl ItemsSource="{Binding}" FontSize="15">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" TextBlock.Foreground="{Binding Id, Converter={StaticResource playerColor}}">
+                            <TextBlock>プレイヤー(</TextBlock>
+                            <TextBlock Text="{Binding Id}" />
+                            <TextBlock>) HP: </TextBlock>
+                            <TextBlock Text="{Binding Hp}" />
+                            <TextBlock Text="  " />
+                            <ItemsControl ItemsSource="{Binding Cards}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="{Binding Suit, Converter={StaticResource suitBrush}}" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock TextAlignment="Center" FontSize="10" Text="{Binding Suit, Converter={StaticResource suitString}}" Foreground="{Binding Suit, Converter={StaticResource suitBrush}}" />
+                                                <TextBlock TextAlignment="Center" FontSize="10" Text="{Binding Number, Converter={StaticResource numString}}" Foreground="{Binding Suit, Converter={StaticResource suitBrush}}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</UserControl>

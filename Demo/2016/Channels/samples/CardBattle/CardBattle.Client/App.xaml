@@ -1,0 +1,13 @@
+﻿<Application x:Class="CardBattle.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CardBattle"
+             xmlns:views="clr-namespace:CardBattle.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <views:SuitBrushConverter x:Key="suitBrush" />
+        <views:SuitStringConverter x:Key="suitString" />
+        <views:NumberTextConverter x:Key="numString" />
+        <views:PlayerColorConverter x:Key="playerColor" />
+    </Application.Resources>
+</Application>

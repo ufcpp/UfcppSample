@@ -1,0 +1,13 @@
+﻿{
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {},
+    "win-anycpu": {}
+  },
+  "dependencies": {
+    "MinimumAsyncBridge": "0.10.0.0",
+    "System.ValueTuple": "4.0.0-rc3-24212-01"
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "frameworks": {
+    "net461": {}
+  },
+  "runtimes": {
+    "win": {},
+    "win-anycpu": {}
+  },
+  "dependencies": {
+    "System.Reactive": "3.0.0",
+    "System.Reactive.Windows.Threading": "3.0.0",
+    "System.ValueTuple": "4.0.1-beta-24416-08"
+  }
+}
