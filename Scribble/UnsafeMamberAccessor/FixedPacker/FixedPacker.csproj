@@ -50,7 +50,7 @@
     <Compile Include="Samples\DefinitionData\Sample.cs" />
     <Compile Include="Samples\GeneratedData\Program.cs" />
     <Compile Include="Samples\GeneratedData\Sample.cs" />
-    <Compile Include="Samples\Packer.cs" />
+    <Compile Include="Packer.cs" />
     <Compile Include="Unpacker.cs" />
   </ItemGroup>
   <ItemGroup>

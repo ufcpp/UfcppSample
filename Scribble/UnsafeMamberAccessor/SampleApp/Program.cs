@@ -152,8 +152,9 @@ namespace SampleApp
         private static long ParseInt(Utf8String s)
         {
             var v = 0L;
-            foreach (var b in s.Bytes)
+            for (int i = 0; i < s.Bytes.Length; i++)
             {
+                var b = s.Bytes[i];
                 v *= 10;
                 v += b - (byte)'0';
             }
