@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>43f6e03d-e27a-4ce6-9164-860cc0d17b7b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PrivateField</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DefiniteAssignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ManagedPointer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RecursiveLayout.cs" />
+  </ItemGroup>
+</Project>
