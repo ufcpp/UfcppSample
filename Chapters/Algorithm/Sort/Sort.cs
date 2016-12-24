@@ -8,7 +8,7 @@ namespace Algorithm.Sort
         {
             var t = t1;
             t1 = t2;
-            t2 = t1;
+            t2 = t;
         }
     }
 }
