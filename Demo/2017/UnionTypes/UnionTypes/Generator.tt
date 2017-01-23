@@ -1,0 +1,37 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+var unions = 5;
+var types = new[] { "int", "Vector", "string" };
+#>
+using System;
+
+namespace UnionTypes
+{
+    partial class Generator
+    {
+<#
+for (var u = 1; u <= unions; u++)
+foreach (var t in types)
+{
+#>
+        public static Union<#= u #><<#= t #>> Random_<#= t #>_<#= u #>(Random r, double arrayRate) => RandomUnion(r, arrayRate, Random_<#= t #>, Union<#= u #>.New, Union<#= u #>.New);
+<#
+}
+#>
+
+<#
+for (var u = 1; u <= unions; u++)
+foreach (var t in types)
+{
+#>
+        public static Union<#= u #><<#= t #>> Fix_<#= t #>_<#= u #>(Random r, double arrayRate) => FixUnion(r, arrayRate, value_<#= t #>, array_<#= t #>, Union<#= u #>.New, Union<#= u #>.New);
+<#
+}
+#>
+    }
+}

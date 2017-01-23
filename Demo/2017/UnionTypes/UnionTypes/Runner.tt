@@ -1,0 +1,60 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+var unions = 5;
+var types = new[] { "int", "Vector", "string" };
+#>
+using System;
+
+namespace UnionTypes
+{
+    partial class Runner
+    {
+
+        public static void Run()
+        {
+            var r = new Random();
+
+<#
+for (var u = 1; u <= unions; u++)
+{
+#>
+            var t<#= u #> = TimeSpan.Zero;
+<#
+}
+#>
+
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (var rate in new[] { 0.1, 0.3, 0.5, 0.7, 0.9 })
+                {
+                    //Console.WriteLine(rate);
+
+<#
+for (var u = 1; u <= unions; u++)
+foreach (var t in types)
+{
+#>
+                    t<#= u #> += Run<<#= t #>, Union<#= u #><<#= t #>>>("rnd <#= u #> <#= t.Substring(0, 3) #>", rate, r, Generator.Random_<#= t #>_<#= u #>);
+                    t<#= u #> += Run<<#= t #>, Union<#= u #><<#= t #>>>("fix <#= u #> <#= t.Substring(0, 3) #>", rate, r, Generator.Fix_<#= t #>_<#= u #>);
+<#
+}
+#>
+                }
+            }
+
+<#
+for (var u = 1; u <= unions; u++)
+{
+#>
+            Console.WriteLine("Union<#= u #>: " + t<#= u #>);
+<#
+}
+#>
+        }
+    }
+}
