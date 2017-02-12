@@ -56,6 +56,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Summary.cs" />
+    <Compile Include="SwitchPerformance.cs" />
     <Compile Include="SwitchSample.cs" />
   </ItemGroup>
   <ItemGroup>
