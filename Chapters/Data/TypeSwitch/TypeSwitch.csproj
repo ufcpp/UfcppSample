@@ -58,6 +58,7 @@
     <Compile Include="Summary.cs" />
     <Compile Include="SwitchPerformance.cs" />
     <Compile Include="SwitchSample.cs" />
+    <Compile Include="TypeSwitchPerformance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
