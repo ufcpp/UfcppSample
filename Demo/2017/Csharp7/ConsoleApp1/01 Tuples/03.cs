@@ -15,6 +15,8 @@ namespace ConsoleApp1._01_Tuples
             Console.WriteLine($"{count} {sum}");
         }
 
+        // 非同期にもしやすい
+        // ここでは書いてないけども、イテレーターにも
         private static async Task<(int count, int sum)> Tally(int[] data)
         {
             await Task.Delay(1);

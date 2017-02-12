@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1._01_Tuples
 {
-    static class Extensions
+    static class Extensions1
     {
-        public static async Task Run()
+        // 実用の例。タプルを使った拡張メソッドを2つほど紹介
+        // 1つ目
+        public static void Run()
         {
             // インデックス付き foreach
             foreach (var (x, i) in new[] { 1, 2, 3, 4, 5 }.Indexed())
             {
                 Console.WriteLine($"{x}, {i}");
             }
-
-            // 複数の Task をタプルを使って await
-            await (Task.Delay(1), Task.Delay(1));
         }
 
         public static IEnumerable<(T item, int index)> Indexed<T>(this IEnumerable<T> items)
@@ -28,7 +25,5 @@ namespace ConsoleApp1._01_Tuples
                 ++i;
             }
         }
-
-        public static TaskAwaiter GetAwaiter(this (Task t1, Task t2) t) => Task.WhenAll(t.t1, t.t2).GetAwaiter();
     }
 }
