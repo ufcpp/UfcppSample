@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByRef", "ByRef\ByRef.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructLayoutSample", "StructLayoutSample\StructLayoutSample.csproj", "{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefAndPointer", "RefAndPointer\RefAndPointer.csproj", "{33541ADA-A350-4C7E-AA45-BA1565A885E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
