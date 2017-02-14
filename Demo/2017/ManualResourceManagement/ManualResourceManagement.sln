@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeapAllocation", "HeapAllocation\HeapAllocation.csproj", "{AEF49475-6C55-4112-BC4C-347AD13BFE78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01 HeapAllocation", "HeapAllocation\01 HeapAllocation.csproj", "{AEF49475-6C55-4112-BC4C-347AD13BFE78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02 DisposePattern", "DisposePattern\02 DisposePattern.csproj", "{C95FAC1E-74B3-4832-BE32-5C262B3D942E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{AEF49475-6C55-4112-BC4C-347AD13BFE78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AEF49475-6C55-4112-BC4C-347AD13BFE78}.Release|x64.ActiveCfg = Release|x64
 		{AEF49475-6C55-4112-BC4C-347AD13BFE78}.Release|x64.Build.0 = Release|x64
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Debug|x64.Build.0 = Debug|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Release|x64.ActiveCfg = Release|Any CPU
+		{C95FAC1E-74B3-4832-BE32-5C262B3D942E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
