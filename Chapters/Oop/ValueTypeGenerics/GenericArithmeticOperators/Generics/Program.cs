@@ -24,10 +24,10 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Generics
             }
         }
 
-        static T Sum<T, TOperator>(T[] items, TOperator op)
+        public static T Sum<T, TOperator>(T[] items, TOperator op)
             where TOperator : struct, IBinaryOperator<T>
         {
-            var sum = default(T);
+            var sum = op.Zero;
             foreach (var item in items)
                 sum = op.Operate(sum, item);
             return sum;

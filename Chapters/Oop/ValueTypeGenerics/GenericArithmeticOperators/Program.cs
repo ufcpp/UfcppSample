@@ -25,7 +25,7 @@ namespace ValueTypeGenerics.GenericArithmeticOperators
             }
         }
 
-        static int Sum(int[] items)
+        public static int Sum(int[] items)
         {
             var sum = 0;
             foreach (var item in items)
@@ -33,9 +33,9 @@ namespace ValueTypeGenerics.GenericArithmeticOperators
             return sum;
         }
 
-        static int Prod(int[] items)
+        public static int Prod(int[] items)
         {
-            var sum = 0;
+            var sum = 1;
             foreach (var item in items)
                 sum = sum * item;
             return sum;

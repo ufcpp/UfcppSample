@@ -24,9 +24,9 @@ namespace ValueTypeGenerics.GenericArithmeticOperators.Interface
             }
         }
 
-        static T Sum<T>(T[] items, IBinaryOperator<T> op)
+        public static T Sum<T>(T[] items, IBinaryOperator<T> op)
         {
-            var sum = default(T);
+            var sum = op.Zero;
             foreach (var item in items)
                 sum = op.Operate(sum, item);
             return sum;
