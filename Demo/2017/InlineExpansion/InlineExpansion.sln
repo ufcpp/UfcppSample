@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01 InlinedOrNot", "InlinedO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02 VirtualCall", "VirtualCall\02 VirtualCall.csproj", "{FA867395-FC89-4ACE-8971-9F0BFD8081D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03 Generics", "Generics\03 Generics.csproj", "{169A9475-3466-4043-8B6C-F10E2A3B30F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{FA867395-FC89-4ACE-8971-9F0BFD8081D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA867395-FC89-4ACE-8971-9F0BFD8081D8}.Release|x64.ActiveCfg = Release|Any CPU
 		{FA867395-FC89-4ACE-8971-9F0BFD8081D8}.Release|x64.Build.0 = Release|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{169A9475-3466-4043-8B6C-F10E2A3B30F1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
