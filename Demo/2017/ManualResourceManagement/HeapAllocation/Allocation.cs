@@ -1,19 +1,15 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Attributes.Jobs;
-using BenchmarkDotNet.Engines;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
+using HeapAllocation.Data;
+using HeapAllocation.Pools;
 
 namespace HeapAllocation
 {
     /// <summary>
-    /// 小さくて寿命が短いオブジェクトを大量に作ってみるベンチマーク。
+    /// 小さくて寿命が短いオブジェクトを大量に作ってみて性能を見てみる。
     /// </summary>
-    [SimpleJob(RunStrategy.Throughput)]
     public class Allocation
     {
-        const int Loops = 10000;
-
         /// <summary>
         /// 参考実装。
         /// 構造体にするだけでどれくらい速いか。
@@ -22,61 +18,57 @@ namespace HeapAllocation
         /// クラスを構造体に変えただけで、<see cref="GarbageCollection"/>より余裕で1桁速い。
         /// 小さくて頻繁に new して寿命が短いオブジェクトは構造体にしないといけないというのがよくわかる例。
         /// </summary>
-        [Benchmark]
-        public static (int x, int y) Struct() => Struct(Loops);
-
         public static (int x, int y) Struct(int loops)
         {
-            var p = new PointStruct(1, 2);
+            var p = new StructPoint(1, 2);
             for (int i = 0; i < loops; i++)
             {
-                p = new PointStruct(p.Y, p.X + p.Y);
+                p = new StructPoint(p.Y, p.X + p.Y);
             }
             return (p.X, p.Y);
         }
 
         /// <summary>
         /// .NET の GC に任せる。
-        /// 一般に、Mark and Sweep でGC管理されてるヒープは確保のコスト低い。
         /// こんなコード、通常は構造体を使ってやるけども、そこをあえてクラスにするとどのくらいの負担か見てみる。
+        ///
+        /// <see cref="Struct(int)"/>の7倍くらいの遅さ。
+        /// スタック(構造体利用)とヒープ(クラス利用)で1桁も差が付かないのは相当速い部類。
+        /// 一般に、Mark and Sweep でGC管理されてるヒープは確保のコスト低い。
         /// </summary>
-        [Benchmark]
-        public static (int x, int y) GarbageCollection() => GarbageCollection(Loops);
-
         public static (int x, int y) GarbageCollection(int loops)
         {
-            var p = new PointClass(1, 2);
+            var p = new ClassPoint(1, 2);
             for (int i = 0; i < loops; i++)
             {
-                p = new PointClass(p.Y, p.X + p.Y);
+                p = new ClassPoint(p.Y, p.X + p.Y);
             }
             return (p.X, p.Y);
         }
 
         /// <summary>
         /// <see cref="Marshal.AllocHGlobal(int)"/>(C++のnew/deleteみたいなもの)でメモリ確保してみる例。
-        /// 当たり前だけど、通常、こんな頻度でGC管理外メモリ確保しない。
+        /// ベタ書きな参考実装版。
+        /// <seealso cref="AllocHGlobal(int)"/>
         ///
         /// 尋常じゃなく遅い。
-        /// 遅いのわかりきってるんでループ回数を100分の1にしておく。それでもまだ<see cref="GarbageCollection"/>より1桁遅い。
-        /// 要するに、<see cref="GarbageCollection"/>と3桁以上の差が付く。ほんと .NET とかのGCは速い。
+        /// (当たり前だけど、通常、こんな頻度でGC管理外メモリ確保しない。)
+        /// <see cref="GarbageCollection(int)"/>より3桁くらい遅い。桁。マジで。
         ///
         /// 参考: http://stackoverflow.com/questions/16567836/why-is-c-heap-allocation-so-slow-compared-to-javas-heap-allocation
         /// ヒープの確保って、通常はOSに対するシステムコールになってて、かなり重たい処理になる。
-        /// Java とか .NET でヒープ確保が軽いのは、ランタイムが最初に大き目の領域を確保したうえで、システムコールなしでメモリの払い出ししてくれるから。
+        /// Java とか .NET でヒープ確保が軽いのは、(もちろん Mark and Sweep とか Compaction がむちゃくちゃ性能いいのもあるけど、)
+        /// ランタイムが最初に大き目の領域を確保したうえで、システムコールなしでメモリの払い出ししてくれてるおかげもある。
         /// </summary>
-        [Benchmark]
-        public unsafe static (int x, int y) AllocHGlobal() => AllocHGlobal(Loops / 100);
-
-        public unsafe static (int x, int y) AllocHGlobal(int loops)
+        public unsafe static (int x, int y) AllocHGlobal0(int loops)
         {
-            var p = (PointStruct*)Marshal.AllocHGlobal(sizeof(PointStruct));
+            var p = (StructPoint*)Marshal.AllocHGlobal(sizeof(StructPoint));
             p->X = 1;
             p->Y = 2;
 
             for (int i = 0; i < loops; i++)
             {
-                var q = (PointStruct*)Marshal.AllocHGlobal(sizeof(PointStruct));
+                var q = (StructPoint*)Marshal.AllocHGlobal(sizeof(StructPoint));
                 q->X = p->Y;
                 q->Y = p->X + p->Y;
 
@@ -89,75 +81,70 @@ namespace HeapAllocation
         }
 
         /// <summary>
-        /// 基本的にやってることは<see cref="AllocHGlobal"/>と一緒。
-        /// 煩雑な処理を<see cref="PointHGlobal"/>に閉じ込めただけ。
-        /// パフォーマンス的には<see cref="AllocHGlobal"/> + ちょっとしたオーバーヘッド(誤差程度)になるはず。
+        /// 基本的にやってることは<see cref="AllocHGlobal0(int)"/>と一緒。
+        /// 煩雑な処理を<see cref="IAllocator"/>に閉じ込めただけ。
+        /// パフォーマンス的には<see cref="AllocHGlobal0(int)"/> + ちょっとしたオーバーヘッド(誤差程度)になるはず。
+        /// もちろん、<see cref="AllocHGlobal0(int)"/>と同様、GC 基準で3桁遅い。
         /// </summary>
-        [Benchmark]
-        public static (int x, int y) AllocHGlobalRefactored() => AllocHGlobalRefactored(Loops / 100);
-
-        public static (int x, int y) AllocHGlobalRefactored(int loops)
-        {
-            var p = PointHGlobal.New(1, 2);
-            for (int i = 0; i < loops; i++)
-            {
-                var q = PointHGlobal.New(p.Y, p.X + p.Y);
-                p.Dispose();
-                p = q;
-            }
-            var t = (p.X, p.Y);
-            p.Dispose();
-            return t;
-        }
+        public static (int x, int y) AllocHGlobal(int loops) => Pointer(HGlobalAllocator.Instance, loops);
 
         /// <summary>
-        /// 自前でメモリプールを作って、その中からメモリを払い出し・返却する実装。
+        /// 自前でメモリ プールを作って、その中からメモリを払い出し・返却する実装。
         /// lock 版。
         ///
-        /// こういう実装ならGC発生は全くしない。
-        /// じゃあ、<see cref="GarbageCollection"/>より速くなるかというと、実際計ってみると15～20倍くらい遅い。
-        /// <see cref="GarbageCollection"/>の方は、手元の環境だとGCが平均55回程度発生してるけど、それでもマネージ ヒープの方が速い。
-        /// 空いてるメモリ領域を探すコストがそれなりに高いのと、最近のGCがバックグラウンドGCになっててマルチコア環境だとほとんどコストになってないせい。
+        /// こういう実装ならGC発生は全くしないし、<see cref="Marshal.AllocHGlobal(int)"/>呼び出しも最初の1回だけ。
+        /// じゃあ、<see cref="GarbageCollection(int)"/>より速くなるかというと、実際計ってみると15～20倍くらい遅い。
+        /// <see cref="GarbageCollection(int)"/>の方は、手元の環境だとGCが平均55回程度発生してるけど、それでもマネージ ヒープの方が速い。
+        ///
+        /// 差が出る理由
+        /// - lock がかなりきつい
+        /// - 検索アルゴリズムの問題: 空いてるメモリ領域を探すのに、自作では並大抵のGC実装に勝てない
+        /// - 最近のGCはバックグラウンドGCになっててマルチコア環境だとほとんどコストが見えない
         /// </summary>
-        [Benchmark]
-        public static (int x, int y) LockMemoryPool() => LockMemoryPool(Loops);
-
-        public static (int x, int y) LockMemoryPool(int loops)
-        {
-            var p = PointLockPool.New(1, 2);
-            for (int i = 0; i < loops; i++)
-            {
-                var q = PointLockPool.New(p.Y, p.X + p.Y);
-                p.Dispose();
-                p = q;
-            }
-            var t = (p.X, p.Y);
-            p.Dispose();
-            return t;
-        }
+        public static (int x, int y) LockPoolPointer(int loops) => Pointer(LockPool.Instance, loops);
 
         /// <summary>
-        /// <see cref="LockMemoryPool"/> CAS 版。
+        /// <see cref="LockPoolPointer(int)"/> CAS 版。
         ///
         /// lock はもともと結構重たいものなので、いわゆる lock-free アルゴリズムって言うやつで置き換え。
-        /// <see cref="LockMemoryPool"/>と比べると倍くらいは速い。
-        /// それでもまだ<see cref="GarbageCollection"/>より10倍遅い。
-        /// Mark and Sweep はほんと速い。
+        /// <see cref="LockPoolPointer(int)"/>と比べると倍以上速い。
+        /// それでもまだ<see cref="GarbageCollection(int)"/>より5～6倍遅い。
         /// </summary>
-        [Benchmark]
-        public static (int x, int y) CasMemoryPool() => CasMemoryPool(Loops);
+        public static (int x, int y) CasPoolPointer(int loops) => Pointer(CasPool.Instance, loops);
 
-        public static (int x, int y) CasMemoryPool(int loops)
+        /// <summary>
+        /// <see cref="LockPoolPointer(int)"/> のスレッド ローカル版。
+        ///
+        /// マルチスレッド動作はあきらめる。
+        /// 用途がかなり限られるものの、GCに頼らないメモリ管理としてはオーバーヘッド極小のはず。
+        /// ここまで削ってまだ<see cref="GarbageCollection(int)"/>より2～3倍遅い。
+        /// Mark and Sweep はほんとに速い。
+        ///
+        /// これが Mark and Sweep より遅くなってそうな要因は、
+        /// - プールを準備する部分が重い
+        /// - 検索アルゴリズムの問題
+        /// - 一時変数 q が増えてるのでこれが最適化を阻害
+        /// - Delete 呼び出しのコスト
+        /// というあたり。
+        /// </summary>
+        public static (int x, int y) LocalPoolPointer(int loops)
         {
-            var p = PointCasPool.New(1, 2);
+            using (var pool = new LocalPool(20))
+                return Pointer(new LocalPool(20), loops);
+        }
+
+        static (int x, int y) Pointer<Allocator>(Allocator pool, int loops)
+            where Allocator : IAllocator
+        {
+            var p = pool.New(1, 2);
             for (int i = 0; i < loops; i++)
             {
-                var q = PointCasPool.New(p.Y, p.X + p.Y);
-                p.Dispose();
+                var q = pool.New(p.Y, p.X + p.Y);
+                pool.Delete(p);
                 p = q;
             }
             var t = (p.X, p.Y);
-            p.Dispose();
+            pool.Delete(p);
             return t;
         }
     }
