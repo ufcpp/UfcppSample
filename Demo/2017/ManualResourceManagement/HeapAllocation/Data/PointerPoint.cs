@@ -15,8 +15,8 @@
 
     unsafe static class PoolExtensions
     {
-        public static PointerPoint New<TPool>(this TPool pool, int x, int y)
-            where TPool : Pools.IAllocator
+        public static PointerPoint New<Allocator>(this Allocator pool, int x, int y)
+            where Allocator : Allocators.IAllocator
         {
             var p = pool.Alloc();
             p[0] = x;
@@ -24,8 +24,8 @@
             return new PointerPoint(p);
         }
 
-        public static void Delete<TPool>(this TPool pool, PointerPoint p)
-            where TPool : Pools.IAllocator
+        public static void Delete<Allocator>(this Allocator pool, PointerPoint p)
+            where Allocator : Allocators.IAllocator
         {
             pool.Release(p._pointer);
         }

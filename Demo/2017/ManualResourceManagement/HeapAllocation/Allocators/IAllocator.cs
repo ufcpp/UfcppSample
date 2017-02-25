@@ -1,4 +1,4 @@
-﻿namespace HeapAllocation.Pools
+﻿namespace HeapAllocation.Allocators
 {
     /// <summary>
     /// メモリ確保・解放用のインターフェイス。

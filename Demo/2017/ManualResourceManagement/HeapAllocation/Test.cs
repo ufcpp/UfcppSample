@@ -22,8 +22,8 @@ namespace HeapAllocation
             {
                 var a = Allocation.Struct(i);
                 if (!a.Equals(Allocation.GarbageCollection(i))) throw new InvalidOperationException();
-                if (!a.Equals(Allocation.AllocHGlobal0(i))) throw new InvalidOperationException();
-                if (!a.Equals(Allocation.AllocHGlobal(i))) throw new InvalidOperationException();
+                if (!a.Equals(Allocation.Malloc0(i))) throw new InvalidOperationException();
+                if (!a.Equals(Allocation.Malloc(i))) throw new InvalidOperationException();
             }
 
             // プール実装だけは並列実行があっても大丈夫かの確認が必要

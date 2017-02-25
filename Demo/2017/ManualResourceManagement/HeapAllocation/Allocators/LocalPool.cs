@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace HeapAllocation.Pools
+namespace HeapAllocation.Allocators
 {
     /// <summary>
     /// スレッドごと個別のプールを持つ前提で、同時実行制御を一切しないメモリ プール。
@@ -21,7 +21,7 @@ namespace HeapAllocation.Pools
         public LocalPool(int poolSize)
         {
             _poolSize = poolSize;
-            var p = Marshal.AllocHGlobal(poolSize * (sizeof(int) * 3));
+            var p = Interop.malloc(poolSize * (sizeof(int) * 3));
             var ip = (int*)p;
             for (int i = 0; i < poolSize * 3; i += 3)
             {
@@ -30,7 +30,7 @@ namespace HeapAllocation.Pools
             _pool = ip;
         }
 
-        public void Dispose() => Marshal.Release((IntPtr)_pool);
+        public void Dispose() => Interop.free((IntPtr)_pool);
 
         public int* Alloc()
         {

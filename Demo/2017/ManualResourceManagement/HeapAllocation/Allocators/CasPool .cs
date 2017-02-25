@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace HeapAllocation.Pools
+namespace HeapAllocation.Allocators
 {
     /// <summary>
     /// lock をやめて、CAS (Compare And Swap。<see cref="Interlocked.CompareExchange(ref int, int, int)"/>)を使うようにしたメモリ プール。
@@ -18,7 +18,7 @@ namespace HeapAllocation.Pools
         public CasPool(int poolSize)
         {
             _poolSize = poolSize;
-            var p = Marshal.AllocHGlobal(poolSize * (sizeof(int) * 3));
+            var p = Interop.malloc(poolSize * (sizeof(int) * 3));
             var ip = (int*)p;
             for (int i = 0; i < poolSize * 3; i += 3)
             {
@@ -27,7 +27,7 @@ namespace HeapAllocation.Pools
             _pool = ip;
         }
 
-        public void Dispose() => Marshal.Release((IntPtr)_pool);
+        public void Dispose() => Interop.free((IntPtr)_pool);
 
         public int* Alloc()
         {

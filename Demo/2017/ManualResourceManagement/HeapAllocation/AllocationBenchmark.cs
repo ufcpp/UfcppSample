@@ -18,13 +18,11 @@ namespace HeapAllocation
         [Benchmark]
         public static (int x, int y) GarbageCollection() => Allocation.GarbageCollection(Loops);
 
-        // 遅いのわかりきってるんでループ回数を100分の1にしておく。
         [Benchmark]
-        public unsafe static (int x, int y) AllocHGlobal0() => Allocation.AllocHGlobal0(Loops / 100);
+        public unsafe static (int x, int y) Malloc0() => Allocation.Malloc0(Loops);
 
-        // 遅いのわかりきってるんでループ回数を100分の1にしておく。
         [Benchmark]
-        public static (int x, int y) AllocHGlobal() => Allocation.AllocHGlobal(Loops / 100);
+        public static (int x, int y) Malloc() => Allocation.Malloc(Loops);
 
         [Benchmark]
         public static (int x, int y) LockPoolPointer() => Allocation.LockPoolPointer(Loops);

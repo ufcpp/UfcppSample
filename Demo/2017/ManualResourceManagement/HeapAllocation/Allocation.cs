@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using HeapAllocation.Data;
-using HeapAllocation.Pools;
+using HeapAllocation.Allocators;
 
 namespace HeapAllocation
 {
@@ -47,46 +47,45 @@ namespace HeapAllocation
         }
 
         /// <summary>
-        /// <see cref="Marshal.AllocHGlobal(int)"/>(C++のnew/deleteみたいなもの)でメモリ確保してみる例。
+        /// malloc (msvcrt.dll の P/Invoke)でメモリ確保してみる例。
         /// ベタ書きな参考実装版。
-        /// <seealso cref="AllocHGlobal(int)"/>
+        /// <seealso cref="Malloc(int)"/>
         ///
         /// 尋常じゃなく遅い。
         /// (当たり前だけど、通常、こんな頻度でGC管理外メモリ確保しない。)
-        /// <see cref="GarbageCollection(int)"/>より3桁くらい遅い。桁。マジで。
+        /// <see cref="GarbageCollection(int)"/>より20倍くらい遅い。
         ///
-        /// 参考: http://stackoverflow.com/questions/16567836/why-is-c-heap-allocation-so-slow-compared-to-javas-heap-allocation
-        /// ヒープの確保って、通常はOSに対するシステムコールになってて、かなり重たい処理になる。
-        /// Java とか .NET でヒープ確保が軽いのは、(もちろん Mark and Sweep とか Compaction がむちゃくちゃ性能いいのもあるけど、)
-        /// ランタイムが最初に大き目の領域を確保したうえで、システムコールなしでメモリの払い出ししてくれてるおかげもある。
+        /// tcmallocとか、msvcrtのmallocよりも10倍くらい速いものもあるらしいけども。
+        /// tcmallocは内部的にGC的なことをしてるらしい。
+        /// 参考: http://pages.cs.wisc.edu/~danb/google-perftools-0.98/tcmalloc.html
         /// </summary>
-        public unsafe static (int x, int y) AllocHGlobal0(int loops)
+        public unsafe static (int x, int y) Malloc0(int loops)
         {
-            var p = (StructPoint*)Marshal.AllocHGlobal(sizeof(StructPoint));
+            var p = (StructPoint*)Interop.malloc(sizeof(StructPoint));
             p->X = 1;
             p->Y = 2;
 
             for (int i = 0; i < loops; i++)
             {
-                var q = (StructPoint*)Marshal.AllocHGlobal(sizeof(StructPoint));
+                var q = (StructPoint*)Interop.malloc(sizeof(StructPoint));
                 q->X = p->Y;
                 q->Y = p->X + p->Y;
 
-                Marshal.Release((IntPtr)p);
+                Interop.free((IntPtr)p);
                 p = q;
             }
             var t = (p->X, p->Y);
-            Marshal.Release((IntPtr)p);
+            Interop.free((IntPtr)p);
             return t;
         }
 
         /// <summary>
-        /// 基本的にやってることは<see cref="AllocHGlobal0(int)"/>と一緒。
+        /// 基本的にやってることは<see cref="Malloc0(int)"/>と一緒。
         /// 煩雑な処理を<see cref="IAllocator"/>に閉じ込めただけ。
-        /// パフォーマンス的には<see cref="AllocHGlobal0(int)"/> + ちょっとしたオーバーヘッド(誤差程度)になるはず。
-        /// もちろん、<see cref="AllocHGlobal0(int)"/>と同様、GC 基準で3桁遅い。
+        /// パフォーマンス的には<see cref="Malloc0(int)"/> + ちょっとしたオーバーヘッド(誤差程度)になるはず。
+        /// もちろん、<see cref="Malloc0(int)"/>と同様、.NETのGC基準で20倍遅い。
         /// </summary>
-        public static (int x, int y) AllocHGlobal(int loops) => Pointer(HGlobalAllocator.Instance, loops);
+        public static (int x, int y) Malloc(int loops) => Pointer(MallocAllocator.Instance, loops);
 
         /// <summary>
         /// 自前でメモリ プールを作って、その中からメモリを払い出し・返却する実装。
@@ -94,7 +93,7 @@ namespace HeapAllocation
         ///
         /// こういう実装ならGC発生は全くしないし、<see cref="Marshal.AllocHGlobal(int)"/>呼び出しも最初の1回だけ。
         /// じゃあ、<see cref="GarbageCollection(int)"/>より速くなるかというと、実際計ってみると15～20倍くらい遅い。
-        /// <see cref="GarbageCollection(int)"/>の方は、手元の環境だとGCが平均55回程度発生してるけど、それでもマネージ ヒープの方が速い。
+        /// <see cref="GarbageCollection(int)"/>の方は、手元の環境だとGCが1000回の実行当たり平均55回程度発生してるけど、それでもマネージ ヒープの方が速い。
         ///
         /// 差が出る理由
         /// - lock がかなりきつい

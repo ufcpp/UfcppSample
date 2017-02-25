@@ -69,14 +69,15 @@
   <ItemGroup>
     <Compile Include="Allocation.cs" />
     <Compile Include="AllocationBenchmark.cs" />
+    <Compile Include="Allocators\Interop.cs" />
+    <Compile Include="Allocators\MallocAllocator.cs" />
     <Compile Include="Data\ClassPoint.cs" />
     <Compile Include="Data\PointerPoint.cs" />
-    <Compile Include="Pools\CasPool .cs" />
-    <Compile Include="Pools\HGlobalAllocator.cs" />
-    <Compile Include="Pools\IAllocator.cs" />
-    <Compile Include="Pools\LockPool.cs" />
+    <Compile Include="Allocators\CasPool .cs" />
+    <Compile Include="Allocators\IAllocator.cs" />
+    <Compile Include="Allocators\LockPool.cs" />
     <Compile Include="Data\StructPoint.cs" />
-    <Compile Include="Pools\LocalPool.cs" />
+    <Compile Include="Allocators\LocalPool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />

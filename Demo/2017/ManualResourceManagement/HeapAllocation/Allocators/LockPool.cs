@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace HeapAllocation.Pools
+namespace HeapAllocation.Allocators
 {
     /// <summary>
     /// lock を使ってスレッド安全にしたメモリ プール。
@@ -17,7 +17,7 @@ namespace HeapAllocation.Pools
         public LockPool(int poolSize)
         {
             _poolSize = poolSize;
-            var p = Marshal.AllocHGlobal(poolSize * (sizeof(int) * 3));
+            var p = Interop.malloc(poolSize * (sizeof(int) * 3));
             var ip = (int*)p;
             for (int i = 0; i < poolSize * 3; i += 3)
             {
@@ -28,7 +28,7 @@ namespace HeapAllocation.Pools
             _lockObj = new object();
         }
 
-        public void Dispose() => Marshal.Release((IntPtr)_pool);
+        public void Dispose() => Interop.free((IntPtr)_pool);
 
         public int* Alloc()
         {

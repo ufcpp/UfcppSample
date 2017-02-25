@@ -2,26 +2,25 @@
 
 namespace HeapAllocation
 {
-    /* 手元の環境でのベンチマーク実行結果の一例
-    (AllocHGlobal0, AllocHGlobal の2個はダントツで遅いことが分かり切っているのでループ回数が他の100分の1。)
+/* 手元の環境でのベンチマーク実行結果の一例
 
             Method |        Mean |     StdDev |   Gen 0 | Allocated |
 ------------------ |------------ |----------- |-------- |---------- |
-            Struct |   5.6062 us |  0.0544 us |       - |      24 B |
- GarbageCollection |  35.9424 us |  0.2510 us | 55.7292 | 240.05 kB |
-     AllocHGlobal0 | 254.0772 us |  3.3096 us |       - |      32 B | ※100分の1
-      AllocHGlobal | 256.7405 us |  3.6462 us |       - |      32 B | ※100分の1
-   LockPoolPointer | 549.5252 us | 16.6442 us |       - |      32 B |
-    CasPoolPointer | 213.0785 us |  0.7297 us |       - |      32 B |
-  LocalPoolPointer |  93.1231 us |  0.3804 us |       - |      26 B |
-    */
+            Struct |   5.5147 us |  0.0326 us |       - |      24 B |
+ GarbageCollection |  35.2030 us |  0.1047 us | 55.8919 | 240.05 kB |
+           Malloc0 | 763.0477 us |  1.9576 us |       - |      32 B |
+            Malloc | 772.7615 us |  6.8421 us |       - |      32 B |
+   LockPoolPointer | 539.6967 us | 16.9640 us |       - |      32 B |
+    CasPoolPointer | 212.1614 us |  1.3458 us |       - |      32 B |
+  LocalPoolPointer |  85.5372 us |  0.4944 us |       - |      26 B |
+ */
 
     /// <summary>
     /// .NET の GC (Mark and Sweep 方式)がどのくらい高性能かというのをベンチマーク取って調べる。
     /// Javaとか.NETのヒープ確保はほんとかなり速い。
     /// ちょっとやそっと自前メモリ管理を頑張ってもまず勝てない。
     ///
-    /// まず、C++のnew/deleteみたいな処理と比べたら、GCは(たとえGCが発生しても)3桁くらい速い。
+    /// まず、C++のnew/deleteみたいな処理と比べたら、GCは(たとえGCが発生しても)20倍くらい速い。
     /// (元々、そんなに頻繁にnew/deleteしちゃダメ)
     ///
     /// なので、メモリ プール(最初に大き目の領域を new して、その中でメモリを自前管理)を作ったとして、それでも、単純な実装だとGCの方が1桁速い。
