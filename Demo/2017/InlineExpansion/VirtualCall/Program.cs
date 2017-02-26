@@ -8,6 +8,14 @@ namespace VirtualCall
     /// <see cref="A"/>、<see cref="B"/>の中身を見てもらっての通り、やってる処理自体は全く同じなので、
     /// 性能差が出るとしたらインライン展開されるかどうかの問題。
     ///
+    /// 比較対象:
+    /// <see cref="BenchmarkCode.DirectA"/> … A 型変数に A 型インスタンス(<see cref="A.Value"/>にはvirtualが付いてない)
+    /// <see cref="BenchmarkCode.DirectB"/> … B 型変数に B 型インスタンス(<see cref="B.Value"/>はvirtual)
+    /// <see cref="BenchmarkCode.InterfaceA"/> … インターフェイス変数に A 型インスタンス
+    /// <see cref="BenchmarkCode.InterfaceB"/> … インターフェイス変数に B 型インスタンス
+    /// <see cref="BenchmarkCode.GenericA"/> … ジェネリック変数に A 型インスタンス
+    /// <see cref="BenchmarkCode.GenericB"/> … ジェネリック変数に B 型インスタンス
+    ///
     /// 実行すると以下のような感じに。
     ///      Method |        Mean |    StdErr |     StdDev |
     /// ----------- |------------ |---------- |----------- |

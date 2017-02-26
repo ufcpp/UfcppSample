@@ -4,7 +4,7 @@ namespace InlinedOrNot
 {
     /// <summary>
     /// インライン展開の有無でどのくらい性能差が出るかのベンチマーク。
-    /// 足し算1個を処理をループするだけ。
+    /// 足し算1個だけの処理をループするだけ。
     ///
     /// 比較対象:
     /// - <see cref="BenchmarkCode.ManuallyInlined"/>: (参考) ループ中に + をべた書き
