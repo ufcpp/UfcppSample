@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace ConsoleApp1._04_Ref
 {
-    static class Interop
-    {
-        [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr malloc(int size);
-
-        [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void free(IntPtr ptr);
-    }
 
     // ガベコレ管理対象外のヒープを使いたい
     // 自前でメモリ管理をしたい場面、一般のアプリではほとんどないけど、native相互運用とかしだすとあり得る
