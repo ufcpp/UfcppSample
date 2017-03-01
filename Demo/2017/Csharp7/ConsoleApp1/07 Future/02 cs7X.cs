@@ -3,7 +3,7 @@
     // C# 7.X 予定リスト
     // 7.1, 7.2 よりは具体性がなく、7.3 になるか 7.4 になるか… みたいなあいまいな感じ。
 
-#if true
+#if false
 
     using System;
     using System.Collections.Generic;
