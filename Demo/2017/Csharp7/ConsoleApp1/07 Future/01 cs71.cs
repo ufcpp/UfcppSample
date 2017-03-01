@@ -133,7 +133,7 @@
         int? y = default;
         string z = default;
 
-        // 同様に、new も右辺から型推論する案あり
+        // 同様に、new も右辺から型推論する案あり(7.X)
         object lockObj = new();
     }
 
