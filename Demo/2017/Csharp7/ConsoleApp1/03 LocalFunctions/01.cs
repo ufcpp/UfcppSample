@@ -16,6 +16,7 @@ namespace ConsoleApp1._03_LocalFunctions
             EventHandler<int> handler = null;
             handler = (sender, arg) =>
             {
+                Console.WriteLine("1回きりの処理");
                 SomeEvent -= handler;
             };
             SomeEvent += handler;

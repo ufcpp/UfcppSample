@@ -12,7 +12,7 @@ namespace ConsoleApp1._01_Tuples
         {
             var data = Enumerable.Range(0, 10000).ToArray();
 
-            // この辺りを「メソッド抽出すると…」
+            // この辺りを「メソッド抽出」すると…
             var count = 0;
             var sum = 0;
             foreach (var x in data)

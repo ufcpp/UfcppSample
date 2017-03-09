@@ -11,7 +11,11 @@ namespace ConsoleApp1._03_LocalFunctions
         {
             // 再帰とかイベント -= とか
             // 一度 = null してから別の行で定義とかしなくてよくなる
-            void handler(object sender, int arg) => SomeEvent -= handler;
+            void handler(object sender, int arg)
+            {
+                Console.WriteLine("1回きりの処理");
+                SomeEvent -= handler;
+            }
             SomeEvent += handler;
 
             int factorial(int x) => x <= 1 ? 1 : x * factorial(x - 1);
