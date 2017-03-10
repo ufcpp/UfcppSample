@@ -42,6 +42,12 @@ namespace ConsoleApp1._02_Patterns
             {
                 Console.WriteLine(v);
             }
+
+            string line;
+            while (!string.IsNullOrEmpty((line = Console.ReadLine())))
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }
