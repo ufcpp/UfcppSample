@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrateToProjectJson", "MigrateToProjectJson\MigrateToProjectJson.csproj", "{CB43C05A-D575-452B-A4D4-B4CD5E44568D}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{EF6E62AE-32B0-488D-B5AB-5E15EF556F1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateWrapJson", "GenerateWrapJson\GenerateWrapJson.csproj", "{3D9D9C41-3955-423E-9B9F-FE0FAA162F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrateToMsbuild15", "MigrateToMsbuild15\MigrateToMsbuild15.csproj", "{361E3785-C3D9-462D-A94E-50CF1A394CB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3D9D9C41-3955-423E-9B9F-FE0FAA162F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D9D9C41-3955-423E-9B9F-FE0FAA162F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D9D9C41-3955-423E-9B9F-FE0FAA162F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{361E3785-C3D9-462D-A94E-50CF1A394CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361E3785-C3D9-462D-A94E-50CF1A394CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361E3785-C3D9-462D-A94E-50CF1A394CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361E3785-C3D9-462D-A94E-50CF1A394CB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

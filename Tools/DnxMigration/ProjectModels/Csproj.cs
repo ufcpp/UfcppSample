@@ -12,6 +12,7 @@ namespace ProjectModels
     public class Csproj
     {
         private const string PackagesConfName = "packages.config";
+        private const string ProjectJsonName = "project.json";
 
         public static readonly XNamespace Namespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
@@ -165,7 +166,7 @@ namespace ProjectModels
         /// - Generate project.json
         /// - Replace {None Include="packages.confing"} to {None Include="project.json"}
         /// - Remove {References} reletated to NuGet packages
-        /// - Remove packages.config
+        /// - Remove packages.config files
         /// </summary>
         /// <returns>true if any change</returns>
         public bool MigrateToProjectJson()
@@ -197,6 +198,64 @@ namespace ProjectModels
             return true;
         }
 
+        /// <summary>
+        /// Rewrite this csproj file to migrate from packages.config and project.json to PackageReference tags:
+        /// - Generate project.json
+        /// - Remove {None Include="packages.confing"} and {None Include="project.json"}
+        /// - Remove {References} reletated to NuGet packages
+        /// - Add {PackageReference}
+        /// - Change {Project} ToolsVersion attribute to 15.0
+        /// - Remove packages.config and project.json files
+        /// </summary>
+        /// <returns>true if any change</returns>
+        public bool MigrateToMsbuild15()
+        {
+            if (!HasPackagesConfig && !HasProjectJson)
+                return false;
+
+            var packages1 = HasPackagesConfig ? PackagesConfig.Packages : Enumerable.Empty<Package>();
+            var packages2 = HasProjectJson ? ProjectJson.Packages : Enumerable.Empty<Package>();
+            var packages = packages1.Concat(packages2);
+
+            GeneratePackageReferences(packages);
+
+            if (HasPackagesConfig)
+            {
+                foreach (var r in GetElements("Reference"))
+                {
+                    if (PackagesConfig.Packages.Any(x => r.Attribute("Include").Value.StartsWith(x.Id + ",")))
+                    {
+                        r.Remove();
+                    }
+                }
+
+                File.Delete(PackagesConfig.Path);
+            }
+
+            if (HasProjectJson)
+            {
+                File.Delete(ProjectJsonPath);
+
+                var lockJsonPath = ProjectJsonPath.Replace(".json", ".lock.json");
+                if (File.Exists(lockJsonPath))
+                    File.Delete(lockJsonPath);
+            }
+
+            foreach (var n in GetElements("None"))
+            {
+                var include = n.Attribute("Include");
+                if (include.Value == PackagesConfName || include.Value == ProjectJsonName)
+                {
+                    n.Remove();
+                }
+            }
+
+            var version = Content.Root.Attribute("ToolsVersion");
+            version.Value = "15.0";
+
+            return true;
+        }
+
         public void GenerateWrapJson(string wrapFolder)
         {
             ProjectJson.GenerateWrapJson(TargetFrameworkVersion, wrapFolder, RelativePath, Dependencies);
@@ -218,6 +277,21 @@ namespace ProjectModels
                 var version = n.Attribute("Version")?.Value ?? n.Element(Namespace + "Version").Value;
                 yield return new Package(include, version);
             }
+        }
+
+        private void GeneratePackageReferences(IEnumerable<Package> packages)
+        {
+            var itemGroup = new XElement(Namespace + "ItemGroup");
+
+            foreach (var package in packages)
+            {
+                itemGroup.Add(new XElement(Namespace + "PackageReference",
+                    new XAttribute("Include", package.Id),
+                    new XElement(Namespace + "Version", package.Version)
+                ));
+            }
+
+            Content.Root.Add(itemGroup);
         }
     }
 }

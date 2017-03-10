@@ -62,6 +62,15 @@ namespace ProjectModels
             }
         }
 
+        public void MigrateToMsbuild15()
+        {
+            foreach (var csproj in CsharpProjcts.Where(p => p.HasPackagesConfig || p.HasProjectJson))
+            {
+                if (csproj.MigrateToMsbuild15())
+                    csproj.Save();
+            }
+        }
+
         private string WrapFolder => System.IO.Path.Combine(Folder, "wrap");
 
         public void GenerateWrapJson()
