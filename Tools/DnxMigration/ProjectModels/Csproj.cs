@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -199,6 +200,24 @@ namespace ProjectModels
         public void GenerateWrapJson(string wrapFolder)
         {
             ProjectJson.GenerateWrapJson(TargetFrameworkVersion, wrapFolder, RelativePath, Dependencies);
+        }
+
+        /// <summary>
+        /// Package infomations from PackageReference tags.
+        /// </summary>
+        /// <param name="packagesPath"></param>
+        /// <returns></returns>
+        public IEnumerable<Package> Packages => _packages ?? (_packages = GetPackages());
+        private IEnumerable<Package> _packages;
+
+        private IEnumerable<Package> GetPackages()
+        {
+            foreach (var n in GetElements("PackageReference"))
+            {
+                var include = n.Attribute("Include").Value;
+                var version = n.Attribute("Version")?.Value ?? n.Element(Namespace + "Version").Value;
+                yield return new Package(include, version);
+            }
         }
     }
 }

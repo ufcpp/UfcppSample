@@ -1,11 +1,8 @@
 ﻿using ProjectModels;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
@@ -17,8 +14,6 @@ namespace Test
             var sourcePath = Path.Combine(testDataPath, "Source");
             var tempPath = Path.Combine(testDataPath, "Temp");
 
-
-
             Prepare(sourcePath, tempPath);
 
             var slnPath = Path.Combine(tempPath, "XprojInterop.sln");
@@ -26,6 +21,43 @@ namespace Test
 
             sln.MigrateToProjectJson();
             sln.GenerateWrapJson();
+
+            //Dump(sln);
+        }
+
+        private static void Dump(Solution sln)
+        {
+            foreach (var proj in sln.CsharpProjcts)
+            {
+                Console.WriteLine(proj.Path);
+
+                if (proj.HasPackagesConfig)
+                {
+                    Console.WriteLine("---- packages.config");
+                    foreach (var p in proj.PackagesConfig.Packages)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
+
+                if (proj.HasProjectJson)
+                {
+                    Console.WriteLine("---- project.json");
+                    foreach (var p in proj.ProjectJson.Packages)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
+
+                if (proj.Packages.Any())
+                {
+                    Console.WriteLine("---- msbuild 15");
+                    foreach (var p in proj.Packages)
+                    {
+                        Console.WriteLine(p);
+                    }
+                }
+            }
         }
 
         private static void Prepare(string sourcePath, string tempPath)
