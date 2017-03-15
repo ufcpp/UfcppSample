@@ -78,10 +78,23 @@
             using (obj is IDisposable x ? x : null) // using 内がスコープ
                 ;
 
+            while (obj is int x) // while 内がスコープ
+            {
+                obj = "";
+            }
+
 #if false
             // どの x ももうスコープ外。コンパイル エラー
             x = 10;
 #endif
+        }
+
+        static void ForIncrementSample(object obj)
+        {
+            for (int i = 0; i < 100; i += obj is int x ? x : 1) // この x はこの式内でだけ使える
+            {
+                var x = "別の値"; // OK。更新式内の x とは別物
+            }
         }
 
         static void SuccessfulSample(object obj)
@@ -95,15 +108,10 @@
             }
 
             Console.WriteLine(x1); // ここも x1 のスコープ
-
-            while (obj is int x2)
-            {
-                obj = "";
-            }
-
-            x2 = 1;// ここも x2 のスコープ
         }
 
+#if false
         static int _field = int.TryParse("123", out var x) ? x : 0;
+#endif
     }
 }
