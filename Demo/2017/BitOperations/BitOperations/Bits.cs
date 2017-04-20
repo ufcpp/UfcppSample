@@ -37,7 +37,7 @@ namespace BitOperations
                     ref var b16 = ref Unsafe.As<T, Bytes16>(ref x);
                     return Create(ref b16);
                 default:
-                    throw new NotSupportedException("今のところ、1, 2, 4, 8, 16バイトの構造体しか対応していない");
+                    throw new NotSupportedException("suppors only 1, 2, 4, 8, 16 bytes struct");
             }
         }
     }
