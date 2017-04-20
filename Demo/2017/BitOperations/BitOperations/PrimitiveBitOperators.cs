@@ -2,8 +2,8 @@
 
 namespace BitOperations
 {
-    // T4 とかで生成する方がいいかも。
-    // ほぼコピペで byte, ushort, uint, ulong 用の SBitOperator を用意。
+    // BitOperator for byte, ushort, uint, ulong
+    // It might be better to use T4 template because these are almost copy & paste.
 
     public struct ByteBitOperator : SBitOperator<byte>
     {

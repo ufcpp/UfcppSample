@@ -3,8 +3,8 @@
 namespace BitOperations
 {
     /// <summary>
-    /// 16バイト(128ビット)のビット操作をするための構造体。
-    /// リトルエンディアン前提。
+    /// A 16-byte-sized struct.
+    /// I assume little-endianness.
     /// </summary>
     public struct Bytes16
     {

@@ -76,13 +76,13 @@ namespace BitOperations
 
         static void VectorSample()
         {
-            // System.Numerics.Vector<byte> は16バイトの構造体
+            // System.Numerics.Vector<byte> is a 16-byte struct.
             var vector = new Vector<byte>(Enumerable.Range(1, 16).Select(i => (byte)i).ToArray());
 
-            // Vector<byte> → Bytes16 (サイズが同じ別の型に無理やり変換)
+            // Vector<byte> → Bytes16 (conversion between same-size structs)
             ref Bytes16 bytes = ref Unsafe.As<Vector<byte>, Bytes16>(ref vector);
 
-            // ビット操作
+            // bit operations on Vector<byte>
             var bits = Bits.Create(ref bytes);
 
             WriteAsEnumerable(bits);
@@ -98,11 +98,21 @@ namespace BitOperations
         static void GenericSample()
         {
             var vector = new Vector<byte>();
-            var bits = Bits.Create(ref vector);
+            GenericSample(vector);
 
-            for (int i = 0; i < 128; i++) bits[i] = i % 2 == 1;
+            GenericSample((byte)0x12);
+            GenericSample((short)0x1224);
+            GenericSample(0x12345678);
+            GenericSample(0x123456789ABCDEF0L);
+        }
 
-            Console.WriteLine(vector);
+        private static void GenericSample<T>(T x)
+            where T : struct
+        {
+            var bits = Bits.Create(ref x);
+            for (int i = 0; i < bits.Count; i++) bits[i] = i % 2 == 1;
+
+            Console.WriteLine(x);
             WriteAsEnumerable(bits);
             WriteAsList(bits);
         }

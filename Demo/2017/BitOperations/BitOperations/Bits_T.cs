@@ -5,26 +5,22 @@ using System.Runtime.CompilerServices;
 
 namespace BitOperations
 {
-    // C# 7.2 (?)で ref-like type 機能(ref に準ずる構造体は ref 同様、フィールドにできないとかの制限を受けるべき)が入るなら、この型は ref-like であるべき
-    // C# 7.2 で機能が入るなら、型引数 T は blittable (ブロック転送可能、manged pointer を含んではいけない、ポインター化できるという型制約)であるべき
+    // Bits<T> should be a ref-like type (https://github.com/dotnet/csharplang/blob/master/meetings/2016/LDM-2016-11-01.md)
+    // Type parameter T should be blittabl (https://github.com/dotnet/csharplang/issues/187)
     public unsafe struct Bits<T, TOperator> : IBits
         where T : struct
         where TOperator : SBitOperator<T>
     {
-        // とりあえず今はポインターを使って実装
-        // ↓が正式採用されれば、safe コンテキストで実装可能
-        // https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/ByReference.cs
+        // This should use ByReference<T> (https://github.com/dotnet/coreclr/blob/master/src/mscorlib/src/System/ByReference.cs) if possible
         void* _ptr;
         public Bits(ref T x) => _ptr = Unsafe.AsPointer(ref x);
 
         /// <summary>
-        /// <paramref name="index"/>ビット目を取得。
+        /// get/set a <paramref name="index"/>-th bit。
         /// </summary>
         /// <remarks>
-        /// 下位から列挙するか上から列挙するかは<see cref="TOperator"/>の実装次第。
+        /// It depends on <see cref="TOperator"/>'s implementaion whether order of bits is ascending or descending。
         /// </remarks>
-        /// <param name="index">インデックス。</param>
-        /// <returns>ビットが1ならtrue、0ならfalse。</returns>
         public bool this[int index]
         {
             get => default(TOperator).GetBit(ref Unsafe.AsRef<T>(_ptr), index);
@@ -32,7 +28,7 @@ namespace BitOperations
         }
 
         /// <summary>
-        /// ビット長。
+        /// bit counts.
         /// </summary>
         public int Count => default(TOperator).Size;
 
@@ -41,9 +37,6 @@ namespace BitOperations
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         bool IReadOnlyList<bool>.this[int index] => this[index];
 
-        /// <summary>
-        /// 各ビットを順に列挙する enumerator。
-        /// </summary>
         public struct Enumerator : IEnumerator<bool>
         {
             int _i;

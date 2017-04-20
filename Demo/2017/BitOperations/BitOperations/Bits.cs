@@ -11,8 +11,11 @@ namespace BitOperations
         public static Bits<ulong, LongBitOperator> Create(ref ulong x) => new Bits<ulong, LongBitOperator>(ref x);
         public static Bits<Bytes16, Bytes16BitOperator> Create(ref Bytes16 x) => new Bits<Bytes16, Bytes16BitOperator>(ref x);
 
-        // box 化起きちゃうし、非常に unsafe 操作だし、決まったサイズしか対応してないけど、任意の型を受け付ける版
-        // 将来的に blittable の仕様が入ったときに、それをインターフェイスを介して戻り値に返せるかは不明
+        // Known issue:
+        // - boxing
+        // - unsafe
+        // - suppors only 1, 2, 4, 8, 16 bytes
+        // - returns a boxed value of a blittable struct
         public static IBits Create<T>(ref T x)
             where T : struct
         {

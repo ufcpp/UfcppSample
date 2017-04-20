@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BitOperations
+﻿namespace BitOperations
 {
     /// <summary>
-    /// Type Class 的な手段でいろんな型の n bit 目読み書き・シフト操作をするためのインターフェイス。
+    /// Type Class for reading/writing n-th bit and shifting.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public interface SBitOperator<T>
     {
         int Size { get; }
