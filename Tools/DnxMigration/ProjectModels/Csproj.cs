@@ -118,7 +118,7 @@ namespace ProjectModels
 
         public IEnumerable<XElement> GetItemGroups() => Content.Root.Elements(Namespace + "ItemGroup");
 
-        public IEnumerable<XElement> GetElements(string elementName) => GetItemGroups().SelectMany(g => g.Elements(Namespace + elementName)).ToArray();
+        public IEnumerable<XElement> GetElementsInItemGroups(string elementName) => GetItemGroups().SelectMany(g => g.Elements(Namespace + elementName)).ToArray();
 
         /// <summary>
         /// Enumerate depenndencies:
@@ -153,7 +153,7 @@ namespace ProjectModels
 
         private IEnumerable<string> GetProjectReferences()
         {
-            foreach (var r in GetElements("ProjectReference"))
+            foreach (var r in GetElementsInItemGroups("ProjectReference"))
             {
                 var path = r.Attribute("Include").Value;
                 var name = System.IO.Path.GetFileNameWithoutExtension(path);
@@ -176,7 +176,7 @@ namespace ProjectModels
 
             ProjectJson.GeneratePackageJson(TargetFrameworkVersion, Folder, PackagesConfig.Packages);
 
-            foreach (var r in GetElements("Reference"))
+            foreach (var r in GetElementsInItemGroups("Reference"))
             {
                 if (PackagesConfig.Packages.Any(x => r.Attribute("Include").Value.StartsWith(x.Id + ",")))
                 {
@@ -184,7 +184,7 @@ namespace ProjectModels
                 }
             }
 
-            foreach (var n in GetElements("None"))
+            foreach (var n in GetElementsInItemGroups("None"))
             {
                 var include = n.Attribute("Include");
                 if (include.Value == PackagesConfName)
@@ -221,7 +221,7 @@ namespace ProjectModels
 
             if (HasPackagesConfig)
             {
-                foreach (var r in GetElements("Reference"))
+                foreach (var r in GetElementsInItemGroups("Reference"))
                 {
                     if (PackagesConfig.Packages.Any(x => r.Attribute("Include").Value.StartsWith(x.Id + ",")))
                     {
@@ -241,7 +241,7 @@ namespace ProjectModels
                     File.Delete(lockJsonPath);
             }
 
-            foreach (var n in GetElements("None"))
+            foreach (var n in GetElementsInItemGroups("None"))
             {
                 var include = n.Attribute("Include");
                 if (include.Value == PackagesConfName || include.Value == ProjectJsonName)
@@ -271,7 +271,7 @@ namespace ProjectModels
 
         private IEnumerable<Package> GetPackages()
         {
-            foreach (var n in GetElements("PackageReference"))
+            foreach (var n in GetElementsInItemGroups("PackageReference"))
             {
                 var include = n.Attribute("Include").Value;
                 var version = n.Attribute("Version")?.Value ?? n.Element(Namespace + "Version").Value;
@@ -293,5 +293,15 @@ namespace ProjectModels
 
             Content.Root.Add(itemGroup);
         }
+
+        public bool IsNewSdk => Content.Root.Attribute("Sdk") != null;
+        public string RootNamespace => GetElementsInPropertyGroups("RootNamespace").FirstOrDefault()?.Value;
+        public string AssemblyName => GetElementsInPropertyGroups("AssemblyName").FirstOrDefault()?.Value;
+
+        public IEnumerable<XElement> GetPropertyGroups() => Content.Root.Elements(Namespace + "PropertyGroup");
+
+        public IEnumerable<XElement> GetElementsInPropertyGroups(string elementName) => GetPropertyGroups().SelectMany(g => g.Elements(Namespace + elementName)).ToArray();
+
+        public IEnumerable<string> TTFiles => GetElementsInItemGroups("None").Select(e => e.Attribute("Update")?.Value).Where(a => a != null);// && a.EndsWith(".tt"));
     }
 }

@@ -10,6 +10,39 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            var repositoryNames = new[]
+            {
+                "....",
+            };
+
+            var root = @"....";
+
+            var csprojs = (
+                from r in repositoryNames
+                from f in Directory.GetFiles(root + r, "*.csproj", SearchOption.AllDirectories)
+                select new Csproj(root, f.Replace(root, ""))
+                ).ToArray();
+
+            var hasPackagesConfig = 0;
+            var hasProjectJson = 0;
+            var hasTT = 0;
+            var isNewSdk = 0;
+
+            foreach (var x in csprojs)
+            {
+                if (x.IsNewSdk) isNewSdk++;
+                if (x.HasPackagesConfig) hasPackagesConfig++;
+                if (x.HasProjectJson) hasProjectJson++;
+                if (x.TTFiles.Any()) hasTT++;
+
+                //Console.WriteLine(new { x.AssemblyName, x.RootNamespace });
+            }
+
+            Console.WriteLine(new { total = csprojs.Length, isNewSdk, hasPackagesConfig, hasProjectJson, hasTT });
+
+
+            return;
+
             var testDataPath = @"..\..\..\TestData";
             var sourcePath = Path.Combine(testDataPath, "Source");
             var tempPath = Path.Combine(testDataPath, "Temp");
