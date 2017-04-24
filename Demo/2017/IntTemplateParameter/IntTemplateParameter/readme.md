@@ -43,8 +43,8 @@ class GaloisField
 
 以下のようなC#コードを用意する。
 
-```cpp
-class GaloisField<N>
+```cs
+struct GaloisField<N>
     where N : IConstant<N>
 {
     // default(N).Value で有限体のモジュロを表現
