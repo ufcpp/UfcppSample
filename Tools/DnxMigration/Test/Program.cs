@@ -12,10 +12,10 @@ namespace Test
         {
             var repositoryNames = new[]
             {
-                "....",
+                "...",
             };
 
-            var root = @"....";
+            var root = @"...";
 
             var csprojs = (
                 from r in repositoryNames
@@ -23,10 +23,31 @@ namespace Test
                 select new Csproj(root, f.Replace(root, ""))
                 ).ToArray();
 
+            var groups = csprojs.GroupBy(x =>
+                x.HasPackagesConfig ? "packages.config" :
+                x.HasProjectJson? "project.json" :
+                x.IsNewSdk ? "new sdk" :
+                "no packages"
+            );
+
+            foreach (var g in groups)
+            {
+                Console.WriteLine("--- " + g.Key + " ---");
+
+                foreach (var p in g)
+                {
+                    var references = p.References.Count();
+                    var projects = p.ProjectReferences.Count();
+                    var packages = p.PackageReferences.Count();
+                    Console.WriteLine($"\t {references}, {projects}, {packages} {p.RelativePath}");
+                }
+            }
+#if true
             var hasPackagesConfig = 0;
             var hasProjectJson = 0;
             var hasTT = 0;
             var isNewSdk = 0;
+            var winExe = 0;
 
             foreach (var x in csprojs)
             {
@@ -34,12 +55,13 @@ namespace Test
                 if (x.HasPackagesConfig) hasPackagesConfig++;
                 if (x.HasProjectJson) hasProjectJson++;
                 if (x.TTFiles.Any()) hasTT++;
+                if (x.OutputType == CsprojOutputType.WinExe) winExe++;
 
                 //Console.WriteLine(new { x.AssemblyName, x.RootNamespace });
             }
 
-            Console.WriteLine(new { total = csprojs.Length, isNewSdk, hasPackagesConfig, hasProjectJson, hasTT });
-
+            Console.WriteLine(new { total = csprojs.Length, isNewSdk, hasPackagesConfig, hasProjectJson, hasTT, winExe });
+#endif
 
             return;
 
@@ -82,10 +104,10 @@ namespace Test
                     }
                 }
 
-                if (proj.Packages.Any())
+                if (proj.PackageTags.Any())
                 {
                     Console.WriteLine("---- msbuild 15");
-                    foreach (var p in proj.Packages)
+                    foreach (var p in proj.PackageTags)
                     {
                         Console.WriteLine(p);
                     }

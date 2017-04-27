@@ -14,7 +14,8 @@ namespace ProjectModels
         private const string PackagesConfName = "packages.config";
         private const string ProjectJsonName = "project.json";
 
-        public static readonly XNamespace Namespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+        public static readonly XNamespace DefaultNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+        private XNamespace Namespace;
 
         /// <summary>
         /// *.csproj path.
@@ -62,7 +63,7 @@ namespace ProjectModels
         /// </summary>
         public void Save()
         {
-            if(_content != null)
+            if (_content != null)
             {
                 _content.Save(Path);
             }
@@ -97,7 +98,19 @@ namespace ProjectModels
         /// <summary>
         /// Contents in this csproj file.
         /// </summary>
-        public XDocument Content => _content ?? (_content = XDocument.Load(Path));
+        public XDocument Content
+        {
+            get
+            {
+                if (_content == null)
+                {
+                    _content = XDocument.Load(Path);
+                    Namespace = _content.Root.Name.Namespace;
+                }
+                return _content;
+            }
+        }
+
         private XDocument _content;
 
         public CsprojOutputType OutputType
@@ -136,7 +149,7 @@ namespace ProjectModels
                 yield return new Package(r, "1.0.0-*");
             }
 
-            if(HasPackagesConfig)
+            if (HasPackagesConfig)
                 foreach (var p in PackagesConfig.Packages)
                     yield return p;
 
@@ -266,8 +279,16 @@ namespace ProjectModels
         /// </summary>
         /// <param name="packagesPath"></param>
         /// <returns></returns>
-        public IEnumerable<Package> Packages => _packages ?? (_packages = GetPackages());
-        private IEnumerable<Package> _packages;
+        public IEnumerable<Package> PackageTags => _packageTags ?? (_packageTags = GetPackages());
+        private IEnumerable<Package> _packageTags;
+
+        /// <summary>
+        /// Package references (any of <see cref="PackageTags"/>, <see cref="PackagesConfig.Packages"/>, <see cref="ProjectJson.Packages"/>)
+        /// </summary>
+        public IEnumerable<Package> PackageReferences =>
+            HasPackagesConfig ? PackagesConfig.Packages :
+            HasProjectJson ? ProjectJson.Packages :
+            PackageTags;
 
         private IEnumerable<Package> GetPackages()
         {
@@ -303,5 +324,10 @@ namespace ProjectModels
         public IEnumerable<XElement> GetElementsInPropertyGroups(string elementName) => GetPropertyGroups().SelectMany(g => g.Elements(Namespace + elementName)).ToArray();
 
         public IEnumerable<string> TTFiles => GetElementsInItemGroups("None").Select(e => e.Attribute("Update")?.Value).Where(a => a != null);// && a.EndsWith(".tt"));
+
+        /// <summary>
+        /// references to .NET assemblies。
+        /// </summary>
+        public IEnumerable<string> References => GetElementsInItemGroups("Reference").Select(e => e.Attribute("Include")?.Value).Where(a => a != null);// && a.EndsWith(".tt"));
     }
 }
