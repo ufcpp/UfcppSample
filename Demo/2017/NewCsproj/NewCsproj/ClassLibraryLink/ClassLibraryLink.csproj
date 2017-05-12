@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ClassLibraryNet35\**\*.cs" Exclude="..\ClassLibraryNet35\obj\**\*.cs" />
+  </ItemGroup>
+
+</Project>
