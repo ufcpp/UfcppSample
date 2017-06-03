@@ -27,4 +27,19 @@ extern "C"
 	{
 		return 123;
 	}
+
+	struct Data
+	{
+		BYTE A;
+		BYTE B;
+		UINT16 C;
+		UINT32 D;
+	};
+
+	__declspec(dllexport) Data __stdcall Shift(Data data)
+	{
+		UINT64* l = (UINT64*)&data;
+		*l <<= 1;
+		return data;
+	}
 }

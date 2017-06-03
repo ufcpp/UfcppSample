@@ -1,12 +1,10 @@
-﻿using System.Runtime.InteropServices;
-
-namespace NativeInterop
+﻿namespace NativeInterop
 {
     class Program
     {
         static void Main(string[] args)
         {
-            YourOwnDllImport.Main();
+            YourOwnDllImport.Program.Main();
 
             //DllImportSample.Main();
             //ComImportSample.Main();

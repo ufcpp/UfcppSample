@@ -16,6 +16,24 @@
         [DllImport("Win32Dll.dll")]
         extern static int GetValue();
 
+        // ネイティブ側のシグネチャは Data Shift(Data data)
+        // Data は書き struct Data と同じ構造(8バイト)
+        // サイズが同じ値型なら別の型でも interop 可能
+        [DllImport("Win32Dll.dll")]
+        extern static ulong Shift(ulong data);
+
+        struct Data
+        {
+            public byte A;
+            public byte B;
+            public ushort C;
+            public uint D;
+            public override string ToString() => $"{A:X2}{B:X2}{C:X4}{D:X8}";
+        }
+
+        [DllImport("Win32Dll.dll")]
+        extern static Data Shift(Data data);
+
         public static void Main()
         {
             Console.WriteLine(GetValue());
@@ -31,6 +49,14 @@
             var s2 = "awsedrftgyhu";
             FillA16(s2);
             Console.WriteLine(s2); // aaaaaaaaaaaa
+
+            Data data = new Data { A = 0x01, B = 0x02, C = 0x0304, D = 0x05060708 };
+            data = Shift(data);
+            Console.WriteLine(data);
+
+            ulong v = 0x0102030405060708;
+            v = Shift(v);
+            Console.WriteLine(v.ToString("X16"));
 
             Console.ReadKey();
         }
