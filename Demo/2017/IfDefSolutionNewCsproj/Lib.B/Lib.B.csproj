@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Lib</AssemblyName>
+    <RootNamespace>Lib</RootNamespace>
+    <DefineConstants>$(DefineConstants);Admin;NotiryPropertyChanged</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Lib.Shared/**/*.cs" Exclude="../Lib.Shared/obj/**/*.cs" />
+  </ItemGroup>
+
+</Project>
