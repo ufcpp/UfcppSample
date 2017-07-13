@@ -28,6 +28,11 @@ extern "C"
 		return 123;
 	}
 
+	__declspec(dllexport) void __stdcall SetValue(UINT16& x)
+	{
+		x = 0x1234;
+	}
+
 	struct Data
 	{
 		BYTE A;
