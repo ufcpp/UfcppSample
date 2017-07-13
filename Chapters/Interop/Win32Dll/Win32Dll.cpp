@@ -47,4 +47,20 @@ extern "C"
 		*l <<= 1;
 		return data;
 	}
+
+	typedef void(__stdcall* Callback)(void* param, UINT32 value);
+
+	static void* g_param;
+	static Callback g_callback;
+
+	__declspec(dllexport) void __stdcall SetCallback(void* param, Callback callback)
+	{
+		g_param = param;
+		g_callback = callback;
+	}
+
+	__declspec(dllexport) void __stdcall FireCallback(UINT32 value)
+	{
+		g_callback(g_param, value);
+	}
 }

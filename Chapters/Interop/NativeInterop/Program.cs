@@ -10,6 +10,9 @@
             DllImportSample.Main();
             YourOwnDllImport.Program.Main();
             Dll.StringSample.Main();
+            Dll.BlittableSample1.Main();
+            Dll.BlittableSample2.Main();
+            Dll.CallbackSample.Main();
         }
     }
 }
