@@ -4,12 +4,12 @@
     {
         static void Main(string[] args)
         {
+            ComImportSample.Main();
+            ComLateBindingSample.Main();
+            WinRtSample.Main();
+            DllImportSample.Main();
             YourOwnDllImport.Program.Main();
-
-            //DllImportSample.Main();
-            //ComImportSample.Main();
-            //ComLateBindingSample.Main();
-            //WinRtSample.Main();
+            Dll.StringSample.Main();
         }
     }
 }

@@ -3,6 +3,9 @@ using System;
 
 namespace NativeInterop
 {
+    /// <summary>
+    /// COM interop の例として、MSXML2 を参照してみる。
+    /// </summary>
     class ComImportSample
     {
         public static void Main()

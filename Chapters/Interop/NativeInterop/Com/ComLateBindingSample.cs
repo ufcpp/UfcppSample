@@ -2,6 +2,10 @@
 
 namespace NativeInterop
 {
+    /// <summary>
+    /// <see cref="Type.GetTypeFromProgID(string)"/> と dynamic を使えば、COM を遅延バインディングで使える。
+    /// やっていることは <see cref="ComImportSample"/> と同じ。
+    /// </summary>
     class ComLateBindingSample
     {
         public static void Main()

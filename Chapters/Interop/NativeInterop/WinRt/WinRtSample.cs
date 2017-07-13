@@ -6,6 +6,11 @@ using Windows.System;
 
 namespace NativeInterop
 {
+    /// <summary>
+    /// WinRT の <see cref="User"/> からユーザーIDを取得する例。
+    /// WinRT の場合は相互運用の面倒な処理はフレームワーク側がきっちり吸収してくれているので、
+    /// ほとんど .NET の普通のクラスを参照するのと変わらない感覚で使える。
+    /// </summary>
     class WinRtSample
     {
         public static void Main()
