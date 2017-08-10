@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>AccessorBenchmark</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.10.9, OS=Windows 10 Redstone 2 (10.0.15063)
+Processor=Intel Core i7-3770 CPU 3.40GHz (Ivy Bridge), ProcessorCount=8
+Frequency=3312787 Hz, Resolution=301.8606 ns, Timer=TSC
+.NET Core SDK=2.0.0-preview2-006497
+  [Host]     : .NET Core 2.0.0-preview2-25407-01 (Framework 4.6.00001.0), 64bit RyuJIT
+  DefaultJob : .NET Core 2.0.0-preview2-25407-01 (Framework 4.6.00001.0), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>            Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Gen 0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>        ItemSwitch</td><td>476.5 ns</td><td>4.538 ns</td><td>4.245 ns</td><td>0.0639</td><td>272 B</td>
+</tr><tr><td>        ItemCustom</td><td>916.9 ns</td><td>3.646 ns</td><td>3.232 ns</td><td>0.0629</td><td>272 B</td>
+</tr><tr><td>    ItemDictionary</td><td>1,092.8 ns</td><td>28.030 ns</td><td>33.368 ns</td><td>0.0629</td><td>272 B</td>
+</tr><tr><td>       PointSwitch</td><td>191.1 ns</td><td>1.429 ns</td><td>1.267 ns</td><td>0.0434</td><td>184 B</td>
+</tr><tr><td>       PointCustom</td><td>278.3 ns</td><td>2.976 ns</td><td>2.784 ns</td><td>0.0434</td><td>184 B</td>
+</tr><tr><td>   PointDictionary</td><td>349.1 ns</td><td>3.487 ns</td><td>3.262 ns</td><td>0.0434</td><td>184 B</td>
+</tr><tr><td>ItemImmutableDictionary</td><td>1,804.7 ns</td><td>19.790 ns</td><td>18.511 ns</td><td>0.0629</td><td>272 B</td>
+</tr><tr><td>ItemSortedDictionary</td><td>4,613.6 ns</td><td>13.748 ns</td><td>11.480 ns</td><td>0.0610</td><td>272 B</td>
+</tr><tr><td>    ItemSortedList</td><td>4,465.0 ns</td><td>24.166 ns</td><td>22.605 ns</td><td>0.0610</td><td>272 B</td>
+</tr><tr><td>PointImmutableDictionary</td><td>673.5 ns</td><td>2.679 ns</td><td>2.506 ns</td><td>0.0429</td><td>184 B</td>
+</tr><tr><td>PointSortedDictionary</td><td>1,078.4 ns</td><td>16.282 ns</td><td>15.230 ns</td><td>0.0420</td><td>184 B</td>
+</tr><tr><td>   PointSortedList</td><td>1,069.7 ns</td><td>10.616 ns</td><td>9.931 ns</td><td>0.0420</td><td>184 B</td>
+</tr></tbody></table>
+</body>
+</html>
