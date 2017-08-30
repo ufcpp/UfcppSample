@@ -8,6 +8,12 @@ class Program
     static void Main()
     {
         //Test();
+
+        //var x = new DictionaryBenchmark();
+        //x.Setup();
+        //x.Fixed();
+        //x.Fixed2();
+
         BenchmarkRunner.Run<DictionaryBenchmark>();
     }
 

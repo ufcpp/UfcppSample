@@ -2,25 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 
-internal struct FixedDictionary<TKey, TValue, TComparer> : IDictionary<TKey, TValue>
+/// <summary>
+/// <see cref="FixedDictionary{TKey, TValue, TComparer}"/>と性能差ほとんどなし。
+/// 向こうは2次元配列
+/// こっちは1次元配列なので、こっちの方がたぶんGCにやさしい。
+/// </summary>
+internal struct FixedDictionary2<TKey, TValue, TComparer> : IDictionary<TKey, TValue>
     where TComparer : struct, IEqualityComparer<TKey>
 {
-    private KeyValuePair<TKey, TValue>[][] table;
-    private int mask => table.Length - 1;
-
-    public bool IsNull => table == null;
-
-    public FixedDictionary(IEnumerable<KeyValuePair<TKey, TValue>> values)
+    private struct Bucket
     {
-        var initialCapacity = values.Count();
+        public bool HasValue;
+        public TKey Key;
+        public TValue Value;
+    }
+
+    private Bucket[] _buckets;
+
+    public bool IsNull => _buckets == null;
+    private const int Skip = 655883; // 適当な大き目の素数(たぶん、奇数なら何でもいいはず)
+
+    public FixedDictionary2(IEnumerable<KeyValuePair<TKey, TValue>> values)
+    {
+        var initialCapacity = values.Count() * 2;
         var capacity = PowerOf2(initialCapacity);
 
-        table = new KeyValuePair<TKey, TValue>[capacity][];
+        _buckets = new Bucket[capacity];
         var mask = capacity - 1;
 
-        foreach (var g in values.GroupBy(x => default(TComparer).GetHashCode(x.Key) & mask))
+        foreach (var x in values)
         {
-            table[g.Key] = g.ToArray();
+            var hash = default(TComparer).GetHashCode(x.Key) & mask;
+
+            while (true)
+            {
+                ref var b = ref _buckets[hash];
+
+                if (!b.HasValue)
+                {
+                    b.HasValue = true;
+                    b.Key = x.Key;
+                    b.Value = x.Value;
+                    break;
+                }
+
+                hash = (hash + Skip) % mask;
+            }
         }
     }
 
@@ -35,23 +62,26 @@ internal struct FixedDictionary<TKey, TValue, TComparer> : IDictionary<TKey, TVa
 
     public bool TryGet(TKey key, out TValue value)
     {
-        var hashCode = default(TComparer).GetHashCode(key);
-        var buckets = table[hashCode & mask];
+        var mask = _buckets.Length - 1;
+        var hash = default(TComparer).GetHashCode(key) & mask;
 
-        if (buckets != null)
+        while (true)
         {
-            for (int i = 0; i < buckets.Length; i++)
-            {
-                if (default(TComparer).Equals(buckets[i].Key, key))
-                {
-                    value = buckets[i].Value;
-                    return true;
-                }
-            }
-        }
+            ref var b = ref _buckets[hash];
 
-        value = default(TValue);
-        return false;
+            if (!b.HasValue)
+            {
+                value = default;
+                return false;
+            }
+            else if (default(TComparer).Equals(b.Key, key))
+            {
+                value = b.Value;
+                return true;
+            }
+
+            hash = (hash + Skip) % mask;
+        }
     }
 
     ICollection<TKey> IDictionary<TKey, TValue>.Keys => throw new System.NotImplementedException();
@@ -68,6 +98,6 @@ internal struct FixedDictionary<TKey, TValue, TComparer> : IDictionary<TKey, TVa
     bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) => throw new System.NotImplementedException();
     void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) => throw new System.NotImplementedException();
     bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) => throw new System.NotImplementedException();
-    IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => table.SelectMany(x => x).GetEnumerator();
-    IEnumerator IEnumerable.GetEnumerator() => table.SelectMany(x => x).GetEnumerator();
+    IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => _buckets.Where(x => x.HasValue).Select(x => new KeyValuePair<TKey, TValue>(x.Key, x.Value)).GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<KeyValuePair<TKey, TValue>>)this).GetEnumerator();
 }

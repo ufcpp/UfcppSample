@@ -25,6 +25,7 @@ using System.Linq;
 ///       Sys |  2.396 ms | 0.0707 ms | 0.0814 ms |
 ///     Fixed |  2.266 ms | 0.0151 ms | 0.0141 ms |
 /// </summary>
+[MemoryDiagnoser]
 public class DictionaryBenchmark
 {
     string[] allKeys;
@@ -35,7 +36,7 @@ public class DictionaryBenchmark
         allKeys = TestData.TypeNames.SelectMany(x => x.propertyNames).Distinct().ToArray();
     }
 
-    [Benchmark]
+    //[Benchmark]
     public void CharNode()
     {
         foreach (var (t, p) in TestData.TypeNames.Take(1))
@@ -48,7 +49,7 @@ public class DictionaryBenchmark
         }
     }
 
-    [Benchmark]
+    //[Benchmark]
     public void LongNode()
     {
         foreach (var (t, p) in TestData.TypeNames.Take(1))
@@ -60,7 +61,7 @@ public class DictionaryBenchmark
         }
     }
 
-    [Benchmark]
+    //[Benchmark]
     public void Sys()
     {
         foreach (var (t, p) in TestData.TypeNames.Take(1))
@@ -85,6 +86,17 @@ public class DictionaryBenchmark
         {
             var items = p.Select(x => new KeyValuePair<string, string>(x, x));
             var d = new FixedDictionary<string, string, StringComparer>(items);
+            Bench(items, allKeys.Except(p), d);
+        }
+    }
+
+    [Benchmark]
+    public void Fixed2()
+    {
+        foreach (var (t, p) in TestData.TypeNames.Take(1))
+        {
+            var items = p.Select(x => new KeyValuePair<string, string>(x, x));
+            var d = new FixedDictionary2<string, string, StringComparer>(items);
             Bench(items, allKeys.Except(p), d);
         }
     }
