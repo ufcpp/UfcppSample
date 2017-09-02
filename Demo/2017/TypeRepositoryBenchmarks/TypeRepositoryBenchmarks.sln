@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionalArrayBenchmark", "O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackallocDistinctBenchmark", "StackallocDistinctBenchmark\StackallocDistinctBenchmark.csproj", "{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utf8SearchBenchmark", "Utf8SearchBenchmark\Utf8SearchBenchmark.csproj", "{BA25B084-2485-4FD4-AAF9-DD7A8B910215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
