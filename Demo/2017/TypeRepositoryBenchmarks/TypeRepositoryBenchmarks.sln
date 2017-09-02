@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryBenchmark", "DictionaryBenchmark\DictionaryBenchmark.csproj", "{CB2051C0-9686-4105-AEE4-9CCC283757DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DictionaryBenchmark", "DictionaryBenchmark\DictionaryBenchmark.csproj", "{CB2051C0-9686-4105-AEE4-9CCC283757DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtfCompareBenchmark", "UtfCompareBenchmark\UtfCompareBenchmark.csproj", "{9F591A69-89AE-46C3-9D21-0066982F7C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtfCompareBenchmark", "UtfCompareBenchmark\UtfCompareBenchmark.csproj", "{9F591A69-89AE-46C3-9D21-0066982F7C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SequenceBenchmark", "SequenceBenchmark\SequenceBenchmark.csproj", "{19BF9222-FCB2-4DA1-A797-C089B6D32E43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SequenceBenchmark", "SequenceBenchmark\SequenceBenchmark.csproj", "{19BF9222-FCB2-4DA1-A797-C089B6D32E43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteToLongBenchmark", "ByteToLongBenchmark\ByteToLongBenchmark.csproj", "{66A72AFE-8F93-4131-83D6-02DEEF93B57A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteToLongBenchmark", "ByteToLongBenchmark\ByteToLongBenchmark.csproj", "{66A72AFE-8F93-4131-83D6-02DEEF93B57A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseIntBnechmark", "ParseIntBnechmark\ParseIntBnechmark.csproj", "{D8B2E730-8464-450B-81C3-6A44329E6ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseIntBnechmark", "ParseIntBnechmark\ParseIntBnechmark.csproj", "{D8B2E730-8464-450B-81C3-6A44329E6ABF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionalArrayBenchmark", "OptionalArrayBenchmark\OptionalArrayBenchmark.csproj", "{C49B8737-7087-4145-96D0-F027BE5845DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionalArrayBenchmark", "OptionalArrayBenchmark\OptionalArrayBenchmark.csproj", "{C49B8737-7087-4145-96D0-F027BE5845DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackallocDistinctBenchmark", "StackallocDistinctBenchmark\StackallocDistinctBenchmark.csproj", "{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C49B8737-7087-4145-96D0-F027BE5845DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49B8737-7087-4145-96D0-F027BE5845DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49B8737-7087-4145-96D0-F027BE5845DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
