@@ -25,7 +25,6 @@ class Program
     static void Main(string[] args)
     {
         RefExtensionMethods();
-
         SafeStackalloc();
     }
 
