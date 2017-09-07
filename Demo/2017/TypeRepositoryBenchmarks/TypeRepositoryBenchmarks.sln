@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DictionaryBenchmark", "DictionaryBenchmark\DictionaryBenchmark.csproj", "{CB2051C0-9686-4105-AEE4-9CCC283757DD}"
 EndProject
@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseIntBnechmark", "ParseI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionalArrayBenchmark", "OptionalArrayBenchmark\OptionalArrayBenchmark.csproj", "{C49B8737-7087-4145-96D0-F027BE5845DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackallocDistinctBenchmark", "StackallocDistinctBenchmark\StackallocDistinctBenchmark.csproj", "{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StackallocDistinctBenchmark", "StackallocDistinctBenchmark\StackallocDistinctBenchmark.csproj", "{FE751ED5-3089-472C-A6A7-2FD4C95B95E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utf8SearchBenchmark", "Utf8SearchBenchmark\Utf8SearchBenchmark.csproj", "{BA25B084-2485-4FD4-AAF9-DD7A8B910215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utf8SearchBenchmark", "Utf8SearchBenchmark\Utf8SearchBenchmark.csproj", "{BA25B084-2485-4FD4-AAF9-DD7A8B910215}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grisu3DoubleConversion", "Grisu3DoubleConversion\Grisu3DoubleConversion.csproj", "{72269EA9-CC8A-4AAD-807B-D5A9B05F8A2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA25B084-2485-4FD4-AAF9-DD7A8B910215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72269EA9-CC8A-4AAD-807B-D5A9B05F8A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72269EA9-CC8A-4AAD-807B-D5A9B05F8A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72269EA9-CC8A-4AAD-807B-D5A9B05F8A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72269EA9-CC8A-4AAD-807B-D5A9B05F8A2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
