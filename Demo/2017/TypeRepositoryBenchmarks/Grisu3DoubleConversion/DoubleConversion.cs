@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Grisu3DoubleConversion
 {
     /// <summary>
-    /// https://github.com/google/double-conversion/blob/master/double-conversion/double-conversion.cc
+    /// https://github.com/google/double-conversion/blob/master/double-conversion/fast-dtoa.cc
     /// </summary>
     public static unsafe class DoubleConversion
     {
@@ -47,8 +47,8 @@ namespace Grisu3DoubleConversion
         private static void BiggestPowerTen(
             uint number,
             int number_bits,
-            uint* power,
-            int* exponent_plus_one)
+            out uint power,
+            out int exponent_plus_one)
         {
             Debug.Assert(number < (1u << (number_bits + 1)));
             int exponent_plus_one_guess = ((number_bits + 1) * 1233 >> 12);
@@ -57,8 +57,8 @@ namespace Grisu3DoubleConversion
             {
                 exponent_plus_one_guess--;
             }
-            *power = kSmallPowersOfTen[exponent_plus_one_guess];
-            *exponent_plus_one = exponent_plus_one_guess;
+            power = kSmallPowersOfTen[exponent_plus_one_guess];
+            exponent_plus_one = exponent_plus_one_guess;
         }
 
         private static bool DigitGen(
@@ -80,10 +80,8 @@ namespace Grisu3DoubleConversion
             DiyFp one = new DiyFp(1UL << -w.E, w.E);
             uint integrals = unchecked((uint)(too_high.F >> -one.E));
             ulong fractionals = too_high.F & (one.F - 1);
-            uint divisor;
-            int divisor_exponent_plus_one;
             BiggestPowerTen(integrals, DiyFp.SignificandSize - (-one.E),
-                            &divisor, &divisor_exponent_plus_one);
+                out var divisor, out var divisor_exponent_plus_one);
             kappa = divisor_exponent_plus_one;
             length = 0;
             while (kappa > 0)
@@ -127,7 +125,8 @@ namespace Grisu3DoubleConversion
             }
         }
 
-        public static bool ToString(double v,
+        public static bool ToString(
+            double v,
             bool isSinglePrecision,
             Span<byte> buffer,
             out int length,
@@ -145,8 +144,6 @@ namespace Grisu3DoubleConversion
                 new SingleView((float)v).NormalizedBoundaries(out boundary_minus, out boundary_plus);
             }
             Debug.Assert(boundary_plus.E == w.E);
-            // Cached power of ten: 10^-k
-            // -k
             int ten_mk_minimal_binary_exponent = kMinimalTargetExponent - (w.E + DiyFp.SignificandSize);
             int ten_mk_maximal_binary_exponent = kMaximalTargetExponent - (w.E + DiyFp.SignificandSize);
             PowersOfTenCache.GetCachedPowerForBinaryExponentRange(
@@ -169,6 +166,85 @@ namespace Grisu3DoubleConversion
                                    buffer, out length, out var kappa);
             decimal_exponent = -mk + kappa;
             return result;
+        }
+
+        public static bool ToString(float v, out NumberStringBuffer buffer)
+        {
+            if (v == 0)
+            {
+                buffer = NumberStringBuffer.Zero;
+                return true;
+            }
+            else if(float.IsPositiveInfinity(v))
+            {
+                buffer = NumberStringBuffer.PositiveInfinity;
+                return false;
+            }
+            else if (float.IsNegativeInfinity(v))
+            {
+                buffer = NumberStringBuffer.NegativeInfinity;
+                return false;
+            }
+            else if (float.IsNaN(v))
+            {
+                buffer = NumberStringBuffer.NaN;
+                return false;
+            }
+
+            buffer = default;
+            buffer.IsSinglePrecision = true;
+            if (v < 0)
+            {
+                buffer.IsNegative = true;
+                v = -v;
+            }
+
+            fixed (byte* p = buffer.Digits)
+            {
+                var result = ToString(v, true, new Span<byte>(p, NumberStringBuffer.MaxDigits), out var len, out var exp);
+                buffer.Length = (byte)len;
+                buffer.DecimalExponent = (short)exp;
+                return result;
+            }
+        }
+
+        public static bool ToString(double v, out NumberStringBuffer buffer)
+        {
+            if (v == 0)
+            {
+                buffer = NumberStringBuffer.Zero;
+                return true;
+            }
+            else if (double.IsPositiveInfinity(v))
+            {
+                buffer = NumberStringBuffer.PositiveInfinity;
+                return false;
+            }
+            else if (double.IsNegativeInfinity(v))
+            {
+                buffer = NumberStringBuffer.NegativeInfinity;
+                return false;
+            }
+            else if (double.IsNaN(v))
+            {
+                buffer = NumberStringBuffer.NaN;
+                return false;
+            }
+
+            buffer = default;
+            if (v < 0)
+            {
+                buffer.IsNegative = true;
+                v = -v;
+            }
+
+            fixed (byte* p = buffer.Digits)
+            {
+                var result = ToString(v, false, new Span<byte>(p, NumberStringBuffer.MaxDigits), out var len, out var exp);
+                buffer.Length = (byte)len;
+                buffer.DecimalExponent = (short)exp;
+                return result;
+            }
         }
     }
 }
