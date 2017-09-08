@@ -8,28 +8,8 @@ namespace Grisu3DoubleConversion
     /// </summary>
     public struct DoubleView
     {
-        [StructLayout(LayoutKind.Explicit)]
-        private struct Union
-        {
-            [FieldOffset(0)]
-            public double Float;
-            [FieldOffset(0)]
-            public ulong Int;
-        }
-
-        private static ulong BitCast(double x)
-        {
-            var union = default(Union);
-            union.Float = x;
-            return union.Int;
-        }
-
-        private static double BitCast(ulong x)
-        {
-            var union = default(Union);
-            union.Int = x;
-            return union.Float;
-        }
+        private static unsafe ulong BitCast(double x) => *(ulong*)&x;
+        private static unsafe double BitCast(ulong x) => *(double*)&x;
 
         public const ulong kSignMask = 0x80000000_00000000UL;
         public const ulong kExponentMask = 0x7FF00000_00000000UL;

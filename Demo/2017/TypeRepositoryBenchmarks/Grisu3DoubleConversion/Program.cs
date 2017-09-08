@@ -8,14 +8,16 @@ namespace Grisu3DoubleConversion
         {
             //DoubleConversionTest.Test();
 
-            //var x = new DoubleConversionBenchmark();
-            //x.Setup();
-            //x.SystemToString();
-            //x.SystemGetBytes();
-            //x.Grisu3ToString();
-            //x.Grisu3GetBytes();
-
+#if tru
+            var x = new DoubleConversionBenchmark();
+            x.Setup();
+            x.SystemToString();
+            x.SystemGetBytes();
+            x.Grisu3ToString();
+            x.Grisu3GetBytes();
+#else
             BenchmarkRunner.Run<DoubleConversionBenchmark>();
+#endif
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace Grisu3DoubleConversion
 {
@@ -8,28 +7,8 @@ namespace Grisu3DoubleConversion
     /// </summary>
     public struct SingleView
     {
-        [StructLayout(LayoutKind.Explicit)]
-        private struct Union
-        {
-            [FieldOffset(0)]
-            public float Float;
-            [FieldOffset(0)]
-            public uint Int;
-        }
-
-        private static uint BitCast(float x)
-        {
-            var union = default(Union);
-            union.Float = x;
-            return union.Int;
-        }
-
-        private static float BitCast(uint x)
-        {
-            var union = default(Union);
-            union.Int = x;
-            return union.Float;
-        }
+        private static unsafe uint BitCast(float x) => *(uint*)&x;
+        private static unsafe float BitCast(uint x) => *(float*)&x;
 
         public const uint kSignMask = 0x80000000;
         public const uint kExponentMask = 0x7F800000;
