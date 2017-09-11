@@ -76,12 +76,12 @@ public class DistinctBenchmark
     [Benchmark] public int[] Linq1() => data1.Distinct().ToArray();
     [Benchmark] public int[] Linq2() => data2.Distinct().ToArray();
     [Benchmark] public int[] Linq3() => data3.Distinct().ToArray();
-    [Benchmark] public int[] Array0() => ArrayHashSet.Distinct<int, IntComp>(data0).ToArray();
-    [Benchmark] public int[] Array1() => ArrayHashSet.Distinct<int, IntComp>(data1).ToArray();
-    [Benchmark] public int[] Array2() => ArrayHashSet.Distinct<int, IntComp>(data2).ToArray();
-    [Benchmark] public int[] Array3() => ArrayHashSet.Distinct<int, IntComp>(data3).ToArray();
-    [Benchmark] public int[] Stack0() => StackHashSet.Distinct<int, IntComp>(data0).ToArray();
-    [Benchmark] public int[] Stack1() => StackHashSet.Distinct<int, IntComp>(data1).ToArray();
-    [Benchmark] public int[] Stack2() => StackHashSet.Distinct<int, IntComp>(data2).ToArray();
-    [Benchmark] public int[] Stack3() => StackHashSet.Distinct<int, IntComp>(data3).ToArray();
+    [Benchmark] public int[] Array0() => ArrayHashSet.Distinct<int, IntComp>(data0);
+    [Benchmark] public int[] Array1() => ArrayHashSet.Distinct<int, IntComp>(data1);
+    [Benchmark] public int[] Array2() => ArrayHashSet.Distinct<int, IntComp>(data2);
+    [Benchmark] public int[] Array3() => ArrayHashSet.Distinct<int, IntComp>(data3);
+    [Benchmark] public int[] Stack0() => StackHashSet.Distinct<int, IntComp>(data0);
+    [Benchmark] public int[] Stack1() => StackHashSet.Distinct<int, IntComp>(data1);
+    [Benchmark] public int[] Stack2() => StackHashSet.Distinct<int, IntComp>(data2);
+    [Benchmark] public int[] Stack3() => StackHashSet.Distinct<int, IntComp>(data3);
 }

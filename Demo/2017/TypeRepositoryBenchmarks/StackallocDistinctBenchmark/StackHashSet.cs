@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 /// <see cref="ArrayHashSet"/>をstackallocで実装したもの。
@@ -19,6 +20,7 @@
 /// </summary>
 static class StackHashSet
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static int PowerOf2(int x)
     {
         var p = 1;
@@ -26,48 +28,129 @@ static class StackHashSet
         return p;
     }
 
-    internal const int Skip = 928191829;
+    private static unsafe T[] ToArray<T>(T[] items, int* resultIndexes, int count)
+    {
+        var results = new T[count];
+        for (int i = 0; i < results.Length; i++) results[i] = items[resultIndexes[i]];
+        return results;
+    }
 
     public static unsafe T[] Distinct<T, TComp>(this T[] items)
         where TComp : struct, IEqualityComparer<T>
     {
         var len = PowerOf2(items.Length * 2);
         var buckets = stackalloc int[len];
+        var set = new StackHashSet<T, TComp>(items, buckets, len);
+
         var resultIndexes = stackalloc int[items.Length];
-
-        for (int i = 0; i < len; i++) buckets[i] = -1;
-
-        var mask = len - 1;
         var count = 0;
 
         for (int i = 0; i < items.Length; i++)
         {
-            var item = items[i];
-
-            var hash = default(TComp).GetHashCode(item) & mask;
-
-            while (true)
+            if (!set.Add(items[i], i))
             {
-                ref var b = ref buckets[hash];
-
-                if (b == -1)
-                {
-                    resultIndexes[count] = i;
-                    count++;
-                    b = i;
-                    break;
-                }
-                else if (default(TComp).Equals(item, items[b]))
-                {
-                    break;
-                }
-
-                hash = (hash + Skip) & mask;
+                resultIndexes[count++] = i;
             }
         }
 
-        var results = new T[count];
-        for (int i = 0; i < results.Length; i++) results[i] = items[resultIndexes[i]];
-        return results;
+        return ToArray(items, resultIndexes, count);
+    }
+
+    public static unsafe T[] Except<T, TComp>(this T[] first, T[] second)
+        where TComp : struct, IEqualityComparer<T>
+    {
+        var len = PowerOf2(second.Length * 2);
+        var buckets = stackalloc int[len];
+        var set = new StackHashSet<T, TComp>(second, buckets, len);
+
+        set.MakeHashtTable();
+
+        var resultIndexes = stackalloc int[first.Length];
+        var count = 0;
+
+        for (int i = 0; i < first.Length; i++)
+        {
+            if (!set.Contains(first[i]))
+            {
+                resultIndexes[count++] = i;
+            }
+        }
+
+        return ToArray(first, resultIndexes, count);
+    }
+}
+
+unsafe struct StackHashSet<T, TComp>
+    where TComp : struct, IEqualityComparer<T>
+{
+    internal const int Skip = 928191829;
+
+    private T[] items;
+    private int* buckets;
+    int len;
+    int mask;
+
+    public StackHashSet(T[] items, int* buckets, int len)
+    {
+        this.items = items;
+        this.buckets = buckets;
+        this.len = len;
+        mask = len - 1;
+
+        for (int i = 0; i < len; i++) buckets[i] = -1;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool Contains(T item)
+    {
+        var hash = default(TComp).GetHashCode(item) & mask;
+        while (true)
+        {
+            ref var b = ref buckets[hash];
+
+            if (b == -1)
+            {
+                return false;
+            }
+            else if (default(TComp).Equals(item, items[b]))
+            {
+                return true;
+            }
+
+            hash = (hash + Skip) & mask;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void MakeHashtTable()
+    {
+        var mask = len - 1;
+        for (int i = 0; i < items.Length; i++)
+        {
+            Add(items[i], i);
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool Add(T item, int i)
+    {
+        var hash = default(TComp).GetHashCode(item) & mask;
+
+        while (true)
+        {
+            ref var b = ref buckets[hash];
+
+            if (b == -1)
+            {
+                b = i;
+                return false;
+            }
+            else if (default(TComp).Equals(item, items[b]))
+            {
+                return true;
+            }
+
+            hash = (hash + Skip) & mask;
+        }
     }
 }
