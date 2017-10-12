@@ -44,14 +44,12 @@ namespace SpanSafety
                 await Task.Delay(1);
                 s2[0] = 1;
             }
-#endif
 
             // 余談: TypedReference 型も、今思えば、分類としては ref struct になるんだけど
-            // TypedReference が出来た当時にはこの概念がなかったのと、今更破壊的変更してまで TypedReference に safety ルール適用するほど需要がないので、そのままらしい
-
+            // C# 7.1 まで、仕様漏れでまずい状態だったらしい
             TypedReference tr = __makeref(x);
-
-            Func<int> a2 = () => __refvalue(tr, int); // 本来、まずい。要はコンパイラーの仕様漏れ
+            Func<int> a2 = tr.GetHashCode; // C# 7.1 まではコンパイルできてた。本来、まずい。要はコンパイラーの仕様漏れ
+#endif
         }
 
         #region C# 7.0 で参照戻り値追加
