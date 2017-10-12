@@ -65,6 +65,12 @@ namespace RefStruct
         Span<char> _chars;
     }
 
+    // クラスもダメ。クラスの時点で ref も付けれない
+    ref class Error3
+    {
+        Span<char> _chars;
+    }
+
 #endif
 
     class Program
