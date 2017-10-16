@@ -20,7 +20,9 @@ namespace Lib
 
     public class Class1
 #if NotiryPropertyChanged
-        : BindableBase
+        : BindableBase, CommonLib.CommonInterface
+#else
+        : CommonLib.CommonInterface
 #endif
     {
         /// <summary>

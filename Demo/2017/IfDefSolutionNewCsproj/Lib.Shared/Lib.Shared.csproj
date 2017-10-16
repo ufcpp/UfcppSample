@@ -1,9 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="Common.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Lib</AssemblyName>
     <RootNamespace>Lib</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj" />
+  </ItemGroup>
 
 </Project>
