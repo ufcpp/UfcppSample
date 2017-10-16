@@ -1,0 +1,12 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release;NoOpt</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'NoOpt'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+</Project>  

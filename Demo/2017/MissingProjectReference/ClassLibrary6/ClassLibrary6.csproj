@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../PackageReferences.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj" />
+    <ProjectReference Include="..\ClassLibrary4\ClassLibrary4.csproj" />
+  </ItemGroup>
+
+</Project>

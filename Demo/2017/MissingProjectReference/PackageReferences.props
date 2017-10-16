@@ -1,0 +1,7 @@
+﻿<Project>
+
+  <ItemGroup>
+    <PackageReference Include="ValueTupleBridge" Version="0.1.2" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project>
+
+  <Import Project="../PackageReferences.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="../ClassLibrary2/ClassLibrary2.csproj" />
+  </ItemGroup >
+
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);Shared</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' And '$(TargetFramework)'!='netstandard1.4' And '$(TargetFramework)'!='netstandard1.0'">
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+
+</Project>
