@@ -27,7 +27,13 @@ namespace WebAppCore
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                var x = new Lib.Class1();
+                x.PropertyChanged += (sender, args) =>
+                {
+                    ((Lib.Class1)sender).Id = 123;
+                };
+                x.Secret = "";
+                await context.Response.WriteAsync("Hello World! " + x.Id);
             });
         }
     }
