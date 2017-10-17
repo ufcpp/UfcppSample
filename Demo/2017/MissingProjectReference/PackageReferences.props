@@ -1,7 +1,11 @@
 ﻿<Project>
 
   <ItemGroup>
+    <PackageReference Include="MinimumAsyncBridge" Version="0.11.0" />
+    <PackageReference Include="MvvmBridge" Version="1.1.1" />
     <PackageReference Include="ValueTupleBridge" Version="0.1.2" />
+    <PackageReference Include="UniRx.SystemReactive" Version="1.0.4" />
+	<PackageReference Include="LocalPackage1" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

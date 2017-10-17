@@ -3,35 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{AC0C7325-34BC-496D-BFDA-FE38F86F43EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{AC0C7325-34BC-496D-BFDA-FE38F86F43EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{1C9B48E4-0130-4BC4-98C9-A4CC747051F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{1C9B48E4-0130-4BC4-98C9-A4CC747051F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary3", "ClassLibrary3\ClassLibrary3.csproj", "{9CD53771-1A8F-40AA-A1D5-FE1872EF4426}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary3", "ClassLibrary3\ClassLibrary3.csproj", "{9CD53771-1A8F-40AA-A1D5-FE1872EF4426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary3.A", "ClassLibrary3.A\ClassLibrary3.A.csproj", "{B3FAABE5-4E22-498D-B605-FE83ABC7292E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary3.A", "ClassLibrary3.A\ClassLibrary3.A.csproj", "{B3FAABE5-4E22-498D-B605-FE83ABC7292E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary4", "ClassLibrary4\ClassLibrary4.csproj", "{B2EBD867-7971-44BC-BB3C-B1C88E7B4AE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary4", "ClassLibrary4\ClassLibrary4.csproj", "{B2EBD867-7971-44BC-BB3C-B1C88E7B4AE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary5", "ClassLibrary5\ClassLibrary5.csproj", "{DFE34BE7-E83E-41A7-922D-728EC10A9F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary5", "ClassLibrary5\ClassLibrary5.csproj", "{DFE34BE7-E83E-41A7-922D-728EC10A9F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary6", "ClassLibrary6\ClassLibrary6.csproj", "{DFE49F6E-F0A3-4190-99E6-F0A9697EEDD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary6", "ClassLibrary6\ClassLibrary6.csproj", "{DFE49F6E-F0A3-4190-99E6-F0A9697EEDD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary6A", "ClassLibrary6A\ClassLibrary6A.csproj", "{BB70DAEF-458D-48B1-95D7-3A5359A0A501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary6A", "ClassLibrary6A\ClassLibrary6A.csproj", "{BB70DAEF-458D-48B1-95D7-3A5359A0A501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary6B", "ClassLibrary6B\ClassLibrary6B.csproj", "{756BD6F0-83DC-4441-8B31-7E163C5624E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary6B", "ClassLibrary6B\ClassLibrary6B.csproj", "{756BD6F0-83DC-4441-8B31-7E163C5624E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary7", "ClassLibrary7\ClassLibrary7.csproj", "{18E4AF15-3385-475F-AF6E-97470B3934BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary7", "ClassLibrary7\ClassLibrary7.csproj", "{18E4AF15-3385-475F-AF6E-97470B3934BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary7.A", "ClassLibrary7.A\ClassLibrary7.A.csproj", "{B8DCE49C-8E15-42E2-9CB2-7AE026CD591C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary7.A", "ClassLibrary7.A\ClassLibrary7.A.csproj", "{B8DCE49C-8E15-42E2-9CB2-7AE026CD591C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary7.B", "ClassLibrary7.B\ClassLibrary7.B.csproj", "{A8AECE59-D4E7-4CF1-933C-960C1886EBA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary7.B", "ClassLibrary7.B\ClassLibrary7.B.csproj", "{A8AECE59-D4E7-4CF1-933C-960C1886EBA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary8", "ClassLibrary8\ClassLibrary8.csproj", "{93972850-438A-43DB-AC9A-A90234B556A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary8", "ClassLibrary8\ClassLibrary8.csproj", "{93972850-438A-43DB-AC9A-A90234B556A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{8179B0C1-AB62-42E4-9316-A349A47C6181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{8179B0C1-AB62-42E4-9316-A349A47C6181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPackage1", "LocalPackage1\LocalPackage1.csproj", "{716C836D-6BF2-4237-A215-26D522C19465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,12 +124,12 @@ Global
 		{8179B0C1-AB62-42E4-9316-A349A47C6181}.NoOpt|Any CPU.Build.0 = NoOpt|Any CPU
 		{8179B0C1-AB62-42E4-9316-A349A47C6181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8179B0C1-AB62-42E4-9316-A349A47C6181}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.NoOpt|Any CPU.ActiveCfg = NoOpt|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.NoOpt|Any CPU.Build.0 = NoOpt|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FB7D92A-1ADB-4CC1-87DD-1E9C002DE9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.NoOpt|Any CPU.ActiveCfg = NoOpt|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.NoOpt|Any CPU.Build.0 = NoOpt|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{716C836D-6BF2-4237-A215-26D522C19465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

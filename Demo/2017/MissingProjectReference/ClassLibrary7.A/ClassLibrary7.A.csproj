@@ -6,6 +6,10 @@
     <RootNamespace>ClassLibrary7</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="LocalPackage1" Version="1.0.0" />
+  </ItemGroup>
+
   <Import Project="Sub.props" />
 
 </Project>
