@@ -1,0 +1,7 @@
+﻿<Project>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'NoOpt'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+</Project>

@@ -1,6 +1,11 @@
 <Project>
 
+  <Import Project="../Opt.props" />
   <Import Project="../PackageReferences.props" />
+
+  <PropertyGroup Condition="'$(Configuration)' == 'NoOpt'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../ClassLibrary1/ClassLibrary1.csproj" />
