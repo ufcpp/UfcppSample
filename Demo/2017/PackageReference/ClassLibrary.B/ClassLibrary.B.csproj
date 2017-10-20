@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net35</TargetFrameworks>
+    <PackageId>ClassLibrary.B</PackageId>
+    <AssemblyName>ClassLibrary</AssemblyName>
+    <RootNamespace>ClassLibrary</RootNamespace>
+    <DefineConstants>$(DefineConstants);B</DefineConstants>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../ClassLibrary/**/*.cs" Exclude="../ClassLibrary/obj/**/*.cs" />
+  </ItemGroup>
+
+</Project>
