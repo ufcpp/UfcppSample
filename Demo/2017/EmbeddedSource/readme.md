@@ -1,0 +1,25 @@
+With Visual Studio 2017 15.5 Preview
+
+- Roslyn compiler
+  - supports
+    - `/debug:embedded`: embeds pdb info into dll/exe
+    - `/embed`: embeds source codes into pdb (dll/exe if `/debug:embedded`)
+  - see [`Lib/build.ps1`](Lib/build.ps1)
+- MSBuild (csproj)
+  - supports
+    - `/debug:embedded`: `<DebugType>embedded</DebugType>`
+  - does not support
+    - `/embed`
+      - near future (15.6)? `<EmbedSources>embedded</EmbedSources>`
+  - see [`ClassLibrary1/ClassLibrary1.csproj`](ClassLibrary1/ClassLibrary1.csproj)
+- The Debugger in Visual Studio
+  - supports
+    - Step Into (F11) the embedded source codes (in `/embed` pdb and `/debug:embedded /embed` exe)
+  - see: [`ConsoleApp1/Program.cs`](ConsoleApp1/Program.cs)
+    - can step into `Double` (in `a.dll`) and `Halve` (in `b.dll`) even if you remove `a.cs` and `b.cs` in `Lib` directory
+    - can step into `Quarter` (in `c.dll`) iff `c.cs` exists in `Lib` directory
+    - cannot step into `Triple` (in `d.dll`)
+- The C# Editor in Visual Studio
+  - does not support
+    - Go To Definition (F12) to the embedded source codes
+    - Show tooltip with doc comments from the embedded source codes

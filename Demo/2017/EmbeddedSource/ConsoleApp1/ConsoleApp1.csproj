@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net47</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClassLibrary-1" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="a">
+      <HintPath>..\Lib\a.dll</HintPath>
+    </Reference>
+    <Reference Include="b">
+      <HintPath>..\Lib\b.dll</HintPath>
+    </Reference>
+    <Reference Include="c">
+      <HintPath>..\Lib\c.dll</HintPath>
+    </Reference>
+    <Reference Include="d">
+      <HintPath>..\Lib\d.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
