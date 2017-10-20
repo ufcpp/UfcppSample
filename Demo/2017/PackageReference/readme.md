@@ -28,6 +28,8 @@ ClassLibrary.B
 
 ## FYI
 
+This solution contains libraries that have different package id and the same assembly name.
+
 Solution architecture:
 
 ![project dependency](fig/dependency.png)
@@ -36,4 +38,3 @@ The `ConsoleApp1` refers
 
 - `ClassLibrary.B` in net47 and netcoreapp2.0 (Self-contained)
 - `ClassLibrary.A` in netcoreapp2.0 (Framework Dependent)
-
