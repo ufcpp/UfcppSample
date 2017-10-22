@@ -14,6 +14,13 @@ namespace DigitSeparator
             // b, x の直後に _ 入れてもOKに
             var b2 = 0b_1111_0000;
             var x2 = 0x_0001_F408;
+
+#if InvalidCode
+            var a = _10;
+            var b = 10_;
+            var c = 1._0;
+            var d = 1_.0;
+#endif
         }
     }
 }
