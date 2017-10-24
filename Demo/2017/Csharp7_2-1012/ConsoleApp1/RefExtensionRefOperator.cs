@@ -27,9 +27,8 @@ namespace RefExtensionRefOperator
             A33 = a33;
         }
 
-        // 演算子の引数に ref readonly が使えるように
-        // この ref readonly は、たぶん、正式リリースまでに「in キーワードを使え」に変更される
-        public static LargeStruct operator +(ref readonly LargeStruct x, ref readonly LargeStruct y) => new LargeStruct(
+        // 演算子の引数に in (意味的には ref readonly) が使えるように
+        public static LargeStruct operator +(in LargeStruct x, in LargeStruct y) => new LargeStruct(
             x.A11 + y.A11,
             x.A12 + y.A12,
             x.A13 + y.A13,
@@ -46,6 +45,7 @@ namespace RefExtensionRefOperator
     static class Ex
     {
         // ref this で、拡張メソッドに参照を渡せるように
+        // this ref の語順じゃない理由は謎
         public static void Transpose(ref this LargeStruct x)
         {
             (x.A12, x.A21) = (x.A21, x.A12);
@@ -53,8 +53,8 @@ namespace RefExtensionRefOperator
             (x.A31, x.A13) = (x.A13, x.A31);
         }
 
-        // 同上、ref readonly this で読み取り専用に
-        public static double Trace(ref readonly this LargeStruct x)
+        // 同上、in this で読み取り専用に
+        public static double Trace(in this LargeStruct x)
         {
 #if InvalidCode
             x.A11 = 1; // 書き換え不可
@@ -78,7 +78,7 @@ namespace RefExtensionRefOperator
 
             Console.WriteLine(x);     // [(1, 2, 3) / (4, 5, 6) / (7, 8, 9)]
 
-            // 演算子に対して ref readonly で渡る = コピーのコストがなくなる(※引数のみ。戻り値は相変わらずコピー)
+            // 演算子に対して int (ref readonly) で渡る = コピーのコストがなくなる(※引数のみ。戻り値は相変わらずコピー)
             Console.WriteLine(x + y); // [(1, 1, 1) / (4, 4, 4) / (7, 7, 7)]
 
             // 拡張メソッドだけど、x がちゃんと書き換わる

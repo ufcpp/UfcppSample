@@ -4,7 +4,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-#if たぶんリリース版までには入るであろう物
+#if false // 7.2 で入るかと思っていたら 7.X 行きになってた。それで確定だったらこのコード消す
 
         static void RefLocalReassignment()
         {
@@ -16,15 +16,16 @@ namespace ConsoleApp1
 
             r = 3;
         }
+#endif
 
         static void BugFix()
         {
             void X(int? x = default) => Console.WriteLine(x);
 
-            X();        // C# 7.0 なぜか 0 になる。7.2 で直る。null に
+            X();        // C# 7.1 まではなぜか 0 になってた
             X(default); // こっちは null
-        }
 
-#endif
+            // さすがにひどいバグなので、破壊的変更とはいえ、ちゃんと X() で null になるように修正された
+        }
     }
 }
