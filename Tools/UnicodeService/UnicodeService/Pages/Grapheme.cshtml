@@ -1,0 +1,89 @@
+﻿@page
+@model UnicodeService.Pages.GraphemeModel
+@{
+    Layout = null;
+}
+@using GraphemeSplitter;
+@using UnicodeService.Pages;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Grapheme Splitter</title>
+</head>
+<body>
+
+    <form method="GET" action="Grapheme">
+        <label>characters:</label>
+        <input type="text" name="s" />
+        <input type="submit" value="OK" />
+    </form>
+
+    @if (Model.Text == null)
+    {
+        <p>
+            Split Unicode text int grapheme clusters.
+            Powered by: <a href="https://github.com/ufcpp/GraphemeSplitter">GraphemeSplitter</a>
+        </p>
+        <p>
+            samples:
+        </p>
+        <ul>
+            <li><a href="?s=🐁🐄🐅🐇🐊🐍🐎🐏🐒🐓🐕🐖">🐁🐄🐅🐇🐊🐍🐎🐏🐒🐓🐕🐖</a></li>
+            <li><a href="?s=👨‍👨‍👧‍👦👩‍👩‍👧‍👦👨‍👨‍👧‍👦">👨‍👨‍👧‍👦👩‍👩‍👧‍👦👨‍👨‍👧‍👦</a></li>
+            <li><a href="?s=👩🏻‍👦🏼👨🏽‍👦🏾‍👦🏿👩🏼‍👨🏽‍👦🏼‍👧🏽👩🏻‍👩🏿‍👧🏼‍👧🏾">👩🏻‍👦🏼👨🏽‍👦🏾‍👦🏿👩🏼‍👨🏽‍👦🏼‍👧🏽👩🏻‍👩🏿‍👧🏼‍👧🏾</a></li>
+            <li><a href="?s=👩🏻‍🌾👨🏼‍💼👩🏽‍💻👨🏾‍🏫👩🏿‍🚀">👩🏻‍🌾👨🏼‍💼👩🏽‍💻👨🏾‍🏫👩🏿‍🚀</a></li>
+            <li><a href="?s=à̠b̡́ĉ̢ḍ̃ē̤">à̠b̡́ĉ̢ḍ̃ē̤</a></li>
+            <li><a href="?s=%23️⃣%2A️⃣0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣">#️⃣*️⃣0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣</a></li>
+            <li><a href="?s=(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀)">(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀)</a></li>
+            <li><a href="?s=नमस्ते">नमस्ते</a></li>
+            <li><a href="?s=안녕하세요">안녕하세요</a></li>
+            <li><a href="?s=斎斎󠄁葛󠄀葛󠄁真真󠄁">斎斎󠄁葛󠄀葛󠄁真真󠄁</a></li>
+        </ul>
+    }
+    else
+    {
+        <p>
+            original text: @Model.Text
+        </p>
+        <table border="1">
+            <caption>graphemes</caption>
+            <tr>
+                <th>grapheme</th>
+                <th>UTF-32 sequence</th>
+                <th>UTF-16/UTF-8 sequence</th>
+            </tr>
+            @foreach (var grapheme in Model.SplittedTexts)
+            {
+                var bytes = grapheme.GetBytes();
+                <tr>
+                    <td rowspan="2">@grapheme</td>
+                    <td>
+                        @foreach (var (first, (index, count, _)) in grapheme.GetCodePoints().IsFirst())
+                        {
+                            if (!first)
+                            {<span>&#8204; / &#8204;</span>}
+                            @grapheme.Substring(index, count)
+                        }
+                    </td>
+                    <td>@string.Join(" ", grapheme.Select(c => ((uint)c).Hex()))</td>
+                </tr>
+                <tr>
+                    <td>
+                        @foreach (var (first, (_, _, cp)) in grapheme.GetCodePoints().IsFirst())
+                        {
+                            if (!first)
+                            {<span> </span>}
+                            var hex = cp.Hex();
+                            <a href="https://www.google.co.jp/search?q=U%2B@(hex)">@hex</a>
+                        }
+                    </td>
+                    <td>@string.Join(" ", bytes.Select(c => c.Hex())) (@bytes.Length bytes)</td>
+                </tr>
+            }
+        </table>
+    }
+</body>
+</html>
