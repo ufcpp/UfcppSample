@@ -1,10 +1,25 @@
 ﻿@page
-@model UnicodeService.Pages.GraphemeModel
 @{
     Layout = null;
 }
 @using GraphemeSplitter;
 @using UnicodeService.Pages;
+
+@functions
+{
+    public string Text { get; private set; }
+    public string[] SplittedTexts { get; private set; }
+
+    public void OnGet(string s)
+    {
+        if (s == null) return;
+
+        Text = s;
+        SplittedTexts = s.GetGraphemes()
+            .Select(x => x.ToString())
+            .ToArray();
+    }
+}
 
 <!DOCTYPE html>
 <html>
@@ -40,6 +55,7 @@
             <li><a href="?s=(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀)">(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀)</a></li>
             <li><a href="?s=नमस्ते">नमस्ते</a></li>
             <li><a href="?s=안녕하세요">안녕하세요</a></li>
+            <li><a href="?s=あ゙か゚">あ゙か゚</a></li>
             <li><a href="?s=斎斎󠄁葛󠄀葛󠄁真真󠄁">斎斎󠄁葛󠄀葛󠄁真真󠄁</a></li>
         </ul>
     }
