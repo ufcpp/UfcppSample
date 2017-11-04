@@ -1,13 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
     <Description>ClassOrStruct Console Application</Description>
     <Authors>Nobuyuki</Authors>
     <AssemblyName>ClassOrStruct</AssemblyName>
     <PackageId>ClassOrStruct</PackageId>
-    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'dnx451' ">

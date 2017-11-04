@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.27019.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxing", "Boxing\Boxing.csproj", "{EB51A057-60F6-44C8-AEDD-6591B5DC88A8}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructLayoutSample", "StructLayoutSample\StructLayoutSample.csproj", "{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefAndPointer", "RefAndPointer\RefAndPointer.csproj", "{33541ADA-A350-4C7E-AA45-BA1565A885E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveReadOnly", "RecursiveReadOnly\RecursiveReadOnly.csproj", "{B02498B6-0452-4A05-8DF9-BF84FF097853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,8 +59,15 @@ Global
 		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33541ADA-A350-4C7E-AA45-BA1565A885E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89CFCA2F-0027-41D0-8EB0-A1AD571854E3}
 	EndGlobalSection
 EndGlobal
