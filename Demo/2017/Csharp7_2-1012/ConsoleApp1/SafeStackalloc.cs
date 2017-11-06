@@ -39,12 +39,6 @@ namespace SafeStackalloc
 
         static byte FastAndSafe(byte[] data)
         {
-#if false
-            //※ 今、一時的にこのコードがコンパイルできなくなってるっぽい
-            // 「Span<T> に ref readonly が付いてないと許さない」みたいな修正が入ってそうなんだけど、その一方で今ある Span<T> に ref readonly が付いてないとかそんなのだと思うんだけど。
-            // たぶん System.Memory パッケージの更新とかで直ると思うんだけど
-
-
             // Span に対して代入するなら、unsafe を付けなくても stackalloc が使える
             // counts.Length はちゃんと 256 だし、インデクサーの範囲チェックもされる = buffer over run 脆弱性とかは避けれる = 安全
             Span<byte> counts = stackalloc byte[256];
@@ -52,9 +46,6 @@ namespace SafeStackalloc
             foreach (var c in data) counts[c]++;
 
             return Max(counts);
-#else
-            return 0;
-#endif
         }
 
         static byte Max(Span<byte> counts)

@@ -38,10 +38,18 @@ namespace SpanSafety
 
             Func<byte> a1 => () => s1[0];
 
-            async Task X()
+            async System.Threading.Tasks.Task X()
             {
                 Span<byte> s2 = stackalloc byte[10];
-                await Task.Delay(1);
+                await System.Threading.Tasks.Task.Delay(1);
+                s2[0] = 1;
+            }
+
+            System.Collections.IEnumerator Y()
+            {
+                // yield 許されてるのはいいのかな？
+                Span<byte> s2 = stackalloc byte[10];
+                yield return 0;
                 s2[0] = 1;
             }
 
