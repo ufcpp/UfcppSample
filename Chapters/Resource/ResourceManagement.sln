@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27019.1
+VisualStudioVersion = 15.0.27102.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxing", "Boxing\Boxing.csproj", "{EB51A057-60F6-44C8-AEDD-6591B5DC88A8}"
 EndProject
@@ -13,13 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructPerformance", "Struct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefReturns", "RefReturns\RefReturns.csproj", "{A080169A-A2C3-498C-A64C-CEB1CBDB925A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByRef", "ByRef\ByRef.csproj", "{BEEF5270-1266-4164-AE0A-C0E5E301B687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByRef", "ByRef\ByRef.csproj", "{BEEF5270-1266-4164-AE0A-C0E5E301B687}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructLayoutSample", "StructLayoutSample\StructLayoutSample.csproj", "{D5D09AA6-99FE-43B3-9EEE-44E5DDBB8EEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefAndPointer", "RefAndPointer\RefAndPointer.csproj", "{33541ADA-A350-4C7E-AA45-BA1565A885E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveReadOnly", "RecursiveReadOnly\RecursiveReadOnly.csproj", "{B02498B6-0452-4A05-8DF9-BF84FF097853}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecursiveReadOnly", "RecursiveReadOnly\RecursiveReadOnly.csproj", "{B02498B6-0452-4A05-8DF9-BF84FF097853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Span", "Span\Span.csproj", "{95AC6C54-F64F-485E-A825-95B4D74D6E6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B02498B6-0452-4A05-8DF9-BF84FF097853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95AC6C54-F64F-485E-A825-95B4D74D6E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95AC6C54-F64F-485E-A825-95B4D74D6E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95AC6C54-F64F-485E-A825-95B4D74D6E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95AC6C54-F64F-485E-A825-95B4D74D6E6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
