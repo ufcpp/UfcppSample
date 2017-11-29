@@ -1,4 +1,4 @@
-#define GAIN
+ï»¿#define GAIN
 //#define PHASE
 //#define OUTPUT_COEF
 
@@ -18,12 +18,12 @@ using SpectrumAnalysis;
 namespace AppMain
 {
 	/// <summary>
-	/// Class1 ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Class1 ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class AppTest
 	{
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 		[STAThread]
 		static void _Main(string[] args)
@@ -33,7 +33,7 @@ namespace AppMain
 
 			IFilter filter = new ShelvingEqualizer(Common.Normalize(1000), 1);
 
-			// ƒCƒ“ƒpƒ‹ƒX‰“šæ“¾
+			// ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”å–å¾—
 			filter.Clear();
 			/*
 			filter.GetValue(1);

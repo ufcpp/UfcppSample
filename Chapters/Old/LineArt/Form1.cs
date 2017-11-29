@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Threading;
 namespace LineArt
 {
 	/// <summary>
-	/// ‚Ğ‚½‚·‚çƒ‰ƒCƒ“ƒA[ƒg‚ğ•`Ê‚µ‘±‚¯‚é‚¾‚¯‚ÌƒtƒH[ƒ€B
+	/// ã²ãŸã™ã‚‰ãƒ©ã‚¤ãƒ³ã‚¢ãƒ¼ãƒˆã‚’æå†™ã—ç¶šã‘ã‚‹ã ã‘ã®ãƒ•ã‚©ãƒ¼ãƒ ã€‚
 	/// </summary>
 	public class LineArtForm : System.Windows.Forms.Form
 	{
@@ -30,7 +30,7 @@ namespace LineArt
 		bool loop_flag=true;
 
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -38,7 +38,7 @@ namespace LineArt
 		{
 			InitializeComponent();
 
-			MenuItem item = new MenuItem("İ’è");
+			MenuItem item = new MenuItem("è¨­å®š");
 			item.Click += new EventHandler(ParameterSetting);
 			System.Windows.Forms.ContextMenu menu = new ContextMenu();
 			menu.MenuItems.Add(item);
@@ -53,7 +53,7 @@ namespace LineArt
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -69,8 +69,8 @@ namespace LineArt
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -91,7 +91,7 @@ namespace LineArt
 		#endregion
 
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 		[STAThread]
 		static void Main(string[] args) 
@@ -107,8 +107,8 @@ namespace LineArt
 		}//Main
 
 		/// <summary>
-		/// ƒ‰ƒCƒ“ƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»B
-		/// ’¸“_‚ÌÀ•W‚¨‚æ‚Ñ‘¬“x‚ğƒ‰ƒ“ƒ_ƒ€‚É‰Šú‰»‚·‚éB
+		/// ãƒ©ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–ã€‚
+		/// é ‚ç‚¹ã®åº§æ¨™ãŠã‚ˆã³é€Ÿåº¦ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«åˆæœŸåŒ–ã™ã‚‹ã€‚
 		/// </summary>
 		private void InitializeLineObject()
 		{
@@ -137,7 +137,7 @@ namespace LineArt
 		}//InitializeLineObject
 
 		/// <summary>
-		/// ‰æ–Ê”wŒi•`ÊƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰B
+		/// ç”»é¢èƒŒæ™¯æå†™ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã€‚
 		/// </summary>
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
@@ -153,8 +153,8 @@ namespace LineArt
 		}//OnPaintBackground
 
 		/// <summary>
-		/// ‰æ–ÊXV—p‚ÌƒXƒŒƒbƒhB
-		/// ƒ‰ƒCƒ“ƒIƒuƒWƒFƒNƒg‚Ì’¸“_ˆÊ’u‚¨‚æ‚Ñ‘¬“x‚ğXV‚·‚éB
+		/// ç”»é¢æ›´æ–°ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã€‚
+		/// ãƒ©ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é ‚ç‚¹ä½ç½®ãŠã‚ˆã³é€Ÿåº¦ã‚’æ›´æ–°ã™ã‚‹ã€‚
 		/// </summary>
 		void ThreadProc()
 		{
@@ -164,14 +164,14 @@ namespace LineArt
 				{
 					for(int j=0; j<this.vertex; ++j)
 					{
-						//c‘œ‚ğì‚é
+						//æ®‹åƒã‚’ä½œã‚‹
 						for(int i=this.lines-1; i>0; --i)
 						{
 							this.p[i][j] = this.p[i-1][j];
 						}
-						//“_‚ÌˆÊ’u‚ÌXV
+						//ç‚¹ã®ä½ç½®ã®æ›´æ–°
 						this.p[0][j] += this.v[j];
-						//‰æ–Ê‚©‚ç‚Í‚İo‚µ‚½‚Æ‚«‚Ìˆ—
+						//ç”»é¢ã‹ã‚‰ã¯ã¿å‡ºã—ãŸã¨ãã®å‡¦ç†
 						if(this.p[0][j].X >= this.ClientSize.Width)
 						{
 							this.p[0][j].X = this.ClientSize.Width * 2 - this.p[0][j].X;
@@ -193,13 +193,13 @@ namespace LineArt
 							this.v[j].Height = -this.v[j].Height;
 						}
 					}//for
-					//I—¹‚·‚×‚«‚©‚Ç‚¤‚©”»’f
+					//çµ‚äº†ã™ã¹ãã‹ã©ã†ã‹åˆ¤æ–­
 					if(!this.loop_flag)
 						return;
 				}
-				//‰æ–Ê‚ÌXV
+				//ç”»é¢ã®æ›´æ–°
 				this.Refresh();
-				//GC‚Ì‹­§
+				//GCã®å¼·åˆ¶
 				GC.Collect();
 
 				Thread.Sleep(this.wait_time);
@@ -207,8 +207,8 @@ namespace LineArt
 		}//ThreadProc
 
 		/// <summary>
-		/// ƒvƒƒOƒ‰ƒ€I—¹‚Ìˆ—B
-		/// İ’è‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
+		/// ãƒ—ãƒ­ã‚°ãƒ©ãƒ çµ‚äº†æ™‚ã®å‡¦ç†ã€‚
+		/// è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
 		/// </summary>
 		private void LineArtForm_Closed(object sender, System.EventArgs e)
 		{
@@ -227,8 +227,8 @@ namespace LineArt
 		}//LineArtForm_Closed
 
 		/// <summary>
-		/// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚Ìuİ’èv‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰B
-		/// İ’è—pƒ_ƒCƒAƒƒO‚ğ•\¦‚µAİ’è’l‚ÌXV‚ğs‚¤B
+		/// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã€Œè¨­å®šã€ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã€‚
+		/// è¨­å®šç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã—ã€è¨­å®šå€¤ã®æ›´æ–°ã‚’è¡Œã†ã€‚
 		/// </summary>
 		private void ParameterSetting(object sender, System.EventArgs e)
 		{
@@ -250,7 +250,7 @@ namespace LineArt
 		}//ParameterSetting
 
 		/// <summary>
-		/// İ’è’l‚ğXMLƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İo‚·B
+		/// è¨­å®šå€¤ã‚’XMLãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿å‡ºã™ã€‚
 		/// </summary>
 		private void ReadParameter()
 		{
@@ -278,7 +278,7 @@ namespace LineArt
 		}//ReadParameter
 
 		/// <summary>
-		/// İ’è’l‚ğXMLƒtƒ@ƒCƒ‹‚É‘‚«o‚·B
+		/// è¨­å®šå€¤ã‚’XMLãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™ã€‚
 		/// </summary>
 		private void WriteParameter()
 		{

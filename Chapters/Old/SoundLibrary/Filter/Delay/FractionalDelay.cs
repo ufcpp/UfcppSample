@@ -1,28 +1,28 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Delay
 {
 	/// <summary>
-	/// •ª”’x‰„ƒtƒBƒ‹ƒ^B
+	/// åˆ†æ•°é…å»¶ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class FractionalDelay : IDelay
 	{
 		CircularBuffer buf;
 		int integer;
 		double fraction;
-		double[] coef; // •ª”’x‰„‚ğ‚©‚¯‚é‚½‚ß‚Ì FIR ŒW”
+		double[] coef; // åˆ†æ•°é…å»¶ã‚’ã‹ã‘ã‚‹ãŸã‚ã® FIR ä¿‚æ•°
 
 		/// <summary>
-		/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <param name="time">’x‰„ƒ^ƒbƒv”</param>
+		/// <param name="time">é…å»¶ã‚¿ãƒƒãƒ—æ•°</param>
 		public FractionalDelay(double time) : this(time, 4){}
 
 		/// <summary>
-		/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <param name="time">’x‰„ƒ^ƒbƒv”</param>
-		/// <param name="firLength">•ª”’x‰„FIR‚ÌŸ”</param>
+		/// <param name="time">é…å»¶ã‚¿ãƒƒãƒ—æ•°</param>
+		/// <param name="firLength">åˆ†æ•°é…å»¶FIRã®æ¬¡æ•°</param>
 		public FractionalDelay(double time, int firLength)
 		{
 			if(time < 0)
@@ -44,10 +44,10 @@ namespace SoundLibrary.Filter.Delay
 
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			if(this.buf == null)
@@ -70,9 +70,9 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’l‚ğzŠÂƒoƒbƒtƒ@‚ÉƒvƒbƒVƒ…‚·‚éB
+		/// å€¤ã‚’å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã«ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">ƒvƒbƒVƒ…‚·‚é’l</param>
+		/// <param name="x">ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹å€¤</param>
 		public void Push(double x)
 		{
 			if(this.buf == null)
@@ -82,9 +82,9 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’l‚Ìæ‚èo‚µB
+		/// å€¤ã®å–ã‚Šå‡ºã—ã€‚
 		/// </summary>
-		/// <returns>ƒtƒBƒ‹ƒ^Œ‹‰Ê</returns>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿çµæœ</returns>
 		public double GetValue()
 		{
 			if(this.buf == null)
@@ -113,7 +113,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -127,7 +127,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’x‰„ƒ^ƒbƒv”
+		/// é…å»¶ã‚¿ãƒƒãƒ—æ•°
 		/// </summary>
 		public double DelayTime
 		{
@@ -143,7 +143,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’x‰„ƒ^ƒbƒv”‚Ì®”•”•ª
+		/// é…å»¶ã‚¿ãƒƒãƒ—æ•°ã®æ•´æ•°éƒ¨åˆ†
 		/// </summary>
 		public int Integer
 		{
@@ -162,7 +162,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’x‰„ƒ^ƒbƒv”‚Ì¬”•”•ª
+		/// é…å»¶ã‚¿ãƒƒãƒ—æ•°ã®å°æ•°éƒ¨åˆ†
 		/// </summary>
 		public double Fraction
 		{
@@ -186,7 +186,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// •ª”’x‰„FIR‚Ìƒ^ƒbƒv”B
+		/// åˆ†æ•°é…å»¶FIRã®ã‚¿ãƒƒãƒ—æ•°ã€‚
 		/// </summary>
 		public int Length
 		{
@@ -211,14 +211,14 @@ namespace SoundLibrary.Filter.Delay
 			return new FractionalDelay(this.DelayTime);
 		}
 
-		#region static ƒƒ\ƒbƒh
+		#region static ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// ƒfƒBƒŒƒC’l‚©‚ç•ª”’x‰„ FIR ƒtƒBƒ‹ƒ^ŒW”‚ğŒvZ‚·‚éB
+		/// ãƒ‡ã‚£ãƒ¬ã‚¤å€¤ã‹ã‚‰åˆ†æ•°é…å»¶ FIR ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="delay">ƒfƒBƒŒƒC’l</param>
-		/// <param name="length">FIR ƒtƒBƒ‹ƒ^‚Ìƒ^ƒbƒv”</param>
-		/// <returns>FIR ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="delay">ãƒ‡ã‚£ãƒ¬ã‚¤å€¤</param>
+		/// <param name="length">FIR ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚¿ãƒƒãƒ—æ•°</param>
+		/// <returns>FIR ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		static double[] GetFractionalDelayCoef(double delay, int length)
 		{
 			double[] coef = new double[length];

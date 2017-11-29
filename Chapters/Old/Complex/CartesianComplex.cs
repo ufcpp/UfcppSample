@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace MyMath
 {
 	/// <summary>
-	/// •¡‘f”ƒNƒ‰ƒX‚ÌÀ‘•1
-	/// À•”‚Æ‹••”‚ğƒƒ“ƒo‚É‚Â
-	/// ‰ÁŒ¸Z‚Í‚‘¬‚ÅAæœZ‚Í’á‘¬
+	/// è¤‡ç´ æ•°ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…1
+	/// å®Ÿéƒ¨ã¨è™šéƒ¨ã‚’ãƒ¡ãƒ³ãƒã«æŒã¤
+	/// åŠ æ¸›ç®—ã¯é«˜é€Ÿã§ã€ä¹—é™¤ç®—ã¯ä½é€Ÿ
 	/// </summary>
 	public class CartesianComplex : Complex
 	{
-		#region ’è”
+		#region å®šæ•°
 
 		static public readonly CartesianComplex I = new CartesianComplex(0, 1);
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public CartesianComplex(double x, double y)
 		{
@@ -28,17 +28,17 @@ namespace MyMath
 		static public implicit operator CartesianComplex (double x){return new CartesianComplex(x);}
 
 		/// <summary>
-		/// ‹ÉÀ•W‚©‚çƒRƒ“ƒXƒgƒ‰ƒNƒg
+		/// æ¥µåº§æ¨™ã‹ã‚‰ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ãƒˆ
 		/// </summary>
-		/// <param name="r">â‘Î’l</param>
-		/// <param name="theta">•ÎŠp</param>
+		/// <param name="r">çµ¶å¯¾å€¤</param>
+		/// <param name="theta">åè§’</param>
 		static CartesianComplex FromPolar(double r, double theta)
 		{
 			return new CartesianComplex(r * Math.Cos(theta), r * Math.Sin(theta));
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public override object Clone()
 		{
@@ -64,7 +64,7 @@ namespace MyMath
 		}
 
 		#endregion
-		#region override ƒvƒƒpƒeƒB
+		#region override ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		public override double Re
 		{
@@ -107,7 +107,7 @@ namespace MyMath
 		}
 
 		#endregion
-		#region override ƒƒ\ƒbƒh
+		#region override ãƒ¡ã‚½ãƒƒãƒ‰
 
 		public override Complex Negate()
 		{
@@ -170,10 +170,10 @@ namespace MyMath
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		private double re; // À•”
-		private double im; // ‹••”
+		private double re; // å®Ÿéƒ¨
+		private double im; // è™šéƒ¨
 
 		#endregion
 	}//class CartesianComplex

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// Amplifier ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Amplifier ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class Amplifier : Sound
 	{

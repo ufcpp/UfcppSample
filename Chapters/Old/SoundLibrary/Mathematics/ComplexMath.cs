@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// Math ŠÖ”‚Ì•¡‘f”‰»B
+	/// Math é–¢æ•°ã®è¤‡ç´ æ•°åŒ–ã€‚
 	/// </summary>
 	/* static */
 	public class ComplexMath

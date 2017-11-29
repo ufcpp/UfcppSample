@@ -1,26 +1,26 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace Filter
 {
 	/// <summary>
-	/// zŠÂƒoƒbƒtƒ@
+	/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡
 	/// </summary>
 	public class CircularBuffer : IEnumerable
 	{
 		double[] buff;
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="len">zŠÂƒoƒbƒtƒ@‚Ì’·‚³B</param>
+		/// <param name="len">å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã€‚</param>
 		public CircularBuffer(int len)
 		{
 			this.buff = new double[len];
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@“à‚Ì—v‘f‚ÌƒAƒNƒZƒXB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡å†…ã®è¦ç´ ã®ã‚¢ã‚¯ã‚»ã‚¹ã€‚
 		/// </summary>
 		public double this[int n]
 		{
@@ -29,9 +29,9 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì––”ö‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®æœ«å°¾ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushBack(double x)
 		{
 			for(int i=0; i<this.buff.Length-1; ++i)
@@ -42,9 +42,9 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì––”ö‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®æœ«å°¾ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushFront(double x)
 		{
 			for(int i=this.buff.Length-1; i>0; --i)
@@ -55,7 +55,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ìæ“ª‚Ì—v‘f‚ğ•Ô‚·B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã®è¦ç´ ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public double Top
 		{
@@ -63,7 +63,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@’·(this.buff.Length)‚ğ•Ô‚·B
+		/// ãƒãƒƒãƒ•ã‚¡é•·(ï¼this.buff.Length)ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public int Length
 		{
@@ -71,7 +71,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// this.buff ‚Ì—ñ‹“q‚ğ•Ô‚·B
+		/// this.buff ã®åˆ—æŒ™å­ã‚’è¿”ã™ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()

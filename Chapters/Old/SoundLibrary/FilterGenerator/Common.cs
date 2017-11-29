@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Xml;
 using System.Reflection;
@@ -6,7 +6,7 @@ using System.Reflection;
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^‚Ì\¬î•ñB
+	/// ãƒ•ã‚£ãƒ«ã‚¿ã®æ§‹æˆæƒ…å ±ã€‚
 	/// </summary>
 	public class FilterProperty
 	{
@@ -22,17 +22,17 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB‚Ì’l‚ğæ“¾Eİ’èB
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã‚’å–å¾—ãƒ»è¨­å®šã€‚
 		/// </summary>
 		public object Value
 		{
 			set
 			{
 				if(value == null)
-					throw new ArgumentNullException("null ‚Íİ’è‚Å‚«‚Ü‚¹‚ñ");
+					throw new ArgumentNullException("null ã¯è¨­å®šã§ãã¾ã›ã‚“");
 
 				if(!this.type.IsAssignableFrom(value.GetType()))
-					throw new ArgumentException("Œ^‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+					throw new ArgumentException("å‹ãŒä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“");
 
 				this.obj = value;
 			}
@@ -43,7 +43,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB–¼‚ğæ“¾B
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’å–å¾—ã€‚
 		/// </summary>
 		public string Name()
 		{
@@ -51,7 +51,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB‚ÌŒ^‚ğæ“¾B
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å‹ã‚’å–å¾—ã€‚
 		/// </summary>
 		public Type Type()
 		{
@@ -60,7 +60,7 @@ namespace SoundLibrary.Filter
 	}
 
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^‚Ì”z—ñŒ^\¬î•ñ
+	/// ãƒ•ã‚£ãƒ«ã‚¿ã®é…åˆ—å‹æ§‹æˆæƒ…å ±
 	/// </summary>
 	public class FilterArrayProperty
 	{
@@ -86,17 +86,17 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// i ”Ô–Ú‚Ì”z—ñ‘®«‚Ì j ”Ô–Ú‚Ì‘®«‚ğæ“¾/İ’è‚·‚éB
+		/// i ç•ªç›®ã®é…åˆ—å±æ€§ã® j ç•ªç›®ã®å±æ€§ã‚’å–å¾—/è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
 		public object this[int i, int j]
 		{
 			set
 			{
 				if(value == null)
-					throw new ArgumentNullException("null ‚Íİ’è‚Å‚«‚Ü‚¹‚ñ");
+					throw new ArgumentNullException("null ã¯è¨­å®šã§ãã¾ã›ã‚“");
 
 				if(!this.informations[i].type.IsAssignableFrom(value.GetType()))
-					throw new ArgumentException("Œ^‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+					throw new ArgumentException("å‹ãŒä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“");
 
 				((object[])this.propertyList[i])[j] = value;
 			}
@@ -107,37 +107,37 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// \¬î•ñ‚ğ’Ç‰Á‚·‚éB
+		/// æ§‹æˆæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="objs">€–Ú‚Ì‘®«</param>
+		/// <param name="objs">é …ç›®ã®å±æ€§</param>
 		public void Add(params object[] objs)
 		{
 			if(objs == null)
-				throw new ArgumentNullException("null ‚Íİ’è‚Å‚«‚Ü‚¹‚ñ");
+				throw new ArgumentNullException("null ã¯è¨­å®šã§ãã¾ã›ã‚“");
 
 			if(this.informations.Length != objs.Length)
-				throw new ArgumentException("’·‚³‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new ArgumentException("é•·ã•ãŒä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“");
 
 			for(int i=0; i<objs.Length; ++i)
 			{
 				if(!this.informations[i].type.IsAssignableFrom(objs[i].GetType()))
-					throw new ArgumentException("Œ^‚ªˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+					throw new ArgumentException("å‹ãŒä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“");
 			}
 
 			this.propertyList.Add(objs);
 		}
 
 		/// <summary>
-		/// \¬î•ñ‚ğíœ‚·‚éB
+		/// æ§‹æˆæƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="i">íœˆÊ’u</param>
+		/// <param name="i">å‰Šé™¤ä½ç½®</param>
 		public void Remove(int i)
 		{
 			this.propertyList.RemoveAt(i);
 		}
 
 		/// <summary>
-		/// ƒŠƒXƒg‚Ì’·‚³B
+		/// ãƒªã‚¹ãƒˆã®é•·ã•ã€‚
 		/// </summary>
 		public int ListLength
 		{
@@ -145,7 +145,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// \¬î•ñ‚Ì”‚ğæ“¾‚·‚éB
+		/// æ§‹æˆæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		public int Count
 		{
@@ -153,7 +153,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB–¼‚ğæ“¾B
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’å–å¾—ã€‚
 		/// </summary>
 		public string Name(int i)
 		{
@@ -161,7 +161,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB‚ÌŒ^‚ğæ“¾B
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å‹ã‚’å–å¾—ã€‚
 		/// </summary>
 		public Type Type(int i)
 		{
@@ -170,32 +170,32 @@ namespace SoundLibrary.Filter
 	}
 
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^ì¬ƒNƒ‰ƒX‚Ì‹¤’Ê•”•ª‚ğW‚ß‚½’ŠÛŠî’êƒNƒ‰ƒXB
-	/// ƒvƒƒpƒeƒB‚ÌŠÇ—•”•ª‚Í‚±‚ÌƒNƒ‰ƒX‚Å‚·‚éB
+	/// ãƒ•ã‚£ãƒ«ã‚¿ä½œæˆã‚¯ãƒ©ã‚¹ã®å…±é€šéƒ¨åˆ†ã‚’é›†ã‚ãŸæŠ½è±¡åŸºåº•ã‚¯ãƒ©ã‚¹ã€‚
+	/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ç®¡ç†éƒ¨åˆ†ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã§ã™ã‚‹ã€‚
 	/// </summary>
 	public abstract class FilterGenerator
 	{
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì\¬î•ñB
-		/// Amplifier ‚Ì gain ‚Æ‚©AFirFilter ‚Ì coef ‚Æ‚©A
-		/// •’Ê‚Ì\¬î•ñB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®æ§‹æˆæƒ…å ±ã€‚
+		/// Amplifier ã® gain ã¨ã‹ã€FirFilter ã® coef ã¨ã‹ã€
+		/// æ™®é€šã®æ§‹æˆæƒ…å ±ã€‚
 		/// </summary>
 		protected FilterProperty[] properties = null;
 
 		/// <summary>
-		/// ƒŠƒXƒg‚É‚È‚Á‚Ä‚¢‚é\¬î•ñ(”z—ñŒ^\¬î•ñ‚ÆŒÄ‚Ô‚±‚Æ‚É‚·‚é)B
-		/// SerialConnector ‚Ì (filter) ‚Æ‚© Mixer ‚Ì (gain, filter)‚Æ‚©A
-		/// ‰Â•Ï’·‚Ì‚à‚Ì\¬î•ñB
+		/// ãƒªã‚¹ãƒˆã«ãªã£ã¦ã„ã‚‹æ§‹æˆæƒ…å ±(é…åˆ—å‹æ§‹æˆæƒ…å ±ã¨å‘¼ã¶ã“ã¨ã«ã™ã‚‹)ã€‚
+		/// SerialConnector ã® (filter) ã¨ã‹ Mixer ã® (gain, filter)ã¨ã‹ã€
+		/// å¯å¤‰é•·ã®ã‚‚ã®æ§‹æˆæƒ…å ±ã€‚
 		/// </summary>
 		protected FilterArrayProperty[] arrayProperties = null;
 
 		/// <summary>
-		/// ”’l•ÏŠ·—pB
+		/// æ•°å€¤å¤‰æ›ç”¨ã€‚
 		/// </summary>
 		protected Converter converter = new Converter();
 
 		/// <summary>
-		/// \¬î•ñ‚Ì”‚ğæ“¾‚·‚éB
+		/// æ§‹æˆæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		public int Count
 		{
@@ -209,7 +209,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì\¬î•ñ‚ğæ“¾‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®æ§‹æˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		[System.Runtime.CompilerServices.IndexerName("Property")]
 		public FilterProperty this[int i]
@@ -221,7 +221,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ”z—ñŒ^\¬î•ñ‚Ì”‚ğæ“¾‚·‚éB
+		/// é…åˆ—å‹æ§‹æˆæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		public int ArrayCount
 		{
@@ -235,7 +235,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì”z—ñŒ^\¬î•ñ‚ğæ“¾‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é…åˆ—å‹æ§‹æˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
 		/// </summary>
 		public FilterArrayProperty GetArrayProperty(int i)
 		{
@@ -243,33 +243,33 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚ğì¬‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <returns>ì¬‚µ‚½ƒtƒBƒ‹ƒ^</returns>
+		/// <returns>ä½œæˆã—ãŸãƒ•ã‚£ãƒ«ã‚¿</returns>
 		public abstract IFilter GetFilter();
 
 		/// <summary>
-		/// İ’è‚µ‚½‘®«‚ªƒtƒBƒ‹ƒ^‚Ì§–ñ‚ğ–‚½‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚éB
+		/// è¨­å®šã—ãŸå±æ€§ãŒãƒ•ã‚£ãƒ«ã‚¿ã®åˆ¶ç´„ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
 		/// </summary>
-		/// <returns>§–ñ‚ğ–‚½‚µ‚Ä‚¢‚ê‚Î nullA–‚½‚µ‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•Ô‚·</returns>
+		/// <returns>åˆ¶ç´„ã‚’æº€ãŸã—ã¦ã„ã‚Œã° nullã€æº€ãŸã—ã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™</returns>
 		public abstract string CheckConstraint();
 
 		/// <summary>
-		/// XML ‚ÉƒtƒBƒ‹ƒ^\¬‚ğo—ÍB
+		/// XML ã«ãƒ•ã‚£ãƒ«ã‚¿æ§‹æˆã‚’å‡ºåŠ›ã€‚
 		/// </summary>
-		/// <param name="xwriter">o—Íæ</param>
+		/// <param name="xwriter">å‡ºåŠ›å…ˆ</param>
 		public abstract void ToXml(XmlWriter xwriter);
 
 		/// <summary>
-		/// XML ‚©‚çƒtƒBƒ‹ƒ^\¬‚ğ“ü—ÍB
+		/// XML ã‹ã‚‰ãƒ•ã‚£ãƒ«ã‚¿æ§‹æˆã‚’å…¥åŠ›ã€‚
 		/// </summary>
-		/// <param name="elem">“ü—ÍŒ³</param>
+		/// <param name="elem">å…¥åŠ›å…ƒ</param>
 		public abstract void FromXml(XmlElement elem);
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^\¬‚ğ XML Œ`®‚Åƒtƒ@ƒCƒ‹o—ÍB
+		/// ãƒ•ã‚£ãƒ«ã‚¿æ§‹æˆã‚’ XML å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›ã€‚
 		/// </summary>
-		/// <param name="filename">XML ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">XML ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void WriteXml(string filename)
 		{
 			XmlTextWriter xwriter = new XmlTextWriter(filename, System.Text.Encoding.Default);
@@ -280,10 +280,10 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// XML ƒtƒ@ƒCƒ‹“à‚ÌƒtƒBƒ‹ƒ^\¬î•ñ‚©‚ç FilterGenerator ‚ğì¬B
+		/// XML ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ãƒ•ã‚£ãƒ«ã‚¿æ§‹æˆæƒ…å ±ã‹ã‚‰ FilterGenerator ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="filename">XML ƒtƒ@ƒCƒ‹–¼</param>
-		/// <returns>ì¬‚µ‚½ FilterGenerator</returns>
+		/// <param name="filename">XML ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <returns>ä½œæˆã—ãŸ FilterGenerator</returns>
 		public static FilterGenerator CreateFromXml(string filename)
 		{
 			XmlDocument xdoc = new XmlDocument();
@@ -293,10 +293,10 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// XML ƒtƒ@ƒCƒ‹“à‚ÌƒtƒBƒ‹ƒ^\¬î•ñ‚©‚ç FilterGenerator ‚ğì¬B
+		/// XML ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ãƒ•ã‚£ãƒ«ã‚¿æ§‹æˆæƒ…å ±ã‹ã‚‰ FilterGenerator ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="filename">XML ƒtƒ@ƒCƒ‹–¼</param>
-		/// <returns>ì¬‚µ‚½ FilterGenerator</returns>
+		/// <param name="filename">XML ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <returns>ä½œæˆã—ãŸ FilterGenerator</returns>
 		public static FilterGenerator CreateFromXml(string filename, Converter converter)
 		{
 			XmlDocument xdoc = new XmlDocument();
@@ -306,27 +306,27 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// XML ‚©‚ç FilterGenerator ‚ğì¬B
+		/// XML ã‹ã‚‰ FilterGenerator ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="xreader">“ü—Í</param>
-		/// <returns>ì¬‚µ‚½ FilterGenerator</returns>
+		/// <param name="xreader">å…¥åŠ›</param>
+		/// <returns>ä½œæˆã—ãŸ FilterGenerator</returns>
 		internal static FilterGenerator CreateFromXml(XmlElement elem)
 		{
 			return FilterGenerator.CreateFromXml(elem, null);
 		}
 
 		/// <summary>
-		/// XML ‚©‚ç FilterGenerator ‚ğì¬B
+		/// XML ã‹ã‚‰ FilterGenerator ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="xreader">“ü—Í</param>
-		/// <returns>ì¬‚µ‚½ FilterGenerator</returns>
+		/// <param name="xreader">å…¥åŠ›</param>
+		/// <returns>ä½œæˆã—ãŸ FilterGenerator</returns>
 		internal static FilterGenerator CreateFromXml(XmlElement elem, Converter converter)
 		{
 			Assembly asm = Assembly.GetExecutingAssembly();
 			FilterGenerator gen = (FilterGenerator)asm.CreateInstance("SoundLibrary.Filter." + elem.LocalName + "Generator");
 
 			if(gen == null)
-				throw new NotSupportedException("SoundLibrary.Filter." + elem.LocalName + " ‚ÍÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+				throw new NotSupportedException("SoundLibrary.Filter." + elem.LocalName + " ã¯å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 
 			if(converter != null)
 				gen.converter = converter;
@@ -344,8 +344,8 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// IsDB ‚ª^‚Ì‚Æ‚«A“ü—Í‚³‚ê‚½•¶š—ñ‚Í dB ’l‚ğ•\‚µ‚Ä‚é‚à‚Ì‚Æ‚µ‚ÄA
-		/// dB ¨ ƒŠƒjƒA’l‚Ì•ÏŠ·‚ğs‚¤B
+		/// IsDB ãŒçœŸã®ã¨ãã€å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã¯ dB å€¤ã‚’è¡¨ã—ã¦ã‚‹ã‚‚ã®ã¨ã—ã¦ã€
+		/// dB â†’ ãƒªãƒ‹ã‚¢å€¤ã®å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
 		public bool IsDB
 		{
@@ -354,7 +354,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// SamplingRate ‚ª”ñ 0 ‚Ì‚Æ‚«A‚»‚Ìü”g”‚Å³‹K‰»‚ğs‚¤B
+		/// SamplingRate ãŒé 0 ã®ã¨ãã€ãã®å‘¨æ³¢æ•°ã§æ­£è¦åŒ–ã‚’è¡Œã†ã€‚
 		/// </summary>
 		public double SamplingRate
 		{
@@ -384,8 +384,8 @@ namespace SoundLibrary.Filter
 	}
 
 	/// <summary>
-	/// •¶š—ñ¨”’l•ÏŠ·ƒNƒ‰ƒXB
-	/// dB ¨ ƒŠƒjƒA’l‚Ì•ÏŠ·‚âAü”g”‚Ì³‹K‚©‚às‚¤B
+	/// æ–‡å­—åˆ—â†’æ•°å€¤å¤‰æ›ã‚¯ãƒ©ã‚¹ã€‚
+	/// dB â†’ ãƒªãƒ‹ã‚¢å€¤ã®å¤‰æ›ã‚„ã€å‘¨æ³¢æ•°ã®æ­£è¦ã‹ã‚‚è¡Œã†ã€‚
 	/// </summary>
 	public class Converter
 	{
@@ -393,8 +393,8 @@ namespace SoundLibrary.Filter
 		double samplingRate = 0;
 
 		/// <summary>
-		/// IsDB ‚ª^‚Ì‚Æ‚«A“ü—Í‚³‚ê‚½•¶š—ñ‚Í dB ’l‚ğ•\‚µ‚Ä‚é‚à‚Ì‚Æ‚µ‚ÄA
-		/// dB ¨ ƒŠƒjƒA’l‚Ì•ÏŠ·‚ğs‚¤B
+		/// IsDB ãŒçœŸã®ã¨ãã€å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã¯ dB å€¤ã‚’è¡¨ã—ã¦ã‚‹ã‚‚ã®ã¨ã—ã¦ã€
+		/// dB â†’ ãƒªãƒ‹ã‚¢å€¤ã®å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
 		public bool IsDB
 		{
@@ -403,7 +403,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// SamplingRate ‚ª”ñ 0 ‚Ì‚Æ‚«A‚»‚Ìü”g”‚Å³‹K‰»‚ğs‚¤B
+		/// SamplingRate ãŒé 0 ã®ã¨ãã€ãã®å‘¨æ³¢æ•°ã§æ­£è¦åŒ–ã‚’è¡Œã†ã€‚
 		/// </summary>
 		public double SamplingRate
 		{
@@ -412,11 +412,11 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// •¶š—ñ¨”’l•ÏŠ·BU•”ÅB
-		/// IsDB ‚Ì’l‚É‰‚¶‚Ä”’l‚ğ•ÏŠ·‚·‚éB
+		/// æ–‡å­—åˆ—â†’æ•°å€¤å¤‰æ›ã€‚æŒ¯å¹…ç‰ˆã€‚
+		/// IsDB ã®å€¤ã«å¿œã˜ã¦æ•°å€¤ã‚’å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="str">•ÏŠ·Œ³</param>
-		/// <returns>•ÏŠ·Œ‹‰Ê</returns>
+		/// <param name="str">å¤‰æ›å…ƒ</param>
+		/// <returns>å¤‰æ›çµæœ</returns>
 		public double ToPower(string str)
 		{
 			double x = double.Parse(str);
@@ -428,11 +428,11 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// •¶š—ñ¨”’l•ÏŠ·Bü”g””ÅB
-		/// SamplingRate ‚Ì’l‚É‰‚¶‚Ä”’l‚ğ•ÏŠ·‚·‚éB
+		/// æ–‡å­—åˆ—â†’æ•°å€¤å¤‰æ›ã€‚å‘¨æ³¢æ•°ç‰ˆã€‚
+		/// SamplingRate ã®å€¤ã«å¿œã˜ã¦æ•°å€¤ã‚’å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="str">•ÏŠ·Œ³</param>
-		/// <returns>•ÏŠ·Œ‹‰Ê</returns>
+		/// <param name="str">å¤‰æ›å…ƒ</param>
+		/// <returns>å¤‰æ›çµæœ</returns>
 		public double ToFrequency(string str)
 		{
 			double x = double.Parse(str);

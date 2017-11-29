@@ -1,43 +1,43 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary
 {
-	//! C# 2.0 ‚ª³®ŒöŠJ‚³‚ê‚½‚ç static ƒNƒ‰ƒX‚ÉB
+	//! C# 2.0 ãŒæ­£å¼å…¬é–‹ã•ã‚ŒãŸã‚‰ static ã‚¯ãƒ©ã‚¹ã«ã€‚
 
 	/// <summary>
-	/// ‹¤’ÊŠÖ”ŒQB
+	/// å…±é€šé–¢æ•°ç¾¤ã€‚
 	/// </summary>
 	public class Util
 	{
-		#region ³‹K‰»EdBÌƒŠƒjƒA’l
+		#region æ­£è¦åŒ–ãƒ»dBâ‡”ãƒªãƒ‹ã‚¢å€¤
 
 		/// <summary>
-		/// ü”g”‚ğ³‹K‰»B
+		/// å‘¨æ³¢æ•°ã‚’æ­£è¦åŒ–ã€‚
 		/// </summary>
-		/// <param name="f">³‹K‰»‚µ‚½‚¢ü”g”</param>
-		/// <param name="fs">ƒTƒ“ƒvƒŠƒ“ƒOü”g”</param>
-		/// <returns>³‹K‰»Špü”g”</returns>
+		/// <param name="f">æ­£è¦åŒ–ã—ãŸã„å‘¨æ³¢æ•°</param>
+		/// <param name="fs">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°</param>
+		/// <returns>æ­£è¦åŒ–è§’å‘¨æ³¢æ•°</returns>
 		public static double Normalize(double f, double fs)
 		{
 			return 2 * Math.PI / fs * f;
 		}
 
 		/// <summary>
-		/// ³‹K‰»Špü”g”‚ğŒ³‚Ìü”g”‚É–ß‚·B
+		/// æ­£è¦åŒ–è§’å‘¨æ³¢æ•°ã‚’å…ƒã®å‘¨æ³¢æ•°ã«æˆ»ã™ã€‚
 		/// </summary>
-		/// <param name="w">³‹K‰»Špü”g”</param>
-		/// <param name="fs">ƒTƒ“ƒvƒŠƒ“ƒOü”g”</param>
-		/// <returns>Œ³‚Ìü”g”</returns>
+		/// <param name="w">æ­£è¦åŒ–è§’å‘¨æ³¢æ•°</param>
+		/// <param name="fs">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°</param>
+		/// <returns>å…ƒã®å‘¨æ³¢æ•°</returns>
 		public static double Denormalize(double w, double fs)
 		{
 			return fs / (2 * Math.PI) * w;
 		}
 
 		/// <summary>
-		/// ü”g”‚ğ³‹K‰»B
-		/// ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Í 48000HzB
+		/// å‘¨æ³¢æ•°ã‚’æ­£è¦åŒ–ã€‚
+		/// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã¯ 48000Hzã€‚
 		/// </summary>
-		/// <param name="w">³‹K‰»‚µ‚½‚¢ü”g”</param>
+		/// <param name="w">æ­£è¦åŒ–ã—ãŸã„å‘¨æ³¢æ•°</param>
 		/// <returns></returns>
 		public static double Normalize(double w)
 		{
@@ -45,66 +45,66 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// •¡‘f”‚Ìâ‘Î’l(ƒpƒ[‚ÌdB’l)‚ğ‹‚ß‚éB
+		/// è¤‡ç´ æ•°ã®çµ¶å¯¾å€¤(ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
-		/// <returns>ƒpƒ[‚ÌdB’l</returns>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
+		/// <returns>ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</returns>
 		public static double Amp(double re, double im)
 		{
 			return 10 * Math.Log10(re*re + im*im);
 		}
 
 		/// <summary>
-		/// â‘Î’l(ƒpƒ[‚ÌdB’l)‚ğ‹‚ß‚éB
+		/// çµ¶å¯¾å€¤(ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">ƒŠƒjƒA’l</param>
-		/// <returns>ƒpƒ[‚ÌdB’l</returns>
+		/// <param name="re">ãƒªãƒ‹ã‚¢å€¤</param>
+		/// <returns>ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</returns>
 		public static double Amp(double re)
 		{
 			return 20 * Math.Log10(Math.Abs(re));
 		}
 
 		/// <summary>
-		/// •¡‘f”‚Ì•ÎŠp‚ğ‹‚ß‚éB
+		/// è¤‡ç´ æ•°ã®åè§’ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
-		/// <returns>•ÎŠp</returns>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
+		/// <returns>åè§’</returns>
 		public static double Phase(double re, double im)
 		{
 			return Math.Atan2(im, re);
 		}
 
 		/// <summary>
-		/// dB’l ¨ ƒŠƒjƒA’l‚É•ÏŠ·B
+		/// dBå€¤ â†’ ãƒªãƒ‹ã‚¢å€¤ã«å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">dB’l</param>
-		/// <returns>ƒŠƒjƒA’l</returns>
+		/// <param name="x">dBå€¤</param>
+		/// <returns>ãƒªãƒ‹ã‚¢å€¤</returns>
 		public static double DBToLinear(double x)
 		{
 			return Math.Pow(10, x/20);
 		}
 
 		/// <summary>
-		/// ƒŠƒjƒA’l ¨ dB’l‚É•ÏŠ·B
+		/// ãƒªãƒ‹ã‚¢å€¤ â†’ dBå€¤ã«å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">ƒŠƒjƒA’l</param>
-		/// <returns>dB’l</returns>
+		/// <param name="x">ãƒªãƒ‹ã‚¢å€¤</param>
+		/// <returns>dBå€¤</returns>
 		public static double LinearToDB(double x)
 		{
 			return 20 * Math.Log10(x);
 		}
 
 		#endregion
-		#region ’l‚ÌƒNƒŠƒbƒsƒ“ƒO
+		#region å€¤ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 
 		/// <summary>
-		/// ’l‚ğ short ‚Ì”ÍˆÍ‚ÉƒNƒŠƒbƒsƒ“ƒO‚·‚éB
+		/// å€¤ã‚’ short ã®ç¯„å›²ã«ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="val">’l</param>
-		/// <returns>ƒNƒŠƒbƒsƒ“ƒOŒã‚Ì’l</returns>
-		/// <remarks>C# 2.0 ‚ª³®ŒöŠJ‚³‚ê‚½‚ç generics ‰»‚·‚é‚Æv‚¤B</remarks>
+		/// <param name="val">å€¤</param>
+		/// <returns>ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å¾Œã®å€¤</returns>
+		/// <remarks>C# 2.0 ãŒæ­£å¼å…¬é–‹ã•ã‚ŒãŸã‚‰ generics åŒ–ã™ã‚‹ã¨æ€ã†ã€‚</remarks>
 		public static short ClipShort(double val)
 		{
 			if(val < short.MinValue) val = short.MinValue;
@@ -113,14 +113,14 @@ namespace SoundLibrary
 		}
 
 		#endregion
-		#region ƒCƒ“ƒpƒ‹ƒX‰“š
+		#region ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚ÌƒCƒ“ƒpƒ‹ƒX‰“š‚ğŒvZ‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="f">ƒtƒBƒ‹ƒ^</param>
-		/// <param name="len">ƒCƒ“ƒpƒ‹ƒX‰“š‚Ì’·‚³</param>
-		/// <returns>ƒCƒ“ƒpƒ‹ƒX‰“š</returns>
+		/// <param name="f">ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="len">ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”ã®é•·ã•</param>
+		/// <returns>ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”</returns>
 		public static double[] GetImpulseResponse(Filter.IFilter f, int len)
 		{
 			double[] x = new double[len];
@@ -131,11 +131,11 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ìü”g”‰“š‚ğŒvZ‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®å‘¨æ³¢æ•°å¿œç­”ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="f">ƒtƒBƒ‹ƒ^</param>
-		/// <param name="len">ƒCƒ“ƒpƒ‹ƒX‰“š‚Ì’·‚³</param>
-		/// <returns>ü”g”‰“š</returns>
+		/// <param name="f">ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="len">ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹å¿œç­”ã®é•·ã•</param>
+		/// <returns>å‘¨æ³¢æ•°å¿œç­”</returns>
 		public static SpectrumAnalysis.Spectrum GetFrequencyResponse(Filter.IFilter f, int len)
 		{
 			len = SoundLibrary.BitOperation.FloorPower2(len);

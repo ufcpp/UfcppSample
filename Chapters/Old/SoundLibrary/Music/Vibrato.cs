@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 using SoundLibrary.Filter.Delay;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ƒrƒuƒ‰[ƒg¶¬—pƒpƒ‰ƒ[ƒ^B
+	/// ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆç”Ÿæˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
 	/// </summary>
 	public class VibratoParameter
 	{
-		public double rate;  // ƒrƒuƒ‰[ƒgƒŒ[ƒg(³‹K‰»Špü”g”)B
-		public int    depth; // ƒrƒuƒ‰[ƒgƒfƒvƒX(ƒXƒeƒbƒv”)B
-		public int    delay; // ƒrƒuƒ‰[ƒgƒfƒBƒŒƒC(ƒXƒeƒbƒv”)B
+		public double rate;  // ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒˆ(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)ã€‚
+		public int    depth; // ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ãƒ—ã‚¹(ã‚¹ãƒ†ãƒƒãƒ—æ•°)ã€‚
+		public int    delay; // ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¤(ã‚¹ãƒ†ãƒƒãƒ—æ•°)ã€‚
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="rate">ƒrƒuƒ‰[ƒgƒŒ[ƒg(³‹K‰»Špü”g”)</param>
-		/// <param name="depth">ƒrƒuƒ‰[ƒgƒfƒvƒX(ƒXƒeƒbƒv”)</param>
-		/// <param name="delay">ƒrƒuƒ‰[ƒgƒfƒBƒŒƒC(ƒXƒeƒbƒv”)</param>
+		/// <param name="rate">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒˆ(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="depth">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ãƒ—ã‚¹(ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="delay">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¤(ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
 		public VibratoParameter(double rate, int depth, int delay)
 		{
 			this.rate = rate;
@@ -27,7 +27,7 @@ namespace SoundLibrary.Music
 	}
 
 	/// <summary>
-	/// Œ³‚Æ‚È‚é Sound ‚Éƒrƒuƒ‰[ƒg‹Èü‚ğŠ|‚¯‚½ Sound ‚ğ¶¬‚·‚éB
+	/// å…ƒã¨ãªã‚‹ Sound ã«ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆæ›²ç·šã‚’æ›ã‘ãŸ Sound ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class Vibrato : Sound
 	{
@@ -36,14 +36,14 @@ namespace SoundLibrary.Music
 		FractionalDelay delay;
 
 		/// <summary>
-		/// ƒrƒuƒ‰[ƒgƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="parameter">ƒrƒuƒ‰[ƒgƒpƒ‰ƒ[ƒ^</param>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="parameter">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Vibrato(VibratoParameter parameter, Sound sound)
 		{
 			if(sound.Length < parameter.delay)
-				throw new ArgumentException("‰¹‚ª’Z‚·‚¬");
+				throw new ArgumentException("éŸ³ãŒçŸ­ã™ã");
 
 			this.parameter = parameter;
 			this.sound = sound;
@@ -53,12 +53,12 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// ƒrƒuƒ‰[ƒgƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="rate">ƒrƒuƒ‰[ƒgƒŒ[ƒg(³‹K‰»Špü”g”)</param>
-		/// <param name="depth">ƒrƒuƒ‰[ƒgƒfƒvƒX(0`1)</param>
-		/// <param name="delay">ƒrƒuƒ‰[ƒgƒfƒBƒŒƒC(ƒXƒeƒbƒv”)</param>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="rate">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒˆ(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="depth">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ãƒ—ã‚¹(0ï½1)</param>
+		/// <param name="delay">ãƒ“ãƒ–ãƒ©ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¤(ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Vibrato(double rate, int depth, int delay, Sound sound)
 			: this(new VibratoParameter(rate, depth, delay), sound)
 		{

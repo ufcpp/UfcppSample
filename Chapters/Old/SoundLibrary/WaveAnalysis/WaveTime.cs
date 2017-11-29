@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.SpectrumAnalysis;
 using SoundLibrary.Wave;
@@ -6,13 +6,13 @@ using SoundLibrary.Wave;
 namespace SoundLibrary.WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
-	/// Œn—ñ‚Åƒf[ƒ^‚ğ•ÛB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
+	/// æ™‚ç³»åˆ—ã§ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã€‚
 	/// </summary>
 	public class WaveTime : WaveData
 	{
-		double[] l;  // L ch Œn—ñ
-		double[] r;  // R ch Œn—ñ
+		double[] l;  // L ch æ™‚ç³»åˆ—
+		double[] r;  // R ch æ™‚ç³»åˆ—
 
 		public WaveTime(){}
 

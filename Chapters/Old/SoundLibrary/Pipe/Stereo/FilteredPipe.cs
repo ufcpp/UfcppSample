@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Filter;
 
 namespace SoundLibrary.Pipe.Stereo
 {
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^ˆ—‚ğs‚¤ƒpƒCƒvB
+	/// ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã‚’è¡Œã†ãƒ‘ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public class FilteredPipe : Pipe
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		IFilter filterL;
 		IFilter filterR;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public FilteredPipe(Queue input, Queue output, IFilter filter)
 			: this(input, output, filter, (IFilter)filter.Clone())
@@ -30,10 +30,10 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// L ƒ`ƒƒƒlƒ‹‚ÉŠ|‚¯‚éƒtƒBƒ‹ƒ^B
+		/// L ãƒãƒ£ãƒãƒ«ã«æ›ã‘ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 		/// </summary>
 		public IFilter Left
 		{
@@ -42,7 +42,7 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		/// <summary>
-		/// R ƒ`ƒƒƒlƒ‹‚ÉŠ|‚¯‚éƒtƒBƒ‹ƒ^B
+		/// R ãƒãƒ£ãƒãƒ«ã«æ›ã‘ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 		/// </summary>
 		public IFilter Right
 		{
@@ -51,7 +51,7 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		public override void Process()
 		{

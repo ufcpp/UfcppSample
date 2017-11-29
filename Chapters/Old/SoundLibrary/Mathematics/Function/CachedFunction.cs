@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ŠÖ”ƒNƒ‰ƒX‚ÉƒLƒƒƒbƒVƒ…‹@”\‚ğ•t‚¯‚éB
-	/// f[Exp(x)] ‚Æ‚©‚·‚é‚ÆAf ‚Ì’†‚ÅAExp ‚Ì’l‚ª‰½“x‚àŒvZ‚³‚ê‚éê‡‚ª‚ ‚é‚Ì‚ÅB
-	/// ˆê“x Exp(x) ‚Ì’l‚ğŒvZ‚µ‚½‚çAx ‚Ì’l‚ª“¯‚¶ŒÀ‚è‹É—Í’l‚ğg‚¢‚Ü‚í‚·B
+	/// é–¢æ•°ã‚¯ãƒ©ã‚¹ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ©Ÿèƒ½ã‚’ä»˜ã‘ã‚‹ã€‚
+	/// f[Exp(x)] ã¨ã‹ã™ã‚‹ã¨ã€f ã®ä¸­ã§ã€Exp ã®å€¤ãŒä½•åº¦ã‚‚è¨ˆç®—ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ã®ã§ã€‚
+	/// ä¸€åº¦ Exp(x) ã®å€¤ã‚’è¨ˆç®—ã—ãŸã‚‰ã€x ã®å€¤ãŒåŒã˜é™ã‚Šæ¥µåŠ›å€¤ã‚’ä½¿ã„ã¾ã‚ã™ã€‚
 	/// </summary>
 	public class CachedFunction : Function
 	{
-		#region “à•”ƒNƒ‰ƒX
+		#region å†…éƒ¨ã‚¯ãƒ©ã‚¹
 
 		class Cache
 		{
@@ -28,20 +28,20 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ŠÖ”‚ÌÀ‘ÌB
+		/// é–¢æ•°ã®å®Ÿä½“ã€‚
 		/// </summary>
 		Function f;
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…’lB
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥å€¤ã€‚
 		/// </summary>
 		Cache cache;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		static int count; //! for debug
 		int unique_id;
@@ -57,7 +57,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region Parameter[] ‚Ì“™’l”»’è
+		#region Parameter[] ã®ç­‰å€¤åˆ¤å®š
 
 		static bool ParameterEquals(Parameter[] a, Parameter[] b)
 		{
@@ -116,7 +116,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‚»‚Ì‘¼‚Ì’ŠÛŠÖ”
+		#region ãã®ä»–ã®æŠ½è±¡é–¢æ•°
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -124,11 +124,11 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		/// <remarks>
-		/// Œ»ó‚Ì CachedFunction ‚É‚Í Optimize ‚Í‚©‚©‚ç‚È‚¢‚Ì‚ÅA
-		/// —\‚ß Optimize ‚ğŠ|‚¯‚Ä‚©‚çƒLƒƒƒbƒVƒ…‰»‚·‚é‚æ‚¤‚ÉB
+		/// ç¾çŠ¶ã® CachedFunction ã«ã¯ Optimize ã¯ã‹ã‹ã‚‰ãªã„ã®ã§ã€
+		/// äºˆã‚ Optimize ã‚’æ›ã‘ã¦ã‹ã‚‰ã‚­ãƒ£ãƒƒã‚·ãƒ¥åŒ–ã™ã‚‹ã‚ˆã†ã«ã€‚
 		/// </remarks>
 		public override Function Optimize()
 		{
@@ -136,7 +136,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public override Function Clone()
 		{
@@ -169,9 +169,9 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “Áê‚ÈŠÖ”
+		#region ç‰¹æ®Šãªé–¢æ•°
 
-		#region ’P€ŠÖ”
+		#region å˜é …é–¢æ•°
 
 		public static new CachedFunction Exp(Function f)
 		{
@@ -244,7 +244,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “ñ€ŠÖ”
+		#region äºŒé …é–¢æ•°
 
 		public static new CachedFunction Pow(Function f, Function g)
 		{

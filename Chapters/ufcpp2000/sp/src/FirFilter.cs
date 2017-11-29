@@ -1,31 +1,31 @@
-/// <summary>
-/// FIR ƒtƒBƒ‹ƒ^B
+ï»¿/// <summary>
+/// FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 /// </summary>
 public class FirFilter : IFilter
 {
-	#region ƒtƒB[ƒ‹ƒh
+	#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 	CircularBuffer buf;
 	double[] a;
 
 	#endregion
-	#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	public FirFilter() : this(0) { }
 
 	/// <summary>
-	/// ŒW”‚ğw’è‚µ‚Ä‰Šú‰»
+	/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–
 	/// </summary>
-	/// <param name="a0">ŒW” a0</param>
+	/// <param name="a0">ä¿‚æ•° a0</param>
 	public FirFilter(double a0)
 		: this(new double[] { a0 })
 	{
 	}
 
 	/// <summary>
-	/// ŒW”‚ğ”z—ñ‚Åw’è‚µ‚Ä‰Šú‰»
+	/// ä¿‚æ•°ã‚’é…åˆ—ã§æŒ‡å®šã—ã¦åˆæœŸåŒ–
 	/// </summary>
-	/// <param name="a">ŒW”‚ğŠi”[‚µ‚½”z—ñ</param>
+	/// <param name="a">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—</param>
 	public FirFilter(params double[] a)
 	{
 		this.a = a;
@@ -33,14 +33,14 @@ public class FirFilter : IFilter
 	}
 
 	#endregion
-	#region IFilter ƒƒ“ƒo
+	#region IFilter ãƒ¡ãƒ³ãƒ
 
 	/// <summary>
-	/// Še n ‚ÅA
-	/// y[n] = ƒ° a[i] * x[n - i]
+	/// å„æ™‚åˆ» n ã§ã€
+	/// y[n] = Î£ a[i] * x[n - i]
 	/// </summary>
-	/// <param name="x">“ü—Í</param>
-	/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+	/// <param name="x">å…¥åŠ›</param>
+	/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 	public double GetValue(double x)
 	{
 		double y = x * this.a[0];
@@ -61,7 +61,7 @@ public class FirFilter : IFilter
 	}
 
 	#endregion
-	#region ICloneable ƒƒ“ƒo
+	#region ICloneable ãƒ¡ãƒ³ãƒ
 
 	public object Clone()
 	{

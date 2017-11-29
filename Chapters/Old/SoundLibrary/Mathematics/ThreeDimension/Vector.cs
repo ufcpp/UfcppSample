@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.ThreeDimension
 {
 	/// <summary>
-	/// 3ŸŒ³ƒxƒNƒgƒ‹B
+	/// 3æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«ã€‚
 	/// </summary>
 	public struct Vector
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		public double x, y, z;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Vector(double x, double y, double z)
 		{
@@ -22,7 +22,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ƒmƒ‹ƒ€Eâ‘Î’l
+		#region ãƒãƒ«ãƒ ãƒ»çµ¶å¯¾å€¤
 
 		public double Norm
 		{
@@ -35,7 +35,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public static Vector operator+ (Vector a, Vector b)
 		{
@@ -61,7 +61,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		public static Vector operator/ (Vector a, double p){return (1/p) * a;}
 
 		#endregion
-		#region “àÏEŠOÏ
+		#region å†…ç©ãƒ»å¤–ç©
 
 		public static double InnerProduct(Vector a, Vector b)
 		{
@@ -77,7 +77,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region •¶š—ñ‰»
+		#region æ–‡å­—åˆ—åŒ–
 
 		public override string ToString()
 		{

@@ -1,16 +1,16 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// FIR ‚ğì¬‚·‚éB
+	/// FIR ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class IirFilterGenerator : FilterGenerator
 	{
-		const string FilterName = "FIR ƒtƒBƒ‹ƒ^";
-		const string CoefAName   = "ƒtƒBƒ‹ƒ^•ª•êŒW”";
-		const string CoefBName   = "ƒtƒBƒ‹ƒ^•ªqŒW”";
+		const string FilterName = "FIR ãƒ•ã‚£ãƒ«ã‚¿";
+		const string CoefAName   = "ãƒ•ã‚£ãƒ«ã‚¿åˆ†æ¯ä¿‚æ•°";
+		const string CoefBName   = "ãƒ•ã‚£ãƒ«ã‚¿åˆ†å­ä¿‚æ•°";
 
 		public IirFilterGenerator()
 		{
@@ -38,7 +38,7 @@ namespace SoundLibrary.Filter
 		public override string CheckConstraint()
 		{
 			if(this.CoefA.Length + 1 != this.CoefB.Length)
-				return CoefAName + "‚Ì’·‚³ +1 ==" + CoefBName + "‚Ì’·‚³o‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return CoefAName + "ã®é•·ã• +1 ==" + CoefBName + "ã®é•·ã•å‡ºãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			return null;
 		}

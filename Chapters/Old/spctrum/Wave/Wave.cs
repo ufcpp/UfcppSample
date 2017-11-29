@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.IO;
 
 namespace Wave
 {
 	/// <summary>
-	/// WaveReader/WaveWriter ‚Åg‚¤—áŠOƒNƒ‰ƒXB
+	/// WaveReader/WaveWriter ã§ä½¿ã†ä¾‹å¤–ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class WaveException : Exception
 	{
@@ -14,16 +14,16 @@ namespace Wave
 	}
 
 	/// <summary>
-	/// Wave ƒtƒ@ƒCƒ‹‚ÌƒtƒH[ƒ}ƒbƒgƒwƒbƒ_B
+	/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒ˜ãƒƒãƒ€ã€‚
 	/// </summary>
 	public class FormatHeader
 	{
-		public short id;         // ƒf[ƒ^Œ`®
-		public short ch;         // ƒ`ƒƒƒlƒ‹”
-		public int   sampleRate; // ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-		public int   dataRate;   // ƒf[ƒ^ƒŒ[ƒg(ƒ`ƒƒƒlƒ‹”~ƒuƒƒbƒNƒTƒCƒY)
-		public short blockSize;  // ƒuƒƒbƒNƒTƒCƒY(ƒ`ƒƒƒlƒ‹”~ƒoƒCƒg/ƒ`ƒƒƒlƒ‹)
-		public short sampleBit;  // 1ƒTƒ“ƒvƒ‹•Ó‚è‚Ìƒrƒbƒg”
+		public short id;         // ãƒ‡ãƒ¼ã‚¿å½¢å¼
+		public short ch;         // ãƒãƒ£ãƒãƒ«æ•°
+		public int   sampleRate; // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+		public int   dataRate;   // ãƒ‡ãƒ¼ã‚¿ãƒ¬ãƒ¼ãƒˆ(ï¼ãƒãƒ£ãƒãƒ«æ•°Ã—ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º)
+		public short blockSize;  // ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º(ï¼ãƒãƒ£ãƒãƒ«æ•°Ã—ãƒã‚¤ãƒˆ/ãƒãƒ£ãƒãƒ«)
+		public short sampleBit;  // 1ã‚µãƒ³ãƒ—ãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ•°
 
 		public const bool Stereo = true;
 		public const bool Mono   = false;
@@ -33,11 +33,11 @@ namespace Wave
 		public FormatHeader(){}
 
 		/// <summary>
-		/// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg“™‚Ìƒpƒ‰ƒ[ƒ^‚©‚çƒwƒbƒ_ì¬B
+		/// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆç­‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ãƒ˜ãƒƒãƒ€ä½œæˆã€‚
 		/// </summary>
-		/// <param name="rate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
-		/// <param name="stereo">true ‚È‚çƒXƒeƒŒƒIAfalse ‚È‚çƒ‚ƒmƒ‰ƒ‹</param>
-		/// <param name="type">true ‚È‚ç16bit/sampleAfalse ‚È‚ç8bit/sample</param>
+		/// <param name="rate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <param name="stereo">true ãªã‚‰ã‚¹ãƒ†ãƒ¬ã‚ªã€false ãªã‚‰ãƒ¢ãƒãƒ©ãƒ«</param>
+		/// <param name="type">true ãªã‚‰16bit/sampleã€false ãªã‚‰8bit/sample</param>
 		public FormatHeader(int rate, bool stereo, bool type)
 		{
 			this.id         = 1;
@@ -49,7 +49,7 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// BinaryReader ‚©‚çƒwƒbƒ_“Ç‚İo‚µB
+		/// BinaryReader ã‹ã‚‰ãƒ˜ãƒƒãƒ€èª­ã¿å‡ºã—ã€‚
 		/// </summary>
 		/// <param name="reader"></param>
 		public FormatHeader(BinaryReader reader)
@@ -58,7 +58,7 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// BinaryReader ‚©‚çƒwƒbƒ_“Ç‚İo‚µB
+		/// BinaryReader ã‹ã‚‰ãƒ˜ãƒƒãƒ€èª­ã¿å‡ºã—ã€‚
 		/// </summary>
 		/// <param name="reader"></param>
 		public void ReadFromStream(BinaryReader reader)
@@ -83,7 +83,7 @@ namespace Wave
 	}//class FormatHeader
 
 	/// <summary>
-	/// RIFF Wave Œ`®‚Ìƒtƒ@ƒCƒ‹‚©‚ç‰¹ºƒf[ƒ^‚ğ“Ç‚İo‚·B
+	/// RIFF Wave å½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€‚
 	/// </summary>
 	public class WaveReader : IDisposable
 	{
@@ -109,18 +109,18 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="filename">Wave ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">Wave ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void Open(string filename)
 		{
 			Open(new BinaryReader(File.OpenRead(filename)));
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="reader">Wave ƒtƒ@ƒCƒ‹‚ğŠi”[‚µ‚½ƒXƒgƒŠ[ƒ€</param>
+		/// <param name="reader">Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã—ãŸã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
 		public void Open(BinaryReader reader)
 		{
 			if(this.reader != null)
@@ -134,51 +134,51 @@ namespace Wave
 			buf= this.reader.ReadBytes(4);
 			if(buf[0] != 'R' || buf[1] != 'I' || buf[2] != 'F' || buf[3] != 'F')
 			{
-				throw new WaveException("‚±‚Ìƒtƒ@ƒCƒ‹‚ÍRIFFŒ`®‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+				throw new WaveException("ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯RIFFå½¢å¼ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 			}
 
-			this.reader.ReadBytes(4); //ƒtƒ@ƒCƒ‹ƒTƒCƒY“Ç‚İ”ò‚Î‚µB
+			this.reader.ReadBytes(4); //ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºèª­ã¿é£›ã°ã—ã€‚
 
 			buf= this.reader.ReadBytes(4);
 			if(buf[0] != 'W' || buf[1] != 'A' || buf[2] != 'V' || buf[3] != 'E')
 			{
-				throw new WaveException("‚±‚Ìƒtƒ@ƒCƒ‹‚ÍwaveŒ`®‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+				throw new WaveException("ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯waveå½¢å¼ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 			}
 
 			buf= this.reader.ReadBytes(4);
 			if(buf[0] != 'f' || buf[1] != 'm' || buf[2] != 't' || buf[3] != ' ')
 			{
-				throw new WaveException("fmtƒ^ƒO‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+				throw new WaveException("fmtã‚¿ã‚°ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 			}
 
 			int headerLength = this.reader.ReadInt32();
 			if(headerLength < 16)
 			{
-				throw new WaveException("ƒwƒbƒ_’·‚ª’Z‚·‚¬‚Ü‚·B");
+				throw new WaveException("ãƒ˜ãƒƒãƒ€é•·ãŒçŸ­ã™ãã¾ã™ã€‚");
 			}
 
 			this.header = new FormatHeader(this.reader);
 			if(header.id != 0x0001)
 			{
-				throw new WaveException("‘Î‰‚µ‚Ä‚¢‚È‚¢ƒtƒH[ƒ}ƒbƒg‚Å‚·B");
+				throw new WaveException("å¯¾å¿œã—ã¦ã„ãªã„ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™ã€‚");
 			}
 
 			if(headerLength != 16)
 			{
-				this.reader.ReadBytes(headerLength - 16); // ƒwƒbƒ_[‚Ìc‚è‚Ì•”•ª“Ç‚İ”ò‚Î‚µB
+				this.reader.ReadBytes(headerLength - 16); // ãƒ˜ãƒƒãƒ€ãƒ¼ã®æ®‹ã‚Šã®éƒ¨åˆ†èª­ã¿é£›ã°ã—ã€‚
 			}
 
 			buf= this.reader.ReadBytes(4);
 			if(buf[0] != 'd' || buf[1] != 'a' || buf[2] != 't' || buf[3] != 'a')
 			{
-				throw new WaveException("dataƒ^ƒO‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B");
+				throw new WaveException("dataã‚¿ã‚°ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚");
 			}
 
 			this.dataLength = (uint)(this.reader.ReadUInt32() / this.header.blockSize);
 		}//Open
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éB
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹ã€‚
 		/// </summary>
 		public void Close()
 		{
@@ -189,7 +189,7 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_î•ñ‚Ìæ“¾B
+		/// ãƒ˜ãƒƒãƒ€æƒ…å ±ã®å–å¾—ã€‚
 		/// </summary>
 		public FormatHeader Header
 		{
@@ -197,7 +197,7 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// c‚è‚Ìƒf[ƒ^’·‚ğ‹A‚·B
+		/// æ®‹ã‚Šã®ãƒ‡ãƒ¼ã‚¿é•·ã‚’å¸°ã™ã€‚
 		/// </summary>
 		public uint Length
 		{
@@ -205,12 +205,12 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Ç‚İo‚µB
+		/// ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="length">“Ç‚İo‚·ƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^Ši”[æB</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^Ši”[æB</param>
-		/// <returns>ÀÛ‚É“Ç‚İo‚µ‚½ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">èª­ã¿å‡ºã™ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã€‚</param>
+		/// <returns>å®Ÿéš›ã«èª­ã¿å‡ºã—ãŸã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Read(uint length, out double[] l, out double[] r)
 		{
 			l = null;
@@ -220,7 +220,7 @@ namespace Wave
 			int i = 0;
 			try
 			{
-				if(this.header.ch == 1) // ƒ‚ƒmƒ‰ƒ‹
+				if(this.header.ch == 1) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					l = new double[length];
 
@@ -238,8 +238,8 @@ namespace Wave
 							l[i] = (double)this.reader.ReadInt16();
 						}
 					}
-				}//ƒ‚ƒmƒ‰ƒ‹
-				else if(header.ch == 2) // ƒXƒeƒŒƒI
+				}//ãƒ¢ãƒãƒ©ãƒ«
+				else if(header.ch == 2) // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					l = new double[length];
 					r = new double[length];
@@ -260,7 +260,7 @@ namespace Wave
 							r[i] = (double)this.reader.ReadInt16();
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(EndOfStreamException){}
 			catch(IOException){}
@@ -270,12 +270,12 @@ namespace Wave
 		}//Read
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Ç‚İo‚µB
+		/// ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="length">“Ç‚İo‚·ƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^Ši”[æB</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^Ši”[æB</param>
-		/// <returns>ÀÛ‚É“Ç‚İo‚µ‚½ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">èª­ã¿å‡ºã™ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã€‚</param>
+		/// <returns>å®Ÿéš›ã«èª­ã¿å‡ºã—ãŸã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Read(uint length, out float[] l, out float[] r)
 		{
 			l = null;
@@ -285,7 +285,7 @@ namespace Wave
 			int i = 0;
 			try
 			{
-				if(this.header.ch == 1) // ƒ‚ƒmƒ‰ƒ‹
+				if(this.header.ch == 1) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					l = new float[length];
 
@@ -303,8 +303,8 @@ namespace Wave
 							l[i] = (float)this.reader.ReadInt16();
 						}
 					}
-				}//ƒ‚ƒmƒ‰ƒ‹
-				else if(header.ch == 2) // ƒXƒeƒŒƒI
+				}//ãƒ¢ãƒãƒ©ãƒ«
+				else if(header.ch == 2) // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					l = new float[length];
 					r = new float[length];
@@ -325,7 +325,7 @@ namespace Wave
 							r[i] = (float)this.reader.ReadInt16();
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(EndOfStreamException){}
 			catch(IOException){}
@@ -335,17 +335,17 @@ namespace Wave
 		}//Read
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ“Ç‚İ”ò‚Î‚·B
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿é£›ã°ã™ã€‚
 		/// </summary>
-		/// <param name="length">“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <returns>ƒtƒ@ƒCƒ‹‚Ì––”ö‚Ü‚Å“’B‚µ‚½‚ç false ‚ğ•Ô‚·</returns>
+		/// <param name="length">èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <returns>ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ«å°¾ã¾ã§åˆ°é”ã—ãŸã‚‰ false ã‚’è¿”ã™</returns>
 		public bool Skip(int length)
 		{
 			if(this.reader == null) return false;
 
 			try
 			{
-				if(header.ch == 1) // ƒ‚ƒmƒ‰ƒ‹
+				if(header.ch == 1) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(header.sampleBit == 8)
 					{
@@ -357,7 +357,7 @@ namespace Wave
 						this.reader.ReadBytes(length * 2);
 					}
 				}
-				else if(header.ch == 2) // ƒXƒeƒŒƒI
+				else if(header.ch == 2) // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(header.sampleBit == 8)
 					{
@@ -381,7 +381,7 @@ namespace Wave
 	}//class WaveReader
 
 	/// <summary>
-	/// RIFF Wave Œ`®‚Ìƒtƒ@ƒCƒ‹‚É‰¹ºƒf[ƒ^‚ğ‘‚«‚ŞB
+	/// RIFF Wave å½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã€‚
 	/// </summary>
 	public class WaveWriter : IDisposable
 	{
@@ -407,18 +407,18 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="filename">Wave ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">Wave ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void Open(string filename, FormatHeader header)
 		{
 			Open(new BinaryWriter(File.OpenWrite(filename)), header);
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="reader">Wave ƒtƒ@ƒCƒ‹‚ğŠi”[‚µ‚½ƒXƒgƒŠ[ƒ€</param>
+		/// <param name="reader">Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã—ãŸã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
 		public void Open(BinaryWriter writer, FormatHeader header)
 		{
 			if(this.writer != null)
@@ -433,7 +433,7 @@ namespace Wave
 			buf = System.Text.Encoding.ASCII.GetBytes("RIFF");
 			this.writer.Write(buf);
 
-			this.writer.Write((uint)0); //ƒf[ƒ^’·(‰¼‚Ì’l‚ğ“ü‚ê‚Ä‚¨‚­)
+			this.writer.Write((uint)0); //ãƒ‡ãƒ¼ã‚¿é•·(ä»®ã®å€¤ã‚’å…¥ã‚Œã¦ãŠã)
 
 			buf = System.Text.Encoding.ASCII.GetBytes("WAVE");
 			this.writer.Write(buf);
@@ -447,11 +447,11 @@ namespace Wave
 			buf = System.Text.Encoding.ASCII.GetBytes("data");
 			this.writer.Write(buf);
 
-			this.writer.Write((uint)0); //ƒf[ƒ^’·(‰¼‚Ì’l‚ğ“ü‚ê‚Ä‚¨‚­)
+			this.writer.Write((uint)0); //ãƒ‡ãƒ¼ã‚¿é•·(ä»®ã®å€¤ã‚’å…¥ã‚Œã¦ãŠã)
 		}//Open
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éB
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹ã€‚
 		/// </summary>
 		public void Close()
 		{
@@ -470,12 +470,12 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="length">‘‚«‚ŞƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <returns>ÀÛ‚É‘‚«‚ñ‚¾ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Write(double[] l, double[] r)
 		{
 			if(this.writer == null) return 0;
@@ -485,7 +485,7 @@ namespace Wave
 
 			try
 			{
-				if(header.ch == 1) // ƒ‚ƒmƒ‰ƒ‹
+				if(header.ch == 1) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(header.sampleBit == 8)
 					{
@@ -501,8 +501,8 @@ namespace Wave
 							writer.Write(this.DoubleToShort(l[i]));
 						}
 					}
-				}//ƒ‚ƒmƒ‰ƒ‹
-				else if(header.ch == 2) // ƒXƒeƒŒƒI
+				}//ãƒ¢ãƒãƒ©ãƒ«
+				else if(header.ch == 2) // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(header.sampleBit == 8)
 					{
@@ -520,7 +520,7 @@ namespace Wave
 							writer.Write(this.DoubleToShort(r[i]));
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(IOException){return 0;}
 	
@@ -529,12 +529,12 @@ namespace Wave
 		}//Write
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="length">‘‚«‚ŞƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <returns>ÀÛ‚É‘‚«‚ñ‚¾ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Write(float[] l, float[] r)
 		{
 			if(this.writer == null) return 0;
@@ -544,7 +544,7 @@ namespace Wave
 
 			try
 			{
-				if(header.ch == 1) // ƒ‚ƒmƒ‰ƒ‹
+				if(header.ch == 1) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(header.sampleBit == 8)
 					{
@@ -560,8 +560,8 @@ namespace Wave
 							writer.Write(this.DoubleToShort(l[i]));
 						}
 					}
-				}//ƒ‚ƒmƒ‰ƒ‹
-				else if(header.ch == 2) // ƒXƒeƒŒƒI
+				}//ãƒ¢ãƒãƒ©ãƒ«
+				else if(header.ch == 2) // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(header.sampleBit == 8)
 					{
@@ -579,7 +579,7 @@ namespace Wave
 							writer.Write(this.DoubleToShort(r[i]));
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(IOException){return 0;}
 	
@@ -588,10 +588,10 @@ namespace Wave
 		}//Write
 
 		/// <summary>
-		/// double ¨ byte ‚Ì•ÏŠ·B
+		/// double â†’ byte ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		private byte DoubleToByte(double x)
 		{
 			x += 128;
@@ -601,10 +601,10 @@ namespace Wave
 		}
 
 		/// <summary>
-		/// double ¨ short ‚Ì•ÏŠ·B
+		/// double â†’ short ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		private short DoubleToShort(double x)
 		{
 			if(x < short.MinValue) x = short.MinValue;

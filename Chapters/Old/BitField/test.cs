@@ -1,4 +1,4 @@
-#define CHECK_BCD
+ï»¿#define CHECK_BCD
 //#define CHECK_MUL
 //#define CHECK_DIV
 //#define CHECK_MUL_DIV
@@ -8,19 +8,19 @@ using System;
 namespace BitField
 {
 	/// <summary>
-	/// BitField ƒNƒ‰ƒX‚ÌƒeƒXƒg—pƒvƒƒOƒ‰ƒ€B
+	/// BitField ã‚¯ãƒ©ã‚¹ã®ãƒ†ã‚¹ãƒˆç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã€‚
 	/// </summary>
 	class BitFieldTest
 	{
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 		[STAThread]
 		public static void Main()
 		{
 			Random rnd = new Random();
 
-			// BinToBcd ‚¨‚æ‚Ñ BcdToBin ‚Ìƒ`ƒFƒbƒN
+			// BinToBcd ãŠã‚ˆã³ BcdToBin ã®ãƒã‚§ãƒƒã‚¯
 #if CHECK_BCD
 			for(int i=1; i<100; ++i)
 			{
@@ -31,7 +31,7 @@ namespace BitField
 			TestBcd(100000000UL);
 #endif
 
-			// MulDiv ‚Ìƒ`ƒFƒbƒN
+			// MulDiv ã®ãƒã‚§ãƒƒã‚¯
 #if CHECK_MUL_DIV
 			for(int i=1; i<100; ++i)
 			{
@@ -42,7 +42,7 @@ namespace BitField
 			}
 #endif
 
-			// Mul ‚Ìƒ`ƒFƒbƒN
+			// Mul ã®ãƒã‚§ãƒƒã‚¯
 #if CHECK_MUL
 			for(int i=1; i<100; ++i)
 			{
@@ -53,7 +53,7 @@ namespace BitField
 			}
 #endif
 
-			// Div ‚Ìƒ`ƒFƒbƒN
+			// Div ã®ãƒã‚§ãƒƒã‚¯
 #if CHECK_DIV
 			for(int i=1; i<100; ++i)
 			{
@@ -66,9 +66,9 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// BinToBcd ‚¨‚æ‚Ñ BcdToBin ‚Ìƒ`ƒFƒbƒN
+		/// BinToBcd ãŠã‚ˆã³ BcdToBin ã®ãƒã‚§ãƒƒã‚¯
 		/// </summary>
-		/// <param name="m">ƒeƒXƒg“ü—Í’l</param>
+		/// <param name="m">ãƒ†ã‚¹ãƒˆå…¥åŠ›å€¤</param>
 		static void TestBcd(ulong m)
 		{
 			BitField bin;
@@ -88,10 +88,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// MulDiv ‚ÌƒeƒXƒg
+		/// MulDiv ã®ãƒ†ã‚¹ãƒˆ
 		/// </summary>
-		/// <param name="m">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh1)</param>
-		/// <param name="n">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh2)</param>
+		/// <param name="m">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰1)</param>
+		/// <param name="n">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰2)</param>
 		static void TestMulDiv(ulong m, ulong n)
 		{
 			BitField a, b;
@@ -104,7 +104,7 @@ namespace BitField
 			ulong tmp1 = p.Value;
 			ulong tmp2 = unchecked((ulong)((long)(int)a.Value * (long)(int)b.Value));
 
-			Console.Write("{0:x8}~{1:x8} = ", (int)a.Value, (int)b.Value);
+			Console.Write("{0:x8}Ã—{1:x8} = ", (int)a.Value, (int)b.Value);
 			Console.Write("{0:x16} ({1:x16})", tmp1, tmp2);
 
 			if(tmp1 != tmp2)
@@ -117,7 +117,7 @@ namespace BitField
 			uint tmp3 = (uint)q[31, 0].Value;
 			uint tmp4 = unchecked((uint)((long)(int)a.Value / (long)(int)b.Value));
 
-			Console.Write("{0:x8}€{1:x8} = ", (int)a.Value, (int)b.Value);
+			Console.Write("{0:x8}Ã·{1:x8} = ", (int)a.Value, (int)b.Value);
 			Console.Write("{0:x8} ({1:x8})", tmp3, tmp4);
 
 			if(tmp3 != tmp4)
@@ -129,10 +129,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Mul ‚ÌƒeƒXƒg
+		/// Mul ã®ãƒ†ã‚¹ãƒˆ
 		/// </summary>
-		/// <param name="m">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh1)</param>
-		/// <param name="n">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh2)</param>
+		/// <param name="m">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰1)</param>
+		/// <param name="n">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰2)</param>
 		static void TestMul(ulong m, ulong n)
 		{
 			BitField a, b;
@@ -144,7 +144,7 @@ namespace BitField
 			ulong tmp1 = p.Value;
 			ulong tmp2 = unchecked((ulong)((long)(int)a.Value * (long)(int)b.Value));
 
-			Console.Write("{0:x8}~{1:x8} = ", (int)a.Value, (int)b.Value);
+			Console.Write("{0:x8}Ã—{1:x8} = ", (int)a.Value, (int)b.Value);
 			Console.Write("{0:x16} ({1:x16})", tmp1, tmp2);
 
 			if(tmp1 != tmp2)
@@ -156,10 +156,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Div ‚ÌƒeƒXƒg
+		/// Div ã®ãƒ†ã‚¹ãƒˆ
 		/// </summary>
-		/// <param name="m">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh1)</param>
-		/// <param name="n">ƒeƒXƒg“ü—Í(ƒIƒyƒ‰ƒ“ƒh2)</param>
+		/// <param name="m">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰1)</param>
+		/// <param name="n">ãƒ†ã‚¹ãƒˆå…¥åŠ›(ã‚ªãƒšãƒ©ãƒ³ãƒ‰2)</param>
 		static void TestDiv(ulong m, ulong n)
 		{
 			BitField a, b;
@@ -171,7 +171,7 @@ namespace BitField
 			uint tmp3 = (uint)q[31, 0].Value;
 			uint tmp4 = unchecked((uint)((long)(int)a.Value / (long)(int)b.Value));
 
-			Console.Write("{0:x8}€{1:x8} = ", (int)a.Value, (int)b.Value);
+			Console.Write("{0:x8}Ã·{1:x8} = ", (int)a.Value, (int)b.Value);
 			Console.Write("{0:x8} ({1:x8})", tmp3, tmp4);
 
 			if(tmp3 != tmp4)

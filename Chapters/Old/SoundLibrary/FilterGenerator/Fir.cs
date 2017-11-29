@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// FIR ‚ğì¬‚·‚éB
+	/// FIR ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class FirFilterGenerator : FilterGenerator
 	{
-		const string FilterName = "FIR ƒtƒBƒ‹ƒ^";
-		const string CoefName   = "ƒtƒBƒ‹ƒ^ŒW”";
+		const string FilterName = "FIR ãƒ•ã‚£ãƒ«ã‚¿";
+		const string CoefName   = "ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°";
 
 		public FirFilterGenerator()
 		{

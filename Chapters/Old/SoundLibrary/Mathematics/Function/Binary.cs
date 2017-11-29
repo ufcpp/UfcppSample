@@ -1,35 +1,35 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// “ñ€ŠÖ”ƒfƒŠƒQ[ƒgB
+	/// äºŒé …é–¢æ•°ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã€‚
 	/// </summary>
 	public delegate ValueType BinaryFunction(ValueType x, ValueType y);
 
 	/// <summary>
-	/// “ñ€ŠÖ”B
+	/// äºŒé …é–¢æ•°ã€‚
 	/// </summary>
 	public class Binary : Function
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ŠÖ”–{‘ÌB
+		/// é–¢æ•°æœ¬ä½“ã€‚
 		/// </summary>
 		protected BinaryFunction func;
 
 		/// <summary>
-		/// “à•”ŠÖ”B
+		/// å†…éƒ¨é–¢æ•°ã€‚
 		/// this.GetValue(x) == func(inner.GetValue(x))
 		/// </summary>
 		protected Function inner0;
 		protected Function inner1;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Binary(BinaryFunction func, Function inner0, Function inner1)
 		{
@@ -39,7 +39,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -71,7 +71,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		public override Function Optimize()
 		{

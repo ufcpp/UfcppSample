@@ -1,26 +1,26 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.ThreeDimension
 {
 	/// <summary>
-	/// ƒAƒtƒBƒ“•ÏŠ·—p‚Ì4~4s—ñB
+	/// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ç”¨ã®4Ã—4è¡Œåˆ—ã€‚
 	/// </summary>
 	/// <remarks>
-	/// 4—ñ–Ú‚Í (0, 0, 0, 1) ŒÅ’èB
-	/// ƒAƒtƒBƒ“s—ñ B ‚Í1Ÿ•ÏŠ·s—ñ A ‚Æ ƒxƒNƒgƒ‹ t ‚ğ—p‚¢‚ÄA
+	/// 4åˆ—ç›®ã¯ (0, 0, 0, 1) å›ºå®šã€‚
+	/// ã‚¢ãƒ•ã‚£ãƒ³è¡Œåˆ— B ã¯1æ¬¡å¤‰æ›è¡Œåˆ— A ã¨ ãƒ™ã‚¯ãƒˆãƒ« t ã‚’ç”¨ã„ã¦ã€
 	/// B = (A t)
 	///     (0 1)
-	/// ‚Æ•\‚³‚ê‚éB
+	/// ã¨è¡¨ã•ã‚Œã‚‹ã€‚
 	/// </remarks>
 	public class AffineMatrix
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Matrix a;
 		Vector t;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public AffineMatrix() : this(new Matrix(), new Vector()) {}
 
@@ -35,10 +35,10 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// ƒAƒtƒBƒ“•ÏŠ·‚Ì1Ÿ•ÏŠ·s—ñ•”•ªB
+		/// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã®1æ¬¡å¤‰æ›è¡Œåˆ—éƒ¨åˆ†ã€‚
 		/// </summary>
 		public Matrix A
 		{
@@ -47,7 +47,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// ƒAƒtƒBƒ“•ÏŠ·‚Ì•½sˆÚ“®•”•ªB
+		/// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã®å¹³è¡Œç§»å‹•éƒ¨åˆ†ã€‚
 		/// </summary>
 		public Vector T
 		{
@@ -56,7 +56,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public static AffineMatrix operator+ (AffineMatrix a, AffineMatrix b)
 		{
@@ -84,7 +84,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ‹tŒ³
+		#region é€†å…ƒ
 
 		public AffineMatrix Inverse()
 		{

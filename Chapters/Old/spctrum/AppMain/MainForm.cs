@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using WaveAnalysis;
 namespace AppMain
 {
 	/// <summary>
-	/// MainForm ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// MainForm ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form
 	{
@@ -21,18 +21,18 @@ namespace AppMain
 		private System.Windows.Forms.MenuItem menuItemFile;
 		private System.Windows.Forms.MenuItem menuItemEnd;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 		private System.Windows.Forms.MenuItem menuItemFileOpen;
 
-		#region è“®si—p—Ìˆæ
+		#region æ‰‹å‹•è¡Œé€²ç”¨é ˜åŸŸ
 		AppSettings appSettings = new AppSettings();
 		const string settingFileName = @"\setting.xml";
 
 		/// <summary>
-		/// ƒAƒvƒŠ‚Ìİ’è‚ğƒfƒtƒHƒ‹ƒgİ’è‚É‚·‚éB
-		/// İ’èƒtƒ@ƒCƒ‹‚ª‚È‚©‚Á‚½ê‡‚ÉŒÄ‚Î‚ê‚éB
+		/// ã‚¢ãƒ—ãƒªã®è¨­å®šã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®šã«ã™ã‚‹ã€‚
+		/// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã‹ã£ãŸå ´åˆã«å‘¼ã°ã‚Œã‚‹ã€‚
 		/// </summary>
 		private void SetAppSettings()
 		{
@@ -53,7 +53,7 @@ namespace AppMain
 		}//SetAppSettings
 
 		/// <summary>
-		/// ƒAƒvƒŠ‚Ìİ’è‚ğİ’èƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ŞB
+		/// ã‚¢ãƒ—ãƒªã®è¨­å®šã‚’è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
 		private void LoadAppSettings()
 		{
@@ -84,7 +84,7 @@ namespace AppMain
 		}//LoadAppSettings
 
 		/// <summary>
-		/// ƒAƒvƒŠ‚Ìİ’è‚ğİ’èƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚éB
+		/// ã‚¢ãƒ—ãƒªã®è¨­å®šã‚’è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ã€‚
 		/// </summary>
 		private void SaveAppSettings()
 		{
@@ -111,7 +111,7 @@ namespace AppMain
 		}//SaveAppSettings
 
 		/// <summary>
-		/// ‰Šú‰»
+		/// åˆæœŸåŒ–
 		/// </summary>
 		private void Initialize()
 		{
@@ -135,7 +135,7 @@ namespace AppMain
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -151,8 +151,8 @@ namespace AppMain
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -173,18 +173,18 @@ namespace AppMain
 			this.menuItemFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																																								 this.menuItemFileOpen,
 																																								 this.menuItemEnd});
-			this.menuItemFile.Text = "ƒtƒ@ƒCƒ‹";
+			this.menuItemFile.Text = "ãƒ•ã‚¡ã‚¤ãƒ«";
 			// 
 			// menuItemFileOpen
 			// 
 			this.menuItemFileOpen.Index = 0;
-			this.menuItemFileOpen.Text = "ŠJ‚­";
+			this.menuItemFileOpen.Text = "é–‹ã";
 			this.menuItemFileOpen.Click += new System.EventHandler(this.menuItemFileOpen_Click);
 			// 
 			// menuItemEnd
 			// 
 			this.menuItemEnd.Index = 1;
-			this.menuItemEnd.Text = "I—¹";
+			this.menuItemEnd.Text = "çµ‚äº†";
 			this.menuItemEnd.Click += new System.EventHandler(this.menuItemEnd_Click);
 			// 
 			// MainForm
@@ -202,7 +202,7 @@ namespace AppMain
 		#endregion
 
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 //		[STAThread]
 		static void Main(string[] args)
@@ -232,7 +232,7 @@ namespace AppMain
 			}
 			catch(Exception exc)
 			{
-				MessageBox.Show("ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n" + exc.Message);
+				MessageBox.Show("ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" + exc.Message);
 				return;
 			}
 			CreateWaveForm(dataName, wave);

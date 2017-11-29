@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 
 namespace Reversi
 {
 	/// <summary>
-	/// ReversiPanel‚ÌˆÊ’u(x,y)‚É‚ ‚éƒZƒ‹‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒfƒŠƒQ[ƒg
+	/// ReversiPanelã®ä½ç½®(x,y)ã«ã‚ã‚‹ã‚»ãƒ«ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void CellClickHandler(int x, int y);
 
 	/// <summary>
-	/// ReversiPanle ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// ReversiPanle ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ReversiPanel : System.Windows.Forms.Panel
 	{
 		/// <summary>
-		/// ƒIƒZƒ‚ÌƒZƒ‹ƒNƒ‰ƒX
+		/// ã‚ªã‚»ãƒ­ã®ã‚»ãƒ«ã‚¯ãƒ©ã‚¹
 		/// </summary>
 		internal class ReversiCell : System.Windows.Forms.PictureBox
 		{
@@ -40,11 +40,11 @@ namespace Reversi
 
 
 		//---------------------------------------------------------
-		public event CellClickHandler CellClick;//ƒZƒ‹‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éƒnƒ“ƒhƒ‰
+		public event CellClickHandler CellClick;//ã‚»ãƒ«ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ãƒãƒ³ãƒ‰ãƒ©
 
-		protected System.Drawing.Image black_image; //•‚¢‹î‚ÌŠG
-		protected System.Drawing.Image white_image; //”’‚¢‹î‚ÌŠG
-		protected System.Drawing.Image none_image;  //‰½‚à‚È‚¢ƒ}ƒX‚ÌŠG
+		protected System.Drawing.Image black_image; //é»’ã„é§’ã®çµµ
+		protected System.Drawing.Image white_image; //ç™½ã„é§’ã®çµµ
+		protected System.Drawing.Image none_image;  //ä½•ã‚‚ãªã„ãƒã‚¹ã®çµµ
 
 		private ReversiBoard board;
 		private ReversiCell[,] cells;

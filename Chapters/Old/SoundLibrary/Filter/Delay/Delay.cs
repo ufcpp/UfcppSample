@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Delay
 {
 	/// <summary>
-	/// ’x‰„Ší
+	/// é…å»¶å™¨
 	/// </summary>
 	public class Delay : IDelay
 	{
 		CircularBuffer buf;
 
 		/// <summary>
-		/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <param name="taps">’x‰„ƒ^ƒbƒv”</param>
+		/// <param name="taps">é…å»¶ã‚¿ãƒƒãƒ—æ•°</param>
 		public Delay(int taps)
 		{
 			if(taps <= 0)
@@ -24,7 +24,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// ’x‰„ƒ^ƒbƒv”
+		/// é…å»¶ã‚¿ãƒƒãƒ—æ•°
 		/// </summary>
 		public int Taps
 		{
@@ -42,13 +42,13 @@ namespace SoundLibrary.Filter.Delay
 			}
 		}
 
-		#region IFilter ƒƒ“ƒo
+		#region IFilter ãƒ¡ãƒ³ãƒ
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			if(this.buf == null)
@@ -60,7 +60,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -74,7 +74,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		#endregion
-		#region IClonable ƒƒ“ƒo
+		#region IClonable ãƒ¡ãƒ³ãƒ
 
 		public object Clone()
 		{
@@ -82,7 +82,7 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		#endregion
-		#region IDelay ƒƒ“ƒo
+		#region IDelay ãƒ¡ãƒ³ãƒ
 
 		public double DelayTime
 		{

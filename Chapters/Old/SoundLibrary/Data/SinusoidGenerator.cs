@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ³Œ·”g¶¬
+	/// æ­£å¼¦æ³¢ç”Ÿæˆ
 	/// </summary>
 	public class SinusoidGenerator : IDataGenerator
 	{
@@ -17,11 +17,11 @@ namespace SoundLibrary.Data
 		public SinusoidGenerator(double gain, double phase) : this(Math.PI / 24000 * 1000, gain, phase) {}
 
 		/// <summary>
-		/// ü”g”AU•A‰ŠúˆÊ‘Š‚ğw’èB
+		/// å‘¨æ³¢æ•°ã€æŒ¯å¹…ã€åˆæœŸä½ç›¸ã‚’æŒ‡å®šã€‚
 		/// </summary>
-		/// <param name="w">ü”g”(2ƒÎ‚Å³‹K‰»)</param>
-		/// <param name="gain">U•(ƒŠƒjƒA’l)</param>
-		/// <param name="phase">‰ŠúˆÊ‘Š(rad)</param>
+		/// <param name="w">å‘¨æ³¢æ•°(2Ï€ã§æ­£è¦åŒ–)</param>
+		/// <param name="gain">æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
+		/// <param name="phase">åˆæœŸä½ç›¸(rad)</param>
 		public SinusoidGenerator(double w, double gain, double phase)
 		{
 			this.w = w;

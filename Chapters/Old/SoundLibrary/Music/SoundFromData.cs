@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Data;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// IDataGenerator ‚©‚ç Sound ‚ğì‚éB
+	/// IDataGenerator ã‹ã‚‰ Sound ã‚’ä½œã‚‹ã€‚
 	/// </summary>
 	public class SoundFromData : Sound
 	{
@@ -13,10 +13,10 @@ namespace SoundLibrary.Music
 		int length;
 
 		/// <summary>
-		/// IDataGenerator ‚Æ‰¹‚Ì’·‚³‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// IDataGenerator ã¨éŸ³ã®é•·ã•ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="generator">ƒf[ƒ^¶¬ƒNƒ‰ƒX</param>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
+		/// <param name="generator">ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã‚¯ãƒ©ã‚¹</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
 		public SoundFromData(IDataGenerator generator, int length)
 		{
 			this.generator = generator;

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace Reversi
 {
 	/// <summary>
-	/// OptionForm ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// OptionForm ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class OptionForm : System.Windows.Forms.Form
 	{
@@ -18,7 +18,7 @@ namespace Reversi
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBoardWidth;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -27,7 +27,7 @@ namespace Reversi
 		public OptionForm(ReversiMainForm.Option option)
 		{
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
@@ -37,7 +37,7 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -53,8 +53,8 @@ namespace Reversi
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -83,7 +83,7 @@ namespace Reversi
 			this.cancel_button.Name = "cancel_button";
 			this.cancel_button.Size = new System.Drawing.Size(64, 24);
 			this.cancel_button.TabIndex = 1;
-			this.cancel_button.Text = "ƒLƒƒƒ“ƒZƒ‹";
+			this.cancel_button.Text = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«";
 			// 
 			// label1
 			// 
@@ -92,7 +92,7 @@ namespace Reversi
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(85, 12);
 			this.label1.TabIndex = 2;
-			this.label1.Text = "”Õ–Ê‚ÌƒTƒCƒY c";
+			this.label1.Text = "ç›¤é¢ã®ã‚µã‚¤ã‚º ç¸¦";
 			// 
 			// textBoardHeight
 			// 
@@ -109,7 +109,7 @@ namespace Reversi
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(29, 12);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "~‰¡";
+			this.label2.Text = "Ã—æ¨ª";
 			// 
 			// textBoardWidth
 			// 
@@ -136,7 +136,7 @@ namespace Reversi
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "OptionForm";
-			this.Text = "ƒIƒvƒVƒ‡ƒ“İ’è";
+			this.Text = "ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®š";
 			this.ResumeLayout(false);
 
 		}

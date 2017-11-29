@@ -1,32 +1,32 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ‘‹ŠÖ”—p‚ÌƒfƒŠƒQ[ƒgB
+	/// çª“é–¢æ•°ç”¨ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã€‚
 	/// </summary>
 	public delegate double WindowFunction(double i);
 
 	/// <summary>
-	/// ‘‹ŠÖ”—p‚ÌƒCƒ“ƒ^[ƒtƒF[ƒXB
+	/// çª“é–¢æ•°ç”¨ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
 	/// </summary>
 	public interface IWindow
 	{
 		/// <summary>
-		/// ‘‹ŠÖ”‚Ì’l‚ğæ“¾B
+		/// çª“é–¢æ•°ã®å€¤ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="i">i ƒTƒ“ƒvƒ‹–Ú‚Ì’l‚ğæ“¾‚·‚é</param>
-		/// <returns>‘‹ŠÖ”‚Ì’l</returns>
+		/// <param name="i">i ã‚µãƒ³ãƒ—ãƒ«ç›®ã®å€¤ã‚’å–å¾—ã™ã‚‹</param>
+		/// <returns>çª“é–¢æ•°ã®å€¤</returns>
 		double Get(double i);
 
 		/// <summary>
-		/// ‘‹ŠÖ”‚ÌŸ”‚ğİ’è‚·‚éB
+		/// çª“é–¢æ•°ã®æ¬¡æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
 		int Order{get; set;}
 	}
 
 	/// <summary>
-	/// üŒ`ˆÊ‘Šƒ[ƒpƒX/ƒoƒ“ƒhƒpƒX/ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ÌƒtƒBƒ‹ƒ^ƒ^ƒCƒvB
+	/// ç·šå½¢ä½ç›¸ãƒ­ãƒ¼ãƒ‘ã‚¹/ãƒãƒ³ãƒ‰ãƒ‘ã‚¹/ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ•ã‚£ãƒ«ã‚¿ã‚¿ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public enum FirFilterType
 	{
@@ -34,19 +34,19 @@ namespace SoundLibrary.Filter
 	}
 
 	/// <summary>
-	/// ‘‹ŠÖ”ƒ^ƒCƒvB
+	/// çª“é–¢æ•°ã‚¿ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public enum WindowType
 	{
-		Rectangular, // ‹éŒ`‘‹
-		Hamming,     // ƒnƒ~ƒ“ƒO‘‹
-		Hanning,     // ƒnƒjƒ“ƒO‘‹
-		Blackman,    // ƒuƒ‰ƒbƒNƒ}ƒ“‘‹
-		Keiser,      // ƒJƒCƒU[‘‹
+		Rectangular, // çŸ©å½¢çª“
+		Hamming,     // ãƒãƒŸãƒ³ã‚°çª“
+		Hanning,     // ãƒãƒ‹ãƒ³ã‚°çª“
+		Blackman,    // ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³çª“
+		Keiser,      // ã‚«ã‚¤ã‚¶ãƒ¼çª“
 	}
 
 	/// <summary>
-	/// FIR ƒtƒBƒ‹ƒ^ŠÖŒW‚Ì‹¤’ÊŠÖ”ŒQ
+	/// FIR ãƒ•ã‚£ãƒ«ã‚¿é–¢ä¿‚ã®å…±é€šé–¢æ•°ç¾¤
 	/// </summary>
 	public class FirCommon
 	{
@@ -84,14 +84,14 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// üŒ`ˆÊ‘Šƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^(Šï”ƒ^ƒbƒv)‚ÌŒW”‚ğŒvZ‚·‚éB
-		/// ‰E‘¤”¼•ª‚Ì‚İ‚ğŒvZB
+		/// ç·šå½¢ä½ç›¸ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿(å¥‡æ•°ã‚¿ãƒƒãƒ—)ã®ä¿‚æ•°ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+		/// å³å´åŠåˆ†ã®ã¿ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="type">ƒtƒBƒ‹ƒ^ƒ^ƒCƒv</param>
-		/// <param name="coef">ŒW”‚ÌŠi”[æ</param>
-		/// <param name="w">Õ’fü”g”(BPF ‚Ìê‡‚ÍÕ’f‘Ñˆæ•AHPF ‚Ìê‡‚Í ƒÎ-Õ’fü”g”)</param>
-		/// <param name="w0">(BPF ‚Ì‚İ) ’†Sü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="type">ãƒ•ã‚£ãƒ«ã‚¿ã‚¿ã‚¤ãƒ—</param>
+		/// <param name="coef">ä¿‚æ•°ã®æ ¼ç´å…ˆ</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°(BPF ã®å ´åˆã¯é®æ–­å¸¯åŸŸå¹…ã€HPF ã®å ´åˆã¯ Ï€-é®æ–­å‘¨æ³¢æ•°)</param>
+		/// <param name="w0">(BPF ã®ã¿) ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public static void CalcOddLinearBPFCoefficient(FirFilterType type, double[] coef, double w, double w0, WindowFunction window)
 		{
 			int n = coef.Length - 1;
@@ -128,14 +128,14 @@ namespace SoundLibrary.Filter
 
 
 		/// <summary>
-		/// üŒ`ˆÊ‘Šƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^(Šï”ƒ^ƒbƒv)‚ÌŒW”‚ğŒvZ‚·‚éB
-		/// ‰E‘¤”¼•ª‚Ì‚İ‚ğŒvZB
+		/// ç·šå½¢ä½ç›¸ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿(å¥‡æ•°ã‚¿ãƒƒãƒ—)ã®ä¿‚æ•°ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+		/// å³å´åŠåˆ†ã®ã¿ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="type">ƒtƒBƒ‹ƒ^ƒ^ƒCƒv</param>
-		/// <param name="coef">ŒW”‚ÌŠi”[æ</param>
-		/// <param name="w">Õ’fü”g”(BPF ‚Ìê‡‚ÍÕ’f‘Ñˆæ•AHPF ‚Ìê‡‚Í ƒÎ-Õ’fü”g”)</param>
-		/// <param name="w0">(BPF ‚Ì‚İ) ’†Sü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="type">ãƒ•ã‚£ãƒ«ã‚¿ã‚¿ã‚¤ãƒ—</param>
+		/// <param name="coef">ä¿‚æ•°ã®æ ¼ç´å…ˆ</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°(BPF ã®å ´åˆã¯é®æ–­å¸¯åŸŸå¹…ã€HPF ã®å ´åˆã¯ Ï€-é®æ–­å‘¨æ³¢æ•°)</param>
+		/// <param name="w0">(BPF ã®ã¿) ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public static void CalcEvenLinearBPFCoefficient(FirFilterType type, double[] coef, double w, double w0, WindowFunction window)
 		{
 			int n = coef.Length - 1;
@@ -173,7 +173,7 @@ namespace SoundLibrary.Filter
 		}//GetEvenLinearBPFCoefficient
 
 		/// <summary>
-		/// ‘‹ŠÖ”—pBí‚É1‚ğ•Ô‚·ŠÖ”B
+		/// çª“é–¢æ•°ç”¨ã€‚å¸¸ã«1ã‚’è¿”ã™é–¢æ•°ã€‚
 		/// </summary>
 		public static double Constant1(double i)
 		{
@@ -199,41 +199,41 @@ namespace SoundLibrary.Filter
 	}//class FirCommon
 
 	/// <summary>
-	/// ƒ[ƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒ­ãƒ¼ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class LowPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
 		public LowPassFir(int n, double w) : this(n, w, new WindowFunction(FirCommon.Constant1)){}
 
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public LowPassFir(int n, double w, IWindow window) : this(n, w, new WindowFunction(window.Get)){}
 
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public LowPassFir(int n, double w, WindowFunction window) : base(n)
 		{
 			this.SetParameter(w, window);
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public void SetParameter(double w, WindowFunction window)
 		{
 			FirCommon.CalcOddLinearBPFCoefficient(FirFilterType.LPF, this.coef, w, 0, window);
@@ -241,41 +241,41 @@ namespace SoundLibrary.Filter
 	}//class LowPassFir
 
 	/// <summary>
-	/// ƒnƒCƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒã‚¤ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class HighPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
 		public HighPassFir(int n, double w) : this(n, w, new WindowFunction(FirCommon.Constant1)){}
 
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public HighPassFir(int n, double w, IWindow window) : this(n, w, new WindowFunction(window.Get)){}
 		
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public HighPassFir(int n, double w, WindowFunction window) : base(n)
 		{
 			this.SetParameter(w, window);
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public void SetParameter(double w, WindowFunction window)
 		{
 			FirCommon.CalcOddLinearBPFCoefficient(FirFilterType.HPF, this.coef, Math.PI - w, 0, window);
@@ -283,45 +283,45 @@ namespace SoundLibrary.Filter
 	}//class HighPassFir
 
 	/// <summary>
-	/// ƒoƒ“ƒhƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class BandPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
 		public BandPassFir(int n, double wl, double wh) : this(n, wl, wh, new WindowFunction(FirCommon.Constant1)){}
 
 		/// <summary>
-		/// ƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public BandPassFir(int n, double wl, double wh, IWindow window) : this(n, wl, wh, new WindowFunction(window.Get)){}
 
 		/// <summary>
-		/// ƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public BandPassFir(int n, double wl, double wh, WindowFunction window) : base(n)
 		{
 			this.SetParameter(wl, wh, window);
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public void SetParameter(double wl, double wh, WindowFunction window)
 		{
 			FirCommon.CalcOddLinearBPFCoefficient(FirFilterType.BPF, this.coef, (wl - wh)/2, (wl + wh)/2, window);
@@ -331,7 +331,7 @@ namespace SoundLibrary.Filter
 	namespace Window
 	{
 		/// <summary>
-		/// ƒnƒjƒ“ƒO‘‹
+		/// ãƒãƒ‹ãƒ³ã‚°çª“
 		/// </summary>
 		public class Hanning : IWindow
 		{
@@ -351,7 +351,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒnƒ~ƒ“ƒO‘‹
+		/// ãƒãƒŸãƒ³ã‚°çª“
 		/// </summary>
 		public class Hamming : IWindow
 		{
@@ -371,7 +371,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒuƒ‰ƒbƒNƒ}ƒ“‘‹
+		/// ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³çª“
 		/// </summary>
 		public class Blackman : IWindow
 		{
@@ -394,7 +394,7 @@ namespace SoundLibrary.Filter
 		public class Keiser : IWindow
 		{
 			/// <summary>
-			/// 0Ÿ‘æ1í•ÏŒ`ƒxƒbƒZƒ‹ŠÖ”
+			/// 0æ¬¡ç¬¬1ç¨®å¤‰å½¢ãƒ™ãƒƒã‚»ãƒ«é–¢æ•°
 			/// </summary>
 			static double I0(double x)
 			{
@@ -411,7 +411,7 @@ namespace SoundLibrary.Filter
 
 			static double Pow2(double x){return x * x;}
 
-			int order2; // Ÿ”/2
+			int order2; // æ¬¡æ•°/2
 			double alpha;
 
 			public Keiser(int order, double attenuate)
@@ -424,7 +424,7 @@ namespace SoundLibrary.Filter
 					this.alpha = 0.5842 * Math.Pow(attenuate - 21.0 , 0.4)
 						+ 0.07886 * (attenuate - 21.0);
 				else
-					this.alpha = 0.0;  //•ûŒ`‘‹‚Æ‚È‚é
+					this.alpha = 0.0;  //æ–¹å½¢çª“ã¨ãªã‚‹
 			}
 
 			public double Get(double i)
@@ -441,7 +441,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ‹éŒ`‘‹
+		/// çŸ©å½¢çª“
 		/// </summary>
 		public class Rectangular : IWindow
 		{

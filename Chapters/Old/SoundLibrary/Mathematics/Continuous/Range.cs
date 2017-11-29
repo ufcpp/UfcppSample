@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Continuous
 {
 	/// <summary>
-	/// ’è‹`ˆæ‚Ì”ÍˆÍ‚ğ•\‚·\‘¢‘ÌB
+	/// å®šç¾©åŸŸã®ç¯„å›²ã‚’è¡¨ã™æ§‹é€ ä½“ã€‚
 	/// </summary>
 	public struct Range
 	{
@@ -13,10 +13,10 @@ namespace SoundLibrary.Mathematics.Continuous
 		double sup;
 
 		/// <summary>
-		/// Å¬EÅ‘å’l‚Ì—L–³AãŒÀE‰ºŒÀ‚ğw’è‚µ‚Ä‰Šú‰»B
-		/// —á:
-		/// (1, 2] ¨ new Range(false, true, 1, 2)A
-		/// [0, 1] ¨ new Range(true, true, 0, 1)
+		/// æœ€å°ãƒ»æœ€å¤§å€¤ã®æœ‰ç„¡ã€ä¸Šé™ãƒ»ä¸‹é™ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
+		/// ä¾‹:
+		/// (1, 2] â†’ new Range(false, true, 1, 2)ã€
+		/// [0, 1] â†’ new Range(true, true, 0, 1)
 		/// </summary>
 		/// <param name="hasMin"></param>
 		/// <param name="hasMax"></param>
@@ -31,7 +31,7 @@ namespace SoundLibrary.Mathematics.Continuous
 		}
 
 		/// <summary>
-		/// Å‘å’l‚ğ‚Â‚©‚Ç‚¤‚©B
+		/// æœ€å¤§å€¤ã‚’æŒã¤ã‹ã©ã†ã‹ã€‚
 		/// </summary>
 		public bool HasMaximum
 		{
@@ -40,7 +40,7 @@ namespace SoundLibrary.Mathematics.Continuous
 		}
 
 		/// <summary>
-		/// Å¬’l‚ğ‚Â‚©‚Ç‚¤‚©B
+		/// æœ€å°å€¤ã‚’æŒã¤ã‹ã©ã†ã‹ã€‚
 		/// </summary>
 		public bool HasMinimum
 		{
@@ -49,7 +49,7 @@ namespace SoundLibrary.Mathematics.Continuous
 		}
 
 		/// <summary>
-		/// ãŒÀB
+		/// ä¸Šé™ã€‚
 		/// </summary>
 		public double Supremum
 		{
@@ -58,7 +58,7 @@ namespace SoundLibrary.Mathematics.Continuous
 		}
 
 		/// <summary>
-		/// ‰ºŒÀB
+		/// ä¸‹é™ã€‚
 		/// </summary>
 		public double Infimum
 		{

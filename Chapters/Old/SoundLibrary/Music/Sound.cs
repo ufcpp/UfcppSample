@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// 1‰¹‚ğ•\‚·B
+	/// 1éŸ³ã‚’è¡¨ã™ã€‚
 	/// </summary>
 	public abstract class Sound
 	{
 		/// <summary>
-		/// ‰¹‚Ì’·‚³B
+		/// éŸ³ã®é•·ã•ã€‚
 		/// </summary>
 		public abstract int Length{get;}
 
 		/// <summary>
-		/// ”z—ñ‰»B
+		/// é…åˆ—åŒ–ã€‚
 		/// </summary>
-		/// <returns>‰¹ƒf[ƒ^‚ğŠi”[‚µ‚½”z—ñ</returns>
+		/// <returns>éŸ³ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸé…åˆ—</returns>
 		public abstract double[] ToArray();
 	}//class Sound
 }//namespace Music

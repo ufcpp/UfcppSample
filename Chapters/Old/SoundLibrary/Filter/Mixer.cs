@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ƒ~ƒLƒT[B
-	/// •À—ñÚ‘±{ƒQƒCƒ“’²®B
+	/// ãƒŸã‚­ã‚µãƒ¼ã€‚
+	/// ä¸¦åˆ—æ¥ç¶šï¼‹ã‚²ã‚¤ãƒ³èª¿æ•´ã€‚
 	/// </summary>
 	public class Mixer : IFilter
 	{
@@ -57,8 +57,8 @@ namespace SoundLibrary.Filter
 	}//class Mixer
 
 	/// <summary>
-	/// ’x‰„•t‚«ƒ~ƒLƒT[B
-	/// •À—ñÚ‘±{ƒQƒCƒ“•’x‰„’²®B
+	/// é…å»¶ä»˜ããƒŸã‚­ã‚µãƒ¼ã€‚
+	/// ä¸¦åˆ—æ¥ç¶šï¼‹ã‚²ã‚¤ãƒ³ï¼†é…å»¶èª¿æ•´ã€‚
 	/// </summary>
 	public class DelayMixer : IFilter
 	{

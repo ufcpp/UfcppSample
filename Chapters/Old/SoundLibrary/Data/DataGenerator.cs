@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒeƒXƒg—p‚Ìƒf[ƒ^¶¬ƒCƒ“ƒ^[ƒtƒF[ƒX
+	/// ãƒ†ã‚¹ãƒˆç”¨ã®ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	/// </summary>
 	public interface IDataGenerator : ICloneable
 	{
 		/// <summary>
-		/// Ÿ‚Ìƒf[ƒ^‚ğæ‚èo‚·B
+		/// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™ã€‚
 		/// </summary>
-		/// <returns>ƒf[ƒ^</returns>
+		/// <returns>ãƒ‡ãƒ¼ã‚¿</returns>
 		double Next();
 
 		/// <summary>
-		/// ‰Šúó‘Ô‚É–ß‚·B
+		/// åˆæœŸçŠ¶æ…‹ã«æˆ»ã™ã€‚
 		/// </summary>
 		void Reset();
 	}

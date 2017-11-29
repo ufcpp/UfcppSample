@@ -1,4 +1,4 @@
-public class BiquadCoefficient
+ï»¿public class BiquadCoefficient
 {
 	public double a0;
 	public double a1;
@@ -21,14 +21,14 @@ public class BiquadCoefficient
 }
 
 /// <summary>
-/// 2Ÿ‚¸‚Â‚É•ª‰ğ‚µA’¼—ñÚ‘±‚µ‚½ƒ^ƒCƒv‚Ì IIR ƒtƒBƒ‹ƒ^B
+/// 2æ¬¡ãšã¤ã«åˆ†è§£ã—ã€ç›´åˆ—æ¥ç¶šã—ãŸã‚¿ã‚¤ãƒ—ã® IIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 /// </summary>
 public class SerialIirFilter : IFilter
 {
-	#region “à•”ƒNƒ‰ƒX
+	#region å†…éƒ¨ã‚¯ãƒ©ã‚¹
 
 	/// <summary>
-	/// 2Ÿ IIRiƒQƒCƒ“‚È‚µjB
+	/// 2æ¬¡ IIRï¼ˆã‚²ã‚¤ãƒ³ãªã—ï¼‰ã€‚
 	/// </summary>
 	class Iir2 : System.ICloneable
 	{
@@ -61,7 +61,7 @@ public class SerialIirFilter : IFilter
 			this.t1 = this.t2 = 0;
 		}
 
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public object Clone()
 		{
@@ -75,13 +75,13 @@ public class SerialIirFilter : IFilter
 	}
 
 	#endregion
-	#region ƒtƒB[ƒ‹ƒh
+	#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 	double c;
 	Iir2[] filters;
 
 	#endregion
-	#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	public SerialIirFilter(params BiquadCoefficient[] coefs)
 	{
@@ -103,15 +103,15 @@ public class SerialIirFilter : IFilter
 	}
 
 	#endregion
-	#region IFilter ƒƒ“ƒo
+	#region IFilter ãƒ¡ãƒ³ãƒ
 
 	/// <summary>
-	/// Še n ‚ÅA
-	/// t[n] = c * x[n] + ƒ° a[i - 1] * t[n - i]
-	/// y[n] =     t[n] + ƒ° b[i - 1] * t[n - i]
+	/// å„æ™‚åˆ» n ã§ã€
+	/// t[n] = c * x[n] + Î£ a[i - 1] * t[n - i]
+	/// y[n] =     t[n] + Î£ b[i - 1] * t[n - i]
 	/// </summary>
-	/// <param name="x">“ü—Í</param>
-	/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+	/// <param name="x">å…¥åŠ›</param>
+	/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 	public double GetValue(double x)
 	{
 		double y = x;
@@ -133,7 +133,7 @@ public class SerialIirFilter : IFilter
 	}
 
 	#endregion
-	#region ICloneable ƒƒ“ƒo
+	#region ICloneable ãƒ¡ãƒ³ãƒ
 
 	public object Clone()
 	{

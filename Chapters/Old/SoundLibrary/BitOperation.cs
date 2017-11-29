@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary
 {
 	/// <summary>
-	/// ƒrƒbƒg‰‰Z—pƒNƒ‰ƒXB
+	/// ãƒ“ãƒƒãƒˆæ¼”ç®—ç”¨ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class BitOperation
 	{
 		/// <summary>
-		/// Floor(Log_2(x)) ‚ğ‹‚ß‚éB
+		/// Floor(Log_2(x)) ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		/// <param name="x"></param>
 		/// <returns></returns>
@@ -23,7 +23,7 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// Ceil(Log_2(x)) ‚ğ‹‚ß‚éB
+		/// Ceil(Log_2(x)) ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		/// <param name="x"></param>
 		/// <returns></returns>
@@ -36,19 +36,19 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// x ‚ğ’´‚¦‚È‚¢Å‘å‚Ì2‚Ì‚×‚«‚ğ‹‚ß‚éB
+		/// x ã‚’è¶…ãˆãªã„æœ€å¤§ã®2ã®ã¹ãã‚’æ±‚ã‚ã‚‹ã€‚
 		/// 2^FloorLog2(x)
 		/// </summary>
 		/// <param name="x"></param>
 		/// <returns></returns>
-		[System.Obsolete("FloorPower2 ‚ÉˆÚs")]
+		[System.Obsolete("FloorPower2 ã«ç§»è¡Œ")]
 		public static int Power2(int x)
 		{
 			return FloorPower2(x);
 		}
 
 		/// <summary>
-		/// x ‚ğ’´‚¦‚È‚¢Å‘å‚Ì2‚Ì‚×‚«‚ğ‹‚ß‚éB
+		/// x ã‚’è¶…ãˆãªã„æœ€å¤§ã®2ã®ã¹ãã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		/// <param name="x"></param>
 		/// <returns></returns>
@@ -63,7 +63,7 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// x ˆÈã‚ÌÅ¬‚Ì2‚Ì‚×‚«‚ğ‹‚ß‚éB
+		/// x ä»¥ä¸Šã®æœ€å°ã®2ã®ã¹ãã‚’æ±‚ã‚ã‚‹ã€‚
 		/// 2^CeilLog2(x)
 		/// </summary>
 		/// <param name="x"></param>
@@ -77,7 +77,7 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// ‰ºˆÊ n ƒrƒbƒg‚ª1Ac‚è‚ª0‚Ìƒ}ƒXƒN‚ğì‚éB
+		/// ä¸‹ä½ n ãƒ“ãƒƒãƒˆãŒ1ã€æ®‹ã‚ŠãŒ0ã®ãƒã‚¹ã‚¯ã‚’ä½œã‚‹ã€‚
 		/// </summary>
 		/// <param name="n"></param>
 		/// <returns></returns>
@@ -87,11 +87,11 @@ namespace SoundLibrary
 		}
 
 		/// <summary>
-		/// lÌŒÜ“ü‚µ‚Â‚ÂƒVƒtƒgB
+		/// å››æ¨äº”å…¥ã—ã¤ã¤ã‚·ãƒ•ãƒˆã€‚
 		/// </summary>
-		/// <param name="val">’l</param>
-		/// <param name="shift">ƒVƒtƒg—Ê</param>
-		/// <returns>ƒVƒtƒgŒã‚Ì’l</returns>
+		/// <param name="val">å€¤</param>
+		/// <param name="shift">ã‚·ãƒ•ãƒˆé‡</param>
+		/// <returns>ã‚·ãƒ•ãƒˆå¾Œã®å€¤</returns>
 		public static int RoundShift(long val, int shift)
 		{
 			return (int)((val + (1 << (shift - 1))) >> shift);

@@ -1,33 +1,33 @@
-using System;
+ï»¿using System;
 using SoundLibrary.Mathematics;
 
 namespace SoundLibrary.SpectrumAnalysis
 {
 	/// <summary>
-	/// ü”g”“Á«ƒNƒ‰ƒXB
+	/// å‘¨æ³¢æ•°ç‰¹æ€§ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class Spectrum : ICloneable
 	{
-		double[] x; // ƒf[ƒ^Ši”[—Ìˆæ
+		double[] x; // ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
 		Fft fft;
 
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^E\’z—pƒƒ\ƒbƒh
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»æ§‹ç¯‰ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public Spectrum() : this(null){}
 
 		/// <summary>
-		/// Œn—ñ’·‚Ì‚İ‚ğw’è‚µ‚Ä\’zB
+		/// æ™‚ç³»åˆ—é•·ã®ã¿ã‚’æŒ‡å®šã—ã¦æ§‹ç¯‰ã€‚
 		/// </summary>
-		/// <param name="length">Œn—ñ’·</param>
+		/// <param name="length">æ™‚ç³»åˆ—é•·</param>
 		public Spectrum(int length) : this(new double[length]){}
 
 		/// <summary>
-		/// ü”g”—Ìˆæƒf[ƒ^(Œn—ñƒf[ƒ^‚ğ Fft ƒNƒ‰ƒX‚Å•ÏŠ·‚µ‚½‚à‚Ì)‚©‚çì¬B
+		/// å‘¨æ³¢æ•°é ˜åŸŸãƒ‡ãƒ¼ã‚¿(æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’ Fft ã‚¯ãƒ©ã‚¹ã§å¤‰æ›ã—ãŸã‚‚ã®)ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="x">ü”g”—Ìˆæƒf[ƒ^</param>
+		/// <param name="x">å‘¨æ³¢æ•°é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
 		public Spectrum(double[] x)
 		{
 			this.x = x;
@@ -35,10 +35,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="X">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <returns>ì¬‚³‚ê‚½ü”g”“Á«</returns>
+		/// <param name="X">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸå‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public static Spectrum FromTimeSequence(double[] x)
 		{
 			if(x == null) return null;
@@ -46,23 +46,23 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="x">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <param name="length">ƒf[ƒ^‚Ì’·‚³</param>
-		/// <returns>ì¬‚³‚ê‚½ü”g”“Á«</returns>
+		/// <param name="x">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸå‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public static Spectrum FromTimeSequence(double[] x, int length)
 		{
 			return FromTimeSequence(x, length, 0);
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="x">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <param name="length">ƒf[ƒ^‚Ì’·‚³</param>
-		/// <param name="skip">“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <returns>ì¬‚³‚ê‚½ü”g”“Á«</returns>
+		/// <param name="x">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
+		/// <param name="skip">èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸå‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public static Spectrum FromTimeSequence(double[] x, int length, int skip)
 		{
 			if(x == null) return null;
@@ -77,10 +77,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ’x‰„ ƒÂ[i - delay] ‚Ìü”g”“Á«‚ğì¬‚·‚éB
+		/// é…å»¶ Î´[i - delay] ã®å‘¨æ³¢æ•°ç‰¹æ€§ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="delay">’x‰„ƒTƒ“ƒvƒ‹”</param>
-		/// <returns>ì¬‚³‚ê‚½ü”g”“Á«</returns>
+		/// <param name="delay">é…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸå‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public static Spectrum FromDelay(double delay, int length)
 		{
 			Spectrum s = new Spectrum(length);
@@ -98,10 +98,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region ’l‚Ìæ“¾Eİ’è
+		#region å€¤ã®å–å¾—ãƒ»è¨­å®š
 
 		/// <summary>
-		/// ü”g”—Ìˆæ‚Ìƒf[ƒ^”B
+		/// å‘¨æ³¢æ•°é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿æ•°ã€‚
 		/// </summary>
 		public int Count
 		{
@@ -109,7 +109,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// i ”Ô–Ú‚Ìƒf[ƒ^‚ğ•¡‘f”’l‚Å•Ô‚·B
+		/// i ç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡ç´ æ•°å€¤ã§è¿”ã™ã€‚
 		/// </summary>
 		public Complex this[int i]
 		{
@@ -132,7 +132,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Œn—ñ‚ğ•Ô‚·B
+		/// æ™‚ç³»åˆ—ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public double[] TimeSequence
 		{
@@ -146,10 +146,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Œn—ñ‚ğ•Ô‚·B
-		/// ‚ ‚ç‚©‚¶‚ßŒn—ñƒf[ƒ^‚ÌŠi”[æ‚ğ—pˆÓ‚µ‚Ä‚¨‚­B
+		/// æ™‚ç³»åˆ—ã‚’è¿”ã™ã€‚
+		/// ã‚ã‚‰ã‹ã˜ã‚æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’ç”¨æ„ã—ã¦ãŠãã€‚
 		/// </summary>
-		/// <param name="x">ƒf[ƒ^Ši”[æ</param>
+		/// <param name="x">ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ</param>
 		public void GetTimeSequence(double[] x)
 		{
 			double a = 2.0/x.Length;
@@ -158,7 +158,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæ‚Ìƒf[ƒ^”B
+		/// æ™‚é–“é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿æ•°ã€‚
 		/// </summary>
 		public int TimeLength
 		{
@@ -166,12 +166,12 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region ‰‰ZqE•ÏŠ·ƒƒ\ƒbƒh
+		#region æ¼”ç®—å­ãƒ»å¤‰æ›ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// ’P€{BŒ³‚Ì‚Ü‚Ü‚Ì’l‚ğ•Ô‚·B
+		/// å˜é …ï¼‹ã€‚å…ƒã®ã¾ã¾ã®å€¤ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>+a</returns>
 		public static Spectrum operator+ (Spectrum a)
 		{
@@ -179,9 +179,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ’P€|B
+		/// å˜é …ï¼ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>-a</returns>
 		public static Spectrum operator- (Spectrum a)
 		{
@@ -192,11 +192,11 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì˜a A(ƒÖ) + B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å’Œ A(Ï‰) + B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>˜a</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å’Œ</returns>
 		public static Spectrum operator+ (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -206,11 +206,11 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì· A(ƒÖ) - B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å·® A(Ï‰) - B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>·</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å·®</returns>
 		public static Spectrum operator- (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -220,11 +220,11 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚ÌÏ A(ƒÖ) * B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®ç© A(Ï‰) * B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Ï</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ç©</returns>
 		public static Spectrum operator* (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -234,11 +234,11 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹~À”‚ÌÏ A(ƒÖ) * xB
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«Ã—å®Ÿæ•°ã®ç© A(Ï‰) * xã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="x">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Ï</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="x">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ç©</returns>
 		public static Spectrum operator* (Spectrum a, double x)
 		{
 			Spectrum c = a.Clone();
@@ -248,22 +248,22 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹~À”‚ÌÏ x * A(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«Ã—å®Ÿæ•°ã®ç© x * A(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="x">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="a">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Ï</returns>
+		/// <param name="x">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="a">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ç©</returns>
 		public static Spectrum operator* (double x, Spectrum a)
 		{
 			return a * x;
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì¤ A(ƒÖ) / B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å•† A(Ï‰) / B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>¤</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å•†</returns>
 		public static Spectrum operator/ (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -281,10 +281,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region À•”E‹••”
+		#region å®Ÿéƒ¨ãƒ»è™šéƒ¨
 
 		/// <summary>
-		/// À•”‚ğ”z—ñ‰»‚µ‚Äæ“¾B
+		/// å®Ÿéƒ¨ã‚’é…åˆ—åŒ–ã—ã¦å–å¾—ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public double[] GetRe()
@@ -295,7 +295,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‹••”‚ğ”z—ñ‰»‚µ‚Äæ“¾B
+		/// è™šéƒ¨ã‚’é…åˆ—åŒ–ã—ã¦å–å¾—ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public double[] GetIm()
@@ -306,10 +306,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region U•“Á«
+		#region æŒ¯å¹…ç‰¹æ€§
 
 		/// <summary>
-		/// ƒpƒ[ƒXƒyƒNƒgƒ‹[dB]‚ğæ“¾B
+		/// ãƒ‘ãƒ¯ãƒ¼ã‚¹ãƒšã‚¯ãƒˆãƒ«[dB]ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetPower()
 		{
@@ -319,7 +319,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// U•“Á«‚ğæ“¾B
+		/// æŒ¯å¹…ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetAmplitude()
 		{
@@ -329,10 +329,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region ˆÊ‘Š“Á«
+		#region ä½ç›¸ç‰¹æ€§
 
 		/// <summary>
-		/// ˆÊ‘Š“Á«‚ğæ“¾B
+		/// ä½ç›¸ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetPhase()
 		{
@@ -343,7 +343,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š“Á«(ƒAƒ“ƒ‰ƒbƒv‚µ‚½‚à‚Ì)‚ğæ“¾B
+		/// ä½ç›¸ç‰¹æ€§(ã‚¢ãƒ³ãƒ©ãƒƒãƒ—ã—ãŸã‚‚ã®)ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetUnwrapPhase()
 		{
@@ -353,9 +353,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š“Á«(ƒAƒ“ƒ‰ƒbƒv‚µ‚½‚à‚Ì)‚ğæ“¾B
+		/// ä½ç›¸ç‰¹æ€§(ã‚¢ãƒ³ãƒ©ãƒƒãƒ—ã—ãŸã‚‚ã®)ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="skip">Å‰ skip ƒTƒ“ƒvƒ‹‚ÍƒAƒ“ƒ‰ƒbƒv‚µ‚È‚¢</param>
+		/// <param name="skip">æœ€åˆ skip ã‚µãƒ³ãƒ—ãƒ«ã¯ã‚¢ãƒ³ãƒ©ãƒƒãƒ—ã—ãªã„</param>
 		public double[] GetUnwrapPhase(int skip)
 		{
 			double[] tmp = this.GetPhase();
@@ -364,9 +364,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š‚ÌƒAƒ“ƒ‰ƒbƒsƒ“ƒO‚ğs‚¤B
+		/// ä½ç›¸ã®ã‚¢ãƒ³ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="phase">ˆÊ‘Š‚Ì“ü‚Á‚½”z—ñ</param>
+		/// <param name="phase">ä½ç›¸ã®å…¥ã£ãŸé…åˆ—</param>
 		public static void Unwrap(double[] phase)
 		{
 			double tmp = 0;
@@ -383,10 +383,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š‚ÌƒAƒ“ƒ‰ƒbƒsƒ“ƒO‚ğs‚¤B
+		/// ä½ç›¸ã®ã‚¢ãƒ³ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="phase">ˆÊ‘Š‚Ì“ü‚Á‚½”z—ñ</param>
-		/// <param name="start">ƒAƒ“ƒ‰ƒbƒsƒ“ƒO‚ÌŠJn’n“_</param>
+		/// <param name="phase">ä½ç›¸ã®å…¥ã£ãŸé…åˆ—</param>
+		/// <param name="start">ã‚¢ãƒ³ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã®é–‹å§‹åœ°ç‚¹</param>
 		public static void Unwrap(double[] phase, int start)
 		{
 			double tmp = 0;
@@ -403,10 +403,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region Å¬ˆÊ‘ŠEƒI[ƒ‹ƒpƒXˆÊ‘Š
+		#region æœ€å°ä½ç›¸ãƒ»ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‚ğ‹‚ß‚éB
+		/// æœ€å°ä½ç›¸ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		public double[] GetMinimumPhase()
 		{
@@ -438,7 +438,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}//GetMinimumPhase
 
 		/// <summary>
-		/// ƒI[ƒ‹ƒpƒXˆÊ‘Š‚ğ‹‚ß‚éB
+		/// ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		public double[] GetAllpassPhase()
 		{
@@ -453,10 +453,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}//GetAllpassPhase
 
 		#endregion
-		#region ˆÊ‘Š’x‰„EŒQ’x‰„“Á«
+		#region ä½ç›¸é…å»¶ãƒ»ç¾¤é…å»¶ç‰¹æ€§
 
 		/// <summary>
-		/// ˆÊ‘Š’x‰„“Á«‚ğæ“¾B
+		/// ä½ç›¸é…å»¶ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public static double[] GetPhaseDelay(double[] phase, double fs)
 		{
@@ -482,9 +482,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŒQ’x‰„“Á«‚ğæ“¾B
-		/// F(ƒÖ) = x + j y, ƒÆ=ÚF,
-		/// gd = -dƒÆ/dƒÖ = -(d/dƒÖ)Im[log F] = -Im[(d/dƒÖ)log F]
+		/// ç¾¤é…å»¶ç‰¹æ€§ã‚’å–å¾—ã€‚
+		/// F(Ï‰) = x + j y, Î¸=âˆ F,
+		/// gd = -dÎ¸/dÏ‰ = -(d/dÏ‰)Im[log F] = -Im[(d/dÏ‰)log F]
 		/// = -Im[F'/F] = -Im[(x'+jy') / (x+jy) = (x'y - xy') / (x*x + y*y)
 		/// </summary>
 		public double[] GetGroupDelay()
@@ -506,9 +506,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŒQ’x‰„“Á«‚ğæ“¾B
+		/// ç¾¤é…å»¶ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		[System.Obsolete("GetGroupDelay ‚Ì‘Ã“–«‚ªŠm‚©‚ß‚ç‚êŸ‘æíœ‚µ‚Ü‚·")]
+		[System.Obsolete("GetGroupDelay ã®å¦¥å½“æ€§ãŒç¢ºã‹ã‚ã‚‰ã‚Œæ¬¡ç¬¬å‰Šé™¤ã—ã¾ã™")]
 		public double[] GetGroupDelay0()
 		{
 			double[] tmp = this.GetUnwrapPhase(this.Count / 100);
@@ -521,10 +521,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region ’x‰„ŠÖŒWA”ñ„§ƒƒ\ƒbƒh(Obsolete ‚É‚·‚é‚È‚èAíœ‚·‚é‚È‚è‚µ‚½‚¢)
+		#region é…å»¶é–¢ä¿‚ã€éæ¨å¥¨ãƒ¡ã‚½ãƒƒãƒ‰(Obsolete ã«ã™ã‚‹ãªã‚Šã€å‰Šé™¤ã™ã‚‹ãªã‚Šã—ãŸã„)
 
 		/// <summary>
-		/// •½‹ÏƒfƒBƒŒƒC(ƒI[ƒ‹ƒpƒXˆÊ‘Š‚Ì•½‹ÏŒù”z~-1)‚ğ‹‚ß‚éB
+		/// å¹³å‡ãƒ‡ã‚£ãƒ¬ã‚¤(ï¼ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸ã®å¹³å‡å‹¾é…Ã—-1)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		public double GetMeanDelay()
 		{
@@ -540,9 +540,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š‚©‚ç•½‹ÏƒfƒBƒŒƒC‚ğœ‚¢‚½•”•ª‚ğ‹‚ß‚éB
+		/// ä½ç›¸ã‹ã‚‰å¹³å‡ãƒ‡ã‚£ãƒ¬ã‚¤ã‚’é™¤ã„ãŸéƒ¨åˆ†ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="delay">ˆÊ‘Š‚©‚ç•½‹ÏƒfƒBƒŒƒC‚ğœ‚¢‚½•”•ª</param>
+		/// <param name="delay">ä½ç›¸ã‹ã‚‰å¹³å‡ãƒ‡ã‚£ãƒ¬ã‚¤ã‚’é™¤ã„ãŸéƒ¨åˆ†</param>
 		public double[] GetPhase0(double delay)
 		{
 			double[] p = this.GetUnwrapPhase(this.Count / 100);
@@ -554,7 +554,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š‚©‚ç•½‹ÏƒfƒBƒŒƒC‚ğœ‚¢‚½•”•ª‚ğ‹‚ß‚éB
+		/// ä½ç›¸ã‹ã‚‰å¹³å‡ãƒ‡ã‚£ãƒ¬ã‚¤ã‚’é™¤ã„ãŸéƒ¨åˆ†ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		public double[] GetPhase0()
 		{
@@ -572,10 +572,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region Œ`®‚Ì•ÏŠ·
+		#region å½¢å¼ã®å¤‰æ›
 
 		/// <summary>
-		/// U•“Á«‚Ì•½‹Ï’l‚ª0dB‚É‚È‚é‚æ‚¤‚É³‹K‰»
+		/// æŒ¯å¹…ç‰¹æ€§ã®å¹³å‡å€¤ãŒ0dBã«ãªã‚‹ã‚ˆã†ã«æ­£è¦åŒ–
 		/// </summary>
 		public void Normalize()
 		{
@@ -587,7 +587,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‰»‚·‚éB
+		/// æœ€å°ä½ç›¸åŒ–ã™ã‚‹ã€‚
 		/// </summary>
 		public void ConvertToMinimumPhase()
 		{
@@ -602,9 +602,9 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‰»‚µ‚½ü”g”“Á«‚ğ¶¬‚·‚éB
+		/// æœ€å°ä½ç›¸åŒ–ã—ãŸå‘¨æ³¢æ•°ç‰¹æ€§ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <returns>Å¬ˆÊ‘Š‰»‚µ‚½ü”g”“Á«</returns>
+		/// <returns>æœ€å°ä½ç›¸åŒ–ã—ãŸå‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public Spectrum GetMinimumPahsedSpectrum()
 		{
 			Spectrum s = this.Clone();
@@ -613,10 +613,10 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		/// <summary>
-		/// ƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒRƒs[‚ğì¬B
+		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆã€‚
 		/// </summary>
 		/// <returns></returns>
 		public Spectrum Clone()
@@ -630,13 +630,13 @@ namespace SoundLibrary.SpectrumAnalysis
 		}
 
 		#endregion
-		#region static ŠÖ”
+		#region static é–¢æ•°
 
 		/// <summary>
-		/// x ‚ğƒqƒ‹ƒxƒ‹ƒg•ÏŠ·‚·‚éB
+		/// x ã‚’ãƒ’ãƒ«ãƒ™ãƒ«ãƒˆå¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·Œ³</param>
-		/// <returns>•ÏŠ·Œã</returns>
+		/// <param name="x">å¤‰æ›å…ƒ</param>
+		/// <returns>å¤‰æ›å¾Œ</returns>
 		public static double[] HilbertTransform(double[] x)
 		{
 			int N = x.Length;
@@ -668,7 +668,7 @@ namespace SoundLibrary.SpectrumAnalysis
 		}//HilbertTransform
 
 		/// <summary>
-		/// ƒf[ƒ^‚ÌƒXƒ€[ƒWƒ“ƒO‚ğs‚¤B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
 		/// <param name="data"></param>
 		public static void Smooth(double[] data)

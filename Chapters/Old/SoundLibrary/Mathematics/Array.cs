@@ -1,19 +1,19 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics
 {
 	using Type = System.Double;
 
 	/// <summary>
-	/// Array ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Array ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class Array
 	{
 		/// <summary>
-		/// ”z—ñ‚ğ¶‰E”½“]‚·‚éB
+		/// é…åˆ—ã‚’å·¦å³åè»¢ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">Œ³‚Ì”z—ñ</param>
-		/// <param name="y">Œ‹‰ÊŠi”[æ</param>
+		/// <param name="x">å…ƒã®é…åˆ—</param>
+		/// <param name="y">çµæœæ ¼ç´å…ˆ</param>
 		public static Type[] Reverse(Type[] x)
 		{
 			int len = x.Length;
@@ -24,10 +24,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚ğ‰E‚É delay ‚¾‚¯‚¸‚ç‚·B
+		/// é…åˆ— x ã‚’å³ã« delay ã ã‘ãšã‚‰ã™ã€‚
 		/// </summary>
-		/// <param name="x">Œ³‚Ì”z—ñ</param>
-		/// <param name="y">Œ‹‰ÊŠi”[æ</param>
+		/// <param name="x">å…ƒã®é…åˆ—</param>
+		/// <param name="y">çµæœæ ¼ç´å…ˆ</param>
 		public static void Delay(Type[] x, int delay, Type[] y)
 		{
 			int i = x.Length - 1;

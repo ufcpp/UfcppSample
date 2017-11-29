@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
@@ -8,36 +8,36 @@ namespace ConsoleApplication1
 	class Program
 	{
 		/// <summary>
-		/// ˆÈ‰º‚Ì‚æ‚¤‚ÈA‘“–‚è‚Å‰ğ‚ğ‹‚ß‚é—Ş‚Ì–â‘è‚ğA
-		/// LINQ ‚Æ‚©‚ğg‚Á‚Ä‰ğ‚¢‚Ä‚İ‚éB
+		/// ä»¥ä¸‹ã®ã‚ˆã†ãªã€ç·å½“ã‚Šã§è§£ã‚’æ±‚ã‚ã‚‹é¡ã®å•é¡Œã‚’ã€
+		/// LINQ ã¨ã‹ã‚’ä½¿ã£ã¦è§£ã„ã¦ã¿ã‚‹ã€‚
 		/// 
-		/// İ–âF
-		/// Baker, Cooper, Fletcher, Miller‚ÆSmith‚ÍŒÜŠKŒš‚ÄƒAƒp[ƒg‚ÌˆÙ‚È‚éŠK‚ÉZ‚ñ‚Å‚¢‚éB
-		/// Baker‚ÍÅãŠK‚ÉZ‚Ş‚Ì‚Å‚Í‚È‚¢B
-		/// Cooper‚ÍÅ‰ºŠK‚ÉZ‚Ş‚Ì‚Å‚Í‚È‚¢B
-		/// Fletcher‚ÍÅãŠK‚É‚àÅ‰ºŠK‚É‚àZ‚Ş‚Ì‚Å‚Í‚È‚¢B
-		/// Miller‚ÍCooper‚æ‚èã‚ÌŠK‚ÉZ‚ñ‚Å‚¢‚éB
-		/// Smith‚ÍFletcher‚Ì—×‚ÌŠK‚ÉZ‚Ş‚Ì‚Å‚Í‚È‚¢B
-		/// Fletcher‚ÍCooper‚Ì—×‚ÌŠK‚ÉZ‚Ş‚Ì‚Å‚Í‚È‚¢B
-		/// ‚»‚ê‚¼‚ê‚Í‚Ç‚ÌŠK‚ÉZ‚ñ‚Å‚¢‚é‚©B 
+		/// è¨­å•ï¼š
+		/// Baker, Cooper, Fletcher, Millerã¨Smithã¯äº”éšå»ºã¦ã‚¢ãƒ‘ãƒ¼ãƒˆã®ç•°ãªã‚‹éšã«ä½ã‚“ã§ã„ã‚‹ã€‚
+		/// Bakerã¯æœ€ä¸Šéšã«ä½ã‚€ã®ã§ã¯ãªã„ã€‚
+		/// Cooperã¯æœ€ä¸‹éšã«ä½ã‚€ã®ã§ã¯ãªã„ã€‚
+		/// Fletcherã¯æœ€ä¸Šéšã«ã‚‚æœ€ä¸‹éšã«ã‚‚ä½ã‚€ã®ã§ã¯ãªã„ã€‚
+		/// Millerã¯Cooperã‚ˆã‚Šä¸Šã®éšã«ä½ã‚“ã§ã„ã‚‹ã€‚
+		/// Smithã¯Fletcherã®éš£ã®éšã«ä½ã‚€ã®ã§ã¯ãªã„ã€‚
+		/// Fletcherã¯Cooperã®éš£ã®éšã«ä½ã‚€ã®ã§ã¯ãªã„ã€‚
+		/// ãã‚Œãã‚Œã¯ã©ã®éšã«ä½ã‚“ã§ã„ã‚‹ã‹ã€‚ 
 		/// </summary>
 		/// <remarks>
-		/// ÀsŒ‹‰Ê‚Ì‚Ü‚Æ‚ßF
-		/// E‚±‚Ìè‚Ì’Pƒ‚ÈƒNƒGƒŠ‚ÍA
-		///   ƒNƒGƒŠ‚Ì‡˜“ü‚ê‘Ö‚¦‚Å10”{ˆÈãƒpƒtƒH[ƒ}ƒ“ƒX‚ª‚ ‚ª‚é‚±‚Æ‚ª‚´‚çB
-		/// E‚Å‚àAfrom ‚ª‘O‚ÉŒÅ‚Ü‚Á‚Ä‚é‚à‚Ì‚Æ”ä‚×‚ÄA‡˜‚ğ“ü‚ê‘Ö‚¦‚½ƒNƒGƒŠ‚ÍŒ‹\Œ©‚Ã‚ç‚¢B
-		/// E‘½d from ‚ğg‚Á‚½ƒNƒGƒŠ®‚ğƒƒ\ƒbƒhŒ`®‚Å‘‚±‚¤‚Æ‚·‚é‚Æ SelectMany ‚Ì“§‰ß¯•Êq‚ª‚¦‚ç‚¢‚±‚Æ‚ÉB
-		/// Efrom, where, select ‚ğ foreach, if, yield return ‚Å“WŠJ‚·‚é‚ÆAƒpƒtƒH[ƒ}ƒ“ƒX1.5`2”{‚­‚ç‚¢‚ ‚ª‚Á‚½‚è‚·‚éB
-		/// Eyield returni‚¢‚í‚ä‚éƒCƒeƒŒ[ƒ^j‚ÆAˆê“x List.Add ‚µ‚Ä‚©‚ç‚»‚Ì List ‚ğ•Ô‚·‚Ì‚ÌƒpƒtƒH[ƒ}ƒ“ƒX‚Í‘å·‚È‚µB
+		/// å®Ÿè¡Œçµæœã®ã¾ã¨ã‚ï¼š
+		/// ãƒ»ã“ã®æ‰‹ã®å˜ç´”ãªã‚¯ã‚¨ãƒªã¯ã€
+		///   ã‚¯ã‚¨ãƒªã®é †åºå…¥ã‚Œæ›¿ãˆã§10å€ä»¥ä¸Šãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãŒã‚ãŒã‚‹ã“ã¨ãŒã–ã‚‰ã€‚
+		/// ãƒ»ã§ã‚‚ã€from ãŒå‰ã«å›ºã¾ã£ã¦ã‚‹ã‚‚ã®ã¨æ¯”ã¹ã¦ã€é †åºã‚’å…¥ã‚Œæ›¿ãˆãŸã‚¯ã‚¨ãƒªã¯çµæ§‹è¦‹ã¥ã‚‰ã„ã€‚
+		/// ãƒ»å¤šé‡ from ã‚’ä½¿ã£ãŸã‚¯ã‚¨ãƒªå¼ã‚’ãƒ¡ã‚½ãƒƒãƒ‰å½¢å¼ã§æ›¸ã“ã†ã¨ã™ã‚‹ã¨ SelectMany ã®é€éè­˜åˆ¥å­ãŒãˆã‚‰ã„ã“ã¨ã«ã€‚
+		/// ãƒ»from, where, select ã‚’ foreach, if, yield return ã§å±•é–‹ã™ã‚‹ã¨ã€ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹1.5ï½2å€ãã‚‰ã„ã‚ãŒã£ãŸã‚Šã™ã‚‹ã€‚
+		/// ãƒ»yield returnï¼ˆã„ã‚ã‚†ã‚‹ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ï¼‰ã¨ã€ä¸€åº¦ List.Add ã—ã¦ã‹ã‚‰ãã® List ã‚’è¿”ã™ã®ã®ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã¯å¤§å·®ãªã—ã€‚
 		/// 
-		/// Œ‹˜_F
-		/// IQueryable / ƒ‰ƒ€ƒ_®‚ğg‚Á‚ÄA
-		/// from, where, select ‚ğ foreach, if, yield return ‚É“WŠJ
-		/// • ƒNƒGƒŠ‚Ì‡˜Å“K‰»‚ğ‚©‚¯‚é‚æ‚¤‚Èƒ‰ƒCƒuƒ‰ƒŠ‚ª—~‚µ‚¢‚È‚ŸB
+		/// çµè«–ï¼š
+		/// IQueryable / ãƒ©ãƒ ãƒ€å¼ã‚’ä½¿ã£ã¦ã€
+		/// from, where, select ã‚’ foreach, if, yield return ã«å±•é–‹
+		/// ï¼† ã‚¯ã‚¨ãƒªã®é †åºæœ€é©åŒ–ã‚’ã‹ã‘ã‚‹ã‚ˆã†ãªãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ¬²ã—ã„ãªãã€‚
 		/// </remarks>
 		static void Main()
 		{
-			// İ–â‚Ç‚¨‚è‚Ì‡˜‚ÅƒNƒGƒŠ
+			// è¨­å•ã©ãŠã‚Šã®é †åºã§ã‚¯ã‚¨ãƒª
 			var answers1 =
 				from baker in five
 				from cooper in five
@@ -53,7 +53,7 @@ namespace ConsoleApplication1
 				where Discrete(fletcher, cooper)
 				select new { baker, cooper, fletcher, miller, smith };
 
-			// answers1 ‚ÌƒNƒGƒŠ®‚Æ“™‰¿‚ÈƒNƒGƒŠ‰‰Z
+			// answers1 ã®ã‚¯ã‚¨ãƒªå¼ã¨ç­‰ä¾¡ãªã‚¯ã‚¨ãƒªæ¼”ç®—
 			var answers0 = five
 				.SelectMany(x => five, (baker, cooper) => new { baker, cooper })
 				.SelectMany(x => five, (x, fletcher) => new { x, fletcher })
@@ -68,7 +68,7 @@ namespace ConsoleApplication1
 				.Where(x => Discrete(x.x.x.fletcher, x.x.x.x.cooper))
 				.Select(x => new { x.x.x.x.baker, x.x.x.x.cooper, x.x.x.fletcher, x.x.miller, x.smith });
 
-			// answers0 ‚Ì“§‰ß¯•Êq‚ğ‚¿‚å‚Á‚Æ®—
+			// answers0 ã®é€éè­˜åˆ¥å­ã‚’ã¡ã‚‡ã£ã¨æ•´ç†
 			var answers01 = five
 				.SelectMany(x => five, (baker, cooper) => new { baker, cooper })
 				.SelectMany(x => five, (x, fletcher) => new { x.baker, x.cooper, fletcher })
@@ -82,7 +82,7 @@ namespace ConsoleApplication1
 				.Where(x => Discrete(x.smith, x.fletcher))
 				.Where(x => Discrete(x.fletcher, x.cooper));
 
-			// answers1 ‚Ì from, where ‚Ì‡˜‚ğ“ü‚ê‘Ö‚¦‚ÄÅ“K‰»
+			// answers1 ã® from, where ã®é †åºã‚’å…¥ã‚Œæ›¿ãˆã¦æœ€é©åŒ–
 			var answers2 =
 				from baker in five
 				where baker != 5
@@ -98,7 +98,7 @@ namespace ConsoleApplication1
 				where Distinct(baker, cooper, fletcher, miller, smith)
 				select new { baker, cooper, fletcher, miller, smith };
 
-			// answers2 ‚Æ‚Ù‚Ú“™‰¿i“§‰ß¯•Êq‚¾‚¯®—j‚ÈƒNƒGƒŠ‰‰Z
+			// answers2 ã¨ã»ã¼ç­‰ä¾¡ï¼ˆé€éè­˜åˆ¥å­ã ã‘æ•´ç†ï¼‰ãªã‚¯ã‚¨ãƒªæ¼”ç®—
 			var answers02 = five
 				.Where(baker => baker != 5)
 				.SelectMany(x => five, (baker, cooper) => new { baker, cooper })
@@ -112,48 +112,48 @@ namespace ConsoleApplication1
 				.Where(x => Discrete(x.smith, x.fletcher))
 				.Where(x => Distinct(x.baker, x.cooper, x.fletcher, x.miller, x.smith));
 
-			CheckPerformance(answers1, "ƒNƒGƒŠ® @@@");
-			CheckPerformance(answers0, "ƒƒ\ƒbƒh (“™‰¿)");
-			CheckPerformance(answers01, "ƒƒ\ƒbƒh @@@");
-			CheckPerformance(YieldAnswers1(), "yield    @@@");
-			CheckPerformance<Tuple>(ListAnswers1, "list     @@@");
+			CheckPerformance(answers1, "ã‚¯ã‚¨ãƒªå¼ ã€€ã€€ã€€");
+			CheckPerformance(answers0, "ãƒ¡ã‚½ãƒƒãƒ‰ (ç­‰ä¾¡)");
+			CheckPerformance(answers01, "ãƒ¡ã‚½ãƒƒãƒ‰ ã€€ã€€ã€€");
+			CheckPerformance(YieldAnswers1(), "yield    ã€€ã€€ã€€");
+			CheckPerformance<Tuple>(ListAnswers1, "list     ã€€ã€€ã€€");
 
-			CheckPerformance(answers2, "ƒNƒGƒŠ® Å“K‰»");
-			CheckPerformance(answers02, "ƒƒ\ƒbƒh Å“K‰»");
-			CheckPerformance(YieldAnswers2(), "yield    Å“K‰»");
-			CheckPerformance<Tuple>(ListAnswers2, "list     Å“K‰»");
+			CheckPerformance(answers2, "ã‚¯ã‚¨ãƒªå¼ æœ€é©åŒ–");
+			CheckPerformance(answers02, "ãƒ¡ã‚½ãƒƒãƒ‰ æœ€é©åŒ–");
+			CheckPerformance(YieldAnswers2(), "yield    æœ€é©åŒ–");
+			CheckPerformance<Tuple>(ListAnswers2, "list     æœ€é©åŒ–");
 		}
 
-		#region •â•ŠÖ”
+		#region è£œåŠ©é–¢æ•°
 
-		// 1`5
+		// 1ï½5
 		static IEnumerable<int> five = Enumerable.Range(1, 5);
 
-		// x ‚Ì—v‘f‚Éd•¡‚ª‚È‚¢‚Æ‚« true
+		// x ã®è¦ç´ ã«é‡è¤‡ãŒãªã„ã¨ã true
 		static bool Distinct(params int[] x)
 		{
 			return x.Distinct().Count() == x.Length;
 		}
 
-		// x, y ‚ª—×‚è‡‚¤”š‚Å‚È‚¢‚Æ‚« true
+		// x, y ãŒéš£ã‚Šåˆã†æ•°å­—ã§ãªã„ã¨ã true
 		static bool Discrete(int x, int y)
 		{
 			return Math.Abs(checked(x - y)) != 1;
 		}
 
 		#endregion
-		#region ƒpƒtƒH[ƒ}ƒ“ƒXŒv‘ª
+		#region ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹è¨ˆæ¸¬
 
 		const int N = 500;
 		static bool quiet = true;
 
 		/// <summary>
-		/// ƒNƒGƒŠ‚ÌƒpƒtƒH[ƒ}ƒ“ƒX‚ÌŠm”FB
-		/// ƒV[ƒPƒ“ƒX‚ğ N ‰ñ ToList() ‚·‚é‚Ì‚É‚©‚©‚éŠÔ‚ğŒv‘ªB
+		/// ã‚¯ã‚¨ãƒªã®ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã®ç¢ºèªã€‚
+		/// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ N å› ToList() ã™ã‚‹ã®ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’è¨ˆæ¸¬ã€‚
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="seq">ƒpƒtƒH[ƒ}ƒ“ƒX‚ğŒv‚è‚½‚¢ƒV[ƒPƒ“ƒX</param>
-		/// <param name="label">Œ‹‰Ê•\¦—p‚Ìƒ‰ƒxƒ‹</param>
+		/// <param name="seq">ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚’è¨ˆã‚ŠãŸã„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹</param>
+		/// <param name="label">çµæœè¡¨ç¤ºç”¨ã®ãƒ©ãƒ™ãƒ«</param>
 		static void CheckPerformance<T>(IEnumerable<T> seq, string label)
 		{
 			var sw = new Stopwatch();
@@ -169,7 +169,7 @@ namespace ConsoleApplication1
 			Console.Write(label + " {0}\n", sw.ElapsedMilliseconds);
 		}
 
-		// ”äŠr—pBƒŠƒXƒg”ÅB
+		// æ¯”è¼ƒç”¨ã€‚ãƒªã‚¹ãƒˆç‰ˆã€‚
 		static void CheckPerformance<T>(Func<List<T>> getList, string label)
 		{
 			var sw = new Stopwatch();
@@ -186,12 +186,12 @@ namespace ConsoleApplication1
 		}
 
 		#endregion
-		#region ƒCƒeƒŒ[ƒ^”Å
+		#region ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ç‰ˆ
 
 		/// <summary>
-		/// ”äŠr‚Ì‚½‚ßAƒCƒeƒŒ[ƒ^”Å‚ğì‚è‚½‚¢‚¯‚ÇA
-		/// ƒCƒeƒŒ[ƒ^‚Í“½–¼ƒƒ\ƒbƒh‚Å‚Íì‚ê‚È‚¢i “½–¼Œ^‚ğ•Ô‚¹‚È‚¢j‚Ì‚Å
-		/// “™‰¿‚ÈŒ^‚ğì¬B
+		/// æ¯”è¼ƒã®ãŸã‚ã€ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ç‰ˆã‚’ä½œã‚ŠãŸã„ã‘ã©ã€
+		/// ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã¯åŒ¿åãƒ¡ã‚½ãƒƒãƒ‰ã§ã¯ä½œã‚Œãªã„ï¼ˆï¼ åŒ¿åå‹ã‚’è¿”ã›ãªã„ï¼‰ã®ã§
+		/// ç­‰ä¾¡ãªå‹ã‚’ä½œæˆã€‚
 		/// </summary>
 		struct Tuple
 		{
@@ -211,7 +211,7 @@ namespace ConsoleApplication1
 			}
 		}
 
-		// answers1 ‘Š“–‚ÌƒCƒeƒŒ[ƒ^
+		// answers1 ç›¸å½“ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		static IEnumerable<Tuple> YieldAnswers1()
 		{
 			foreach (var baker in five)
@@ -229,7 +229,7 @@ namespace ConsoleApplication1
 			yield return new Tuple { baker = baker, cooper = cooper, fletcher = fletcher, miller = miller, smith = smith };
 		}
 
-		// answers2 ‘Š“–‚ÌƒCƒeƒŒ[ƒ^
+		// answers2 ç›¸å½“ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		static IEnumerable<Tuple> YieldAnswers2()
 		{
 			foreach (var baker in five)
@@ -248,9 +248,9 @@ namespace ConsoleApplication1
 		}
 
 		#endregion
-		#region ƒŠƒXƒg”Å
+		#region ãƒªã‚¹ãƒˆç‰ˆ
 
-		// ”äŠr—pBYieldAnswers1 ‚ÌƒŠƒXƒg”Å
+		// æ¯”è¼ƒç”¨ã€‚YieldAnswers1 ã®ãƒªã‚¹ãƒˆç‰ˆ
 		static List<Tuple> ListAnswers1()
 		{
 			var list = new List<Tuple>();
@@ -270,7 +270,7 @@ namespace ConsoleApplication1
 			return list;
 		}
 
-		// ”äŠr—pBYieldAnswers2 ‚ÌƒŠƒXƒg”Å
+		// æ¯”è¼ƒç”¨ã€‚YieldAnswers2 ã®ãƒªã‚¹ãƒˆç‰ˆ
 		static List<Tuple> ListAnswers2()
 		{
 			var list = new List<Tuple>();

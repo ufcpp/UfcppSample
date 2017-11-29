@@ -1,13 +1,13 @@
-using System;
+ï»¿using System;
 
 namespace MyMath
 {
 	/// <summary>
-	/// •¡‘f”Œ^‚Ì’ŠÛŠî’êƒNƒ‰ƒX
+	/// è¤‡ç´ æ•°å‹ã®æŠ½è±¡åŸºåº•ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class Complex : ICloneable
 	{
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public abstract object Clone();
 		public abstract override bool Equals(object o);
@@ -15,84 +15,84 @@ namespace MyMath
 		public abstract override int GetHashCode();
 
 		#endregion
-		#region abstract ƒvƒƒpƒeƒB
+		#region abstract ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// À•”
+		/// å®Ÿéƒ¨
 		/// </summary>
 		public abstract double Re{set; get;}
 
 		/// <summary>
-		/// ‹••”
+		/// è™šéƒ¨
 		/// </summary>
 		public abstract double Im{set; get;}
 
 		/// <summary>
-		/// â‘Î’l
+		/// çµ¶å¯¾å€¤
 		/// </summary>
 		public abstract double Abs{set; get;}
 
 		/// <summary>
-		/// •ÎŠp
+		/// åè§’
 		/// </summary>
 		public abstract double Arg{set; get;}
 
 		#endregion
-		#region abstract ƒƒ\ƒbƒh
+		#region abstract ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// â‘Î’l‚Ì“ñæ‚ğ•Ô‚·
+		/// çµ¶å¯¾å€¤ã®äºŒä¹—ã‚’è¿”ã™
 		/// </summary>
 		public abstract double Norm();
 
 		/// <summary>
-		/// this ‚ğ•„†”½“]‚³‚¹‚½‚à‚Ì‚ğ•Ô‚·
+		/// this ã‚’ç¬¦å·åè»¢ã•ã›ãŸã‚‚ã®ã‚’è¿”ã™
 		/// </summary>
 		public abstract Complex Negate();
 
 		/// <summary>
-		/// this ‚Ì‹t”‚ğ•Ô‚·
+		/// this ã®é€†æ•°ã‚’è¿”ã™
 		/// </summary>
 		public abstract Complex Invert();
 
 		/// <summary>
-		/// this ‚Ì‹¤–ğ•¡‘f”‚ğ•Ô‚·
+		/// this ã®å…±å½¹è¤‡ç´ æ•°ã‚’è¿”ã™
 		/// </summary>
 		public abstract Complex Conjugate();
 
 		/// <summary>
-		/// this ‚É z ‚ğ‰Á‚¦‚½’l‚ğ•Ô‚·
-		/// (this‚Ì’l‚Í•Ï‰»‚³‚¹‚È‚¢)
+		/// this ã« z ã‚’åŠ ãˆãŸå€¤ã‚’è¿”ã™
+		/// (thisã®å€¤ã¯å¤‰åŒ–ã•ã›ãªã„)
 		/// </summary>
 		public abstract Complex Add(Complex z);
 		public abstract Complex Add(double x);
 
 		/// <summary>
-		/// this ‚©‚ç z ‚ğˆø‚¢‚½’l‚ğ•Ô‚·
-		/// (this‚Ì’l‚Í•Ï‰»‚³‚¹‚È‚¢)
+		/// this ã‹ã‚‰ z ã‚’å¼•ã„ãŸå€¤ã‚’è¿”ã™
+		/// (thisã®å€¤ã¯å¤‰åŒ–ã•ã›ãªã„)
 		/// </summary>
 		public abstract Complex Sub(Complex z);
 		public abstract Complex Sub(double x);
 
 		/// <summary>
-		/// this ‚É z ‚ğŠ|‚¯‚½’l‚ğ•Ô‚·
-		/// (this‚Ì’l‚Í•Ï‰»‚³‚¹‚È‚¢)
+		/// this ã« z ã‚’æ›ã‘ãŸå€¤ã‚’è¿”ã™
+		/// (thisã®å€¤ã¯å¤‰åŒ–ã•ã›ãªã„)
 		/// </summary>
 		public abstract Complex Mul(Complex z);
 		public abstract Complex Mul(double x);
 
 		/// <summary>
-		/// this ‚ğ z ‚ÅŠ„‚Á‚½’l‚ğ•Ô‚·
-		/// (this‚Ì’l‚Í•Ï‰»‚³‚¹‚È‚¢)
+		/// this ã‚’ z ã§å‰²ã£ãŸå€¤ã‚’è¿”ã™
+		/// (thisã®å€¤ã¯å¤‰åŒ–ã•ã›ãªã„)
 		/// </summary>
 		public abstract Complex Div(Complex z);
 		public abstract Complex Div(double x);
 
 		#endregion
-		#region object ƒƒ“ƒo
+		#region object ãƒ¡ãƒ³ãƒ
 
 		/// <summary>
-		/// •¶š—ñ‰»
+		/// æ–‡å­—åˆ—åŒ–
 		/// </summary>
 		public override string ToString()
 		{
@@ -106,10 +106,10 @@ namespace MyMath
 		#endregion
 		#region operator
 
-		#region ’P€‰‰Zq
+		#region å˜é …æ¼”ç®—å­
 
 		/// <summary>
-		/// ’P€+
+		/// å˜é …+
 		/// </summary>
 		static public Complex operator+ (Complex z)
 		{
@@ -117,7 +117,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// ’P€-
+		/// å˜é …-
 		/// </summary>
 		static public Complex operator- (Complex z)
 		{
@@ -125,7 +125,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// ‹¤–ğ‰‰Zq
+		/// å…±å½¹æ¼”ç®—å­
 		/// </summary>
 		static public Complex operator~ (Complex z)
 		{
@@ -133,10 +133,10 @@ namespace MyMath
 		}
 
 		#endregion
-		#region 2€‰‰Zq
+		#region 2é …æ¼”ç®—å­
 
 		/// <summary>
-		/// ‰ÁZ
+		/// åŠ ç®—
 		/// </summary>
 		/// <returns>z+w</returns>
 		static public Complex operator+ (Complex z, Complex w)
@@ -153,7 +153,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// Œ¸Z
+		/// æ¸›ç®—
 		/// </summary>
 		/// <returns>z-w</returns>
 		static public Complex operator- (Complex z, Complex w)
@@ -170,7 +170,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// æZ
+		/// ä¹—ç®—
 		/// </summary>
 		/// <returns>z*w</returns>
 		static public Complex operator* (Complex z, Complex w)
@@ -187,7 +187,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// œZ
+		/// é™¤ç®—
 		/// </summary>
 		/// <returns>z/w</returns>
 		static public Complex operator/ (Complex z, Complex w)
@@ -204,10 +204,10 @@ namespace MyMath
 		}
 
 		#endregion
-		#region ”äŠr‰‰Zq
+		#region æ¯”è¼ƒæ¼”ç®—å­
 
 		/// <summary>
-		/// z ‚Æ w ‚Ì’l‚Ì”äŠr
+		/// z ã¨ w ã®å€¤ã®æ¯”è¼ƒ
 		/// </summary>
 		static public bool operator== (Complex z, Complex w)
 		{
@@ -223,7 +223,7 @@ namespace MyMath
 		}
 
 		/// <summary>
-		/// z ‚Æ w ‚Ì’l‚Ì”äŠr
+		/// z ã¨ w ã®å€¤ã®æ¯”è¼ƒ
 		/// </summary>
 		static public bool operator!= (Complex z, Complex w)
 		{
@@ -241,7 +241,7 @@ namespace MyMath
 		#endregion
 
 		#endregion
-		#region Ã“Iƒƒ\ƒbƒh
+		#region é™çš„ãƒ¡ã‚½ãƒƒãƒ‰
 
 		static protected double Norm_(double x, double y)
 		{

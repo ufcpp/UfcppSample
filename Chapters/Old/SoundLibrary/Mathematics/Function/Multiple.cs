@@ -1,34 +1,34 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ’è”~ŠÖ”B
+	/// å®šæ•°Ã—é–¢æ•°ã€‚
 	/// </summary>
 	public class Multiple : Function
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ‰ÁZ‘ÎÛŠÖ”ƒŠƒXƒgB
+		/// åŠ ç®—å¯¾è±¡é–¢æ•°ãƒªã‚¹ãƒˆã€‚
 		/// </summary>
 		ValueType factor;
 
 		/// <summary>
-		/// “à•ï‚µ‚Ä‚¢‚éŠÖ”B
+		/// å†…åŒ…ã—ã¦ã„ã‚‹é–¢æ•°ã€‚
 		/// </summary>
     Function inner;
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		public double Factor{get{return this.factor;}}
 		public Function Inner{get{return this.inner;}}
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Multiple(ValueType factor, Function f)
 		{
@@ -37,7 +37,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -63,7 +63,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -74,7 +74,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public override Function Negate()
 		{
@@ -166,7 +166,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		public override Function Differentiate(Variable x)
 		{
@@ -182,7 +182,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		public override Function Optimize()
 		{

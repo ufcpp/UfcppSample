@@ -1,22 +1,22 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ‚¤‚È‚è¶¬—pƒpƒ‰ƒ[ƒ^B
+	/// ã†ãªã‚Šç”Ÿæˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
 	/// </summary>
 	public class TremoloParameter
 	{
-		public double rate;  // ‚¤‚È‚è‚Ìü”g”(³‹K‰»Špü”g”)B
-		public double depth; // ‚¤‚È‚è‚Ì[‚³(0`1)B
-		public int    delay; // ‚¤‚È‚è‚ª‚©‚©‚èn‚ß‚éŠÔ(ƒXƒeƒbƒv”)B
+		public double rate;  // ã†ãªã‚Šã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)ã€‚
+		public double depth; // ã†ãªã‚Šã®æ·±ã•(0ï½1)ã€‚
+		public int    delay; // ã†ãªã‚ŠãŒã‹ã‹ã‚Šå§‹ã‚ã‚‹æ™‚é–“(ã‚¹ãƒ†ãƒƒãƒ—æ•°)ã€‚
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="rate">‚¤‚È‚è‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="depth">‚¤‚È‚è‚Ì[‚³(0`1)</param>
-		/// <param name="delay">‚¤‚È‚è‚ª‚©‚©‚èn‚ß‚éŠÔ(ƒXƒeƒbƒv”)</param>
+		/// <param name="rate">ã†ãªã‚Šã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="depth">ã†ãªã‚Šã®æ·±ã•(0ï½1)</param>
+		/// <param name="delay">ã†ãªã‚ŠãŒã‹ã‹ã‚Šå§‹ã‚ã‚‹æ™‚é–“(ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
 		public TremoloParameter(double rate, double depth, int delay)
 		{
 			this.rate = rate;
@@ -26,7 +26,7 @@ namespace SoundLibrary.Music
 	}
 
 	/// <summary>
-	/// Œ³‚Æ‚È‚é Sound ‚É‚¤‚È‚è‚ğŠ|‚¯‚½ Sound ‚ğ¶¬‚·‚éB
+	/// å…ƒã¨ãªã‚‹ Sound ã«ã†ãªã‚Šã‚’æ›ã‘ãŸ Sound ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class Tremolo : Sound
 	{
@@ -34,26 +34,26 @@ namespace SoundLibrary.Music
 		Sound sound;
 
 		/// <summary>
-		/// ‚¤‚È‚è‚Ìƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ã†ãªã‚Šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="parameter">‚¤‚È‚è‚Ìƒpƒ‰ƒ[ƒ^</param>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="parameter">ã†ãªã‚Šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Tremolo(TremoloParameter parameter, Sound sound)
 		{
 			if(sound.Length < parameter.delay)
-				throw new ArgumentException("‰¹‚ª’Z‚·‚¬");
+				throw new ArgumentException("éŸ³ãŒçŸ­ã™ã");
 
 			this.parameter = parameter;
 			this.sound = sound;
 		}
 
 		/// <summary>
-		/// ‚¤‚È‚èƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ã†ãªã‚Šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="rate">‚¤‚È‚è‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="depth">‚¤‚È‚è‚Ì[‚³(0`1)</param>
-		/// <param name="delay">‚¤‚È‚è‚ª‚©‚©‚èn‚ß‚éŠÔ(ƒXƒeƒbƒv”)</param>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="rate">ã†ãªã‚Šã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="depth">ã†ãªã‚Šã®æ·±ã•(0ï½1)</param>
+		/// <param name="delay">ã†ãªã‚ŠãŒã‹ã‹ã‚Šå§‹ã‚ã‚‹æ™‚é–“(ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Tremolo(double rate, double depth, int delay, Sound sound)
 			: this(new TremoloParameter(rate, depth, delay), sound)
 		{

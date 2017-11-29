@@ -1,4 +1,4 @@
-#define CHECK_LENGTH
+ï»¿#define CHECK_LENGTH
 
 using System;
 using System.Diagnostics;
@@ -8,8 +8,8 @@ using CFftCpp = Fft.CFft;
 namespace SpectrumAnalysis
 {
 	/// <summary>
-	/// Managed C++ ‚Åì‚Á‚½ Fft ƒNƒ‰ƒX‚Ìƒ‰ƒbƒp[B
-	/// FFT ‚Ì“®ì‚ÌÚ×‚Í fft\fft.cpp ‚Ì•û‚ğQÆB
+	/// Managed C++ ã§ä½œã£ãŸ Fft ã‚¯ãƒ©ã‚¹ã®ãƒ©ãƒƒãƒ‘ãƒ¼ã€‚
+	/// FFT ã®å‹•ä½œã®è©³ç´°ã¯ fft\fft.cpp ã®æ–¹ã‚’å‚ç…§ã€‚
 	/// </summary>
 	public class Fft
 	{
@@ -23,9 +23,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒt[ƒŠƒG•ÏŠ·‚ğs‚¤B
+		/// ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·‚µ‚½‚¢ƒf[ƒ^</param>
+		/// <param name="x">å¤‰æ›ã—ãŸã„ãƒ‡ãƒ¼ã‚¿</param>
 		unsafe public void Transform(double[] x)
 		{
 			fixed(double* px = x)
@@ -35,9 +35,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‹tƒt[ƒŠƒG•ÏŠ·‚ğs‚¤B
+		/// é€†ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·‚µ‚½‚¢ƒf[ƒ^</param>
+		/// <param name="x">å¤‰æ›ã—ãŸã„ãƒ‡ãƒ¼ã‚¿</param>
 		unsafe public void Invert(double[] x)
 		{
 			fixed(double* px = x)
@@ -47,21 +47,21 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// len ‚ª2‚Ì‚×‚«æ‚©‚Ç‚¤‚©’²‚×Aˆá‚Á‚½‚ç—áŠO‚ğ“Š‚°‚éB
+		/// len ãŒ2ã®ã¹ãä¹—ã‹ã©ã†ã‹èª¿ã¹ã€é•ã£ãŸã‚‰ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
 		/// </summary>
-		/// <param name="len">’²‚×‚é’·‚³</param>
+		/// <param name="len">èª¿ã¹ã‚‹é•·ã•</param>
 		[Conditional("CHECK_LENGTH")]
 		public static void CheckLength(int len)
 		{
 			if(!IsPower2(len))
-				throw new ArgumentException("ˆø”‚É2‚Ì‚×‚«æˆÈŠO‚ğw’è‚µ‚¿‚á‘Ê–Ú");
+				throw new ArgumentException("å¼•æ•°ã«2ã®ã¹ãä¹—ä»¥å¤–ã‚’æŒ‡å®šã—ã¡ã‚ƒé§„ç›®");
 		}
 
 		/// <summary>
-		/// len ‚ª2‚Ì‚×‚«æ‚©‚Ç‚¤‚©’²‚×‚éB
+		/// len ãŒ2ã®ã¹ãä¹—ã‹ã©ã†ã‹èª¿ã¹ã‚‹ã€‚
 		/// </summary>
-		/// <param name="len">’²‚×‚é’·‚³</param>
-		/// <returns>2‚Ì‚×‚«æ‚È‚çtrue</returns>
+		/// <param name="len">èª¿ã¹ã‚‹é•·ã•</param>
+		/// <returns>2ã®ã¹ãä¹—ãªã‚‰true</returns>
 		static bool IsPower2(int len)
 		{
 			if(len < 0)
@@ -79,8 +79,8 @@ namespace SpectrumAnalysis
 	}//class Fft
 
 	/// <summary>
-	/// Managed C++ ‚Åì‚Á‚½ Fft ƒNƒ‰ƒX‚Ìƒ‰ƒbƒp[B
-	/// FFT ‚Ì“®ì‚ÌÚ×‚Í fft\fft.cpp ‚Ì•û‚ğQÆB
+	/// Managed C++ ã§ä½œã£ãŸ Fft ã‚¯ãƒ©ã‚¹ã®ãƒ©ãƒƒãƒ‘ãƒ¼ã€‚
+	/// FFT ã®å‹•ä½œã®è©³ç´°ã¯ fft\fft.cpp ã®æ–¹ã‚’å‚ç…§ã€‚
 	/// </summary>
 	public class CFft
 	{
@@ -94,9 +94,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒt[ƒŠƒG•ÏŠ·‚ğs‚¤B
+		/// ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·‚µ‚½‚¢ƒf[ƒ^</param>
+		/// <param name="x">å¤‰æ›ã—ãŸã„ãƒ‡ãƒ¼ã‚¿</param>
 		unsafe public void Transform(double[] x)
 		{
 			fixed(double* px = x)
@@ -106,9 +106,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‹tƒt[ƒŠƒG•ÏŠ·‚ğs‚¤B
+		/// é€†ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·‚µ‚½‚¢ƒf[ƒ^</param>
+		/// <param name="x">å¤‰æ›ã—ãŸã„ãƒ‡ãƒ¼ã‚¿</param>
 		unsafe public void Invert(double[] x)
 		{
 			fixed(double* px = x)

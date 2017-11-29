@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Function
@@ -6,17 +6,17 @@ namespace SoundLibrary.Mathematics.Function
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ŠÖ”‚Ì˜aB
+	/// é–¢æ•°ã®å’Œã€‚
 	/// </summary>
 	public class Sum : Series
 	{
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Sum(params Function[] functions) : base(functions) {}
 		public Sum(ArrayList functions) : base(functions) {}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -55,7 +55,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -77,7 +77,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public override Function Add(Function f)
 		{
@@ -97,7 +97,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		public override Function Differentiate(Variable x)
 		{
@@ -112,18 +112,18 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		/// <remarks>
-		/// “¯‚¶í—Ş‚ÌŠÖ”‚²‚Æ‚É‘«‚µ‚Ä‚¢‚Á‚½•û‚ªÅ“K‚È\‘¢‚ª“¾‚ç‚ê‚é‚½‚ßA
-		/// ŠÖ”‚ÌƒŠƒXƒg‚ğˆê“xƒ\[ƒg‚µ‚Ä‚©‚ç‘«‚µ‚È‚¨‚·B
-		/// ‚ ‚ÆA’è” 0 ‚ª¬‚´‚Á‚Ä‚½‚çÁ‚·B
+		/// åŒã˜ç¨®é¡ã®é–¢æ•°ã”ã¨ã«è¶³ã—ã¦ã„ã£ãŸæ–¹ãŒæœ€é©ãªæ§‹é€ ãŒå¾—ã‚‰ã‚Œã‚‹ãŸã‚ã€
+		/// é–¢æ•°ã®ãƒªã‚¹ãƒˆã‚’ä¸€åº¦ã‚½ãƒ¼ãƒˆã—ã¦ã‹ã‚‰è¶³ã—ãªãŠã™ã€‚
+		/// ã‚ã¨ã€å®šæ•° 0 ãŒæ··ã–ã£ã¦ãŸã‚‰æ¶ˆã™ã€‚
 		/// </remarks>
 		public override Function Optimize()
 		{
 			Hashtable table = new Hashtable();
 
-			// í—Ş‚í‚¯
+			// ç¨®é¡ã‚ã‘
 			foreach(Function f in this.functions)
 			{
 				Function g = f.Optimize();
@@ -139,7 +139,7 @@ namespace SoundLibrary.Mathematics.Function
 				}
 			}
 
-			// Œq‚¬‚È‚¨‚·
+			// ç¹‹ããªãŠã™
 			ArrayList func = new ArrayList();
 
 			foreach(Function f in table.Values)
@@ -156,14 +156,14 @@ namespace SoundLibrary.Mathematics.Function
 				}
 			}
 
-			// “Áê‚Èê‡
+			// ç‰¹æ®Šãªå ´åˆ
 			if(func.Count == 0)
 				return (Constant)0;
 
 			if(func.Count == 1)
 				return func[0] as Function;
 
-			// ‘«‚µ‚È‚¨‚·B
+			// è¶³ã—ãªãŠã™ã€‚
 			Function h = func[0] as Function;
 			for(int i=1; i<func.Count; ++i)
 			{

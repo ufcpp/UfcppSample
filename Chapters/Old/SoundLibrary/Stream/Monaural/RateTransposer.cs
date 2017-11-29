@@ -1,31 +1,31 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Stream.Monaural
 {
 	/// <summary>
-	/// ˆÚ’²ƒXƒgƒŠ[ƒ€B
-	/// •Ê‚ÌƒXƒgƒŠ[ƒ€‚©‚ç“Ç‚İo‚µ‚½‰¹‚ğˆÚ’²‚µ‚Äo—Í‚·‚éB
-	/// ‰¹’ö‚ÆÄ¶‘¬“x‚Ì—¼•û‚ª•Ï‚í‚éB
-	/// üŒ`•âŠÔ‚É‚æ‚éƒAƒbƒvƒTƒ“ƒvƒ‹/ƒ_ƒEƒ“ƒTƒ“ƒvƒ‹‚µ‚Ä‚¢‚é‚¾‚¯‚È‚Ì‚ÅA
-	/// ‚‰¹¿‚ğ–Úw‚·‚È‚çA•Ê“rAƒAƒ“ƒ`ƒGƒCƒŠƒAƒXƒtƒBƒ‹ƒ^‚ğ‚©‚¯‚é•K—v‚ª‚ ‚éB
+	/// ç§»èª¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã€‚
+	/// åˆ¥ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰èª­ã¿å‡ºã—ãŸéŸ³ã‚’ç§»èª¿ã—ã¦å‡ºåŠ›ã™ã‚‹ã€‚
+	/// éŸ³ç¨‹ã¨å†ç”Ÿé€Ÿåº¦ã®ä¸¡æ–¹ãŒå¤‰ã‚ã‚‹ã€‚
+	/// ç·šå½¢è£œé–“ã«ã‚ˆã‚‹ã‚¢ãƒƒãƒ—ã‚µãƒ³ãƒ—ãƒ«/ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒ«ã—ã¦ã„ã‚‹ã ã‘ãªã®ã§ã€
+	/// é«˜éŸ³è³ªã‚’ç›®æŒ‡ã™ãªã‚‰ã€åˆ¥é€”ã€ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‹ã‘ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 	/// </summary>
 	public class RateTransposer : Stream
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Stream stream; // inner stream
-		double rate; // •ÏŠ·ƒŒ[ƒgB‰¹’ö‚ª rate AÄ¶ŠÔ‚ª 1/rate ”{‚ÉB
-		short[] inputBuffer; // “ü—Í—pƒoƒbƒtƒ@B
-		short prev; // 1‰¹‘O‚Ìƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­B
+		double rate; // å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚éŸ³ç¨‹ãŒ rate ã€å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
+		short[] inputBuffer; // å…¥åŠ›ç”¨ãƒãƒƒãƒ•ã‚¡ã€‚
+		short prev; // 1éŸ³å‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠãã€‚
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="stream">“à•”ƒXƒgƒŠ[ƒ€</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒg</param>
+		/// <param name="stream">å†…éƒ¨ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆ</param>
 		public RateTransposer(Stream stream, double rate)
 		{
 			this.stream = stream;
@@ -35,11 +35,11 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// •ÏŠ·ƒŒ[ƒgB
-		/// ‰¹’ö‚ª rate AÄ¶ŠÔ‚ª 1/rate ”{‚ÉB
+		/// å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚
+		/// éŸ³ç¨‹ãŒ rate ã€å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
 		/// </summary>
 		public double Rate
 		{
@@ -48,11 +48,11 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region Stream ƒƒ“ƒo
+		#region Stream ãƒ¡ãƒ³ãƒ
 
 		public override int FillBuffer(short[] buffer, int offset, int size)
 		{
-			// ƒf[ƒ^‚ğ“ü—ÍƒXƒgƒŠ[ƒ€‚©‚ç“Ç‚İo‚·B
+			// ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰èª­ã¿å‡ºã™ã€‚
 
 			int inputSize = (int)(size * this.rate);
 
@@ -70,15 +70,15 @@ namespace SoundLibrary.Stream.Monaural
 
 			double delta = this.rate / 2;
 
-			// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ğ•ÏX‚µ‚Â‚Âo—Íƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒRƒs[B
-			// Bresenham ƒAƒ‹ƒSƒŠƒYƒ€“I‚È“®ìB
+			// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’å¤‰æ›´ã—ã¤ã¤å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã€‚
+			// Bresenham ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ çš„ãªå‹•ä½œã€‚
 
 			for(int i=0, j=offset;;)
 			{
 				while(delta >= 0)
 				{
-					buffer[j] = Interpolate(delta, this.prev, this.inputBuffer[i]); //! ©‚±‚êAprev ‚Æ input[i] ‚ª‹tB
-					this.prev = this.inputBuffer[i]; //! © ‚±‚ê‚Á‚Ä delta < 0 ‚Ì‘¤‚É‚ ‚é‚×‚«‚Å‚ÍH
+					buffer[j] = Interpolate(delta, this.prev, this.inputBuffer[i]); //! â†ã“ã‚Œã€prev ã¨ input[i] ãŒé€†ã€‚
+					this.prev = this.inputBuffer[i]; //! â† ã“ã‚Œã£ã¦ delta < 0 ã®å´ã«ã‚ã‚‹ã¹ãã§ã¯ï¼Ÿ
 
 					delta -= this.rate;
 					++j;
@@ -93,11 +93,11 @@ namespace SoundLibrary.Stream.Monaural
 					if(i >= inputSize)
 						goto END;
 				}
-				//! ª
+				//! â†‘
 				// while(!(j >= size + offset || i >= inputSize))
 				//   if(delta >= 0) ....
 				//   else ....
-				// ‚Ì•û‚ª©‘R‚È‚Ì‚Å‚ÍH
+				// ã®æ–¹ãŒè‡ªç„¶ãªã®ã§ã¯ï¼Ÿ
 			}
 			END:
 			return size;
@@ -110,14 +110,14 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region •â•ŠÖ”(private)
+		#region è£œåŠ©é–¢æ•°(private)
 
 		/// <summary>
-		/// üŒ`•âŠÔŠÖ”B
+		/// ç·šå½¢è£œé–“é–¢æ•°ã€‚
 		/// </summary>
-		/// <param name="delta">val1 ‚Æ val2 ‚ğ¬‚º‚éŠ„‡i®”•”•ª‚Í–³‹‚³‚ê‚éj</param>
-		/// <param name="val1">’l1</param>
-		/// <param name="val2">’l2</param>
+		/// <param name="delta">val1 ã¨ val2 ã‚’æ··ãœã‚‹å‰²åˆï¼ˆæ•´æ•°éƒ¨åˆ†ã¯ç„¡è¦–ã•ã‚Œã‚‹ï¼‰</param>
+		/// <param name="val1">å€¤1</param>
+		/// <param name="val2">å€¤2</param>
 		/// <returns></returns>
 		static short Interpolate(double delta, short val1, short val2)
 		{

@@ -1,16 +1,16 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// MixerGenerator ‚ğì¬‚·‚éB
+	/// MixerGenerator ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class MixerGenerator : FilterGenerator
 	{
-		const string FilterName = "ƒ~ƒLƒT[";
-		const string SubFilterName = "ƒtƒBƒ‹ƒ^";
-		const string GainName   = "‘•—¦";
+		const string FilterName = "ãƒŸã‚­ã‚µãƒ¼";
+		const string SubFilterName = "ãƒ•ã‚£ãƒ«ã‚¿";
+		const string GainName   = "å¢—å¹…ç‡";
 
 		public MixerGenerator()
 		{
@@ -108,14 +108,14 @@ namespace SoundLibrary.Filter
 	}//class MixerGenerator
 
 	/// <summary>
-	/// DelayMixerGenerator ‚ğì¬‚·‚éB
+	/// DelayMixerGenerator ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class DelayMixerGenerator : FilterGenerator
 	{
-		const string FilterName = "’x‰„•t‚«ƒ~ƒLƒT[";
-		const string SubFilterName = "ƒtƒBƒ‹ƒ^";
-		const string GainName   = "‘•—¦";
-		const string DelayName  = "’x‰„ƒTƒ“ƒvƒ‹”";
+		const string FilterName = "é…å»¶ä»˜ããƒŸã‚­ã‚µãƒ¼";
+		const string SubFilterName = "ãƒ•ã‚£ãƒ«ã‚¿";
+		const string GainName   = "å¢—å¹…ç‡";
+		const string DelayName  = "é…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°";
 
 		public DelayMixerGenerator()
 		{

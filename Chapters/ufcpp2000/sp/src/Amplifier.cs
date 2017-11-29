@@ -1,31 +1,31 @@
-/// <summary>
-/// ‘•ŠíB
+ï»¿/// <summary>
+/// å¢—å¹…å™¨ã€‚
 /// </summary>
 public class Amplifier : IFilter
 {
-	#region ƒtƒB[ƒ‹ƒh
+	#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-	double amp; // ”{—¦
+	double amp; // å€ç‡
 
 	#endregion
-	#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	public Amplifier() : this(0) { }
 
 	/// <summary>
-	/// ”{—¦‚ğw’è‚µ‚Ä‰Šú‰»
+	/// å€ç‡ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–
 	/// </summary>
-	/// <param name="amp">”{—¦</param>
+	/// <param name="amp">å€ç‡</param>
 	public Amplifier(double amp)
 	{
 		this.amp = amp;
 	}
 
 	#endregion
-	#region ƒvƒƒpƒeƒB
+	#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 	/// <summary>
-	/// ”{—¦
+	/// å€ç‡
 	/// </summary>
 	public double Amplitude
 	{
@@ -34,7 +34,7 @@ public class Amplifier : IFilter
 	}
 
 	#endregion
-	#region IFilter ƒƒ“ƒo
+	#region IFilter ãƒ¡ãƒ³ãƒ
 
 	public double GetValue(double x)
 	{
@@ -46,7 +46,7 @@ public class Amplifier : IFilter
 	}
 
 	#endregion
-	#region ICloneable ƒƒ“ƒo
+	#region ICloneable ãƒ¡ãƒ³ãƒ
 
 	public object Clone()
 	{

@@ -1,17 +1,17 @@
-#define A
+ï»¿#define A
 
 using System;
 
 namespace SoundLibrary.Pipe.Monaural
 {
 	/// <summary>
-	/// ŠÔL’·E’Zkˆ—‚ğs‚¤ƒNƒ‰ƒXB
-	/// ˆê’èŠÔŠu‚Åƒf[ƒ^‚ğŠÔˆø‚«EƒRƒs[‚·‚é‚±‚Æ‚ÅA
-	/// ‰¹’ö‚ğ•Ï‚¦‚é‚±‚Æ‚È‚­Ä¶ŠÔ‚ğL’·E’Zk‚·‚éB
+	/// æ™‚é–“ä¼¸é•·ãƒ»çŸ­ç¸®å‡¦ç†ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã€‚
+	/// ä¸€å®šé–“éš”ã§ãƒ‡ãƒ¼ã‚¿ã‚’é–“å¼•ããƒ»ã‚³ãƒ”ãƒ¼ã™ã‚‹ã“ã¨ã§ã€
+	/// éŸ³ç¨‹ã‚’å¤‰ãˆã‚‹ã“ã¨ãªãå†ç”Ÿæ™‚é–“ã‚’ä¼¸é•·ãƒ»çŸ­ç¸®ã™ã‚‹ã€‚
 	/// </summary>
 	public class TimeStretcher : Pipe
 	{
-		#region ’è”
+		#region å®šæ•°
 
 		const int DEFAULT_SIZE = 2048;
 		const int DEFAULT_OVERLAP = 256;
@@ -19,15 +19,15 @@ namespace SoundLibrary.Pipe.Monaural
 		const double DEFAULT_RATE = 1.0;
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		#region “à•”ƒNƒ‰ƒXiƒI[ƒo[ƒ‰ƒbƒv—p‚Ìˆêƒoƒbƒtƒ@j
+		#region å†…éƒ¨ã‚¯ãƒ©ã‚¹ï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ç”¨ã®ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ï¼‰
 
 		struct OverlapBuffer
 		{
 			short[] buffer;
-			int write; // ‘‚«‚İˆÊ’u
-			int read;  // “Ç‚İ‚İˆÊ’u
+			int write; // æ›¸ãè¾¼ã¿ä½ç½®
+			int read;  // èª­ã¿è¾¼ã¿ä½ç½®
 
 			public OverlapBuffer(int size, int write)
 			{
@@ -37,10 +37,10 @@ namespace SoundLibrary.Pipe.Monaural
 			}
 
 			/// <summary>
-			/// ƒLƒ…[‚ÌƒTƒCƒYİ’èB
+			/// ã‚­ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚ºè¨­å®šã€‚
 			/// </summary>
-			/// <param name="size">ƒTƒCƒY</param>
-			/// <param name="full">ƒoƒbƒtƒ@‚Ì‰Šúó‘Ôitrue: full, false: empty ‚ÅŠJnj</param>
+			/// <param name="size">ã‚µã‚¤ã‚º</param>
+			/// <param name="full">ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸçŠ¶æ…‹ï¼ˆtrue: full, false: empty ã§é–‹å§‹ï¼‰</param>
 			public void SetSize(int size, int write)
 			{
 				this.buffer = new short[size];
@@ -49,7 +49,7 @@ namespace SoundLibrary.Pipe.Monaural
 			}
 
 			/// <summary>
-			/// —v‘f”‚ğæ“¾B
+			/// è¦ç´ æ•°ã‚’å–å¾—ã€‚
 			/// </summary>
 			public int Count
 			{
@@ -62,9 +62,9 @@ namespace SoundLibrary.Pipe.Monaural
 			}
 
 			/// <summary>
-			/// ’l‚ğ‘}“üB
+			/// å€¤ã‚’æŒ¿å…¥ã€‚
 			/// </summary>
-			/// <param name="data">’l</param>
+			/// <param name="data">å€¤</param>
 			public void Enqueue(short data)
 			{
 				this.buffer[this.write] = data;
@@ -72,9 +72,9 @@ namespace SoundLibrary.Pipe.Monaural
 			}
 
 			/// <summary>
-			/// ’l‚ğæ‚èo‚µB
+			/// å€¤ã‚’å–ã‚Šå‡ºã—ã€‚
 			/// </summary>
-			/// <returns>’l</returns>
+			/// <returns>å€¤</returns>
 			public short Dequeue()
 			{
 				short data = this.buffer[this.read];
@@ -89,18 +89,18 @@ namespace SoundLibrary.Pipe.Monaural
 			}
 
 			/// <summary>
-			/// ‘‚«‚İƒoƒbƒtƒ@‚ªc‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©B
+			/// æ›¸ãè¾¼ã¿ãƒãƒƒãƒ•ã‚¡ãŒæ®‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã€‚
 			/// </summary>
-			/// <returns>ƒtƒ‹‚È‚ç true</returns>
+			/// <returns>ãƒ•ãƒ«ãªã‚‰ true</returns>
 			public bool Full()
 			{
 				return this.write == this.buffer.Length;
 			}
 
 			/// <summary>
-			/// “Ç‚İo‚µƒf[ƒ^‚ªc‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©B
+			/// èª­ã¿å‡ºã—ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã€‚
 			/// </summary>
-			/// <returns>‹ó‚Á‚Û‚È‚ç true</returns>
+			/// <returns>ç©ºã£ã½ãªã‚‰ true</returns>
 			public bool Empty()
 			{
 				return this.write == this.read;
@@ -109,7 +109,7 @@ namespace SoundLibrary.Pipe.Monaural
 
 		#endregion
 
-		// ƒpƒ‰ƒ[ƒ^
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		int size;
 		int overlapSize;
 		int frameSize;
@@ -117,63 +117,63 @@ namespace SoundLibrary.Pipe.Monaural
 
 		int skip;
 /*
-EŠT—v
-    ƒtƒŒ[ƒ€ 1                       ƒtƒŒ[ƒ€ 2
+ãƒ»æ¦‚è¦
+    ãƒ•ãƒ¬ãƒ¼ãƒ  1                       ãƒ•ãƒ¬ãƒ¼ãƒ  2
   (1)    (2)    (3)                (1)    (2)    (3)
 |----|--------|----|-- ....... --|----|--------|----|-- ....
 
-ƒtƒŒ[ƒ€ k ‚Ì(3)‚ÆƒtƒŒ[ƒ€ k+1 ‚Ì(1) ‚ğƒNƒƒXƒtƒF[ƒh‚³‚¹‚ÄA2‚Â‚ÌƒtƒŒ[ƒ€‚ğŒq‚®B
-‚½‚¾‚µAƒI[ƒo[ƒ‰ƒbƒv‚É‰¹‚ª•Ï‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉA
+ãƒ•ãƒ¬ãƒ¼ãƒ  k ã®(3)ã¨ãƒ•ãƒ¬ãƒ¼ãƒ  k+1 ã®(1) ã‚’ã‚¯ãƒ­ã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã¦ã€2ã¤ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ç¹‹ãã€‚
+ãŸã ã—ã€ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—æ™‚ã«éŸ³ãŒå¤‰ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã€
 
-k(3) ‚Æ K+1(1) ‚Ì‘ŠŠÖ’l‚ª‚‚­‚È‚é‚æ‚¤‚ÉƒtƒŒ[ƒ€‚Ìæ“ª‰½ƒTƒ“ƒvƒ‹‚©‚ğ“Ç‚İ”ò‚Î‚·B
-i‘ŠŠÖ’l‚É‚æ‚Á‚ÄŒˆ‚ß‚½“Ç‚İ”ò‚Î‚µƒTƒ“ƒvƒ‹”‚Í•Ï” skip ‚É•Û‘¶‚µ‚Ä‚¨‚­Bj
+k(3) ã¨ K+1(1) ã®ç›¸é–¢å€¤ãŒé«˜ããªã‚‹ã‚ˆã†ã«ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…ˆé ­ä½•ã‚µãƒ³ãƒ—ãƒ«ã‹ã‚’èª­ã¿é£›ã°ã™ã€‚
+ï¼ˆç›¸é–¢å€¤ã«ã‚ˆã£ã¦æ±ºã‚ãŸèª­ã¿é£›ã°ã—ã‚µãƒ³ãƒ—ãƒ«æ•°ã¯å¤‰æ•° skip ã«ä¿å­˜ã—ã¦ãŠãã€‚ï¼‰
 
-•Ö‹XãA
-(1) ‚ğ overlap(‘O)
-(2) ‚ğ non overlap
-(3) ‚ğ overlap(Œã)
-‚ÆŒÄ‚ÔB
+ä¾¿å®œä¸Šã€
+(1) ã‚’ overlap(å‰)
+(2) ã‚’ non overlap
+(3) ã‚’ overlap(å¾Œ)
+ã¨å‘¼ã¶ã€‚
 
-Eã‹L‚Ìƒpƒ‰ƒ[ƒ^‚ÌˆÓ–¡
+ãƒ»ä¸Šè¨˜ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ„å‘³
   (1)    (2)    (3)                (1)    (2)    (3)
 |----|--------|----|-- ....... --|----|--------|----|
 <------------------------------->
-<------------>      ª
-<--->   ª       frameSize
-  ª   size
+<------------>      â†‘
+<--->   â†‘       frameSize
+  â†‘   size
 overlapSize
 
 frameSize = rate * size
-’·‚³ frameSize ‚Ìƒf[ƒ^‚ª’·‚³ size ‚ÉLk‚·‚éB
-¨ Ä¶ŠÔ‚ª 1/rate ”{‚ÉB
+é•·ã• frameSize ã®ãƒ‡ãƒ¼ã‚¿ãŒé•·ã• size ã«ä¼¸ç¸®ã™ã‚‹ã€‚
+â†’ å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
  */
 
-		// Œ»İ‚Ìó‘Ô
+		// ç¾åœ¨ã®çŠ¶æ…‹
 		int current;
-		// ƒI[ƒo[ƒ‰ƒbƒv—p‚Ìˆêƒoƒbƒtƒ@
+		// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ç”¨ã®ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡
 		OverlapBuffer buffer;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒg’l‚Å‰Šú‰»B
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="input">“ü—ÍƒLƒ…[</param>
-		/// <param name="output">o—ÍƒLƒ…[</param>
+		/// <param name="input">å…¥åŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="output">å‡ºåŠ›ã‚­ãƒ¥ãƒ¼</param>
 		public TimeStretcher(Queue input, Queue output)
 			: this(input, output, DEFAULT_SIZE, DEFAULT_OVERLAP, DEFAULT_RATE)
 		{
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚Ìİ’èB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã€‚
 		/// </summary>
-		/// <param name="input">“ü—ÍƒLƒ…[</param>
-		/// <param name="output">o—ÍƒLƒ…[</param>
-		/// <param name="size">ƒuƒƒbƒNƒTƒCƒY</param>
-		/// <param name="overlap">ƒI[ƒo[ƒ‰ƒbƒv‚³‚¹‚é•”•ª‚Ì’·‚³</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒgBÄ¶ŠÔ‚ª 1/rate ”{‚ÉB</param>
+		/// <param name="input">å…¥åŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="output">å‡ºåŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="size">ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º</param>
+		/// <param name="overlap">ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ã•ã›ã‚‹éƒ¨åˆ†ã®é•·ã•</param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚</param>
 		public TimeStretcher(Queue input, Queue output, int size, int overlap, double rate)
 			: this(input, output, size, overlap, rate, DEFAULT_MAXSKIP)
 		{
@@ -186,11 +186,11 @@ frameSize = rate * size
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚Ìİ’èB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã€‚
 		/// </summary>
-		/// <param name="size">ƒuƒƒbƒNƒTƒCƒY</param>
-		/// <param name="overlap">ƒI[ƒo[ƒ‰ƒbƒv‚³‚¹‚é•”•ª‚Ì’·‚³</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒgBÄ¶ŠÔ‚ª 1/rate ”{‚ÉB</param>
+		/// <param name="size">ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º</param>
+		/// <param name="overlap">ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ã•ã›ã‚‹éƒ¨åˆ†ã®é•·ã•</param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚</param>
 		public void SetParameter(int size, int overlap, double rate, int maxSkip)
 		{
 			this.size = size;
@@ -208,7 +208,7 @@ frameSize = rate * size
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		int maxCorrelation;
 		int skipNext;
@@ -229,9 +229,9 @@ frameSize = rate * size
 			long corr = 0;
 			long xabs = 0; long yabs = 0;
 
-// Œµ–§‚É‘ŠŠÖ’l‚ğŒvZiŒvZ—Ê‘åjB
+// å³å¯†ã«ç›¸é–¢å€¤ã‚’è¨ˆç®—ï¼ˆè¨ˆç®—é‡å¤§ï¼‰ã€‚
 // Corr = E[xy]^2 / E[x^2]E[y^2]
-// ‚±‚±‚Ü‚Å‚·‚é•K—v‚Í‚È‚³‚°B
+// ã“ã“ã¾ã§ã™ã‚‹å¿…è¦ã¯ãªã•ã’ã€‚
 
 			for(int i=0, j=pos; i<len; ++i, ++j)
 			{
@@ -259,8 +259,8 @@ frameSize = rate * size
 		}
 
 		/// <summary>
-		/// Œ»İˆÊ’u(current)‚ğXV‚·‚éB
-		/// ‚Â‚¢‚Å‚ÉAƒsƒbƒ`—\‘ª‚Æ‚©‚Ìˆ—‚às‚¤B
+		/// ç¾åœ¨ä½ç½®(current)ã‚’æ›´æ–°ã™ã‚‹ã€‚
+		/// ã¤ã„ã§ã«ã€ãƒ”ãƒƒãƒäºˆæ¸¬ã¨ã‹ã®å‡¦ç†ã‚‚è¡Œã†ã€‚
 		/// </summary>
 		void MoveNext()
 		{
@@ -294,8 +294,8 @@ frameSize = rate * size
 		}
 
 		/// <summary>
-		/// Œ»İˆÊ’u‚ğƒŠƒZƒbƒg‚·‚é(current ‚ğ 0 ‚É)B
-		/// ‚Â‚¢‚Å‚ÉAƒXƒLƒbƒv—Ê‚ğXVB
+		/// ç¾åœ¨ä½ç½®ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹(current ã‚’ 0 ã«)ã€‚
+		/// ã¤ã„ã§ã«ã€ã‚¹ã‚­ãƒƒãƒ—é‡ã‚’æ›´æ–°ã€‚
 		/// </summary>
 		void Reset()
 		{
@@ -308,7 +308,7 @@ frameSize = rate * size
 
 		public override void Process()
 		{
-			// overlap(‘O)
+			// overlap(å‰)
 			while(
 				this.current < this.overlapSize &&
 				this.input.Count > this.current + this.overlapSize + this.skip)
@@ -335,7 +335,7 @@ frameSize = rate * size
 				this.MoveNext();
 			}
 
-			// overlap(Œã)
+			// overlap(å¾Œ)
 			while(
 				this.current >= this.size &&
 				this.current < this.size + this.overlapSize &&
@@ -347,7 +347,7 @@ frameSize = rate * size
 				this.MoveNext();
 			}
 
-			// ŸƒtƒŒ[ƒ€‚ÌŠJn’n“_‚Ü‚Å“Ç‚İ”ò‚Î‚µB
+			// æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ ã®é–‹å§‹åœ°ç‚¹ã¾ã§èª­ã¿é£›ã°ã—ã€‚
 			while(
 				this.current >= this.size + this.overlapSize &&
 				this.current < this.last &&
@@ -356,7 +356,7 @@ frameSize = rate * size
 				this.MoveNext();
 			}
 
-			// Ÿ‚ÌƒtƒŒ[ƒ€‚ÉˆÚs
+			// æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«ç§»è¡Œ
 			if(this.current == this.last)
 			{
 				if(this.input.Count >= this.frameSize)
@@ -368,16 +368,16 @@ frameSize = rate * size
 		}
 
 		/// <summary>
-		/// ƒtƒŒ[ƒ€‚ÌƒXƒLƒbƒv”‚ğ‹‚ß‚éB
-		/// ‘OƒtƒŒ[ƒ€‚Ì overlap(Œã) ‚ÆŒ»ƒtƒŒ[ƒ€‚Ì overlap(‘O) ‚Ì‘ŠŒİ‘ŠŠÖ’l‚ª‚‚­‚È‚é‚æ‚¤‚ÉA
-		/// ƒtƒŒ[ƒ€‚ÌÅ‰”ƒTƒ“ƒvƒ‹‚ğƒXƒLƒbƒv‚·‚éB
+		/// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚­ãƒƒãƒ—æ•°ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã® overlap(å¾Œ) ã¨ç¾ãƒ•ãƒ¬ãƒ¼ãƒ ã® overlap(å‰) ã®ç›¸äº’ç›¸é–¢å€¤ãŒé«˜ããªã‚‹ã‚ˆã†ã«ã€
+		/// ãƒ•ãƒ¬ãƒ¼ãƒ ã®æœ€åˆæ•°ã‚µãƒ³ãƒ—ãƒ«ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã€‚
 		/// </summary>
 		/// <remarks>
-		/// ƒXƒLƒbƒv”‚ğŒˆ’è‚·‚é‚½‚ß‚ÉA‰½ƒTƒ“ƒvƒ‹‚©Œã‚ë‚Ìƒf[ƒ^‚ğQÆ‚·‚é‚½‚ßA
-		/// “ü—ÍƒLƒ…[‚É‚ ‚é’ö“xƒf[ƒ^‚ª‚½‚Ü‚ç‚È‚¢‚ÆƒXƒLƒbƒv”‚ğŒˆ’è‚Å‚«‚È‚¢B
-		/// ƒXƒLƒbƒv”‚ğŒˆ’è‚Å‚«‚È‚¢ŠÔ‚Í false ‚ğ•Ô‚·B
+		/// ã‚¹ã‚­ãƒƒãƒ—æ•°ã‚’æ±ºå®šã™ã‚‹ãŸã‚ã«ã€ä½•ã‚µãƒ³ãƒ—ãƒ«ã‹å¾Œã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ãŸã‚ã€
+		/// å…¥åŠ›ã‚­ãƒ¥ãƒ¼ã«ã‚ã‚‹ç¨‹åº¦ãƒ‡ãƒ¼ã‚¿ãŒãŸã¾ã‚‰ãªã„ã¨ã‚¹ã‚­ãƒƒãƒ—æ•°ã‚’æ±ºå®šã§ããªã„ã€‚
+		/// ã‚¹ã‚­ãƒƒãƒ—æ•°ã‚’æ±ºå®šã§ããªã„é–“ã¯ false ã‚’è¿”ã™ã€‚
 		/// </remarks>
-		/// <returns>ƒXƒLƒbƒv”‚ğŒˆ’è‚Å‚«‚½ê‡ true ‚ğ•Ô‚·</returns>
+		/// <returns>ã‚¹ã‚­ãƒƒãƒ—æ•°ã‚’æ±ºå®šã§ããŸå ´åˆ true ã‚’è¿”ã™</returns>
 		bool SeekSkipSize()
 		{
 			if(this.input.Count < this.maxSkip + this.buffer.Count)
@@ -403,15 +403,15 @@ frameSize = rate * size
 		}
 
 		#endregion
-		#region “à•”ŠÖ”
+		#region å†…éƒ¨é–¢æ•°
 
 		/// <summary>
-		/// a ‚Æ b ‚ÌM†‚ğƒNƒƒXƒtƒF[ƒh‚³‚¹‚È‚ª‚ç¬‚º‚éB
+		/// a ã¨ b ã®ä¿¡å·ã‚’ã‚¯ãƒ­ã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ãªãŒã‚‰æ··ãœã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">M† a</param>
-		/// <param name="b">M† b</param>
-		/// <param name="fade">¬‚º‚é”ä—¦</param>
-		/// <param name="overlap">¬‚º‚é‹æŠÔ‚Ì’·‚³</param>
+		/// <param name="a">ä¿¡å· a</param>
+		/// <param name="b">ä¿¡å· b</param>
+		/// <param name="fade">æ··ãœã‚‹æ¯”ç‡</param>
+		/// <param name="overlap">æ··ãœã‚‹åŒºé–“ã®é•·ã•</param>
 		static short Interpolate(short a, short b, int fade, int overlap)
 		{
 			int val = (overlap - fade) * a + fade * b;

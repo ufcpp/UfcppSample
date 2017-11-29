@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Collections;
 using System.Text.RegularExpressions;
@@ -6,21 +6,21 @@ using System.Text.RegularExpressions;
 namespace SoundLibrary.Command
 {
 	/// <summary>
-	/// ƒRƒ}ƒ“ƒhˆ——p‚ÌƒfƒŠƒQ[ƒgB
+	/// ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ç”¨ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã€‚
 	/// </summary>
 	/// <remarks>
-	/// ˆø”ƒŠƒXƒg <paramref name="args"/> ‚ğó‚¯æ‚Á‚Äˆ—‚ğs‚¢A
-	/// o—ÍƒXƒgƒŠ[ƒ€ <paramref name="sout"/> ‚ÉŒ‹‰Ê‚ğo—Í‚·‚éB
-	/// ƒRƒ}ƒ“ƒh‰ğß‚ğI—¹‚µ‚½‚¢‚Æ‚«‚É true ‚ğ•Ô‚·B
+	/// å¼•æ•°ãƒªã‚¹ãƒˆ <paramref name="args"/> ã‚’å—ã‘å–ã£ã¦å‡¦ç†ã‚’è¡Œã„ã€
+	/// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ  <paramref name="sout"/> ã«çµæœã‚’å‡ºåŠ›ã™ã‚‹ã€‚
+	/// ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆã‚’çµ‚äº†ã—ãŸã„ã¨ãã« true ã‚’è¿”ã™ã€‚
 	/// </remarks>
 	public delegate bool CommandHandlar(string[] args, TextWriter sout);
 
 	/// <summary>
-	/// ƒeƒLƒXƒgƒXƒgƒŠ[ƒ€‚©‚ç“ü—Í‚³‚ê‚½ƒRƒ}ƒ“ƒh‚Ì‰ğß‚ğs‚¤ƒNƒ‰ƒXB
+	/// ãƒ†ã‚­ã‚¹ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰å…¥åŠ›ã•ã‚ŒãŸã‚³ãƒãƒ³ãƒ‰ã®è§£é‡ˆã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class CommandParser
 	{
-		#region “à•”ƒNƒ‰ƒX
+		#region å†…éƒ¨ã‚¯ãƒ©ã‚¹
 
 		class Tuple
 		{
@@ -35,35 +35,35 @@ namespace SoundLibrary.Command
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Hashtable commands;
-		CommandHandlar notFound; // ƒRƒ}ƒ“ƒh‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Æ‚«‚Ìˆ—
+		CommandHandlar notFound; // ã‚³ãƒãƒ³ãƒ‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã¨ãã®å‡¦ç†
 
 		string prompt;
-		Regex delim1; // ƒRƒ}ƒ“ƒh‚Æˆø”‚Ì‹æØ‚è•¶š
-		Regex delim2; // ˆø”“¯m‚ÌŠÔ‚Ì‹æØ‚è•¶š
-		Regex delim3; // ƒŠƒ_ƒCƒŒƒNƒg—p‚Ì‹æØ‚è•¶š
+		Regex delim1; // ã‚³ãƒãƒ³ãƒ‰ã¨å¼•æ•°ã®åŒºåˆ‡ã‚Šæ–‡å­—
+		Regex delim2; // å¼•æ•°åŒå£«ã®é–“ã®åŒºåˆ‡ã‚Šæ–‡å­—
+		Regex delim3; // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆç”¨ã®åŒºåˆ‡ã‚Šæ–‡å­—
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ‰Šú‰»B
-		/// ‹æØ‚è•¶š‚É‹ó”’•¶š ("\s+") ‚ğg—pB
-		/// ƒŠƒ_ƒCƒŒƒNƒg—p‚É > (\s*>\s*) ‚ğg—pB
+		/// åˆæœŸåŒ–ã€‚
+		/// åŒºåˆ‡ã‚Šæ–‡å­—ã«ç©ºç™½æ–‡å­— ("\s+") ã‚’ä½¿ç”¨ã€‚
+		/// ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆç”¨ã« > (\s*>\s*) ã‚’ä½¿ç”¨ã€‚
 		/// </summary>
 		public CommandParser() : this("> ", @"\s+", @"\s+", @"\s*>\s*")
 		{
 		}
 
 		/// <summary>
-		/// ‰Šú‰»B
-		/// ƒRƒ}ƒ“ƒhAˆø”ŠÔ‚Ì‹æØ‚è•¶š(³‹K•\Œ»)‚ğw’èB
+		/// åˆæœŸåŒ–ã€‚
+		/// ã‚³ãƒãƒ³ãƒ‰ã€å¼•æ•°é–“ã®åŒºåˆ‡ã‚Šæ–‡å­—(æ­£è¦è¡¨ç¾)ã‚’æŒ‡å®šã€‚
 		/// </summary>
-		/// <param name="delim1">ƒRƒ}ƒ“ƒh‚Æˆø”‚Ì‹æØ‚è•¶š</param>
-		/// <param name="delim2">ˆø”“¯m‚ÌŠÔ‚Ì‹æØ‚è•¶š</param>
-		/// <param name="delim3">ƒŠƒ_ƒCƒŒƒNƒg—p‚Ì‹æØ‚è•¶š</param>
+		/// <param name="delim1">ã‚³ãƒãƒ³ãƒ‰ã¨å¼•æ•°ã®åŒºåˆ‡ã‚Šæ–‡å­—</param>
+		/// <param name="delim2">å¼•æ•°åŒå£«ã®é–“ã®åŒºåˆ‡ã‚Šæ–‡å­—</param>
+		/// <param name="delim3">ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆç”¨ã®åŒºåˆ‡ã‚Šæ–‡å­—</param>
 		public CommandParser(string prompt, string delim1, string delim2, string delim3)
 		{
 			this.commands = new Hashtable();
@@ -80,34 +80,34 @@ namespace SoundLibrary.Command
 		}
 
 		#endregion
-		#region ƒRƒ}ƒ“ƒh‚Ì‰ğß
+		#region ã‚³ãƒãƒ³ãƒ‰ã®è§£é‡ˆ
 
 		/// <summary>
-		/// •W€“ü—ÍƒXƒgƒŠ[ƒ€‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İo‚µ‚Ä‰ğßB
+		/// æ¨™æº–å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿å‡ºã—ã¦è§£é‡ˆã€‚
 		/// </summary>
-		/// <returns>ƒRƒ}ƒ“ƒh‰ğß‚ªI‚í‚Á‚½‚Æ‚« true ‚ğ•Ô‚·</returns>
+		/// <returns>ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãŒçµ‚ã‚ã£ãŸã¨ã true ã‚’è¿”ã™</returns>
 		public bool Parse()
 		{
 			return this.Parse(Console.In, Console.Out);
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İo‚µ‚Ä‰ğßB
-		/// •W€o—ÍƒXƒgƒŠ[ƒ€‚Éo—ÍB
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿å‡ºã—ã¦è§£é‡ˆã€‚
+		/// æ¨™æº–å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«å‡ºåŠ›ã€‚
 		/// </summary>
-		/// <param name="sin">“ü—ÍŒ³</param>
-		/// <returns>ƒRƒ}ƒ“ƒh‰ğß‚ªI‚í‚Á‚½‚Æ‚« true ‚ğ•Ô‚·</returns>
+		/// <param name="sin">å…¥åŠ›å…ƒ</param>
+		/// <returns>ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãŒçµ‚ã‚ã£ãŸã¨ã true ã‚’è¿”ã™</returns>
 		public bool Parse(TextReader sin)
 		{
 			return this.Parse(sin, Console.Out);
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İo‚µ‚Ä‰ğßB
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿å‡ºã—ã¦è§£é‡ˆã€‚
 		/// </summary>
-		/// <param name="sin">“ü—ÍŒ³</param>
-		/// <param name="sout">o—Íæ</param>
-		/// <returns>ƒRƒ}ƒ“ƒh‰ğß‚ªI‚í‚Á‚½‚Æ‚« true ‚ğ•Ô‚·</returns>
+		/// <param name="sin">å…¥åŠ›å…ƒ</param>
+		/// <param name="sout">å‡ºåŠ›å…ˆ</param>
+		/// <returns>ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãŒçµ‚ã‚ã£ãŸã¨ã true ã‚’è¿”ã™</returns>
 		public bool Parse(TextReader sin, TextWriter sout)
 		{
 			while(true)
@@ -150,10 +150,10 @@ namespace SoundLibrary.Command
 		}
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh‚ğ1ƒ‰ƒCƒ“‰ğßB
+		/// ã‚³ãƒãƒ³ãƒ‰ã‚’1ãƒ©ã‚¤ãƒ³è§£é‡ˆã€‚
 		/// </summary>
-		/// <param name="commandLine">ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“</param>
-		/// <returns>ƒRƒ}ƒ“ƒh‰ğß‚ªI‚í‚Á‚½‚Æ‚« true ‚ğ•Ô‚·</returns>
+		/// <param name="commandLine">ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³</param>
+		/// <returns>ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãŒçµ‚ã‚ã£ãŸã¨ã true ã‚’è¿”ã™</returns>
 		bool Parse(string commandLine, TextWriter sout)
 		{
 			if(commandLine == null || commandLine.Length == 0)
@@ -193,56 +193,56 @@ namespace SoundLibrary.Command
 
 
 		#endregion
-		#region ƒRƒ}ƒ“ƒh‚Ì’Ç‰ÁEíœ
+		#region ã‚³ãƒãƒ³ãƒ‰ã®è¿½åŠ ãƒ»å‰Šé™¤
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh‚ğ’Ç‰Á‚·‚éB
+		/// ã‚³ãƒãƒ³ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="command">ƒRƒ}ƒ“ƒh–¼</param>
-		/// <param name="ope">ƒRƒ}ƒ“ƒhˆ—ƒfƒŠƒQ[ƒg</param>
+		/// <param name="command">ã‚³ãƒãƒ³ãƒ‰å</param>
+		/// <param name="ope">ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ</param>
 		public void Add(string command, CommandHandlar ope)
 		{
 			this.Add(command, ope, "");
 		}
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh‚ğ’Ç‰Á‚·‚éB
+		/// ã‚³ãƒãƒ³ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="command">ƒRƒ}ƒ“ƒh–¼</param>
-		/// <param name="ope">ƒRƒ}ƒ“ƒhˆ—ƒfƒŠƒQ[ƒg</param>
-		/// <param name="help">ƒwƒ‹ƒvƒƒbƒZ[ƒW</param>
+		/// <param name="command">ã‚³ãƒãƒ³ãƒ‰å</param>
+		/// <param name="ope">ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ</param>
+		/// <param name="help">ãƒ˜ãƒ«ãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public void Add(string command, CommandHandlar ope, string help)
 		{
 			this.commands[command] = new Tuple(ope, help);
 		}
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh‚ğíœ‚·‚éB
+		/// ã‚³ãƒãƒ³ãƒ‰ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="command">ƒRƒ}ƒ“ƒh–¼</param>
+		/// <param name="command">ã‚³ãƒãƒ³ãƒ‰å</param>
 		public void Remove(string command)
 		{
 			this.commands.Remove(command);
 		}
 
 		#endregion
-		#region ƒfƒtƒHƒ‹ƒgƒRƒ}ƒ“ƒh
+		#region ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒãƒ³ãƒ‰
 
 		const string QUIT_COMMAND = "quit";
-		const string QUIT_MESSAGE = "I—¹‚µ‚Ü‚·B\n";
+		const string QUIT_MESSAGE = "çµ‚äº†ã—ã¾ã™ã€‚\n";
 
 		const string HELP_COMMAND = "help";
-		const string HELP_MESSAGE = "ƒwƒ‹ƒv‚ğ•\¦‚µ‚Ü‚·B\n";
+		const string HELP_MESSAGE = "ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚\n";
 
 		const string SOURCE_COMMAND = "source";
-		const string SOURCE_MESSAGE = "source [ƒtƒ@ƒCƒ‹–¼]\nƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İ‚İ‚Ü‚·B\n";
+		const string SOURCE_MESSAGE = "source [ãƒ•ã‚¡ã‚¤ãƒ«å]\nãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚\n";
 
-		#region ƒRƒ}ƒ“ƒh‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Æ‚«—p
+		#region ã‚³ãƒãƒ³ãƒ‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã¨ãç”¨
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh–¢“o˜^—pƒfƒŠƒQ[ƒg‚ğ“o˜^B
+		/// ã‚³ãƒãƒ³ãƒ‰æœªç™»éŒ²æ™‚ç”¨ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã‚’ç™»éŒ²ã€‚
 		/// </summary>
-		/// <param name="notFound">ƒRƒ}ƒ“ƒh–¢“o˜^—pƒfƒŠƒQ[ƒg</param>
+		/// <param name="notFound">ã‚³ãƒãƒ³ãƒ‰æœªç™»éŒ²æ™‚ç”¨ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ</param>
 		void SetNotFound(CommandHandlar notFound)
 		{
 			if(notFound == null)
@@ -252,25 +252,25 @@ namespace SoundLibrary.Command
 		}
 
 		/// <summary>
-		/// ƒRƒ}ƒ“ƒh–¢“o˜^AƒfƒtƒHƒ‹ƒg‚Ì“®ìB
+		/// ã‚³ãƒãƒ³ãƒ‰æœªç™»éŒ²æ™‚ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‹•ä½œã€‚
 		/// </summary>
 		bool DefaultNotFound(string[] args, TextWriter sout)
 		{
 			if(args.Length >= 1)
-				sout.Write("{0} ‚Æ‚¢‚¤ƒRƒ}ƒ“ƒh‚Í‚ ‚è‚Ü‚¹‚ñB\n", args[0]);
+				sout.Write("{0} ã¨ã„ã†ã‚³ãƒãƒ³ãƒ‰ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚\n", args[0]);
 			this.ShowHelp(sout);
 			return false;
 		}
 
 		#endregion
-		#region ƒwƒ‹ƒv—p
+		#region ãƒ˜ãƒ«ãƒ—ç”¨
 
 		/// <summary>
-		/// ƒwƒ‹ƒv•\¦B
+		/// ãƒ˜ãƒ«ãƒ—è¡¨ç¤ºã€‚
 		/// </summary>
 		void ShowHelp(TextWriter sout)
 		{
-			sout.Write("help [ƒRƒ}ƒ“ƒh–¼]\n‚Æ“ü—Í‚·‚é‚±‚Æ‚ÅAŠeƒRƒ}ƒ“ƒh‚Ìƒwƒ‹ƒv‚ğ•\¦‚Å‚«‚Ü‚·B\n");
+			sout.Write("help [ã‚³ãƒãƒ³ãƒ‰å]\nã¨å…¥åŠ›ã™ã‚‹ã“ã¨ã§ã€å„ã‚³ãƒãƒ³ãƒ‰ã®ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã§ãã¾ã™ã€‚\n");
 
 			int i=0;
 			foreach(string command in commands.Keys)
@@ -283,10 +283,10 @@ namespace SoundLibrary.Command
 		}
 
 		/// <summary>
-		/// ŠeƒRƒ}ƒ“ƒh‚Ìƒwƒ‹ƒv•\¦B
+		/// å„ã‚³ãƒãƒ³ãƒ‰ã®ãƒ˜ãƒ«ãƒ—è¡¨ç¤ºã€‚
 		/// </summary>
-		/// <param name="command">ƒRƒ}ƒ“ƒh–¼</param>
-		/// <param name="sout">o—ÍæB</param>
+		/// <param name="command">ã‚³ãƒãƒ³ãƒ‰å</param>
+		/// <param name="sout">å‡ºåŠ›å…ˆã€‚</param>
 		bool ShowHelp(string[] command, TextWriter sout)
 		{
 			if(command == null || command.Length == 0)
@@ -304,7 +304,7 @@ namespace SoundLibrary.Command
 		}
 
 		#endregion
-		#region I—¹ˆ——p
+		#region çµ‚äº†å‡¦ç†ç”¨
 
 		static bool Quit(string[] args, TextWriter sout)
 		{
@@ -312,10 +312,10 @@ namespace SoundLibrary.Command
 		}
 
 		#endregion
-		#region ŠO•”ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+		#region å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 
 		/// <summary>
-		/// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İo‚·B
+		/// ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿å‡ºã™ã€‚
 		/// </summary>
 		bool Source(string[] args, TextWriter sout)
 		{

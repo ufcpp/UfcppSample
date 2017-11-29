@@ -1,28 +1,28 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// •¡‘f”B
+	/// è¤‡ç´ æ•°ã€‚
 	/// </summary>
 	public struct Complex
 	{
-		double re; // À•”
-		double im; // ‹••”
+		double re; // å®Ÿéƒ¨
+		double im; // è™šéƒ¨
 
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^E\’z—pƒƒ\ƒbƒh
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»æ§‹ç¯‰ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// À•”‚ğw’è‚µ‚Ä\’zB
+		/// å®Ÿéƒ¨ã‚’æŒ‡å®šã—ã¦æ§‹ç¯‰ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
+		/// <param name="re">å®Ÿéƒ¨</param>
 		public Complex(double re) : this(re, 0){}
 
 		/// <summary>
-		/// À•”A‹••”‚ğw’è‚µ‚Ä\’zB
+		/// å®Ÿéƒ¨ã€è™šéƒ¨ã‚’æŒ‡å®šã—ã¦æ§‹ç¯‰ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
 		public Complex(double re, double im)
 		{
 			this.re = re;
@@ -30,10 +30,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// •ÎŠp‚ğw’è‚µ‚Äâ‘Î’l1‚Ì•¡‘f”‚ğì¬‚·‚éB
+		/// åè§’ã‚’æŒ‡å®šã—ã¦çµ¶å¯¾å€¤1ã®è¤‡ç´ æ•°ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="arg">•ÎŠp</param>
-		/// <returns>w’è‚µ‚½•ÎŠp‚ğ‚Ââ‘Î’l1‚Ì•¡‘f”</returns>
+		/// <param name="arg">åè§’</param>
+		/// <returns>æŒ‡å®šã—ãŸåè§’ã‚’æŒã¤çµ¶å¯¾å€¤1ã®è¤‡ç´ æ•°</returns>
 		public static Complex FromArg(double arg)
 		{
 			double re = Math.Cos(arg);
@@ -42,11 +42,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// â‘Î‚Æ•ÎŠp‚ğw’è‚µ‚Ä•¡‘f”‚ğì¬‚·‚éB
+		/// çµ¶å¯¾ã¨åè§’ã‚’æŒ‡å®šã—ã¦è¤‡ç´ æ•°ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="abs">â‘Î’l</param>
-		/// <param name="arg">•ÎŠp</param>
-		/// <returns>w’è‚µ‚½â‘Î’l‚Æ•ÎŠp‚ğ‚Â•¡‘f”</returns>
+		/// <param name="abs">çµ¶å¯¾å€¤</param>
+		/// <param name="arg">åè§’</param>
+		/// <returns>æŒ‡å®šã—ãŸçµ¶å¯¾å€¤ã¨åè§’ã‚’æŒã¤è¤‡ç´ æ•°</returns>
 		public static Complex FromPolar(double abs, double arg)
 		{
 			double re = abs * Math.Cos(arg);
@@ -55,20 +55,20 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ƒpƒ[‚ÌdB’l‚Æ•ÎŠp‚ğw’è‚µ‚Ä•¡‘f”‚ğì¬‚·‚éB
+		/// ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤ã¨åè§’ã‚’æŒ‡å®šã—ã¦è¤‡ç´ æ•°ã‚’ä½œæˆã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="power">ƒpƒ[‚ÌdB’l</param>
-		/// <param name="arg">•ÎŠp</param>
-		/// <returns>w’è‚µ‚½â‘Î’l‚Æ•ÎŠp‚ğ‚Â•¡‘f”</returns>
+		/// <param name="power">ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</param>
+		/// <param name="arg">åè§’</param>
+		/// <returns>æŒ‡å®šã—ãŸçµ¶å¯¾å€¤ã¨åè§’ã‚’æŒã¤è¤‡ç´ æ•°</returns>
 		public static Complex FromPowerPolar(double power, double arg)
 		{
 			return Complex.FromPolar(Util.DBToLinear(power), arg);
 		}
 
 		/// <summary>
-		/// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="z">ƒRƒs[Œ³</param>
+		/// <param name="z">ã‚³ãƒ”ãƒ¼å…ƒ</param>
 		public Complex(Complex z)
 		{
 			this.re = z.re;
@@ -76,20 +76,20 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// double ¨ Complex ‚ÌˆÃ–Ù‚Ì•û•ÏŠ·B
+		/// double â†’ Complex ã®æš—é»™ã®æ–¹å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">double ’l</param>
-		/// <returns>x ‚ğ Complex ‰»‚µ‚½‚à‚Ì</returns>
+		/// <param name="x">double å€¤</param>
+		/// <returns>x ã‚’ Complex åŒ–ã—ãŸã‚‚ã®</returns>
 		public static implicit operator Complex(double x)
 		{
 			return new Complex(x);
 		}
 
 		#endregion
-		#region À•”E‹••”
+		#region å®Ÿéƒ¨ãƒ»è™šéƒ¨
 
 		/// <summary>
-		/// À•”
+		/// å®Ÿéƒ¨
 		/// </summary>
 		public double Re
 		{
@@ -98,7 +98,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‹••”
+		/// è™šéƒ¨
 		/// </summary>
 		public double Im
 		{
@@ -107,10 +107,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// À•”‚Æ‹••”‚ğİ’è‚·‚éB
+		/// å®Ÿéƒ¨ã¨è™šéƒ¨ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
 		public void SetCartesian(double re, double im)
 		{
 			this.re = re;
@@ -118,13 +118,13 @@ namespace SoundLibrary.Mathematics
 		}
 
 		#endregion
-		#region â‘Î’lE•ÎŠp
+		#region çµ¶å¯¾å€¤ãƒ»åè§’
 
 		/// <summary>
-		/// â‘Î‚Æ•ÎŠp‚ğİ’è‚·‚éB
+		/// çµ¶å¯¾ã¨åè§’ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="abs">â‘Î’l</param>
-		/// <param name="arg">•ÎŠp</param>
+		/// <param name="abs">çµ¶å¯¾å€¤</param>
+		/// <param name="arg">åè§’</param>
 		public void SetPolar(double abs, double arg)
 		{
 			this.re = abs * Math.Cos(arg);
@@ -132,19 +132,19 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// â‘Î(ƒpƒ[‚ÌdB’l‚Åw’è)‚Æ•ÎŠp‚ğİ’è‚·‚éB
+		/// çµ¶å¯¾(ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤ã§æŒ‡å®š)ã¨åè§’ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="power">ƒpƒ[‚ÌdB’l</param>
-		/// <param name="arg">•ÎŠp</param>
+		/// <param name="power">ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</param>
+		/// <param name="arg">åè§’</param>
 		public void SetPowerPolar(double power, double arg)
 		{
 			this.SetPolar(Util.DBToLinear(power), arg);
 		}
 
 		/// <summary>
-		/// •ÎŠp‚ğİ’è‚·‚é(â‘Î’l‚Í1)B
+		/// åè§’ã‚’è¨­å®šã™ã‚‹(çµ¶å¯¾å€¤ã¯1)ã€‚
 		/// </summary>
-		/// <param name="arg">•ÎŠp</param>
+		/// <param name="arg">åè§’</param>
 		public void SetArg(double arg)
 		{
 			this.re = Math.Cos(arg);
@@ -152,7 +152,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ƒpƒ[(â‘Î’l‚Ì“ñæ)‚ÌƒŠƒjƒA’lB
+		/// ãƒ‘ãƒ¯ãƒ¼(çµ¶å¯¾å€¤ã®äºŒä¹—)ã®ãƒªãƒ‹ã‚¢å€¤ã€‚
 		/// </summary>
 		public double LinearPower
 		{
@@ -160,7 +160,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ƒpƒ[(â‘Î’l‚Ì“ñæ)‚Ì dB ’lB
+		/// ãƒ‘ãƒ¯ãƒ¼(çµ¶å¯¾å€¤ã®äºŒä¹—)ã® dB å€¤ã€‚
 		/// </summary>
 		public double Power
 		{
@@ -168,7 +168,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// â‘Î’l
+		/// çµ¶å¯¾å€¤
 		/// </summary>
 		public double Abs
 		{
@@ -176,7 +176,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// •ÎŠp
+		/// åè§’
 		/// </summary>
 		public double Arg
 		{
@@ -184,21 +184,21 @@ namespace SoundLibrary.Mathematics
 		}
 
 		#endregion
-		#region ‰‰ZqE•ÏŠ·ƒƒ\ƒbƒh
+		#region æ¼”ç®—å­ãƒ»å¤‰æ›ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// ‹¤–ğ•¡‘f”B
+		/// å…±å½¹è¤‡ç´ æ•°ã€‚
 		/// </summary>
-		/// <returns>this ‚Ì‹¤–ğ</returns>
+		/// <returns>this ã®å…±å½¹</returns>
 		public Complex Conjugate()
 		{
 			return new Complex(this.re, -this.im);
 		}
 
 		/// <summary>
-		/// ‹t”B
+		/// é€†æ•°ã€‚
 		/// </summary>
-		/// <returns>this ‚Ì‹t”</returns>
+		/// <returns>this ã®é€†æ•°</returns>
 		public Complex Invert()
 		{
 			double pow = this.LinearPower;
@@ -206,9 +206,9 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ’P€+B
+		/// å˜é …+ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>+a</returns>
 		public static Complex operator+ (Complex a)
 		{
@@ -216,9 +216,9 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ’P€-B
+		/// å˜é …-ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>-a</returns>
 		public static Complex operator- (Complex a)
 		{
@@ -226,11 +226,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‰ÁZB
+		/// åŠ ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>‰ÁZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>åŠ ç®—çµæœ</returns>
 		public static Complex operator+ (Complex a, Complex b)
 		{
 			double re = a.re + b.re;
@@ -251,11 +251,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Œ¸ZB
+		/// æ¸›ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Œ¸ZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>æ¸›ç®—çµæœ</returns>
 		public static Complex operator- (Complex a, Complex b)
 		{
 			double re = a.re - b.re;
@@ -276,11 +276,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// æZB
+		/// ä¹—ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>æZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ä¹—ç®—çµæœ</returns>
 		public static Complex operator* (Complex a, Complex b)
 		{
 			double re = a.re * b.re - a.im * b.im;
@@ -301,11 +301,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// œZB
+		/// é™¤ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>œZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>é™¤ç®—çµæœ</returns>
 		public static Complex operator/ (Complex a, Complex b)
 		{
 			return a * b.Invert();
@@ -322,11 +322,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// “™’l”»’èB
+		/// ç­‰å€¤åˆ¤å®šã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>”»’èŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>åˆ¤å®šçµæœ</returns>
 		public static bool operator== (Complex a, Complex b)
 		{
 			return a.re == b.re && a.im == b.im;
@@ -368,7 +368,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		#endregion
-		#region string •¶š—ñ‰»
+		#region string æ–‡å­—åˆ—åŒ–
 		public override string ToString()
 		{
 			return string.Format("({0}, {1})", this.re, this.Im);

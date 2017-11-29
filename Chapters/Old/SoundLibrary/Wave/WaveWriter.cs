@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.IO;
 
 namespace SoundLibrary.Wave
 {
 	/// <summary>
-	/// RIFF Wave Œ`®‚Ìƒtƒ@ƒCƒ‹‚É‰¹ºƒf[ƒ^‚ğ‘‚«‚ŞB
+	/// RIFF Wave å½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã€‚
 	/// </summary>
 	public class WaveWriter : IDisposable
 	{
@@ -15,20 +15,20 @@ namespace SoundLibrary.Wave
 		public WaveWriter(){}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚ÄŠJ‚­B
+		/// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¦é–‹ãã€‚
 		/// </summary>
-		/// <param name="filename">‘‚«‚İæ Wave ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="header">Wave ‚Ìƒwƒbƒ_</param>
+		/// <param name="filename">æ›¸ãè¾¼ã¿å…ˆ Wave ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="header">Wave ã®ãƒ˜ãƒƒãƒ€</param>
 		public WaveWriter(string filename, FormatHeader header)
 		{
 			this.Open(filename, header);
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚É‘‚«‚ŞB
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãè¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="header">Wave ‚Ìƒwƒbƒ_</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="header">Wave ã®ãƒ˜ãƒƒãƒ€</param>
 		public WaveWriter(BinaryWriter writer, FormatHeader header)
 		{
 			this.Open(writer, header);
@@ -40,20 +40,20 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="filename">Wave ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">Wave ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void Open(string filename, FormatHeader header)
 		{
 			Open(new BinaryWriter(new BufferedStream(File.Create(filename))), header);
 		}
 
 		/// <summary>
-		/// Wave ƒwƒbƒ_(RIFF, fmt chunk, data chunk ‚Ìƒf[ƒ^’·‚Ü‚Å)‚ğƒXƒgƒŠ[ƒ€‚É‘‚«o‚·B
+		/// Wave ãƒ˜ãƒƒãƒ€(RIFF, fmt chunk, data chunk ã®ãƒ‡ãƒ¼ã‚¿é•·ã¾ã§)ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãå‡ºã™ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="header">Wave ‚Ìƒwƒbƒ_</param>
-		/// <param name="length">ƒf[ƒ^’·(ƒTƒ“ƒvƒ‹”)</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="header">Wave ã®ãƒ˜ãƒƒãƒ€</param>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿é•·(ã‚µãƒ³ãƒ—ãƒ«æ•°)</param>
 		public static void WriteHeader(BinaryWriter writer, FormatHeader header, int length)
 		{
 			byte[] buf;
@@ -80,11 +80,11 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_‚Ìƒf[ƒ^’·‚Ì•”•ª‚ğC³‚·‚éB
+		/// ãƒ˜ãƒƒãƒ€ã®ãƒ‡ãƒ¼ã‚¿é•·ã®éƒ¨åˆ†ã‚’ä¿®æ­£ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="length">C³Œã‚Ìƒf[ƒ^’·(ƒTƒ“ƒvƒ‹”)</param>
-		/// <param name="blockSize">ƒuƒƒbƒNƒTƒCƒY</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="length">ä¿®æ­£å¾Œã®ãƒ‡ãƒ¼ã‚¿é•·(ã‚µãƒ³ãƒ—ãƒ«æ•°)</param>
+		/// <param name="blockSize">ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º</param>
 		public static void ModifyHeader(BinaryWriter writer, int length, int blockSize)
 		{
 			length = length * blockSize;
@@ -97,12 +97,12 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‘‚«o‚µB
+		/// ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="header">Wave ƒwƒbƒ_</param>
-		/// <param name="l">‘‚«‚İ‚½‚¢ƒf[ƒ^(L ch)</param>
-		/// <param name="r">‘‚«‚İ‚½‚¢ƒf[ƒ^(R ch)</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="header">Wave ãƒ˜ãƒƒãƒ€</param>
+		/// <param name="l">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(L ch)</param>
+		/// <param name="r">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(R ch)</param>
 		/// <returns></returns>
 		public static int Write(BinaryWriter writer, FormatHeader header, double[] l, double[] r)
 		{
@@ -112,7 +112,7 @@ namespace SoundLibrary.Wave
 			{
 				int length = l.Length;
 
-				if(!header.IsStereo) // ƒ‚ƒmƒ‰ƒ‹
+				if(!header.IsStereo) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(!header.Is16Bit)
 					{
@@ -129,7 +129,7 @@ namespace SoundLibrary.Wave
 						}
 					}
 				}
-				else // ƒXƒeƒŒƒI
+				else // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(!header.Is16Bit)
 					{
@@ -147,19 +147,19 @@ namespace SoundLibrary.Wave
 							writer.Write(Util.ClipToShort(r[i]));
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(IOException){return 0;}
 			return i;
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‘‚«o‚µB
+		/// ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="header">Wave ƒwƒbƒ_</param>
-		/// <param name="l">‘‚«‚İ‚½‚¢ƒf[ƒ^(L ch)</param>
-		/// <param name="r">‘‚«‚İ‚½‚¢ƒf[ƒ^(R ch)</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="header">Wave ãƒ˜ãƒƒãƒ€</param>
+		/// <param name="l">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(L ch)</param>
+		/// <param name="r">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(R ch)</param>
 		/// <returns></returns>
 		public static int Write(BinaryWriter writer, FormatHeader header, float[] l, float[] r)
 		{
@@ -169,7 +169,7 @@ namespace SoundLibrary.Wave
 			{
 				int length = l.Length;
 
-				if(!header.IsStereo) // ƒ‚ƒmƒ‰ƒ‹
+				if(!header.IsStereo) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(!header.Is16Bit)
 					{
@@ -186,7 +186,7 @@ namespace SoundLibrary.Wave
 						}
 					}
 				}
-				else // ƒXƒeƒŒƒI
+				else // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(!header.Is16Bit)
 					{
@@ -204,19 +204,19 @@ namespace SoundLibrary.Wave
 							writer.Write(Util.ClipToShort(r[i]));
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(IOException){return 0;}
 			return i;
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‘‚«o‚µB
+		/// ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæƒXƒgƒŠ[ƒ€</param>
-		/// <param name="header">Wave ƒwƒbƒ_</param>
-		/// <param name="l">‘‚«‚İ‚½‚¢ƒf[ƒ^(L ch)</param>
-		/// <param name="r">‘‚«‚İ‚½‚¢ƒf[ƒ^(R ch)</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="header">Wave ãƒ˜ãƒƒãƒ€</param>
+		/// <param name="l">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(L ch)</param>
+		/// <param name="r">æ›¸ãè¾¼ã¿ãŸã„ãƒ‡ãƒ¼ã‚¿(R ch)</param>
 		/// <returns></returns>
 		public static int Write(BinaryWriter writer, FormatHeader header, short[] l, short[] r)
 		{
@@ -226,7 +226,7 @@ namespace SoundLibrary.Wave
 			{
 				int length = l.Length;
 
-				if(!header.IsStereo) // ƒ‚ƒmƒ‰ƒ‹
+				if(!header.IsStereo) // ãƒ¢ãƒãƒ©ãƒ«
 				{
 					if(!header.Is16Bit)
 					{
@@ -243,7 +243,7 @@ namespace SoundLibrary.Wave
 						}
 					}
 				}
-				else // ƒXƒeƒŒƒI
+				else // ã‚¹ãƒ†ãƒ¬ã‚ª
 				{
 					if(!header.Is16Bit)
 					{
@@ -261,16 +261,16 @@ namespace SoundLibrary.Wave
 							writer.Write(Util.ClipToShort(r[i]));
 						}
 					}
-				}//ƒXƒeƒŒƒI
+				}//ã‚¹ãƒ†ãƒ¬ã‚ª
 			}
 			catch(IOException){return 0;}
 			return i;
 		}
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğŠJ‚­B
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="reader">Wave ƒtƒ@ƒCƒ‹‚ğŠi”[‚µ‚½ƒXƒgƒŠ[ƒ€</param>
+		/// <param name="reader">Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã—ãŸã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
 		public void Open(BinaryWriter writer, FormatHeader header)
 		{
 			if(this.writer != null)
@@ -281,11 +281,11 @@ namespace SoundLibrary.Wave
 			this.writer = writer;
 			this.header = header;
 
-			WaveWriter.WriteHeader(writer, header, 0); // ƒf[ƒ^’·‚Í‰¼‚É0‚ğ“ü‚ê‚Ä‚¨‚­B
+			WaveWriter.WriteHeader(writer, header, 0); // ãƒ‡ãƒ¼ã‚¿é•·ã¯ä»®ã«0ã‚’å…¥ã‚Œã¦ãŠãã€‚
 		}//Open
 
 		/// <summary>
-		/// Wave ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éB
+		/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹ã€‚
 		/// </summary>
 		public void Close()
 		{
@@ -298,12 +298,12 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="length">‘‚«‚ŞƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <returns>ÀÛ‚É‘‚«‚ñ‚¾ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Write(double[] l, double[] r)
 		{
 			if(this.writer == null) return 0;
@@ -316,12 +316,12 @@ namespace SoundLibrary.Wave
 		}//Write
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="length">‘‚«‚ŞƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <returns>ÀÛ‚É‘‚«‚ñ‚¾ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Write(float[] l, float[] r)
 		{
 			if(this.writer == null) return 0;
@@ -334,12 +334,12 @@ namespace SoundLibrary.Wave
 		}//Write
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="length">‘‚«‚ŞƒTƒ“ƒvƒ‹”B</param>
-		/// <param name="l">¶ƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <param name="r">‰Eƒ`ƒƒƒlƒ‹‚Ìƒf[ƒ^B</param>
-		/// <returns>ÀÛ‚É‘‚«‚ñ‚¾ƒTƒ“ƒvƒ‹”B</returns>
+		/// <param name="length">æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</param>
+		/// <param name="l">å·¦ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <param name="r">å³ãƒãƒ£ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã€‚</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«æ•°ã€‚</returns>
 		public int Write(short[] l, short[] r)
 		{
 			if(this.writer == null) return 0;
@@ -352,40 +352,40 @@ namespace SoundLibrary.Wave
 		}//Write
 
 		/// <summary>
-		/// Wave ‚Ì¶ƒf[ƒ^‚ğ‚»‚Ì‚Ü‚Ü‘‚«‚ŞB
+		/// Wave ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’ãã®ã¾ã¾æ›¸ãè¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæ</param>
-		/// <param name="data">‘‚«‚Şƒf[ƒ^</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆ</param>
+		/// <param name="data">æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿</param>
 		public static void WriteRawData(BinaryWriter writer, byte[] data)
 		{
 			writer.Write(data);
 		}
 
 		/// <summary>
-		/// Wave ‚Ì¶ƒf[ƒ^‚ğ‚»‚Ì‚Ü‚Ü‘‚«‚ŞB
+		/// Wave ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’ãã®ã¾ã¾æ›¸ãè¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæ</param>
-		/// <param name="data">‘‚«‚Şƒf[ƒ^</param>
-		/// <param name="length">‘‚«‚Ş’·‚³(ƒoƒCƒg”)</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆ</param>
+		/// <param name="data">æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="length">æ›¸ãè¾¼ã‚€é•·ã•(ãƒã‚¤ãƒˆæ•°)</param>
 		public static void WriteRawData(BinaryWriter writer, byte[] data, int length)
 		{
 			writer.Write(data, 0, length);
 		}
 
 		/// <summary>
-		/// Wave ‚Ì¶ƒf[ƒ^‚ğ‚»‚Ì‚Ü‚Ü‘‚«‚ŞB
+		/// Wave ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’ãã®ã¾ã¾æ›¸ãè¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="data">‘‚«‚Şƒf[ƒ^</param>
+		/// <param name="data">æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿</param>
 		public void WriteRawData(byte[] data)
 		{
 			this.WriteRawData(data, data.Length);
 		}
 
 		/// <summary>
-		/// Wave ‚Ì¶ƒf[ƒ^‚ğ‚»‚Ì‚Ü‚Ü‘‚«‚ŞB
+		/// Wave ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’ãã®ã¾ã¾æ›¸ãè¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="data">‘‚«‚Şƒf[ƒ^</param>
-		/// <param name="length">‘‚«‚Ş’·‚³(ƒoƒCƒg”)</param>
+		/// <param name="data">æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="length">æ›¸ãè¾¼ã‚€é•·ã•(ãƒã‚¤ãƒˆæ•°)</param>
 		public void WriteRawData(byte[] data, int length)
 		{
 			WaveWriter.WriteRawData(this.writer, data, length);
@@ -398,10 +398,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// 1ƒTƒ“ƒvƒ‹“Ç‚İo‚·B
-		/// ƒ‚ƒmƒ‰ƒ‹16ƒrƒbƒgˆÈŠO‚Ìê‡AƒTƒ|[ƒg‘ÎÛŠOB
+		/// 1ã‚µãƒ³ãƒ—ãƒ«èª­ã¿å‡ºã™ã€‚
+		/// ãƒ¢ãƒãƒ©ãƒ«16ãƒ“ãƒƒãƒˆä»¥å¤–ã®å ´åˆã€ã‚µãƒãƒ¼ãƒˆå¯¾è±¡å¤–ã€‚
 		/// </summary>
-		/// <param name="data">1ƒTƒ“ƒvƒ‹•ª‚Ìƒf[ƒ^</param>
+		/// <param name="data">1ã‚µãƒ³ãƒ—ãƒ«åˆ†ã®ãƒ‡ãƒ¼ã‚¿</param>
 		public void WriteShort(short data)
 		{
 			if(!this.header.Is16Bit || this.header.IsStereo)

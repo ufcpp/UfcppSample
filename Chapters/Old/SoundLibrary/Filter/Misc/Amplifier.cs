@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Misc
 {
 	/// <summary>
-	/// ‘•Ší
+	/// å¢—å¹…å™¨
 	/// </summary>
 	public class Amplifier : IFilter
 	{
@@ -15,17 +15,17 @@ namespace SoundLibrary.Filter.Misc
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			return this.gain * x;
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -37,7 +37,7 @@ namespace SoundLibrary.Filter.Misc
 		}
 
 		/// <summary>
-		/// ‘•—¦
+		/// å¢—å¹…ç‡
 		/// </summary>
 		public double Gain
 		{

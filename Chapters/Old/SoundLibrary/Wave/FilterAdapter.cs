@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using SoundLibrary.Filter;
 
 namespace SoundLibrary.Wave
@@ -10,30 +10,30 @@ namespace SoundLibrary.Wave
 	}
 
 	/// <summary>
-	/// IFilter ¨ Stereo1SampleFilter —pƒAƒ_ƒvƒ^B
-	/// “ü—Í (Xl, Xr), o—Í (Yl, Yr)A
+	/// IFilter â†’ Stereo1SampleFilter ç”¨ã‚¢ãƒ€ãƒ—ã‚¿ã€‚
+	/// å…¥åŠ› (Xl, Xr), å‡ºåŠ› (Yl, Yr)ã€
 	/// Yl = Hll Xl + Hrl Xr
 	/// Yr = Hlr Xl + Hrr Xr
 	/// </summary>
 	public class CrossStereoFilter : IStereoFilter
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		IFilter ll; // “Á« Hll ‚ğ‚ÂƒtƒBƒ‹ƒ^B
-		IFilter lr; // “Á« Hlr ‚ğ‚ÂƒtƒBƒ‹ƒ^B
-		IFilter rl; // “Á« Hrl ‚ğ‚ÂƒtƒBƒ‹ƒ^B
-		IFilter rr; // “Á« Hrr ‚ğ‚ÂƒtƒBƒ‹ƒ^B
+		IFilter ll; // ç‰¹æ€§ Hll ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
+		IFilter lr; // ç‰¹æ€§ Hlr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
+		IFilter rl; // ç‰¹æ€§ Hrl ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
+		IFilter rr; // ç‰¹æ€§ Hrr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 
 		#endregion
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		/// <summary>
-		/// Hll, Hlr, Hrl, Hrr ‚ğ•ÊŒÂ‚Éw’èB
+		/// Hll, Hlr, Hrl, Hrr ã‚’åˆ¥å€‹ã«æŒ‡å®šã€‚
 		/// </summary>
-		/// <param name="ll">“Á« Hll ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
-		/// <param name="lr">“Á« Hlr ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
-		/// <param name="rl">“Á« Hrl ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
-		/// <param name="rr">“Á« Hrr ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="ll">ç‰¹æ€§ Hll ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="lr">ç‰¹æ€§ Hlr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="rl">ç‰¹æ€§ Hrl ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="rr">ç‰¹æ€§ Hrr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public CrossStereoFilter(IFilter ll, IFilter lr, IFilter rl, IFilter rr)
 		{
 			this.ll = ll;
@@ -43,10 +43,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// Hll  Hrr, Hlr  Hrl‚Ìê‡B
+		/// Hll ï¼ Hrr, Hlr ï¼ Hrlã®å ´åˆã€‚
 		/// </summary>
-		/// <param name="ll">“Á« Hll ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
-		/// <param name="lr">“Á« Hlr ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="ll">ç‰¹æ€§ Hll ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="lr">ç‰¹æ€§ Hlr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public CrossStereoFilter(IFilter ll, IFilter lr)
 		{
 			this.ll = ll;
@@ -66,7 +66,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ó‘Ô‚Ì‰Šú‰»B
+		/// çŠ¶æ…‹ã®åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public void Clear()
 		{
@@ -78,27 +78,27 @@ namespace SoundLibrary.Wave
 	}
 
 	/// <summary>
-	/// IFilter ¨ Stereo1SampleFilter —pƒAƒ_ƒvƒ^B
-	/// L/R ‚»‚ê‚¼‚ê‚É•ÊŒÂ‚ÌƒtƒBƒ‹ƒ^‚ğ“K—pB
-	/// “ü—Í (Xl, Xr), o—Í (Yl, Yr)A
+	/// IFilter â†’ Stereo1SampleFilter ç”¨ã‚¢ãƒ€ãƒ—ã‚¿ã€‚
+	/// L/R ãã‚Œãã‚Œã«åˆ¥å€‹ã®ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã€‚
+	/// å…¥åŠ› (Xl, Xr), å‡ºåŠ› (Yl, Yr)ã€
 	/// Yl = Hl Xl
 	/// Yr = Hr Xr
 	/// </summary>
 	public class StereoFilter : IStereoFilter
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		IFilter l; // “Á« Hl ‚ğ‚ÂƒtƒBƒ‹ƒ^B
-		IFilter r; // “Á« Hr ‚ğ‚ÂƒtƒBƒ‹ƒ^B
+		IFilter l; // ç‰¹æ€§ Hl ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
+		IFilter r; // ç‰¹æ€§ Hr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 
 		#endregion
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		/// <summary>
-		/// Hl, Hr ‚ğ•ÊŒÂ‚Éw’èB
+		/// Hl, Hr ã‚’åˆ¥å€‹ã«æŒ‡å®šã€‚
 		/// </summary>
-		/// <param name="l">“Á« Hl ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
-		/// <param name="r">“Á« Hr ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="l">ç‰¹æ€§ Hl ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="r">ç‰¹æ€§ Hr ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public StereoFilter(IFilter l, IFilter r)
 		{
 			this.l = l;
@@ -106,9 +106,9 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// Hl  Hr ‚Ìê‡B
+		/// Hl ï¼ Hr ã®å ´åˆã€‚
 		/// </summary>
-		/// <param name="l">“Á« Hl ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="l">ç‰¹æ€§ Hl ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public StereoFilter(IFilter l)
 		{
 			this.l = l;
@@ -126,7 +126,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ó‘Ô‚Ì‰Šú‰»B
+		/// çŠ¶æ…‹ã®åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public void Clear()
 		{
@@ -136,25 +136,25 @@ namespace SoundLibrary.Wave
 	}
 
 	/// <summary>
-	/// IFilter ¨ Stereo1SampleFilter —pƒAƒ_ƒvƒ^B
-	/// ƒXƒeƒŒƒI‰¹‚ğƒ‚ƒmƒ‰ƒ‹‰»‚µ‚Ä‚©‚çƒtƒBƒ‹ƒ^ƒŠƒ“ƒOB
-	/// “ü—Í (Xl, Xr), o—Í (Yl, Yr)A
+	/// IFilter â†’ Stereo1SampleFilter ç”¨ã‚¢ãƒ€ãƒ—ã‚¿ã€‚
+	/// ã‚¹ãƒ†ãƒ¬ã‚ªéŸ³ã‚’ãƒ¢ãƒãƒ©ãƒ«åŒ–ã—ã¦ã‹ã‚‰ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã€‚
+	/// å…¥åŠ› (Xl, Xr), å‡ºåŠ› (Yl, Yr)ã€
 	/// X = (Xl * Xr) / 2
 	/// Yl = Yr = H X
 	/// </summary>
 	public class StereoToMonauralFilter : IStereoFilter
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		IFilter f; // “Á« H ‚ğ‚ÂƒtƒBƒ‹ƒ^B
+		IFilter f; // ç‰¹æ€§ H ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 
 		#endregion
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="f">“Á« H ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="f">ç‰¹æ€§ H ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public StereoToMonauralFilter(IFilter f)
 		{
 			this.f = f;
@@ -169,7 +169,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ó‘Ô‚Ì‰Šú‰»B
+		/// çŠ¶æ…‹ã®åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public void Clear()
 		{
@@ -178,22 +178,22 @@ namespace SoundLibrary.Wave
 	}
 
 	/// <summary>
-	/// IFilter ¨ Monaural1SampleFilter —pƒAƒ_ƒvƒ^B
+	/// IFilter â†’ Monaural1SampleFilter ç”¨ã‚¢ãƒ€ãƒ—ã‚¿ã€‚
 	/// Y = H X
 	/// </summary>
 	public class MonauralFilter
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		IFilter f; // “Á« H ‚ğ‚ÂƒtƒBƒ‹ƒ^B
+		IFilter f; // ç‰¹æ€§ H ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 
 		#endregion
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="f">“Á« H ‚ğ‚ÂƒtƒBƒ‹ƒ^</param>
+		/// <param name="f">ç‰¹æ€§ H ã‚’æŒã¤ãƒ•ã‚£ãƒ«ã‚¿</param>
 		public MonauralFilter(IFilter f)
 		{
 			this.f = f;
@@ -208,7 +208,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ó‘Ô‚Ì‰Šú‰»B
+		/// çŠ¶æ…‹ã®åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public void Clear()
 		{

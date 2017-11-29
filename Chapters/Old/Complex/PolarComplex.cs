@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 
 namespace MyMath
 {
 	/// <summary>
-	/// •¡‘f”ƒNƒ‰ƒX‚ÌÀ‘•2
-	/// â‘Î’l‚Æ•ÎŠp‚ğƒƒ“ƒo‚É‚Â
-	/// ‰ÁŒ¸Z‚ÍŒƒ’x‚ÅAæœZ‚Í‚‘¬
+	/// è¤‡ç´ æ•°ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…2
+	/// çµ¶å¯¾å€¤ã¨åè§’ã‚’ãƒ¡ãƒ³ãƒã«æŒã¤
+	/// åŠ æ¸›ç®—ã¯æ¿€é…ã§ã€ä¹—é™¤ç®—ã¯é«˜é€Ÿ
 	/// </summary>
 	public class PolarComplex : Complex
 	{
-		#region ’è”
+		#region å®šæ•°
 
 		private const double TwoPI = 2 * Math.PI;
 		static public readonly PolarComplex I = new PolarComplex(0, Math.PI);
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public PolarComplex(double r, double t)
 		{
@@ -29,17 +29,17 @@ namespace MyMath
 		static public implicit operator PolarComplex (double x){return new PolarComplex(x);}
 
 		/// <summary>
-		/// ’¼sÀ•W‚©‚çƒRƒ“ƒXƒgƒ‰ƒNƒg
+		/// ç›´è¡Œåº§æ¨™ã‹ã‚‰ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ãƒˆ
 		/// </summary>
-		/// <param name="x">À•”</param>
-		/// <param name="y">‹••”</param>
+		/// <param name="x">å®Ÿéƒ¨</param>
+		/// <param name="y">è™šéƒ¨</param>
 		static PolarComplex FromCartesian(double x, double y)
 		{
 			return new PolarComplex(Abs_(x, y), Arg_(x, y));
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public override object Clone()
 		{
@@ -65,7 +65,7 @@ namespace MyMath
 		}
 
 		#endregion
-		#region override ƒvƒƒpƒeƒB
+		#region override ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		public override double Re
 		{
@@ -108,7 +108,7 @@ namespace MyMath
 		}
 
 		#endregion
-		#region override ƒƒ\ƒbƒh
+		#region override ãƒ¡ã‚½ãƒƒãƒ‰
 
 		public override Complex Negate()
 		{
@@ -167,10 +167,10 @@ namespace MyMath
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		private double abs; // â‘Î’l
-		private double arg; // •ÎŠp
+		private double abs; // çµ¶å¯¾å€¤
+		private double arg; // åè§’
 
 		#endregion
 	}//class PolarComplex

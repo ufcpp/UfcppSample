@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -12,11 +12,11 @@ using WaveAnalysis;
 namespace AppMain
 {
 	/// <summary>
-	/// WaveForm ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// WaveForm ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class WaveGraphForm : System.Windows.Forms.Form
 	{
-		#region è“®XV—Ìˆæ
+		#region æ‰‹å‹•æ›´æ–°é ˜åŸŸ
 		WaveData wave;
 
 		static readonly Brush brush = new SolidBrush(SystemColors.WindowText);
@@ -54,7 +54,7 @@ namespace AppMain
 		private System.Windows.Forms.Button buttonSave;
 
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -71,7 +71,7 @@ namespace AppMain
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -87,8 +87,8 @@ namespace AppMain
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -122,7 +122,7 @@ namespace AppMain
 			this.labelChannel.Name = "labelChannel";
 			this.labelChannel.Size = new System.Drawing.Size(48, 16);
 			this.labelChannel.TabIndex = 2;
-			this.labelChannel.Text = "ƒ`ƒƒƒlƒ‹";
+			this.labelChannel.Text = "ãƒãƒ£ãƒãƒ«";
 			this.labelChannel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// labelType
@@ -131,7 +131,7 @@ namespace AppMain
 			this.labelType.Name = "labelType";
 			this.labelType.Size = new System.Drawing.Size(48, 16);
 			this.labelType.TabIndex = 3;
-			this.labelType.Text = "“Á«";
+			this.labelType.Text = "ç‰¹æ€§";
 			this.labelType.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// comboChannel1
@@ -155,13 +155,13 @@ namespace AppMain
 			// 
 			this.comboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboType.Items.AddRange(new object[] {
-																									 "U•“Á«",
-																									 "ˆÊ‘Š“Á«",
-																									 "ˆÊ‘Š’x‰„“Á«",
-																									 "ŒQ’x‰„“Á«",
-																									 "Å¬ˆÊ‘Š",
-																									 "ƒI[ƒ‹ƒpƒXˆÊ‘Š",
-																									 "Œn—ñ"});
+																									 "æŒ¯å¹…ç‰¹æ€§",
+																									 "ä½ç›¸ç‰¹æ€§",
+																									 "ä½ç›¸é…å»¶ç‰¹æ€§",
+																									 "ç¾¤é…å»¶ç‰¹æ€§",
+																									 "æœ€å°ä½ç›¸",
+																									 "ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸",
+																									 "æ™‚ç³»åˆ—"});
 			this.comboType.Location = new System.Drawing.Point(56, 56);
 			this.comboType.Name = "comboType";
 			this.comboType.Size = new System.Drawing.Size(96, 20);
@@ -173,17 +173,17 @@ namespace AppMain
 			this.labelXAxis.Name = "labelXAxis";
 			this.labelXAxis.Size = new System.Drawing.Size(56, 16);
 			this.labelXAxis.TabIndex = 6;
-			this.labelXAxis.Text = "•\¦€–Ú";
+			this.labelXAxis.Text = "è¡¨ç¤ºé …ç›®";
 			this.labelXAxis.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// comboXAxis
 			// 
 			this.comboXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboXAxis.Items.AddRange(new object[] {
-																										"ü”g”",
-																										"Špü”g”",
-																										"³‹K‰»ü”g”",
-																										"³‹K‰»Špü”g”"});
+																										"å‘¨æ³¢æ•°",
+																										"è§’å‘¨æ³¢æ•°",
+																										"æ­£è¦åŒ–å‘¨æ³¢æ•°",
+																										"æ­£è¦åŒ–è§’å‘¨æ³¢æ•°"});
 			this.comboXAxis.Location = new System.Drawing.Point(64, 16);
 			this.comboXAxis.Name = "comboXAxis";
 			this.comboXAxis.Size = new System.Drawing.Size(121, 20);
@@ -200,7 +200,7 @@ namespace AppMain
 			this.groupXAxis.Size = new System.Drawing.Size(192, 64);
 			this.groupXAxis.TabIndex = 8;
 			this.groupXAxis.TabStop = false;
-			this.groupXAxis.Text = "X²";
+			this.groupXAxis.Text = "Xè»¸";
 			// 
 			// checkXLog
 			// 
@@ -209,7 +209,7 @@ namespace AppMain
 			this.checkXLog.Name = "checkXLog";
 			this.checkXLog.Size = new System.Drawing.Size(88, 16);
 			this.checkXLog.TabIndex = 8;
-			this.checkXLog.Text = "‘Î”";
+			this.checkXLog.Text = "å¯¾æ•°";
 			// 
 			// groupYAxis
 			// 
@@ -225,7 +225,7 @@ namespace AppMain
 			this.groupYAxis.Size = new System.Drawing.Size(192, 112);
 			this.groupYAxis.TabIndex = 9;
 			this.groupYAxis.TabStop = false;
-			this.groupYAxis.Text = "Y²";
+			this.groupYAxis.Text = "Yè»¸";
 			// 
 			// textYMax
 			// 
@@ -244,7 +244,7 @@ namespace AppMain
 			this.checkYAxisAuto.Name = "checkYAxisAuto";
 			this.checkYAxisAuto.Size = new System.Drawing.Size(168, 24);
 			this.checkYAxisAuto.TabIndex = 1;
-			this.checkYAxisAuto.Text = "•\¦”ÍˆÍ‚ğ©“®‚Åİ’è‚·‚é";
+			this.checkYAxisAuto.Text = "è¡¨ç¤ºç¯„å›²ã‚’è‡ªå‹•ã§è¨­å®šã™ã‚‹";
 			this.checkYAxisAuto.CheckedChanged += new System.EventHandler(this.checkYAxisAuto_CheckedChanged);
 			// 
 			// labelYMax
@@ -254,7 +254,7 @@ namespace AppMain
 			this.labelYMax.Name = "labelYMax";
 			this.labelYMax.Size = new System.Drawing.Size(48, 16);
 			this.labelYMax.TabIndex = 0;
-			this.labelYMax.Text = "Å‘å’l";
+			this.labelYMax.Text = "æœ€å¤§å€¤";
 			this.labelYMax.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// labelYMin
@@ -264,7 +264,7 @@ namespace AppMain
 			this.labelYMin.Name = "labelYMin";
 			this.labelYMin.Size = new System.Drawing.Size(48, 16);
 			this.labelYMin.TabIndex = 0;
-			this.labelYMin.Text = "Å¬’l";
+			this.labelYMin.Text = "æœ€å°å€¤";
 			this.labelYMin.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// textYMin
@@ -283,7 +283,7 @@ namespace AppMain
 			this.checkYLog.Name = "checkYLog";
 			this.checkYLog.Size = new System.Drawing.Size(88, 16);
 			this.checkYLog.TabIndex = 8;
-			this.checkYLog.Text = "‘Î”";
+			this.checkYLog.Text = "å¯¾æ•°";
 			// 
 			// buttonShowGraph
 			// 
@@ -291,7 +291,7 @@ namespace AppMain
 			this.buttonShowGraph.Location = new System.Drawing.Point(208, 210);
 			this.buttonShowGraph.Name = "buttonShowGraph";
 			this.buttonShowGraph.TabIndex = 10;
-			this.buttonShowGraph.Text = "ƒOƒ‰ƒt•\¦";
+			this.buttonShowGraph.Text = "ã‚°ãƒ©ãƒ•è¡¨ç¤º";
 			this.buttonShowGraph.Click += new System.EventHandler(this.buttonShowGraph_Click);
 			// 
 			// buttonClose
@@ -300,7 +300,7 @@ namespace AppMain
 			this.buttonClose.Location = new System.Drawing.Point(208, 242);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.TabIndex = 11;
-			this.buttonClose.Text = "•Â‚¶‚é";
+			this.buttonClose.Text = "é–‰ã˜ã‚‹";
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
 			// 
 			// comboChannel2
@@ -315,7 +315,7 @@ namespace AppMain
 																											 "Side",
 																											 "M/S",
 																											 "S/M",
-																											 "‚È‚µ"});
+																											 "ãªã—"});
 			this.comboChannel2.Location = new System.Drawing.Point(144, 8);
 			this.comboChannel2.Name = "comboChannel2";
 			this.comboChannel2.Size = new System.Drawing.Size(80, 20);
@@ -327,14 +327,14 @@ namespace AppMain
 			this.checkOneGraph.Name = "checkOneGraph";
 			this.checkOneGraph.Size = new System.Drawing.Size(112, 16);
 			this.checkOneGraph.TabIndex = 12;
-			this.checkOneGraph.Text = "“¯ˆêƒOƒ‰ƒt‚É•\¦";
+			this.checkOneGraph.Text = "åŒä¸€ã‚°ãƒ©ãƒ•ã«è¡¨ç¤º";
 			// 
 			// buttonSave
 			// 
 			this.buttonSave.Location = new System.Drawing.Point(208, 176);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.TabIndex = 13;
-			this.buttonSave.Text = "•Û‘¶";
+			this.buttonSave.Text = "ä¿å­˜";
 			this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
 			// 
 			// WaveGraphForm

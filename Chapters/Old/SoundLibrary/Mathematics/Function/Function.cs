@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Function
@@ -6,16 +6,16 @@ namespace SoundLibrary.Mathematics.Function
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ЉЦђ”‚р•\‚·ѓNѓ‰ѓX‚М’ЉЏЫЉо’кЃB
+	/// й–ўж•°г‚’иЎЁгЃ™г‚Їгѓ©г‚№гЃ®жЉЅи±Ўеџєеє•гЂ‚
 	/// </summary>
 	public abstract class Function : ICloneable
 	{
-		#region ѓtѓBЃ[ѓ‹ѓh
+		#region гѓ•г‚Јгѓјгѓ«гѓ‰
 
 		//ArrayList variables = new ArrayList();
 
 		#endregion
-		#region “а•”ѓNѓ‰ѓX
+		#region е†…йѓЁг‚Їгѓ©г‚№
 
 		public class Parameter
 		{
@@ -41,7 +41,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚МЊvЋZ
+		#region еЂ¤гЃ®иЁ€з®—
 
 		public VariableTable GetVariableTable()
 		{
@@ -49,15 +49,15 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// ‚»‚МЉЦђ”‚ЙЉЬ‚Ь‚к‚Д‚ў‚й•Пђ”‚МѓЉѓXѓg‚р‹Ѓ‚Я‚йЃB
-		/// —б‚¦‚ОЃAf(g(x, y), h(x)) + i(y, z) ‚Ж‚©Њѕ‚¤‚ж‚¤‚ЙЃA
-		/// ЉЦђ”‚МЌ‡ђ¬ЃEЋl‘Ґ‰‰ЋZ‚рЋg‚Б‚ДЌм‚Б‚ЅЉЦђ”‚МЏкЌ‡ЃA{x, y, z} ‚Ж‚ў‚¤ѓЉѓXѓg‚р•Ф‚·ЃB
+		/// гЃќгЃ®й–ўж•°гЃ«еђ«гЃѕг‚ЊгЃ¦гЃ„г‚‹е¤‰ж•°гЃ®гѓЄг‚№гѓ€г‚’ж±‚г‚Ѓг‚‹гЂ‚
+		/// дѕ‹гЃ€гЃ°гЂЃf(g(x, y), h(x)) + i(y, z) гЃЁгЃ‹иЁЂгЃ†г‚€гЃ†гЃ«гЂЃ
+		/// й–ўж•°гЃ®еђ€ж€ђгѓ»е››е‰‡жј”з®—г‚’дЅїгЃЈгЃ¦дЅњгЃЈгЃџй–ўж•°гЃ®е ґеђ€гЂЃ{x, y, z} гЃЁгЃ„гЃ†гѓЄг‚№гѓ€г‚’иї”гЃ™гЂ‚
 		/// </summary>
 		/// <returns></returns>
 		public abstract System.Collections.ArrayList GetVariableList();
 
 		/// <summary>
-		/// ’l‚МЊvЋZЃB
+		/// еЂ¤гЃ®иЁ€з®—гЂ‚
 		/// </summary>
 		public virtual ValueType this[VariableTable t]
 		{
@@ -70,35 +70,35 @@ namespace SoundLibrary.Mathematics.Function
 		public abstract ValueType GetValue(params Parameter[] x);
 
 		/// <summary>
-		/// ’l‚рЊЕ’и‚·‚йЃB
-		/// —б‚¦‚ОЃAf(x, y) ‚Б‚Д‚ў‚¤ЉЦђ”‚Є‚ ‚Б‚Ѕ‚Ж‚µ‚ДЃA
-		/// y = 1 ‚ЕЊЕ’и‚µ‚ЅЉЦђ” g(x) = f(x, 1) ‚р‹Ѓ‚Я‚Ѕ‚иЃB
+		/// еЂ¤г‚’е›єе®љгЃ™г‚‹гЂ‚
+		/// дѕ‹гЃ€гЃ°гЂЃf(x, y) гЃЈгЃ¦гЃ„гЃ†й–ўж•°гЃЊгЃ‚гЃЈгЃџгЃЁгЃ—гЃ¦гЂЃ
+		/// y = 1 гЃ§е›єе®љгЃ—гЃџй–ўж•° g(x) = f(x, 1) г‚’ж±‚г‚ЃгЃџг‚ЉгЂ‚
 		/// </summary>
-		/// <param name="x">ЊЕ’и‚µ‚Ѕ‚ў’l‚МѓЉѓXѓg</param>
-		/// <returns>’lЊЕ’иЊг‚МЉЦђ”</returns>
+		/// <param name="x">е›єе®љгЃ—гЃџгЃ„еЂ¤гЃ®гѓЄг‚№гѓ€</param>
+		/// <returns>еЂ¤е›єе®љеѕЊгЃ®й–ўж•°</returns>
 		public abstract Function Bind(params Parameter[] x);
 
 		#endregion
-		#region •Ў‘fђ”‘О‰ћ
+		#region и¤‡зґ ж•°еЇѕеїњ
 
 		/// <summary>
-		/// ЉЦђ” f(z) ‚р•Ў‘fЉЦђ”‚Ж‚Э‚И‚µ‚Ѕ‚Ж‚«ЃA‚»‚МЋА•”‚Ж‹••”
-		/// Re[f](Re(z), Im(z)), Im[f](Re(z), Im(z) ‚р‹Ѓ‚Я‚йЃB
-		/// —б‚¦‚ОЃAExp ‚МЏкЌ‡ЃA
+		/// й–ўж•° f(z) г‚’и¤‡зґ й–ўж•°гЃЁгЃїгЃЄгЃ—гЃџгЃЁгЃЌгЂЃгЃќгЃ®е®џйѓЁгЃЁи™љйѓЁ
+		/// Re[f](Re(z), Im(z)), Im[f](Re(z), Im(z) г‚’ж±‚г‚Ѓг‚‹гЂ‚
+		/// дѕ‹гЃ€гЃ°гЂЃExp гЃ®е ґеђ€гЂЃ
 		/// reY = Exp(reX) * Cos(imX),
 		/// imY = Exp(reX) * Sin(imX)
 		/// </summary>
-		/// <param name="reX">ѓpѓ‰ѓЃЃ[ѓ^‚МЋА•”</param>
-		/// <param name="imX">ѓpѓ‰ѓЃЃ[ѓ^‚М‹••”</param>
+		/// <param name="reX">гѓ‘гѓ©гѓЎгѓјг‚їгЃ®е®џйѓЁ</param>
+		/// <param name="imX">гѓ‘гѓ©гѓЎгѓјг‚їгЃ®и™љйѓЁ</param>
 		public virtual void GetComplexPart(out Function re, out Function im)
 		{
-			throw new InvalidOperationException("‚±‚МЉЦђ”‚Н•Ў‘fђ”–ў‘О‰ћ‚Е‚·ЃB");
+			throw new InvalidOperationException("гЃ“гЃ®й–ўж•°гЃЇи¤‡зґ ж•°жњЄеЇѕеїњгЃ§гЃ™гЂ‚");
 		}
 
 		/// <summary>
-		/// •Ў‘fЉЦђ”‚Мѓmѓ‹ѓЂЉЦђ” |f(z)|^2 ‚р‹Ѓ‚Я‚йЃB
+		/// и¤‡зґ й–ўж•°гЃ®гѓЋгѓ«гѓ й–ўж•° |f(z)|^2 г‚’ж±‚г‚Ѓг‚‹гЂ‚
 		/// </summary>
-		/// <returns>ѓmѓ‹ѓЂ</returns>
+		/// <returns>гѓЋгѓ«гѓ </returns>
 		public Function Norm()
 		{
 			Function re, im;
@@ -107,42 +107,42 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰ЋZ
+		#region жј”з®—
 
 		/// <summary>
-		/// ђі•‰”Ѕ“]ЃB
+		/// ж­ЈиІ еЏЌи»ўгЂ‚
 		/// </summary>
-		/// <returns>ђі•‰”Ѕ“]Њ‹‰К</returns>
+		/// <returns>ж­ЈиІ еЏЌи»ўзµђжћњ</returns>
 		public virtual Function Negate()
 		{
 			return this.Multiply((Constant)(-1.0));
 		}
 
 		/// <summary>
-		/// ‰БЋZЃB
+		/// еЉ з®—гЂ‚
 		/// </summary>
-		/// <param name="f">ѓIѓyѓ‰ѓ“ѓh</param>
-		/// <returns>‰БЋZЊ‹‰К</returns>
+		/// <param name="f">г‚Єгѓљгѓ©гѓігѓ‰</param>
+		/// <returns>еЉ з®—зµђжћњ</returns>
 		public virtual Function Add(Function f)
 		{
 			return new Sum(this, f);
 		}
 
 		/// <summary>
-		/// ЊёЋZЃB
+		/// жё›з®—гЂ‚
 		/// </summary>
-		/// <param name="f">ѓIѓyѓ‰ѓ“ѓh</param>
-		/// <returns>ЊёЋZЊ‹‰К</returns>
+		/// <param name="f">г‚Єгѓљгѓ©гѓігѓ‰</param>
+		/// <returns>жё›з®—зµђжћњ</returns>
 		public virtual Function Subtract(Function f)
 		{
 			return this.Add(f.Negate());
 		}
 
 		/// <summary>
-		/// ЏжЋZЃB
+		/// д№—з®—гЂ‚
 		/// </summary>
-		/// <param name="f">ѓIѓyѓ‰ѓ“ѓh</param>
-		/// <returns>ЏжЋZЊ‹‰К</returns>
+		/// <param name="f">г‚Єгѓљгѓ©гѓігѓ‰</param>
+		/// <returns>д№—з®—зµђжћњ</returns>
 		public virtual Function Multiply(Function f)
 		{
 			Constant c = f as Constant;
@@ -155,10 +155,10 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// ЏњЋZЃB
+		/// й™¤з®—гЂ‚
 		/// </summary>
-		/// <param name="f">ѓIѓyѓ‰ѓ“ѓh</param>
-		/// <returns>ЏњЋZЊ‹‰К</returns>
+		/// <param name="f">г‚Єгѓљгѓ©гѓігѓ‰</param>
+		/// <returns>й™¤з®—зµђжћњ</returns>
 		public virtual Function Divide(Function f)
 		{
 			Constant c = f as Constant;
@@ -171,7 +171,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰ЋZЋq
+		#region жј”з®—е­ђ
 
 		public static Function operator+ (Function f)
 		{
@@ -229,31 +229,31 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”ч•Є
+		#region еѕ®е€†
 
 		/// <summary>
-		/// (x ‚Й‚ж‚й•О)“±ЉЦђ”‚р‹Ѓ‚Я‚йЃB
-		/// ‰рђН“I‚ЙЊvЋZЃB
-		/// ‰рђН“I‚ЙЊvЋZ‚Е‚«‚И‚ўЉЦђ”‚МЏкЌ‡ЃAInvalidOperationException ‚р throw ‚·‚йЃB
+		/// (x гЃ«г‚€г‚‹еЃЏ)е°Ћй–ўж•°г‚’ж±‚г‚Ѓг‚‹гЂ‚
+		/// и§Јжћђзљ„гЃ«иЁ€з®—гЂ‚
+		/// и§Јжћђзљ„гЃ«иЁ€з®—гЃ§гЃЌгЃЄгЃ„й–ўж•°гЃ®е ґеђ€гЂЃInvalidOperationException г‚’ throw гЃ™г‚‹гЂ‚
 		/// </summary>
-		/// <param name="x">”ч•Є‘ОЏЫ‚Ж‚И‚й•Пђ”</param>
-		/// <returns>“±ЉЦђ”</returns>
+		/// <param name="x">еѕ®е€†еЇѕи±ЎгЃЁгЃЄг‚‹е¤‰ж•°</param>
+		/// <returns>е°Ћй–ўж•°</returns>
 		public virtual Function Differentiate(Variable x)
 		{
-			throw new InvalidOperationException("”ч•Є‚Е‚«‚Ь‚№‚с");
+			throw new InvalidOperationException("еѕ®е€†гЃ§гЃЌгЃѕгЃ›г‚“");
 		}
 
 		#endregion
-		#region “а•”Ќ\‘ў‚МЌЕ“K‰»
+		#region е†…йѓЁж§‹йЂ гЃ®жњЂйЃ©еЊ–
 
 		/// <summary>
-		/// “а•”Ќ\‘ў‚рЌЕ“K‰»‚·‚йЃB
-		/// —б‚¦‚ОЃA1Ѓ~f ЃЁ f, 0Ѓ~f ЃЁ 0ЃB
+		/// е†…йѓЁж§‹йЂ г‚’жњЂйЃ©еЊ–гЃ™г‚‹гЂ‚
+		/// дѕ‹гЃ€гЃ°гЂЃ1Г—f в†’ f, 0Г—f в†’ 0гЂ‚
 		/// </summary>
-		/// <returns>ЌЕ“K‰»Њг‚МЉЦђ”</returns>
+		/// <returns>жњЂйЃ©еЊ–еѕЊгЃ®й–ўж•°</returns>
 		/// <remarks>
-		/// €к”­‚Е100Ѓ“Љ®аш‚ИЌЕ“K‰»‚ЄЉ|‚©‚й‚н‚Ї‚Е‚Н‚И‚ўЃB
-		/// 2ЃE3“xЊJ‚и•Ф‚·‚±‚Ж‚ЕЃA‚ж‚иЌЕ“K‰»‚Є‚©‚©‚йЏкЌ‡‚а‚ ‚иЃB
+		/// дёЂз™єгЃ§100пј…е®Њз’§гЃЄжњЂйЃ©еЊ–гЃЊжЋ›гЃ‹г‚‹г‚ЏгЃ‘гЃ§гЃЇгЃЄгЃ„гЂ‚
+		/// 2гѓ»3еє¦з№°г‚Љиї”гЃ™гЃ“гЃЁгЃ§гЂЃг‚€г‚ЉжњЂйЃ©еЊ–гЃЊгЃ‹гЃ‹г‚‹е ґеђ€г‚‚гЃ‚г‚ЉгЂ‚
 		/// </remarks>
 		public virtual Function Optimize()
 		{
@@ -261,12 +261,12 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// “а•”Ќ\‘ў‚рЌЕ“K‰»‚·‚йЃB
+		/// е†…йѓЁж§‹йЂ г‚’жњЂйЃ©еЊ–гЃ™г‚‹гЂ‚
 		/// </summary>
-		/// <param name="n">”Ѕ•њ‰сђ”</param>
-		/// <returns>ЌЕ“K‰»Њг‚МЉЦђ”</returns>
+		/// <param name="n">еЏЌеѕ©е›ћж•°</param>
+		/// <returns>жњЂйЃ©еЊ–еѕЊгЃ®й–ўж•°</returns>
 		/// <remarks>
-		/// €к”­‚ЕЉ®‘S‚ИЌЕ“K‰»‚ЄЏo—€‚И‚ў‚М‚ЕЃA‰Ѕ“x‚©Џ€—ќ‚рЊJ‚и•Ф‚·ЃB
+		/// дёЂз™єгЃ§е®Ње…ЁгЃЄжњЂйЃ©еЊ–гЃЊе‡єжќҐгЃЄгЃ„гЃ®гЃ§гЂЃдЅ•еє¦гЃ‹е‡¦зђ†г‚’з№°г‚Љиї”гЃ™гЂ‚
 		/// </remarks>
 		public Function Optimize(int n)
 		{
@@ -276,7 +276,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ICloneable ѓЃѓ“ѓo
+		#region ICloneable гѓЎгѓігѓђ
 
 		public abstract Function Clone();
 
@@ -286,9 +286,9 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “БЋк‚ИЉЦђ”
+		#region з‰№ж®ЉгЃЄй–ўж•°
 
-		#region ’PЌЂЉЦђ”
+		#region еЌй …й–ўж•°
 
 		public static Unary Exp(Function f)
 		{
@@ -369,7 +369,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “сЌЂЉЦђ”
+		#region дєЊй …й–ўж•°
 
 		public static Binary Pow(Function f, Function g)
 		{
@@ -389,7 +389,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‘ЅЌЂЋ®
+		#region е¤љй …ејЏ
 
 		public static Unary X(Function f)
 		{
@@ -407,7 +407,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‹•ђ”
+		#region и™љж•°
 
 		public static Function I(Function f)
 		{

@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardGame;
 using Daifugou;
 
 /// <summary>
-/// ƒ‰ƒ“ƒ_ƒ€‚ÉƒJ[ƒh‚ğ‘I‚ñ‚Åo‚·‚¨ƒoƒJAIB
+/// ãƒ©ãƒ³ãƒ€ãƒ ã«ã‚«ãƒ¼ãƒ‰ã‚’é¸ã‚“ã§å‡ºã™ãŠãƒã‚«AIã€‚
 /// </summary>
 public class SampleRandomAi : IArtificialIntelligence
 {
     Random rnd = new Random();
 
-    #region IArtificialIntelligence ƒƒ“ƒo
+    #region IArtificialIntelligence ãƒ¡ãƒ³ãƒ
 
     public IEnumerable<Card> Play(IEnumerable<Card> hand, IEnumerable<Card> table, int rank, Suit suit, Mode mode, bool revolution, History history)
     {

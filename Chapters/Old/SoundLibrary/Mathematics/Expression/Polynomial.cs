@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 
 //! todo
 /*
- * ·A’P€-Aô‚İ‚İ (operator)
- * ”÷•ªEÏ•ª
+ * å·®ã€å˜é …-ã€ç•³ã¿è¾¼ã¿ (operator)
+ * å¾®åˆ†ãƒ»ç©åˆ†
  * http://www5.airnet.ne.jp/tomy/cpro/sslib9.htm
- * Å¬“ñæ‹ß—
- * Chebyshev ‹ß—
+ * æœ€å°äºŒä¹—è¿‘ä¼¼
+ * Chebyshev è¿‘ä¼¼
  * 
- * —L—®‚àì‚ë‚¤B
- * Fourier Series ‚Æ‚©‚àB
+ * æœ‰ç†å¼ã‚‚ä½œã‚ã†ã€‚
+ * Fourier Series ã¨ã‹ã‚‚ã€‚
  */
 
 namespace SoundLibrary.Mathematics.Expression
@@ -19,42 +19,42 @@ namespace SoundLibrary.Mathematics.Expression
 	using ValueType  = System.Double;
 
 	/// <summary>
-	/// ‘½€®B
+	/// å¤šé …å¼ã€‚
 	/// </summary>
 	public class Polynomial : ICloneable
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// coef[n] c nŸ‚ÌŒW”B
+		/// coef[n] â€¦ næ¬¡ã®ä¿‚æ•°ã€‚
 		/// </summary>
 		CoefType[] coef;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Polynomial() : this(0) {}
 
 		/// <summary>
-		/// Ÿ”‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// æ¬¡æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="order">‘½€®‚ÌŸ”</param>
+		/// <param name="order">å¤šé …å¼ã®æ¬¡æ•°</param>
 		public Polynomial(int order) : this(new CoefType[order + 1]) {}
 
 		/// <summary>
-		/// ŒW””z—ñ‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// ä¿‚æ•°é…åˆ—ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW””z—ñ</param>
+		/// <param name="coef">ä¿‚æ•°é…åˆ—</param>
 		public Polynomial(params CoefType[] coef)
 		{
 			this.coef = coef;
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		/// <summary>
-		/// f(x) ‚ğŒvZB
+		/// f(x) ã‚’è¨ˆç®—ã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <returns>f(x)</returns>
@@ -74,7 +74,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region ŒW”‚Ìæ“¾
+		#region ä¿‚æ•°ã®å–å¾—
 
 		public CoefType[] Coef
 		{
@@ -85,7 +85,7 @@ namespace SoundLibrary.Mathematics.Expression
 		#region operator
 
 		/// <summary>
-		/// ’P€+B
+		/// å˜é …+ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <returns>+f(x)</returns>
@@ -95,7 +95,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚Ì‰ÁZB
+		/// å¤šé …å¼åŒå£«ã®åŠ ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -114,7 +114,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚ÌŒ¸ZB
+		/// å¤šé …å¼åŒå£«ã®æ¸›ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -157,11 +157,11 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚ÌæZB
+		/// å¤šé …å¼åŒå£«ã®ä¹—ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
-		/// <returns>f(x) ~ g(x)</returns>
+		/// <returns>f(x) Ã— g(x)</returns>
 		public static Polynomial operator* (Polynomial f, Polynomial g)
 		{
 			CoefType[] c = Convolute(f.coef, g.coef);
@@ -169,11 +169,11 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®€ŒW”‘ÌB
+		/// å¤šé …å¼Ã·ä¿‚æ•°ä½“ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="a">a</param>
-		/// <returns>f(x) € a</returns>
+		/// <returns>f(x) Ã· a</returns>
 		public static Polynomial operator/ (Polynomial f, CoefType a)
 		{
 			CoefType[] c = (CoefType[])f.coef.Clone();
@@ -182,9 +182,9 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ŒW”¨‘½€®‚ÌƒLƒƒƒXƒgB
+		/// ä¿‚æ•°â†’å¤šé …å¼ã®ã‚­ãƒ£ã‚¹ãƒˆã€‚
 		/// </summary>
-		/// <param name="a">ŒW”</param>
+		/// <param name="a">ä¿‚æ•°</param>
 		/// <returns>Polynominal</returns>
 		public static implicit operator Polynomial (CoefType a)
 		{
@@ -192,26 +192,26 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region “Áê‚È‘½€®‚ğæ“¾
+		#region ç‰¹æ®Šãªå¤šé …å¼ã‚’å–å¾—
 
-		#region x ‚Ì‚×‚«æ
+		#region x ã®ã¹ãä¹—
 
 		/// <summary>
-		/// x ‚Ì n æ‚ğ•Ô‚·B
+		/// x ã® n ä¹—ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="n">w”</param>
-		/// <returns>x ‚Ì n æ</returns>
+		/// <param name="n">æŒ‡æ•°</param>
+		/// <returns>x ã® n ä¹—</returns>
 		public static Polynomial X(int n)
 		{
 			return Polynomial.X(n, 1);
 		}
 
 		/// <summary>
-		/// a x^n ‚ğ•Ô‚·B
+		/// a x^n ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="n">w”</param>
-		/// <param name="a">ŒW”</param>
-		/// <returns>x ‚Ì n æ</returns>
+		/// <param name="n">æŒ‡æ•°</param>
+		/// <param name="a">ä¿‚æ•°</param>
+		/// <returns>x ã® n ä¹—</returns>
 		public static Polynomial X(int n, CoefType a)
 		{
 			CoefType[] c = new CoefType[n + 1];
@@ -222,13 +222,13 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region ƒ`ƒFƒrƒVƒFƒt‘½€®
+		#region ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•å¤šé …å¼
 
 		/// <summary>
-		/// ƒ`ƒFƒrƒVƒFƒt‘½€®‚ğŒvZ‚·‚éB
+		/// ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•å¤šé …å¼ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">Ÿ”</param>
-		/// <returns>Ÿ” n ‚Ìƒ`ƒFƒrƒVƒFƒt‘½€®</returns>
+		/// <param name="n">æ¬¡æ•°</param>
+		/// <returns>æ¬¡æ•° n ã®ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•å¤šé …å¼</returns>
 		public static Polynomial Chebyshev(int n)
 		{
 			if(n == 0)
@@ -240,12 +240,12 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region ƒ‰ƒOƒ‰ƒ“ƒWƒ…•âŠÔ
+		#region ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥è£œé–“
 
 		public static Polynomial Lagrange(DomainType[] x, DomainType[] y)
 		{
 			if(x.Length != y.Length)
-				throw new System.ArgumentException("x ‚Æ y ‚ÌŸ”‚Í“™‚µ‚­‚È‚¯‚ê‚Î‚¢‚¯‚Ü‚¹‚ñB");
+				throw new System.ArgumentException("x ã¨ y ã®æ¬¡æ•°ã¯ç­‰ã—ããªã‘ã‚Œã°ã„ã‘ã¾ã›ã‚“ã€‚");
 
 			int len = x.Length;
 			Polynomial p = (Polynomial)(CoefType)0.0;
@@ -272,10 +272,10 @@ namespace SoundLibrary.Mathematics.Expression
 		#endregion
 
 		#endregion
-		#region static ŠÖ”
+		#region static é–¢æ•°
 
 		/// <summary>
-		/// x ‚Æ y ‚Ì‚¤‚¿A’·‚¢•û‚Ì”z—ñ‚ğ a ‚ÉA’Z‚¢•û‚ğ b ‚ÉŠi”[B
+		/// x ã¨ y ã®ã†ã¡ã€é•·ã„æ–¹ã®é…åˆ—ã‚’ a ã«ã€çŸ­ã„æ–¹ã‚’ b ã«æ ¼ç´ã€‚
 		/// </summary>
 		static void Select(CoefType[] x, CoefType[] y, out CoefType[] a, out CoefType[] b)
 		{
@@ -292,10 +292,10 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ”z—ñ‚Ìô‚İÏ‚ğŒvZ‚·‚éB
+		/// é…åˆ—ã®ç•³è¾¼ã¿ç©ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">”z—ñ1</param>
-		/// <param name="y">”z—ñ2</param>
+		/// <param name="x">é…åˆ—1</param>
+		/// <param name="y">é…åˆ—2</param>
 		/// <returns>x * y</returns>
 		static CoefType[] Convolute(CoefType[] x, CoefType[] y)
 		{
@@ -358,7 +358,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public Polynomial Clone()
 		{

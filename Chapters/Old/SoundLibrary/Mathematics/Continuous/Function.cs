@@ -1,16 +1,16 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Continuous
 {
 	using Type = System.Double;
 
 	/// <summary>
-	/// ˜A‘±ŠÖ”‚ğ•\‚·ƒNƒ‰ƒXB
+	/// é€£ç¶šé–¢æ•°ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public abstract class Function
 	{
 		/// <summary>
-		/// ŠÖ”’l f(t) ‚ğŒvZB
+		/// é–¢æ•°å€¤ f(t) ã‚’è¨ˆç®—ã€‚
 		/// </summary>
 		public abstract Type this[double t]
 		{

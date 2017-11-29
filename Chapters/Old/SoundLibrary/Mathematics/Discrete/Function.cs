@@ -1,38 +1,38 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Discrete
 {
 	using Type = System.Double;
 
 	/// <summary>
-	/// —£UŠÖ”‚ğ•\‚·ƒNƒ‰ƒXB
+	/// é›¢æ•£é–¢æ•°ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	abstract public class Function
 	{
 		/// <summary>
-		/// ’è‹`ˆæ‚Ì‰ºŒÀB
+		/// å®šç¾©åŸŸã®ä¸‹é™ã€‚
 		/// </summary>
 		public abstract int Begin{get;}
 
 		/// <summary>
-		/// ’è‹`ˆæ‚ÌãŒÀ + 1B
+		/// å®šç¾©åŸŸã®ä¸Šé™ + 1ã€‚
 		/// </summary>
 		public abstract int End{get;}
 
 		/// <summary>
-		/// ’è‹`ˆæ‚Ì’·‚³B
+		/// å®šç¾©åŸŸã®é•·ã•ã€‚
 		/// </summary>
 		public abstract int Length{get;}
 
 		/// <summary>
-		/// f[n] ‚ğ‹‚ß‚éB
+		/// f[n] ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		public abstract Type this[int n]{get;}
 
 		/// <summary>
-		/// ”z—ñ‰»B
+		/// é…åˆ—åŒ–ã€‚
 		/// </summary>
-		/// <returns>”z—ñ‰»‚µ‚½‚à‚Ì</returns>
+		/// <returns>é…åˆ—åŒ–ã—ãŸã‚‚ã®</returns>
 		public virtual Type[] ToArray()
 		{
 			Type[] x = new Type[this.Length];
@@ -45,22 +45,22 @@ namespace SoundLibrary.Mathematics.Discrete
 		}
 
 		/// <summary>
-		/// func ‚Ì’l‚ğÅ‘å‚É‚·‚éˆø”‚Ì’l‚ğ•Ô‚·B
+		/// func ã®å€¤ã‚’æœ€å¤§ã«ã™ã‚‹å¼•æ•°ã®å€¤ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="func">argmax ‚ğ‹‚ß‚½‚¢ŠÖ”B</param>
-		/// <returns>argmax ’l</returns>
+		/// <param name="func">argmax ã‚’æ±‚ã‚ãŸã„é–¢æ•°ã€‚</param>
+		/// <returns>argmax å€¤</returns>
 		public static int Argmax(Function func)
 		{
 			return Argmax(func, func.Begin, func.End);
 		}
 
 		/// <summary>
-		/// func ‚Ì’l‚ğÅ‘å‚É‚·‚éˆø”‚Ì’l‚ğ•Ô‚·B
+		/// func ã®å€¤ã‚’æœ€å¤§ã«ã™ã‚‹å¼•æ•°ã®å€¤ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="func">argmax ‚ğ‹‚ß‚½‚¢ŠÖ”B</param>
-		/// <param name="min">ˆø”‚Ì”ÍˆÍ‚ÌÅ¬’l</param>
-		/// <param name="max">ˆø”‚Ì”ÍˆÍ‚ÌÅ‘å’l</param>
-		/// <returns>argmax ’l</returns>
+		/// <param name="func">argmax ã‚’æ±‚ã‚ãŸã„é–¢æ•°ã€‚</param>
+		/// <param name="min">å¼•æ•°ã®ç¯„å›²ã®æœ€å°å€¤</param>
+		/// <param name="max">å¼•æ•°ã®ç¯„å›²ã®æœ€å¤§å€¤</param>
+		/// <returns>argmax å€¤</returns>
 		public static int Argmax(Function func, int min, int max)
 		{
 			double maxVal = func[min];
@@ -79,9 +79,9 @@ namespace SoundLibrary.Mathematics.Discrete
 			return argmax;
 		}
 
-		#region Type[] ‚ğ Function ‚Æ‚µ‚Äˆµ‚¤‚½‚ß‚Ìƒ‰ƒbƒp[
+		#region Type[] ã‚’ Function ã¨ã—ã¦æ‰±ã†ãŸã‚ã®ãƒ©ãƒƒãƒ‘ãƒ¼
 		/// <summary>
-		/// ”z—ñ‚Ì’l‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·ŠÖ”B
+		/// é…åˆ—ã®å€¤ã‚’ãã®ã¾ã¾è¿”ã™é–¢æ•°ã€‚
 		/// </summary>
 		class Array : Function
 		{
@@ -95,10 +95,10 @@ namespace SoundLibrary.Mathematics.Discrete
 		}
 
 		/// <summary>
-		/// ”z—ñ‚Ì’l‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·ŠÖ”‚ğì‚éB
+		/// é…åˆ—ã®å€¤ã‚’ãã®ã¾ã¾è¿”ã™é–¢æ•°ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="array">”z—ñ</param>
-		/// <returns>”z—ñ‚Ì’l‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·ŠÖ”</returns>
+		/// <param name="array">é…åˆ—</param>
+		/// <returns>é…åˆ—ã®å€¤ã‚’ãã®ã¾ã¾è¿”ã™é–¢æ•°</returns>
 		public static Function FromArray(Type[] array)
 		{
 			return new Array(array);

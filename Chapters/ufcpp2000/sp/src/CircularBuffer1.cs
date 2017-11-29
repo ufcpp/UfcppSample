@@ -1,31 +1,31 @@
-public class CircularBuffer : ICloneable
+ï»¿public class CircularBuffer : ICloneable
 {
-	#region ƒtƒB[ƒ‹ƒh
+	#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 	double[] buf;
 
 	#endregion
-	#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	public CircularBuffer() : this(0) { }
 
 	/// <summary>
-	/// ƒoƒbƒtƒ@’·‚ğw’è‚µ‚Ä‰Šú‰»
+	/// ãƒãƒƒãƒ•ã‚¡é•·ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–
 	/// </summary>
-	/// <param name="len">ƒoƒbƒtƒ@’·</param>
+	/// <param name="len">ãƒãƒƒãƒ•ã‚¡é•·</param>
 	public CircularBuffer(int len)
 	{
 		this.buf = new double[len];
 	}
 
 	#endregion
-	#region ’l‚Ì‘}“üEæ“¾
+	#region å€¤ã®æŒ¿å…¥ãƒ»å–å¾—
 
 	/// <summary>
-	/// n ƒTƒ“ƒvƒ‹‘O‚Ì’l‚Ìæ“¾
+	/// n ã‚µãƒ³ãƒ—ãƒ«å‰ã®å€¤ã®å–å¾—
 	/// </summary>
-	/// <param name="n">‰½ƒTƒ“ƒvƒ‹‘O‚Ì’l‚ğ“Ç‚İ‘‚«‚·‚é‚©</param>
-	/// <returns>n ƒTƒ“ƒvƒ‹‘O‚Ì’l</returns>
+	/// <param name="n">ä½•ã‚µãƒ³ãƒ—ãƒ«å‰ã®å€¤ã‚’èª­ã¿æ›¸ãã™ã‚‹ã‹</param>
+	/// <returns>n ã‚µãƒ³ãƒ—ãƒ«å‰ã®å€¤</returns>
 	public double this[int n]
 	{
 		get { return this.buf[n]; }
@@ -33,9 +33,9 @@ public class CircularBuffer : ICloneable
 	}
 
 	/// <summary>
-	/// ’l‚Ì‘}“ü
+	/// å€¤ã®æŒ¿å…¥
 	/// </summary>
-	/// <param name="x">‘}“ü‚µ‚½‚¢’l</param>
+	/// <param name="x">æŒ¿å…¥ã—ãŸã„å€¤</param>
 	public void Insert(double x)
 	{
 		for (int n = this.buf.Length - 1; n > 0; --n)
@@ -46,7 +46,7 @@ public class CircularBuffer : ICloneable
 	}
 
 	/// <summary>
-	/// —v‘f”
+	/// è¦ç´ æ•°
 	/// </summary>
 	public int Count
 	{
@@ -54,7 +54,7 @@ public class CircularBuffer : ICloneable
 	}
 
 	#endregion
-	#region ICloneable ƒƒ“ƒo
+	#region ICloneable ãƒ¡ãƒ³ãƒ
 
 	public object Clone()
 	{

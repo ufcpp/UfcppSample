@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Filter;
 
 namespace SoundLibrary.Pipe.Monaural
 {
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^ˆ—‚ğs‚¤ƒpƒCƒvB
+	/// ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã‚’è¡Œã†ãƒ‘ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public class FilteredPipe : Pipe
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		IFilter filter;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public FilteredPipe(Queue input, Queue output, IFilter filter)
 			: base(input, output)
@@ -23,7 +23,7 @@ namespace SoundLibrary.Pipe.Monaural
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		public override void Process()
 		{

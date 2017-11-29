@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Filter
 {
 #if false
-	// «‚¿‚å‚Á‚ÆƒoƒO‚ ‚èB
-	// #else ‚Ì•û‚ÌÀ‘•‚Æ”ä‚×‚Ä10`20“’ö“x‚‘¬B
-	// 10“’ö“x‚Ì‚½‚ß‚ÉƒfƒoƒbƒO‚·‚é‚Ì‚ª–Ê“|‚ÅB
+	// â†“ã¡ã‚‡ã£ã¨ãƒã‚°ã‚ã‚Šã€‚
+	// #else ã®æ–¹ã®å®Ÿè£…ã¨æ¯”ã¹ã¦10ï½20ï¼…ç¨‹åº¦é«˜é€Ÿã€‚
+	// 10ï¼…ç¨‹åº¦ã®ãŸã‚ã«ãƒ‡ãƒãƒƒã‚°ã™ã‚‹ã®ãŒé¢å€’ã§ã€‚
 	/// <summary>
-	/// zŠÂƒoƒbƒtƒ@
+	/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡
 	/// </summary>
 	public class CircularBuffer : IEnumerable
 	{
@@ -17,9 +17,9 @@ namespace SoundLibrary.Filter
 		int length;
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="len">zŠÂƒoƒbƒtƒ@‚Ì’·‚³B</param>
+		/// <param name="len">å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã€‚</param>
 		public CircularBuffer(int len)
 		{
 			this.buff   = new double[2 * len];
@@ -27,7 +27,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@“à‚Ì—v‘f‚ÌƒAƒNƒZƒXB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡å†…ã®è¦ç´ ã®ã‚¢ã‚¯ã‚»ã‚¹ã€‚
 		/// </summary>
 		public double this[int n]
 		{
@@ -36,9 +36,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì––”ö‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®æœ«å°¾ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushBack(double x)
 		{
 			this.buff[this.current] = this.buff[this.current + this.length] = x;
@@ -47,9 +47,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ìæ“ª‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushFront(double x)
 		{
 			--this.current;
@@ -58,7 +58,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ìæ“ª‚Ì—v‘f‚ğ•Ô‚·B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã®è¦ç´ ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public double Top
 		{
@@ -66,7 +66,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@’·(this.buff.Length)‚ğ•Ô‚·B
+		/// ãƒãƒƒãƒ•ã‚¡é•·(ï¼this.buff.Length)ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public int Length
 		{
@@ -74,7 +74,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// this.buff ‚Ì—ñ‹“q‚ğ•Ô‚·B
+		/// this.buff ã®åˆ—æŒ™å­ã‚’è¿”ã™ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()
@@ -83,9 +83,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì’·‚³‚ğ•ÏX‚·‚éB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="length">V‚µ‚¢’·‚³</param>
+		/// <param name="length">æ–°ã—ã„é•·ã•</param>
 		public void Resize(int length)
 		{
 			double[] tmp = new double[2 * length];
@@ -105,23 +105,23 @@ namespace SoundLibrary.Filter
 #else
 
 	/// <summary>
-	/// zŠÂƒoƒbƒtƒ@
+	/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡
 	/// </summary>
 	public class CircularBuffer : IEnumerable
 	{
 		double[] buff;
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="len">zŠÂƒoƒbƒtƒ@‚Ì’·‚³B</param>
+		/// <param name="len">å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã€‚</param>
 		public CircularBuffer(int len)
 		{
 			this.buff = new double[len];
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@“à‚Ì—v‘f‚ÌƒAƒNƒZƒXB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡å†…ã®è¦ç´ ã®ã‚¢ã‚¯ã‚»ã‚¹ã€‚
 		/// </summary>
 		public double this[int n]
 		{
@@ -130,9 +130,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì––”ö‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®æœ«å°¾ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushBack(double x)
 		{
 			for(int i=0; i<this.buff.Length-1; ++i)
@@ -143,9 +143,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ìæ“ª‚É’l‚ğ‘}“üB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã«å€¤ã‚’æŒ¿å…¥ã€‚
 		/// </summary>
-		/// <param name="x">‘}“ü‚·‚é’lB</param>
+		/// <param name="x">æŒ¿å…¥ã™ã‚‹å€¤ã€‚</param>
 		public void PushFront(double x)
 		{
 			for(int i=this.buff.Length-1; i>0; --i)
@@ -156,7 +156,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ìæ“ª‚Ì—v‘f‚ğ•Ô‚·B
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã®è¦ç´ ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public double Top
 		{
@@ -164,7 +164,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@’·(this.buff.Length)‚ğ•Ô‚·B
+		/// ãƒãƒƒãƒ•ã‚¡é•·(ï¼this.buff.Length)ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public int Length
 		{
@@ -172,7 +172,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// this.buff ‚Ì—ñ‹“q‚ğ•Ô‚·B
+		/// this.buff ã®åˆ—æŒ™å­ã‚’è¿”ã™ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()
@@ -181,9 +181,9 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// zŠÂƒoƒbƒtƒ@‚Ì’·‚³‚ğ•ÏX‚·‚éB
+		/// å¾ªç’°ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="length">V‚µ‚¢’·‚³</param>
+		/// <param name="length">æ–°ã—ã„é•·ã•</param>
 		public void Resize(int length)
 		{
 			double[] tmp = new double[length];
@@ -197,7 +197,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ’†g‚ğ0ƒNƒŠƒAB
+		/// ä¸­èº«ã‚’0ã‚¯ãƒªã‚¢ã€‚
 		/// </summary>
 		public void Clear()
 		{
@@ -208,11 +208,11 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Æ‚ÌÏ˜a‰‰ZB
-		/// ‡”this[i]*coef[i] ‚ğŒvZB
+		/// ä¿‚æ•°ã¨ã®ç©å’Œæ¼”ç®—ã€‚
+		/// âˆ‘this[i]*coef[i] ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”</param>
-		/// <returns>Ï˜aŒ‹‰Ê</returns>
+		/// <param name="coef">ä¿‚æ•°</param>
+		/// <returns>ç©å’Œçµæœ</returns>
 		public double Mac(double[] coef)
 		{
 			int n = coef.Length;
@@ -225,12 +225,12 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Æ‚ÌÏ˜a‰‰ZB
-		/// ‡”this[i + offset]*coef[i] ‚ğŒvZB
+		/// ä¿‚æ•°ã¨ã®ç©å’Œæ¼”ç®—ã€‚
+		/// âˆ‘this[i + offset]*coef[i] ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="offset">ô‚İ‚ÌŠJnˆÊ’uƒIƒtƒZƒbƒg</param>
-		/// <param name="coef">ŒW”</param>
-		/// <returns>Ï˜aŒ‹‰Ê</returns>
+		/// <param name="offset">ç•³è¾¼ã¿ã®é–‹å§‹ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ</param>
+		/// <param name="coef">ä¿‚æ•°</param>
+		/// <returns>ç©å’Œçµæœ</returns>
 		public double Mac(int offset, double[] coef)
 		{
 			int n = coef.Length;

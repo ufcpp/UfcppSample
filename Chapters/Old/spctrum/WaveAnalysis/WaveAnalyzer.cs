@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SpectrumAnalysis;
 using Wave;
@@ -6,13 +6,13 @@ using Wave;
 namespace WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
-	/// ü”g”Œn—ñ‚Åƒf[ƒ^‚ğ•ÛB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
+	/// å‘¨æ³¢æ•°ç³»åˆ—ã§ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã€‚
 	/// </summary>
 	class WaveFrequency : WaveData
 	{
-		Spectrum l; // L ch ü”g”Œn—ñ
-		Spectrum r; // R ch ü”g”Œn—ñ
+		Spectrum l; // L ch å‘¨æ³¢æ•°ç³»åˆ—
+		Spectrum r; // R ch å‘¨æ³¢æ•°ç³»åˆ—
 
 		public WaveFrequency(){}
 
@@ -48,42 +48,42 @@ namespace WaveAnalysis
 	}//class WaveFrequency
 
 	/// <summary>
-	/// ƒŠƒtƒ@ƒŒƒ“ƒX‰¹‚Ìƒ^ƒCƒv
+	/// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹éŸ³ã®ã‚¿ã‚¤ãƒ—
 	/// </summary>
 	public enum ReferenceType
 	{
-		Both,    // —¼ ch g‚¤
-		Left,    // L ch ‚¾‚¯g‚¤
-		Right,   // R ch ‚¾‚¯g‚¤
-		Reverse, // L,R ‹t‘¤ ch ‚ğg‚¤
-		Cross,   // L ‚ª’¼Ú‰¹AR ‚ªƒNƒƒXƒg[ƒN‰¹‚Ì‚Æ‚«
-		// (L ‚ªƒNƒƒXƒg[ƒN‰¹AR ‚ª’¼Ú‰¹‚Å‚àŒ‹‰Ê‚Í“¯‚¶)
+		Both,    // ä¸¡ ch ä½¿ã†
+		Left,    // L ch ã ã‘ä½¿ã†
+		Right,   // R ch ã ã‘ä½¿ã†
+		Reverse, // L,R é€†å´ ch ã‚’ä½¿ã†
+		Cross,   // L ãŒç›´æ¥éŸ³ã€R ãŒã‚¯ãƒ­ã‚¹ãƒˆãƒ¼ã‚¯éŸ³ã®ã¨ã
+		// (L ãŒã‚¯ãƒ­ã‚¹ãƒˆãƒ¼ã‚¯éŸ³ã€R ãŒç›´æ¥éŸ³ã§ã‚‚çµæœã¯åŒã˜)
 		// a = data.L, b = data.R
 		// c = ref.L,  d = ref.R
 		// [a b][c d]-1              [ac-bd bc-ad]
 		// [b a][d c]   = 1/(c^2-d^2)[bc-ad ac-bd]
-		// ˆ
+		// âˆ´
 		// data.L = (ac-bd) / (c^2-d^2)
 		// data.R = (bc-ad) / (c^2-d^2)
 	}//enum ReferenceType
 
 	/// <summary>
-	/// Wave ƒtƒ@ƒCƒ‹‰ğÍ—pƒNƒ‰ƒXB
+	/// Wave ãƒ•ã‚¡ã‚¤ãƒ«è§£æç”¨ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class WaveAnalyzer
 	{
-		WaveData data = new WaveTime(); // ƒf[ƒ^‰¹
+		WaveData data = new WaveTime(); // ãƒ‡ãƒ¼ã‚¿éŸ³
 
 		/// <summary>
-		/// ƒf[ƒ^ Wave ‚Ìæ“¾
+		/// ãƒ‡ãƒ¼ã‚¿ Wave ã®å–å¾—
 		/// </summary>
 		public WaveData Data{get{return this.data;}}
 
 		/// <summary>
-		/// ”z—ñ‚Ìƒs[ƒN’l‚ğ‹‚ß‚éB
+		/// é…åˆ—ã®ãƒ”ãƒ¼ã‚¯å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">”z—ñ</param>
-		/// <returns>ƒs[ƒN’l</returns>
+		/// <param name="x">é…åˆ—</param>
+		/// <returns>ãƒ”ãƒ¼ã‚¯å€¤</returns>
 		static double GetPeekValue(double[] x)
 		{
 			if(x == null) return 0;
@@ -97,12 +97,12 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// –³‰¹‹æŠÔ‚Ì’·‚³‚ğ‹‚ß‚éB
+		/// ç„¡éŸ³åŒºé–“ã®é•·ã•ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// 
 		/// </summary>
-		/// <param name="x">”z—ñ</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <returns>‹æŠÔ’·</returns>
+		/// <param name="x">é…åˆ—</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <returns>åŒºé–“é•·</returns>
 		static int GetSilentLength(double[] x, double threshold)
 		{
 			if(x == null) return int.MaxValue;
@@ -116,11 +116,11 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ”z—ñ‚ğƒRƒs[
+		/// é…åˆ—ã‚’ã‚³ãƒ”ãƒ¼
 		/// </summary>
-		/// <param name="src">ƒRƒs[Œ³</param>
-		/// <param name="index">ƒRƒs[ŠJnˆÊ’u</param>
-		/// <param name="length">ƒRƒs[‚·‚é’·‚³</param>
+		/// <param name="src">ã‚³ãƒ”ãƒ¼å…ƒ</param>
+		/// <param name="index">ã‚³ãƒ”ãƒ¼é–‹å§‹ä½ç½®</param>
+		/// <param name="length">ã‚³ãƒ”ãƒ¼ã™ã‚‹é•·ã•</param>
 		/// <returns></returns>
 		static double[] CopyArray(double[] src, int index, int length)
 		{
@@ -130,12 +130,12 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(string filename, int skip, int length)
 		{
 			WaveReader reader = null;
@@ -154,14 +154,14 @@ namespace WaveAnalysis
 		}//Read
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’lB‚±‚Ì’lˆÈ‰º‚Ì‰¹‚Í–³‰¹‚Æ‚İ‚È‚·</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚ç‚İ‚½‘Š‘Î’l‚ğg‚¤</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤ã€‚ã“ã®å€¤ä»¥ä¸‹ã®éŸ³ã¯ç„¡éŸ³ã¨ã¿ãªã™</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰ã¿ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(
 			string filename, int skip, int length,
 			double threshold ,bool relative)
@@ -186,15 +186,15 @@ namespace WaveAnalysis
 		}//Read
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’lB‚±‚Ì’lˆÈ‰º‚Ì‰¹‚Í–³‰¹‚Æ‚İ‚È‚·</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚ç‚İ‚½‘Š‘Î’l‚ğg‚¤</param>
-		/// <param name="type">ƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ^ƒCƒv</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤ã€‚ã“ã®å€¤ä»¥ä¸‹ã®éŸ³ã¯ç„¡éŸ³ã¨ã¿ãªã™</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰ã¿ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
+		/// <param name="type">ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ã‚¿ã‚¤ãƒ—</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(
 			string filename, int skip, int length,
 			double threshold ,bool relative, ReferenceType type)
@@ -208,7 +208,7 @@ namespace WaveAnalysis
 			{
 				header = reader.Header;
 
-				// R ch ‚ğg‚¢‚½‚¢‚Ì‚É wave ƒtƒ@ƒCƒ‹‚ªƒ‚ƒmƒ‰ƒ‹‚Ìê‡
+				// R ch ã‚’ä½¿ã„ãŸã„ã®ã« wave ãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒ¢ãƒãƒ©ãƒ«ã®å ´åˆ
 				if(type != ReferenceType.Left && reader.Header.ch == 1)
 				{
 					return new WaveTime();
@@ -239,25 +239,25 @@ namespace WaveAnalysis
 		}//Read
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
 		public void ReadData(string filename, int skip, int length)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
-		/// –³‰¹‹æŠÔ‚Ìœ‹‚ğs‚¤B
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
+		/// ç„¡éŸ³åŒºé–“ã®é™¤å»ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚çŒ©‚½‘Š‘Î’l‚ğg‚¤</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰è¦‹ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
 		public void ReadData(string filename, int skip, int length, double threshold, bool relative)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length, threshold, relative);
@@ -301,13 +301,13 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒŠƒtƒ@ƒŒƒ“ƒX wave ‚Ì“Ç‚İo‚µB
+		/// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ wave ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="type">ƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ^ƒCƒv</param>
-		/// <param name="isNormalize">ƒŠƒtƒ@ƒŒƒ“ƒX‚ÌU•“Á«‚ğ³‹K‰»‚·‚é‚©‚Ç‚¤‚©</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="type">ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ã‚¿ã‚¤ãƒ—</param>
+		/// <param name="isNormalize">ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®æŒ¯å¹…ç‰¹æ€§ã‚’æ­£è¦åŒ–ã™ã‚‹ã‹ã©ã†ã‹</param>
 		public void DeconvoluteReference(
 			string filename, int skip, int length,
 			ReferenceType type, bool isNormalize)
@@ -317,16 +317,16 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒŠƒtƒ@ƒŒƒ“ƒX wave ‚Ì“Ç‚İo‚µB
-		/// –³‰¹‹æŠÔ‚Ìœ‹‚ğs‚¤B
+		/// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ wave ã®èª­ã¿å‡ºã—ã€‚
+		/// ç„¡éŸ³åŒºé–“ã®é™¤å»ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="type">ƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ^ƒCƒv</param>
-		/// <param name="isNormalize">ƒŠƒtƒ@ƒŒƒ“ƒX‚ÌU•“Á«‚ğ³‹K‰»‚·‚é‚©‚Ç‚¤‚©</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚çŒ©‚½‘Š‘Î’l‚ğg‚¤</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="type">ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ã‚¿ã‚¤ãƒ—</param>
+		/// <param name="isNormalize">ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®æŒ¯å¹…ç‰¹æ€§ã‚’æ­£è¦åŒ–ã™ã‚‹ã‹ã©ã†ã‹</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰è¦‹ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
 		public void DeconvoluteReference(
 			string filename, int skip, int length,
 			ReferenceType type, bool isNormalize,
@@ -337,9 +337,9 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void WirteData(string filename)
 		{
 			using(WaveWriter writer = new WaveWriter(filename, this.data.Header))

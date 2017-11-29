@@ -1,24 +1,24 @@
-using System;
+ï»¿using System;
 
 using Wave;
 
 namespace SpectrumAnalysis
 {
 	/// <summary>
-	/// ü”g”“Á«ƒNƒ‰ƒXB
+	/// å‘¨æ³¢æ•°ç‰¹æ€§ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class Spectrum
 	{
-		double sampleRate; // ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-		double[] x; // ƒf[ƒ^Ši”[—Ìˆæ
+		double sampleRate; // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+		double[] x; // ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
 
 		public Spectrum(){}
 
 		/// <summary>
-		/// ü”g”—Ìˆæƒf[ƒ^‚©‚çì¬
+		/// å‘¨æ³¢æ•°é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆ
 		/// </summary>
-		/// <param name="x">ü”g”—Ìˆæƒf[ƒ^</param>
-		/// <param name="sampleRate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
+		/// <param name="x">å‘¨æ³¢æ•°é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="sampleRate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
 		public Spectrum(double[] x, double sampleRate)
 		{
 			this.x = x;
@@ -26,11 +26,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="X">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <param name="sampleRate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
-		/// <returns>ì¬‚³‚ê‚½</returns>
+		/// <param name="X">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="sampleRate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸ</returns>
 		public static Spectrum FromTimeSequence(double[] x, double sampleRate)
 		{
 			if(x == null) return null;
@@ -38,12 +38,12 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="length">ƒf[ƒ^‚Ì’·‚³</param>
-		/// <param name="X">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <param name="sampleRate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
-		/// <returns>ì¬‚³‚ê‚½</returns>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
+		/// <param name="X">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="sampleRate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸ</returns>
 		public static Spectrum FromTimeSequence(int length, double[] x, double sampleRate)
 		{
 			if(x == null) return null;
@@ -58,13 +58,13 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæƒf[ƒ^‚©‚çì¬B
+		/// æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã€‚
 		/// </summary>
-		/// <param name="skip">“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="length">ƒf[ƒ^‚Ì’·‚³</param>
-		/// <param name="X">ŠÔ—Ìˆæƒf[ƒ^</param>
-		/// <param name="sampleRate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
-		/// <returns>ì¬‚³‚ê‚½</returns>
+		/// <param name="skip">èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
+		/// <param name="X">æ™‚é–“é ˜åŸŸãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="sampleRate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <returns>ä½œæˆã•ã‚ŒãŸ</returns>
 		public static Spectrum FromTimeSequence(int skip, int length, double[] x, double sampleRate)
 		{
 			if(x == null) return null;
@@ -79,7 +79,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒRƒs[‚ğì¬B
+		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆã€‚
 		/// </summary>
 		/// <returns></returns>
 		public Spectrum Clone()
@@ -88,7 +88,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// len ‚ğ’´‚¦‚È‚¢Å‘å‚Ì2‚Ì‚×‚«‚ğ‹‚ß‚éB
+		/// len ã‚’è¶…ãˆãªã„æœ€å¤§ã®2ã®ã¹ãã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		/// <param name="len"></param>
 		/// <returns></returns>
@@ -100,7 +100,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ü”g”—Ìˆæ‚Ìƒf[ƒ^”B
+		/// å‘¨æ³¢æ•°é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿æ•°ã€‚
 		/// </summary>
 		public int Count
 		{
@@ -108,7 +108,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŠÔ—Ìˆæ‚Ìƒf[ƒ^”B
+		/// æ™‚é–“é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿æ•°ã€‚
 		/// </summary>
 		public int TimeLength
 		{
@@ -116,7 +116,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// i ”Ô–Ú‚Ìƒf[ƒ^‚ğ•¡‘f”’l‚Å•Ô‚·B
+		/// i ç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡ç´ æ•°å€¤ã§è¿”ã™ã€‚
 		/// </summary>
 		public Complex this[int i]
 		{
@@ -139,7 +139,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// U•“Á«‚Ì•½‹Ï’l‚ª0dB‚É‚È‚é‚æ‚¤‚É³‹K‰»
+		/// æŒ¯å¹…ç‰¹æ€§ã®å¹³å‡å€¤ãŒ0dBã«ãªã‚‹ã‚ˆã†ã«æ­£è¦åŒ–
 		/// </summary>
 		public void Normalize()
 		{
@@ -151,7 +151,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Œn—ñ‚ğ•Ô‚·B
+		/// æ™‚ç³»åˆ—ã‚’è¿”ã™ã€‚
 		/// </summary>
 		public double[] TimeSequence
 		{
@@ -166,10 +166,10 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// x ‚ğƒqƒ‹ƒxƒ‹ƒg•ÏŠ·‚·‚éB
+		/// x ã‚’ãƒ’ãƒ«ãƒ™ãƒ«ãƒˆå¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">•ÏŠ·Œ³</param>
-		/// <returns>•ÏŠ·Œã</returns>
+		/// <param name="x">å¤‰æ›å…ƒ</param>
+		/// <returns>å¤‰æ›å¾Œ</returns>
 		public static double[] HilbertTransform(double[] x)
 		{
 			int N = x.Length;
@@ -201,11 +201,11 @@ namespace SpectrumAnalysis
 		}//HilbertTransform
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì˜a A(ƒÖ) + B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å’Œ A(Ï‰) + B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>˜a</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å’Œ</returns>
 		public static Spectrum operator+ (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -215,11 +215,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì· A(ƒÖ) - B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å·® A(Ï‰) - B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>·</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å·®</returns>
 		public static Spectrum operator- (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -229,11 +229,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚ÌÏ A(ƒÖ) * B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®ç© A(Ï‰) * B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Ï</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ç©</returns>
 		public static Spectrum operator* (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -254,11 +254,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹“¯m‚Ì¤ A(ƒÖ) / B(ƒÖ)B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«åŒå£«ã®å•† A(Ï‰) / B(Ï‰)ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>¤</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>å•†</returns>
 		public static Spectrum operator/ (Spectrum a, Spectrum b)
 		{
 			Spectrum c = a.Clone();
@@ -268,7 +268,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒpƒ[ƒXƒyƒNƒgƒ‹[dB]‚ğæ“¾B
+		/// ãƒ‘ãƒ¯ãƒ¼ã‚¹ãƒšã‚¯ãƒˆãƒ«[dB]ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetPower()
 		{
@@ -278,7 +278,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// U•“Á«‚ğæ“¾B
+		/// æŒ¯å¹…ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetAmplitude()
 		{
@@ -288,7 +288,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ÌƒXƒ€[ƒWƒ“ƒO‚ğs‚¤B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
 		/// <param name="data"></param>
 		public static void Smooth(double[] data)
@@ -314,7 +314,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š“Á«‚ğæ“¾B
+		/// ä½ç›¸ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public double[] GetPhase()
 		{
@@ -324,9 +324,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š‚ÌƒAƒ“ƒ‰ƒbƒsƒ“ƒO‚ğs‚¤B
+		/// ä½ç›¸ã®ã‚¢ãƒ³ãƒ©ãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="phase">ˆÊ‘Š‚Ì“ü‚Á‚½”z—ñ</param>
+		/// <param name="phase">ä½ç›¸ã®å…¥ã£ãŸé…åˆ—</param>
 		public static void Unwrap(double[] phase)
 		{
 			double tmp = 0;
@@ -343,7 +343,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ˆÊ‘Š“Á«‚ğæ“¾B
+		/// ä½ç›¸ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public static double[] GetPhaseDalay(double[] phase, double fs)
 		{
@@ -357,7 +357,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ŒQ“Á«‚ğæ“¾B
+		/// ç¾¤ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
 		public static double[] GetGroupDalay(double[] phase, double fs)
 		{
@@ -373,9 +373,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‚ğ‹‚ß‚éB
+		/// æœ€å°ä½ç›¸ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>•ÏŠ·Œã</returns>
+		/// <returns>å¤‰æ›å¾Œ</returns>
 		public double[] GetMinimumPhase()
 		{
 			int N = this.x.Length / 2;

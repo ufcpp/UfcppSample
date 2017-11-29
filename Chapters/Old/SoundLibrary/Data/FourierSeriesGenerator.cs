@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒt[ƒŠƒG‹‰”‚ğg‚Á‚Äƒf[ƒ^‚ğ¶¬‚·‚éB
+	/// ãƒ•ãƒ¼ãƒªã‚¨ç´šæ•°ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class FourierSeriesGenerator : IDataGenerator
 	{

@@ -1,57 +1,57 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ŒW””z—ñ‚ÌƒvƒƒLƒVB
+	/// ä¿‚æ•°é…åˆ—ã®ãƒ—ãƒ­ã‚­ã‚·ã€‚
 	/// </summary>
 	public interface IFirCoefficient : System.Collections.IEnumerable
 	{
 		/// <summary>
-		/// ŒW”‚Ì”‚ğæ“¾B
+		/// ä¿‚æ•°ã®æ•°ã‚’å–å¾—ã€‚
 		/// </summary>
 		int Count{get;}
 
 		/// <summary>
-		/// i ”Ô–Ú‚ÌŒW”‚ğæ“¾B
+		/// i ç•ªç›®ã®ä¿‚æ•°ã‚’å–å¾—ã€‚
 		/// </summary>
 		double this[int i]{get; set;}
 	}
 
 	/// <summary>
-	/// FIR ƒtƒBƒ‹ƒ^ƒCƒ“ƒ^[ƒtƒF[ƒXB
+	/// FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
 	/// </summary>
 	public interface IFirFilter : IFilter
 	{
 		/// <summary>
-		/// ŒW””z—ñ‚ğæ“¾B
+		/// ä¿‚æ•°é…åˆ—ã‚’å–å¾—ã€‚
 		/// </summary>
 		IFirCoefficient Coefficient{get; set;}
 	}
 
 	/// <summary>
-	/// FIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
+	/// FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class FirFilter : IFirFilter
 	{
-		protected double[] coef; // ŒW””z—ñ
-		protected CircularBuffer buff; // ’x‰„ƒoƒbƒtƒ@
+		protected double[] coef; // ä¿‚æ•°é…åˆ—
+		protected CircularBuffer buff; // é…å»¶ãƒãƒƒãƒ•ã‚¡
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public FirFilter() : this(null){}
 
 		/// <summary>
-		/// ƒ^ƒbƒv”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ã‚¿ãƒƒãƒ—æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="taps">ƒ^ƒbƒv”</param>
+		/// <param name="taps">ã‚¿ãƒƒãƒ—æ•°</param>
 		public FirFilter(int taps) : this(new double[taps]){}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”‚ğŠi”[‚µ‚½”z—ñB</param>
+		/// <param name="coef">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—ã€‚</param>
 		public FirFilter(double[] coef)
 		{
 			this.Coefficient = coef;
@@ -60,17 +60,17 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// N: ƒtƒBƒ‹ƒ^Ÿ” (= this.coef.Length - 1)
-		/// x: “ü—Í
-		/// y: o—Í
-		/// c[i]: ŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì x ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// y = x*c[N] + ƒ°_{i=0}^{N-1} d[i]*c[N-1-i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// N: ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•° (= this.coef.Length - 1)
+		/// x: å…¥åŠ›
+		/// y: å‡ºåŠ›
+		/// c[i]: ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® x ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// y = x*c[N] + Î£_{i=0}^{N-1} d[i]*c[N-1-i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			this.buff.PushFront(x);
@@ -84,7 +84,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -94,7 +94,7 @@ namespace SoundLibrary.Filter
 			}
 		}
 
-		#region IFirFilter ƒƒ“ƒo
+		#region IFirFilter ãƒ¡ãƒ³ãƒ
 
 		public class CoefficientProxy : IFirCoefficient
 		{
@@ -103,7 +103,7 @@ namespace SoundLibrary.Filter
 			public CoefficientProxy(double[] x){this.x = x;}
 			public static implicit operator CoefficientProxy(double[] x){return new CoefficientProxy(x);}
 
-			#region IFirCoefficient ƒƒ“ƒo
+			#region IFirCoefficient ãƒ¡ãƒ³ãƒ
 
 			public int Count
 			{
@@ -123,7 +123,7 @@ namespace SoundLibrary.Filter
 			}
 
 			#endregion
-			#region IEnumerable ƒƒ“ƒo
+			#region IEnumerable ãƒ¡ãƒ³ãƒ
 
 			internal class Enumerator : System.Collections.IEnumerator
 			{
@@ -132,7 +132,7 @@ namespace SoundLibrary.Filter
 
 				public Enumerator(IFirCoefficient x){this.x = x; this.current = -1;}
 
-				#region IEnumerator ƒƒ“ƒo
+				#region IEnumerator ãƒ¡ãƒ³ãƒ
 
 				public void Reset(){this.current = -1;}
 
@@ -162,7 +162,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìæ“¾/İ’è
+		/// ä¿‚æ•°ã®å–å¾—/è¨­å®š
 		/// </summary>
 		public double[] Coefficient
 		{
@@ -191,10 +191,10 @@ namespace SoundLibrary.Filter
 	}//class FirFilter
 
 	/// <summary>
-	/// üŒ`ˆÊ‘Š FIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
-	/// ŒW”‚ªÀ‘ÎÛ‚Å‚ ‚é‚±‚Æ‚ğ—˜—p‚µ‚ÄŒvZ—Ê/ƒƒ‚ƒŠ—ÊíŒ¸B
-	/// Šï”ƒ^ƒbƒvƒo[ƒWƒ‡ƒ“
-	/// (ƒ^ƒbƒv” 2n - 1 ‚ÅAcoef[n-1-i] == coef[n-1+i] foreach i)
+	/// ç·šå½¢ä½ç›¸ FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
+	/// ä¿‚æ•°ãŒå®Ÿå¯¾è±¡ã§ã‚ã‚‹ã“ã¨ã‚’åˆ©ç”¨ã—ã¦è¨ˆç®—é‡/ãƒ¡ãƒ¢ãƒªé‡å‰Šæ¸›ã€‚
+	/// å¥‡æ•°ã‚¿ãƒƒãƒ—ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	/// (ã‚¿ãƒƒãƒ—æ•° 2n - 1 ã§ã€coef[n-1-i] == coef[n-1+i] foreach i)
 	/// </summary>
 	public class OddLinearFir : IFirFilter
 	{
@@ -202,20 +202,20 @@ namespace SoundLibrary.Filter
 		protected CircularBuffer buff;
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public OddLinearFir() : this(null){}
 
 		/// <summary>
-		/// ƒ^ƒbƒv”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ã‚¿ãƒƒãƒ—æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”  2n - 1</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•° ï¼ 2n - 1</param>
 		public OddLinearFir(int n) : this(new double[n]){}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”‚ğŠi”[‚µ‚½”z—ñB</param>
+		/// <param name="coef">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—ã€‚</param>
 		public OddLinearFir(double[] coef)
 		{
 			this.Coefficient = coef;
@@ -224,17 +224,17 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// n: ƒ^ƒbƒv”‚ª 2n + 1 (n = this.coef.Length - 1)
-		/// x: “ü—Í
-		/// y: o—Í
-		/// c[i]: ŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì x ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// y = d[n]*c[n] + ƒ°_{i=1}^{n} (d[n+i] + d[n-i])*c[i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// n: ã‚¿ãƒƒãƒ—æ•°ãŒ 2n + 1 (n = this.coef.Length - 1)
+		/// x: å…¥åŠ›
+		/// y: å‡ºåŠ›
+		/// c[i]: ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® x ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// y = d[n]*c[n] + Î£_{i=1}^{n} (d[n+i] + d[n-i])*c[i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			this.buff.PushFront(x);
@@ -249,7 +249,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -259,7 +259,7 @@ namespace SoundLibrary.Filter
 			}
 		}
 
-		#region IFirFilter ƒƒ“ƒo
+		#region IFirFilter ãƒ¡ãƒ³ãƒ
 
 		public class CoefficientProxy : IFirCoefficient
 		{
@@ -268,7 +268,7 @@ namespace SoundLibrary.Filter
 			public CoefficientProxy(double[] x){this.x = x;}
 			public static implicit operator CoefficientProxy(double[] x){return new CoefficientProxy(x);}
 
-			#region IFirCoefficient ƒƒ“ƒo
+			#region IFirCoefficient ãƒ¡ãƒ³ãƒ
 
 			public int Count
 			{
@@ -294,7 +294,7 @@ namespace SoundLibrary.Filter
 			}
 
 			#endregion
-			#region IEnumerable ƒƒ“ƒo
+			#region IEnumerable ãƒ¡ãƒ³ãƒ
 
 			public System.Collections.IEnumerator GetEnumerator()
 			{
@@ -311,7 +311,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìæ“¾/İ’è
+		/// ä¿‚æ•°ã®å–å¾—/è¨­å®š
 		/// </summary>
 		public double[] Coefficient
 		{
@@ -340,10 +340,10 @@ namespace SoundLibrary.Filter
 	}//class OddLinearFir
 
 	/// <summary>
-	/// üŒ`ˆÊ‘Š FIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
-	/// ŒW”‚ªÀ‘ÎÛ‚Å‚ ‚é‚±‚Æ‚ğ—˜—p‚µ‚ÄŒvZ—Ê/ƒƒ‚ƒŠ—ÊíŒ¸B
-	/// ‹ô”ƒ^ƒbƒvƒo[ƒWƒ‡ƒ“
-	/// (ƒ^ƒbƒv” 2n ‚ÅAcoef[n-1-i] == coef[n+i] foreach i)
+	/// ç·šå½¢ä½ç›¸ FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
+	/// ä¿‚æ•°ãŒå®Ÿå¯¾è±¡ã§ã‚ã‚‹ã“ã¨ã‚’åˆ©ç”¨ã—ã¦è¨ˆç®—é‡/ãƒ¡ãƒ¢ãƒªé‡å‰Šæ¸›ã€‚
+	/// å¶æ•°ã‚¿ãƒƒãƒ—ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	/// (ã‚¿ãƒƒãƒ—æ•° 2n ã§ã€coef[n-1-i] == coef[n+i] foreach i)
 	/// </summary>
 	public class EvenLinearFir : IFirFilter
 	{
@@ -351,20 +351,20 @@ namespace SoundLibrary.Filter
 		protected CircularBuffer buff;
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public EvenLinearFir() : this(null){}
 
 		/// <summary>
-		/// ƒ^ƒbƒv”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ã‚¿ãƒƒãƒ—æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”  2n - 1</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•° ï¼ 2n - 1</param>
 		public EvenLinearFir(int n) : this(new double[n]){}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”‚ğŠi”[‚µ‚½”z—ñB</param>
+		/// <param name="coef">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—ã€‚</param>
 		public EvenLinearFir(double[] coef)
 		{
 			this.Coefficient = coef;
@@ -373,17 +373,17 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// n: ƒ^ƒbƒv”‚ª 2n (n = this.coef.Length)
-		/// x: “ü—Í
-		/// y: o—Í
-		/// c[i]: ŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì x ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// y = ƒ°_{i=1}^{n} (d[n+i] + d[n-1-i])*c[i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// n: ã‚¿ãƒƒãƒ—æ•°ãŒ 2n (n = this.coef.Length)
+		/// x: å…¥åŠ›
+		/// y: å‡ºåŠ›
+		/// c[i]: ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® x ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// y = Î£_{i=1}^{n} (d[n+i] + d[n-1-i])*c[i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			this.buff.PushFront(x);
@@ -398,7 +398,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -408,7 +408,7 @@ namespace SoundLibrary.Filter
 			}
 		}
 
-		#region IFirFilter ƒƒ“ƒo
+		#region IFirFilter ãƒ¡ãƒ³ãƒ
 
 		public class CoefficientProxy : IFirCoefficient
 		{
@@ -417,7 +417,7 @@ namespace SoundLibrary.Filter
 			public CoefficientProxy(double[] x){this.x = x;}
 			public static implicit operator CoefficientProxy(double[] x){return new CoefficientProxy(x);}
 
-			#region IFirCoefficient ƒƒ“ƒo
+			#region IFirCoefficient ãƒ¡ãƒ³ãƒ
 
 			public int Count
 			{
@@ -443,7 +443,7 @@ namespace SoundLibrary.Filter
 			}
 
 			#endregion
-			#region IEnumerable ƒƒ“ƒo
+			#region IEnumerable ãƒ¡ãƒ³ãƒ
 
 			public System.Collections.IEnumerator GetEnumerator()
 			{
@@ -460,7 +460,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìæ“¾/İ’è
+		/// ä¿‚æ•°ã®å–å¾—/è¨­å®š
 		/// </summary>
 		public double[] Coefficient
 		{

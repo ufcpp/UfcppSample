@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ShelvingEqualizer ‚ğì¬‚·‚éB
+	/// ShelvingEqualizer ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class ShelvingEqualizerGenerator : FilterGenerator
 	{
-		const string FilterName = "’áˆæ“§‰ßƒtƒBƒ‹ƒ^";
-		const string CenterName = "’†Sü”g”";
-		const string QName = "Q’l";
-		const string GainName = "‘•—¦";
+		const string FilterName = "ä½åŸŸé€éãƒ•ã‚£ãƒ«ã‚¿";
+		const string CenterName = "ä¸­å¿ƒå‘¨æ³¢æ•°";
+		const string QName = "Qå€¤";
+		const string GainName = "å¢—å¹…ç‡";
 
 		public ShelvingEqualizerGenerator()
 		{
@@ -36,7 +36,7 @@ namespace SoundLibrary.Filter
 		{
 			double center = this.CenterFrequency;
 			if(center < 0 || center > Math.PI)
-				return "’†Sü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ä¸­å¿ƒå‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			return null;
 		}
@@ -62,14 +62,14 @@ namespace SoundLibrary.Filter
 	}//class ShelvingEqualizerGenerator
 
 	/// <summary>
-	/// ShelvingEqualizer ‚ğì¬‚·‚éB
+	/// ShelvingEqualizer ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class PeakingEqualizerGenerator : FilterGenerator
 	{
-		const string FilterName = "’áˆæ“§‰ßƒtƒBƒ‹ƒ^";
-		const string CenterName = "’†Sü”g”";
-		const string QName = "Q’l";
-		const string GainName = "‘•—¦";
+		const string FilterName = "ä½åŸŸé€éãƒ•ã‚£ãƒ«ã‚¿";
+		const string CenterName = "ä¸­å¿ƒå‘¨æ³¢æ•°";
+		const string QName = "Qå€¤";
+		const string GainName = "å¢—å¹…ç‡";
 
 		public PeakingEqualizerGenerator()
 		{
@@ -101,10 +101,10 @@ namespace SoundLibrary.Filter
 		{
 			double center = this.CenterFrequency;
 			if(center < 0 || center > Math.PI)
-				return "’†Sü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ä¸­å¿ƒå‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			if(this.Q == 0)
-				return "Q’l‚Í”ñ0‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "Qå€¤ã¯é0ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			return null;
 		}

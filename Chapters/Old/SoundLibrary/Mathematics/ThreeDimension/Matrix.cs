@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.ThreeDimension
 {
 	/// <summary>
-	/// 1Ÿ•ÏŠ·—p‚Ì3~3s—ñB
-	/// ‰ñ“]‚È‚Ç‚Í‰EèŒn‚ğ‰¼’èB
+	/// 1æ¬¡å¤‰æ›ç”¨ã®3Ã—3è¡Œåˆ—ã€‚
+	/// å›è»¢ãªã©ã¯å³æ‰‹ç³»ã‚’ä»®å®šã€‚
 	/// </summary>
 	public class Matrix
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		double ax, bx, cx;
 		double ay, by, cy;
 		double az, bz, cz;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Matrix()
 			:this(0, 0, 0, 0, 0, 0, 0, 0, 0) {}
@@ -71,9 +71,9 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region —v‘f‚ÌQÆ
+		#region è¦ç´ ã®å‚ç…§
 
-		#region s
+		#region è¡Œ
 		
 		public class Row
 		{
@@ -166,7 +166,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region —ñ
+		#region åˆ—
 		
 		public class Column
 		{
@@ -330,7 +330,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public static Matrix operator+ (Matrix a, Matrix b)
 		{
@@ -380,11 +380,11 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		public static Matrix operator/ (Matrix a, double x){return (1/x) * a;}
 
 		/// <summary>
-		/// s—ñ‚ÆƒxƒNƒgƒ‹‚ÌÏ AEx ‚ğŒvZB
+		/// è¡Œåˆ—ã¨ãƒ™ã‚¯ãƒˆãƒ«ã®ç© Aãƒ»x ã‚’è¨ˆç®—ã€‚
 		/// </summary>
 		/// <param name="a">A</param>
 		/// <param name="x">x</param>
-		/// <returns>AEx</returns>
+		/// <returns>Aãƒ»x</returns>
 		public static Vector operator* (Matrix a, Vector v)
 		{
 			double x = a.ax * v.x + a.bx * v.y + a.cx * v.z;
@@ -394,11 +394,11 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// s—ñ‚ÆƒxƒNƒgƒ‹‚ÌÏ x^tEA ‚ğŒvZ(x^t ‚Í x ‚Ì“]’u)B
+		/// è¡Œåˆ—ã¨ãƒ™ã‚¯ãƒˆãƒ«ã®ç© x^tãƒ»A ã‚’è¨ˆç®—(x^t ã¯ x ã®è»¢ç½®)ã€‚
 		/// </summary>
 		/// <param name="a">A</param>
 		/// <param name="x">x</param>
-		/// <returns>x^tEA</returns>
+		/// <returns>x^tãƒ»A</returns>
 		public static Vector operator* (Vector v, Matrix a)
 		{
 			double x = a.ax * v.x + a.ay * v.y + a.az * v.z;
@@ -408,12 +408,12 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ‹ts—ñE—]ˆöqEs—ñ®
+		#region é€†è¡Œåˆ—ãƒ»ä½™å› å­ãƒ»è¡Œåˆ—å¼
 
 		/// <summary>
-		/// ‹ts—ñ‚ğ‹‚ß‚éB
+		/// é€†è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>‹ts—ñ</returns>
+		/// <returns>é€†è¡Œåˆ—</returns>
 		public Matrix Inverse()
 		{
 			double ax = this.by * this.cz - this.bz * this.cy;
@@ -437,9 +437,9 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// —]ˆöqs—ñ‚ğ‹‚ß‚éB
+		/// ä½™å› å­è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>—]ˆöqs—ñ</returns>
+		/// <returns>ä½™å› å­è¡Œåˆ—</returns>
 		public Matrix Adjugate()
 		{
 			double ax = this.by * this.cz - this.bz * this.cy;
@@ -461,9 +461,9 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// s—ñ®‚ğ‹‚ß‚éB
+		/// è¡Œåˆ—å¼ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>s—ñ®</returns>
+		/// <returns>è¡Œåˆ—å¼</returns>
 		public double Determinant()
 		{
 			double ax = this.by * this.cz - this.bz * this.cy;
@@ -474,12 +474,12 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region “Áê‚Ès—ñ‚ğì¬
+		#region ç‰¹æ®Šãªè¡Œåˆ—ã‚’ä½œæˆ
 
-		#region ’PˆÊs—ñE—ës—ñ
+		#region å˜ä½è¡Œåˆ—ãƒ»é›¶è¡Œåˆ—
 
 		/// <summary>
-		/// ’PˆÊs—ñB
+		/// å˜ä½è¡Œåˆ—ã€‚
 		/// </summary>
 		public static Matrix I
 		{
@@ -493,7 +493,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// —ës—ñB
+		/// é›¶è¡Œåˆ—ã€‚
 		/// </summary>
 		public static Matrix O
 		{
@@ -507,12 +507,12 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region x, y, z ²‚ğ’†S‚Æ‚·‚é‰ñ“]
+		#region x, y, z è»¸ã‚’ä¸­å¿ƒã¨ã™ã‚‹å›è»¢
 
 		/// <summary>
-		/// X ²‚ğ’†S‚É‰ñ“]‚·‚és—ñ‚ğ‹‚ß‚éB
+		/// X è»¸ã‚’ä¸­å¿ƒã«å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="theta">‰ñ“]Šp</param>
+		/// <param name="theta">å›è»¢è§’</param>
 		public void RotateX(double theta)
 		{
 			double cos = Math.Cos(theta);
@@ -531,9 +531,9 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// Y ²‚ğ’†S‚É‰ñ“]‚·‚és—ñ‚ğ‹‚ß‚éB
+		/// Y è»¸ã‚’ä¸­å¿ƒã«å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="theta">‰ñ“]Šp</param>
+		/// <param name="theta">å›è»¢è§’</param>
 		public void RotateY(double theta)
 		{
 			double cos = Math.Cos(theta);
@@ -552,9 +552,9 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// Z ²‚ğ’†S‚É‰ñ“]‚·‚és—ñ‚ğ‹‚ß‚éB
+		/// Z è»¸ã‚’ä¸­å¿ƒã«å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="theta">‰ñ“]Šp</param>
+		/// <param name="theta">å›è»¢è§’</param>
 		public void RotateZ(double theta)
 		{
 			double cos = Math.Cos(theta);
@@ -573,13 +573,13 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region ”CˆÓ‚Ì²‚ğ’†S‚Æ‚·‚é‰ñ“]
+		#region ä»»æ„ã®è»¸ã‚’ä¸­å¿ƒã¨ã™ã‚‹å›è»¢
 
 		/// <summary>
-		/// ²ƒxƒNƒgƒ‹(axis)‚ğ’†S‚ÉƒÆ(theta)‰ñ“]‚·‚és—ñ‚ğ‹‚ß‚éB
+		/// è»¸ãƒ™ã‚¯ãƒˆãƒ«(axis)ã‚’ä¸­å¿ƒã«Î¸(theta)å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="theta">‰ñ“]Šp</param>
-		/// <param name="axis">‰ñ“]²ƒxƒNƒgƒ‹</param>
+		/// <param name="theta">å›è»¢è§’</param>
+		/// <param name="axis">å›è»¢è»¸ãƒ™ã‚¯ãƒˆãƒ«</param>
 		public void Rotate(double theta, Vector axis)
 		{
 			axis /= axis.Abs;

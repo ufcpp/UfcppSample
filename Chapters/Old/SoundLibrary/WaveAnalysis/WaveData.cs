@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.SpectrumAnalysis;
 using SoundLibrary.Wave;
@@ -6,17 +6,17 @@ using SoundLibrary.Wave;
 namespace SoundLibrary.WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
-	/// Œø—¦‚ğl‚¦‚ÄAŒn—ñ‚Ì‚Ü‚Üƒf[ƒ^‚ğ•Û‚µ‚Ä‚¨‚­ WaveTime ‚ÆA
-	/// ü”g”—Ìˆæ‚É•ÏŠ·‚µ‚Äƒf[ƒ^‚ğ•Û‚µ‚Ä‚¨‚­ WaveFrequency ‚ÆA
-	/// Middle/Side Œ`®‚Åƒf[ƒ^‚ğ•Û‚µ‚Ä‚¨‚­ WaveMS ‚É•ª‚¯‚éB
-	/// ‚±‚ÌƒNƒ‰ƒX‚Í’ŠÛŠî’êƒNƒ‰ƒXB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
+	/// åŠ¹ç‡ã‚’è€ƒãˆã¦ã€æ™‚ç³»åˆ—ã®ã¾ã¾ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã—ã¦ãŠã WaveTime ã¨ã€
+	/// å‘¨æ³¢æ•°é ˜åŸŸã«å¤‰æ›ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã—ã¦ãŠã WaveFrequency ã¨ã€
+	/// Middle/Side å½¢å¼ã§ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã—ã¦ãŠã WaveMS ã«åˆ†ã‘ã‚‹ã€‚
+	/// ã“ã®ã‚¯ãƒ©ã‚¹ã¯æŠ½è±¡åŸºåº•ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public abstract class WaveData
 	{
 		FormatHeader header;
 
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		public WaveData(){}
 
@@ -26,25 +26,25 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		#endregion
-		#region Wave ƒwƒbƒ_EŒn—ñƒf[ƒ^‚Ìæ“¾
+		#region Wave ãƒ˜ãƒƒãƒ€ãƒ»æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 
 		/// <summary>
-		/// Wave ƒwƒbƒ_‚ğæ“¾B
+		/// Wave ãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã€‚
 		/// </summary>
 		public FormatHeader Header{get{return this.header;}}
 
 		/// <summary>
-		/// Œn—ñ L ch M†‚ğæ“¾B
+		/// æ™‚ç³»åˆ— L ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract double[] TimeL{set; get;}
 
 		/// <summary>
-		/// Œn—ñ R ch M†‚ğæ“¾B
+		/// æ™‚ç³»åˆ— R ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract double[] TimeR{set; get;}
 
 		/// <summary>
-		/// Œn—ñ‚Ì’·‚³B
+		/// æ™‚ç³»åˆ—ã®é•·ã•ã€‚
 		/// </summary>
 		public virtual int TimeLength
 		{
@@ -52,20 +52,20 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		#endregion
-		#region ü”g”“Á«‚Ìæ“¾Eİ’è
+		#region å‘¨æ³¢æ•°ç‰¹æ€§ã®å–å¾—ãƒ»è¨­å®š
 
 		/// <summary>
-		/// ü”g”“Á« L ch M†‚ğæ“¾B
+		/// å‘¨æ³¢æ•°ç‰¹æ€§ L ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract Spectrum Left{set; get;}
 
 		/// <summary>
-		/// ü”g”“Á« R ch M†‚ğæ“¾B
+		/// å‘¨æ³¢æ•°ç‰¹æ€§ R ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract Spectrum Right{set; get;}
 
 		/// <summary>
-		/// ü”g”“Á« Middle (L + R) ch M†‚ğæ“¾B
+		/// å‘¨æ³¢æ•°ç‰¹æ€§ Middle (L + R) ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public virtual Spectrum Middle
 		{
@@ -74,7 +74,7 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ü”g”“Á« Side (L - R) ch M†‚ğæ“¾B
+		/// å‘¨æ³¢æ•°ç‰¹æ€§ Side (L - R) ch ä¿¡å·ã‚’å–å¾—ã€‚
 		/// </summary>
 		public virtual Spectrum Side
 		{
@@ -83,7 +83,7 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// Left/Right ch M†‚ğİ’èB
+		/// Left/Right ch ä¿¡å·ã‚’è¨­å®šã€‚
 		/// </summary>
 		/// <param name="middle">M ch</param>
 		/// <param name="side">S ch</param>
@@ -94,7 +94,7 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// Middle/Side ch M†‚ğİ’èB
+		/// Middle/Side ch ä¿¡å·ã‚’è¨­å®šã€‚
 		/// </summary>
 		/// <param name="middle">M ch</param>
 		/// <param name="side">S ch</param>
@@ -105,7 +105,7 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ü”g”“Á«‚Ì’·‚³B
+		/// å‘¨æ³¢æ•°ç‰¹æ€§ã®é•·ã•ã€‚
 		/// </summary>
 		public virtual int Count
 		{
@@ -113,44 +113,44 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		#endregion
-		#region “à•”Œ`®‚Ì•ÏŠ·
+		#region å†…éƒ¨å½¢å¼ã®å¤‰æ›
 
 		/// <summary>
-		/// “à•”Œ`®‚ğŒn—ñ‚É•ÏŠ·B
+		/// å†…éƒ¨å½¢å¼ã‚’æ™‚ç³»åˆ—ã«å¤‰æ›ã€‚
 		/// </summary>
-		/// <returns>“à•”Œ`®‚ğŒn—ñ‚Å‚Â WaveData</returns>
+		/// <returns>å†…éƒ¨å½¢å¼ã‚’æ™‚ç³»åˆ—ã§æŒã¤ WaveData</returns>
 		public WaveTime ToTime()
 		{
 			return new WaveTime(this.header, this.TimeL, this.TimeR);
 		}
 
 		/// <summary>
-		/// “à•”Œ`®‚ğü”g”“Á«‚É•ÏŠ·B
+		/// å†…éƒ¨å½¢å¼ã‚’å‘¨æ³¢æ•°ç‰¹æ€§ã«å¤‰æ›ã€‚
 		/// </summary>
-		/// <returns>“à•”Œ`®‚ğü”g”“Á«‚Å‚Â WaveData</returns>
+		/// <returns>å†…éƒ¨å½¢å¼ã‚’å‘¨æ³¢æ•°ç‰¹æ€§ã§æŒã¤ WaveData</returns>
 		public WaveFrequency ToSpectrum()
 		{
 			return new WaveFrequency(this.header, this.Left, this.Right);
 		}
 
 		/// <summary>
-		/// “à•”Œ`®‚ğü”g”“Á«(Middle/Side)‚É•ÏŠ·B
+		/// å†…éƒ¨å½¢å¼ã‚’å‘¨æ³¢æ•°ç‰¹æ€§(Middle/Side)ã«å¤‰æ›ã€‚
 		/// </summary>
-		/// <returns>“à•”Œ`®‚ğü”g”“Á«‚Å‚Â WaveData</returns>
+		/// <returns>å†…éƒ¨å½¢å¼ã‚’å‘¨æ³¢æ•°ç‰¹æ€§ã§æŒã¤ WaveData</returns>
 		public WaveMS ToMS()
 		{
 			return new WaveMS(this.header, this.Middle, this.Side);
 		}
 
 		#endregion
-		#region ü”g”“Á«‚Ì‰ğÍE“Á«’²®‚È‚Ç
+		#region å‘¨æ³¢æ•°ç‰¹æ€§ã®è§£æãƒ»ç‰¹æ€§èª¿æ•´ãªã©
 
 		/// <summary>
-		/// ¶‰E‚ÌŠÔ·‚ğæ“¾B
-		/// ³: Left ch ‚Ì•û‚ª’x‚¢B
-		/// •‰: Right ch ‚Ì•û‚ª’x‚¢B
+		/// å·¦å³ã®æ™‚é–“å·®ã‚’å–å¾—ã€‚
+		/// æ­£: Left ch ã®æ–¹ãŒé…ã„ã€‚
+		/// è² : Right ch ã®æ–¹ãŒé…ã„ã€‚
 		/// </summary>
-		/// <returns>¶‰E‚ÌŠÔ·</returns>
+		/// <returns>å·¦å³ã®æ™‚é–“å·®</returns>
 		public int GetDelay()
 		{
 			return SoundLibrary.Mathematics.Discrete.Function.Argmax(
@@ -158,10 +158,10 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ’x‰„‚ğ—^‚¦‚éB
+		/// é…å»¶ã‚’ä¸ãˆã‚‹ã€‚
 		/// </summary>
-		/// <param name="delay">’x‰„ŠÔ</param>
-		/// <returns>’x‰„‚ğ—^‚¦‚½Œã‚Ìƒf[ƒ^</returns>
+		/// <param name="delay">é…å»¶æ™‚é–“</param>
+		/// <returns>é…å»¶ã‚’ä¸ãˆãŸå¾Œã®ãƒ‡ãƒ¼ã‚¿</returns>
 		public WaveData AddDelay(int delay)
 		{
 			WaveTime w = this.ToTime();
@@ -184,11 +184,11 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‰»‚·‚éB
-		/// ¶‰E‚ÌM†‚Ì’x‰„·‚à•t‰ÁB
+		/// æœ€å°ä½ç›¸åŒ–ã™ã‚‹ã€‚
+		/// å·¦å³ã®ä¿¡å·ã®é…å»¶å·®ã‚‚ä»˜åŠ ã€‚
 		/// </summary>
-		/// <param name="baseDelay">L/R —¼•û‚É‚©‚¯‚é’x‰„</param>
-		/// <returns>Å¬ˆÊ‘Š‰»‚µ‚½‚Ìƒf[ƒ^</returns>
+		/// <param name="baseDelay">L/R ä¸¡æ–¹ã«ã‹ã‘ã‚‹é…å»¶</param>
+		/// <returns>æœ€å°ä½ç›¸åŒ–ã—ãŸã®ãƒ‡ãƒ¼ã‚¿</returns>
 		public WaveData ConvertToMinimumPhase(int baseDelay)
 		{
 			int delay = this.GetDelay();
@@ -204,8 +204,8 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// Å¬ˆÊ‘Š‰»‚·‚éB
-		/// ¶‰E‚ÌM†‚Ì’x‰„·‚à•t‰ÁB
+		/// æœ€å°ä½ç›¸åŒ–ã™ã‚‹ã€‚
+		/// å·¦å³ã®ä¿¡å·ã®é…å»¶å·®ã‚‚ä»˜åŠ ã€‚
 		/// </summary>
 		public WaveData ConvertToMinimumPhase()
 		{
@@ -216,7 +216,7 @@ namespace SoundLibrary.WaveAnalysis
 		/// F = this<br />
 		/// [Gl Gr]   [Fl Fr]^-1<br />
 		/// [Gr Gl] = [Fr Fl]   <br />
-		/// G ‚ğ‹‚ß‚éB
+		/// G ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
 		/// <returns>G</returns>
 		public WaveData Invert()
@@ -231,13 +231,13 @@ namespace SoundLibrary.WaveAnalysis
 		/// [Cl]   [Bl Br][Al]   [Al Ar][Bl]<br />
 		/// [Cr] = [Br Bl][Ar] = [Ar Al][Br]<br />
 		/// 
-		/// c ‚ğ‹‚ß‚éB
+		/// c ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// c.Middle = a.Middle * b.Middle,
 		/// c.Side = a.Side * b.Side
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		public static WaveData operator* (WaveData a, WaveData b)
 		{
 			return new WaveMS(a.header, a.Middle * b.Middle, a.Side * b.Side);
@@ -250,22 +250,22 @@ namespace SoundLibrary.WaveAnalysis
 		/// [Cl]   [Bl Br]^-1[Al]<br />
 		/// [Cr] = [Br Bl]   [Ar]<br />
 		/// 
-		/// c ‚ğ‹‚ß‚éB
+		/// c ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// c.Middle = a.Middle / b.Middle,
 		/// c.Side = a.Side / b.Side
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		public static WaveData operator/ (WaveData a, WaveData b)
 		{
 			return new WaveMS(a.header, a.Middle / b.Middle, a.Side / b.Side);
 		}
 
 		/// <summary>
-		/// Left/Right ‚É s ‚ğŠ|‚¯‚éB
+		/// Left/Right ã« s ã‚’æ›ã‘ã‚‹ã€‚
 		/// </summary>
-		/// <param name="s">ü”g”“Á«</param>
+		/// <param name="s">å‘¨æ³¢æ•°ç‰¹æ€§</param>
 		public virtual void Mul(Spectrum s)
 		{
 			this.Left *= s;
@@ -273,9 +273,9 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// Left/Right ‚ğ s ‚ÅŠ„‚éB
+		/// Left/Right ã‚’ s ã§å‰²ã‚‹ã€‚
 		/// </summary>
-		/// <param name="s">ü”g”“Á«</param>
+		/// <param name="s">å‘¨æ³¢æ•°ç‰¹æ€§</param>
 		public virtual void Div(Spectrum s)
 		{
 			this.Left /= s;
@@ -285,9 +285,9 @@ namespace SoundLibrary.WaveAnalysis
 		/// <summary>
 		/// b.Left = a.Left * s, b.Right = a.Right * s;
 		/// </summary>
-		/// <param name="a">”íæ”</param>
-		/// <param name="s">æ”</param>
-		/// <returns>æZŒ‹‰Ê</returns>
+		/// <param name="a">è¢«ä¹—æ•°</param>
+		/// <param name="s">ä¹—æ•°</param>
+		/// <returns>ä¹—ç®—çµæœ</returns>
 		public static WaveData operator* (WaveData a, Spectrum s)
 		{
 			WaveData b = a.ToSpectrum();
@@ -298,9 +298,9 @@ namespace SoundLibrary.WaveAnalysis
 		/// <summary>
 		/// b.Left = a.Left / s, b.Right = a.Right / s;
 		/// </summary>
-		/// <param name="a">”íœ”</param>
-		/// <param name="s">œ”</param>
-		/// <returns>œZŒ‹‰Ê</returns>
+		/// <param name="a">è¢«é™¤æ•°</param>
+		/// <param name="s">é™¤æ•°</param>
+		/// <returns>é™¤ç®—çµæœ</returns>
 		public static WaveData operator/ (WaveData a, Spectrum s)
 		{
 			WaveData b = a.ToSpectrum();
@@ -309,13 +309,13 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		#endregion
-		#region «‚ ‚ñ‚Ü‚è‚¢‚ç‚È‚¢‹C‚ª‚·‚éB
+		#region â†“ã‚ã‚“ã¾ã‚Šã„ã‚‰ãªã„æ°—ãŒã™ã‚‹ã€‚
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Á«‚ğæ“¾B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="spectrum">ƒXƒyƒNƒgƒ‹</param>
-		/// <param name="type">“Á«‚Ìí—Ş</param>
-		/// <returns>“Á«</returns>
+		/// <param name="spectrum">ã‚¹ãƒšã‚¯ãƒˆãƒ«</param>
+		/// <param name="type">ç‰¹æ€§ã®ç¨®é¡</param>
+		/// <returns>ç‰¹æ€§</returns>
 		public static double[] GetData(Spectrum spectrum, Property type)
 		{
 			switch(type)
@@ -370,11 +370,11 @@ namespace SoundLibrary.WaveAnalysis
 		}//GetData
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Á«‚ğæ“¾B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="channel">æ“¾‚µ‚½‚¢ƒ`ƒƒƒlƒ‹</param>
-		/// <param name="type">æ“¾‚µ‚½‚¢“Á«</param>
-		/// <returns>“Á«</returns>
+		/// <param name="channel">å–å¾—ã—ãŸã„ãƒãƒ£ãƒãƒ«</param>
+		/// <param name="type">å–å¾—ã—ãŸã„ç‰¹æ€§</param>
+		/// <returns>ç‰¹æ€§</returns>
 		public double[] GetData(Channel channel, Property type)
 		{
 			switch(channel)
@@ -392,10 +392,10 @@ namespace SoundLibrary.WaveAnalysis
 		}//GetData
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹‚Ìæ“¾B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®å–å¾—ã€‚
 		/// </summary>
-		/// <param name="channel">æ“¾‚µ‚½‚¢ƒ`ƒƒƒlƒ‹</param>
-		/// <returns>ƒXƒyƒNƒgƒ‹</returns>
+		/// <param name="channel">å–å¾—ã—ãŸã„ãƒãƒ£ãƒãƒ«</param>
+		/// <returns>ã‚¹ãƒšã‚¯ãƒˆãƒ«</returns>
 		public Spectrum GetSpectrum(Channel channel)
 		{
 			switch(channel)
@@ -413,32 +413,32 @@ namespace SoundLibrary.WaveAnalysis
 		}//GetSpectrum
 
 		/// <summary>
-		/// ƒ`ƒƒƒlƒ‹‚Ìƒ^ƒCƒvB
+		/// ãƒãƒ£ãƒãƒ«ã®ã‚¿ã‚¤ãƒ—ã€‚
 		/// </summary>
 		public enum Channel
 		{
-			Left,   // L ƒ`ƒƒƒlƒ‹
-			Right,  // R ƒ`ƒƒƒlƒ‹
+			Left,   // L ãƒãƒ£ãƒãƒ«
+			Right,  // R ãƒãƒ£ãƒãƒ«
 			LR,     // Left / Right
 			RL,     // Right / Left
-			Middle, // M ƒ`ƒƒƒlƒ‹
-			Side,   // S ƒ`ƒƒƒlƒ‹
+			Middle, // M ãƒãƒ£ãƒãƒ«
+			Side,   // S ãƒãƒ£ãƒãƒ«
 			MS,     // Middle / Side
 			SM,     // Side / Middle
 		}
 
 		/// <summary>
-		/// “Á«‚Ìƒ^ƒCƒvB
+		/// ç‰¹æ€§ã®ã‚¿ã‚¤ãƒ—ã€‚
 		/// </summary>
 		public enum Property
 		{
-			Amplitude,    // U•“Á«
-			Phase,        // ˆÊ‘Š“Á«
-			PhaseDelay,   // ˆÊ‘Š’x‰„“Á«
-			GroupDelay,   // ŒQ’x‰„“Á«
-			MinimumPhase, // Å¬ˆÊ‘Š“Á«
-			AllPassPhase, // ƒI[ƒ‹ƒpƒXˆÊ‘Š“Á«
-			TimeSequence, // Œn—ñƒf[ƒ^
+			Amplitude,    // æŒ¯å¹…ç‰¹æ€§
+			Phase,        // ä½ç›¸ç‰¹æ€§
+			PhaseDelay,   // ä½ç›¸é…å»¶ç‰¹æ€§
+			GroupDelay,   // ç¾¤é…å»¶ç‰¹æ€§
+			MinimumPhase, // æœ€å°ä½ç›¸ç‰¹æ€§
+			AllPassPhase, // ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸ç‰¹æ€§
+			TimeSequence, // æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿
 		}
 		#endregion
 	}//class Wave

@@ -1,22 +1,22 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ³Œ·”g”{‰¹—ñB
+	/// æ­£å¼¦æ³¢å€éŸ³åˆ—ã€‚
 	/// </summary>
 	public class HarmonicTone : Sound
 	{
-		int length;       // ‰¹‚Ì’·‚³
-		double frequency; // Šî’ê‰¹‚Ìü”g”(ƒÎ‚Å³‹K‰»)
+		int length;       // éŸ³ã®é•·ã•
+		double frequency; // åŸºåº•éŸ³ã®å‘¨æ³¢æ•°(Ï€ã§æ­£è¦åŒ–)
 		PolarParameter[] parameters;
 
 		/// <summary>
-		/// ‰¹‚Ì’·‚³AŠî’ê‰¹‚Ìü”g”A”{‰¹—ñ‚ÌU•EˆÊ‘Š‚©‚ç¶¬B
+		/// éŸ³ã®é•·ã•ã€åŸºåº•éŸ³ã®å‘¨æ³¢æ•°ã€å€éŸ³åˆ—ã®æŒ¯å¹…ãƒ»ä½ç›¸ã‹ã‚‰ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
-		/// <param name="freq">Šî’ê‰¹‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="parameters">”{‰¹—ñ‚ÌU•(ƒŠƒjƒA’l)‚ÆˆÊ‘Š(rad)</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
+		/// <param name="freq">åŸºåº•éŸ³ã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="parameters">å€éŸ³åˆ—ã®æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)ã¨ä½ç›¸(rad)</param>
 		public HarmonicTone(int length, double freq, params PolarParameter[] parameters)
 		{
 			this.length = length;
@@ -25,11 +25,11 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// ‰¹‚Ì’·‚³AŠî’ê‰¹‚Ìü”g”A”{‰¹—ñ‚ÌU•‚©‚ç¶¬B
+		/// éŸ³ã®é•·ã•ã€åŸºåº•éŸ³ã®å‘¨æ³¢æ•°ã€å€éŸ³åˆ—ã®æŒ¯å¹…ã‹ã‚‰ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
-		/// <param name="freq">Šî’ê‰¹‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amps">”{‰¹—ñ‚ÌU•(ƒŠƒjƒA’l)</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
+		/// <param name="freq">åŸºåº•éŸ³ã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amps">å€éŸ³åˆ—ã®æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public HarmonicTone(int length, double freq, params double[] amps)
 		{
 			this.length = length;
@@ -42,12 +42,12 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// ‰¹‚Ì’·‚³AŠî’ê‰¹‚Ìü”g”A”{‰¹—ñ‚ÌU•EˆÊ‘Š‚©‚ç¶¬B
+		/// éŸ³ã®é•·ã•ã€åŸºåº•éŸ³ã®å‘¨æ³¢æ•°ã€å€éŸ³åˆ—ã®æŒ¯å¹…ãƒ»ä½ç›¸ã‹ã‚‰ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
-		/// <param name="freq">Šî’ê‰¹‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amps">”{‰¹—ñ‚ÌU•(ƒŠƒjƒA’l)</param>
-		/// <param name="phase">”{‰¹—ñ‚ÌˆÊ‘Š</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
+		/// <param name="freq">åŸºåº•éŸ³ã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amps">å€éŸ³åˆ—ã®æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
+		/// <param name="phase">å€éŸ³åˆ—ã®ä½ç›¸</param>
 		public HarmonicTone(int length, double freq, double[] amps, double[] phase)
 		{
 			this.length = length;

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace MyMath
 {
 	/// <summary>
-	/// Complex ƒNƒ‰ƒX‚Ì“®ìŠm”F
+	/// Complex ã‚¯ãƒ©ã‚¹ã®å‹•ä½œç¢ºèª
 	/// </summary>
 	class TestComplex
 	{
@@ -13,16 +13,16 @@ namespace MyMath
 
 			z = new CartesianComplex(1, 1);
 			w = new CartesianComplex(0, 1);
-			Show(z, w); // Cartesian “¯m
+			Show(z, w); // Cartesian åŒå£«
 
 			z = new PolarComplex(Math.Sqrt(2), Math.PI/4);
-			Show(z, w); // Polar ‚Æ Cartesian
+			Show(z, w); // Polar ã¨ Cartesian
 
 			w = new PolarComplex(1, Math.PI/2);
-			Show(z, w); // Polar “¯m
+			Show(z, w); // Polar åŒå£«
 
 			z = new CartesianComplex(1, 1);
-			Show(z, w); // Cartesian ‚Æ Polar
+			Show(z, w); // Cartesian ã¨ Polar
 		}//Main
 
 		static void Show(Complex z, Complex w)
@@ -30,7 +30,7 @@ namespace MyMath
 			Console.Write("z = {0}, w = {1}\n", z, w);
 			Console.Write("|z| = {0}, ", z.Abs);
 			Console.Write("||z|| = {0}\n", z.Norm());
-			Console.Write("Úz = {0}\n", z.Arg);
+			Console.Write("âˆ z = {0}\n", z.Arg);
 			Console.Write("+z = {0}, ", +z);
 			Console.Write("-z = {0}, ", -z);
 			Console.Write("~z = {0}\n", ~z);

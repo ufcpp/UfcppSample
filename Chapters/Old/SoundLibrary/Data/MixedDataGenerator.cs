@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// •¡”‚Ì IDataGenerator ‚Ìo—Í’l‚ğ¬‚º‡‚í‚¹‚½ƒf[ƒ^‚ğ¶¬B
+	/// è¤‡æ•°ã® IDataGenerator ã®å‡ºåŠ›å€¤ã‚’æ··ãœåˆã‚ã›ãŸãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã€‚
 	/// </summary>
 	public class MixedDataGenerator : IDataGenerator
 	{

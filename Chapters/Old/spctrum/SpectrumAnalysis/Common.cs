@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 
 namespace SpectrumAnalysis
 {
 	/// <summary>
-	/// Spectrum –¼‘O‹óŠÔ“à‚Ì‹¤’ÊŠÖ”ŒQ
+	/// Spectrum åå‰ç©ºé–“å†…ã®å…±é€šé–¢æ•°ç¾¤
 	/// </summary>
 	class Common
 	{
 		/// <summary>
-		/// ü”g”‚ğ³‹K‰»B
+		/// å‘¨æ³¢æ•°ã‚’æ­£è¦åŒ–ã€‚
 		/// </summary>
-		/// <param name="w">³‹K‰»‚µ‚½‚¢ü”g”</param>
-		/// <param name="ws">ƒTƒ“ƒvƒŠƒ“ƒOü”g”</param>
+		/// <param name="w">æ­£è¦åŒ–ã—ãŸã„å‘¨æ³¢æ•°</param>
+		/// <param name="ws">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°</param>
 		/// <returns></returns>
 		public static double Normalize(double w, double ws)
 		{
@@ -19,10 +19,10 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ü”g”‚ğ³‹K‰»B
-		/// ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚Í 48000HzB
+		/// å‘¨æ³¢æ•°ã‚’æ­£è¦åŒ–ã€‚
+		/// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã¯ 48000Hzã€‚
 		/// </summary>
-		/// <param name="w">³‹K‰»‚µ‚½‚¢ü”g”</param>
+		/// <param name="w">æ­£è¦åŒ–ã—ãŸã„å‘¨æ³¢æ•°</param>
 		/// <returns></returns>
 		public static double Normalize(double w)
 		{
@@ -30,32 +30,32 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// •¡‘f”‚Ìâ‘Î’l(ƒpƒ[‚ÌdB’l)‚ğ‹‚ß‚éB
+		/// è¤‡ç´ æ•°ã®çµ¶å¯¾å€¤(ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
-		/// <returns>ƒpƒ[‚ÌdB’l</returns>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
+		/// <returns>ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</returns>
 		public static double Amp(double re, double im)
 		{
 			return 10 * Math.Log10(re*re + im*im);
 		}
 
 		/// <summary>
-		/// â‘Î’l(ƒpƒ[‚ÌdB’l)‚ğ‹‚ß‚éB
+		/// çµ¶å¯¾å€¤(ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">ƒŠƒjƒA’l</param>
-		/// <returns>ƒpƒ[‚ÌdB’l</returns>
+		/// <param name="re">ãƒªãƒ‹ã‚¢å€¤</param>
+		/// <returns>ãƒ‘ãƒ¯ãƒ¼ã®dBå€¤</returns>
 		public static double Amp(double re)
 		{
 			return 20 * Math.Log10(Math.Abs(re));
 		}
 
 		/// <summary>
-		/// •¡‘f”‚Ì•ÎŠp‚ğ‹‚ß‚éB
+		/// è¤‡ç´ æ•°ã®åè§’ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
-		/// <returns>•ÎŠp</returns>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
+		/// <returns>åè§’</returns>
 		public static double Phase(double re, double im)
 		{
 			return Math.Atan2(im, re);

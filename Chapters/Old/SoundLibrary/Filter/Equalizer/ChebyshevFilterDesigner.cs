@@ -1,26 +1,26 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Equalizer
 {
 	/// <summary>
-	/// ƒ`ƒFƒrƒVƒFƒtƒtƒBƒ‹ƒ^İŒvBB
+	/// ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•ãƒ•ã‚£ãƒ«ã‚¿è¨­è¨ˆã€‚ã€‚
 	/// </summary>
 	public class ChebyshevFilterDesigner : FilterDesigner
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^í•ÊBfalse: IŒ^Atrue: IIŒ^(‹tƒ`ƒFƒrƒVƒFƒt)
+		/// ãƒ•ã‚£ãƒ«ã‚¿ç¨®åˆ¥ã€‚false: Iå‹ã€true: IIå‹(é€†ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•)
 		/// </summary>
 		bool kind;
 
 		/// <summary>
-		/// ƒÃ
+		/// Îµ
 		/// </summary>
 		double epsilon;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public ChebyshevFilterDesigner(int order, double epsilon) : this(order, epsilon, false) {}
 
@@ -31,10 +31,10 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒpƒ‰ƒ[ƒ^İ’è
+		#region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 
 		/// <summary>
-		/// ƒ`ƒFƒrƒVƒFƒtƒtƒBƒ‹ƒ^í•ÊB
+		/// ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•ãƒ•ã‚£ãƒ«ã‚¿ç¨®åˆ¥ã€‚
 		/// </summary>
 		public bool Kind
 		{
@@ -61,12 +61,12 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region —ë“_/‹É‚ÌŒvZ
+		#region é›¶ç‚¹/æ¥µã®è¨ˆç®—
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹É‚ğŒvZB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="roots">—ë“_/‹Éˆê——‚ÌŠi”[æ</param>
+		/// <param name="roots">é›¶ç‚¹/æ¥µä¸€è¦§ã®æ ¼ç´å…ˆ</param>
 		public override void GetZeroPole(ZeroPole[] roots)
 		{
 			//!
@@ -90,7 +90,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒv
+		#region ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 
 		public override void GetAnalogPrototype(Coefficient[] coefs)
 		{

@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Filter.Equalizer
 {
 	/// <summary>
-	/// ƒpƒ‰ƒƒgƒŠƒbƒNƒCƒRƒ‰ƒCƒUB
-	/// 2ŸIIR‚Ì’¼—ñÚ‘±‚ÅÀŒ»B
-	/// IIR ‚Ì“`’BŠÖ”‚Ì®‚ÍˆÈ‰º‚Ì’Ê‚è
+	/// ãƒ‘ãƒ©ãƒ¡ãƒˆãƒªãƒƒã‚¯ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã€‚
+	/// 2æ¬¡IIRã®ç›´åˆ—æ¥ç¶šã§å®Ÿç¾ã€‚
+	/// IIR ã®ä¼é”é–¢æ•°ã®å¼ã¯ä»¥ä¸‹ã®é€šã‚Š
 	/// c * (1 + b1 * z^-1 + b2 z^-2) / (1 - a1 * z^-1 - a2 z^-2)
 	/// </summary>
 	public class ParametricEqualizer : IFilter
 	{
-		#region “à•”ƒf[ƒ^Œ^
+		#region å†…éƒ¨ãƒ‡ãƒ¼ã‚¿å‹
 
 		/// <summary>
-		/// 2Ÿ IIR ‚Ìƒpƒ‰ƒ[ƒ^
+		/// 2æ¬¡ IIR ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		/// </summary>
 		public class Parameter
 		{
@@ -26,7 +26,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// 2Ÿ IIR ‚Ì1ŒÂ1ŒÂ‚Ìó‘Ô{ƒpƒ‰ƒ[ƒ^‚ğ•\‚·ƒNƒ‰ƒXB
+		/// 2æ¬¡ IIR ã®1å€‹1å€‹ã®çŠ¶æ…‹ï¼‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã€‚
 		/// </summary>
 		private class Tuple
 		{
@@ -48,13 +48,13 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		double gain;
 		ArrayList filters;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public ParametricEqualizer()
 		{
@@ -79,7 +79,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒpƒ‰ƒ[ƒ^İ’è
+		#region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 
 		public void Add(Parameter parameter)
 		{
@@ -128,7 +128,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region IFilter ƒƒ“ƒo
+		#region IFilter ãƒ¡ãƒ³ãƒ
 
 		public double GetValue(double x)
 		{
@@ -163,7 +163,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public ParametricEqualizer Clone()
 		{
@@ -176,23 +176,23 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒpƒ‰ƒ[ƒ^İŒv—p static ŠÖ”
+		#region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­è¨ˆç”¨ static é–¢æ•°
 
-		#region ‘o1Ÿ•ÏŠ·
+		#region åŒ1æ¬¡å¤‰æ›
 
 		/// <summary>
-		/// 1Ÿ‚Ì“`’BŠÖ”‚ğ‘o1•ÏŠ·‚·‚éB
+		/// 1æ¬¡ã®ä¼é”é–¢æ•°ã‚’åŒ1æ™‚å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
 		/// <remarks>
-		/// (b0 + b1 s)/(a0 + a1 s) ‚ğA‘o1Ÿ•ÏŠ·‚µ‚½Œ‹‰Ê‚ğ
-		/// (b0' + b1' z^-1)/(a0' + a1' z^-1)‚Æ‚·‚é‚Æ‚«A
-		/// a0, a1 ¨ a0', a1' ‚ğ‹‚ß‚éB
-		/// (b ‚ÉŠÖ‚µ‚Ä‚à“¯—l‚Ìè‡‚Å•ÏŠ·‰Â”\B)
+		/// (b0 + b1 s)/(a0 + a1 s) ã‚’ã€åŒ1æ¬¡å¤‰æ›ã—ãŸçµæœã‚’
+		/// (b0' + b1' z^-1)/(a0' + a1' z^-1)ã¨ã™ã‚‹ã¨ãã€
+		/// a0, a1 â†’ a0', a1' ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// (b ã«é–¢ã—ã¦ã‚‚åŒæ§˜ã®æ‰‹é †ã§å¤‰æ›å¯èƒ½ã€‚)
 		/// </remarks>
-		/// <param name="a0">a0(a0'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a1">a1(a1'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="sin">sin ƒÖs</param>
-		/// <param name="cos">cos ƒÖs</param>
+		/// <param name="a0">a0(a0'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a1">a1(a1'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="sin">sin Ï‰s</param>
+		/// <param name="cos">cos Ï‰s</param>
 		static void BilinearTransform(ref double a0, ref double a1, double sin, double cos)
 		{
 			double t0 = a0 * sin;
@@ -203,19 +203,19 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// 2Ÿ‚Ì“`’BŠÖ”‚ğ‘o1•ÏŠ·‚·‚éB
+		/// 2æ¬¡ã®ä¼é”é–¢æ•°ã‚’åŒ1æ™‚å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
 		/// <remarks>
-		/// (b0 + b1 s + b2 s^2)/(a0 + a1 s + a2 s^2) ‚ğA‘o1Ÿ•ÏŠ·‚µ‚½Œ‹‰Ê‚ğ
-		/// (b0' + b1' z^-1 + b2' z^-2)/(a0' + a1' z^-1 + a2' z^-2)‚Æ‚·‚é‚Æ‚«A
-		/// a0, a1, a2 ¨ a0', a1', a2' ‚ğ‹‚ß‚éB
-		/// (b ‚ÉŠÖ‚µ‚Ä‚à“¯—l‚Ìè‡‚Å•ÏŠ·‰Â”\B)
+		/// (b0 + b1 s + b2 s^2)/(a0 + a1 s + a2 s^2) ã‚’ã€åŒ1æ¬¡å¤‰æ›ã—ãŸçµæœã‚’
+		/// (b0' + b1' z^-1 + b2' z^-2)/(a0' + a1' z^-1 + a2' z^-2)ã¨ã™ã‚‹ã¨ãã€
+		/// a0, a1, a2 â†’ a0', a1', a2' ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// (b ã«é–¢ã—ã¦ã‚‚åŒæ§˜ã®æ‰‹é †ã§å¤‰æ›å¯èƒ½ã€‚)
 		/// </remarks>
-		/// <param name="a0">a0(a0'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a1">a1(a1'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a2">a2(a2'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="sin">sin ƒÖs</param>
-		/// <param name="cos">cos ƒÖs</param>
+		/// <param name="a0">a0(a0'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a1">a1(a1'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a2">a2(a2'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="sin">sin Ï‰s</param>
+		/// <param name="cos">cos Ï‰s</param>
 		static void BilinearTransform(ref double a0, ref double a1, ref double a2, double sin, double cos)
 		{
 			double t0 = a0 * (1 - cos);
@@ -230,7 +230,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^—p‘o1Ÿ•ÏŠ·B
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ç”¨åŒ1æ¬¡å¤‰æ›ã€‚
 		/// </summary>
 		static void BilinearTransformHPF(ref double a0, ref double a1, ref double a2, double sin, double cos)
 		{
@@ -239,7 +239,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^—p‘o1Ÿ•ÏŠ·B
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ç”¨åŒ1æ¬¡å¤‰æ›ã€‚
 		/// </summary>
 		static void BilinearTransformHPF(ref double a0, ref double a1, double sin, double cos)
 		{
@@ -253,10 +253,10 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region RBJ Audio-EQ-Cookbook Biquad ƒtƒBƒ‹ƒ^
+		#region RBJ Audio-EQ-Cookbook Biquad ãƒ•ã‚£ãƒ«ã‚¿
 
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ÌİŒvB
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆã€‚
 		/// H(s) = 1 / (s^2 + s/Q + 1)
 		/// b0 =  (1 - cos)/2
 		/// b1 =   1 - cos
@@ -265,9 +265,9 @@ namespace SoundLibrary.Filter.Equalizer
 		/// a1 =  -2*cos
 		/// a2 =   1 - alpha
 		/// </summary>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="q">Q’l</param>
-		/// <returns>ƒpƒ‰ƒ[ƒ^</returns>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="q">Qå€¤</param>
+		/// <returns>ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</returns>
 		public static Parameter GetLowPass(double w, double q)
 		{
 			double cos = Math.Cos(w);
@@ -285,7 +285,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ÌİŒvB
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆã€‚
 		/// H(s) = s^2 / (s^2 + s/Q + 1)
 		/// b0 =  (1 + cos)/2
 		/// b1 =  -(1 + cos)
@@ -294,9 +294,9 @@ namespace SoundLibrary.Filter.Equalizer
 		/// a1 =  -2*cos
 		/// a2 =   1 - alpha
 		/// </summary>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="q">Q’l</param>
-		/// <returns>ƒpƒ‰ƒ[ƒ^</returns>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="q">Qå€¤</param>
+		/// <returns>ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</returns>
 		public static Parameter GetHighPass(double w, double q)
 		{
 			double cos = Math.Cos(w);
@@ -314,7 +314,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒs[ƒLƒ“ƒOƒtƒBƒ‹ƒ^‚ÌİŒvB
+		/// ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆã€‚
 		/// H(s) = (s^2 + s*(A/Q) + 1) / (s^2 + s/(A*Q) + 1)
 		/// b0 =   1 + alpha*A
 		/// b1 =  -2*cos
@@ -323,9 +323,9 @@ namespace SoundLibrary.Filter.Equalizer
 		/// a1 =  -2*cos
 		/// a2 =   1 - alpha/A
 		/// </summary>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="q">Q’l</param>
-		/// <returns>ƒpƒ‰ƒ[ƒ^</returns>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="q">Qå€¤</param>
+		/// <returns>ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</returns>
 		public static Parameter GetPeaking(double w, double q, double g)
 		{
 			double cos = Math.Cos(w);
@@ -394,7 +394,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 #if false
-		// «‚±‚ê‚©‚ç’Ç‰Á‚µ‚Ä‚¢‚­B
+		// â†“ã“ã‚Œã‹ã‚‰è¿½åŠ ã—ã¦ã„ãã€‚
 
 BPF:        H(s) = s / (s^2 + s/Q + 1)          (constant skirt gain, peak gain = Q)
 
@@ -472,58 +472,58 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 #endif
 
 		#endregion
-		#region Butterworth ƒtƒBƒ‹ƒ^
+		#region Butterworth ãƒ•ã‚£ãƒ«ã‚¿
 
 		/// <summary>
-		/// ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌİŒvB
-		/// n ‚ª‹ô”‚Ì‚Æ‚«
-		/// H(s) = ƒ®_(k=0)^(n/2-1) {1 / (s^2 + (2cos((2k+1)/2n))s + 1)}
-		/// n ‚ªŠï”‚Ì‚Æ‚«
-		/// H(s) = ƒ®_(k=0)^(n/2-1) {1 / (s^2 + (2cos(k/n))s + 1)} ~ 1 / (1 + s)
+		/// ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆã€‚
+		/// n ãŒå¶æ•°ã®ã¨ã
+		/// H(s) = Î _(k=0)^(n/2-1) {1 / (s^2 + (2cos((2k+1)/2n))s + 1)}
+		/// n ãŒå¥‡æ•°ã®ã¨ã
+		/// H(s) = Î _(k=0)^(n/2-1) {1 / (s^2 + (2cos(k/n))s + 1)} Ã— 1 / (1 + s)
 		/// 
-		/// ˆÈ‰º‚ÌŒW”‚ğ‚Â n/2 ŒÂ‚ÌIIR‚ğ’¼—ñÚ‘±B
-		/// (k=0`n/2-1)
-		/// alpha(k,n) = sinƒÖ ~ cos((2k+1)/2n)) c (n ‹ô”)
-		/// alpha(k,n) = sinƒÖ ~ cos(k/n)) c (n Šï”)
+		/// ä»¥ä¸‹ã®ä¿‚æ•°ã‚’æŒã¤ n/2 å€‹ã®IIRã‚’ç›´åˆ—æ¥ç¶šã€‚
+		/// (k=0ï½n/2-1)
+		/// alpha(k,n) = sinÏ‰ Ã— cos((2k+1)/2n)) â€¦ (n å¶æ•°)
+		/// alpha(k,n) = sinÏ‰ Ã— cos(k/n)) â€¦ (n å¥‡æ•°)
 		/// b0 =  (1 - cos)/2
 		/// b1 =   1 - cos
 		/// b2 =  (1 - cos)/2
 		/// a0 =   1 + alpha(k,n)
 		/// a1 =  -2*cos
 		/// a2 =   1 - alpha(k,n)
-		/// (n‚ªŠï”‚Ì‚É‚Í‚³‚ç‚ÉAb0 = sin, b1 = sin, a0 = sin+cos+1, a1 = sin-cos-1)
+		/// (nãŒå¥‡æ•°ã®æ™‚ã«ã¯ã•ã‚‰ã«ã€b0 = sin, b1 = sin, a0 = sin+cos+1, a1 = sin-cos-1)
 		/// </summary>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <returns>ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public static Parameter[] GetButterworthLowPass(int n, double w)
 		{
 			return GetButterworth(n, w, 0);
 		}
 
 		/// <summary>
-		/// ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌİŒvB
+		/// ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆã€‚
 		/// </summary>
 		/// <remarks>
-		/// Ÿ” n ‚ª‹ô”‚Ì‚Æ‚«
-		/// H(s) = ƒ®_(k=0)^(n/2-1) {s^2 / (s^2 + (2cos((2k+1)/2n))s + 1)}
-		/// n ‚ªŠï”‚Ì‚Æ‚«
-		/// H(s) = ƒ®_(k=0)^(n/2-1) {s^2 / (s^2 + (2cos(k/n))s + 1)} ~ s / (1 + s)
+		/// æ¬¡æ•° n ãŒå¶æ•°ã®ã¨ã
+		/// H(s) = Î _(k=0)^(n/2-1) {s^2 / (s^2 + (2cos((2k+1)/2n))s + 1)}
+		/// n ãŒå¥‡æ•°ã®ã¨ã
+		/// H(s) = Î _(k=0)^(n/2-1) {s^2 / (s^2 + (2cos(k/n))s + 1)} Ã— s / (1 + s)
 		/// 
-		/// ˆÈ‰º‚ÌŒW”‚ğ‚Â n/2 ŒÂ‚ÌIIR‚ğ’¼—ñÚ‘±B
-		/// (k=0`n/2-1)
-		/// alpha(k,n) = sinƒÖ ~ cos((2k+1)/2n)) c (n ‹ô”)
-		/// alpha(k,n) = sinƒÖ ~ cos(k/n)) c (n Šï”)
+		/// ä»¥ä¸‹ã®ä¿‚æ•°ã‚’æŒã¤ n/2 å€‹ã®IIRã‚’ç›´åˆ—æ¥ç¶šã€‚
+		/// (k=0ï½n/2-1)
+		/// alpha(k,n) = sinÏ‰ Ã— cos((2k+1)/2n)) â€¦ (n å¶æ•°)
+		/// alpha(k,n) = sinÏ‰ Ã— cos(k/n)) â€¦ (n å¥‡æ•°)
 		/// b0 =  (1 + cos)/2
 		/// b1 =  -(1 + cos)
 		/// b2 =  (1 + cos)/2
 		/// a0 =   1 + alpha(k,n)
 		/// a1 =  -2*cos
 		/// a2 =   1 - alpha(k,n)
-		/// (n‚ªŠï”‚Ì‚É‚Í‚³‚ç‚ÉAb0 = 1+cos, b1 = -(1+cos), a0 = sin+cos+1, a1 = sin-cos-1)
+		/// (nãŒå¥‡æ•°ã®æ™‚ã«ã¯ã•ã‚‰ã«ã€b0 = 1+cos, b1 = -(1+cos), a0 = sin+cos+1, a1 = sin-cos-1)
 		/// </remarks>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
 		/// <returns></returns>
 		public static Parameter[] GetButterworthHighPass(int n, double w)
 		{
@@ -531,12 +531,12 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 		}
 
 		/// <summary>
-		/// Butterworth ƒtƒBƒ‹ƒ^‚ÌİŒv
+		/// Butterworth ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆ
 		/// </summary>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="type">0‚Ì‚Æ‚«LPFA1‚Ì‚Æ‚«HPF</param>
-		/// <returns>ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="type">0ã®ã¨ãLPFã€1ã®ã¨ãHPF</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public static Parameter[] GetButterworth(int n, double w, int type)
 		{
 			double sin = Math.Sin(w);
@@ -597,7 +597,7 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 		}
 
 		#endregion
-		#region Chebyshev ƒtƒBƒ‹ƒ^
+		#region Chebyshev ãƒ•ã‚£ãƒ«ã‚¿
 
 		public static Parameter[] GetChebyshev1LowPass(int n, double w, double epsilon)
 		{
@@ -610,13 +610,13 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 		}
 
 		/// <summary>
-		/// Chebyshev I Œ^ƒtƒBƒ‹ƒ^‚ÌİŒv
+		/// Chebyshev I å‹ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆ
 		/// </summary>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="epsilon">ƒŠƒvƒ‹‚Ì‹–—e•</param>
-		/// <param name="type">0‚Ì‚Æ‚«LPFA1‚Ì‚Æ‚«HPF</param>
-		/// <returns>ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="epsilon">ãƒªãƒ—ãƒ«ã®è¨±å®¹å¹…</param>
+		/// <param name="type">0ã®ã¨ãLPFã€1ã®ã¨ãHPF</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public static Parameter[] GetChebyshev1(int n, double w, double epsilon, int type)
 		{
 			double k = Math.Pow( (1 + Math.Sqrt(1 + epsilon*epsilon)) / epsilon, 1.0/n);
@@ -695,14 +695,14 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 		}
 
 		/// <summary>
-		/// Chebyshev ƒtƒBƒ‹ƒ^‚ÌİŒv
+		/// Chebyshev ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆ
 		/// </summary>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="epsilon">ƒŠƒvƒ‹‚Ì‹–—e•</param>
-		/// <param name="kind">false ‚Ì‚Æ‚« I Œ^ƒtƒBƒ‹ƒ^Atrue ‚Ì‚Æ‚« II Œ^ƒtƒBƒ‹ƒ^</param>
-		/// <param name="type">false ‚Ì‚Æ‚«LPFAtrue‚Ì‚Æ‚«HPF</param>
-		/// <returns>ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="epsilon">ãƒªãƒ—ãƒ«ã®è¨±å®¹å¹…</param>
+		/// <param name="kind">false ã®ã¨ã I å‹ãƒ•ã‚£ãƒ«ã‚¿ã€true ã®ã¨ã II å‹ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="type">false ã®ã¨ãLPFã€trueã®ã¨ãHPF</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public static Parameter[] GetChebyshev(int n, double w, double epsilon, bool kind, bool type)
 		{
 			double t = Math.Pow( (1 + Math.Sqrt(1 + epsilon*epsilon)) / epsilon, 1.0/n);
@@ -736,7 +736,7 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 					a0 = beta0; a1 = 1;
 					b0 = beta0; b1 = 0;
 				}
-				/* ƒeƒXƒg—p(Butterworth “Á«)
+				/* ãƒ†ã‚¹ãƒˆç”¨(Butterworth ç‰¹æ€§)
 				a0 = 1; a1 = 1;
 				b0 = 1; b1 = 0;
 				//*/
@@ -779,7 +779,7 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 					a0 = beta; a1 = alpha; a2 = 1;
 					b0 = beta; b1 = 0; b2 = 0;
 				}
-				/* ƒeƒXƒg—p(Butterworth “Á«)
+				/* ãƒ†ã‚¹ãƒˆç”¨(Butterworth ç‰¹æ€§)
 				double alpha = 2 * Math.Cos(wk);
 				a0 = 1; a1 = alpha; a2 = 1;
 				b0 = 1; b1 = 0; b2 = 0;
@@ -808,17 +808,17 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 
 		#endregion
 #if false
-		#region ‘È‰~ƒtƒBƒ‹ƒ^
+		#region æ¥•å††ãƒ•ã‚£ãƒ«ã‚¿
 
 		/// <summary>
-		/// ‘È‰~ƒtƒBƒ‹ƒ^‚ÌİŒv
+		/// æ¥•å††ãƒ•ã‚£ãƒ«ã‚¿ã®è¨­è¨ˆ
 		/// </summary>
-		/// <param name="n">ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^‚ÌŸ”</param>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="epsilon">ƒÃ</param>
+		/// <param name="n">ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æ¬¡æ•°</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="epsilon">Îµ</param>
 		/// <param name="k1">k1</param>
-		/// <param name="type">false ‚Ì‚Æ‚«LPFAtrue‚Ì‚Æ‚«HPF</param>
-		/// <returns>ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <param name="type">false ã®ã¨ãLPFã€trueã®ã¨ãHPF</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public static Parameter[] GetElliptic(int n, double w, double epsilon, double k1, bool type)
 		{
 			double t = Math.Pow( (1 + Math.Sqrt(1 + epsilon*epsilon)) / epsilon, 1.0/n);
@@ -844,7 +844,7 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 
 				a0 = 1; a1 = beta0;
 				b0 = 1; b1 = 0;
-				/* ƒeƒXƒg—p(Butterworth “Á«)
+				/* ãƒ†ã‚¹ãƒˆç”¨(Butterworth ç‰¹æ€§)
 				a0 = 1; a1 = 1;
 				b0 = 1; b1 = 0;
 				//*/
@@ -879,7 +879,7 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 
 				a0 = 1; a1 = alpha; a2 = beta;
 				b0 = 1; b1 = 0; b2 = gamma;
-				/* ƒeƒXƒg—p(Butterworth “Á«)
+				/* ãƒ†ã‚¹ãƒˆç”¨(Butterworth ç‰¹æ€§)
 				double alpha = 2 * Math.Cos(wk);
 				a0 = 1; a1 = alpha; a2 = 1;
 				b0 = 1; b1 = 0; b2 = 0;

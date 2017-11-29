@@ -1,28 +1,28 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒzƒƒCƒgƒmƒCƒY¶¬B
-	/// (Box-Muller –@‚ğ—p‚¢‚Ä³‹K—”‚ğ¶¬B)
+	/// ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºç”Ÿæˆã€‚
+	/// (Box-Muller æ³•ã‚’ç”¨ã„ã¦æ­£è¦ä¹±æ•°ã‚’ç”Ÿæˆã€‚)
 	/// </summary>
 	public class WhiteNoiseGenerator : IDataGenerator
 	{
-		double mean;  // •½‹Ï
-		double sigma; // •W€•Î·
+		double mean;  // å¹³å‡
+		double sigma; // æ¨™æº–åå·®
 		int seed;
 		Random rand;
 
 		/// <summary>
-		/// •½‹Ï0A•W€•Î·1‚ÌƒzƒƒCƒgƒmƒCƒY‚ğ¶¬B
+		/// å¹³å‡0ã€æ¨™æº–åå·®1ã®ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ç”Ÿæˆã€‚
 		/// </summary>
 		public WhiteNoiseGenerator() : this(0, 1, 0){}
 
 		/// <summary>
-		/// •½‹Ï’l‚Æ•W€•Î·‚ğw’è‚µ‚ÄƒzƒƒCƒgƒmƒCƒY‚ğ¶¬B
+		/// å¹³å‡å€¤ã¨æ¨™æº–åå·®ã‚’æŒ‡å®šã—ã¦ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="mean">•½‹Ï’l</param>
-		/// <param name="sigma">•W€•Î·</param>
+		/// <param name="mean">å¹³å‡å€¤</param>
+		/// <param name="sigma">æ¨™æº–åå·®</param>
 		public WhiteNoiseGenerator(double mean, double sigma, int seed)
 		{
 			this.mean = mean;

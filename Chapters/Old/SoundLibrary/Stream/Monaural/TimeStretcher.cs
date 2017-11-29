@@ -1,42 +1,42 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Stream.Monaural
 {
 	/// <summary>
-	/// TimeStretcher ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// TimeStretcher ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class TimeStretcher : Stream
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Stream stream; // inner stream
-		double rate; // •ÏŠ·ƒŒ[ƒgBÄ¶ŠÔ‚ª 1/rate ”{‚ÉB
-		short[] inputBuffer; // “ü—Í—pƒoƒbƒtƒ@B
-		int readSize; // Šù‚É“Ç‚İo‚³‚ê‚½ó‘Ô‚É‚ ‚éƒf[ƒ^‚Ì’·‚³B
-		short[] overlapBuffer; // ƒI[ƒo[ƒ‰ƒbƒv—pƒoƒbƒtƒ@B
-		int margin; // ƒIƒtƒZƒbƒg’Tõ—p‚Ìƒ}[ƒWƒ“B
+		double rate; // å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
+		short[] inputBuffer; // å…¥åŠ›ç”¨ãƒãƒƒãƒ•ã‚¡ã€‚
+		int readSize; // æ—¢ã«èª­ã¿å‡ºã•ã‚ŒãŸçŠ¶æ…‹ã«ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã€‚
+		short[] overlapBuffer; // ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ç”¨ãƒãƒƒãƒ•ã‚¡ã€‚
+		int margin; // ã‚ªãƒ•ã‚»ãƒƒãƒˆæ¢ç´¢ç”¨ã®ãƒãƒ¼ã‚¸ãƒ³ã€‚
 
 		const int DEFAULT_OVERLAP = 512;
 		const int DEFAULT_MARGIN = 1024;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="stream">“à•”ƒXƒgƒŠ[ƒ€</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒg</param>
+		/// <param name="stream">å†…éƒ¨ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆ</param>
 		public TimeStretcher(Stream stream, double rate) : this(stream, rate, DEFAULT_OVERLAP, DEFAULT_MARGIN)
 		{
 		}
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="stream">“à•”ƒXƒgƒŠ[ƒ€</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒg</param>
-		/// <param name="overlapSize">ƒI[ƒo[ƒ‰ƒbƒv•”•ª‚Ì’·‚³</param>
+		/// <param name="stream">å†…éƒ¨ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <param name="overlapSize">ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—éƒ¨åˆ†ã®é•·ã•</param>
 		public TimeStretcher(Stream stream, double rate, int overlapSize, int margin)
 		{
 			this.stream = stream;
@@ -48,11 +48,11 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// •ÏŠ·ƒŒ[ƒgB
-		/// Ä¶ŠÔ‚ª 1/rate ”{‚ÉB
+		/// å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚
+		/// å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
 		/// </summary>
 		public double Rate
 		{
@@ -61,8 +61,8 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		/// <summary>
-		/// •ÏŠ·ƒŒ[ƒgB
-		/// Ä¶ŠÔ‚ª temp ”{‚ÉB
+		/// å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚
+		/// å†ç”Ÿæ™‚é–“ãŒ temp å€ã«ã€‚
 		/// </summary>
 		public double Tempo
 		{
@@ -71,7 +71,7 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		/// <summary>
-		/// “Ç‚İo‚µƒf[ƒ^‚Ìƒ}[ƒWƒ“B
+		/// èª­ã¿å‡ºã—ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ¼ã‚¸ãƒ³ã€‚
 		/// </summary>
 		public int Margin
 		{
@@ -80,14 +80,14 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region Stream ƒƒ“ƒo
+		#region Stream ãƒ¡ãƒ³ãƒ
 
 		/// <remarks>
-		/// size ‚ª overlapSize ‚æ‚è‚à¬‚³‚¢‚Æ‚«A“®ì•ÛØ‘ÎÛŠOB
+		/// size ãŒ overlapSize ã‚ˆã‚Šã‚‚å°ã•ã„ã¨ãã€å‹•ä½œä¿è¨¼å¯¾è±¡å¤–ã€‚
 		/// </remarks>
 		public override int FillBuffer(short[] buffer, int offset, int size)
 		{
-			// ƒf[ƒ^‚ğ“ü—ÍƒXƒgƒŠ[ƒ€‚©‚ç“Ç‚İo‚·B
+			// ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰èª­ã¿å‡ºã™ã€‚
 			int overlap = this.overlapBuffer.Length;
 
 			int frameSize = (int)(size * this.rate);
@@ -113,31 +113,31 @@ namespace SoundLibrary.Stream.Monaural
 				}
 			}
 
-			// ƒtƒŒ[ƒ€ŠJnƒIƒtƒZƒbƒg‚ÌŒˆ’èB
+			// ãƒ•ãƒ¬ãƒ¼ãƒ é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆã®æ±ºå®šã€‚
 			int frameOffset = GetOffset(this.overlapBuffer, this.inputBuffer, this.margin);
 
-			// ƒI[ƒo[ƒ‰ƒbƒv•”•ª‚ÌƒRƒs[B
+			// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—éƒ¨åˆ†ã®ã‚³ãƒ”ãƒ¼ã€‚
 			Crossfade(this.overlapBuffer, this.inputBuffer, frameOffset, buffer);
 
 			if(size > overlap)
 			{
-				// ”ñƒI[ƒo[ƒ‰ƒbƒv•”•ª‚ÌƒRƒs[B
+				// éã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—éƒ¨åˆ†ã®ã‚³ãƒ”ãƒ¼ã€‚
 				SoundLibrary.Wave.Util.MemCopy(this.inputBuffer, overlap + frameOffset, buffer, overlap, size - overlap);
 
-				// Ÿ‚ÌƒtƒŒ[ƒ€—p‚ÌƒI[ƒo[ƒ‰ƒbƒvƒf[ƒ^‚ğˆêƒoƒbƒtƒ@‚ÉƒRƒs[B
+				// æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã€‚
 				SoundLibrary.Wave.Util.MemCopy(this.inputBuffer, size + frameOffset, this.overlapBuffer, 0, overlap);
 			}
 
-			// Ÿ‚ÌƒtƒŒ[ƒ€‚Ì€”õB
+			// æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®æº–å‚™ã€‚
 			if(inputSize > frameSize)
 			{
-				// ‰ßè‚É“Ç‚ñ‚¾•ª‚Íc‚µ‚Ä‚¨‚­B
+				// éå‰°ã«èª­ã‚“ã åˆ†ã¯æ®‹ã—ã¦ãŠãã€‚
 				SoundLibrary.Wave.Util.MemCopy(this.inputBuffer, frameSize, this.inputBuffer, 0, inputSize - frameSize);
 				this.readSize = inputSize - frameSize;
 			}
 			else
 			{
-				// “Ç‚İ‘«‚è‚È‚¢•ªA‹ó“Ç‚İ‚·‚éB
+				// èª­ã¿è¶³ã‚Šãªã„åˆ†ã€ç©ºèª­ã¿ã™ã‚‹ã€‚
 				int skipSize = frameSize - inputSize;
 				this.stream.Skip(skipSize);
 				this.readSize = 0;
@@ -153,15 +153,15 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region “à•”ŠÖ”
+		#region å†…éƒ¨é–¢æ•°
 
 		/// <summary>
-		/// a ‚Æ b ‚ÌM†‚ğƒNƒƒXƒtƒF[ƒh‚³‚¹‚È‚ª‚ç¬‚º‚éB
+		/// a ã¨ b ã®ä¿¡å·ã‚’ã‚¯ãƒ­ã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ãªãŒã‚‰æ··ãœã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">M† a</param>
-		/// <param name="b">M† b</param>
-		/// <param name="offset">b ‚ÌƒIƒtƒZƒbƒg</param>
-		/// <param name="dest">¬‚º‚½M†‚Ì‘‚«‚İæ</param>
+		/// <param name="a">ä¿¡å· a</param>
+		/// <param name="b">ä¿¡å· b</param>
+		/// <param name="offset">b ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ</param>
+		/// <param name="dest">æ··ãœãŸä¿¡å·ã®æ›¸ãè¾¼ã¿å…ˆ</param>
 		static void Crossfade(short[] a, short[] b, int offset, short[] dest)
 		{
 			int len = a.Length;
@@ -174,13 +174,13 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		/// <summary>
-		/// 2‚Â‚ÌM† a ‚Æ b ‚ğ¬‚º‚é‚Æ‚«AÅ‚àˆá˜aŠ´‚È‚­¬‚´‚éˆÊ’uƒIƒtƒZƒbƒg‚ğ’T‚·B
-		/// a ‚Æ b ‚Ì‘ŠŒİ‘ŠŠÖ‚ªÅ‚à‚‚¢ˆÊ’u‚ğ’T‚·B
+		/// 2ã¤ã®ä¿¡å· a ã¨ b ã‚’æ··ãœã‚‹ã¨ãã€æœ€ã‚‚é•å’Œæ„Ÿãªãæ··ã–ã‚‹ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ¢ã™ã€‚
+		/// a ã¨ b ã®ç›¸äº’ç›¸é–¢ãŒæœ€ã‚‚é«˜ã„ä½ç½®ã‚’æ¢ã™ã€‚
 		/// </summary>
-		/// <param name="a">M† a</param>
-		/// <param name="b">M† b</param>
-		/// <param name="max">’Tõ”ÍˆÍ [0, max)</param>
-		/// <returns>ˆÊ’uƒIƒtƒZƒbƒg</returns>
+		/// <param name="a">ä¿¡å· a</param>
+		/// <param name="b">ä¿¡å· b</param>
+		/// <param name="max">æ¢ç´¢ç¯„å›² [0, max)</param>
+		/// <returns>ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ</returns>
 		static int GetOffset(short[] a, short[] b, int max)
 		{
 			//return 0;
@@ -201,11 +201,11 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		/// <summary>
-		/// a ‚Æ b+offset ‚Ì‘ŠŠÖ’l‚ğ‹‚ß‚éB
+		/// a ã¨ b+offset ã®ç›¸é–¢å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">M† a</param>
-		/// <param name="b">M† b</param>
-		/// <param name="offset">b ‚ÌƒIƒtƒZƒbƒg</param>
+		/// <param name="a">ä¿¡å· a</param>
+		/// <param name="b">ä¿¡å· b</param>
+		/// <param name="offset">b ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ</param>
 		/// <returns></returns>
 		static double Correlation(short[] a, short[] b, int offset)
 		{

@@ -1,52 +1,52 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Pipe.Stereo
 {
 	/// <summary>
-	/// ˆÚ’²‚ğs‚¤ƒNƒ‰ƒXB
-	/// ƒf[ƒ^‚ÌŠÔ‚ğ•âŠ®‚µ‚ÄAƒf[ƒ^’·‚ğ•Ï‚¦‚é‚±‚Æ‚ÅA‰¹’ö‚ğ•ÏX‚·‚éB
-	/// Ä¶ŠÔ‚à•Ï‚í‚Á‚Ä‚µ‚Ü‚¤B
+	/// ç§»èª¿ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã€‚
+	/// ãƒ‡ãƒ¼ã‚¿ã®é–“ã‚’è£œå®Œã—ã¦ã€ãƒ‡ãƒ¼ã‚¿é•·ã‚’å¤‰ãˆã‚‹ã“ã¨ã§ã€éŸ³ç¨‹ã‚’å¤‰æ›´ã™ã‚‹ã€‚
+	/// å†ç”Ÿæ™‚é–“ã‚‚å¤‰ã‚ã£ã¦ã—ã¾ã†ã€‚
 	/// </summary>
 	/// <remarks>
-	/// üŒ`•âŠÔ‚É‚æ‚éƒAƒbƒvƒTƒ“ƒvƒ‹/ƒ_ƒEƒ“ƒTƒ“ƒvƒ‹‚µ‚Ä‚¢‚é‚¾‚¯‚È‚Ì‚ÅA
-	/// ‚‰¹¿‚ğ–Úw‚·‚È‚çA•Ê“rAƒAƒ“ƒ`ƒGƒCƒŠƒAƒXƒtƒBƒ‹ƒ^‚ğ‚©‚¯‚é•K—v‚ª‚ ‚éB
+	/// ç·šå½¢è£œé–“ã«ã‚ˆã‚‹ã‚¢ãƒƒãƒ—ã‚µãƒ³ãƒ—ãƒ«/ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒ«ã—ã¦ã„ã‚‹ã ã‘ãªã®ã§ã€
+	/// é«˜éŸ³è³ªã‚’ç›®æŒ‡ã™ãªã‚‰ã€åˆ¥é€”ã€ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‹ã‘ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 	/// </remarks>
 	public class RateTransposer : Pipe
 	{
-		#region ’è”
+		#region å®šæ•°
 
 		const double DEFAULT_RATE = 1.0;
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		// ƒpƒ‰ƒ[ƒ^
-		double rate; // •ÏŠ·ƒŒ[ƒgB‰¹’ö‚ª rate AÄ¶ŠÔ‚ª 1/rate ”{‚ÉB
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		double rate; // å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚éŸ³ç¨‹ãŒ rate ã€å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
 
-		// Œ»İ‚Ìó‘Ô
-		short prevL; // 1‰¹‘O‚Ìƒf[ƒ^(L)‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­B
-		short prevR; // 1‰¹‘O‚Ìƒf[ƒ^(R)‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­B
-		double delta; // Bresenham ƒAƒ‹ƒSƒŠƒYƒ€iDDAj“I‚È“®ì‚ğ‚·‚é‚½‚ß‚Ìó‘Ô•Ï”B
+		// ç¾åœ¨ã®çŠ¶æ…‹
+		short prevL; // 1éŸ³å‰ã®ãƒ‡ãƒ¼ã‚¿(L)ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠãã€‚
+		short prevR; // 1éŸ³å‰ã®ãƒ‡ãƒ¼ã‚¿(R)ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠãã€‚
+		double delta; // Bresenham ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ï¼ˆDDAï¼‰çš„ãªå‹•ä½œã‚’ã™ã‚‹ãŸã‚ã®çŠ¶æ…‹å¤‰æ•°ã€‚
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒg’l‚Å‰Šú‰»B
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="input">“ü—ÍƒLƒ…[</param>
-		/// <param name="output">o—ÍƒLƒ…[</param>
+		/// <param name="input">å…¥åŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="output">å‡ºåŠ›ã‚­ãƒ¥ãƒ¼</param>
 		public RateTransposer(Queue input, Queue output)
 			: this(input, output, DEFAULT_RATE)
 		{
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚Ìİ’èB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã€‚
 		/// </summary>
-		/// <param name="input">“ü—ÍƒLƒ…[</param>
-		/// <param name="output">o—ÍƒLƒ…[</param>
-		/// <param name="rate">•ÏŠ·ƒŒ[ƒgB‰¹’ö‚ª rate ”{AÄ¶ŠÔ‚ª 1/rate ”{‚ÉB</param>
+		/// <param name="input">å…¥åŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="output">å‡ºåŠ›ã‚­ãƒ¥ãƒ¼</param>
+		/// <param name="rate">å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚éŸ³ç¨‹ãŒ rate å€ã€å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚</param>
 		public RateTransposer(Queue input, Queue output, double rate)
 			: base(input, output)
 		{
@@ -55,10 +55,10 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region ƒpƒ‰ƒ[ƒ^İ’è
+		#region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 
 		/// <summary>
-		/// •ÏŠ·ƒŒ[ƒgB‰¹’ö‚ª rate AÄ¶ŠÔ‚ª 1/rate ”{‚ÉB
+		/// å¤‰æ›ãƒ¬ãƒ¼ãƒˆã€‚éŸ³ç¨‹ãŒ rate ã€å†ç”Ÿæ™‚é–“ãŒ 1/rate å€ã«ã€‚
 		/// </summary>
 		public double Rate
 		{
@@ -71,7 +71,7 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		public override void Process()
 		{
@@ -99,14 +99,14 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region •â•ŠÖ”(private)
+		#region è£œåŠ©é–¢æ•°(private)
 
 		/// <summary>
-		/// üŒ`•âŠÔŠÖ”B
+		/// ç·šå½¢è£œé–“é–¢æ•°ã€‚
 		/// </summary>
-		/// <param name="delta">val1 ‚Æ val2 ‚ğ¬‚º‚éŠ„‡i®”•”•ª‚Í–³‹‚³‚ê‚éj</param>
-		/// <param name="val1">’l1</param>
-		/// <param name="val2">’l2</param>
+		/// <param name="delta">val1 ã¨ val2 ã‚’æ··ãœã‚‹å‰²åˆï¼ˆæ•´æ•°éƒ¨åˆ†ã¯ç„¡è¦–ã•ã‚Œã‚‹ï¼‰</param>
+		/// <param name="val1">å€¤1</param>
+		/// <param name="val2">å€¤2</param>
 		/// <returns></returns>
 		static short Interpolate(double delta, short val1, short val2)
 		{

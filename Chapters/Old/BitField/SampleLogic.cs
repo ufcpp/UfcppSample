@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace BitField
 {
 	/// <summary>
-	/// ƒrƒbƒgƒtƒB[ƒ‹ƒhƒNƒ‰ƒX‚ÌƒTƒ“ƒvƒ‹ƒ‚ƒWƒ…[ƒ‹WB
-	/// æœZŠí‚ÆBCDÌƒoƒCƒiƒŠ•ÏŠ·ŠíB
+	/// ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¯ãƒ©ã‚¹ã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«é›†ã€‚
+	/// ä¹—é™¤ç®—å™¨ã¨BCDâ‡”ãƒã‚¤ãƒŠãƒªå¤‰æ›å™¨ã€‚
 	/// </summary>
 	class SampleLogic
 	{
 		/// <summary>
-		/// æœZŠíB
+		/// ä¹—é™¤ç®—å™¨ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <param name="mul">true ‚Ì‚Æ‚«æZA false ‚Ì‚Æ‚«œZ</param>
-		/// <returns>‰‰ZŒ‹‰Ê(æZ‚Ìê‡A‰ºˆÊ32ƒrƒbƒg‚É¤AãˆÊ32ƒrƒbƒg‚Éè—])</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <param name="mul">true ã®ã¨ãä¹—ç®—ã€ false ã®ã¨ãé™¤ç®—</param>
+		/// <returns>æ¼”ç®—çµæœ(ä¹—ç®—ã®å ´åˆã€ä¸‹ä½32ãƒ“ãƒƒãƒˆã«å•†ã€ä¸Šä½32ãƒ“ãƒƒãƒˆã«å‰°ä½™)</returns>
 		public static BitField MulDiv(BitField a, BitField b, bool mul)
 		{
 			bool sgn = a[a.Msb] ^ b[b.Msb];
@@ -54,11 +54,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// æZŠíB
+		/// ä¹—ç®—å™¨ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>‰‰ZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>æ¼”ç®—çµæœ</returns>
 		public static BitField Mul(BitField a, BitField b)
 		{
 			bool sgn = a[a.Msb] ^ b[b.Msb];
@@ -91,11 +91,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// œZŠíB
+		/// é™¤ç®—å™¨ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>‰‰ZŒ‹‰Ê(‰ºˆÊ32ƒrƒbƒg‚É¤AãˆÊ32ƒrƒbƒg‚Éè—])</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>æ¼”ç®—çµæœ(ä¸‹ä½32ãƒ“ãƒƒãƒˆã«å•†ã€ä¸Šä½32ãƒ“ãƒƒãƒˆã«å‰°ä½™)</returns>
 		public static BitField Div(BitField a, BitField b)
 		{
 			bool sgn = a[a.Msb] ^ b[b.Msb];
@@ -130,10 +130,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// •„†”½“]ŠíB
+		/// ç¬¦å·åè»¢å™¨ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>‰‰ZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>æ¼”ç®—çµæœ</returns>
 		public static BitField Negate(BitField a)
 		{
 			BitField tmp = BitField.Create(a.Msb, a.Lsb);
@@ -142,10 +142,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// BCD ¨ Binary •ÏŠ·
+		/// BCD â†’ Binary å¤‰æ›
 		/// </summary>
-		/// <param name="bcd">•ÏŠ·Œ³</param>
-		/// <returns>•ÏŠ·Œ‹‰Ê</returns>
+		/// <param name="bcd">å¤‰æ›å…ƒ</param>
+		/// <returns>å¤‰æ›çµæœ</returns>
 		public static BitField BcdToBin(BitField bcd)
 		{
 			BitField bin = BitField.Concat(BitField.Create(0, 0, 0), bcd, BitField.Create(29, 0, 0));
@@ -170,21 +170,21 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// BCD ¨ƒoƒCƒiƒŠ•ÏŠ·‚Ì•â³’l‹‚ß‚éB
+		/// BCD â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã®è£œæ­£å€¤æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">1Œ…(4ƒrƒbƒg)BCD</param>
-		/// <returns>•â³’l</returns>
+		/// <param name="a">1æ¡(4ãƒ“ãƒƒãƒˆ)BCD</param>
+		/// <returns>è£œæ­£å€¤</returns>
 		static private BitField BcdToBinAddIn(BitField a)
 		{
 			return BitField.Create(3, 0, a.Value >= 8 ? 0xCUL : 0xFUL);
 		}
 
 		/// <summary>
-		/// Binary ¨ BCD •ÏŠ·
+		/// Binary â†’ BCD å¤‰æ›
 		/// </summary>
-		/// <param name="bin">•ÏŠ·Œ³</param>
-		/// <param name="overflow">ƒI[ƒo[ƒtƒ[‚ª‹N‚«‚½‚çtrue‚ÉƒZƒbƒg‚³‚ê‚éB</param>
-		/// <returns>•ÏŠ·Œ‹‰Ê</returns>
+		/// <param name="bin">å¤‰æ›å…ƒ</param>
+		/// <param name="overflow">ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãŒèµ·ããŸã‚‰trueã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹ã€‚</param>
+		/// <returns>å¤‰æ›çµæœ</returns>
 		public static BitField BinToBcd(BitField bin, out bool overflow)
 		{
 			BitField bcd = BitField.Concat(BitField.Create(30, 0, 0), bin);
@@ -212,10 +212,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ƒoƒCƒiƒŠ¨BCD •ÏŠ·‚Ì•â³’l‹‚ß‚éB
+		/// ãƒã‚¤ãƒŠãƒªâ†’BCD å¤‰æ›ã®è£œæ­£å€¤æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">4ƒrƒbƒgƒoƒCƒiƒŠ</param>
-		/// <returns>•â³’l</returns>
+		/// <param name="a">4ãƒ“ãƒƒãƒˆãƒã‚¤ãƒŠãƒª</param>
+		/// <returns>è£œæ­£å€¤</returns>
 		static private BitField BinToBcdAddIn(BitField a)
 		{
 			return BitField.Create(3, 0, a.Value >= 5 ? 0x3UL : 0x0UL);

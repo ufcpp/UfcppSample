@@ -1,59 +1,59 @@
-using System;
+ï»¿using System;
 
 namespace Filter
 {
 	/// <summary>
-	/// IIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
+	/// IIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class IirFilter : IFilter
 	{
-		double[] a; // •ª•êŒW””z—ñ
-		double[] b; // •ªqŒW””z—ñ
-		CircularBuffer buff; // ’x‰„ƒoƒbƒtƒ@
+		double[] a; // åˆ†æ¯ä¿‚æ•°é…åˆ—
+		double[] b; // åˆ†å­ä¿‚æ•°é…åˆ—
+		CircularBuffer buff; // é…å»¶ãƒãƒƒãƒ•ã‚¡
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
 		public IirFilter() : this(null, null) {}
 
 		/// <summary>
-		/// Ÿ”‚ğw’è‚µ‚Ä IIR ‚ğì‚éB
+		/// æ¬¡æ•°ã‚’æŒ‡å®šã—ã¦ IIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="order">IIR ‚ÌŸ”</param>
+		/// <param name="order">IIR ã®æ¬¡æ•°</param>
 		public IirFilter(int order) : this(new double[order], new double[order + 1]) {}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä IIR ‚ğì‚éB
-		/// ì‚è‚½‚¢ IIR ‚Ì“`’BŠÖ”‚ªA
-		///      ƒ°_0^N B_i z^i
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ IIR ã‚’ä½œã‚‹ã€‚
+		/// ä½œã‚ŠãŸã„ IIR ã®ä¼é”é–¢æ•°ãŒã€
+		///      Î£_0^N B_i z^i
 		/// Y = ---------------- X
-		///      ƒ°_0^N A_i z^i
-		/// ‚Å‚ ‚é‚Æ‚«A
-		/// a[i] = - A_(i+1) / A_0    (i = 1`N)
-		/// b[i] = B_i / A_0        (i = 0`N)
+		///      Î£_0^N A_i z^i
+		/// ã§ã‚ã‚‹ã¨ãã€
+		/// a[i] = - A_(i+1) / A_0    (i = 1ï½N)
+		/// b[i] = B_i / A_0        (i = 0ï½N)
 		/// </summary>
-		/// <param name="a">•ª•êŒW””z—ñ</param>
-		/// <param name="b">•ªqŒW””z—ñ</param>
+		/// <param name="a">åˆ†æ¯ä¿‚æ•°é…åˆ—</param>
+		/// <param name="b">åˆ†å­ä¿‚æ•°é…åˆ—</param>
 		public IirFilter(double[] a, double[] b)
 		{
 			this.SetCoefficient(a, b);
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// N: ƒtƒBƒ‹ƒ^Ÿ” (= this.a.Length = this.b.Length - 1)
-		/// x: “ü—Í
-		/// t: ’†ŠÔƒf[ƒ^
-		/// y: o—Í
-		/// a[i]: •ª•êŒW””z—ñ
-		/// b[i]: •ªqŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì t ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// t = x + ƒ°_{i=0}^{N-1} a[i]d[i]
-		/// y = t * b[0] + ƒ°_{i=0}^{N} b[i+1]d[i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// N: ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•° (= this.a.Length = this.b.Length - 1)
+		/// x: å…¥åŠ›
+		/// t: ä¸­é–“ãƒ‡ãƒ¼ã‚¿
+		/// y: å‡ºåŠ›
+		/// a[i]: åˆ†æ¯ä¿‚æ•°é…åˆ—
+		/// b[i]: åˆ†å­ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® t ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// t = x + Î£_{i=0}^{N-1} a[i]d[i]
+		/// y = t * b[0] + Î£_{i=0}^{N} b[i+1]d[i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			int N = this.a.Length;
@@ -72,7 +72,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -83,10 +83,10 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìİ’è
+		/// ä¿‚æ•°ã®è¨­å®š
 		/// </summary>
-		/// <param name="a">•ª•êŒW””z—ñ</param>
-		/// <param name="b">•ªqŒW””z—ñ</param>
+		/// <param name="a">åˆ†æ¯ä¿‚æ•°é…åˆ—</param>
+		/// <param name="b">åˆ†å­ä¿‚æ•°é…åˆ—</param>
 		public void SetCoefficient(double[] a, double[]b)
 		{
 			if(a == null || b == null ||
@@ -102,7 +102,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// •ª•êŒW””z—ñ‚Ìæ“¾
+		/// åˆ†æ¯ä¿‚æ•°é…åˆ—ã®å–å¾—
 		/// </summary>
 		public double[] A
 		{
@@ -110,7 +110,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// •ª•êŒW””z—ñ‚Ìæ“¾
+		/// åˆ†æ¯ä¿‚æ•°é…åˆ—ã®å–å¾—
 		/// </summary>
 		public double[] B
 		{
@@ -119,16 +119,16 @@ namespace Filter
 	}//class IirFilter
 
 	/// <summary>
-	/// 2ŸIIR‚ğ—p‚¢‚½ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒUB
+	/// 2æ¬¡IIRã‚’ç”¨ã„ãŸãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã€‚
 	/// </summary>
 	public class PeakingEqualizer : IirFilter
 	{
 		/// <summary>
-		/// ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒU‚ğì¬B
+		/// ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="Q">Q’l</param>
-		/// <param name="A">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="Q">Qå€¤</param>
+		/// <param name="A">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public PeakingEqualizer(double w, double Q, double A) : base(2)
 		{
 #if true
@@ -155,7 +155,7 @@ namespace Filter
 			double term1 = 1.0 + Ft*g/Q + Ft*Ft;
 			double term2 = 1.0 + Ft/Q + Ft*Ft;
 
-			//Peek‚ğì‚é
+			//Peekã‚’ä½œã‚‹
 			if(A > 1)
 			{
 				this.B[0] = term1 / term2;
@@ -164,7 +164,7 @@ namespace Filter
 				this.A[0] = - this.B[1];
 				this.A[1] = - (1.0 - Ft/Q + Ft*Ft)/ term2;
 			}
-			//dip‚ğì‚é
+			//dipã‚’ä½œã‚‹
 			else if(A < 1)
 			{
 				this.B[0] = term2 / term1;
@@ -187,15 +187,15 @@ namespace Filter
 
 
 	/// <summary>
-	/// 2ŸIIR‚ğ—p‚¢‚½ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒUB
+	/// 2æ¬¡IIRã‚’ç”¨ã„ãŸãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã€‚
 	/// </summary>
 	public class ShelvingEqualizer : IirFilter
 	{
 		/// <summary>
-		/// ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒU‚ğì¬B
+		/// ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="A">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="A">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public ShelvingEqualizer(double w, double A) : base(1)
 		{
 			double tn = (Math.Sin(w) - 1) / Math.Cos(w);

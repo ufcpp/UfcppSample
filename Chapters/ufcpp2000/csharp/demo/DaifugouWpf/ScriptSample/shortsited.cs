@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardGame;
 using Daifugou;
 
 /// <summary>
-/// o‚¹‚éŒÀ‚è•K‚¸ƒJ[ƒh‚ğo‚·‚¨ƒoƒJAIB
+/// å‡ºã›ã‚‹é™ã‚Šå¿…ãšã‚«ãƒ¼ãƒ‰ã‚’å‡ºã™ãŠãƒã‚«AIã€‚
 /// </summary>
 public class SampleShortsitedAi : IArtificialIntelligence
 {
-    #region IArtificialIntelligence ƒƒ“ƒo
+    #region IArtificialIntelligence ãƒ¡ãƒ³ãƒ
 
     public IEnumerable<Card> Play(IEnumerable<Card> hand, IEnumerable<Card> table, int rank, Suit suit, Mode mode, bool revolution, History history)
     {
@@ -23,7 +23,7 @@ public class SampleShortsitedAi : IArtificialIntelligence
 
         int count = table.Count();
 
-        // ‰è‚Í‚Æ‚è‚ ‚¦‚¸ˆê”Ôã‚¢‚Ì‚ğo‚µ‚Æ‚­B
+        // åˆæ‰‹ã¯ã¨ã‚Šã‚ãˆãšä¸€ç•ªå¼±ã„ã®ã‚’å‡ºã—ã¨ãã€‚
         if (mode.Match(Mode.First))
         {
             var min = hand.Min(x => Game.Rank(x, revolution));
@@ -46,19 +46,19 @@ public class SampleShortsitedAi : IArtificialIntelligence
         {
             for (int i = rank + 1; i <= 13; i++)
             {
-                // o‚¹‚é
+                // å‡ºã›ã‚‹
                 var c = hand.Where(x => Game.Rank(x, revolution) == i);
                 if (c.Count() >= count)
                     return c.Take(count);
 
-                // JokerŠÜ‚ß‚ê‚Îo‚¹‚é
+                // Jokerå«ã‚ã‚Œã°å‡ºã›ã‚‹
                 if (c.Count() + 1 == count && hand.FirstOrDefault(x => x.Suit == Suit.Joker) != null)
                     return c.Concat(hand.Where(x => x.Suit == Suit.Joker).Take(count));
             }
         }
 
         if (mode.Match(Mode.SequenceBound))
-            return null; //todo ‚Ü‚½–¢‘Î‰
+            return null; //todo ã¾ãŸæœªå¯¾å¿œ
 
         if (mode.Match(Mode.Sequence))
         {
@@ -77,11 +77,11 @@ public class SampleShortsitedAi : IArtificialIntelligence
 static class CardsExtesions
 {
     /// <summary>
-    /// cards‚Ì’†‚©‚çAğŒpred‚ğ–‚½‚·Å­ƒ‰ƒ“ƒN‚ÌƒJ[ƒh‚ğ•Ô‚·B
+    /// cardsã®ä¸­ã‹ã‚‰ã€æ¡ä»¶predã‚’æº€ãŸã™æœ€å°‘ãƒ©ãƒ³ã‚¯ã®ã‚«ãƒ¼ãƒ‰ã‚’è¿”ã™ã€‚
     /// </summary>
-    /// <param name="cards">‘ÎÛ‚Æ‚È‚éDB</param>
-    /// <param name="pred">ğŒB</param>
-    /// <returns>ğŒ‚ğ–‚½‚·Å­ƒ‰ƒ“ƒN‚ÌƒJ[ƒhB</returns>
+    /// <param name="cards">å¯¾è±¡ã¨ãªã‚‹æœ­ã€‚</param>
+    /// <param name="pred">æ¡ä»¶ã€‚</param>
+    /// <returns>æ¡ä»¶ã‚’æº€ãŸã™æœ€å°‘ãƒ©ãƒ³ã‚¯ã®ã‚«ãƒ¼ãƒ‰ã€‚</returns>
     public static IEnumerable<Card> MinCard(this IEnumerable<Card> cards, Func<Card, bool> pred, bool revolution)
     {
         cards = cards.Where(pred);

@@ -1,34 +1,34 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ’P€ŠÖ”ƒfƒŠƒQ[ƒgB
+	/// å˜é …é–¢æ•°ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã€‚
 	/// </summary>
 	public delegate ValueType UnaryFunction(ValueType x);
 
 	/// <summary>
-	/// ’P€ŠÖ”B
+	/// å˜é …é–¢æ•°ã€‚
 	/// </summary>
 	public class Unary : Function
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ŠÖ”–{‘ÌB
+		/// é–¢æ•°æœ¬ä½“ã€‚
 		/// </summary>
 		protected UnaryFunction func;
 
 		/// <summary>
-		/// “à•”ŠÖ”B
+		/// å†…éƒ¨é–¢æ•°ã€‚
 		/// this.GetValue(x) == func(inner.GetValue(x))
 		/// </summary>
 		protected Function inner;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Unary(UnaryFunction func, Function inner)
 		{
@@ -37,7 +37,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -66,22 +66,22 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		/// <summary>
-		/// ŠÖ” f(z) ‚ğ•¡‘fŠÖ”‚Æ‚İ‚È‚µ‚½‚Æ‚«A‚»‚ÌÀ•”‚Æ‹••”
-		/// Re[f](Re(z), Im(z)), Im[f](Re(z), Im(z) ‚ğ‹‚ß‚éB
-		/// —á‚¦‚ÎAExp ‚Ìê‡A
+		/// é–¢æ•° f(z) ã‚’è¤‡ç´ é–¢æ•°ã¨ã¿ãªã—ãŸã¨ãã€ãã®å®Ÿéƒ¨ã¨è™šéƒ¨
+		/// Re[f](Re(z), Im(z)), Im[f](Re(z), Im(z) ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// ä¾‹ãˆã°ã€Exp ã®å ´åˆã€
 		/// reY = Exp(reX) * Cos(imX),
 		/// imY = Exp(reX) * Sin(imX)
 		/// </summary>
-		/// <param name="reX">ƒpƒ‰ƒ[ƒ^‚ÌÀ•”</param>
-		/// <param name="imX">ƒpƒ‰ƒ[ƒ^‚Ì‹••”</param>
-		/// <param name="reY">ŠÖ”’l‚ÌÀ•”</param>
-		/// <param name="imY">ŠÖ”’l‚Ì‹••”</param>
+		/// <param name="reX">ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å®Ÿéƒ¨</param>
+		/// <param name="imX">ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è™šéƒ¨</param>
+		/// <param name="reY">é–¢æ•°å€¤ã®å®Ÿéƒ¨</param>
+		/// <param name="imY">é–¢æ•°å€¤ã®è™šéƒ¨</param>
 		protected virtual void GetComplexPart(Function reX, Function imX, out Function reY, out Function imY)
 		{
-			throw new InvalidOperationException("‚±‚ÌŠÖ”‚Í•¡‘f”–¢‘Î‰‚Å‚·B");
+			throw new InvalidOperationException("ã“ã®é–¢æ•°ã¯è¤‡ç´ æ•°æœªå¯¾å¿œã§ã™ã€‚");
 		}
 
 		public override void GetComplexPart(out Function re, out Function im)
@@ -91,15 +91,15 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		/// <summary>
-		/// this.func ©‘Ì‚Ì“±ŠÖ”‚ğ‹‚ß‚éB
+		/// this.func è‡ªä½“ã®å°é–¢æ•°ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>this.func ‚Ì“±ŠÖ”‚É‘Š“–‚·‚é Function Œ^ƒCƒ“ƒXƒ^ƒ“ƒX</returns>
+		/// <returns>this.func ã®å°é–¢æ•°ã«ç›¸å½“ã™ã‚‹ Function å‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</returns>
 		protected virtual Function Differentiate()
 		{
-			throw new InvalidOperationException("”÷•ª‚Å‚«‚Ü‚¹‚ñ");
+			throw new InvalidOperationException("å¾®åˆ†ã§ãã¾ã›ã‚“");
 		}
 
 		public override Function Differentiate(Variable x)
@@ -111,7 +111,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		public override Function Optimize()
 		{

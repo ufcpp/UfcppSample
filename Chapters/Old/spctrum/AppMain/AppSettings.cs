@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace AppMain
 {
 	/// <summary>
-	/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìİ’èB
+	/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã€‚
 	/// </summary>
 	public class AppSettings
 	{

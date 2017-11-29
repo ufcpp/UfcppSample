@@ -1,19 +1,19 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Pipe
 {
 	/// <summary>
-	/// ƒLƒ…[‚ÌŠÔ‚É“ü‚Á‚Äˆ—‚ğs‚¤ƒpƒCƒvB
+	/// ã‚­ãƒ¥ãƒ¼ã®é–“ã«å…¥ã£ã¦å‡¦ç†ã‚’è¡Œã†ãƒ‘ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public abstract class Pipe
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		protected Queue input;
 		protected Queue output;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Pipe(Queue input, Queue output)
 		{
@@ -22,11 +22,11 @@ namespace SoundLibrary.Pipe
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		/// <summary>
-		/// input ƒLƒ…[‚Æ output ƒLƒ…[‚ÌŠÔ‚É‹²‚Şˆ—B
-		/// ƒfƒtƒHƒ‹ƒg‚Í‘f’Ê‚µB
+		/// input ã‚­ãƒ¥ãƒ¼ã¨ output ã‚­ãƒ¥ãƒ¼ã®é–“ã«æŒŸã‚€å‡¦ç†ã€‚
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ç´ é€šã—ã€‚
 		/// </summary>
 		public virtual void Process()
 		{
@@ -38,7 +38,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// ƒLƒ…[‚ÌŠÔ‚Éˆ—‚È‚µ‚ÅA‚Æ‚É‚©‚­ input “à‚Ìƒf[ƒ^‚ğƒtƒ‰ƒbƒVƒ…‚·‚éB
+		/// ã‚­ãƒ¥ãƒ¼ã®é–“ã«å‡¦ç†ãªã—ã§ã€ã¨ã«ã‹ã input å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹ã€‚
 		/// </summary>
 		public virtual void Flush()
 		{
@@ -50,10 +50,10 @@ namespace SoundLibrary.Pipe
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// “ü—ÍƒLƒ…[‚Ìæ“¾B
+		/// å…¥åŠ›ã‚­ãƒ¥ãƒ¼ã®å–å¾—ã€‚
 		/// </summary>
 		public Queue InputQueue
 		{
@@ -62,7 +62,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// o—ÍƒLƒ…[‚Ìæ“¾B
+		/// å‡ºåŠ›ã‚­ãƒ¥ãƒ¼ã®å–å¾—ã€‚
 		/// </summary>
 		public Queue OutputQueue
 		{

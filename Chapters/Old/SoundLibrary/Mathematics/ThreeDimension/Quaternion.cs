@@ -1,33 +1,33 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.ThreeDimension
 {
 	/// <summary>
-	/// ƒnƒ~ƒ‹ƒgƒ“‚ÌlŒ¸”B
+	/// ãƒãƒŸãƒ«ãƒˆãƒ³ã®å››æ¸›æ•°ã€‚
 	/// </summary>
 	public struct Quaternion
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// À•”B
+		/// å®Ÿéƒ¨ã€‚
 		/// </summary>
 		public double a;
 
 		/// <summary>
-		/// ‹••”B
+		/// è™šéƒ¨ã€‚
 		/// </summary>
 		public Vector  u;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// À•”‚Æ‹••”ƒxƒNƒgƒ‹‚ğw’è‚µ‚Ä‰Šú‰»B
-		/// a + iiEuuAii=(i,j,k)Auu(p,q,r)B
+		/// å®Ÿéƒ¨ã¨è™šéƒ¨ãƒ™ã‚¯ãƒˆãƒ«ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
+		/// a + iiãƒ»uuã€ii=(i,j,k)ã€uuï¼(p,q,r)ã€‚
 		/// </summary>
-		/// <param name="a">À•”</param>
-		/// <param name="u">‹••”ƒxƒNƒgƒ‹</param>
+		/// <param name="a">å®Ÿéƒ¨</param>
+		/// <param name="u">è™šéƒ¨ãƒ™ã‚¯ãƒˆãƒ«</param>
 		public Quaternion(double a, Vector u)
 		{
 			this.a = a;
@@ -35,23 +35,23 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// À•”‚Æ‹••”‚Ì—v‘f‚ğw’è‚µ‚Ä‰Šú‰»B
-		/// a + i p + j q + k rB
+		/// å®Ÿéƒ¨ã¨è™šéƒ¨ã®è¦ç´ ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
+		/// a + i p + j q + k rã€‚
 		/// </summary>
-		/// <param name="a">À•”</param>
-		/// <param name="p">‹••”‚Ì i —v‘f</param>
-		/// <param name="q">‹••”‚Ì j —v‘f</param>
-		/// <param name="r">‹••”‚Ì k —v‘f</param>
+		/// <param name="a">å®Ÿéƒ¨</param>
+		/// <param name="p">è™šéƒ¨ã® i è¦ç´ </param>
+		/// <param name="q">è™šéƒ¨ã® j è¦ç´ </param>
+		/// <param name="r">è™šéƒ¨ã® k è¦ç´ </param>
 		public Quaternion(double a, double p, double q, double r)
 			: this(a, new Vector(p, q, r))
 		{
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		/// <summary>
-		/// x + yB
+		/// x + yã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <param name="y">y</param>
@@ -62,7 +62,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// x - yB
+		/// x - yã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <param name="y">y</param>
@@ -73,7 +73,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// -xB
+		/// -xã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <returns>-x</returns>
@@ -83,11 +83,11 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// x ~ yB
+		/// x Ã— yã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <param name="y">y</param>
-		/// <returns>x ~ y</returns>
+		/// <returns>x Ã— y</returns>
 		public static Quaternion operator* (Quaternion x, Quaternion y)
 		{
 			double a = x.a * y.a - Vector.InnerProduct(x.u, y.u);
@@ -96,48 +96,48 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// x € yB
+		/// x Ã· yã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <param name="y">y</param>
-		/// <returns>x € y</returns>
+		/// <returns>x Ã· y</returns>
 		public static Quaternion operator/ (Quaternion x, Quaternion y)
 		{
 			return x * y.Inverse();
 		}
 
 		/// <summary>
-		/// À”p ~ xB
+		/// å®Ÿæ•°p Ã— xã€‚
 		/// </summary>
-		/// <param name="p">À”p</param>
+		/// <param name="p">å®Ÿæ•°p</param>
 		/// <param name="x">x</param>
-		/// <returns>p ~ x</returns>
+		/// <returns>p Ã— x</returns>
 		public static Quaternion operator* (double p, Quaternion x)
 		{
 			return new Quaternion(p * x.a, p * x.u);
 		}
 
 		/// <summary>
-		/// x ~ À”pB
+		/// x Ã— å®Ÿæ•°pã€‚
 		/// </summary>
 		/// <param name="x">x</param>
-		/// <param name="p">À”p</param>
-		/// <returns>p ~ x</returns>
+		/// <param name="p">å®Ÿæ•°p</param>
+		/// <returns>p Ã— x</returns>
 		public static Quaternion operator* (Quaternion x, double p){return p * x;}
 
 		/// <summary>
-		/// x € À”pB
+		/// x Ã· å®Ÿæ•°pã€‚
 		/// </summary>
 		/// <param name="x">x</param>
-		/// <param name="p">À”p</param>
-		/// <returns>x € p</returns>
+		/// <param name="p">å®Ÿæ•°p</param>
+		/// <returns>x Ã· p</returns>
 		public static Quaternion operator/ (Quaternion x, double p){return (1/p) * x;}
 
 		#endregion
-		#region ‚»‚Ì‘¼‚Ìƒƒ\ƒbƒh
+		#region ãã®ä»–ã®ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// “ñæƒmƒ‹ƒ€B
+		/// äºŒä¹—ãƒãƒ«ãƒ ã€‚
 		/// </summary>
 		public double Norm
 		{
@@ -145,33 +145,33 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// ‹¤–ğlŒ³”‚ğ‹‚ß‚éB
+		/// å…±å½¹å››å…ƒæ•°ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>‹¤–ğlŒ³”</returns>
+		/// <returns>å…±å½¹å››å…ƒæ•°</returns>
 		public Quaternion Conjunction()
 		{
 			return new Quaternion(this.a, -this.u);
 		}
 
 		/// <summary>
-		/// ‹t”‚ğ‹‚ß‚éB
+		/// é€†æ•°ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <returns>‹t”</returns>
+		/// <returns>é€†æ•°</returns>
 		public Quaternion Inverse()
 		{
 			return this.Conjunction() / this.Norm;
 		}
 
 		#endregion
-		#region ‰ñ“]‚ª‚ç‚İ‚Ì static ƒƒ\ƒbƒh
+		#region å›è»¢ãŒã‚‰ã¿ã® static ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// lŒ³”‚ğg‚Á‚Ä3ŸŒ³‹óŠÔã‚Ì‰ñ“]B
-		/// p ~ (0, x) ~ ~p ‚ğŒvZ‚·‚é(~p ‚Í p ‚Ì‹¤–ğ)B
+		/// å››å…ƒæ•°ã‚’ä½¿ã£ã¦3æ¬¡å…ƒç©ºé–“ä¸Šã®å›è»¢ã€‚
+		/// p Ã— (0, x) Ã— ~p ã‚’è¨ˆç®—ã™ã‚‹(~p ã¯ p ã®å…±å½¹)ã€‚
 		/// </summary>
-		/// <param name="p">‰ñ“]²/Šp‚ğ•\‚·lŒ³”</param>
-		/// <param name="x">‰ñ“]‚³‚¹‚½‚¢“_‚ÌƒxƒNƒgƒ‹</param>
-		/// <returns>‰ñ“]Œã‚Ì“_‚ÌƒxƒNƒgƒ‹</returns>
+		/// <param name="p">å›è»¢è»¸/è§’ã‚’è¡¨ã™å››å…ƒæ•°</param>
+		/// <param name="x">å›è»¢ã•ã›ãŸã„ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«</param>
+		/// <returns>å›è»¢å¾Œã®ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«</returns>
 		public static Vector Rotate(Quaternion p, Vector x)
 		{
 			Vector y = (p.a * p.a - p.u.Norm) * x;
@@ -180,23 +180,23 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		/// <summary>
-		/// lŒ³”‚ğg‚Á‚Ä3ŸŒ³‹óŠÔã‚Ì‰ñ“]B
-		/// p ~ x ~ ~q ‚ğŒvZ‚·‚é(~p ‚Í p ‚Ì‹¤–ğ)B
+		/// å››å…ƒæ•°ã‚’ä½¿ã£ã¦3æ¬¡å…ƒç©ºé–“ä¸Šã®å›è»¢ã€‚
+		/// p Ã— x Ã— ~q ã‚’è¨ˆç®—ã™ã‚‹(~p ã¯ p ã®å…±å½¹)ã€‚
 		/// </summary>
 		/// <param name="p">p</param>
 		/// <param name="x">x</param>
-		/// <returns>p ~ x ~ ~q</returns>
+		/// <returns>p Ã— x Ã— ~q</returns>
 		public static Quaternion Rotate(Quaternion p, Quaternion x)
 		{
 			return new Quaternion(x.a, Rotate(p, x.u));
 		}
 
 		/// <summary>
-		/// ƒxƒNƒgƒ‹(axis)‚ğ²‚Æ‚µ‚ÄAƒÆ(theta)‰ñ“]‚·‚é‚½‚ß‚ÌlŒ³”‚ğŒvZ‚·‚éB
+		/// ãƒ™ã‚¯ãƒˆãƒ«(axis)ã‚’è»¸ã¨ã—ã¦ã€Î¸(theta)å›è»¢ã™ã‚‹ãŸã‚ã®å››å…ƒæ•°ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="theta">‰ñ“]ŠpƒÆ</param>
-		/// <param name="axis">‰ñ“]²ƒxƒNƒgƒ‹</param>
-		/// <returns>‰ñ“]‚ğ•\‚·lŒ³”</returns>
+		/// <param name="theta">å›è»¢è§’Î¸</param>
+		/// <param name="axis">å›è»¢è»¸ãƒ™ã‚¯ãƒˆãƒ«</param>
+		/// <returns>å›è»¢ã‚’è¡¨ã™å››å…ƒæ•°</returns>
 		public static Quaternion Rotator(double theta, Vector axis)
 		{
 			theta *= 0.5;
@@ -205,7 +205,7 @@ namespace SoundLibrary.Mathematics.ThreeDimension
 		}
 
 		#endregion
-		#region •¶š—ñ‰»
+		#region æ–‡å­—åˆ—åŒ–
 
 		public override string ToString()
 		{

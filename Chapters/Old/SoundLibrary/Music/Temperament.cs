@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// •½‹Ï—¥‰¹ŠK’è”’è‹`B
+	/// å¹³å‡å¾‹éŸ³éšå®šæ•°å®šç¾©ã€‚
 	/// </summary>
 	public class EqualTemperament
 	{
-		// ü”g””ä
+		// å‘¨æ³¢æ•°æ¯”
 		public static readonly double TONE     = Math.Pow(2.0, 1/6.0);
 		public static readonly double SEMITONE = Math.Pow(2.0, 1/12.0);
 		public static readonly double SHARP  = SEMITONE;
 		public static readonly double FLAT   = 1.0 / SEMITONE;
 		public const double OCTAVE = 2.0;
 
-		// ‰¹ŠK
+		// éŸ³éš
 		public const double A3 = 440.0;
 		public static readonly double B3 = A3 * TONE;
 		public static readonly double C3 = B3 * SEMITONE / OCTAVE;
@@ -70,29 +70,29 @@ namespace SoundLibrary.Music
 	}//class EqualTemperament
 
 	/// <summary>
-	/// ƒˆ—¥‰¹ŠK’è”’è‹`B
+	/// ç´”ç²‹å¾‹éŸ³éšå®šæ•°å®šç¾©ã€‚
 	/// </summary>
 	public class PureTemperament
 	{
-		// ü”g””ä
+		// å‘¨æ³¢æ•°æ¯”
 		public static readonly double TONE     = Math.Pow(2.0, 1/6.0);
 		public static readonly double SEMITONE = Math.Pow(2.0, 1/12.0);
 		public static readonly double SHARP  = SEMITONE;
 		public static readonly double FLAT   = 1.0 / SEMITONE;
 		public const double OCTAVE = 2.0;
 
-		public const double MINOR2   = 10.0 / 9.0; // ’Z2“x
-		public const double MAJOR2   =  9.0 / 8.0; // ’·2“x
-		public const double MINOR3   =  6.0 / 5.0; // ’Z3“x
-		public const double MAJOR3   =  5.0 / 4.0; // ’·3“x
-		public const double PERFECT4 =  4.0 / 3.0; // Š®‘S4“x
-		public const double PERFECT5 =  3.0 / 2.0; // Š®‘S5“x
-		public const double MINOR6   =  8.0 / 5.0; // ’Z6“x
-		public const double MAJOR6   =  5.0 / 3.0; // ’·6“x
-		public const double MINOR7   =  9.0 / 5.0; // ’Z7“x
-		public const double MAJOR7   = 15.0 / 8.0; // ’·7“x
+		public const double MINOR2   = 10.0 / 9.0; // çŸ­2åº¦
+		public const double MAJOR2   =  9.0 / 8.0; // é•·2åº¦
+		public const double MINOR3   =  6.0 / 5.0; // çŸ­3åº¦
+		public const double MAJOR3   =  5.0 / 4.0; // é•·3åº¦
+		public const double PERFECT4 =  4.0 / 3.0; // å®Œå…¨4åº¦
+		public const double PERFECT5 =  3.0 / 2.0; // å®Œå…¨5åº¦
+		public const double MINOR6   =  8.0 / 5.0; // çŸ­6åº¦
+		public const double MAJOR6   =  5.0 / 3.0; // é•·6åº¦
+		public const double MINOR7   =  9.0 / 5.0; // çŸ­7åº¦
+		public const double MAJOR7   = 15.0 / 8.0; // é•·7åº¦
 
-		// ‰¹ŠK
+		// éŸ³éš
 		public const double A3 = 440.0;
 		public static readonly double B3 = A3 * MAJOR2;
 		public static readonly double C3 = A3 * MAJOR3   / OCTAVE;

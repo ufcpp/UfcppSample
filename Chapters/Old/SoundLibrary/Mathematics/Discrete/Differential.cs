@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Discrete
 {
 	using Type = System.Double;
 
 	/// <summary>
-	/// “±ŠÖ”B
+	/// å°é–¢æ•°ã€‚
 	/// </summary>
 	public class Differential : Function
 	{
 		Function primitive;
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="primitive">Œ´nŠÖ”</param>
+		/// <param name="primitive">åŸå§‹é–¢æ•°</param>
 		public Differential(Function primitive)
 		{
 			this.primitive = primitive;
@@ -57,54 +57,54 @@ namespace SoundLibrary.Mathematics.Discrete
 		}
 
 		/// <summary>
-		/// ‘Oi·•ª‹ß—‚Å”÷•ªB
+		/// å‰é€²å·®åˆ†è¿‘ä¼¼ã§å¾®åˆ†ã€‚
 		/// </summary>
-		/// <param name="f">”÷•ª‘ÎÛ</param>
-		/// <param name="i">ˆÊ’u</param>
-		/// <returns>”÷•ªŒ‹‰Ê</returns>
+		/// <param name="f">å¾®åˆ†å¯¾è±¡</param>
+		/// <param name="i">ä½ç½®</param>
+		/// <returns>å¾®åˆ†çµæœ</returns>
 		public static Type ForwardDifference(Function f, int i)
 		{
 			return f[i+1] - f[i];
 		}
 
 		/// <summary>
-		/// Œã‘Ş·•ª‹ß—‚Å”÷•ªB
+		/// å¾Œé€€å·®åˆ†è¿‘ä¼¼ã§å¾®åˆ†ã€‚
 		/// </summary>
-		/// <param name="f">”÷•ª‘ÎÛ</param>
-		/// <param name="i">ˆÊ’u</param>
-		/// <returns>”÷•ªŒ‹‰Ê</returns>
+		/// <param name="f">å¾®åˆ†å¯¾è±¡</param>
+		/// <param name="i">ä½ç½®</param>
+		/// <returns>å¾®åˆ†çµæœ</returns>
 		public static Type BackwardDifference(Function f, int i)
 		{
 			return f[i] - f[i-1];
 		}
 
 		/// <summary>
-		/// 3“_‹ß—‚Å”÷•ªB
+		/// 3ç‚¹è¿‘ä¼¼ã§å¾®åˆ†ã€‚
 		/// </summary>
-		/// <param name="f">”÷•ª‘ÎÛ</param>
-		/// <param name="i">ˆÊ’u</param>
-		/// <returns>”÷•ªŒ‹‰Ê</returns>
+		/// <param name="f">å¾®åˆ†å¯¾è±¡</param>
+		/// <param name="i">ä½ç½®</param>
+		/// <returns>å¾®åˆ†çµæœ</returns>
 		public static Type Diffrential3(Function f, int i)
 		{
 			return (f[i+1] - f[i-1]) / 2;
 		}
 
 		/// <summary>
-		/// 5“_‹ß—‚Å”÷•ªB
+		/// 5ç‚¹è¿‘ä¼¼ã§å¾®åˆ†ã€‚
 		/// </summary>
-		/// <param name="f">”÷•ª‘ÎÛ</param>
-		/// <param name="i">ˆÊ’u</param>
-		/// <returns>”÷•ªŒ‹‰Ê</returns>
+		/// <param name="f">å¾®åˆ†å¯¾è±¡</param>
+		/// <param name="i">ä½ç½®</param>
+		/// <returns>å¾®åˆ†çµæœ</returns>
 		public static Type Diffrential5(Function f, int i)
 		{
 			return (-f[i+2] + 8 * f[i+1] - 8 * f[i-1] + f[i-2]) / 12;
 		}
 
 		/// <summary>
-		/// ”z—ñ‚ğŠÖ”‚ÉŒ©—§‚Ä‚Ä”÷•ªB
+		/// é…åˆ—ã‚’é–¢æ•°ã«è¦‹ç«‹ã¦ã¦å¾®åˆ†ã€‚
 		/// </summary>
-		/// <param name="x">”÷•ª‘ÎÛ</param>
-		/// <returns>”÷•ªŒ‹‰Ê</returns>
+		/// <param name="x">å¾®åˆ†å¯¾è±¡</param>
+		/// <returns>å¾®åˆ†çµæœ</returns>
 		public static Type[] Derive(Type[] x)
 		{
 			Type[] y = new Type[x.Length];

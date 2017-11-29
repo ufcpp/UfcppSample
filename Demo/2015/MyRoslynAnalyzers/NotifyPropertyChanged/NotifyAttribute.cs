@@ -1,4 +1,4 @@
-// used from NotifyPropertyChangedGenerator
+﻿// used from NotifyPropertyChangedGenerator
 
 using System;
 using System.Diagnostics;

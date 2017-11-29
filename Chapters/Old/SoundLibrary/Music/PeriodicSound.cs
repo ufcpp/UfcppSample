@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// üŠú‰¹‚ğì‚éB
+	/// å‘¨æœŸéŸ³ã‚’ä½œã‚‹ã€‚
 	/// </summary>
 	public class PeriodicSound : Sound
 	{
@@ -11,10 +11,10 @@ namespace SoundLibrary.Music
 		Sound sound;
 
 		/// <summary>
-		/// sound ‚ğ iteration ‰ñŒJ‚è•Ô‚·‰¹‚ğì‚éB
+		/// sound ã‚’ iteration å›ç¹°ã‚Šè¿”ã™éŸ³ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="iteration">”½•œ‰ñ”</param>
-		/// <param name="sound">Œ´‰¹</param>
+		/// <param name="iteration">åå¾©å›æ•°</param>
+		/// <param name="sound">åŸéŸ³</param>
 		public PeriodicSound(int iteration, Sound sound)
 		{
 			this.iteration = iteration;

@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	/// <summary>
-	/// ‹•””{B
-	/// ~i (i ‚Í‹•”’PˆÊ)B
-	/// GetValue (À”’lŒvZ)‚É‚Í“K—p‚³‚ê‚È‚¢B
+	/// è™šæ•°å€ã€‚
+	/// Ã—i (i ã¯è™šæ•°å˜ä½)ã€‚
+	/// GetValue (å®Ÿæ•°å€¤è¨ˆç®—)ã«ã¯é©ç”¨ã•ã‚Œãªã„ã€‚
 	/// </summary>
 	public class Imaginary : Function
 	{

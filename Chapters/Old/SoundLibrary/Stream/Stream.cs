@@ -1,47 +1,47 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Stream
 {
 	/// <summary>
-	/// ‰¹ºƒXƒgƒŠ[ƒ€—pƒCƒ“ƒ^ƒtƒF[ƒXB
-	/// ‚ß‚ñ‚Ç‚­‚³‚¢‚ñ‚ÅA16ƒrƒbƒgPCMŒÀ’èB
-	/// ƒ‚ƒmƒ‰ƒ‹”ÅB
+	/// éŸ³å£°ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+	/// ã‚ã‚“ã©ãã•ã„ã‚“ã§ã€16ãƒ“ãƒƒãƒˆPCMé™å®šã€‚
+	/// ãƒ¢ãƒãƒ©ãƒ«ç‰ˆã€‚
 	/// </summary>
 	public abstract class Stream
 	{
 		/// <summary>
-		/// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚ŞB
+		/// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="buffer">ƒf[ƒ^“Ç‚İ‚İæ‚Ìƒoƒbƒtƒ@</param>
-		/// <param name="offset">ƒf[ƒ^‚ğ‘‚«‚İn‚ß‚éêŠ‚ÌƒIƒtƒZƒbƒg</param>
-		/// <param name="size">“Ç‚İo‚µ‚½‚¢ƒf[ƒ^’·</param>
-		/// <returns>ÀÛ‚É“Ç‚İ‚ñ‚¾ƒf[ƒ^’·</returns>
+		/// <param name="buffer">ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å…ˆã®ãƒãƒƒãƒ•ã‚¡</param>
+		/// <param name="offset">ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿å§‹ã‚ã‚‹å ´æ‰€ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ</param>
+		/// <param name="size">èª­ã¿å‡ºã—ãŸã„ãƒ‡ãƒ¼ã‚¿é•·</param>
+		/// <returns>å®Ÿéš›ã«èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿é•·</returns>
 		public abstract int FillBuffer(short[] buffer, int offset, int size);
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚ŞB
+		/// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
-		/// <param name="buffer">ƒf[ƒ^“Ç‚İ‚İæ‚Ìƒoƒbƒtƒ@</param>
-		/// <returns>ÀÛ‚É“Ç‚İ‚ñ‚¾ƒf[ƒ^’·</returns>
+		/// <param name="buffer">ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å…ˆã®ãƒãƒƒãƒ•ã‚¡</param>
+		/// <returns>å®Ÿéš›ã«èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿é•·</returns>
 		public int FillBuffer(short[] buffer)
 		{
 			return this.FillBuffer(buffer, 0, buffer.Length);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ‹ó“Ç‚İ‚·‚éB
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’ç©ºèª­ã¿ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="size">‹ó“Ç‚İ‚µ‚½‚¢ƒTƒCƒY</param>
-		/// <returns>ÀÛ‚©‚ç“Ç‚İ‚µ‚½ƒTƒCƒY</returns>
+		/// <param name="size">ç©ºèª­ã¿ã—ãŸã„ã‚µã‚¤ã‚º</param>
+		/// <returns>å®Ÿéš›ã‹ã‚‰èª­ã¿ã—ãŸã‚µã‚¤ã‚º</returns>
 		public abstract bool Skip(int size);
 	}
 
 	/// <summary>
-	/// ‰¹ºƒXƒgƒŠ[ƒ€‚Éƒoƒbƒtƒ@‚ğ•t‚¯‚½‚à‚ÌB
+	/// éŸ³å£°ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«ãƒãƒƒãƒ•ã‚¡ã‚’ä»˜ã‘ãŸã‚‚ã®ã€‚
 	/// </summary>
 	public class BufferedStream
 	{
-		#region ’è”EƒtƒB[ƒ‹ƒh
+		#region å®šæ•°ãƒ»ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		const int DEFAULT_BUFFER_SIZE = 1024;
 
@@ -51,26 +51,26 @@ namespace SoundLibrary.Stream
 		int last;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒTƒCƒY‚Ìƒoƒbƒtƒ@‚ğ—pˆÓB
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚µã‚¤ã‚ºã®ãƒãƒƒãƒ•ã‚¡ã‚’ç”¨æ„ã€‚
 		/// </summary>
-		/// <param name="stream">“ü—ÍŒ³‚ÌƒXƒgƒŠ[ƒ€</param>
+		/// <param name="stream">å…¥åŠ›å…ƒã®ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
 		public BufferedStream(Stream stream) : this(stream, DEFAULT_BUFFER_SIZE) {}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@ƒTƒCƒY‚ğw’è‚µ‚Äƒoƒbƒtƒ@‚ğ—pˆÓB
+		/// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’æŒ‡å®šã—ã¦ãƒãƒƒãƒ•ã‚¡ã‚’ç”¨æ„ã€‚
 		/// </summary>
-		/// <param name="stream">“ü—ÍŒ³‚ÌƒXƒgƒŠ[ƒ€</param>
-		/// <param name="size">ƒoƒbƒtƒ@ƒTƒCƒY</param>
+		/// <param name="stream">å…¥åŠ›å…ƒã®ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="size">ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º</param>
 		public BufferedStream(Stream stream, int size) : this(stream, new short[size]) {}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@‚ğ’¼Úw’èB
+		/// ãƒãƒƒãƒ•ã‚¡ã‚’ç›´æ¥æŒ‡å®šã€‚
 		/// </summary>
-		/// <param name="stream">“ü—ÍŒ³‚ÌƒXƒgƒŠ[ƒ€</param>
-		/// <param name="buffer">ƒoƒbƒtƒ@</param>
+		/// <param name="stream">å…¥åŠ›å…ƒã®ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="buffer">ãƒãƒƒãƒ•ã‚¡</param>
 		public BufferedStream(Stream stream, short[] buffer)
 		{
 			this.stream = stream;
@@ -80,12 +80,12 @@ namespace SoundLibrary.Stream
 		}
 
 		#endregion
-		#region ’l‚Ìæ“¾‚È‚Ç
+		#region å€¤ã®å–å¾—ãªã©
 
 		/// <summary>
-		/// Ÿ‚Ìƒf[ƒ^‚ÉˆÚ“®B
+		/// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã«ç§»å‹•ã€‚
 		/// </summary>
-		/// <returns>‚Ü‚¾ƒf[ƒ^‚ªƒoƒbƒtƒ@“à‚Éc‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©</returns>
+		/// <returns>ã¾ã ãƒ‡ãƒ¼ã‚¿ãŒãƒãƒƒãƒ•ã‚¡å†…ã«æ®‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹</returns>
 		public bool MoveNext()
 		{
 			++this.current;
@@ -100,7 +100,7 @@ namespace SoundLibrary.Stream
 		}
 
 		/// <summary>
-		/// ’l‚Ìæ“¾B
+		/// å€¤ã®å–å¾—ã€‚
 		/// </summary>
 		public short Value
 		{

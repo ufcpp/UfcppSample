@@ -1,19 +1,19 @@
-using System;
+ï»¿using System;
 
 namespace Filter
 {
 	/// <summary>
-	/// ‘‹ŠÖ”—p‚Ì delegate
+	/// çª“é–¢æ•°ç”¨ã® delegate
 	/// </summary>
 	public delegate double WindowFunction(double x);
 
 	/// <summary>
-	/// FIR ƒtƒBƒ‹ƒ^ŠÖŒW‚Ì‹¤’ÊŠÖ”ŒQ
+	/// FIR ãƒ•ã‚£ãƒ«ã‚¿é–¢ä¿‚ã®å…±é€šé–¢æ•°ç¾¤
 	/// </summary>
 	class FirCommon
 	{
 		/// <summary>
-		/// üŒ`ˆÊ‘Šƒ[ƒpƒX/ƒoƒ“ƒhƒpƒX/ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ÌƒtƒBƒ‹ƒ^ƒ^ƒCƒvB
+		/// ç·šå½¢ä½ç›¸ãƒ­ãƒ¼ãƒ‘ã‚¹/ãƒãƒ³ãƒ‰ãƒ‘ã‚¹/ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ•ã‚£ãƒ«ã‚¿ã‚¿ã‚¤ãƒ—ã€‚
 		/// </summary>
 		public enum FirFilterType
 		{
@@ -21,15 +21,15 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// üŒ`ˆÊ‘Šƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ÌŒW”‚ğŒvZ‚·‚éB
-		/// ‰E‘¤”¼•ª‚Ì‚İ‚ğŒvZB
+		/// ç·šå½¢ä½ç›¸ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+		/// å³å´åŠåˆ†ã®ã¿ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="type">ƒtƒBƒ‹ƒ^ƒ^ƒCƒv</param>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”(BPF ‚Ìê‡‚ÍÕ’f‘Ñˆæ•AHPF ‚Ìê‡‚Í ƒÎ-Õ’fü”g”)</param>
-		/// <param name="w0">(BPF ‚Ì‚İ) ’†Sü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
-		/// <returns>ŒW”‚Ì‰E‘¤”¼•ª‚ğŒvZ‚µ‚½‚à‚Ì</returns>
+		/// <param name="type">ãƒ•ã‚£ãƒ«ã‚¿ã‚¿ã‚¤ãƒ—</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°(BPF ã®å ´åˆã¯é®æ–­å¸¯åŸŸå¹…ã€HPF ã®å ´åˆã¯ Ï€-é®æ–­å‘¨æ³¢æ•°)</param>
+		/// <param name="w0">(BPF ã®ã¿) ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
+		/// <returns>ä¿‚æ•°ã®å³å´åŠåˆ†ã‚’è¨ˆç®—ã—ãŸã‚‚ã®</returns>
 		public static void CalcLinearBPFCoefficient(FirFilterType type, double[] coef, double w, double w0, WindowFunction window)
 		{
 			int n = coef.Length;
@@ -65,7 +65,7 @@ namespace Filter
 		}//GetLinearBPFCoefficient
 
 		/// <summary>
-		/// ‘‹ŠÖ”—pBí‚É1‚ğ•Ô‚·ŠÖ”B
+		/// çª“é–¢æ•°ç”¨ã€‚å¸¸ã«1ã‚’è¿”ã™é–¢æ•°ã€‚
 		/// </summary>
 		public static double Constant1(double x)
 		{
@@ -74,45 +74,45 @@ namespace Filter
 	}//class FirCommon
 
 	/// <summary>
-	/// FIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
+	/// FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class FirFilter : IFilter
 	{
-		protected double[] coef; // ŒW””z—ñ
-		protected CircularBuffer buff; // ’x‰„ƒoƒbƒtƒ@
+		protected double[] coef; // ä¿‚æ•°é…åˆ—
+		protected CircularBuffer buff; // é…å»¶ãƒãƒƒãƒ•ã‚¡
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public FirFilter() : this(null){}
 
 		/// <summary>
-		/// ƒ^ƒbƒv”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ã‚¿ãƒƒãƒ—æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="taps">ƒ^ƒbƒv”</param>
+		/// <param name="taps">ã‚¿ãƒƒãƒ—æ•°</param>
 		public FirFilter(int taps) : this(new double[taps]){}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”‚ğŠi”[‚µ‚½”z—ñB</param>
+		/// <param name="coef">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—ã€‚</param>
 		public FirFilter(double[] coef)
 		{
 			this.Coefficient = coef;
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// N: ƒtƒBƒ‹ƒ^Ÿ” (= this.coef.Length - 1)
-		/// x: “ü—Í
-		/// y: o—Í
-		/// c[i]: ŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì x ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// y = x*c[N] + ƒ°_{i=0}^{N-1} d[i]*c[N-1-i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// N: ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•° (= this.coef.Length - 1)
+		/// x: å…¥åŠ›
+		/// y: å‡ºåŠ›
+		/// c[i]: ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® x ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// y = x*c[N] + Î£_{i=0}^{N-1} d[i]*c[N-1-i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			int N = this.coef.Length - 1;
@@ -126,7 +126,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -137,7 +137,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìæ“¾/İ’è
+		/// ä¿‚æ•°ã®å–å¾—/è¨­å®š
 		/// </summary>
 		public double[] Coefficient
 		{
@@ -157,10 +157,10 @@ namespace Filter
 	}//class FirFilter
 
 	/// <summary>
-	/// üŒ`ˆÊ‘Š FIR ƒtƒBƒ‹ƒ^ƒNƒ‰ƒXB
-	/// ŒW”‚ªÀ‘ÎÛ‚Å‚ ‚é‚±‚Æ‚ğ—˜—p‚µ‚ÄŒvZ—Ê/ƒƒ‚ƒŠ—ÊíŒ¸B
-	/// Šï”ƒ^ƒbƒvƒo[ƒWƒ‡ƒ“
-	/// (ƒ^ƒbƒv” 2n + 1 ‚ÅAcoef[n-i] == coef[n+i] foreach i)
+	/// ç·šå½¢ä½ç›¸ FIR ãƒ•ã‚£ãƒ«ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
+	/// ä¿‚æ•°ãŒå®Ÿå¯¾è±¡ã§ã‚ã‚‹ã“ã¨ã‚’åˆ©ç”¨ã—ã¦è¨ˆç®—é‡/ãƒ¡ãƒ¢ãƒªé‡å‰Šæ¸›ã€‚
+	/// å¥‡æ•°ã‚¿ãƒƒãƒ—ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	/// (ã‚¿ãƒƒãƒ—æ•° 2n + 1 ã§ã€coef[n-i] == coef[n+i] foreach i)
 	/// </summary>
 	public class OddLinearFir : IFilter
 	{
@@ -168,37 +168,37 @@ namespace Filter
 		protected CircularBuffer buff;
 
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		public OddLinearFir() : this(null){}
 
 		/// <summary>
-		/// ƒ^ƒbƒv”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ã‚¿ãƒƒãƒ—æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”  2n + 1</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•° ï¼ 2n + 1</param>
 		public OddLinearFir(int n) : this(new double[n+1]){}
 
 		/// <summary>
-		/// ŒW”‚ğw’è‚µ‚Ä FIR ‚ğì‚éB
+		/// ä¿‚æ•°ã‚’æŒ‡å®šã—ã¦ FIR ã‚’ä½œã‚‹ã€‚
 		/// </summary>
-		/// <param name="coef">ŒW”‚ğŠi”[‚µ‚½”z—ñB</param>
+		/// <param name="coef">ä¿‚æ•°ã‚’æ ¼ç´ã—ãŸé…åˆ—ã€‚</param>
 		public OddLinearFir(double[] coef)
 		{
 			this.Coefficient = coef;
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
-		/// n: ƒ^ƒbƒv”‚ª 2n + 1 (n = this.coef.Length - 1)
-		/// x: “ü—Í
-		/// y: o—Í
-		/// c[i]: ŒW””z—ñ
-		/// d[i]: i+1 ƒTƒ“ƒvƒ‹‘O‚Ì x ‚Ì’l
-		/// ‚Æ‚·‚é‚ÆA
-		/// y = d[n]*c[0] + ƒ°_{i=1}^{n} (d[n+i] + d[n-i])*c[i]
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
+		/// n: ã‚¿ãƒƒãƒ—æ•°ãŒ 2n + 1 (n = this.coef.Length - 1)
+		/// x: å…¥åŠ›
+		/// y: å‡ºåŠ›
+		/// c[i]: ä¿‚æ•°é…åˆ—
+		/// d[i]: i+1 ã‚µãƒ³ãƒ—ãƒ«å‰ã® x ã®å€¤
+		/// ã¨ã™ã‚‹ã¨ã€
+		/// y = d[n]*c[0] + Î£_{i=1}^{n} (d[n+i] + d[n-i])*c[i]
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			this.buff.PushBack(x);
@@ -213,7 +213,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -224,7 +224,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// ŒW”‚Ìæ“¾/İ’è
+		/// ä¿‚æ•°ã®å–å¾—/è¨­å®š
 		/// </summary>
 		public double[] Coefficient
 		{
@@ -251,23 +251,23 @@ namespace Filter
 	}//class OddLinearFir
 
 	/// <summary>
-	/// ƒ[ƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒ­ãƒ¼ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class LowPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
 		public LowPassFir(int n, double w) : this(n, w, new WindowFunction(FirCommon.Constant1)){}
 		
 		/// <summary>
-		/// ƒ[ƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public LowPassFir(int n, double w, WindowFunction window) : base(n)
 		{
 			FirCommon.CalcLinearBPFCoefficient(FirCommon.FirFilterType.LPF, this.coef, w, 0, window);
@@ -275,23 +275,23 @@ namespace Filter
 	}//class LowPassFir
 
 	/// <summary>
-	/// ƒnƒCƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒã‚¤ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class HighPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
 		public HighPassFir(int n, double w) : this(n, w, new WindowFunction(FirCommon.Constant1)){}
 		
 		/// <summary>
-		/// ƒnƒCƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="w">Õ’fü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="w">é®æ–­å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public HighPassFir(int n, double w, WindowFunction window) : base(n)
 		{
 			FirCommon.CalcLinearBPFCoefficient(FirCommon.FirFilterType.HPF, this.coef, Math.PI - w, 0, window);
@@ -299,25 +299,25 @@ namespace Filter
 	}//class HighPassFir
 
 	/// <summary>
-	/// ƒoƒ“ƒhƒpƒX FIR ƒtƒBƒ‹ƒ^B
+	/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ FIR ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
 	public class BandPassFir : OddLinearFir
 	{
 		/// <summary>
-		/// ƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
 		public BandPassFir(int n, double wl, double wh) : this(n, wl, wh, new WindowFunction(FirCommon.Constant1)){}
 		
 		/// <summary>
-		/// ƒoƒ“ƒhƒpƒXƒtƒBƒ‹ƒ^‚ğì¬
+		/// ãƒãƒ³ãƒ‰ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="n">ƒ^ƒbƒv”2n+1</param>
-		/// <param name="wl">‰ºŒÀü”g”</param>
-		/// <param name="wh">ãŒÀü”g”</param>
-		/// <param name="window">‘‹ŠÖ”</param>
+		/// <param name="n">ã‚¿ãƒƒãƒ—æ•°ï¼2n+1</param>
+		/// <param name="wl">ä¸‹é™å‘¨æ³¢æ•°</param>
+		/// <param name="wh">ä¸Šé™å‘¨æ³¢æ•°</param>
+		/// <param name="window">çª“é–¢æ•°</param>
 		public BandPassFir(int n, double wl, double wh, WindowFunction window) : base(n)
 		{
 			FirCommon.CalcLinearBPFCoefficient(FirCommon.FirFilterType.BPF, this.coef, (wl - wh)/2, (wl + wh)/2, window);
@@ -329,19 +329,19 @@ namespace Filter
 		CircularBuffer buf;
 
 		/// <summary>
-		/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <param name="taps">’x‰„ƒ^ƒbƒv”</param>
+		/// <param name="taps">é…å»¶ã‚¿ãƒƒãƒ—æ•°</param>
 		public Delay(int taps)
 		{
 			this.buf = new CircularBuffer(taps);
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			double tmp = this.buf.Top;
@@ -350,7 +350,7 @@ namespace Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{

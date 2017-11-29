@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using WaveAnalysis;
 namespace AppMain
 {
 	/// <summary>
-	/// WaveLoadForm ‚Ìİ’è€–Ú
+	/// WaveLoadForm ã®è¨­å®šé …ç›®
 	/// </summary>
 	public class WaveLoadFormSettings
 	{
@@ -30,20 +30,20 @@ namespace AppMain
 	}
 
 	/// <summary>
-	/// Wave ƒtƒ@ƒCƒ‹“Ç‚İ—p‚Ìƒ_ƒCƒAƒƒOB
+	/// Wave ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼ã¿ç”¨ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€‚
 	/// </summary>
 	public class WaveLoadForm : System.Windows.Forms.Form
 	{
-		#region è“®XV—Ìˆæ
+		#region æ‰‹å‹•æ›´æ–°é ˜åŸŸ
 		/// <summary>
-		/// Wave ƒf[ƒ^ì¬B
+		/// Wave ãƒ‡ãƒ¼ã‚¿ä½œæˆã€‚
 		/// </summary>
-		/// <returns>ì¬‚µ‚½ Wave</returns>
+		/// <returns>ä½œæˆã—ãŸ Wave</returns>
 		public WaveData CreateWave()
 		{
 			WaveAnalyzer analyzer = new WaveAnalyzer();
 
-			// ƒf[ƒ^“Ç‚İ
+			// ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã¿
 		{
 			int skip = int.Parse(this.textSkipLength.Text);
 			int length = int.Parse(this.textReadLength.Text);
@@ -60,7 +60,7 @@ namespace AppMain
 			}
 		}
 
-			// ƒŠƒtƒ@ƒŒƒ“ƒX‹tô‚İ‚İ
+			// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹é€†ç•³ã¿è¾¼ã¿
 			if(this.checkUseReference.Checked)
 			{
 				int skip = int.Parse(this.textSkipLengthRef.Text);
@@ -85,7 +85,7 @@ namespace AppMain
 		}//CreateWave
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼
+		/// ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«å
 		/// </summary>
 		public string DataFileName
 		{
@@ -93,7 +93,7 @@ namespace AppMain
 		}
 
 		/// <summary>
-		/// İ’è‚Ìæ“¾EXV
+		/// è¨­å®šã®å–å¾—ãƒ»æ›´æ–°
 		/// </summary>
 		public WaveLoadFormSettings Setting
 		{
@@ -171,7 +171,7 @@ namespace AppMain
 		private System.Windows.Forms.Label labelReferenceType;
 		private System.Windows.Forms.ComboBox comboReferenceType;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -181,7 +181,7 @@ namespace AppMain
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -197,8 +197,8 @@ namespace AppMain
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -264,7 +264,7 @@ namespace AppMain
 			this.buttonData.Name = "buttonData";
 			this.buttonData.Size = new System.Drawing.Size(40, 23);
 			this.buttonData.TabIndex = 1;
-			this.buttonData.Text = "QÆ";
+			this.buttonData.Text = "å‚ç…§";
 			this.buttonData.Click += new System.EventHandler(this.buttonData_Click);
 			// 
 			// buttonReference
@@ -273,7 +273,7 @@ namespace AppMain
 			this.buttonReference.Name = "buttonReference";
 			this.buttonReference.Size = new System.Drawing.Size(40, 23);
 			this.buttonReference.TabIndex = 13;
-			this.buttonReference.Text = "QÆ";
+			this.buttonReference.Text = "å‚ç…§";
 			this.buttonReference.Click += new System.EventHandler(this.buttonReference_Click);
 			// 
 			// checkRemoveSilent
@@ -282,7 +282,7 @@ namespace AppMain
 			this.checkRemoveSilent.Name = "checkRemoveSilent";
 			this.checkRemoveSilent.Size = new System.Drawing.Size(128, 24);
 			this.checkRemoveSilent.TabIndex = 4;
-			this.checkRemoveSilent.Text = "–³‰¹‹æŠÔ‚ğœ‹‚·‚é";
+			this.checkRemoveSilent.Text = "ç„¡éŸ³åŒºé–“ã‚’é™¤å»ã™ã‚‹";
 			this.checkRemoveSilent.CheckedChanged += new System.EventHandler(this.checkRemoveSilent_CheckedChanged);
 			// 
 			// textThreshold
@@ -301,7 +301,7 @@ namespace AppMain
 			this.labelThreshold.Name = "labelThreshold";
 			this.labelThreshold.Size = new System.Drawing.Size(32, 16);
 			this.labelThreshold.TabIndex = 1;
-			this.labelThreshold.Text = "è‡’l";
+			this.labelThreshold.Text = "é–¾å€¤";
 			this.labelThreshold.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// checkRelativeThreshold
@@ -311,7 +311,7 @@ namespace AppMain
 			this.checkRelativeThreshold.Name = "checkRelativeThreshold";
 			this.checkRelativeThreshold.Size = new System.Drawing.Size(128, 24);
 			this.checkRelativeThreshold.TabIndex = 5;
-			this.checkRelativeThreshold.Text = "è‡’l‚É‘Š‘Î’l‚ğg‚¤";
+			this.checkRelativeThreshold.Text = "é–¾å€¤ã«ç›¸å¯¾å€¤ã‚’ä½¿ã†";
 			// 
 			// groupRemoveSilent
 			// 
@@ -325,7 +325,7 @@ namespace AppMain
 			this.groupRemoveSilent.Size = new System.Drawing.Size(208, 72);
 			this.groupRemoveSilent.TabIndex = 5;
 			this.groupRemoveSilent.TabStop = false;
-			this.groupRemoveSilent.Text = "–³‰¹‹æŠÔ‚Ìœ‹";
+			this.groupRemoveSilent.Text = "ç„¡éŸ³åŒºé–“ã®é™¤å»";
 			// 
 			// labelDataName
 			// 
@@ -333,7 +333,7 @@ namespace AppMain
 			this.labelDataName.Name = "labelDataName";
 			this.labelDataName.Size = new System.Drawing.Size(56, 16);
 			this.labelDataName.TabIndex = 18;
-			this.labelDataName.Text = "ƒtƒ@ƒCƒ‹–¼";
+			this.labelDataName.Text = "ãƒ•ã‚¡ã‚¤ãƒ«å";
 			this.labelDataName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// groupData
@@ -350,7 +350,7 @@ namespace AppMain
 			this.groupData.Size = new System.Drawing.Size(392, 160);
 			this.groupData.TabIndex = 7;
 			this.groupData.TabStop = false;
-			this.groupData.Text = "ƒf[ƒ^ƒtƒ@ƒCƒ‹";
+			this.groupData.Text = "ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«";
 			// 
 			// groupRange
 			// 
@@ -364,7 +364,7 @@ namespace AppMain
 			this.groupRange.Size = new System.Drawing.Size(160, 72);
 			this.groupRange.TabIndex = 9;
 			this.groupRange.TabStop = false;
-			this.groupRange.Text = "“Ç‚İ‹æŠÔ";
+			this.groupRange.Text = "èª­è¾¼ã¿åŒºé–“";
 			// 
 			// textSkipLength
 			// 
@@ -381,7 +381,7 @@ namespace AppMain
 			this.labelReadLength.Name = "labelReadLength";
 			this.labelReadLength.Size = new System.Drawing.Size(64, 16);
 			this.labelReadLength.TabIndex = 1;
-			this.labelReadLength.Text = "“Ç‚İ’·";
+			this.labelReadLength.Text = "èª­è¾¼ã¿é•·";
 			this.labelReadLength.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// labelSkipLength
@@ -390,7 +390,7 @@ namespace AppMain
 			this.labelSkipLength.Name = "labelSkipLength";
 			this.labelSkipLength.Size = new System.Drawing.Size(64, 16);
 			this.labelSkipLength.TabIndex = 0;
-			this.labelSkipLength.Text = "“Ç”ò‚Î‚µ’·";
+			this.labelSkipLength.Text = "èª­é£›ã°ã—é•·";
 			this.labelSkipLength.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// textReadLength
@@ -408,7 +408,7 @@ namespace AppMain
 			this.checkUseReference.Name = "checkUseReference";
 			this.checkUseReference.Size = new System.Drawing.Size(160, 24);
 			this.checkUseReference.TabIndex = 7;
-			this.checkUseReference.Text = "ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚ğg—p‚·‚é";
+			this.checkUseReference.Text = "ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹";
 			this.checkUseReference.CheckedChanged += new System.EventHandler(this.checkUseReference_CheckedChanged);
 			// 
 			// groupReference
@@ -428,17 +428,17 @@ namespace AppMain
 			this.groupReference.Size = new System.Drawing.Size(392, 176);
 			this.groupReference.TabIndex = 8;
 			this.groupReference.TabStop = false;
-			this.groupReference.Text = "ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^";
+			this.groupReference.Text = "ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿";
 			// 
 			// comboReferenceType
 			// 
 			this.comboReferenceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboReferenceType.Items.AddRange(new object[] {
-																														"—¼‘¤ƒ`ƒƒƒlƒ‹",
-																														"¶ƒ`ƒƒƒlƒ‹",
-																														"‰Eƒ`ƒƒƒlƒ‹",
-																														"‹t‘¤ƒ`ƒƒƒlƒ‹",
-																														"ƒNƒƒXƒg[ƒN"});
+																														"ä¸¡å´ãƒãƒ£ãƒãƒ«",
+																														"å·¦ãƒãƒ£ãƒãƒ«",
+																														"å³ãƒãƒ£ãƒãƒ«",
+																														"é€†å´ãƒãƒ£ãƒãƒ«",
+																														"ã‚¯ãƒ­ã‚¹ãƒˆãƒ¼ã‚¯"});
 			this.comboReferenceType.Location = new System.Drawing.Point(96, 40);
 			this.comboReferenceType.Name = "comboReferenceType";
 			this.comboReferenceType.Size = new System.Drawing.Size(121, 20);
@@ -450,7 +450,7 @@ namespace AppMain
 			this.labelReferenceType.Name = "labelReferenceType";
 			this.labelReferenceType.Size = new System.Drawing.Size(88, 16);
 			this.labelReferenceType.TabIndex = 14;
-			this.labelReferenceType.Text = "ƒŠƒtƒ@ƒŒƒ“ƒXƒ^ƒCƒv";
+			this.labelReferenceType.Text = "ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—";
 			this.labelReferenceType.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// checkNormalize
@@ -459,7 +459,7 @@ namespace AppMain
 			this.checkNormalize.Name = "checkNormalize";
 			this.checkNormalize.Size = new System.Drawing.Size(176, 24);
 			this.checkNormalize.TabIndex = 8;
-			this.checkNormalize.Text = "ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚ğ³‹K‰»‚·‚é";
+			this.checkNormalize.Text = "ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ­£è¦åŒ–ã™ã‚‹";
 			// 
 			// labelReferenceName
 			// 
@@ -467,7 +467,7 @@ namespace AppMain
 			this.labelReferenceName.Name = "labelReferenceName";
 			this.labelReferenceName.Size = new System.Drawing.Size(56, 16);
 			this.labelReferenceName.TabIndex = 7;
-			this.labelReferenceName.Text = "ƒtƒ@ƒCƒ‹–¼";
+			this.labelReferenceName.Text = "ãƒ•ã‚¡ã‚¤ãƒ«å";
 			this.labelReferenceName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// groupRemoveSilentRef
@@ -482,7 +482,7 @@ namespace AppMain
 			this.groupRemoveSilentRef.Size = new System.Drawing.Size(208, 72);
 			this.groupRemoveSilentRef.TabIndex = 10;
 			this.groupRemoveSilentRef.TabStop = false;
-			this.groupRemoveSilentRef.Text = "–³‰¹‹æŠÔ‚Ìœ‹";
+			this.groupRemoveSilentRef.Text = "ç„¡éŸ³åŒºé–“ã®é™¤å»";
 			// 
 			// textThresholdRef
 			// 
@@ -500,7 +500,7 @@ namespace AppMain
 			this.labelThresholdRef.Name = "labelThresholdRef";
 			this.labelThresholdRef.Size = new System.Drawing.Size(32, 16);
 			this.labelThresholdRef.TabIndex = 1;
-			this.labelThresholdRef.Text = "è‡’l";
+			this.labelThresholdRef.Text = "é–¾å€¤";
 			this.labelThresholdRef.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// checkRelativeThresholdRef
@@ -510,7 +510,7 @@ namespace AppMain
 			this.checkRelativeThresholdRef.Name = "checkRelativeThresholdRef";
 			this.checkRelativeThresholdRef.Size = new System.Drawing.Size(128, 24);
 			this.checkRelativeThresholdRef.TabIndex = 16;
-			this.checkRelativeThresholdRef.Text = "è‡’l‚É‘Š‘Î’l‚ğg‚¤";
+			this.checkRelativeThresholdRef.Text = "é–¾å€¤ã«ç›¸å¯¾å€¤ã‚’ä½¿ã†";
 			// 
 			// checkRemoveSilentRef
 			// 
@@ -518,7 +518,7 @@ namespace AppMain
 			this.checkRemoveSilentRef.Name = "checkRemoveSilentRef";
 			this.checkRemoveSilentRef.Size = new System.Drawing.Size(128, 24);
 			this.checkRemoveSilentRef.TabIndex = 15;
-			this.checkRemoveSilentRef.Text = "–³‰¹‹æŠÔ‚ğœ‹‚·‚é";
+			this.checkRemoveSilentRef.Text = "ç„¡éŸ³åŒºé–“ã‚’é™¤å»ã™ã‚‹";
 			this.checkRemoveSilentRef.CheckedChanged += new System.EventHandler(this.checkRemoveSilentRef_CheckedChanged);
 			// 
 			// groupRangeRef
@@ -531,7 +531,7 @@ namespace AppMain
 			this.groupRangeRef.Size = new System.Drawing.Size(160, 72);
 			this.groupRangeRef.TabIndex = 11;
 			this.groupRangeRef.TabStop = false;
-			this.groupRangeRef.Text = "“Ç‚İ‹æŠÔ";
+			this.groupRangeRef.Text = "èª­è¾¼ã¿åŒºé–“";
 			// 
 			// textSkipLengthRef
 			// 
@@ -548,7 +548,7 @@ namespace AppMain
 			this.labelSkipLengthRef.Name = "labelSkipLengthRef";
 			this.labelSkipLengthRef.Size = new System.Drawing.Size(64, 16);
 			this.labelSkipLengthRef.TabIndex = 0;
-			this.labelSkipLengthRef.Text = "“Ç”ò‚Î‚µ’·";
+			this.labelSkipLengthRef.Text = "èª­é£›ã°ã—é•·";
 			this.labelSkipLengthRef.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// buttonOk
@@ -585,7 +585,7 @@ namespace AppMain
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "WaveLoadForm";
-			this.Text = "Wave ƒtƒ@ƒCƒ‹“Ç‚İİ’è";
+			this.Text = "Wave ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼ã¿è¨­å®š";
 			this.groupRemoveSilent.ResumeLayout(false);
 			this.groupData.ResumeLayout(false);
 			this.groupRange.ResumeLayout(false);
@@ -602,7 +602,7 @@ namespace AppMain
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = "wave file(*.wav)|*.wav";
 
-			dlg.Title = "ƒf[ƒ^ƒtƒ@ƒCƒ‹‚Ì‘I‘ğ";
+			dlg.Title = "ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã®é¸æŠ";
 			if(dlg.ShowDialog() != DialogResult.OK) return;
 			this.textDataName.Text = dlg.FileName;
 		}
@@ -612,7 +612,7 @@ namespace AppMain
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = "wave file(*.wav)|*.wav";
 
-			dlg.Title = "ƒŠƒtƒ@ƒŒƒ“ƒXƒtƒ@ƒCƒ‹‚Ì‘I‘ğ";
+			dlg.Title = "ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®é¸æŠ";
 			if(dlg.ShowDialog() != DialogResult.OK) return;
 			this.textReferenceName.Text = dlg.FileName;
 		}

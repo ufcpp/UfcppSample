@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Discrete
@@ -6,7 +6,7 @@ namespace SoundLibrary.Mathematics.Discrete
 	using Type = System.Double;
 
 	/// <summary>
-	/// ”z—ñ x ‚Æ”z—ñ y ‚ÌzŠÂ‘ŠŒİ‘ŠŠÖ’l‚ğ‹‚ß‚éB
+	/// é…åˆ— x ã¨é…åˆ— y ã®å¾ªç’°ç›¸äº’ç›¸é–¢å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 	/// </summary>
 	public class CircularCorrelation : Function
 	{
@@ -16,7 +16,7 @@ namespace SoundLibrary.Mathematics.Discrete
 		public CircularCorrelation(Type[] x, Type[] y)
 		{
 			if(x.Length != y.Length)
-				throw new ArgumentException("x ‚Æ y ‚Ì’·‚³‚Í“™‚µ‚­‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB");
+				throw new ArgumentException("x ã¨ y ã®é•·ã•ã¯ç­‰ã—ããªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚");
 
 			this.x = x;
 			this.y = y;
@@ -47,10 +47,10 @@ namespace SoundLibrary.Mathematics.Discrete
 		}
 
 		/// <summary>
-		/// ‘ŠŒİ‘ŠŠÖ’l C[n] = ƒ°_i x[i]y[i-n] ‚ğ‹‚ß‚éB
+		/// ç›¸äº’ç›¸é–¢å€¤ C[n] = Î£_i x[i]y[i-n] ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">C[n] ‚Ì n</param>
-		/// <returns>‘ŠŒİ‘ŠŠÖ’l</returns>
+		/// <param name="n">C[n] ã® n</param>
+		/// <returns>ç›¸äº’ç›¸é–¢å€¤</returns>
 		public override Type this[int n]
 		{
 			get

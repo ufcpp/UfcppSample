@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.SpectrumAnalysis;
 using SoundLibrary.Wave;
@@ -6,14 +6,14 @@ using SoundLibrary.Wave;
 namespace SoundLibrary.WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒtƒ@ƒCƒ‹‰ğÍ—pƒNƒ‰ƒXB
+	/// Wave ãƒ•ã‚¡ã‚¤ãƒ«è§£æç”¨ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class WaveAnalyzer
 	{
-		WaveData data = new WaveTime(); // ƒf[ƒ^‰¹
+		WaveData data = new WaveTime(); // ãƒ‡ãƒ¼ã‚¿éŸ³
 
 		/// <summary>
-		/// ƒf[ƒ^ Wave ‚Ìæ“¾
+		/// ãƒ‡ãƒ¼ã‚¿ Wave ã®å–å¾—
 		/// </summary>
 		public WaveData Data
 		{
@@ -22,10 +22,10 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ”z—ñ‚Ìƒs[ƒN’l‚ğ‹‚ß‚éB
+		/// é…åˆ—ã®ãƒ”ãƒ¼ã‚¯å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="x">”z—ñ</param>
-		/// <returns>ƒs[ƒN’l</returns>
+		/// <param name="x">é…åˆ—</param>
+		/// <returns>ãƒ”ãƒ¼ã‚¯å€¤</returns>
 		static double GetPeekValue(double[] x)
 		{
 			if(x == null) return 0;
@@ -39,12 +39,12 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// –³‰¹‹æŠÔ‚Ì’·‚³‚ğ‹‚ß‚éB
+		/// ç„¡éŸ³åŒºé–“ã®é•·ã•ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// 
 		/// </summary>
-		/// <param name="x">”z—ñ</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <returns>‹æŠÔ’·</returns>
+		/// <param name="x">é…åˆ—</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <returns>åŒºé–“é•·</returns>
 		static int GetSilentLength(double[] x, double threshold)
 		{
 			if(x == null) return int.MaxValue;
@@ -58,11 +58,11 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ”z—ñ‚ğƒRƒs[
+		/// é…åˆ—ã‚’ã‚³ãƒ”ãƒ¼
 		/// </summary>
-		/// <param name="src">ƒRƒs[Œ³</param>
-		/// <param name="index">ƒRƒs[ŠJnˆÊ’u</param>
-		/// <param name="length">ƒRƒs[‚·‚é’·‚³</param>
+		/// <param name="src">ã‚³ãƒ”ãƒ¼å…ƒ</param>
+		/// <param name="index">ã‚³ãƒ”ãƒ¼é–‹å§‹ä½ç½®</param>
+		/// <param name="length">ã‚³ãƒ”ãƒ¼ã™ã‚‹é•·ã•</param>
 		/// <returns></returns>
 		static double[] CopyArray(double[] src, int index, int length)
 		{
@@ -72,13 +72,13 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ”z—ñ‚ğƒRƒs[
-		/// ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³‚Ì•û‚ª’·‚¢ê‡AŒã‚ë‚ğ0‹l‚ß
+		/// é…åˆ—ã‚’ã‚³ãƒ”ãƒ¼
+		/// ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•ã®æ–¹ãŒé•·ã„å ´åˆã€å¾Œã‚ã‚’0è©°ã‚
 		/// </summary>
-		/// <param name="src">ƒRƒs[Œ³</param>
-		/// <param name="index">ƒRƒs[ŠJnˆÊ’u</param>
-		/// <param name="length">ƒRƒs[‚·‚é’·‚³</param>
-		/// <param name="dstLength">ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³</param>
+		/// <param name="src">ã‚³ãƒ”ãƒ¼å…ƒ</param>
+		/// <param name="index">ã‚³ãƒ”ãƒ¼é–‹å§‹ä½ç½®</param>
+		/// <param name="length">ã‚³ãƒ”ãƒ¼ã™ã‚‹é•·ã•</param>
+		/// <param name="dstLength">ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•</param>
 		/// <returns></returns>
 		static double[] CopyArray(double[] src, int index, int length, int dstLength)
 		{
@@ -93,12 +93,12 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(string filename, int skip, int length)
 		{
 			WaveReader reader = null;
@@ -119,14 +119,14 @@ namespace SoundLibrary.WaveAnalysis
 		}//Read
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
-		/// (Œã‚ë0‹l‚ß)
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
+		/// (å¾Œã‚0è©°ã‚)
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="dstLength">ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="dstLength">ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(string filename, int skip, int length, int dstLength)
 		{
 			WaveReader reader = null;
@@ -147,16 +147,16 @@ namespace SoundLibrary.WaveAnalysis
 		}//Read
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
-		/// (Œã‚ë0‹l‚ß)
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
+		/// (å¾Œã‚0è©°ã‚)
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’lB‚±‚Ì’lˆÈ‰º‚Ì‰¹‚Í–³‰¹‚Æ‚İ‚È‚·</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚ç‚İ‚½‘Š‘Î’l‚ğg‚¤</param>
-		/// <param name="dstLength">ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤ã€‚ã“ã®å€¤ä»¥ä¸‹ã®éŸ³ã¯ç„¡éŸ³ã¨ã¿ãªã™</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰ã¿ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
+		/// <param name="dstLength">ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(
 			string filename, int skip, int length,
 			double threshold ,bool relative, int dstLength)
@@ -183,14 +183,14 @@ namespace SoundLibrary.WaveAnalysis
 
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚ç Wave ƒf[ƒ^‚ğ“Ç‚İo‚µB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ Wave ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’lB‚±‚Ì’lˆÈ‰º‚Ì‰¹‚Í–³‰¹‚Æ‚İ‚È‚·</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚ç‚İ‚½‘Š‘Î’l‚ğg‚¤</param>
-		/// <returns>“Ç‚İo‚µ‚½ƒf[ƒ^</returns>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤ã€‚ã“ã®å€¤ä»¥ä¸‹ã®éŸ³ã¯ç„¡éŸ³ã¨ã¿ãªã™</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰ã¿ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
+		/// <returns>èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿</returns>
 		static WaveData Read(
 			string filename, int skip, int length,
 			double threshold ,bool relative)
@@ -199,61 +199,61 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
 		public void ReadData(string filename, int skip, int length)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="dstLength">ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="dstLength">ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•</param>
 		public void ReadData(string filename, int skip, int length, int dstLength)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length, dstLength);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
-		/// –³‰¹‹æŠÔ‚Ìœ‹‚ğs‚¤B
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
+		/// ç„¡éŸ³åŒºé–“ã®é™¤å»ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚çŒ©‚½‘Š‘Î’l‚ğg‚¤</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰è¦‹ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
 		public void ReadData(string filename, int skip, int length, double threshold, bool relative)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length, threshold, relative);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì“Ç‚İo‚µB
-		/// –³‰¹‹æŠÔ‚Ìœ‹‚ğs‚¤B
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®èª­ã¿å‡ºã—ã€‚
+		/// ç„¡éŸ³åŒºé–“ã®é™¤å»ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="length">“Ç‚İ‚Ş’·‚³</param>
-		/// <param name="skip">ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğ“Ç‚İ”ò‚Î‚·’·‚³</param>
-		/// <param name="threshold">è‡’l</param>
-		/// <param name="relative">è‡’l‚Éƒs[ƒN’l‚©‚çŒ©‚½‘Š‘Î’l‚ğg‚¤</param>
-		/// <param name="dstLength">ƒRƒs[Œã‚Ì”z—ñ‚Ì’·‚³</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="length">èª­ã¿è¾¼ã‚€é•·ã•</param>
+		/// <param name="skip">ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’èª­ã¿é£›ã°ã™é•·ã•</param>
+		/// <param name="threshold">é–¾å€¤</param>
+		/// <param name="relative">é–¾å€¤ã«ãƒ”ãƒ¼ã‚¯å€¤ã‹ã‚‰è¦‹ãŸç›¸å¯¾å€¤ã‚’ä½¿ã†</param>
+		/// <param name="dstLength">ã‚³ãƒ”ãƒ¼å¾Œã®é…åˆ—ã®é•·ã•</param>
 		public void ReadData(string filename, int skip, int length, double threshold, bool relative, int dstLength)
 		{
 			this.data = WaveAnalyzer.Read(filename, skip, length, threshold, relative, dstLength);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ wave ‚Ì‘‚«‚İB
+		/// ãƒ‡ãƒ¼ã‚¿ wave ã®æ›¸ãè¾¼ã¿ã€‚
 		/// </summary>
-		/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void WirteData(string filename)
 		{
 			using(WaveWriter writer = new WaveWriter(filename, this.data.Header))

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -8,39 +8,39 @@ using System.Data;
 namespace Reversi
 {
 	/// <summary>
-	/// Form1 ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Form1 ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ReversiMainForm : System.Windows.Forms.Form
 	{
 		/// <summary>
-		/// ƒIƒvƒVƒ‡ƒ“İ’è’l
+		/// ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šå€¤
 		/// </summary>
 		public class Option
 		{
-			public int board_width = 8;  //”Õ–Ê‚Ì‰¡•
-			public int board_height = 8; //”Õ–Ê‚Ì‚‚³
-			public int max_lookahead = 5;//CPU‚Ìæ“Ç‚İ’i”(‘½•ªA‘½‚¢‚Ù‚¤‚ª‹­‚¢)
+			public int board_width = 8;  //ç›¤é¢ã®æ¨ªå¹…
+			public int board_height = 8; //ç›¤é¢ã®é«˜ã•
+			public int max_lookahead = 5;//CPUã®å…ˆèª­ã¿æ®µæ•°(å¤šåˆ†ã€å¤šã„ã»ã†ãŒå¼·ã„)
 		}
 
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private ReversiBoard board; //ƒŠƒo[ƒV‚Ì”Õ–Ê
+		private ReversiBoard board; //ãƒªãƒãƒ¼ã‚·ã®ç›¤é¢
 		private Option option = new Option();
 		private ReversiPanel panel;
 		private System.Windows.Forms.StatusBar status_bar;
 		private System.Windows.Forms.MenuItem menu_start;
 		private System.Windows.Forms.MenuItem menu_option;
 		private System.Windows.Forms.MenuItem menu_quit;
-		private System.Windows.Forms.MainMenu mainMenu; //”Õ–Ê‚ğ•\¦‚·‚é‚½‚ß‚Ìƒpƒlƒ‹
-		private ReversiColor phase; //¡A”’•‚Ç‚¿‚ç‚ÌUŒ‚’†‚©
+		private System.Windows.Forms.MainMenu mainMenu; //ç›¤é¢ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‘ãƒãƒ«
+		private ReversiColor phase; //ä»Šã€ç™½é»’ã©ã¡ã‚‰ã®æ”»æ’ƒä¸­ã‹
 
 		public ReversiMainForm()
 		{
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
@@ -51,7 +51,7 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -67,8 +67,8 @@ namespace Reversi
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -90,19 +90,19 @@ namespace Reversi
 			// menu_start
 			// 
 			this.menu_start.Index = 0;
-			this.menu_start.Text = "ƒQ[ƒ€ŠJn";
+			this.menu_start.Text = "ã‚²ãƒ¼ãƒ é–‹å§‹";
 			this.menu_start.Click += new System.EventHandler(this.menu_start_Click);
 			// 
 			// menu_option
 			// 
 			this.menu_option.Index = 1;
-			this.menu_option.Text = "ƒIƒvƒVƒ‡ƒ“";
+			this.menu_option.Text = "ã‚ªãƒ—ã‚·ãƒ§ãƒ³";
 			this.menu_option.Click += new System.EventHandler(this.menu_option_Click);
 			// 
 			// menu_quit
 			// 
 			this.menu_quit.Index = 2;
-			this.menu_quit.Text = "I—¹";
+			this.menu_quit.Text = "çµ‚äº†";
 			this.menu_quit.Click += new System.EventHandler(this.menu_quit_Click);
 			// 
 			// status_bar
@@ -134,7 +134,7 @@ namespace Reversi
 		#endregion
 
 		/// <summary>
-		/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+		/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 		/// </summary>
 		[STAThread]
 		static void Main() 
@@ -143,7 +143,7 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ‘ÎlíAƒZƒ‹(x,y)‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
+		/// å¯¾äººæˆ¦æ™‚ã€ã‚»ãƒ«(x,y)ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 		/// </summary>
 		protected void OnCellClick(int x, int y)
 		{
@@ -163,23 +163,23 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ƒQ[ƒ€I—¹‚Ìˆ—
+		/// ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã®å‡¦ç†
 		/// </summary>
 		private void GameSet()
 		{
 			int black_num, white_num;
 			this.board.CountUp(out black_num, out white_num);
 			if(black_num > white_num)
-				status_bar.Text = black_num + "‘Î" + white_num + "‚Å•‚ÌŸ‚¿";
+				status_bar.Text = black_num + "å¯¾" + white_num + "ã§é»’ã®å‹ã¡";
 			else if(black_num < white_num)
-				status_bar.Text = black_num + "‘Î" + white_num + "‚Å”’‚ÌŸ‚¿";
+				status_bar.Text = black_num + "å¯¾" + white_num + "ã§ç™½ã®å‹ã¡";
 			else
-				status_bar.Text = black_num + "‘Î" + white_num + "‚Åˆø‚«•ª‚¯";
+				status_bar.Text = black_num + "å¯¾" + white_num + "ã§å¼•ãåˆ†ã‘";
 			
 		}
 
 		/// <summary>
-		/// ƒQ[ƒ€ŠJn‚Ìˆ—
+		/// ã‚²ãƒ¼ãƒ é–‹å§‹ã®å‡¦ç†
 		/// </summary>
 		private void GameStart()
 		{
@@ -195,13 +195,13 @@ namespace Reversi
 
 		private void ShowPhaseMessage()
 		{
-			if(this.phase == ReversiColor.Black) status_bar.Text = "•‚Ì”Ô‚Å‚·";
-			if(this.phase == ReversiColor.White) status_bar.Text = "”’‚Ì”Ô‚Å‚·";
+			if(this.phase == ReversiColor.Black) status_bar.Text = "é»’ã®ç•ªã§ã™";
+			if(this.phase == ReversiColor.White) status_bar.Text = "ç™½ã®ç•ªã§ã™";
 		}
 
 		private void ShowErrorMessage()
 		{
-			status_bar.Text = "‚»‚±‚É‚Í’u‚¯‚Ü‚¹‚ñ";
+			status_bar.Text = "ãã“ã«ã¯ç½®ã‘ã¾ã›ã‚“";
 		}
 
 		private void menu_start_Click(object sender, System.EventArgs e)
@@ -211,7 +211,7 @@ namespace Reversi
 
 		private void menu_quit_Click(object sender, System.EventArgs e)
 		{
-			DialogResult res = MessageBox.Show("I—¹‚µ‚Ü‚·‚©H", "I—¹‚ÌŠm”F", MessageBoxButtons.OKCancel);
+			DialogResult res = MessageBox.Show("çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ", "çµ‚äº†ã®ç¢ºèª", MessageBoxButtons.OKCancel);
 			if(res == DialogResult.OK)
 				this.Close();
 		}

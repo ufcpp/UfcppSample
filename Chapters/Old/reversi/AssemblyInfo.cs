@@ -1,10 +1,10 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 
 //
-// �A�Z���u���Ɋւ����ʏ��͈ȉ��� 
-// �����Z�b�g��ʂ��Đ��䂳��܂��B�A�Z���u���Ɋ֘A�t�����Ă��� 
-// ����ύX����ɂ́A�����̑����l��ύX���Ă��������B
+// アセンブリに関する一般情報は以下の 
+// 属性セットを通して制御されます。アセンブリに関連付けられている 
+// 情報を変更するには、これらの属性値を変更してください。
 //
 [assembly: AssemblyTitle("")]
 [assembly: AssemblyDescription("")]
@@ -16,42 +16,42 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]		
 
 //
-// �A�Z���u���̃o�[�W�������́A�ȉ��� 4 �̑����ō\������܂� :
+// アセンブリのバージョン情報は、以下の 4 つの属性で構成されます :
 //
-//      ���W���[ �o�[�W����
-//      �}�C�i �o�[�W���� 
-//      �r���h�ԍ�
-//      ���r�W����
+//      メジャー バージョン
+//      マイナ バージョン 
+//      ビルド番号
+//      リビジョン
 //
-// ���ɂ���悤�ɁA'*' ���g���āA���ׂĂ̒l���w�肷�邩�A 
-// �r���h����у��r�W�����ԍ�������l�ɂ��邱�Ƃ��ł��܂� :
+// 下にあるように、'*' を使って、すべての値を指定するか、 
+// ビルドおよびリビジョン番号を既定値にすることができます :
 
 [assembly: AssemblyVersion("1.0.*")]
 
 //
-// �A�Z���u���ɏ�������ɂ́A�g�p����L�[���w�肵�Ȃ���΂Ȃ�܂���B�A�Z���u�������Ɋւ��� 
-// �ڍׂɂ��ẮAMicrosoft .NET Framework �h�L�������g���Q�Ƃ��Ă��������B
+// アセンブリに署名するには、使用するキーを指定しなければなりません。アセンブリ署名に関する 
+// 詳細については、Microsoft .NET Framework ドキュメントを参照してください。
 //
-// ���̑������g���āA�����Ɏg���L�[�𐧌䂵�܂��B
+// 下の属性を使って、署名に使うキーを制御します。
 //
-// ���� : 
-//   (*) �L�[���w�肳��Ȃ��ƁA�A�Z���u���͏�������܂���B
-//   (*) KeyName �́A�R���s���[�^�ɃC���X�g�[������Ă���Í��T�[�r�X �v���o�C�_ (CSP) ��
-//       �\���܂��BKeyFile �́A�L�[���܂�
-//       �t�@�C���ł��B
-//   (*) KeyFile ����� KeyName �̒l�����Ɏw�肳��Ă���ꍇ�A 
-//       �ȉ��̏������������܂� :
-//       (1) KeyName �� CSP �Ɍ��������ꍇ�A���̃L�[���g���܂��B
-//       (2) KeyName �����݂����AKeyFile �����݂���ꍇ�A
-//           KeyFile �ɂ���L�[�� CSP �ɃC���X�g�[������A�g���܂��B
-//   (*) KeyFile ���쐬����ɂ́Asn.exe (Strong Name) ���[�e�B���e�B���g���Ă��������B
-//       KeyFile ���w�肷��Ƃ��AKeyFile �̏ꏊ�́A
-//       �v���W�F�N�g�o�� �f�B���N�g���ւ̑��΃p�X�łȂ���΂Ȃ�܂���B�p�X�́A
-//       %Project Directory%\obj\<configuration> �ł��B���Ƃ��΁AKeyFile ���v���W�F�N�g �f�B���N�g���ɂ���ꍇ�A
-//       AssemblyKeyFile ������ 
-//       [assembly: AssemblyKeyFile("..\\..\\mykey.snk")] �Ƃ��Ďw�肵�܂��B
-//   (*) �x�������͍��x�ȃI�v�V�����ł��B�ڍׂɂ��Ă� Microsoft .NET Framework
-//       �h�L�������g���Q�Ƃ��Ă��������B
+// メモ : 
+//   (*) キーが指定されないと、アセンブリは署名されません。
+//   (*) KeyName は、コンピュータにインストールされている暗号サービス プロバイダ (CSP) を
+//       表します。KeyFile は、キーを含む
+//       ファイルです。
+//   (*) KeyFile および KeyName の値が共に指定されている場合、 
+//       以下の処理化発生します :
+//       (1) KeyName が CSP に見つかった場合、そのキーが使われます。
+//       (2) KeyName が存在せず、KeyFile が存在する場合、
+//           KeyFile にあるキーが CSP にインストールされ、使われます。
+//   (*) KeyFile を作成するには、sn.exe (Strong Name) ユーティリティを使ってください。
+//       KeyFile を指定するとき、KeyFile の場所は、
+//       プロジェクト出力 ディレクトリへの相対パスでなければなりません。パスは、
+//       %Project Directory%\obj\<configuration> です。たとえば、KeyFile がプロジェクト ディレクトリにある場合、
+//       AssemblyKeyFile 属性を 
+//       [assembly: AssemblyKeyFile("..\\..\\mykey.snk")] として指定します。
+//   (*) 遅延署名は高度なオプションです。詳細については Microsoft .NET Framework
+//       ドキュメントを参照してください。
 //
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]

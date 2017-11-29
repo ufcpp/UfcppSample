@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Equalizer
 {
@@ -6,36 +6,36 @@ namespace SoundLibrary.Filter.Equalizer
 	using Cached = SoundLibrary.Mathematics.Function.CachedFunction;
 
 	/// <summary>
-	/// ƒpƒ‰ƒCƒR‚Ì IIR ƒtƒBƒ‹ƒ^İŒvƒNƒ‰ƒXB
+	/// ãƒ‘ãƒ©ã‚¤ã‚³ã® IIR ãƒ•ã‚£ãƒ«ã‚¿è¨­è¨ˆã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	/// <remarks>
-	/// ƒtƒBƒ‹ƒ^‚Ì—ë/‹ÉŒvZB
-	/// —ë/‹É ¨ ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvƒtƒBƒ‹ƒ^ŒW”ŒvZB
-	/// AP ƒtƒBƒ‹ƒ^ ¨[‘oˆêŸ•ÏŠ·]¨ ƒfƒBƒWƒ^ƒ‹ƒtƒBƒ‹ƒ^‰»B
-	/// ƒfƒBƒWƒ^ƒ‹ƒtƒBƒ‹ƒ^ŒW”‚ğ ParametricEqualizer ƒNƒ‰ƒX‚ÌŒ`®‚É•ÏŠ·B
+	/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶/æ¥µè¨ˆç®—ã€‚
+	/// é›¶/æ¥µ â†’ ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°è¨ˆç®—ã€‚
+	/// AP ãƒ•ã‚£ãƒ«ã‚¿ â†’[åŒä¸€æ¬¡å¤‰æ›]â†’ ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ãƒ•ã‚£ãƒ«ã‚¿åŒ–ã€‚
+	/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°ã‚’ ParametricEqualizer ã‚¯ãƒ©ã‚¹ã®å½¢å¼ã«å¤‰æ›ã€‚
 	/// 
-	/// —ë/‹É                 : AP ƒtƒBƒ‹ƒ^‚Ì—ë/‹ÉB‹¤–ğ•¡‘f”ªAÀª~2A‚à‚µ‚­‚ÍÀª~1B
-	/// AP ƒtƒBƒ‹ƒ^ŒW”       : a[3], b[3]B‡”b[i]s^i / ‡”a[i]s^iB
-	/// ƒfƒBƒWƒ^ƒ‹ƒtƒBƒ‹ƒ^ŒW”: a[3], b[3]B‡”b[i]z^-i / ‡”a[i]z^-iB
-	/// ƒpƒ‰ƒCƒRƒNƒ‰ƒX‚ÌŒW”  : a[2], b[2], cBc * (1 + ‡”b[i]z^-i) / (1 - ‡”a[i]z^-i)B
+	/// é›¶/æ¥µ                 : AP ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶/æ¥µã€‚å…±å½¹è¤‡ç´ æ•°æ ¹ã€å®Ÿæ ¹Ã—2ã€ã‚‚ã—ãã¯å®Ÿæ ¹Ã—1ã€‚
+	/// AP ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°       : a[3], b[3]ã€‚âˆ‘b[i]s^i / âˆ‘a[i]s^iã€‚
+	/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°: a[3], b[3]ã€‚âˆ‘b[i]z^-i / âˆ‘a[i]z^-iã€‚
+	/// ãƒ‘ãƒ©ã‚¤ã‚³ã‚¯ãƒ©ã‚¹ã®ä¿‚æ•°  : a[2], b[2], cã€‚c * (1 + âˆ‘b[i]z^-i) / (1 - âˆ‘a[i]z^-i)ã€‚
 	/// </remarks>
 	public abstract class FilterDesigner
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		protected int order;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		protected FilterDesigner() : this(0) {}
 		protected FilterDesigner(int order){this.order = order;}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// Ÿ”B
+		/// æ¬¡æ•°ã€‚
 		/// </summary>
 		public int Order
 		{
@@ -44,7 +44,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// —ë/‹ÉƒyƒA‚Ì”B
+		/// é›¶/æ¥µãƒšã‚¢ã®æ•°ã€‚
 		/// </summary>
 		public virtual int Length
 		{
@@ -52,22 +52,22 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ’ŠÛƒƒ\ƒbƒh
+		#region æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹É‚ğŒvZB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="roots">—ë“_/‹Éˆê——‚ÌŠi”[æ</param>
+		/// <param name="roots">é›¶ç‚¹/æ¥µä¸€è¦§ã®æ ¼ç´å…ˆ</param>
 		public abstract void GetZeroPole(ZeroPole[] roots);
 
 		#endregion
-		#region —ë“_/‹É‚ÌŒvZ
+		#region é›¶ç‚¹/æ¥µã®è¨ˆç®—
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹É‚ğŒvZB
-		/// Œ‹‰ÊŠi”[—p‚Ì”z—ñ‚ğŠÖ”“à‚ÅŠm•ÛB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µã‚’è¨ˆç®—ã€‚
+		/// çµæœæ ¼ç´ç”¨ã®é…åˆ—ã‚’é–¢æ•°å†…ã§ç¢ºä¿ã€‚
 		/// </summary>
-		/// <returns>ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹Éˆê——</returns>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µä¸€è¦§</returns>
 		public virtual ZeroPole[] GetZeroPole()
 		{
 			ZeroPole[] roots = new ZeroPole[this.Length];
@@ -78,12 +78,12 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvƒtƒBƒ‹ƒ^ŒW”İŒv
+		#region ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°è¨­è¨ˆ
 
 		/// <summary>
-		/// ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvƒtƒBƒ‹ƒ^‚ÌŒW”‚ğŒvZB
+		/// ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <returns>AP ƒtƒBƒ‹ƒ^ŒW”</returns>
+		/// <returns>AP ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°</returns>
 		public Coefficient[] GetAnalogPrototype()
 		{
 			Coefficient[] coefs = new Coefficient[this.Length];
@@ -95,9 +95,9 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvƒtƒBƒ‹ƒ^‚ÌŒW”‚ğŒvZB
+		/// ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="coefs">ŒvZŒ‹‰Ê‚ÌŠi”[æ</param>
+		/// <param name="coefs">è¨ˆç®—çµæœã®æ ¼ç´å…ˆ</param>
 		public virtual void GetAnalogPrototype(Coefficient[] coefs)
 		{
 			ZeroPole[] roots = this.GetZeroPole();
@@ -105,13 +105,13 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒfƒBƒWƒ^ƒ‹ƒtƒBƒ‹ƒ^ŒW”İŒv
+		#region ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°è¨­è¨ˆ
 
 		/// <summary>
-		/// ƒfƒBƒWƒ^ƒ‹ LPF ŒW”‚ğŒvZB
+		/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« LPF ä¿‚æ•°ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <returns>ƒfƒBƒWƒ^ƒ‹ LPF ŒW”</returns>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <returns>ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« LPF ä¿‚æ•°</returns>
 		public Coefficient[] GetDigitalLPF(double w)
 		{
 			Coefficient[] coefs = new Coefficient[this.Length];
@@ -123,10 +123,10 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒfƒBƒWƒ^ƒ‹ LPF ŒW”‚ğŒvZB
+		/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« LPF ä¿‚æ•°ã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="w">ƒJƒbƒgƒIƒtü”g”</param>
-		/// <param name="coefs">ŒvZŒ‹‰Ê‚ÌŠi”[æ</param>
+		/// <param name="w">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°</param>
+		/// <param name="coefs">è¨ˆç®—çµæœã®æ ¼ç´å…ˆ</param>
 		public virtual void GetDigitalLPF(double w, Coefficient[] coefs)
 		{
 			this.GetAnalogPrototype(coefs);
@@ -134,10 +134,10 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region PEQ ŒW”
+		#region PEQ ä¿‚æ•°
 
 		/// <summary>
-		/// PEQ ŒW”(LPF)‚ğŒvZB
+		/// PEQ ä¿‚æ•°(LPF)ã‚’è¨ˆç®—ã€‚
 		/// </summary>
 		/// <param name="w"></param>
 		/// <returns></returns>
@@ -151,8 +151,8 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region •ÏŠ·
-		#region —ë“_/‹É”z’u¨ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvƒtƒBƒ‹ƒ^ŒW”
+		#region å¤‰æ›
+		#region é›¶ç‚¹/æ¥µé…ç½®â†’ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°
 
 		public static void RootToAnalogPrototype(Root root, double[] c)
 		{
@@ -196,21 +196,21 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ‘oˆêŸ•ÏŠ·
+		#region åŒä¸€æ¬¡å¤‰æ›
 
 		/// <summary>
-		/// 1Ÿ‚Ì“`’BŠÖ”‚ğ‘o1•ÏŠ·‚·‚éB
+		/// 1æ¬¡ã®ä¼é”é–¢æ•°ã‚’åŒ1æ™‚å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
 		/// <remarks>
-		/// (b0 + b1 s)/(a0 + a1 s) ‚ğA‘o1Ÿ•ÏŠ·‚µ‚½Œ‹‰Ê‚ğ
-		/// (b0' + b1' z^-1)/(a0' + a1' z^-1)‚Æ‚·‚é‚Æ‚«A
-		/// a0, a1 ¨ a0', a1' ‚ğ‹‚ß‚éB
-		/// (b ‚ÉŠÖ‚µ‚Ä‚à“¯—l‚Ìè‡‚Å•ÏŠ·‰Â”\B)
+		/// (b0 + b1 s)/(a0 + a1 s) ã‚’ã€åŒ1æ¬¡å¤‰æ›ã—ãŸçµæœã‚’
+		/// (b0' + b1' z^-1)/(a0' + a1' z^-1)ã¨ã™ã‚‹ã¨ãã€
+		/// a0, a1 â†’ a0', a1' ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// (b ã«é–¢ã—ã¦ã‚‚åŒæ§˜ã®æ‰‹é †ã§å¤‰æ›å¯èƒ½ã€‚)
 		/// </remarks>
-		/// <param name="a0">a0(a0'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a1">a1(a1'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="sin">sin ƒÖs</param>
-		/// <param name="cos">cos ƒÖs</param>
+		/// <param name="a0">a0(a0'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a1">a1(a1'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="sin">sin Ï‰s</param>
+		/// <param name="cos">cos Ï‰s</param>
 		public static void BilinearTransform(
 			double a0, double a1,
 			out double d0, out double d1,
@@ -224,19 +224,19 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// 2Ÿ‚Ì“`’BŠÖ”‚ğ‘o1•ÏŠ·‚·‚éB
+		/// 2æ¬¡ã®ä¼é”é–¢æ•°ã‚’åŒ1æ™‚å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
 		/// <remarks>
-		/// (b0 + b1 s + b2 s^2)/(a0 + a1 s + a2 s^2) ‚ğA‘o1Ÿ•ÏŠ·‚µ‚½Œ‹‰Ê‚ğ
-		/// (b0' + b1' z^-1 + b2' z^-2)/(a0' + a1' z^-1 + a2' z^-2)‚Æ‚·‚é‚Æ‚«A
-		/// a0, a1, a2 ¨ a0', a1', a2' ‚ğ‹‚ß‚éB
-		/// (b ‚ÉŠÖ‚µ‚Ä‚à“¯—l‚Ìè‡‚Å•ÏŠ·‰Â”\B)
+		/// (b0 + b1 s + b2 s^2)/(a0 + a1 s + a2 s^2) ã‚’ã€åŒ1æ¬¡å¤‰æ›ã—ãŸçµæœã‚’
+		/// (b0' + b1' z^-1 + b2' z^-2)/(a0' + a1' z^-1 + a2' z^-2)ã¨ã™ã‚‹ã¨ãã€
+		/// a0, a1, a2 â†’ a0', a1', a2' ã‚’æ±‚ã‚ã‚‹ã€‚
+		/// (b ã«é–¢ã—ã¦ã‚‚åŒæ§˜ã®æ‰‹é †ã§å¤‰æ›å¯èƒ½ã€‚)
 		/// </remarks>
-		/// <param name="a0">a0(a0'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a1">a1(a1'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="a2">a2(a2'‚Ì’l‚Éã‘‚«‚³‚ê‚é)</param>
-		/// <param name="sin">sin ƒÖs</param>
-		/// <param name="cos">cos ƒÖs</param>
+		/// <param name="a0">a0(a0'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a1">a1(a1'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="a2">a2(a2'ã®å€¤ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)</param>
+		/// <param name="sin">sin Ï‰s</param>
+		/// <param name="cos">cos Ï‰s</param>
 		public static void BilinearTransform(
 			double a0, double a1, double a2,
 			out double d0, out double d1, out double d2,
@@ -309,7 +309,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒfƒBƒWƒ^ƒ‹ƒtƒBƒ‹ƒ^ŒW”¨PEQ‚ÌŒW”
+		#region ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°â†’PEQã®ä¿‚æ•°
 
 		public static void ToPeqCoefficient(Coefficient digital, ParametricEqualizer.Parameter peq)
 		{
@@ -333,12 +333,12 @@ namespace SoundLibrary.Filter.Equalizer
 
 		#endregion
 		#endregion
-		#region Function ƒNƒ‰ƒX‚Æ‚Ì˜AŒg
+		#region Function ã‚¯ãƒ©ã‚¹ã¨ã®é€£æº
 
 		/// <summary>
-		/// z^-1 = exp(-jƒÖ)
+		/// z^-1 = exp(-jÏ‰)
 		/// </summary>
-		/// <param name="w">ü”g”ƒÖ</param>
+		/// <param name="w">å‘¨æ³¢æ•°Ï‰</param>
 		/// <returns>z^-1</returns>
 		public static Function ZInv(Function w)
 		{
@@ -348,13 +348,13 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ‘o1Ÿ•ÏŠ·
-		/// s = 1/tan(ƒÖs/2) * (z^-1 + 1) / (z^-1 - 1)
-		///   = j tan(ƒÖ/2) / tan(ƒÖs/2)
+		/// åŒ1æ¬¡å¤‰æ›
+		/// s = 1/tan(Ï‰s/2) * (z^-1 + 1) / (z^-1 - 1)
+		///   = j tan(Ï‰/2) / tan(Ï‰s/2)
 		/// </summary>
-		/// <param name="w">ƒÖ</param>
-		/// <param name="ws">ƒÖs</param>
-		/// <returns>ƒfƒBƒWƒ^ƒ‹ s</returns>
+		/// <param name="w">Ï‰</param>
+		/// <param name="ws">Ï‰s</param>
+		/// <returns>ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« s</returns>
 		public static Function DigitalS(Function w, Function ws)
 		{
 			return new Cached(
@@ -364,13 +364,13 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ‘o1Ÿ•ÏŠ·
-		/// s = 1/tan(ƒÖs/2) * (z^-1 + 1) / (z^-1 - 1)
-		///   = j tan(ƒÖ/2) / tan(ƒÖs/2)
+		/// åŒ1æ¬¡å¤‰æ›
+		/// s = 1/tan(Ï‰s/2) * (z^-1 + 1) / (z^-1 - 1)
+		///   = j tan(Ï‰/2) / tan(Ï‰s/2)
 		/// </summary>
-		/// <param name="w">ƒÖ</param>
-		/// <param name="ws">ƒÖs</param>
-		/// <returns>ƒfƒBƒWƒ^ƒ‹ s</returns>
+		/// <param name="w">Ï‰</param>
+		/// <param name="ws">Ï‰s</param>
+		/// <returns>ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« s</returns>
 		public static Function DigitalS(Function w, double ws)
 		{
 			return new Cached(
@@ -380,12 +380,12 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ‘o1Ÿ•ÏŠ·(ƒÖsƒÎ/2)
+		/// åŒ1æ¬¡å¤‰æ›(Ï‰sï¼Ï€/2)
 		/// s = (z^-1 + 1) / (z^-1 - 1)
-		///   = j tan(ƒÖ/2)
+		///   = j tan(Ï‰/2)
 		/// </summary>
-		/// <param name="w">ƒÖ</param>
-		/// <returns>ƒfƒBƒWƒ^ƒ‹ s</returns>
+		/// <param name="w">Ï‰</param>
+		/// <returns>ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« s</returns>
 		public static Function DigitalS(Function w)
 		{
 			return new Cached(
@@ -395,10 +395,10 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒAƒiƒƒO“`’BŠÖ”‚ğæ“¾B
+		/// ã‚¢ãƒŠãƒ­ã‚°ä¼é”é–¢æ•°ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="s">s —Ìˆæ•Ï”</param>
-		/// <returns>“`’BŠÖ”</returns>
+		/// <param name="s">s é ˜åŸŸå¤‰æ•°</param>
+		/// <returns>ä¼é”é–¢æ•°</returns>
 		public Function GetTransferFunction(Function s)
 		{
 			Coefficient[] coefs = this.GetAnalogPrototype();
@@ -415,11 +415,11 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		/// <summary>
-		/// ƒfƒBƒWƒ^ƒ‹“`’BŠÖ”‚Ìü”g”“Á«‚ğæ“¾B
+		/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ä¼é”é–¢æ•°ã®å‘¨æ³¢æ•°ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="w">ü”g”•Ï”ƒÖ(³‹K‰»Špü”g”)</param>
-		/// <param name="ws">ƒJƒbƒgƒIƒtü”g”ƒÖs(³‹K‰»Špü”g”)</param>
-		/// <returns>ü”g”“Á«</returns>
+		/// <param name="w">å‘¨æ³¢æ•°å¤‰æ•°Ï‰(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="ws">ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°Ï‰s(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <returns>å‘¨æ³¢æ•°ç‰¹æ€§</returns>
 		public Function GetTransferFunction(Function w, Function ws)
 		{
 			return this.GetTransferFunction(DigitalS(w, ws));

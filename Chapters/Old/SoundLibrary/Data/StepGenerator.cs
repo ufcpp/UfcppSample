@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒXƒeƒbƒvŠÖ”¶¬
+	/// ã‚¹ãƒ†ãƒƒãƒ—é–¢æ•°ç”Ÿæˆ
 	/// </summary>
 	public class StepGenerator : IDataGenerator
 	{

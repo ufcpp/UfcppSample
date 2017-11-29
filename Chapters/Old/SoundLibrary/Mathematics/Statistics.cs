@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// “Œvˆ—ŠÖ”ŒQ‚ğ’è‹`B
+	/// çµ±è¨ˆå‡¦ç†é–¢æ•°ç¾¤ã‚’å®šç¾©ã€‚
 	/// </summary>
 	public class Statistics
 	{
 		/// <summary>
-		/// ”z—ñ x ‚Ì˜aB
+		/// é…åˆ— x ã®å’Œã€‚
 		/// </summary>
 		public static double Sum(double[] x)
 		{
@@ -19,7 +19,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚Ì©æ˜aB
+		/// é…åˆ— x ã®è‡ªä¹—å’Œã€‚
 		/// </summary>
 		public static double SquareSum(double[] x)
 		{
@@ -30,7 +30,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚Æ y ‚ÌÏ˜aB
+		/// é…åˆ— x ã¨ y ã®ç©å’Œã€‚
 		/// </summary>
 		public static double Mac(double[] x, double[] y)
 		{
@@ -41,7 +41,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚Ì•½‹Ï’lB
+		/// é…åˆ— x ã®å¹³å‡å€¤ã€‚
 		/// </summary>
 		public static double Average(double[] x)
 		{
@@ -49,7 +49,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚Ì•ªUB
+		/// é…åˆ— x ã®åˆ†æ•£ã€‚
 		/// </summary>
 		static double Variance(double[] x)
 		{
@@ -60,7 +60,7 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ”z—ñ x ‚Æ y ‚Ì‹¤•ªUB
+		/// é…åˆ— x ã¨ y ã®å…±åˆ†æ•£ã€‚
 		/// </summary>
 		public static double Covariance(double[] x, double[] y)
 		{

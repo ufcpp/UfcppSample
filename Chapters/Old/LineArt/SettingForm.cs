@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace LineArt
 {
 	/// <summary>
-	/// ƒpƒ‰ƒ[ƒ^İ’è—pƒ_ƒCƒAƒƒOB
+	/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€‚
 	/// </summary>
 	public class SettingForm : System.Windows.Forms.Form
 	{
@@ -20,7 +20,7 @@ namespace LineArt
 		private System.Windows.Forms.Button buttonOK;
 		private System.Windows.Forms.Button buttonCancel;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -30,7 +30,7 @@ namespace LineArt
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -46,8 +46,8 @@ namespace LineArt
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -67,7 +67,7 @@ namespace LineArt
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 16);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "’¸“_‚Ì”";
+			this.label1.Text = "é ‚ç‚¹ã®æ•°";
 			// 
 			// label2
 			// 
@@ -75,7 +75,7 @@ namespace LineArt
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(56, 16);
 			this.label2.TabIndex = 1;
-			this.label2.Text = "ü‚Ì”";
+			this.label2.Text = "ç·šã®æ•°";
 			// 
 			// label3
 			// 
@@ -83,7 +83,7 @@ namespace LineArt
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(56, 16);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "ƒEƒFƒCƒg";
+			this.label3.Text = "ã‚¦ã‚§ã‚¤ãƒˆ";
 			// 
 			// textBoxVertex
 			// 
@@ -166,7 +166,7 @@ namespace LineArt
 		}
 
 		/// <summary>
-		/// ’¸“_‚Ì”B
+		/// é ‚ç‚¹ã®æ•°ã€‚
 		/// </summary>
 		public int Vertex
 		{
@@ -184,7 +184,7 @@ namespace LineArt
 		}
 
 		/// <summary>
-		/// ü‚Ì–{”B
+		/// ç·šã®æœ¬æ•°ã€‚
 		/// </summary>
 		public int Lines
 		{
@@ -202,7 +202,7 @@ namespace LineArt
 		}
 
 		/// <summary>
-		/// •\¦‘¬“x‚ÌƒEƒFƒCƒgB
+		/// è¡¨ç¤ºé€Ÿåº¦ã®ã‚¦ã‚§ã‚¤ãƒˆã€‚
 		/// </summary>
 		public int WaitTime
 		{

@@ -1,26 +1,26 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ƒGƒ“ƒxƒ[ƒv¶¬—p‚Ìƒpƒ‰ƒ[ƒ^B
+	/// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç”Ÿæˆç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
 	/// </summary>
 	public class EnvelopeParameter
 	{
-		public double attackLevel;  // ƒAƒ^ƒbƒNƒŒƒxƒ‹(ƒŠƒjƒA’l)
-		public double sustainLevel; // ƒTƒXƒeƒCƒ“ƒŒƒxƒ‹(ƒŠƒjƒA’l)
-		public int attackTime;      // ƒAƒ^ƒbƒNƒ^ƒCƒ€(ƒXƒeƒbƒv”)
-		public int decayTime;       // ƒfƒBƒPƒCƒ^ƒCƒ€(ƒXƒeƒbƒv”)
-		public int releaseTime;     // ƒŠƒŠ[ƒXƒ^ƒCƒ€(ƒXƒeƒbƒv”)
+		public double attackLevel;  // ã‚¢ã‚¿ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«(ãƒªãƒ‹ã‚¢å€¤)
+		public double sustainLevel; // ã‚µã‚¹ãƒ†ã‚¤ãƒ³ãƒ¬ãƒ™ãƒ«(ãƒªãƒ‹ã‚¢å€¤)
+		public int attackTime;      // ã‚¢ã‚¿ãƒƒã‚¯ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)
+		public int decayTime;       // ãƒ‡ã‚£ã‚±ã‚¤ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)
+		public int releaseTime;     // ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="al">ƒAƒ^ƒbƒNƒŒƒxƒ‹(ƒŠƒjƒA’l)</param>
-		/// <param name="sl">ƒTƒXƒeƒCƒ“ƒŒƒxƒ‹(ƒŠƒjƒA’l)</param>
-		/// <param name="at">ƒAƒ^ƒbƒNƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
-		/// <param name="dt">ƒŠƒŠ[ƒXƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
-		/// <param name="rt">ƒŠƒŠ[ƒXƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
+		/// <param name="al">ã‚¢ã‚¿ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«(ãƒªãƒ‹ã‚¢å€¤)</param>
+		/// <param name="sl">ã‚µã‚¹ãƒ†ã‚¤ãƒ³ãƒ¬ãƒ™ãƒ«(ãƒªãƒ‹ã‚¢å€¤)</param>
+		/// <param name="at">ã‚¢ã‚¿ãƒƒã‚¯ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="dt">ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="rt">ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
 		public EnvelopeParameter(double al, double sl, int at, int dt, int rt)
 		{
 			this.attackLevel  = al;
@@ -32,15 +32,15 @@ namespace SoundLibrary.Music
 	}
 
 	/// <summary>
-	/// Œ³‚Æ‚È‚é Sound ‚ÉƒGƒ“ƒxƒ[ƒv‹Èü‚ğŠ|‚¯‚½ Sound ‚ğ¶¬‚·‚éB
+	/// å…ƒã¨ãªã‚‹ Sound ã«ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æ›²ç·šã‚’æ›ã‘ãŸ Sound ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	/// 
-	/// ƒAƒ^ƒbƒNƒ^ƒCƒ€
-	/// @@@@ƒfƒBƒPƒCƒ^ƒCƒ€@@@ƒŠƒŠ[ƒXƒ^ƒCƒ€
-	/// ©„Ÿ„Ÿ¨©¨@@@@@@@@©¨
-	/// @@@^_@©ƒAƒ^ƒbƒNƒŒƒxƒ‹
-	/// @@^@@_
-	/// @^@@@@PPPPPPPP_ @©ƒTƒXƒeƒCƒ“ƒŒƒxƒ‹
-	/// ^@@@@@@@@@@@@@@_
+	/// ã‚¢ã‚¿ãƒƒã‚¯ã‚¿ã‚¤ãƒ 
+	/// ã€€ã€€ã€€ã€€ãƒ‡ã‚£ã‚±ã‚¤ã‚¿ã‚¤ãƒ ã€€ã€€ã€€ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ 
+	/// â†â”€â”€â†’â†â†’ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â†â†’
+	/// ã€€ã€€ã€€ï¼ï¼¼ã€€â†ã‚¢ã‚¿ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«
+	/// ã€€ã€€ï¼ã€€ã€€ï¼¼
+	/// ã€€ï¼ã€€ã€€ã€€ã€€ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¼¼ ã€€â†ã‚µã‚¹ãƒ†ã‚¤ãƒ³ãƒ¬ãƒ™ãƒ«
+	/// ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼¼
 	/// </summary>
 	public class Envelope : Sound
 	{
@@ -48,23 +48,23 @@ namespace SoundLibrary.Music
 		Sound sound;
 
 		/// <summary>
-		/// ƒGƒ“ƒxƒ[ƒvƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="al">ƒAƒ^ƒbƒNƒŒƒxƒ‹(sound ‚ÌU•‚Æ‚Ì‘Š‘Î’l)</param>
-		/// <param name="sl">ƒTƒXƒeƒCƒ“ƒŒƒxƒ‹(sound ‚ÌU•‚Æ‚Ì‘Š‘Î’l)</param>
-		/// <param name="at">ƒAƒ^ƒbƒNƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
-		/// <param name="dt">ƒŠƒŠ[ƒXƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
-		/// <param name="rt">ƒŠƒŠ[ƒXƒ^ƒCƒ€(ƒXƒeƒbƒv”)</param>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="al">ã‚¢ã‚¿ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«(sound ã®æŒ¯å¹…ã¨ã®ç›¸å¯¾å€¤)</param>
+		/// <param name="sl">ã‚µã‚¹ãƒ†ã‚¤ãƒ³ãƒ¬ãƒ™ãƒ«(sound ã®æŒ¯å¹…ã¨ã®ç›¸å¯¾å€¤)</param>
+		/// <param name="at">ã‚¢ã‚¿ãƒƒã‚¯ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="dt">ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="rt">ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ (ã‚¹ãƒ†ãƒƒãƒ—æ•°)</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Envelope(double al, double sl, int at, int dt, int rt, Sound sound)
 			: this(new EnvelopeParameter(al, sl, at, dt, rt), sound)
 		{
 		}
 
 		/// <summary>
-		/// ƒGƒ“ƒxƒ[ƒvƒpƒ‰ƒ[ƒ^‚ÆŒ³‚Æ‚È‚é Sound ‚ğw’è‚µ‚Ä¶¬B
+		/// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨å…ƒã¨ãªã‚‹ Sound ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
 		public Envelope(EnvelopeParameter parameter, Sound sound)
 		{
 			CheckParameter(parameter, sound.Length);
@@ -73,20 +73,20 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚Ì³“–«‚ğƒ`ƒFƒbƒNB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ­£å½“æ€§ã‚’ãƒã‚§ãƒƒã‚¯ã€‚
 		/// </summary>
-		/// <param name="parameter">ƒpƒ‰ƒ[ƒ^</param>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
+		/// <param name="parameter">ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
 		static void CheckParameter(EnvelopeParameter parameter, int length)
 		{
 			if(parameter.attackTime < 0)
-				throw new ArgumentException("ƒAƒ^ƒbƒNƒ^ƒCƒ€‚ª•‰");
+				throw new ArgumentException("ã‚¢ã‚¿ãƒƒã‚¯ã‚¿ã‚¤ãƒ ãŒè² ");
 			if(parameter.decayTime < 0)
-				throw new ArgumentException("ƒfƒBƒPƒCƒ^ƒCƒ€‚ª•‰");
+				throw new ArgumentException("ãƒ‡ã‚£ã‚±ã‚¤ã‚¿ã‚¤ãƒ ãŒè² ");
 			if(parameter.releaseTime < 0)
-				throw new ArgumentException("ƒŠƒŠ[ƒXƒ^ƒCƒ€‚ª•‰");
+				throw new ArgumentException("ãƒªãƒªãƒ¼ã‚¹ã‚¿ã‚¤ãƒ ãŒè² ");
 			if(parameter.attackTime + parameter.decayTime + parameter.releaseTime > length)
-				throw new ArgumentException("‰¹‚ª’Z‚·‚¬");
+				throw new ArgumentException("éŸ³ãŒçŸ­ã™ã");
 		}
 
 		public override int Length
@@ -111,7 +111,7 @@ namespace SoundLibrary.Music
 
 			int i = 0;
 
-			// ƒAƒ^ƒbƒN
+			// ã‚¢ã‚¿ãƒƒã‚¯
 			grad = al / at;
 			for(; i <= at; ++i)
 			{
@@ -119,7 +119,7 @@ namespace SoundLibrary.Music
 				x[i] *= n * grad;
 			}
 
-			// ƒfƒBƒPƒC
+			// ãƒ‡ã‚£ã‚±ã‚¤
 			grad = grad = (al - sl) / dt;
 			for(; i <= at + dt; ++i)
 			{
@@ -127,13 +127,13 @@ namespace SoundLibrary.Music
 				x[i] *= n * grad  + sl;
 			}
 
-			// ƒTƒXƒeƒCƒ“
+			// ã‚µã‚¹ãƒ†ã‚¤ãƒ³
 			for(; i < len - rt; ++i)
 			{
 				x[i] *= sl;
 			}
 
-			// ƒŠƒŠ[ƒX
+			// ãƒªãƒªãƒ¼ã‚¹
 			grad = sl / rt;
 			for(; i<len; ++i)		
 			{

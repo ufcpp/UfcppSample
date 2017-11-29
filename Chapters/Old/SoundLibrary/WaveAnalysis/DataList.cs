@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Text;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections;
 namespace SoundLibrary.WaveAnalysis
 {
 	/// <summary>
-	/// ƒf[ƒ^ƒŠƒXƒg‚Ì€–ÚB
+	/// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã®é …ç›®ã€‚
 	/// </summary>
 	public class DataItem
 	{
@@ -21,7 +21,7 @@ namespace SoundLibrary.WaveAnalysis
 	}
 
 	/// <summary>
-	/// “Á«ƒf[ƒ^‚ÌƒŠƒXƒgB
+	/// ç‰¹æ€§ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚¹ãƒˆã€‚
 	/// </summary>
 	public class DataList
 	{
@@ -29,10 +29,10 @@ namespace SoundLibrary.WaveAnalysis
 		int count = -1;
 
 		/// <summary>
-		/// €–Ú‚Ì’Ç‰Á
+		/// é …ç›®ã®è¿½åŠ 
 		/// </summary>
-		/// <param name="title">€–Ú–¼</param>
-		/// <param name="data">ƒf[ƒ^</param>
+		/// <param name="title">é …ç›®å</param>
+		/// <param name="data">ãƒ‡ãƒ¼ã‚¿</param>
 		public void Add(string title, double[] data)
 		{
 			if(this.count == -1) this.count = data.Length;
@@ -42,11 +42,11 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ƒŠƒXƒg‚ğ CSV Œ`®‚Åƒtƒ@ƒCƒ‹‚É•Û‘¶B
+		/// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’ CSV å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæ</param>
-		/// <param name="delim">‹æØ‚è•¶š</param>
-		/// <param name="outputTitle">ƒwƒbƒ_s‚ğo—Í‚·‚é‚©‚Ç‚¤‚©</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆ</param>
+		/// <param name="delim">åŒºåˆ‡ã‚Šæ–‡å­—</param>
+		/// <param name="outputTitle">ãƒ˜ãƒƒãƒ€è¡Œã‚’å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹</param>
 		public void Save(StreamWriter writer, char delim, bool outputTitle)
 		{
 			if(this.count == -1) return;
@@ -73,21 +73,21 @@ namespace SoundLibrary.WaveAnalysis
 		}//Save
 
 		/// <summary>
-		/// ƒf[ƒ^ƒŠƒXƒg‚ğ CSV Œ`®‚Åƒtƒ@ƒCƒ‹‚É•Û‘¶B
+		/// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’ CSV å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã€‚
 		/// </summary>
-		/// <param name="writer">‘‚«‚İæ</param>
-		/// <param name="delim">‹æØ‚è•¶š</param>
+		/// <param name="writer">æ›¸ãè¾¼ã¿å…ˆ</param>
+		/// <param name="delim">åŒºåˆ‡ã‚Šæ–‡å­—</param>
 		public void Save(StreamWriter writer, char delim)
 		{
 			this.Save(writer, delim, false);
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ƒŠƒXƒg‚ğ CSV Œ`®‚Åƒtƒ@ƒCƒ‹‚É•Û‘¶B
+		/// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’ CSV å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã€‚
 		/// </summary>
-		/// <param name="filename">o—Íƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="delim">‹æØ‚è•¶š</param>
-		/// <param name="outputTitle">ƒwƒbƒ_s‚ğo—Í‚·‚é‚©‚Ç‚¤‚©</param>
+		/// <param name="filename">å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="delim">åŒºåˆ‡ã‚Šæ–‡å­—</param>
+		/// <param name="outputTitle">ãƒ˜ãƒƒãƒ€è¡Œã‚’å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹</param>
 		public void Save(string filename, char delim, bool outputHeader)
 		{
 			using(StreamWriter writer = new StreamWriter(filename, false, Encoding.Default))
@@ -97,10 +97,10 @@ namespace SoundLibrary.WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^ƒŠƒXƒg‚ğ CSV Œ`®‚Åƒtƒ@ƒCƒ‹‚É•Û‘¶B
+		/// ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’ CSV å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã€‚
 		/// </summary>
-		/// <param name="filename">o—Íƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="delim">‹æØ‚è•¶š</param>
+		/// <param name="filename">å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="delim">åŒºåˆ‡ã‚Šæ–‡å­—</param>
 		public void Save(string filename, char delim)
 		{
 			this.Save(filename, delim, false);

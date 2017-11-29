@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.Runtime.InteropServices;
 
 namespace SoundLibrary.Wave
 {
 	/// <summary>
-	/// WaveReader/WaveWriter ‚Åg‚¤—áŠOƒNƒ‰ƒXB
+	/// WaveReader/WaveWriter ã§ä½¿ã†ä¾‹å¤–ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class WaveException : Exception
 	{
@@ -14,19 +14,19 @@ namespace SoundLibrary.Wave
 	}
 
 	/// <summary>
-	/// Wave ƒtƒ@ƒCƒ‹‚ÌƒtƒH[ƒ}ƒbƒgƒwƒbƒ_B
+	/// Wave ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒ˜ãƒƒãƒ€ã€‚
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential, Pack=1)]
 	public struct FormatHeader
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		public short id;         // ƒf[ƒ^Œ`®
-		public short ch;         // ƒ`ƒƒƒlƒ‹”
-		public int   sampleRate; // ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-		public int   dataRate;   // ƒf[ƒ^ƒŒ[ƒg(ƒ`ƒƒƒlƒ‹”~ƒuƒƒbƒNƒTƒCƒY)
-		public short blockSize;  // ƒuƒƒbƒNƒTƒCƒY(ƒ`ƒƒƒlƒ‹”~ƒoƒCƒg/ƒ`ƒƒƒlƒ‹)
-		public short sampleBit;  // 1ƒTƒ“ƒvƒ‹•Ó‚è‚Ìƒrƒbƒg”
+		public short id;         // ãƒ‡ãƒ¼ã‚¿å½¢å¼
+		public short ch;         // ãƒãƒ£ãƒãƒ«æ•°
+		public int   sampleRate; // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+		public int   dataRate;   // ãƒ‡ãƒ¼ã‚¿ãƒ¬ãƒ¼ãƒˆ(ï¼ãƒãƒ£ãƒãƒ«æ•°Ã—ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º)
+		public short blockSize;  // ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º(ï¼ãƒãƒ£ãƒãƒ«æ•°Ã—ãƒã‚¤ãƒˆ/ãƒãƒ£ãƒãƒ«)
+		public short sampleBit;  // 1ã‚µãƒ³ãƒ—ãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ•°
 
 		public const bool Stereo = true;
 		public const bool Mono   = false;
@@ -34,14 +34,14 @@ namespace SoundLibrary.Wave
 		public const bool Bit8  = false;
 
 		#endregion
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		/// <summary>
-		/// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg“™‚Ìƒpƒ‰ƒ[ƒ^‚©‚çƒwƒbƒ_ì¬B
+		/// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆç­‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ãƒ˜ãƒƒãƒ€ä½œæˆã€‚
 		/// </summary>
-		/// <param name="rate">ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg</param>
-		/// <param name="stereo">true ‚È‚çƒXƒeƒŒƒIAfalse ‚È‚çƒ‚ƒmƒ‰ƒ‹</param>
-		/// <param name="type">true ‚È‚ç16bit/sampleAfalse ‚È‚ç8bit/sample</param>
+		/// <param name="rate">ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ</param>
+		/// <param name="stereo">true ãªã‚‰ã‚¹ãƒ†ãƒ¬ã‚ªã€false ãªã‚‰ãƒ¢ãƒãƒ©ãƒ«</param>
+		/// <param name="type">true ãªã‚‰16bit/sampleã€false ãªã‚‰8bit/sample</param>
 		public FormatHeader(int rate, bool stereo, bool type)
 		{
 			this.id         = 1;
@@ -53,10 +53,10 @@ namespace SoundLibrary.Wave
 		}
 
 		#endregion
-		#region ƒvƒƒpƒeƒB
+		#region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
 		/// <summary>
-		/// ƒTƒ“ƒvƒ‹ƒŒ[ƒgB
+		/// ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã€‚
 		/// </summary>
 		public int Rate
 		{
@@ -72,7 +72,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ƒTƒ“ƒvƒ‹ƒrƒbƒg‚ª16ƒrƒbƒg‚©‚Ç‚¤‚©B
+		/// ã‚µãƒ³ãƒ—ãƒ«ãƒ“ãƒƒãƒˆãŒ16ãƒ“ãƒƒãƒˆã‹ã©ã†ã‹ã€‚
 		/// </summary>
 		public bool Is16Bit
 		{
@@ -88,7 +88,7 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ƒ`ƒƒƒlƒ‹‚ªƒXƒeƒŒƒI‚©‚Ç‚¤‚©B
+		/// ãƒãƒ£ãƒãƒ«ãŒã‚¹ãƒ†ãƒ¬ã‚ªã‹ã©ã†ã‹ã€‚
 		/// </summary>
 		public bool IsStereo
 		{

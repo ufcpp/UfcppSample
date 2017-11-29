@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 using SoundLibrary.Wave;
 
 namespace SoundLibrary.Stream.Monaural
 {
 	/// <summary>
-	/// WaveReader ‚©‚çƒf[ƒ^‚ğ“Ç‚İo‚µ‘±‚¯‚é‚¾‚¯‚ÌƒXƒgƒŠ[ƒ€B
+	/// WaveReader ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ç¶šã‘ã‚‹ã ã‘ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã€‚
 	/// </summary>
 	public class WaveStream : Stream, IDisposable
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		WaveReader reader;
 		byte[] buffer;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public WaveStream(WaveReader reader)
 		{
@@ -23,7 +23,7 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region Stream ƒƒ“ƒo
+		#region Stream ãƒ¡ãƒ³ãƒ
 
 		public override int FillBuffer(short[] buffer, int offset, int size)
 		{
@@ -45,7 +45,7 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region IDisposable ƒƒ“ƒo
+		#region IDisposable ãƒ¡ãƒ³ãƒ
 
 		public void Close()
 		{

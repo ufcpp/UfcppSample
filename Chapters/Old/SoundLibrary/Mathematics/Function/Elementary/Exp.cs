@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function.Elementary
 {
-	//! w”ŠÖ”‚ÌŠ|‚¯Z‚Æ‚©A‘Î”ŠÖ”‚Ì‘«‚µZ‚Æ‚©AÅ“K‰»‰Â”\B
-	//! w”ŠÖ”‚Ì’†‚É‘Î”ŠÖ”‚Æ‚©‚àB
+	//! æŒ‡æ•°é–¢æ•°ã®æ›ã‘ç®—ã¨ã‹ã€å¯¾æ•°é–¢æ•°ã®è¶³ã—ç®—ã¨ã‹ã€æœ€é©åŒ–å¯èƒ½ã€‚
+	//! æŒ‡æ•°é–¢æ•°ã®ä¸­ã«å¯¾æ•°é–¢æ•°ã¨ã‹ã‚‚ã€‚
 
-	#region w”E‘Î”
+	#region æŒ‡æ•°ãƒ»å¯¾æ•°
 
 	/// <summary>
-	/// w”ŠÖ”B
+	/// æŒ‡æ•°é–¢æ•°ã€‚
 	/// </summary>
 	public class Exp : Unary
 	{
@@ -40,7 +40,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// ‘Î”ŠÖ” log_eB
+	/// å¯¾æ•°é–¢æ•° log_eã€‚
 	/// </summary>
 	public class LogE : Unary
 	{
@@ -51,7 +51,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 		/*
 		protected override void GetComplexPart(Function reX, Function imX, out Function reY, out Function imY)
 		{
-		//! Arg ‚ª•K—v‚É‚È‚é‚¯‚ÇA‚Ç‚¤‚µ‚æ‚¤HÀ‘•‚Å‚«‚»‚¤‚È‚çÀ‘•‚µ‚½‚¢B
+		//! Arg ãŒå¿…è¦ã«ãªã‚‹ã‘ã©ã€ã©ã†ã—ã‚ˆã†ï¼Ÿå®Ÿè£…ã§ããã†ãªã‚‰å®Ÿè£…ã—ãŸã„ã€‚
 		}
 		*/
 
@@ -72,7 +72,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// ‘Î”ŠÖ” log_10B
+	/// å¯¾æ•°é–¢æ•° log_10ã€‚
 	/// </summary>
 	public class Log10 : Unary
 	{
@@ -87,7 +87,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 
 		protected override Function Differentiate()
 		{
-			double tmp = 1/Math.Log(10); //! tmp ‚Í’è”‚É‚µ‚Ä‚¨‚¯‚Î‚¿‚å‚Á‚ÆŒø—¦“IB
+			double tmp = 1/Math.Log(10); //! tmp ã¯å®šæ•°ã«ã—ã¦ãŠã‘ã°ã¡ã‚‡ã£ã¨åŠ¹ç‡çš„ã€‚
 			return (Constant)(tmp) / this.inner;
 		}
 
@@ -98,7 +98,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// ‘Î”ŠÖ”(”CˆÓ‚Ì’ê)B
+	/// å¯¾æ•°é–¢æ•°(ä»»æ„ã®åº•)ã€‚
 	/// </summary>
 	public class Log : Binary
 	{
@@ -118,7 +118,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// w”ŠÖ”(”CˆÓ‚Ì’ê)B
+	/// æŒ‡æ•°é–¢æ•°(ä»»æ„ã®åº•)ã€‚
 	/// </summary>
 	public class Pow : Binary
 	{
@@ -138,10 +138,10 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	#endregion
-	#region OŠpŠÖ”
+	#region ä¸‰è§’é–¢æ•°
 
 	/// <summary>
-	/// sin ŠÖ”B
+	/// sin é–¢æ•°ã€‚
 	/// </summary>
 	public class Sin : Unary
 	{
@@ -172,7 +172,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// cos ŠÖ”B
+	/// cos é–¢æ•°ã€‚
 	/// </summary>
 	public class Cos : Unary
 	{
@@ -203,7 +203,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// tan ŠÖ”B
+	/// tan é–¢æ•°ã€‚
 	/// </summary>
 	public class Tan : Unary
 	{
@@ -240,10 +240,10 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	#endregion
-	#region ‘o‹ÈŠÖ”
+	#region åŒæ›²é–¢æ•°
 
 	/// <summary>
-	/// sinh ŠÖ”B
+	/// sinh é–¢æ•°ã€‚
 	/// </summary>
 	public class Sinh : Unary
 	{
@@ -274,7 +274,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// cosh ŠÖ”B
+	/// cosh é–¢æ•°ã€‚
 	/// </summary>
 	public class Cosh : Unary
 	{
@@ -305,7 +305,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	/// <summary>
-	/// tanh ŠÖ”B
+	/// tanh é–¢æ•°ã€‚
 	/// </summary>
 	public class Tanh : Unary
 	{
@@ -342,10 +342,10 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	}
 
 	#endregion
-	#region ‚»‚Ì‘¼
+	#region ãã®ä»–
 
 	/// <summary>
-	/// •½•ûªB
+	/// å¹³æ–¹æ ¹ã€‚
 	/// </summary>
 	public class Sqrt : Unary
 	{

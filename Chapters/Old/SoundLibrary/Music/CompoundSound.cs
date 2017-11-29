@@ -1,38 +1,38 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ‡¬‰¹B
-	/// •¡”‚Ì Sound ‚ğ‡¬B
+	/// åˆæˆéŸ³ã€‚
+	/// è¤‡æ•°ã® Sound ã‚’åˆæˆã€‚
 	/// </summary>
 	public class CompoundSound : Sound
 	{
 		Sound[] sounds;
 
 		/// <summary>
-		/// •¡”‚Ì Sound ‚©‚ç¶¬B
+		/// è¤‡æ•°ã® Sound ã‹ã‚‰ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="sounds">‡¬‰¹‚ğ\¬‚·‚é‰¹B</param>
-		/// <exception cref="ArgumentException">sounds ‚Ì’·‚³‚ª‚»‚ë‚Á‚Ä‚¢‚È‚¢‚Æ‚«‚É”­¶‚µ‚Ü‚·B</exception>
+		/// <param name="sounds">åˆæˆéŸ³ã‚’æ§‹æˆã™ã‚‹éŸ³ã€‚</param>
+		/// <exception cref="ArgumentException">sounds ã®é•·ã•ãŒãã‚ã£ã¦ã„ãªã„ã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚</exception>
 		public CompoundSound(params Sound[] sounds)
 		{
 			int len = sounds[0].Length;
 			foreach(Sound sound in sounds)
 			{
 				if(len != sound.Length)
-					throw new ArgumentException("sounds ‚Ì’·‚³‚ª‚»‚ë‚Á‚Ä‚¢‚Ü‚¹‚ñB");
+					throw new ArgumentException("sounds ã®é•·ã•ãŒãã‚ã£ã¦ã„ã¾ã›ã‚“ã€‚");
 			}
 
 			this.sounds = sounds;
 		}
 
 		/// <summary>
-		/// ’·˜a‰¹¶¬B
+		/// é•·å’ŒéŸ³ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
-		/// <param name="freq">ˆê”Ô‰º‚Ì‰¹‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amp">U•(ƒŠƒjƒA’l)</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
+		/// <param name="freq">ä¸€ç•ªä¸‹ã®éŸ³ã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amp">æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
 		/// <returns></returns>
 		public static Sound MajorChord(int length, double freq, double amp)
 		{
@@ -44,11 +44,11 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// ’P˜a‰¹¶¬B
+		/// å˜å’ŒéŸ³ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³</param>
-		/// <param name="freq">ˆê”Ô‰º‚Ì‰¹‚Ìü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amp">U•(ƒŠƒjƒA’l)</param>
+		/// <param name="length">éŸ³ã®é•·ã•</param>
+		/// <param name="freq">ä¸€ç•ªä¸‹ã®éŸ³ã®å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amp">æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
 		/// <returns></returns>
 		public static Sound MinorChord(int length, double freq, double amp)
 		{

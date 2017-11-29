@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,25 +8,25 @@ using System.Windows.Forms;
 namespace Graph
 {
 	/// <summary>
-	/// ƒOƒ‰ƒt‚ğ•\¦‚·‚éƒRƒ“ƒgƒ[ƒ‹ƒNƒ‰ƒXB
+	/// ã‚°ãƒ©ãƒ•ã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class Graph : System.Windows.Forms.UserControl
 	{
 		private System.Windows.Forms.Panel plotArea;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		#region è“®XV—p—Ìˆæ
+		#region æ‰‹å‹•æ›´æ–°ç”¨é ˜åŸŸ
 		/// <summary>
-		/// ƒOƒ‰ƒt‚Ì€–ÚB
+		/// ã‚°ãƒ©ãƒ•ã®é …ç›®ã€‚
 		/// </summary>
 		public class Entry
 		{
-			public double[] x; // x •ûŒüƒf[ƒ^
-			public double[] y; // y •ûŒüƒf[ƒ^
-			public Pen pen;    // ƒOƒ‰ƒt•`Ê—p‚Ìƒyƒ“
+			public double[] x; // x æ–¹å‘ãƒ‡ãƒ¼ã‚¿
+			public double[] y; // y æ–¹å‘ãƒ‡ãƒ¼ã‚¿
+			public Pen pen;    // ã‚°ãƒ©ãƒ•æå†™ç”¨ã®ãƒšãƒ³
 
 			public Entry(double[] x, double[] y, Pen pen)
 			{
@@ -45,15 +45,15 @@ namespace Graph
 		}
 
 		/// <summary>
-		/// ²‚Ìİ’èB
+		/// è»¸ã®è¨­å®šã€‚
 		/// </summary>
 		public class AxisSetting
 		{
-			public double min;  // Å¬’l
-			public double max;  // Å‘å’l
-			public int split;   // •ªŠ„”
-			public Font font;   // ƒtƒHƒ“ƒg
-			public Brush brush; // ƒuƒ‰ƒV
+			public double min;  // æœ€å°å€¤
+			public double max;  // æœ€å¤§å€¤
+			public int split;   // åˆ†å‰²æ•°
+			public Font font;   // ãƒ•ã‚©ãƒ³ãƒˆ
+			public Brush brush; // ãƒ–ãƒ©ã‚·
 
 			public AxisSetting() : this(0, 0, 0, null, null){}
 
@@ -77,7 +77,7 @@ namespace Graph
 
 		private System.Windows.Forms.Panel xAxis;
 		private System.Windows.Forms.Panel yAxis;
-		ArrayList entries = new ArrayList(); // y ²ƒf[ƒ^
+		ArrayList entries = new ArrayList(); // y è»¸ãƒ‡ãƒ¼ã‚¿
 		AxisSetting xAxisSetting = new AxisSetting();
 		AxisSetting yAxisSetting = new AxisSetting();
 
@@ -212,7 +212,7 @@ namespace Graph
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -228,8 +228,8 @@ namespace Graph
 
 		#region Component Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{

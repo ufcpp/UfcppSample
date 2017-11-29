@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
@@ -6,28 +6,28 @@ using System.Xml.Xsl;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// Žw’è‚µ‚½ƒtƒHƒ‹ƒ_“à‚É‚ ‚é‚·‚×‚Ä‚Ì XML ƒtƒ@ƒCƒ‹‚É
-/// XSL ƒXƒ^ƒCƒ‹ƒV[ƒg‚ð“K—p‚µ‚Ä HTML ‰»‚µ‚½Œ‹‰Ê‚ð
-/// Œ³ƒtƒ@ƒCƒ‹–¼‚ÌŠg’£Žq‚ð xml ‚©‚ç html ‚É•Ï‚¦‚½–¼‘O‚Å•Û‘¶‚·‚éB
+/// æŒ‡å®šã—ãŸãƒ•ã‚©ãƒ«ãƒ€å†…ã«ã‚ã‚‹ã™ã¹ã¦ã® XML ãƒ•ã‚¡ã‚¤ãƒ«ã«
+/// XSL ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆã‚’é©ç”¨ã—ã¦ HTML åŒ–ã—ãŸçµæžœã‚’
+/// å…ƒãƒ•ã‚¡ã‚¤ãƒ«åã®æ‹¡å¼µå­ã‚’ xml ã‹ã‚‰ html ã«å¤‰ãˆãŸåå‰ã§ä¿å­˜ã™ã‚‹ã€‚
 /// </summary>
 class XslApplier
 {
 	/// <summary>
-	/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚Å‚·B
+	/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
 	/// </summary>
 	[STAThread]
 	static void Main(string[] args)
 	{
 		if(args.Length == 0)
 		{
-			Console.Write("ƒtƒHƒ‹ƒ_–¼‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢\n");
+			Console.Write("ãƒ•ã‚©ãƒ«ãƒ€åã‚’æŒ‡å®šã—ã¦ãã ã•ã„\n");
 		}
 
 		ApplyXslFiles(args[0]);
 	}
 
 	/// <summary>
-	/// ƒtƒHƒ‹ƒ_“à‚Ì‘S‚Ä‚Ì XML ƒtƒ@ƒCƒ‹‚É XSLT ‚ð“K—pB
+	/// ãƒ•ã‚©ãƒ«ãƒ€å†…ã®å…¨ã¦ã® XML ãƒ•ã‚¡ã‚¤ãƒ«ã« XSLT ã‚’é©ç”¨ã€‚
 	/// </summary>
 	static void ApplyXslFiles(string dirName)
 	{
@@ -43,7 +43,7 @@ class XslApplier
 	}
 
 	/// <summary>
-	/// XML ƒtƒ@ƒCƒ‹‚É XSLT ‚ð“K—pB
+	/// XML ãƒ•ã‚¡ã‚¤ãƒ«ã« XSLT ã‚’é©ç”¨ã€‚
 	/// </summary>
 	static void ApplyXsl(string fileName)
 	{
@@ -63,7 +63,7 @@ class XslApplier
 	}
 
 	/// <summary>
-	/// XML ’†‚Ì <?xml-stylesheet ?> ˆ—–½—ß‚©‚ç .xsl ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ðŽæ‚èo‚·B
+	/// XML ä¸­ã® <?xml-stylesheet ?> å‡¦ç†å‘½ä»¤ã‹ã‚‰ .xsl ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–ã‚Šå‡ºã™ã€‚
 	/// </summary>
 	static string GetXSlUri(string fileName)
 	{

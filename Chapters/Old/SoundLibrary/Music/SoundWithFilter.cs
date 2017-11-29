@@ -1,24 +1,24 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Filter;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^‚ğŠ|‚¯‚½‰¹‚ğ¶¬‚·‚éB
+	/// ãƒ•ã‚£ãƒ«ã‚¿ã‚’æ›ã‘ãŸéŸ³ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class SoundWithFilter : Sound
 	{
 		Sound sound;
 		IFilter filter;
-		int delay; // filter ‚Ì’x‰„ŠÔ
+		int delay; // filter ã®é…å»¶æ™‚é–“
 
 		/// <summary>
-		/// Œ³‚Æ‚È‚é SoundAƒtƒBƒ‹ƒ^AƒtƒBƒ‹ƒ^‚Ì’x‰„ŠÔ‚ğw’è‚µ‚Ä¶¬B
+		/// å…ƒã¨ãªã‚‹ Soundã€ãƒ•ã‚£ãƒ«ã‚¿ã€ãƒ•ã‚£ãƒ«ã‚¿ã®é…å»¶æ™‚é–“ã‚’æŒ‡å®šã—ã¦ç”Ÿæˆã€‚
 		/// </summary>
-		/// <param name="sound">Œ³‚Æ‚È‚é‰¹</param>
-		/// <param name="filter">ƒtƒBƒ‹ƒ^</param>
-		/// <param name="delay">filter ‚Ì’x‰„ŠÔ</param>
+		/// <param name="sound">å…ƒã¨ãªã‚‹éŸ³</param>
+		/// <param name="filter">ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="delay">filter ã®é…å»¶æ™‚é–“</param>
 		public SoundWithFilter(Sound sound, IFilter filter, int delay)
 		{
 			this.sound = sound;

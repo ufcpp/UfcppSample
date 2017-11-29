@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function.Elementary
 {
@@ -8,16 +8,16 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 	using Poly = SoundLibrary.Mathematics.Expression.Polynomial;
 
 	/// <summary>
-	/// ‘½€®B
+	/// å¤šé …å¼ã€‚
 	/// </summary>
 	public class Polynomial : Unary
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Poly p;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Polynomial(Function f) : this(f, 0.0) {}
 
@@ -32,7 +32,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		protected override void GetComplexPart(Function reX, Function imX, out Function reY, out Function imY)
 		{
@@ -75,7 +75,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public override Function Negate()
 		{
@@ -143,7 +143,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		protected override Function Differentiate()
 		{
@@ -152,7 +152,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 			if(coef.Length <= 1)
 				return (Constant)0;
 
-			//! « Mathematics.Expression.Polynomial ‚Ì•û‚É‚ ‚é‚×‚«ƒR[ƒh‚©‚àB
+			//! â†“ Mathematics.Expression.Polynomial ã®æ–¹ã«ã‚ã‚‹ã¹ãã‚³ãƒ¼ãƒ‰ã‹ã‚‚ã€‚
 			CoefType[] deriv = new CoefType[coef.Length - 1];
 
 			for(int i=1; i<coef.Length; ++i)
@@ -164,7 +164,7 @@ namespace SoundLibrary.Mathematics.Function.Elementary
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		public override Function Optimize()
 		{

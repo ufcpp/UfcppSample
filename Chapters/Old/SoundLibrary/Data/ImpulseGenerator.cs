@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒCƒ“ƒpƒ‹ƒX—ñ¶¬
+	/// ã‚¤ãƒ³ãƒ‘ãƒ«ã‚¹åˆ—ç”Ÿæˆ
 	/// </summary>
 	public class ImpulseGenerator : IDataGenerator
 	{

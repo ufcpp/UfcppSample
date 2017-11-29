@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// SerialConnector ‚ğì¬‚·‚éB
+	/// SerialConnector ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class SerialConnectorGenerator : FilterGenerator
 	{
-		const string FilterName = "’¼—ñÚ‘±";
-		const string SubFilterName = "ƒtƒBƒ‹ƒ^";
+		const string FilterName = "ç›´åˆ—æ¥ç¶š";
+		const string SubFilterName = "ãƒ•ã‚£ãƒ«ã‚¿";
 
 		public SerialConnectorGenerator()
 		{
@@ -95,12 +95,12 @@ namespace SoundLibrary.Filter
 	}//class SerialConnectorGenerator
 
 	/// <summary>
-	/// PallarelConnector ‚ğì¬‚·‚éB
+	/// PallarelConnector ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class PallarelConnectorGenerator : FilterGenerator
 	{
-		const string FilterName = "•À—ñÚ‘±";
-		const string SubFilterName = "ƒtƒBƒ‹ƒ^";
+		const string FilterName = "ä¸¦åˆ—æ¥ç¶š";
+		const string SubFilterName = "ãƒ•ã‚£ãƒ«ã‚¿";
 
 		public PallarelConnectorGenerator()
 		{

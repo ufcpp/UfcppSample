@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Pipe
 {
 	/// <summary>
-	/// Pipe ‚ğ’¼—ñ‚ÉŒq‚®B
+	/// Pipe ã‚’ç›´åˆ—ã«ç¹‹ãã€‚
 	/// </summary>
 	public class CascadePipe : Pipe
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Pipe[] pipes;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public CascadePipe(params Pipe[] pipes)
 			: base(pipes[0].InputQueue, pipes[pipes.Length - 1].OutputQueue)
@@ -21,7 +21,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		public override void Process()
 		{

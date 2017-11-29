@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Wave
 {
 	/// <summary>
-	/// ƒXƒeƒŒƒI‰¹‚ğ1ƒTƒ“ƒvƒ‹’PˆÊ‚ÅƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚·‚éŠÖ”B
+	/// ã‚¹ãƒ†ãƒ¬ã‚ªéŸ³ã‚’1ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹é–¢æ•°ã€‚
 	/// </summary>
 	public delegate void Stereo1SampleFilter(ref short lVal, ref short rVal);
 
 	/// <summary>
-	/// ƒ‚ƒmƒ‰ƒ‹‰¹‚ğ1ƒTƒ“ƒvƒ‹’PˆÊ‚ÅƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚·‚éŠÖ”B
+	/// ãƒ¢ãƒãƒ©ãƒ«éŸ³ã‚’1ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹é–¢æ•°ã€‚
 	/// </summary>
 	public delegate void Monaural1SampleFilter(ref short val);
 
 	/// <summary>
-	/// SoundLibrary.Wave “à‚Åg‚¤ƒ†[ƒeƒBƒŠƒeƒBŠÖ”‚Ì’è‹`B
+	/// SoundLibrary.Wave å†…ã§ä½¿ã†ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°ã®å®šç¾©ã€‚
 	/// </summary>
 	public class Util
 	{
-		#region RIFF/WAV ƒtƒ@ƒCƒ‹ƒwƒbƒ_’†‚Ì’è”
+		#region RIFF/WAV ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ä¸­ã®å®šæ•°
 
 		public static readonly byte[] RIFF = System.Text.Encoding.ASCII.GetBytes("RIFF");
 		public static readonly byte[] WAVE = System.Text.Encoding.ASCII.GetBytes("WAVE");
@@ -25,7 +25,7 @@ namespace SoundLibrary.Wave
 		public static readonly byte[] DATA = System.Text.Encoding.ASCII.GetBytes("data");
 
 		#endregion
-		#region 2‚Â‚Ì”z—ñ‚Ì”äŠr
+		#region 2ã¤ã®é…åˆ—ã®æ¯”è¼ƒ
 
 		public static bool Equal(byte[] a, byte[] b)
 		{
@@ -166,26 +166,26 @@ namespace SoundLibrary.Wave
 		}
 
 		#endregion
-		#region Œ^•ÏŠ·iWave Ši”[Œ`® ¨ double “™j
+		#region å‹å¤‰æ›ï¼ˆWave æ ¼ç´å½¢å¼ â†’ double ç­‰ï¼‰
 
 		/// <summary>
-		/// wave Ši”[Œ`®i128ƒoƒCƒAƒX•\Œ»j¨ short
+		/// wave æ ¼ç´å½¢å¼ï¼ˆ128ãƒã‚¤ã‚¢ã‚¹è¡¨ç¾ï¼‰â†’ short
 		/// </summary>
-		/// <param name="x">128ƒoƒCƒAƒX•\Œ»‚Ìƒf[ƒ^</param>
-		/// <returns>short ’l</returns>
+		/// <param name="x">128ãƒã‚¤ã‚¢ã‚¹è¡¨ç¾ã®ãƒ‡ãƒ¼ã‚¿</param>
+		/// <returns>short å€¤</returns>
 		internal static short BiasedByteToShort(byte x)
 		{
 			return (short)((short)x - 128);
 		}
 
 		#endregion
-		#region Œ^•ÏŠ·idouble “™ ¨ Wave Ši”[Œ`®Ashort, byte ‚Ì”ÍˆÍ‚Éû‚Ü‚é‚æ‚¤‚É’l‚ğƒNƒŠƒbƒvj
+		#region å‹å¤‰æ›ï¼ˆdouble ç­‰ â†’ Wave æ ¼ç´å½¢å¼ã€short, byte ã®ç¯„å›²ã«åã¾ã‚‹ã‚ˆã†ã«å€¤ã‚’ã‚¯ãƒªãƒƒãƒ—ï¼‰
 
 		/// <summary>
-		/// ¨ byte ‚Ì•ÏŠ·B
+		/// â†’ byte ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static byte ClipToByte(double x)
 		{
 			x += 128;
@@ -195,10 +195,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ¨ byte ‚Ì•ÏŠ·B
+		/// â†’ byte ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static byte ClipToByte(float x)
 		{
 			x += 128;
@@ -208,10 +208,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ¨ byte ‚Ì•ÏŠ·B
+		/// â†’ byte ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static byte ClipToByte(short x)
 		{
 			x += 128;
@@ -221,10 +221,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ¨ short ‚Ì•ÏŠ·B
+		/// â†’ short ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static short ClipToShort(double x)
 		{
 			if(x < short.MinValue) x = short.MinValue;
@@ -233,10 +233,10 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ¨ short ‚Ì•ÏŠ·B
+		/// â†’ short ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static short ClipToShort(float x)
 		{
 			if(x < short.MinValue) x = short.MinValue;
@@ -245,25 +245,25 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// ¨ short ‚Ì•ÏŠ·B
+		/// â†’ short ã®å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">Œ³</param>
-		/// <returns>Œã</returns>
+		/// <param name="x">å…ƒ</param>
+		/// <returns>å¾Œ</returns>
 		internal static short ClipToShort(short x)
 		{
 			return x;
 		}
 
 		#endregion
-		#region Raw Data ‚É‘Î‚·‚éƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+		#region Raw Data ã«å¯¾ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
 
 		/// <summary>
-		/// Raw Wav Data ‚É‘Î‚µ‚ÄƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚·‚éB
-		/// ƒXƒeƒŒƒI”ÅB
+		/// Raw Wav Data ã«å¯¾ã—ã¦ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã€‚
+		/// ã‚¹ãƒ†ãƒ¬ã‚ªç‰ˆã€‚
 		/// </summary>
 		/// <param name="data">Raw Data</param>
-		/// <param name="filter">ƒtƒBƒ‹ƒ^</param>
-		/// <param name="is16bit">Raw Data ‚ÌŒ`®‚ª16ƒrƒbƒg‚©8ƒrƒbƒg‚©B</param>
+		/// <param name="filter">ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="is16bit">Raw Data ã®å½¢å¼ãŒ16ãƒ“ãƒƒãƒˆã‹8ãƒ“ãƒƒãƒˆã‹ã€‚</param>
 		public static void FilteringRawData(byte[] data, Stereo1SampleFilter filter, bool is16bit)
 		{
 			unsafe
@@ -295,12 +295,12 @@ namespace SoundLibrary.Wave
 		}
 
 		/// <summary>
-		/// Raw Wav Data ‚É‘Î‚µ‚ÄƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚·‚éB
-		/// ƒ‚ƒmƒ‰ƒ‹”ÅB
+		/// Raw Wav Data ã«å¯¾ã—ã¦ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã€‚
+		/// ãƒ¢ãƒãƒ©ãƒ«ç‰ˆã€‚
 		/// </summary>
 		/// <param name="data">Raw Data</param>
-		/// <param name="filter">ƒtƒBƒ‹ƒ^</param>
-		/// <param name="is16bit">Raw Data ‚ÌŒ`®‚ª16ƒrƒbƒg‚©8ƒrƒbƒg‚©B</param>
+		/// <param name="filter">ãƒ•ã‚£ãƒ«ã‚¿</param>
+		/// <param name="is16bit">Raw Data ã®å½¢å¼ãŒ16ãƒ“ãƒƒãƒˆã‹8ãƒ“ãƒƒãƒˆã‹ã€‚</param>
 		public static void FilteringRawData(byte[] data, Monaural1SampleFilter filter, bool is16bit)
 		{
 			unsafe

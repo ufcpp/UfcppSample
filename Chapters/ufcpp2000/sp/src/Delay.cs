@@ -1,28 +1,28 @@
-/// <summary>
-/// ’x‰„ŠíB
+ï»¿/// <summary>
+/// é…å»¶å™¨ã€‚
 /// </summary>
 public class Delay : IFilter
 {
-	#region ƒtƒB[ƒ‹ƒh
+	#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 	CircularBuffer buf;
 
 	#endregion
-	#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 	public Delay() : this(1) { }
 
 	/// <summary>
-	/// ”{—¦‚ğw’è‚µ‚Ä‰Šú‰»
+	/// å€ç‡ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–
 	/// </summary>
-	/// <param name="delaytime">’x‰„ŠÔ[sample”]</param>
+	/// <param name="delaytime">é…å»¶æ™‚é–“[sampleæ•°]</param>
 	public Delay(int delaytime)
 	{
 		this.buf = new CircularBuffer(delaytime);
 	}
 
 	#endregion
-	#region IFilter ƒƒ“ƒo
+	#region IFilter ãƒ¡ãƒ³ãƒ
 
 	public double GetValue(double x)
 	{
@@ -38,7 +38,7 @@ public class Delay : IFilter
 	}
 
 	#endregion
-	#region ICloneable ƒƒ“ƒo
+	#region ICloneable ãƒ¡ãƒ³ãƒ
 
 	public object Clone()
 	{

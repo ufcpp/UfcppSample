@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.SpectrumAnalysis;
 using SoundLibrary.Wave;
@@ -6,12 +6,12 @@ using SoundLibrary.Wave;
 namespace SoundLibrary.WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
-	/// ƒ‚ƒmƒ‰ƒ‹”ÅB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
+	/// ãƒ¢ãƒãƒ©ãƒ«ç‰ˆã€‚
 	/// </summary>
 	public class WaveMonaural : WaveData
 	{
-		double[] l;  // L ch Œn—ñ
+		double[] l;  // L ch æ™‚ç³»åˆ—
 
 		public WaveMonaural(){}
 

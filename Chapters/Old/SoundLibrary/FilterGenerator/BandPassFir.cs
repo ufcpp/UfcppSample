@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// Low Pass FIR ‚ğì¬‚·‚éB
+	/// Low Pass FIR ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class LowPassFirGenerator : FilterGenerator
 	{
-		const string FilterName = "’áˆæ“§‰ßƒtƒBƒ‹ƒ^";
-		const string CutoffName = "ƒJƒbƒgƒIƒtü”g”";
-		const string OrderName  = "ƒtƒBƒ‹ƒ^Ÿ”";
-		const string TypeName   = "‘‹ŠÖ”ƒ^ƒCƒv";
+		const string FilterName = "ä½åŸŸé€éãƒ•ã‚£ãƒ«ã‚¿";
+		const string CutoffName = "ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°";
+		const string OrderName  = "ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•°";
+		const string TypeName   = "çª“é–¢æ•°ã‚¿ã‚¤ãƒ—";
 
 		public LowPassFirGenerator()
 		{
@@ -42,11 +42,11 @@ namespace SoundLibrary.Filter
 		public override string CheckConstraint()
 		{
 			if(this.Order <= 0)
-				return "Ÿ”‚Í 1 ˆÈã‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "æ¬¡æ•°ã¯ 1 ä»¥ä¸Šã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			double cutoff = this.Cutoff;
 			if(cutoff < 0 || cutoff > Math.PI)
-				return "ƒJƒbƒgƒIƒtü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			return null;
 		}
@@ -74,14 +74,14 @@ namespace SoundLibrary.Filter
 	}//class LowPassFirGenerator
 
 	/// <summary>
-	/// High Pass FIR ‚ğì¬‚·‚éB
+	/// High Pass FIR ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class HighPassFirGenerator : FilterGenerator
 	{
-		const string FilterName = "‚ˆæ“§‰ßƒtƒBƒ‹ƒ^";
-		const string CutoffName = "ƒJƒbƒgƒIƒtü”g”";
-		const string OrderName  = "ƒtƒBƒ‹ƒ^Ÿ”";
-		const string TypeName   = "‘‹ŠÖ”ƒ^ƒCƒv";
+		const string FilterName = "é«˜åŸŸé€éãƒ•ã‚£ãƒ«ã‚¿";
+		const string CutoffName = "ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°";
+		const string OrderName  = "ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•°";
+		const string TypeName   = "çª“é–¢æ•°ã‚¿ã‚¤ãƒ—";
 
 		public HighPassFirGenerator()
 		{
@@ -112,11 +112,11 @@ namespace SoundLibrary.Filter
 		public override string CheckConstraint()
 		{
 			if(this.Order <= 0)
-				return "Ÿ”‚Í 1 ˆÈã‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "æ¬¡æ•°ã¯ 1 ä»¥ä¸Šã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			double cutoff = this.Cutoff;
 			if(cutoff < 0 || cutoff > Math.PI)
-				return "ƒJƒbƒgƒIƒtü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			return null;
 		}
@@ -144,15 +144,15 @@ namespace SoundLibrary.Filter
 	}//class HighPassFirGenerator
 
 	/// <summary>
-	/// Band Pass FIR ‚ğì¬‚·‚éB
+	/// Band Pass FIR ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class BandPassFirGenerator : FilterGenerator
 	{
-		const string FilterName = "‘Ñˆæ“§‰ßƒtƒBƒ‹ƒ^";
-		const string UpperName = "ãŒÀü”g”";
-		const string LowerfName = "‰ºŒÀü”g”";
-		const string OrderName  = "ƒtƒBƒ‹ƒ^Ÿ”";
-		const string TypeName   = "‘‹ŠÖ”ƒ^ƒCƒv";
+		const string FilterName = "å¸¯åŸŸé€éãƒ•ã‚£ãƒ«ã‚¿";
+		const string UpperName = "ä¸Šé™å‘¨æ³¢æ•°";
+		const string LowerfName = "ä¸‹é™å‘¨æ³¢æ•°";
+		const string OrderName  = "ãƒ•ã‚£ãƒ«ã‚¿æ¬¡æ•°";
+		const string TypeName   = "çª“é–¢æ•°ã‚¿ã‚¤ãƒ—";
 
 		public BandPassFirGenerator()
 		{
@@ -190,18 +190,18 @@ namespace SoundLibrary.Filter
 		public override string CheckConstraint()
 		{
 			if(this.Order <= 0)
-				return "Ÿ”‚Í 1 ˆÈã‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "æ¬¡æ•°ã¯ 1 ä»¥ä¸Šã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			double upper = this.UpperBound;
 			if(upper < 0 || upper > Math.PI)
-				return "ãŒÀü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ä¸Šé™å‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			double lower = this.LowerBound;
 			if(lower < 0 || lower > Math.PI)
-				return "‰ºŒÀü”g”‚Í 0 ` ƒÎ ‚ÌŠÔ‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB";
+				return "ä¸‹é™å‘¨æ³¢æ•°ã¯ 0 ï½ Ï€ ã®é–“ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚";
 
 			if(lower > upper)
-				return "‰ºŒÀ‚ªãŒÀ‚ğ’´‚¦‚Ä‚¢‚Ü‚·B";
+				return "ä¸‹é™ãŒä¸Šé™ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚";
 
 				return null;
 		}

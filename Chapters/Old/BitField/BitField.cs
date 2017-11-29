@@ -1,54 +1,54 @@
-using System;
+ï»¿using System;
 
 namespace BitField
 {
 	/// <summary>
-	/// BitField ‚ª‚ç‚İ‚Ì—áŠO
+	/// BitField ãŒã‚‰ã¿ã®ä¾‹å¤–
 	/// </summary>
 	public class BitFieldException : System.Exception
 	{
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
 		public BitFieldException(){}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="msg">ƒGƒ‰[ƒƒbƒZ[ƒW</param>
+		/// <param name="msg">ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public BitFieldException(string msg) : base(msg){}
 	}//class BitFieldException
 
 	/// <summary>
-	/// ƒrƒbƒgƒtƒB[ƒ‹ƒhƒNƒ‰ƒXB
-	/// Verilog ‚Á‚Û‚¢‘€ì‚ª‰Â”\B
-	/// 64ƒrƒbƒg‚ªŒÀŠE(d—l‚Å‚·)B
+	/// ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¯ãƒ©ã‚¹ã€‚
+	/// Verilog ã£ã½ã„æ“ä½œãŒå¯èƒ½ã€‚
+	/// 64ãƒ“ãƒƒãƒˆãŒé™ç•Œ(ä»•æ§˜ã§ã™)ã€‚
 	/// </summary>
 	/// <example>
 	/// reg [31:0] z;
 	/// z &lt;= {z[30:1], z[31]};
-	/// «
+	/// â†“
 	/// BitField z = BitField.Create(31, 0);
 	/// z.Assign(BitField.Concat(z[30, 1], z[31])); 
 	/// </example>
 	/// <example>
 	/// wire [3:0] a;
 	/// assign a = 4'hA;
-	/// «
+	/// â†“
 	/// BitField a = BitField.Create(3, 0);
 	/// a.Assign(0xA);
 	/// </example>
 	abstract class BitField
 	{
 		/// <summary>
-		/// MSB ‚ª mALSB ‚ª l ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğì¬B
-		/// verilog ‚Ì <c>wire [m:l] z;</c> ‚É‘Š“–B
+		/// MSB ãŒ mã€LSB ãŒ l ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã€‚
+		/// verilog ã® <c>wire [m:l] z;</c> ã«ç›¸å½“ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>MSB ‚ª mALSB ‚ª l ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <returns>MSB ãŒ mã€LSB ãŒ l ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public static BitField Create(int m, int l)
 		{
@@ -56,16 +56,16 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// MSB ‚ª mALSB ‚ª l ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğì¬B
-		/// verilog ‚Ì <c>wire [m:l] z;</c> ‚É‘Š“–B
-		/// val ‚Å’l‚ğ‰Šú‰»‚·‚éB
+		/// MSB ãŒ mã€LSB ãŒ l ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã€‚
+		/// verilog ã® <c>wire [m:l] z;</c> ã«ç›¸å½“ã€‚
+		/// val ã§å€¤ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <param name="val">‰Šú’l</param>
-		/// <returns>MSB ‚ª mALSB ‚ª lA’l‚ª val ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <param name="val">åˆæœŸå€¤</param>
+		/// <returns>MSB ãŒ mã€LSB ãŒ lã€å€¤ãŒ val ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public static BitField Create(int m, int l, ulong val)
 		{
@@ -73,37 +73,37 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// 1 ‚Ñ‚Á‚Æ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğì¬B
+		/// 1 ã³ã£ã¨ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="b">ƒrƒbƒg‚Ì^—’l</param>
-		/// <returns>1ƒrƒbƒg‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <param name="b">ãƒ“ãƒƒãƒˆã®çœŸç†å€¤</param>
+		/// <returns>1ãƒ“ãƒƒãƒˆã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		public static BitField Create(bool b)
 		{
 			return new BitFieldImmediate(0, 0, b ? 1UL : 0UL);
 		}
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
 		/// </summary>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		internal abstract ulong GetValue();
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		/// <exception cref="BitFieldException">
-		/// m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal abstract ulong GetValue(int m, int l);
 
 		/// <summary>
-		/// ’l‚ğŠ„‚è“–‚Ä‚éB
+		/// å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
-		/// <param name="val">Š„‚è“–‚Ä‚½‚¢’l(ulong)</param>
+		/// <param name="val">å‰²ã‚Šå½“ã¦ãŸã„å€¤(ulong)</param>
 		public void Assign(ulong val)
 		{
 			BitField tmp = BitField.Create(this.Msb, this.Lsb, val);
@@ -111,27 +111,27 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ’l‚ğŠ„‚è“–‚Ä‚éB
+		/// å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒhB</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚</param>
 		/// <exception cref="BitFieldException">
-		/// this.Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public abstract void Assign(BitField a);
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚É’l‚ğŠ„‚è“–‚Ä‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
 		/// <exception cref="BitFieldException">
-		/// this.Sub(m, l).Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Sub(m, l).Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public abstract void Assign(int m, int l, BitField a);
 
 		/// <summary>
-		/// ƒrƒbƒg•B
+		/// ãƒ“ãƒƒãƒˆå¹…ã€‚
 		/// </summary>
 		public int Width
 		{
@@ -139,7 +139,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// MSB‚ğæ“¾B
+		/// MSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract int Msb
 		{
@@ -147,7 +147,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// LSB‚ğæ“¾B
+		/// LSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public abstract int Lsb
 		{
@@ -155,10 +155,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// i ƒrƒbƒg–Ú‚Ì’l‚ğ“Ç‚İ‘‚«B
+		/// i ãƒ“ãƒƒãƒˆç›®ã®å€¤ã‚’èª­ã¿æ›¸ãã€‚
 		/// </summary>
 		/// <exception cref="BitFieldException">
-		/// i ‚ª”ÍˆÍŠO‚Ì‚Æ‚«”­¶B
+		/// i ãŒç¯„å›²å¤–ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public BitField this[int i]
 		{
@@ -173,12 +173,12 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚Ì’l‚ğ“Ç‚İ‘‚«B
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã®å€¤ã‚’èª­ã¿æ›¸ãã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
 		/// <exception cref="BitFieldException">
-		/// m, l  ‚ª”ÍˆÍŠO‚Ì‚Æ‚«‚Æ m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m, l  ãŒç¯„å›²å¤–ã®ã¨ãã¨ m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public BitField this[int m, int l]
 		{
@@ -193,7 +193,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
 		/// </summary>
 		public ulong Value
 		{
@@ -204,14 +204,14 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// i ƒrƒbƒg–Ú‚Ì‚İ‚ğØ‚èo‚·B
-		/// verilog ‚Ì <c>z[i]</c> ‚É‘Š“–B
-		/// <c>z.Sub(i)</c> ‚ğ‘‚«Š·‚¦‚é‚Æ <c>z</c> ‚»‚Ì‚à‚Ì‚à‘‚«Š·‚¦‚ç‚ê‚éB
+		/// i ãƒ“ãƒƒãƒˆç›®ã®ã¿ã‚’åˆ‡ã‚Šå‡ºã™ã€‚
+		/// verilog ã® <c>z[i]</c> ã«ç›¸å½“ã€‚
+		/// <c>z.Sub(i)</c> ã‚’æ›¸ãæ›ãˆã‚‹ã¨ <c>z</c> ãã®ã‚‚ã®ã‚‚æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹ã€‚
 		/// </summary>
-		/// <param name="i">Ø‚èo‚µ‚½‚¢ƒrƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX</param>
-		/// <returns>Ø‚èo‚³‚ê‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <param name="i">åˆ‡ã‚Šå‡ºã—ãŸã„ãƒ“ãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
+		/// <returns>åˆ‡ã‚Šå‡ºã•ã‚ŒãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// i ‚ª”ÍˆÍŠO‚Ì‚Æ‚«”­¶B
+		/// i ãŒç¯„å›²å¤–ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal BitField Sub(int i)
 		{
@@ -219,25 +219,25 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚Ì‚İ‚ğØ‚èo‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
-		/// <c>z.Sub(m, l)</c> ‚ğ‘‚«Š·‚¦‚é‚Æ <c>z</c> ‚»‚Ì‚à‚Ì‚à‘‚«Š·‚¦‚ç‚ê‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã®ã¿ã‚’åˆ‡ã‚Šå‡ºã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
+		/// <c>z.Sub(m, l)</c> ã‚’æ›¸ãæ›ãˆã‚‹ã¨ <c>z</c> ãã®ã‚‚ã®ã‚‚æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ø‚èo‚³‚ê‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <returns>åˆ‡ã‚Šå‡ºã•ã‚ŒãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// m, l  ‚ª”ÍˆÍŠO‚Ì‚Æ‚«‚Æ m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m, l  ãŒç¯„å›²å¤–ã®ã¨ãã¨ m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal abstract BitField Sub(int m, int l);
 
 		/// <summary>
-		/// 2‚Â‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğŒ‹‡‚·‚éB
-		/// verilog ‚Ì <c>{x, y, z}</c> ‚É‘Š“–B
-		/// ‚¢‚­‚Â‚Å‚à‚Â‚È‚°‚ç‚ê‚éB
+		/// 2ã¤ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’çµåˆã™ã‚‹ã€‚
+		/// verilog ã® <c>{x, y, z}</c> ã«ç›¸å½“ã€‚
+		/// ã„ãã¤ã§ã‚‚ã¤ãªã’ã‚‰ã‚Œã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">‚Â‚È‚°‚½‚¢ƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
-		/// <returns>‚Â‚È‚ª‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <param name="a">ã¤ãªã’ãŸã„ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
+		/// <returns>ã¤ãªãŒã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		static public BitField Concat(params BitField[] a)
 		{
 			ulong val = 0L;
@@ -253,13 +253,13 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Šeƒrƒbƒg‚É‘Î‚µ‚Ä AND ‰‰ZB
+		/// å„ãƒ“ãƒƒãƒˆã«å¯¾ã—ã¦ AND æ¼”ç®—ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		/// <exception cref="BitFieldException">
-		/// a.Width != b.Width ‚Ì‚Æ‚«”­¶B
+		/// a.Width != b.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		static public BitField operator& (BitField a, BitField b)
 		{
@@ -271,13 +271,13 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Šeƒrƒbƒg‚É‘Î‚µ‚Ä OR ‰‰ZB
+		/// å„ãƒ“ãƒƒãƒˆã«å¯¾ã—ã¦ OR æ¼”ç®—ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		/// <exception cref="BitFieldException">
-		/// a.Width != b.Width ‚Ì‚Æ‚«”­¶B
+		/// a.Width != b.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		static public BitField operator| (BitField a, BitField b)
 		{
@@ -289,13 +289,13 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Šeƒrƒbƒg‚É‘Î‚µ‚Ä XOR ‰‰ZB
+		/// å„ãƒ“ãƒƒãƒˆã«å¯¾ã—ã¦ XOR æ¼”ç®—ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		/// <exception cref="BitFieldException">
-		/// a.Width != b.Width ‚Ì‚Æ‚«”­¶B
+		/// a.Width != b.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		static public BitField operator^ (BitField a, BitField b)
 		{
@@ -307,11 +307,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ‰ÁZB
+		/// åŠ ç®—ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		static public BitField operator+ (BitField a, BitField b)
 		{
 			if(a.Width != b.Width)
@@ -322,11 +322,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Œ¸ZB
+		/// æ¸›ç®—ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh1</param>
-		/// <param name="b">ƒIƒyƒ‰ƒ“ƒh2</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰1</param>
+		/// <param name="b">ã‚ªãƒšãƒ©ãƒ³ãƒ‰2</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		static public BitField operator- (BitField a, BitField b)
 		{
 			if(a.Width != b.Width)
@@ -337,10 +337,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// •„†”½“]B
+		/// ç¬¦å·åè»¢ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		static public BitField operator- (BitField a)
 		{//! Max
 			ulong val = ~a.Value + 1;
@@ -348,10 +348,10 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// •â”B
+		/// è£œæ•°ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>ŒvZŒ‹‰Ê</returns>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>è¨ˆç®—çµæœ</returns>
 		static public BitField operator~ (BitField a)
 		{//! Max
 			ulong val = ~a.Value;
@@ -359,20 +359,20 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ƒu[ƒ‹’l‚©‚çƒrƒbƒgƒtƒB[ƒ‹ƒh‚É•ÏŠ·
+		/// ãƒ–ãƒ¼ãƒ«å€¤ã‹ã‚‰ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«å¤‰æ›
 		/// </summary>
-		/// <param name="b">ƒrƒbƒgƒtƒB[ƒ‹ƒh‚Ì^—’l</param>
-		/// <returns>ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <param name="b">ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®çœŸç†å€¤</param>
+		/// <returns>ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		static public implicit operator BitField(bool b)
 		{
 			return BitField.Create(b);
 		}
 
 		/// <summary>
-		/// ƒrƒbƒgƒtƒB[ƒ‹ƒh‚©‚çƒu[ƒ‹’l‚É•ÏŠ·
+		/// ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰ãƒ–ãƒ¼ãƒ«å€¤ã«å¤‰æ›
 		/// </summary>
-		/// <param name="bf">ƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
-		/// <returns>ƒrƒbƒgƒtƒB[ƒ‹ƒh‚Ì^‹U</returns>
+		/// <param name="bf">ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
+		/// <returns>ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®çœŸå½</returns>
 		static public implicit operator bool(BitField bf)
 		{
 			return bf.Value != 0;
@@ -389,8 +389,8 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// •¶š—ñ‰»B
-		/// 0 ‚Æ 1 ‚Ì—…—ñB
+		/// æ–‡å­—åˆ—åŒ–ã€‚
+		/// 0 ã¨ 1 ã®ç¾…åˆ—ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
@@ -407,29 +407,29 @@ namespace BitField
 	}//class BitField
 
 	/// <summary>
-	/// ’l‚ğ’¼ÚŠi”[‚µ‚Ä‚¢‚éƒrƒbƒgƒtƒB[ƒ‹ƒhB
-	/// •’Ê‚É <c>BitFiled.Create()</c> ‚Å BitField ‚ğì‚é‚Æ‚±‚¢‚Â‚ª‚Å‚«‚éB
+	/// å€¤ã‚’ç›´æ¥æ ¼ç´ã—ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
+	/// æ™®é€šã« <c>BitFiled.Create()</c> ã§ BitField ã‚’ä½œã‚‹ã¨ã“ã„ã¤ãŒã§ãã‚‹ã€‚
 	/// </summary>
 	internal class BitFieldImmediate : BitField
 	{
 		int msb; // MSB
 		int lsb; // LSB
-		ulong n; // ’l
+		ulong n; // å€¤
 
 		/// <summary>
-		/// MSB ‚ª mA LSB ‚ª l ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğì¬B
+		/// MSB ãŒ mã€ LSB ãŒ l ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã€‚
 		/// </summary>
 		/// <param name="msb">MSB</param>
 		/// <param name="lsb">LSB</param>
 		public BitFieldImmediate(int msb, int lsb) : this(msb, lsb, 0){}
 
 		/// <summary>
-		/// MSB ‚ª mA LSB ‚ª l ‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğì¬B
-		/// ’l‚Ì‰Šú‰»‚às‚¤B
+		/// MSB ãŒ mã€ LSB ãŒ l ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã€‚
+		/// å€¤ã®åˆæœŸåŒ–ã‚‚è¡Œã†ã€‚
 		/// </summary>
 		/// <param name="msb">MSB</param>
 		/// <param name="lsb">LSB</param>
-		/// <param name="n">‰Šú’l</param>
+		/// <param name="n">åˆæœŸå€¤</param>
 		public BitFieldImmediate(int msb, int lsb, ulong n)
 		{
 			if(this.msb < this.lsb)
@@ -443,23 +443,23 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
 		/// </summary>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		internal override ulong GetValue()
 		{
 			return (this.n & this.GetMask(this.msb, this.lsb)) >> this.lsb;
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		/// <exception cref="BitFieldException">
-		/// m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal override ulong GetValue(int m, int l)
 		{
@@ -470,11 +470,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ’l‚ğŠ„‚è“–‚Ä‚éB
+		/// å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒhB</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚</param>
 		/// <exception cref="BitFieldException">
-		/// this.Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public override void Assign(BitField a)
 		{
@@ -486,13 +486,13 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚É’l‚ğŠ„‚è“–‚Ä‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
 		/// <exception cref="BitFieldException">
-		/// this.Sub(m, l).Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Sub(m, l).Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public override void Assign(int m, int l, BitField a)
 		{
@@ -511,7 +511,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// MSB‚ğæ“¾B
+		/// MSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public override int Msb
 		{
@@ -522,7 +522,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// LSB‚ğæ“¾B
+		/// LSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public override int Lsb
 		{
@@ -533,15 +533,15 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚Ì‚İ‚ğØ‚èo‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
-		/// <c>z.Sub(m, l)</c> ‚ğ‘‚«Š·‚¦‚é‚Æ <c>z</c> ‚»‚Ì‚à‚Ì‚à‘‚«Š·‚¦‚ç‚ê‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã®ã¿ã‚’åˆ‡ã‚Šå‡ºã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
+		/// <c>z.Sub(m, l)</c> ã‚’æ›¸ãæ›ãˆã‚‹ã¨ <c>z</c> ãã®ã‚‚ã®ã‚‚æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ø‚èo‚³‚ê‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <returns>åˆ‡ã‚Šå‡ºã•ã‚ŒãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// m, l  ‚ª”ÍˆÍŠO‚Ì‚Æ‚«‚Æ m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m, l  ãŒç¯„å›²å¤–ã®ã¨ãã¨ m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal override BitField Sub(int m, int l)
 		{
@@ -552,11 +552,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚Ì‚İ 1 ‚Ìƒ}ƒXƒN‚ğ¶¬B
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã®ã¿ 1 ã®ãƒã‚¹ã‚¯ã‚’ç”Ÿæˆã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>ƒ}ƒXƒN</returns>
+		/// <returns>ãƒã‚¹ã‚¯</returns>
 		private ulong GetMask(int m, int l)
 		{
 			ulong mask = 0UL;
@@ -569,7 +569,7 @@ namespace BitField
 	}//class BitFieldImmediate
 
 	/// <summary>
-	/// <c>BitField.Sub</c> ‚Åæ‚èo‚·•”•ªƒrƒbƒgƒtƒB[ƒ‹ƒhB
+	/// <c>BitField.Sub</c> ã§å–ã‚Šå‡ºã™éƒ¨åˆ†ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
 	/// </summary>
 	internal class BitFieldSub : BitField
 	{
@@ -578,11 +578,11 @@ namespace BitField
 		BitField bf;
 
 		/// <summary>
-		/// bf ‚Ì msb`lsb –ÚB
+		/// bf ã® msbï½lsb ç›®ã€‚
 		/// </summary>
 		/// <param name="msb">MSB</param>
 		/// <param name="lsb">LSB</param>
-		/// <param name="bf">Œ³‚Æ‚È‚éƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
+		/// <param name="bf">å…ƒã¨ãªã‚‹ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
 		public BitFieldSub(int msb, int lsb, BitField bf)
 		{
 			this.msb = msb;
@@ -591,23 +591,23 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
 		/// </summary>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		internal override ulong GetValue()
 		{
 			return this.bf.GetValue(this.msb, this.lsb);
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’l‚ğ ulong ‰»‚µ‚Ä•Ô‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’ ulong åŒ–ã—ã¦è¿”ã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ši”[‚³‚ê‚Ä‚¢‚é’l</returns>
+		/// <returns>æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤</returns>
 		/// <exception cref="BitFieldException">
-		/// m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal override ulong GetValue(int m, int l)
 		{
@@ -618,11 +618,11 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// ’l‚ğŠ„‚è“–‚Ä‚éB
+		/// å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒhB</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚</param>
 		/// <exception cref="BitFieldException">
-		/// this.Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public override void Assign(BitField a)
 		{
@@ -633,13 +633,13 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚É’l‚ğŠ„‚è“–‚Ä‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã«å€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <param name="a">Š„‚è“–‚Ä‚½‚¢’l‚Ì“ü‚Á‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</param>
+		/// <param name="a">å‰²ã‚Šå½“ã¦ãŸã„å€¤ã®å…¥ã£ãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</param>
 		/// <exception cref="BitFieldException">
-		/// this.Sub(m, l).Width != a.Width ‚Ì‚Æ‚«”­¶B
+		/// this.Sub(m, l).Width != a.Width ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		public override void Assign(int m, int l, BitField a)
 		{
@@ -653,7 +653,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// MSB‚ğæ“¾B
+		/// MSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public override int Msb
 		{
@@ -664,7 +664,7 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// LSB‚ğæ“¾B
+		/// LSBã‚’å–å¾—ã€‚
 		/// </summary>
 		public override int Lsb
 		{
@@ -675,15 +675,15 @@ namespace BitField
 		}
 
 		/// <summary>
-		/// m`l ƒrƒbƒg–Ú‚Ì‚İ‚ğØ‚èo‚·B
-		/// verilog ‚Ì <c>z[m:l]</c> ‚É‘Š“–B
-		/// <c>z.Sub(m, l)</c> ‚ğ‘‚«Š·‚¦‚é‚Æ <c>z</c> ‚»‚Ì‚à‚Ì‚à‘‚«Š·‚¦‚ç‚ê‚éB
+		/// mï½l ãƒ“ãƒƒãƒˆç›®ã®ã¿ã‚’åˆ‡ã‚Šå‡ºã™ã€‚
+		/// verilog ã® <c>z[m:l]</c> ã«ç›¸å½“ã€‚
+		/// <c>z.Sub(m, l)</c> ã‚’æ›¸ãæ›ãˆã‚‹ã¨ <c>z</c> ãã®ã‚‚ã®ã‚‚æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹ã€‚
 		/// </summary>
 		/// <param name="m">MSB</param>
 		/// <param name="l">LSB</param>
-		/// <returns>Ø‚èo‚³‚ê‚½ƒrƒbƒgƒtƒB[ƒ‹ƒh</returns>
+		/// <returns>åˆ‡ã‚Šå‡ºã•ã‚ŒãŸãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰</returns>
 		/// <exception cref="BitFieldException">
-		/// m, l  ‚ª”ÍˆÍŠO‚Ì‚Æ‚«‚Æ m &lt; l ‚Ì‚Æ‚«”­¶B
+		/// m, l  ãŒç¯„å›²å¤–ã®ã¨ãã¨ m &lt; l ã®ã¨ãç™ºç”Ÿã€‚
 		/// </exception>
 		internal override BitField Sub(int m, int l)
 		{

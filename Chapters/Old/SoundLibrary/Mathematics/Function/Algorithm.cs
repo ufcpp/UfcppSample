@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// Algorithm ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Algorithm ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	/* static */
 	public class Algorithm
 	{
 		/// <summary>
-		/// ”’lÏ•ª‚â’Tõ‚Ì‚½‚ß‚Ì•Ï”‚Ì•Ï‰»•B
-		/// —Ìˆæ [min, max] ‚ÌŠÔ‚ğ‚İ• step ‚Å’Tõ‚·‚éB
+		/// æ•°å€¤ç©åˆ†ã‚„æ¢ç´¢ã®ãŸã‚ã®å¤‰æ•°ã®å¤‰åŒ–å¹…ã€‚
+		/// é ˜åŸŸ [min, max] ã®é–“ã‚’åˆ»ã¿å¹… step ã§æ¢ç´¢ã™ã‚‹ã€‚
 		/// </summary>
 		public class Range
 		{
@@ -22,12 +22,12 @@ namespace SoundLibrary.Mathematics.Function
 			public ValueType step;
 
 			/// <summary>
-			/// Å‘å’lAÅ¬’l‚ÆA‚İ•‚ğw’è‚µ‚Ä‰Šú‰»B
+			/// æœ€å¤§å€¤ã€æœ€å°å€¤ã¨ã€åˆ»ã¿å¹…ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 			/// </summary>
-			/// <param name="variable">•Ï”</param>
-			/// <param name="min">Å¬’l</param>
-			/// <param name="max">Å‘å’l</param>
-			/// <param name="step">‚İ•</param>
+			/// <param name="variable">å¤‰æ•°</param>
+			/// <param name="min">æœ€å°å€¤</param>
+			/// <param name="max">æœ€å¤§å€¤</param>
+			/// <param name="step">åˆ»ã¿å¹…</param>
 			public Range(Variable variable, ValueType min, ValueType max, ValueType step)
 			{
 				this.variable = variable;
@@ -37,12 +37,12 @@ namespace SoundLibrary.Mathematics.Function
 			}
 
 			/// <summary>
-			/// •ªŠ„”‚ğw’è‚µ‚Ä‰Šú‰»B
+			/// åˆ†å‰²æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 			/// </summary>
-			/// <param name="variable">•Ï”</param>
-			/// <param name="min">Å¬’l</param>
-			/// <param name="max">Å‘å’l</param>
-			/// <param name="n">•ªŠ„”</param>
+			/// <param name="variable">å¤‰æ•°</param>
+			/// <param name="min">æœ€å°å€¤</param>
+			/// <param name="max">æœ€å¤§å€¤</param>
+			/// <param name="n">åˆ†å‰²æ•°</param>
 			public Range(Variable variable, ValueType min, ValueType max, int n)
 			{
 				this.variable = variable;
@@ -53,11 +53,11 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”ÍˆÍ“à/‚İ•‚ÅAŠÖ” f ‚Ì’l‚ªÅ¬‚É‚È‚é‚æ‚¤‚Èˆø”‚ğ’T‚·B
-		/// (‘“–‚è)
+		/// æŒ‡å®šã—ãŸç¯„å›²å†…/åˆ»ã¿å¹…ã§ã€é–¢æ•° f ã®å€¤ãŒæœ€å°ã«ãªã‚‹ã‚ˆã†ãªå¼•æ•°ã‚’æ¢ã™ã€‚
+		/// (ç·å½“ã‚Š)
 		/// </summary>
-		/// <param name="f">ŠÖ” f</param>
-		/// <param name="rangeList">’Tõ”ÍˆÍ/‚İ•</param>
+		/// <param name="f">é–¢æ•° f</param>
+		/// <param name="rangeList">æ¢ç´¢ç¯„å›²/åˆ»ã¿å¹…</param>
 		/// <returns>argmin f</returns>
 		public static VariableTable Argmin(Function f, params Range[] rangeList)
 		{
@@ -102,11 +102,11 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// ”’lÏ•ªB(‘äŒ`Œö®‚ğg—pB)
+		/// æ•°å€¤ç©åˆ†ã€‚(å°å½¢å…¬å¼ã‚’ä½¿ç”¨ã€‚)
 		/// </summary>
-		/// <param name="f">”íÏ•ªŠÖ”</param>
-		/// <param name="range">Ï•ª”ÍˆÍ</param>
-		/// <returns>”’lÏ•ªŒ‹‰Ê</returns>
+		/// <param name="f">è¢«ç©åˆ†é–¢æ•°</param>
+		/// <param name="range">ç©åˆ†ç¯„å›²</param>
+		/// <returns>æ•°å€¤ç©åˆ†çµæœ</returns>
 		public static Function Integral(Function f, Range range)
 		{
 			Variable x = range.variable;

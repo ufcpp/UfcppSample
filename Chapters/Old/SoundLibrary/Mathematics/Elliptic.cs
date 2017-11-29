@@ -1,36 +1,36 @@
-/* «‚±‚±‚É‚ ‚éƒ\[ƒX‚ğQl‚É‚µ‚Ä‚Ü‚·B
+ï»¿/* â†“ã“ã“ã«ã‚ã‚‹ã‚½ãƒ¼ã‚¹ã‚’å‚è€ƒã«ã—ã¦ã¾ã™ã€‚
  *  http://www.ldas-sw.ligo.caltech.edu/cgi-bin/cvsweb.cgi/?cvsroot=GDS#dirlist
  */
 
-//! ƒeƒXƒg‚Ü‚¾BƒeƒXƒgƒR[ƒh‚ğ‘‚­B
+//! ãƒ†ã‚¹ãƒˆã¾ã ã€‚ãƒ†ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãã€‚
 
 using System;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// ‘È‰~Ï•ª/‘È‰~ŠÖ”ŠÖ˜A‚Ì static ƒƒ\ƒbƒhŒQ‚ğ’è‹`B
+	/// æ¥•å††ç©åˆ†/æ¥•å††é–¢æ•°é–¢é€£ã® static ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤ã‚’å®šç¾©ã€‚
 	/// </summary>
 	/// <remarks>
-	/// u = ç dƒÓ/ƒ¢(ƒÓ)
-	/// ƒ¢(ƒÓ) = ã(1 - k^2 sin^2 ƒÓ)
-	/// z = sn u = sin ƒÓ
-	/// cn u = cos ƒÓ
-	/// dn = ãi1 - k^2 sn^2j
+	/// u = âˆ« dÏ†/Î”(Ï†)
+	/// Î”(Ï†) = âˆš(1 - k^2 sin^2 Ï†)
+	/// z = sn u = sin Ï†
+	/// cn u = cos Ï†
+	/// dn = âˆšï¼ˆ1 - k^2 sn^2ï¼‰
 	/// </remarks>
 	/*static*/
 	public class Elliptic
 	{
 		const double EPSILON = 1.11022302462515654042E-16;
 
-		#region ‘È‰~ŠÖ”
+		#region æ¥•å††é–¢æ•°
 
 		/// <summary>
-		/// ‘È‰~Ï•ª‚Ìˆø” u ‚©‚çU•ƒÓ‚ğ‹‚ß‚éB
+		/// æ¥•å††ç©åˆ†ã®å¼•æ•° u ã‹ã‚‰æŒ¯å¹…Ï†ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>U•ƒÓ</returns>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>æŒ¯å¹…Ï†</returns>
 		public static double Phi(double u, double m)
 		{
 			if(m < 0.0 || m > 1.0) return double.NaN;
@@ -95,13 +95,13 @@ namespace SoundLibrary.Mathematics
 			return phi;
 		}
 
-		#region Jacobi ‚Ì‘È‰~ŠÖ”
+		#region Jacobi ã®æ¥•å††é–¢æ•°
 
 		/// <summary>
-		/// Jacobi ‚Ì‘È‰~ŠÖ” sn u ‚ğ‹‚ß‚éB
+		/// Jacobi ã®æ¥•å††é–¢æ•° sn u ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
 		/// <returns>sn(u, k)</returns>
 		public static double Sn(double u, double m)
 		{
@@ -111,10 +111,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Jacobi ‚Ì‘È‰~ŠÖ” cn u ‚ğ‹‚ß‚éB
+		/// Jacobi ã®æ¥•å††é–¢æ•° cn u ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
 		/// <returns>cn(u, k)</returns>
 		public static double Cn(double u, double m)
 		{
@@ -124,10 +124,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Jacobi ‚Ì‘È‰~ŠÖ” dn u ‚ğ‹‚ß‚éB
+		/// Jacobi ã®æ¥•å††é–¢æ•° dn u ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
 		/// <returns>dn(u, k)</returns>
 		public static double Dn(double u, double m)
 		{
@@ -138,10 +138,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Jacobi ‚Ì‘È‰~ŠÖ”(U•ƒÓ‚©‚ç sn, cn, dn)‚ğ‹‚ß‚éB
+		/// Jacobi ã®æ¥•å††é–¢æ•°(æŒ¯å¹…Ï†ã‹ã‚‰ sn, cn, dn)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="phi">U•ƒÓ</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
 		/// <param name="sn">sn(u, k)</param>
 		/// <param name="cn">cn(u, k)</param>
 		/// <param name="dn">dn(u, k)</param>
@@ -161,11 +161,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Jacobi ‚Ì‘È‰~ŠÖ”(ˆø” u ‚Æ—¦ k ‚©‚çU•ƒÓ‚¨‚æ‚Ñ sn, cn, dn)‚ğ‹‚ß‚éB
+		/// Jacobi ã®æ¥•å††é–¢æ•°(å¼•æ•° u ã¨ç‡ k ã‹ã‚‰æŒ¯å¹…Ï†ãŠã‚ˆã³ sn, cn, dn)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <param name="phi">U•ƒÓ</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
 		/// <param name="sn">sn(u, k)</param>
 		/// <param name="cn">cn(u, k)</param>
 		/// <param name="dn">dn(u, k)</param>
@@ -214,15 +214,15 @@ namespace SoundLibrary.Mathematics
 		}
 
 		#endregion
-		#region Jacobi ‚Ì‘È‰~ŠÖ”‚Ì‹tŠÖ”
+		#region Jacobi ã®æ¥•å††é–¢æ•°ã®é€†é–¢æ•°
 
 #if false
 
 		/// <summary>
-		/// Jacobi ‚Ì‹t‘È‰~ŠÖ” u = sn^-1 v ‚Ì‹t‚ğ‹‚ß‚éB
+		/// Jacobi ã®é€†æ¥•å††é–¢æ•° u = sn^-1 v ã®é€†ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="v">ˆø” v</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
+		/// <param name="v">å¼•æ•° v</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
 		/// <returns>sn(u, k)</returns>
 		public static double InverseSn(double v, double m)
 		{
@@ -235,15 +235,15 @@ namespace SoundLibrary.Mathematics
 #endif
 
 		#endregion
-		#region ƒe[ƒ^ŠÖ”
+		#region ãƒ†ãƒ¼ã‚¿é–¢æ•°
 
 #if false
 		/// <summary>
-		/// ‘È‰~ƒe[ƒ^ŠÖ”ƒÆ_a(q, u) (a = 1, 2, 3, 4)‚ğ‹‚ß‚éB
+		/// æ¥•å††ãƒ†ãƒ¼ã‚¿é–¢æ•°Î¸_a(q, u) (a = 1, 2, 3, 4)ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">ƒÆ_a ‚Ì a</param>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="q">ƒpƒ‰ƒ[ƒ^ q</param>
+		/// <param name="a">Î¸_a ã® a</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="q">ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ q</param>
 		/// <returns></returns>
 		public static double Theta(int a, double u, double q)
 		{
@@ -251,11 +251,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‘È‰~ƒe[ƒ^ŠÖ”ƒÆ_a(q, u) (a = 1, 2, 3, 4)‚Ì“±ŠÖ”‚ğ‹‚ß‚éB
+		/// æ¥•å††ãƒ†ãƒ¼ã‚¿é–¢æ•°Î¸_a(q, u) (a = 1, 2, 3, 4)ã®å°é–¢æ•°ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="a">ƒÆ_a ‚Ì a</param>
-		/// <param name="u">ˆø” u</param>
-		/// <param name="q">ƒpƒ‰ƒ[ƒ^ q</param>
+		/// <param name="a">Î¸_a ã® a</param>
+		/// <param name="u">å¼•æ•° u</param>
+		/// <param name="q">ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ q</param>
 		/// <returns></returns>
 		public static double ThetaPrime(int a, double u, double q)
 		{
@@ -268,16 +268,16 @@ namespace SoundLibrary.Mathematics
 #endif
 
 		#endregion
-		#region ƒm[ƒ€
+		#region ãƒãƒ¼ãƒ 
 
 #if false
 		/// <summary>
-		/// ƒm[ƒ€ q(m) ‚ğŒvZ‚·‚éB
+		/// ãƒãƒ¼ãƒ  q(m) ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>ƒm[ƒ€ q(m)</returns>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ãƒãƒ¼ãƒ  q(m)</returns>
 		/// <remarks>
-		/// ƒm[ƒ€ q(m) = exp( - pi K(1-m)/K(m) )
+		/// ãƒãƒ¼ãƒ  q(m) = exp( - pi K(1-m)/K(m) )
 		/// </remarks>
 		public double Q(double m)
 		{
@@ -286,10 +286,10 @@ namespace SoundLibrary.Mathematics
 #endif
 
 		/// <summary>
-		/// ƒm[ƒ€ q(m) ‚Ì‹t‚ğŒvZ‚·‚éB
+		/// ãƒãƒ¼ãƒ  q(m) ã®é€†ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>ƒm[ƒ€‚Ì‹t m(q)</returns>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ãƒãƒ¼ãƒ ã®é€† m(q)</returns>
 		public static double InverseQ(double q)
 		{
 			double t1, t2;
@@ -323,13 +323,13 @@ namespace SoundLibrary.Mathematics
 		#endregion
 
 		#endregion
-		#region ‘È‰~Ï•ª
+		#region æ¥•å††ç©åˆ†
 
 		/// <summary>
-		/// ‘æ1íŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬1ç¨®å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double K(double m)
 		{
 			if(m < 0.0 || m >= 1.0) 
@@ -368,11 +368,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‘æ1í•sŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬1ç¨®ä¸å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="phi">U•ƒÓ</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double F(double phi, double m)
 		{
 			if(m == 0.0)
@@ -435,10 +435,10 @@ namespace SoundLibrary.Mathematics
 
 #if false
 		/// <summary>
-		/// ‘æ2íŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬2ç¨®å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double E(double m)
 		{
 			//!
@@ -446,11 +446,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‘æ2í•sŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬2ç¨®ä¸å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="phi">U•ƒÓ</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double E(double phi, double m)
 		{
 			//!
@@ -458,10 +458,10 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‘æ3íŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬3ç¨®å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double Pi(double n, double m)
 		{
 			//!
@@ -469,11 +469,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// ‘æ3í•sŠ®‘S‘È‰~Ï•ªB
+		/// ç¬¬3ç¨®ä¸å®Œå…¨æ¥•å††ç©åˆ†ã€‚
 		/// </summary>
-		/// <param name="phi">U•ƒÓ</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double Pi(double phi, double n, double m)
 		{
 			//!
@@ -481,11 +481,11 @@ namespace SoundLibrary.Mathematics
 		}
 
 		/// <summary>
-		/// Jacobi ‚Ìƒ[[ƒ^ŠÖ”B
+		/// Jacobi ã®ã‚¼ãƒ¼ã‚¿é–¢æ•°ã€‚
 		/// </summary>
-		/// <param name="phi">U•ƒÓ</param>
-		/// <param name="m">—¦ k ‚Ì2æ</param>
-		/// <returns>Ï•ª’l</returns>
+		/// <param name="phi">æŒ¯å¹…Ï†</param>
+		/// <param name="m">ç‡ k ã®2ä¹—</param>
+		/// <returns>ç©åˆ†å€¤</returns>
 		public static double JacobiZeta(double phi, double m)
 		{
 			//!

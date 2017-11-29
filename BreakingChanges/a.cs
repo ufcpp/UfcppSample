@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 interface X<in U, out T>
 {

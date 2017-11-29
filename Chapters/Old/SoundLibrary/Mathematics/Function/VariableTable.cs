@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Function
@@ -6,7 +6,7 @@ namespace SoundLibrary.Mathematics.Function
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ŠÖ”‚Ìƒpƒ‰ƒ[ƒ^•Ï”‚Ìƒe[ƒuƒ‹B
+	/// é–¢æ•°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ•°ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚
 	/// </summary>
 	/// <example>
 	/// Variable x = ....;
@@ -65,7 +65,7 @@ namespace SoundLibrary.Mathematics.Function
 			return new VariableTable((Hashtable)this.table.Clone());
 		}
 
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		object ICloneable.Clone()
 		{

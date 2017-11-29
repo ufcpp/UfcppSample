@@ -1,25 +1,25 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Equalizer
 {
 	/// <summary>
-	/// ƒoƒ^[ƒ[ƒXƒtƒBƒ‹ƒ^İŒvB
+	/// ãƒã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿è¨­è¨ˆã€‚
 	/// </summary>
 	public class ButterworthFilterDesigner : FilterDesigner
 	{
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public ButterworthFilterDesigner(int order) : base(order)
 		{
 		}
 
 		#endregion
-		#region —ë“_/‹É‚ÌŒvZ
+		#region é›¶ç‚¹/æ¥µã®è¨ˆç®—
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹É‚ğŒvZB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="roots">—ë“_/‹Éˆê——‚ÌŠi”[æ</param>
+		/// <param name="roots">é›¶ç‚¹/æ¥µä¸€è¦§ã®æ ¼ç´å…ˆ</param>
 		public override void GetZeroPole(ZeroPole[] roots)
 		{
 			for(int i=this.order-1, j=0; i>0; i-=2, ++j)
@@ -40,7 +40,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒv
+		#region ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 
 		//public override void GetAnalogPrototype(Coefficient[] coefs)
 		public void GetAnalogPrototype2(Coefficient[] coefs)
@@ -71,7 +71,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒfƒBƒWƒ^ƒ‹ LPF
+		#region ãƒ‡ã‚£ã‚¸ã‚¿ãƒ« LPF
 
 		//public override void GetDigitalLPF(double w, Coefficient[] coefs)
 		public void GetDigitalLPF2(double w, Coefficient[] coefs)

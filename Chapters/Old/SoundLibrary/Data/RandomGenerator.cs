@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ˆê—l—”—ñ¶¬
+	/// ä¸€æ§˜ä¹±æ•°åˆ—ç”Ÿæˆ
 	/// </summary>
 	public class RandomGenerator : IDataGenerator
 	{

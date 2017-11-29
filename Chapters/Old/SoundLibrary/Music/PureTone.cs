@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Music
 {
 	/// <summary>
-	/// ‹ÉŒ`®‚ÅU•‚ÆˆÊ‘Š‚ğ•Û‚·‚é\‘¢‘ÌB
+	/// æ¥µå½¢å¼ã§æŒ¯å¹…ã¨ä½ç›¸ã‚’ä¿æŒã™ã‚‹æ§‹é€ ä½“ã€‚
 	/// </summary>
 	public struct PolarParameter
 	{
@@ -18,21 +18,21 @@ namespace SoundLibrary.Music
 	}
 
 	/// <summary>
-	/// ³Œ·”g’P‰¹B
+	/// æ­£å¼¦æ³¢å˜éŸ³ã€‚
 	/// </summary>
 	public class PureTone : Sound
 	{
-		int length;       // ‰¹‚Ì’·‚³
-		double frequency; // ü”g”(³‹K‰»Špü”g”)
-		double amplitude; // U•(ƒŠƒjƒA’l)
-		double phase;     // ‰ŠúˆÊ‘Š(rad)
+		int length;       // éŸ³ã®é•·ã•
+		double frequency; // å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)
+		double amplitude; // æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)
+		double phase;     // åˆæœŸä½ç›¸(rad)
 
 		/// <summary>
-		/// U•Aü”g”‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// æŒ¯å¹…ã€å‘¨æ³¢æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³(ƒTƒ“ƒvƒ‹”)</param>
-		/// <param name="freq">ü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amp">U•(ƒŠƒjƒA’l)</param>
+		/// <param name="length">éŸ³ã®é•·ã•(ã‚µãƒ³ãƒ—ãƒ«æ•°)</param>
+		/// <param name="freq">å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amp">æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public PureTone(int length, double freq, double amp)
 		{
 			this.length = length;
@@ -42,12 +42,12 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// U•Aü”g”A‰ŠúˆÊ‘Š‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// æŒ¯å¹…ã€å‘¨æ³¢æ•°ã€åˆæœŸä½ç›¸ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³(ƒTƒ“ƒvƒ‹”)</param>
-		/// <param name="freq">ü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="amp">U•(ƒŠƒjƒA’l)</param>
-		/// <param name="phase">‰ŠúˆÊ‘Š(rad)</param>
+		/// <param name="length">éŸ³ã®é•·ã•(ã‚µãƒ³ãƒ—ãƒ«æ•°)</param>
+		/// <param name="freq">å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="amp">æŒ¯å¹…(ãƒªãƒ‹ã‚¢å€¤)</param>
+		/// <param name="phase">åˆæœŸä½ç›¸(rad)</param>
 		public PureTone(int length, double freq, double amp, double phase)
 		{
 			this.length = length;
@@ -57,11 +57,11 @@ namespace SoundLibrary.Music
 		}
 
 		/// <summary>
-		/// U•Aü”g”A‰ŠúˆÊ‘Š‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// æŒ¯å¹…ã€å‘¨æ³¢æ•°ã€åˆæœŸä½ç›¸ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="length">‰¹‚Ì’·‚³(ƒTƒ“ƒvƒ‹”)</param>
-		/// <param name="freq">ü”g”(³‹K‰»Špü”g”)</param>
-		/// <param name="parameter">U•‚Æ‰ŠúˆÊ‘Š</param>
+		/// <param name="length">éŸ³ã®é•·ã•(ã‚µãƒ³ãƒ—ãƒ«æ•°)</param>
+		/// <param name="freq">å‘¨æ³¢æ•°(æ­£è¦åŒ–è§’å‘¨æ³¢æ•°)</param>
+		/// <param name="parameter">æŒ¯å¹…ã¨åˆæœŸä½ç›¸</param>
 		public PureTone(int length, double freq, PolarParameter parameter)
 			: this(length, freq, parameter.amplitude, parameter.phase)
 		{

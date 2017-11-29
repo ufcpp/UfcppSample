@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Misc
 {
 	/// <summary>
-	/// ƒ}ƒ‹ƒ`ƒfƒBƒŒƒCB
+	/// ãƒãƒ«ãƒãƒ‡ã‚£ãƒ¬ã‚¤ã€‚
 	/// </summary>
 	public class MultiDelay : IFilter
 	{
@@ -37,10 +37,10 @@ namespace SoundLibrary.Filter.Misc
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			this.buf.PushBack(0);
@@ -51,7 +51,7 @@ namespace SoundLibrary.Filter.Misc
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{

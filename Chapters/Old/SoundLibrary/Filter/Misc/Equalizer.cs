@@ -1,29 +1,29 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// 2ŸIIR‚ğ—p‚¢‚½ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒUB
+	/// 2æ¬¡IIRã‚’ç”¨ã„ãŸãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã€‚
 	/// </summary>
 	public class PeakingEqualizer : IirFilter
 	{
 		/// <summary>
-		/// ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒU‚ğì¬B
+		/// ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="q">Q’l</param>
-		/// <param name="a">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="q">Qå€¤</param>
+		/// <param name="a">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public PeakingEqualizer(double w, double q, double a) : base(2)
 		{
 			this.SetParameter(w, q, a);
 		}
 
 		/// <summary>
-		/// ƒs[ƒLƒ“ƒOƒCƒRƒ‰ƒCƒU‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’èB
+		/// ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="q">Q’l</param>
-		/// <param name="a">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="q">Qå€¤</param>
+		/// <param name="a">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public void SetParameter(double w, double q, double a)
 		{
 #if false
@@ -45,7 +45,7 @@ namespace SoundLibrary.Filter
 			this.B[1] = b1 / a0;
 			this.B[2] = b2 / a0;
 #elif false
-			// ‚±‚ÌƒR[ƒh‚Í«‚ÌƒR[ƒh‚Æ“™‰¿(Œë·‚ğœ‚¢‚Ä)‚Ì‚Í‚¸B
+			// ã“ã®ã‚³ãƒ¼ãƒ‰ã¯â†“ã®ã‚³ãƒ¼ãƒ‰ã¨ç­‰ä¾¡(èª¤å·®ã‚’é™¤ã„ã¦)ã®ã¯ãšã€‚
 			double c = Math.Cos(w);
 			double s = Math.Sqrt(1 - c * c);// Math.Sin(w);
 			double y = s / (2 * q);
@@ -83,7 +83,7 @@ namespace SoundLibrary.Filter
 			double term1 = 1.0 + Ft*g/q + Ft*Ft;
 			double term2 = 1.0 + Ft/q + Ft*Ft;
 
-			//Peek‚ğì‚é
+			//Peekã‚’ä½œã‚‹
 			if(a > 1)
 			{
 				this.B[0] = term1 / term2;
@@ -92,7 +92,7 @@ namespace SoundLibrary.Filter
 				this.A[0] = - this.B[1];
 				this.A[1] = - (1.0 - Ft/q + Ft*Ft)/ term2;
 			}
-				//dip‚ğì‚é
+				//dipã‚’ä½œã‚‹
 			else if(a < 1)
 			{
 				this.B[0] = term2 / term1;
@@ -115,25 +115,25 @@ namespace SoundLibrary.Filter
 
 
 	/// <summary>
-	/// 1ŸIIR‚ğ—p‚¢‚½ƒs[ƒVƒFƒ‹ƒrƒ“ƒOƒCƒRƒ‰ƒCƒUB
+	/// 1æ¬¡IIRã‚’ç”¨ã„ãŸãƒ”ãƒ¼ã‚·ã‚§ãƒ«ãƒ“ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã€‚
 	/// </summary>
 	public class ShelvingEqualizer : IirFilter
 	{
 		/// <summary>
-		/// ƒVƒFƒ‹ƒrƒ“ƒOƒCƒRƒ‰ƒCƒUì¬B
+		/// ã‚·ã‚§ãƒ«ãƒ“ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ä½œæˆã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="a">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="a">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public ShelvingEqualizer(double w, double a) : base(1)
 		{
 			this.SetParameter(w, a);
 		}
 
 		/// <summary>
-		/// ƒVƒFƒ‹ƒrƒ“ƒOƒCƒRƒ‰ƒCƒU‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’èB
+		/// ã‚·ã‚§ãƒ«ãƒ“ãƒ³ã‚°ã‚¤ã‚³ãƒ©ã‚¤ã‚¶ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã€‚
 		/// </summary>
-		/// <param name="w">’†Sü”g”</param>
-		/// <param name="a">‘•—¦(ƒŠƒjƒA’l)</param>
+		/// <param name="w">ä¸­å¿ƒå‘¨æ³¢æ•°</param>
+		/// <param name="a">å¢—å¹…ç‡(ãƒªãƒ‹ã‚¢å€¤)</param>
 		public void SetParameter(double w, double a)
 		{
 			double tn = (Math.Sin(w) - 1) / Math.Cos(w);

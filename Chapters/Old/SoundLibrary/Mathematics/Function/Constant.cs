@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ’è”B
+	/// å®šæ•°ã€‚
 	/// </summary>
 	public class Constant : Function
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ’è”‚Ì’lB
+		/// å®šæ•°ã®å€¤ã€‚
 		/// </summary>
 		ValueType val;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Constant() : this(0){}
 
@@ -32,7 +32,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l
+		#region å€¤
 
 		public ValueType Value
 		{
@@ -40,7 +40,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -49,7 +49,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -67,7 +67,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰Z
+		#region æ¼”ç®—
 
 		public override Function Negate()
 		{
@@ -128,7 +128,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		public override Function Differentiate(Variable x)
 		{

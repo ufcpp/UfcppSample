@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Discrete
@@ -6,7 +6,7 @@ namespace SoundLibrary.Mathematics.Discrete
 	using Type = System.Double;
 
 	/// <summary>
-	/// ”z—ñ x ‚Æ”z—ñ y ‚Ìô‚İ‚ğ‹‚ß‚éB
+	/// é…åˆ— x ã¨é…åˆ— y ã®ç•³è¾¼ã¿ã‚’æ±‚ã‚ã‚‹ã€‚
 	/// </summary>
 	public class Convolution : Function
 	{
@@ -16,7 +16,7 @@ namespace SoundLibrary.Mathematics.Discrete
 		public Convolution(Type[] x, Type[] y)
 		{
 			if(x.Length != y.Length)
-				throw new ArgumentException("x ‚Æ y ‚Ì’·‚³‚Í“™‚µ‚­‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB");
+				throw new ArgumentException("x ã¨ y ã®é•·ã•ã¯ç­‰ã—ããªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚");
 
 			this.x = x;
 			this.y = y;
@@ -47,10 +47,10 @@ namespace SoundLibrary.Mathematics.Discrete
 		}
 
 		/// <summary>
-		/// ô‚İ C[n] = ƒ°_i x[i]y[n-i] ‚ğ‹‚ß‚éB
+		/// ç•³è¾¼ã¿ C[n] = Î£_i x[i]y[n-i] ã‚’æ±‚ã‚ã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">C[n] ‚Ì n</param>
-		/// <returns>ô‚İŒ‹‰Ê</returns>
+		/// <param name="n">C[n] ã® n</param>
+		/// <returns>ç•³è¾¼ã¿çµæœ</returns>
 		public override Type this[int n]
 		{
 			get

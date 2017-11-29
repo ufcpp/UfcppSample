@@ -1,4 +1,4 @@
-#define CHECK_RANGE
+ï»¿#define CHECK_RANGE
 
 using System;
 
@@ -7,23 +7,23 @@ using SoundLibrary.Filter;
 namespace SoundLibrary.Stream.Monaural
 {
 	/// <summary>
-	/// Stream ‚ÉƒtƒBƒ‹ƒ^‚ğŠ|‚¯‚éB
+	/// Stream ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’æ›ã‘ã‚‹ã€‚
 	/// </summary>
 	public class FilteredStream : Stream
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Stream stream; // inner stream
 		IFilter filter;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// stream ‚É filter ‚ğŠ|‚¯‚éB
+		/// stream ã« filter ã‚’æ›ã‘ã‚‹ã€‚
 		/// </summary>
-		/// <param name="stream">“à•”ƒXƒgƒŠ[ƒ€</param>
-		/// <param name="filter">Š|‚¯‚½‚¢ƒtƒBƒ‹ƒ^[</param>
+		/// <param name="stream">å†…éƒ¨ã‚¹ãƒˆãƒªãƒ¼ãƒ </param>
+		/// <param name="filter">æ›ã‘ãŸã„ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼</param>
 		public FilteredStream(Stream stream, IFilter filter)
 		{
 			this.stream = stream;
@@ -31,7 +31,7 @@ namespace SoundLibrary.Stream.Monaural
 		}
 
 		#endregion
-		#region Stream ƒƒ“ƒo
+		#region Stream ãƒ¡ãƒ³ãƒ
 
 		public override int FillBuffer(short[] buffer, int offset, int size)
 		{

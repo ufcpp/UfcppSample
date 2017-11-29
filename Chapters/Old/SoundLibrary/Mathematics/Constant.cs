@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// Constant ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Constant ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public /*static*/ class Constant
 	{

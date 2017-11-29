@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -12,11 +12,11 @@ using WaveAnalysis;
 namespace AppMain
 {
 	/// <summary>
-	/// “Á«‚ğ CSV Œ`®‚Åƒtƒ@ƒCƒ‹‚É‘‚«o‚·B
+	/// ç‰¹æ€§ã‚’ CSV å½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™ã€‚
 	/// </summary>
 	public class WaveSaveForm : System.Windows.Forms.Form
 	{
-		#region è“®XV—Ìˆæ
+		#region æ‰‹å‹•æ›´æ–°é ˜åŸŸ
 		WaveData wave;
 		FileInfo file;
 		#endregion
@@ -37,7 +37,7 @@ namespace AppMain
 		private System.Windows.Forms.ComboBox comboDelim;
 		private System.Windows.Forms.ComboBox comboChannel;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -53,7 +53,7 @@ namespace AppMain
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -69,8 +69,8 @@ namespace AppMain
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -97,18 +97,18 @@ namespace AppMain
 			this.labelChannel.Name = "labelChannel";
 			this.labelChannel.Size = new System.Drawing.Size(48, 16);
 			this.labelChannel.TabIndex = 5;
-			this.labelChannel.Text = "ƒ`ƒƒƒlƒ‹";
+			this.labelChannel.Text = "ãƒãƒ£ãƒãƒ«";
 			this.labelChannel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// checkedListType
 			// 
 			this.checkedListType.Items.AddRange(new object[] {
-																												 "U•“Á«",
-																												 "ˆÊ‘Š“Á«",
-																												 "ˆÊ‘Š’x‰„“Á«",
-																												 "ŒQ’x‰„“Á«",
-																												 "Å¬ˆÊ‘Š",
-																												 "ƒI[ƒ‹ƒpƒXˆÊ‘Š"});
+																												 "æŒ¯å¹…ç‰¹æ€§",
+																												 "ä½ç›¸ç‰¹æ€§",
+																												 "ä½ç›¸é…å»¶ç‰¹æ€§",
+																												 "ç¾¤é…å»¶ç‰¹æ€§",
+																												 "æœ€å°ä½ç›¸",
+																												 "ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸"});
 			this.checkedListType.Location = new System.Drawing.Point(176, 8);
 			this.checkedListType.Name = "checkedListType";
 			this.checkedListType.Size = new System.Drawing.Size(112, 46);
@@ -120,7 +120,7 @@ namespace AppMain
 			this.labelType.Name = "labelType";
 			this.labelType.Size = new System.Drawing.Size(32, 16);
 			this.labelType.TabIndex = 5;
-			this.labelType.Text = "“Á«";
+			this.labelType.Text = "ç‰¹æ€§";
 			this.labelType.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// checkUnrap
@@ -130,7 +130,7 @@ namespace AppMain
 			this.checkUnrap.Location = new System.Drawing.Point(184, 56);
 			this.checkUnrap.Name = "checkUnrap";
 			this.checkUnrap.TabIndex = 10;
-			this.checkUnrap.Text = "ˆÊ‘Š‚ğƒAƒ“ƒ‰ƒbƒv";
+			this.checkUnrap.Text = "ä½ç›¸ã‚’ã‚¢ãƒ³ãƒ©ãƒƒãƒ—";
 			// 
 			// textFolder
 			// 
@@ -146,7 +146,7 @@ namespace AppMain
 			this.labelFolder.Name = "labelFolder";
 			this.labelFolder.Size = new System.Drawing.Size(48, 16);
 			this.labelFolder.TabIndex = 5;
-			this.labelFolder.Text = "ƒtƒHƒ‹ƒ_";
+			this.labelFolder.Text = "ãƒ•ã‚©ãƒ«ãƒ€";
 			this.labelFolder.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// buttonFolderDefault
@@ -155,7 +155,7 @@ namespace AppMain
 			this.buttonFolderDefault.Name = "buttonFolderDefault";
 			this.buttonFolderDefault.Size = new System.Drawing.Size(80, 23);
 			this.buttonFolderDefault.TabIndex = 13;
-			this.buttonFolderDefault.Text = "Œ³‚Æ“¯‚¶";
+			this.buttonFolderDefault.Text = "å…ƒã¨åŒã˜";
 			this.buttonFolderDefault.Click += new System.EventHandler(this.buttonFolderDefault_Click);
 			// 
 			// labelName
@@ -164,7 +164,7 @@ namespace AppMain
 			this.labelName.Name = "labelName";
 			this.labelName.Size = new System.Drawing.Size(56, 16);
 			this.labelName.TabIndex = 5;
-			this.labelName.Text = "ƒtƒ@ƒCƒ‹–¼";
+			this.labelName.Text = "ãƒ•ã‚¡ã‚¤ãƒ«å";
 			this.labelName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// textName
@@ -181,7 +181,7 @@ namespace AppMain
 			this.buttonNameDefault.Name = "buttonNameDefault";
 			this.buttonNameDefault.Size = new System.Drawing.Size(80, 23);
 			this.buttonNameDefault.TabIndex = 13;
-			this.buttonNameDefault.Text = "Œ³‚Æ“¯‚¶";
+			this.buttonNameDefault.Text = "å…ƒã¨åŒã˜";
 			this.buttonNameDefault.Click += new System.EventHandler(this.buttonNameDefault_Click);
 			// 
 			// buttonSave
@@ -190,7 +190,7 @@ namespace AppMain
 			this.buttonSave.Location = new System.Drawing.Point(136, 184);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.TabIndex = 14;
-			this.buttonSave.Text = "•Û‘¶";
+			this.buttonSave.Text = "ä¿å­˜";
 			this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
 			// 
 			// buttonClose
@@ -199,7 +199,7 @@ namespace AppMain
 			this.buttonClose.Location = new System.Drawing.Point(218, 184);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.TabIndex = 15;
-			this.buttonClose.Text = "•Â‚¶‚é";
+			this.buttonClose.Text = "é–‰ã˜ã‚‹";
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
 			// 
 			// labelDelim
@@ -208,16 +208,16 @@ namespace AppMain
 			this.labelDelim.Name = "labelDelim";
 			this.labelDelim.Size = new System.Drawing.Size(64, 16);
 			this.labelDelim.TabIndex = 5;
-			this.labelDelim.Text = "‹æØ‚è•¶š";
+			this.labelDelim.Text = "åŒºåˆ‡ã‚Šæ–‡å­—";
 			this.labelDelim.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// comboDelim
 			// 
 			this.comboDelim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboDelim.Items.AddRange(new object[] {
-																										"ƒRƒ“ƒ}",
-																										"ƒ^ƒu",
-																										"ƒXƒy[ƒX"});
+																										"ã‚³ãƒ³ãƒ",
+																										"ã‚¿ãƒ–",
+																										"ã‚¹ãƒšãƒ¼ã‚¹"});
 			this.comboDelim.Location = new System.Drawing.Point(80, 152);
 			this.comboDelim.Name = "comboDelim";
 			this.comboDelim.Size = new System.Drawing.Size(72, 20);
@@ -290,7 +290,7 @@ namespace AppMain
 
 			if(File.Exists(filename))
 			{
-				if(MessageBox.Show("ƒtƒ@ƒCƒ‹‚ª‚·‚Å‚É‘¶İ‚µ‚Ä‚¢‚Ü‚·B\nã‘‚«‚µ‚Ü‚·‚©H", "ã‘‚«Šm”F",
+				if(MessageBox.Show("ãƒ•ã‚¡ã‚¤ãƒ«ãŒã™ã§ã«å­˜åœ¨ã—ã¦ã„ã¾ã™ã€‚\nä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ", "ä¸Šæ›¸ãç¢ºèª",
 					MessageBoxButtons.YesNo) != DialogResult.Yes)
 				{
 					return;
@@ -310,7 +310,7 @@ namespace AppMain
 			{
 				label[i] = fs / length * i;
 			}
-			list.Add("ü”g”", label);
+			list.Add("å‘¨æ³¢æ•°", label);
 
 			for(int i=0; i<m; ++i)
 			{

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// TSP M†
+	/// TSP ä¿¡å·
 	/// </summary>
 	public class TspGenerator : IDataGenerator
 	{

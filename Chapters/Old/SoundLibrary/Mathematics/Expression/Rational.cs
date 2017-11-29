@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using Ellip = SoundLibrary.Mathematics.Elliptic;
 
@@ -9,41 +9,41 @@ namespace SoundLibrary.Mathematics.Expression
 	using ValueType  = System.Double;
 
 	/// <summary>
-	/// —L—®B
+	/// æœ‰ç†å¼ã€‚
 	/// </summary>
 	public class Rational
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		Polynomial num;
 		Polynomial denom;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// 0Ÿ”‚Å‰Šú‰»B
+		/// 0æ¬¡æ•°ã§åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public Rational() : this(0) {}
 
 		/// <summary>
-		/// •ªq‘½€®‚ÌŸ”‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// åˆ†å­å¤šé …å¼ã®æ¬¡æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="nOrder">•ªq‘½€®‚ÌŸ”</param>
+		/// <param name="nOrder">åˆ†å­å¤šé …å¼ã®æ¬¡æ•°</param>
 		public Rational(int nOrder) : this(nOrder, 0) {}
 
 		/// <summary>
-		/// Ÿ”‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// æ¬¡æ•°ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="nOrder">•ªq‘½€®‚ÌŸ”</param>
-		/// <param name="dOrder">•ª•ê‘½€®‚ÌŸ”</param>
+		/// <param name="nOrder">åˆ†å­å¤šé …å¼ã®æ¬¡æ•°</param>
+		/// <param name="dOrder">åˆ†æ¯å¤šé …å¼ã®æ¬¡æ•°</param>
 		public Rational(int nOrder, int dOrder) : this(new Polynomial(nOrder), new Polynomial(dOrder)) {}
 
 		/// <summary>
-		/// •ªq/•ª•ê‘½€®‚ğw’è‚µ‚Ä‰Šú‰»B
+		/// åˆ†å­/åˆ†æ¯å¤šé …å¼ã‚’æŒ‡å®šã—ã¦åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="num">•ªq‘½€®</param>
-		/// <param name="denom">•ª•ê‘½€®</param>
+		/// <param name="num">åˆ†å­å¤šé …å¼</param>
+		/// <param name="denom">åˆ†æ¯å¤šé …å¼</param>
 		public Rational(Polynomial num, Polynomial denom)
 		{
 			this.num   = num;
@@ -51,10 +51,10 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		/// <summary>
-		/// f(x) ‚ğŒvZB
+		/// f(x) ã‚’è¨ˆç®—ã€‚
 		/// </summary>
 		/// <param name="x">x</param>
 		/// <returns>f(x)</returns>
@@ -64,10 +64,10 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region •ªq/•ª•ê‘½€®‚Ìæ“¾
+		#region åˆ†å­/åˆ†æ¯å¤šé …å¼ã®å–å¾—
 
 		/// <summary>
-		/// •ªq‘½€®B
+		/// åˆ†å­å¤šé …å¼ã€‚
 		/// </summary>
 		public Polynomial Numerator
 		{
@@ -76,7 +76,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// •ª•ê‘½€®B
+		/// åˆ†æ¯å¤šé …å¼ã€‚
 		/// </summary>
 		public Polynomial Denominator
 		{
@@ -88,7 +88,7 @@ namespace SoundLibrary.Mathematics.Expression
 		#region operator
 
 		/// <summary>
-		/// ’P€+B
+		/// å˜é …+ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <returns>+f(x)</returns>
@@ -98,7 +98,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ’P€-B
+		/// å˜é …-ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <returns>-f(x)</returns>
@@ -108,7 +108,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚Ì‰ÁZB
+		/// å¤šé …å¼åŒå£«ã®åŠ ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -122,7 +122,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚ÌŒ¸ZB
+		/// å¤šé …å¼åŒå£«ã®æ¸›ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -136,7 +136,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚ÌæZB
+		/// å¤šé …å¼åŒå£«ã®ä¹—ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -150,7 +150,7 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		/// <summary>
-		/// ‘½€®“¯m‚ÌœZB
+		/// å¤šé …å¼åŒå£«ã®é™¤ç®—ã€‚
 		/// </summary>
 		/// <param name="f">f(x)</param>
 		/// <param name="g">g(x)</param>
@@ -164,16 +164,16 @@ namespace SoundLibrary.Mathematics.Expression
 		}
 
 		#endregion
-		#region “Áê‚È‘½€®‚ğæ“¾
+		#region ç‰¹æ®Šãªå¤šé …å¼ã‚’å–å¾—
 
-		#region ƒ`ƒFƒrƒVƒFƒt—L—®
+		#region ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•æœ‰ç†å¼
 
 		/// <summary>
-		/// ƒ`ƒFƒrƒVƒFƒt—L—®(elliptic rational)‚ğŒvZ‚·‚éB
+		/// ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•æœ‰ç†å¼(elliptic rational)ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="n">Ÿ”</param>
-		/// <param name="l">x > 1 ‚É‚¨‚¯‚é‹É¬’l</param>
-		/// <returns>Ÿ” n ‚Ìƒ`ƒFƒrƒVƒFƒt—L—®</returns>
+		/// <param name="n">æ¬¡æ•°</param>
+		/// <param name="l">x > 1 ã«ãŠã‘ã‚‹æ¥µå°å€¤</param>
+		/// <returns>æ¬¡æ•° n ã®ãƒã‚§ãƒ“ã‚·ã‚§ãƒ•æœ‰ç†å¼</returns>
 		public static Rational Elliptic(int n, double l)
 		{
 			double m1 = 1 / (l * l);

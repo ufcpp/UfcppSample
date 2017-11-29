@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter.Delay
 {
 	/// <summary>
-	/// ’x‰„ƒtƒBƒ‹ƒ^‚ÌƒCƒ“ƒ^ƒtƒF[ƒXB
+	/// é…å»¶ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
 	/// </summary>
 	public interface IDelay : IFilter
 	{
 		/// <summary>
-		/// ’x‰„ŽžŠÔ[ƒTƒ“ƒvƒ‹]B
+		/// é…å»¶æ™‚é–“[ã‚µãƒ³ãƒ—ãƒ«]ã€‚
 		/// </summary>
 		double DelayTime
 		{
@@ -17,23 +17,23 @@ namespace SoundLibrary.Filter.Delay
 		}
 
 		/// <summary>
-		/// DelayTime ƒTƒ“ƒvƒ‹’x‚ê‚Ì’l‚ðŽæ‚èo‚·‚¾‚¯B
+		/// DelayTime ã‚µãƒ³ãƒ—ãƒ«é…ã‚Œã®å€¤ã‚’å–ã‚Šå‡ºã™ã ã‘ã€‚
 		/// </summary>
-		/// <returns>Žæ‚èo‚µ‚½’l</returns>
+		/// <returns>å–ã‚Šå‡ºã—ãŸå€¤</returns>
 		double GetValue();
 
 		/// <summary>
-		/// “à•”ƒoƒbƒtƒ@‚Ì“r’†‚Ì’l‚ðŽæ‚èo‚·B
-		/// ! ƒŠƒo[ƒu—pB
+		/// å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã®é€”ä¸­ã®å€¤ã‚’å–ã‚Šå‡ºã™ã€‚
+		/// ! ãƒªãƒãƒ¼ãƒ–ç”¨ã€‚
 		/// </summary>
-		/// <param name="n">’l‚ðŽæ‚èo‚µ‚½‚¢ˆÊ’u</param>
-		/// <returns>Žæ‚èo‚µ‚½’l</returns>
+		/// <param name="n">å€¤ã‚’å–ã‚Šå‡ºã—ãŸã„ä½ç½®</param>
+		/// <returns>å–ã‚Šå‡ºã—ãŸå€¤</returns>
 		double GetBufferValue(int n);
 
 		/// <summary>
-		/// ’l‚ÌƒvƒbƒVƒ…B
+		/// å€¤ã®ãƒ—ãƒƒã‚·ãƒ¥ã€‚
 		/// </summary>
-		/// <param name="x">ƒvƒbƒVƒ…‚µ‚½‚¢’l</param>
+		/// <param name="x">ãƒ—ãƒƒã‚·ãƒ¥ã—ãŸã„å€¤</param>
 		void Push(double x);
 	}
 }

@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 
 namespace Reversi
 {
 	/// <summary>
-	/// ƒŠƒo[—˜‚Ì‹î‚Ìó‘Ô
+	/// ãƒªãƒãƒ¼åˆ©ã®é§’ã®çŠ¶æ…‹
 	/// </summary>
 	public enum ReversiColor
 	{
-		Wall = 0, //”Õ–Ê‚Ì•£
-		Black,    //•‚¢‹î
-		White,    //”’‚¢‹î
-		None      //ƒ}ƒX–Ú‚É‰½‚à’u‚©‚ê‚Ä‚¢‚È‚¢ó‘Ô
+		Wall = 0, //ç›¤é¢ã®æ·µ
+		Black,    //é»’ã„é§’
+		White,    //ç™½ã„é§’
+		None      //ãƒã‚¹ç›®ã«ä½•ã‚‚ç½®ã‹ã‚Œã¦ã„ãªã„çŠ¶æ…‹
 	}
 
 	/// <summary>
-	/// ƒŠƒo[ƒV‚Ì”Õ–Ê
+	/// ãƒªãƒãƒ¼ã‚·ã®ç›¤é¢
 	/// </summary>
 	public class ReversiBoard
 	{
@@ -23,24 +23,24 @@ namespace Reversi
 		private ReversiColor[,] board;
 
 		/// <summary>
-		/// ”Õ–Ê‚Ì‰Šú‰»
-		/// ”Õ–Ê‚Ì•‚Í©—R‚ÉŒˆ‚ß‚ê‚é
+		/// ç›¤é¢ã®åˆæœŸåŒ–
+		/// ç›¤é¢ã®å¹…ã¯è‡ªç”±ã«æ±ºã‚ã‚Œã‚‹
 		/// </summary>
-		/// <param name="width">”Õ–Ê‚Ì•</param>
-		/// <param name="height">”Õ–Ê‚Ì‚‚³</param>
+		/// <param name="width">ç›¤é¢ã®å¹…</param>
+		/// <param name="height">ç›¤é¢ã®é«˜ã•</param>
 		public ReversiBoard(int width, int height)
 		{
 			this.width = width;
 			this.height = height;
-			//”Õ–Ê—p‚Ìƒƒ‚ƒŠŠm•Û
-			this.board = new ReversiColor[width+2, height+2];//ü‚è‚É”Ô•º‚ğ’u‚­‚Ì‚Å+2
-			//”Õ–Ê‚Ì•£ˆÈŠO‚ğNone‚ÉƒNƒŠƒA
+			//ç›¤é¢ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
+			this.board = new ReversiColor[width+2, height+2];//å‘¨ã‚Šã«ç•ªå…µã‚’ç½®ãã®ã§+2
+			//ç›¤é¢ã®æ·µä»¥å¤–ã‚’Noneã«ã‚¯ãƒªã‚¢
 			for(int x=1; x<=width; ++x)
 				for(int y=1; y<=height; ++y)
 				{
 					this.board[x, y] = ReversiColor.None;
 				}
-			//”Õ–Ê‚Ì•£‚É”Ô•º‚ğ’u‚­
+			//ç›¤é¢ã®æ·µã«ç•ªå…µã‚’ç½®ã
 			for(int i=0; i<width+2; i++)
 			{
 				this.board[i, 0] = ReversiColor.Wall;
@@ -51,7 +51,7 @@ namespace Reversi
 				this.board[0, i] = ReversiColor.Wall;
 				this.board[width+1, i] = ReversiColor.Wall;
 			}
-			//”Õ–Ê‚Ì’†‰›‚ÉÅ‰‚Ì‹î‚ğ’u‚­
+			//ç›¤é¢ã®ä¸­å¤®ã«æœ€åˆã®é§’ã‚’ç½®ã
 			this.board[width/2  , height/2  ] = ReversiColor.Black;
 			this.board[width/2  , height/2+1] = ReversiColor.White;
 			this.board[width/2+1, height/2  ] = ReversiColor.White;
@@ -59,16 +59,16 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ”Õ–Ê‚ÌƒRƒs[‚ğì¬‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ç›¤é¢ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <param name="b">ƒRƒs[Œ³</param>
+		/// <param name="b">ã‚³ãƒ”ãƒ¼å…ƒ</param>
 		protected ReversiBoard(ReversiBoard b)
 		{
 			this.width = b.width;
 			this.height = b.height;
-			//”Õ–Ê—p‚Ìƒƒ‚ƒŠŠm•Û
-			this.board = new ReversiColor[b.width+2, b.height+2];//ü‚è‚É”Ô•º‚ğ’u‚­‚Ì‚Å+2
-			//”Õ–Ê‚Ì•£ˆÈŠO‚ğNone‚ÉƒNƒŠƒA
+			//ç›¤é¢ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
+			this.board = new ReversiColor[b.width+2, b.height+2];//å‘¨ã‚Šã«ç•ªå…µã‚’ç½®ãã®ã§+2
+			//ç›¤é¢ã®æ·µä»¥å¤–ã‚’Noneã«ã‚¯ãƒªã‚¢
 			for(int x=0; x<b.width+2; ++x)
 				for(int y=0; y<b.height+2; ++y)
 				{
@@ -77,7 +77,7 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ©•ª©g‚ÌƒRƒs[‚ğ¶¬
+		/// è‡ªåˆ†è‡ªèº«ã®ã‚³ãƒ”ãƒ¼ã‚’ç”Ÿæˆ
 		/// </summary>
 		public ReversiBoard Clone()
 		{
@@ -85,8 +85,8 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ”Õ–Ê‚Ì‰Šú‰»
-		/// ”Õ–Ê‚ÌƒTƒCƒY‚ÍƒfƒtƒHƒ‹ƒg‚Å‚Í8~8
+		/// ç›¤é¢ã®åˆæœŸåŒ–
+		/// ç›¤é¢ã®ã‚µã‚¤ã‚ºã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯8Ã—8
 		/// </summary>
 		public ReversiBoard():this(8, 8){}
 
@@ -94,29 +94,29 @@ namespace Reversi
 		// public methods
 
 		/// <summary>
-		/// À•W(x,y)‚ÉƒRƒ}‚ğ‚¨‚¯‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
-		/// <param name="x">’²‚×‚éêŠ‚ÌxÀ•W 0`width-1</param>
-		/// <param name="y">’²‚×‚éêŠ‚ÌyÀ•W 0`width-1</param>
-		/// <returns>’u‚¯‚é‚©‚Ç‚¤‚©</returns>
+		/// åº§æ¨™(x,y)ã«ã‚³ãƒã‚’ãŠã‘ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
+		/// <param name="x">èª¿ã¹ã‚‹å ´æ‰€ã®xåº§æ¨™ 0ï½width-1</param>
+		/// <param name="y">èª¿ã¹ã‚‹å ´æ‰€ã®yåº§æ¨™ 0ï½width-1</param>
+		/// <returns>ç½®ã‘ã‚‹ã‹ã©ã†ã‹</returns>
 		/// </summary>
 		public bool Check(int x, int y, ReversiColor color)
 		{
 			++x; ++y;
 			return this.board[x,y] == ReversiColor.None &&
-				( CheckLine(x, y, -1,  0, color)  //¶
-				|| CheckLine(x, y,  1,  0, color)  //‰E
-				|| CheckLine(x, y,  0, -1, color)  //ã
-				|| CheckLine(x, y,  0,  1, color)  //‰º
-				|| CheckLine(x, y, -1, -1, color)  //¶ã
-				|| CheckLine(x, y,  1, -1, color)  //‰Eã
-				|| CheckLine(x, y, -1,  1, color)  //¶‰º
-				|| CheckLine(x, y,  1,  1, color));//‰Eã
+				( CheckLine(x, y, -1,  0, color)  //å·¦
+				|| CheckLine(x, y,  1,  0, color)  //å³
+				|| CheckLine(x, y,  0, -1, color)  //ä¸Š
+				|| CheckLine(x, y,  0,  1, color)  //ä¸‹
+				|| CheckLine(x, y, -1, -1, color)  //å·¦ä¸Š
+				|| CheckLine(x, y,  1, -1, color)  //å³ä¸Š
+				|| CheckLine(x, y, -1,  1, color)  //å·¦ä¸‹
+				|| CheckLine(x, y,  1,  1, color));//å³ä¸Š
 		}
 		
 		/// <summary>
-		/// ”Õ–Ê‚É’u‚¯‚é‚Ü‚·‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		/// ç›¤é¢ã«ç½®ã‘ã‚‹ã¾ã™ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		/// </summary>
-		/// <returns>’u‚¯‚é‚Ü‚·‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©</returns>
+		/// <returns>ç½®ã‘ã‚‹ã¾ã™ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹</returns>
 		public bool CheckAll(ReversiColor color)
 		{
 			for(int x=1; x<=this.width; ++x)
@@ -127,25 +127,25 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// set ”Õ–Ê‚ÉV‚½‚É‹î‚ğ’u‚«A”Õ–Ê‚ÌXV‚ğs‚¤
-		/// get ”Õ–Ê‚É’u‚©‚ê‚½‹î‚ÌF‚ğ•Ô‚·
-		/// x : 0`width-1
-		/// y : 0`height-1
+		/// set ç›¤é¢ã«æ–°ãŸã«é§’ã‚’ç½®ãã€ç›¤é¢ã®æ›´æ–°ã‚’è¡Œã†
+		/// get ç›¤é¢ã«ç½®ã‹ã‚ŒãŸé§’ã®è‰²ã‚’è¿”ã™
+		/// x : 0ï½width-1
+		/// y : 0ï½height-1
 		/// </summary>
 		public ReversiColor this[int x, int y]
 		{
 			set
 			{
 				++x; ++y;
-				this.board[x,y] = value;//‚»‚Ìƒ}ƒX–Ú‚É‚±‚Ü‚ğ’u‚­
-				UpdateLine(x, y, -1,  0, value);//¶
-				UpdateLine(x, y,  1,  0, value);//‰E
-				UpdateLine(x, y,  0, -1, value);//ã
-				UpdateLine(x, y,  0,  1, value);//‰º
-				UpdateLine(x, y, -1, -1, value);//¶ã
-				UpdateLine(x, y,  1, -1, value);//‰Eã
-				UpdateLine(x, y, -1,  1, value);//¶‰º
-				UpdateLine(x, y,  1,  1, value);//‰Eã
+				this.board[x,y] = value;//ãã®ãƒã‚¹ç›®ã«ã“ã¾ã‚’ç½®ã
+				UpdateLine(x, y, -1,  0, value);//å·¦
+				UpdateLine(x, y,  1,  0, value);//å³
+				UpdateLine(x, y,  0, -1, value);//ä¸Š
+				UpdateLine(x, y,  0,  1, value);//ä¸‹
+				UpdateLine(x, y, -1, -1, value);//å·¦ä¸Š
+				UpdateLine(x, y,  1, -1, value);//å³ä¸Š
+				UpdateLine(x, y, -1,  1, value);//å·¦ä¸‹
+				UpdateLine(x, y,  1,  1, value);//å³ä¸Š
 			}
 			get
 			{
@@ -159,10 +159,10 @@ namespace Reversi
 		public int Height{get{return height;}}
 
 		/// <summary>
-		/// ‹î‚Ì”‚ğ”‚¦‚é
+		/// é§’ã®æ•°ã‚’æ•°ãˆã‚‹
 		/// </summary>
-		/// <param name="black_num">•‚¢‹î‚Ì”‚ğ•Ô‚·</param>
-		/// <param name="white_num">”’‚¢‹î‚Ì”‚ğ•Ô‚·</param>
+		/// <param name="black_num">é»’ã„é§’ã®æ•°ã‚’è¿”ã™</param>
+		/// <param name="white_num">ç™½ã„é§’ã®æ•°ã‚’è¿”ã™</param>
 		public void CountUp(out int black_num, out int white_num)
 		{
 			black_num = 0;
@@ -188,10 +188,10 @@ namespace Reversi
 		// private methods
 
 		/// <summary>
-		/// ”Õ–Ê‚ÌXV‚ğ1ƒ‰ƒCƒ“‚¸‚Âs‚¤
-		/// <param name="x">’u‚­êŠ‚ÌxÀ•W</param>
-		/// <param name="y">’u‚­êŠ‚ÌyÀ•W</param>
-		/// <param name="color">’u‚­‹î‚ÌF</param>
+		/// ç›¤é¢ã®æ›´æ–°ã‚’1ãƒ©ã‚¤ãƒ³ãšã¤è¡Œã†
+		/// <param name="x">ç½®ãå ´æ‰€ã®xåº§æ¨™</param>
+		/// <param name="y">ç½®ãå ´æ‰€ã®yåº§æ¨™</param>
+		/// <param name="color">ç½®ãé§’ã®è‰²</param>
 		/// </summary>
 		private void UpdateLine(int x, int y, int dx, int dy, ReversiColor color)
 		{
@@ -204,10 +204,10 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// ‹î‚ÌF‚Æ‹t‚ÌF‚ğ•Ô‚·
+		/// é§’ã®è‰²ã¨é€†ã®è‰²ã‚’è¿”ã™
 		/// </summary>
-		/// <param name="color">‹î‚ÌF</param>
-		/// <returns>‹t‚ÌF</returns>
+		/// <param name="color">é§’ã®è‰²</param>
+		/// <returns>é€†ã®è‰²</returns>
 		static public ReversiColor InverseColor(ReversiColor color)
 		{
 			if(color == ReversiColor.Black) return ReversiColor.White;
@@ -216,11 +216,11 @@ namespace Reversi
 		}
 
 		/// <summary>
-		/// À•W(x,y)‚ÉƒRƒ}‚ğ‚¨‚¯‚é‚©‚Ç‚¤‚©A1ƒ‰ƒCƒ“•ª’²‚×‚é
-		/// (Checkƒƒ\ƒbƒh‚Å—˜—p‚·‚é)
-		/// <param name="x">’²‚×‚éêŠ‚ÌxÀ•W</param>
-		/// <param name="y">’²‚×‚éêŠ‚ÌyÀ•W</param>
-		/// <returns>’u‚¯‚é‚©‚Ç‚¤‚©</returns>
+		/// åº§æ¨™(x,y)ã«ã‚³ãƒã‚’ãŠã‘ã‚‹ã‹ã©ã†ã‹ã€1ãƒ©ã‚¤ãƒ³åˆ†èª¿ã¹ã‚‹
+		/// (Checkãƒ¡ã‚½ãƒƒãƒ‰ã§åˆ©ç”¨ã™ã‚‹)
+		/// <param name="x">èª¿ã¹ã‚‹å ´æ‰€ã®xåº§æ¨™</param>
+		/// <param name="y">èª¿ã¹ã‚‹å ´æ‰€ã®yåº§æ¨™</param>
+		/// <returns>ç½®ã‘ã‚‹ã‹ã©ã†ã‹</returns>
 		/// </summary>
 		private bool CheckLine(int x, int y, int dx, int dy, ReversiColor color)
 		{

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// ’¼—ñÚ‘±B
+	/// ç›´åˆ—æ¥ç¶šã€‚
 	/// </summary>
 	public class SerialConnector : IFilter
 	{
@@ -42,7 +42,7 @@ namespace SoundLibrary.Filter
 	}//class SerialConnector
 
 	/// <summary>
-	/// •À—ñÚ‘±B
+	/// ä¸¦åˆ—æ¥ç¶šã€‚
 	/// </summary>
 	public class PallarelConnector : IFilter
 	{

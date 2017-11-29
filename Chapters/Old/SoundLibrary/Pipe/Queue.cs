@@ -1,13 +1,13 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Pipe
 {
 	/// <summary>
-	/// FIFO ‚Ìƒoƒbƒtƒ@B
+	/// FIFO ã®ãƒãƒƒãƒ•ã‚¡ã€‚
 	/// </summary>
 	public class Queue
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		short[] buffer;
 		int mask;
@@ -15,12 +15,12 @@ namespace SoundLibrary.Pipe
 		int top;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		/// <summary>
-		/// Å‘å—v‘f” max ‚ÌƒLƒ…[‚ğì¬B
+		/// æœ€å¤§è¦ç´ æ•° max ã®ã‚­ãƒ¥ãƒ¼ã‚’ä½œæˆã€‚
 		/// </summary>
-		/// <param name="max">Å‘å—v‘f”</param>
+		/// <param name="max">æœ€å¤§è¦ç´ æ•°</param>
 		public Queue(int max)
 		{
 			max = SoundLibrary.BitOperation.CeilPower2(max);
@@ -32,19 +32,19 @@ namespace SoundLibrary.Pipe
 		}
 
 		#endregion
-		#region ƒLƒ…[‚Ì‘€ì
+		#region ã‚­ãƒ¥ãƒ¼ã®æ“ä½œ
 
 		/// <summary>
-		/// ƒLƒ…[‚ª‹ó‚©‚Ç‚¤‚©B
+		/// ã‚­ãƒ¥ãƒ¼ãŒç©ºã‹ã©ã†ã‹ã€‚
 		/// </summary>
-		/// <returns>‹ó‚Ì‚Æ‚« true</returns>
+		/// <returns>ç©ºã®ã¨ã true</returns>
 		public bool IsEmpty
 		{
 			get{ return this.bottom == this.top; }
 		}
 
 		/// <summary>
-		/// ƒLƒ…[‚Ì—v‘f”‚ğæ“¾B
+		/// ã‚­ãƒ¥ãƒ¼ã®è¦ç´ æ•°ã‚’å–å¾—ã€‚
 		/// </summary>
 		public int Count
 		{
@@ -55,9 +55,9 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// ƒLƒ…[‚É’l‚ğ“ü‚ê‚éB
+		/// ã‚­ãƒ¥ãƒ¼ã«å€¤ã‚’å…¥ã‚Œã‚‹ã€‚
 		/// </summary>
-		/// <param name="val">’l</param>
+		/// <param name="val">å€¤</param>
 		public void Enqueue(short val)
 		{
 			this.buffer[this.bottom] = val;
@@ -65,9 +65,9 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// ƒLƒ…[‚Ìæ“ª‚Ì—v‘f‚ğæ‚èo‚·B
-		/// i’l‚Ío—Í‚µ‚È‚¢B
-		///   STL ‚Ì queue ‚Ì‚æ‚¤‚ÉAFront ‚Åæ‚èo‚µ‚Ä‚©‚ç Dequeue ‚·‚é‚æ‚¤‚ÉBj
+		/// ã‚­ãƒ¥ãƒ¼ã®å…ˆé ­ã®è¦ç´ ã‚’å–ã‚Šå‡ºã™ã€‚
+		/// ï¼ˆå€¤ã¯å‡ºåŠ›ã—ãªã„ã€‚
+		///   STL ã® queue ã®ã‚ˆã†ã«ã€Front ã§å–ã‚Šå‡ºã—ã¦ã‹ã‚‰ Dequeue ã™ã‚‹ã‚ˆã†ã«ã€‚ï¼‰
 		/// </summary>
 		public void Dequeue()
 		{
@@ -75,7 +75,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// ƒLƒ…[‚©‚ç n —v‘fæ‚èo‚·B
+		/// ã‚­ãƒ¥ãƒ¼ã‹ã‚‰ n è¦ç´ å–ã‚Šå‡ºã™ã€‚
 		/// </summary>
 		public void Dequeue(int n)
 		{
@@ -83,7 +83,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// æ“ª‚Ì—v‘f‚ğ“Ç‚İo‚·B
+		/// å…ˆé ­ã®è¦ç´ ã‚’èª­ã¿å‡ºã™ã€‚
 		/// </summary>
 		public short Front
 		{
@@ -91,7 +91,7 @@ namespace SoundLibrary.Pipe
 		}
 
 		/// <summary>
-		/// ’l‚Ì“Ç‚İ‘‚«B
+		/// å€¤ã®èª­ã¿æ›¸ãã€‚
 		/// </summary>
 		public short this[int i]
 		{

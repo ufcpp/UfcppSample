@@ -1,46 +1,46 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Mathematics;
 
 namespace SoundLibrary.Filter.Equalizer
 {
 	/// <summary>
-	/// ª(—ë“_‚Ü‚½‚Í‹É)B
+	/// æ ¹(é›¶ç‚¹ã¾ãŸã¯æ¥µ)ã€‚
 	/// </summary>
 	/// <remarks>
-	/// M†ˆ—‚Ì•ª–ì‚Å‚ÍAƒtƒBƒ‹ƒ^‚Ì—ë/‹É‚ª‹¤–ğ•¡‘f”‚Ìê‡‚Å‚àÀ”ŒW”ƒtƒBƒ‹ƒ^‚ÅÀŒ»‚Å‚«‚é‚æ‚¤‚ÉA
-	/// ƒtƒBƒ‹ƒ^‚ğ2Ÿ‚¸‚Â‚É‹æØ‚Á‚ÄÀŒ»‚·‚é‚±‚Æ‚ª‘½‚¢‚Ì‚ÅA‰ğ‚ğ2ŒÂ‚¸‚ÂƒyƒA‚É‚µ‚Ä•\Œ»B
-	/// 	ª‚Ìƒ^ƒCƒv c
-	/// 		’PªAÀª~2(dªŠÜ‚Ş)A‹¤–ğ•¡‘f”ªA‚È‚µ(’è”€‚Ì‚İ)B
-	/// 	a, b c
-	/// 		’Pª‚Ìê‡Aa ‚É’l‚ğBb ‚Í–³‹B
-	/// 		Àª‚Ìê‡Aa, b ‚É‚»‚ê‚¼‚ê‚Ìª‚Ì’l‚ğB
-	/// 		‹¤–ğ•¡‘fªAa ‚ÉÀ•”Ab ‚É‹••”B
+	/// ä¿¡å·å‡¦ç†ã®åˆ†é‡ã§ã¯ã€ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶/æ¥µãŒå…±å½¹è¤‡ç´ æ•°ã®å ´åˆã§ã‚‚å®Ÿæ•°ä¿‚æ•°ãƒ•ã‚£ãƒ«ã‚¿ã§å®Ÿç¾ã§ãã‚‹ã‚ˆã†ã«ã€
+	/// ãƒ•ã‚£ãƒ«ã‚¿ã‚’2æ¬¡ãšã¤ã«åŒºåˆ‡ã£ã¦å®Ÿç¾ã™ã‚‹ã“ã¨ãŒå¤šã„ã®ã§ã€è§£ã‚’2å€‹ãšã¤ãƒšã‚¢ã«ã—ã¦è¡¨ç¾ã€‚
+	/// 	æ ¹ã®ã‚¿ã‚¤ãƒ— â€¦
+	/// 		å˜æ ¹ã€å®Ÿæ ¹Ã—2(é‡æ ¹å«ã‚€)ã€å…±å½¹è¤‡ç´ æ•°æ ¹ã€ãªã—(å®šæ•°é …ã®ã¿)ã€‚
+	/// 	a, b â€¦
+	/// 		å˜æ ¹ã®å ´åˆã€a ã«å€¤ã‚’ã€‚b ã¯ç„¡è¦–ã€‚
+	/// 		å®Ÿæ ¹ã®å ´åˆã€a, b ã«ãã‚Œãã‚Œã®æ ¹ã®å€¤ã‚’ã€‚
+	/// 		å…±å½¹è¤‡ç´ æ ¹ã€a ã«å®Ÿéƒ¨ã€b ã«è™šéƒ¨ã€‚
 	/// </remarks>
 	public class Root : ICloneable
 	{
-		#region ƒCƒ“ƒi[ƒNƒ‰ƒX
+		#region ã‚¤ãƒ³ãƒŠãƒ¼ã‚¯ãƒ©ã‚¹
 
 		/// <summary>
-		/// ª‚Ìƒ^ƒCƒv
+		/// æ ¹ã®ã‚¿ã‚¤ãƒ—
 		/// </summary>
 		public enum Type
 		{
-			None,    // ª‚È‚µ(’è”€‚Ì‚İ)
-			Real,    // À”ª~2
-			Single,  // À”ª~1
-			Complex, // ‹¤–ğ•¡‘f”ª
+			None,    // æ ¹ãªã—(å®šæ•°é …ã®ã¿)
+			Real,    // å®Ÿæ•°æ ¹Ã—2
+			Single,  // å®Ÿæ•°æ ¹Ã—1
+			Complex, // å…±å½¹è¤‡ç´ æ•°æ ¹
 		}
 
 		#endregion
-		#region public ƒtƒB[ƒ‹ƒh
+		#region public ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		public Type type;
 		public double a;
 		public double b;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Root() : this(Type.Complex, 0, 0) {}
 
@@ -52,14 +52,14 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ‰ğ‚Ìæ‚èo‚µ
+		#region è§£ã®å–ã‚Šå‡ºã—
 
 		/// <summary>
-		/// ‚¿‚á‚ñ‚Æ‚µ‚½•¡‘f”‚É‚µ‚Ä‰ğ‚Ì’l‚ğ•Ô‚·B
+		/// ã¡ã‚ƒã‚“ã¨ã—ãŸè¤‡ç´ æ•°ã«ã—ã¦è§£ã®å€¤ã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="x1">‰ğ1</param>
-		/// <param name="x2">‰ğ2(À”ª~1‚Ìê‡‚É‚Í0‚É)</param>
-		/// <returns>‰ğ‚Ì”(0 ` 2)</returns>
+		/// <param name="x1">è§£1</param>
+		/// <param name="x2">è§£2(å®Ÿæ•°æ ¹Ã—1ã®å ´åˆã«ã¯0ã«)</param>
+		/// <returns>è§£ã®æ•°(0 ï½ 2)</returns>
 		public int GetRoots(out Complex x1, out Complex x2)
 		{
 			switch(this.type)
@@ -84,7 +84,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public Root Clone()
 		{
@@ -100,21 +100,21 @@ namespace SoundLibrary.Filter.Equalizer
 	}
 
 	/// <summary>
-	/// —ë“_‚Æ‹É‚ÌƒyƒAB
+	/// é›¶ç‚¹ã¨æ¥µã®ãƒšã‚¢ã€‚
 	/// </summary>
 	/// <remarks>
-	/// IIR ƒtƒBƒ‹ƒ^‚ğ‘z’èB
-	/// 2Ÿ‚ÌIIRƒtƒBƒ‹ƒ^¨—ë“_‚Æ‹É‚ª1ƒyƒA‚¸‚ÂB
+	/// IIR ãƒ•ã‚£ãƒ«ã‚¿ã‚’æƒ³å®šã€‚
+	/// 2æ¬¡ã®IIRãƒ•ã‚£ãƒ«ã‚¿â†’é›¶ç‚¹ã¨æ¥µãŒ1ãƒšã‚¢ãšã¤ã€‚
 	/// </remarks>
 	public class ZeroPole : ICloneable
 	{
-		#region public ƒtƒB[ƒ‹ƒh
+		#region public ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		public Root zero;
 		public Root pole;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public ZeroPole() : this(new Root(), new Root()) {}
 
@@ -125,7 +125,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public ZeroPole Clone()
 		{
@@ -141,24 +141,24 @@ namespace SoundLibrary.Filter.Equalizer
 	}
 
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^ŒW”B
-	/// ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒv/ƒfƒBƒWƒ^ƒ‹Œ“—pB
+	/// ãƒ•ã‚£ãƒ«ã‚¿ä¿‚æ•°ã€‚
+	/// ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—/ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«å…¼ç”¨ã€‚
 	/// </summary>
 	/// <remarks>
-	/// ƒAƒiƒƒO  : ‡”b[i]s^i  / ‡”a[i]s^i
-	/// ƒfƒBƒWƒ^ƒ‹: ‡”b[i]z^-i / ‡”a[i]z^-i
-	/// ‘oˆêŸ•ÏŠ·‚Å‚Í•ª•ê/•ªq‚ÌŸ”‚ª•Ï‚í‚ç‚È‚¢‚±‚Æ‚ğ—˜—p‚µ‚ÄA
-	/// ƒAƒiƒƒOEƒfƒBƒWƒ^ƒ‹‚ÅŒW”ƒNƒ‰ƒX‚ğg‚¢‚Ü‚í‚·B
+	/// ã‚¢ãƒŠãƒ­ã‚°  : âˆ‘b[i]s^i  / âˆ‘a[i]s^i
+	/// ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«: âˆ‘b[i]z^-i / âˆ‘a[i]z^-i
+	/// åŒä¸€æ¬¡å¤‰æ›ã§ã¯åˆ†æ¯/åˆ†å­ã®æ¬¡æ•°ãŒå¤‰ã‚ã‚‰ãªã„ã“ã¨ã‚’åˆ©ç”¨ã—ã¦ã€
+	/// ã‚¢ãƒŠãƒ­ã‚°ãƒ»ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«ã§ä¿‚æ•°ã‚¯ãƒ©ã‚¹ã‚’ä½¿ã„ã¾ã‚ã™ã€‚
 	/// </remarks>
 	public class Coefficient : ICloneable
 	{
-		#region public ƒtƒB[ƒ‹ƒh
+		#region public ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		public double[] a = new double[3];
 		public double[] b = new double[3];
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Coefficient() : this(1, 0, 0, 1, 0, 0) {}
 
@@ -173,7 +173,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ICloneable ƒƒ“ƒo
+		#region ICloneable ãƒ¡ãƒ³ãƒ
 
 		public Coefficient Clone()
 		{

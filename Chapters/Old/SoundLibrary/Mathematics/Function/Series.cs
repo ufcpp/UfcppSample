@@ -1,19 +1,19 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	/// <summary>
-	/// Sum(—İ˜a)/Product(—İÏ)ƒNƒ‰ƒX‚Ì‹¤’ÊŠî’êB
+	/// Sum(ç´¯å’Œ)/Product(ç´¯ç©)ã‚¯ãƒ©ã‚¹ã®å…±é€šåŸºåº•ã€‚
 	/// </summary>
 	public abstract class Series : Function
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		protected ArrayList functions = new ArrayList();
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Series(params Function[] functions)
 		{
@@ -29,12 +29,12 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ŠÖ”‚Ì’Ç‰Á
+		#region é–¢æ•°ã®è¿½åŠ 
 
 		/// <summary>
-		/// ‰ÁZ‘ÎÛƒŠƒXƒg‚ÉŠÖ”‚ğ’Ç‰Á‚·‚éB
+		/// åŠ ç®—å¯¾è±¡ãƒªã‚¹ãƒˆã«é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="f">’Ç‰Á‚·‚éŠÖ”</param>
+		/// <param name="f">è¿½åŠ ã™ã‚‹é–¢æ•°</param>
 		internal void AddList(Function f)
 		{
 			if(f is Constant)
@@ -48,9 +48,9 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// ‰ÁZ‘ÎÛƒŠƒXƒg‚ÉŠÖ”‚ğ’Ç‰Á‚·‚éB
+		/// åŠ ç®—å¯¾è±¡ãƒªã‚¹ãƒˆã«é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="list">’Ç‰Á‚·‚éŠÖ”‚ÌƒŠƒXƒg</param>
+		/// <param name="list">è¿½åŠ ã™ã‚‹é–¢æ•°ã®ãƒªã‚¹ãƒˆ</param>
 		internal void AddList(IList list)
 		{
 			foreach(Function f in list)

@@ -1,16 +1,16 @@
-using System;
+﻿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics
 {
 	/// <summary>
-	/// �����ނ̊֐��Q�B
-	/// ���ސ悪���܂莟��A���̏ꏊ�Ɉڂ������B
+	/// 未分類の関数群。
+	/// 分類先が決まり次第、他の場所に移すかも。
 	/// </summary>
 	public class Misc
 	{
 		/// <summary>
-		/// �g�ݍ��킹�̐� nCk �����߂�B
+		/// 組み合わせの数 nCk を求める。
 		/// </summary>
 		/// <param name="n">n</param>
 		/// <param name="k">k</param>

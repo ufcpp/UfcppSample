@@ -1,12 +1,12 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SoundLibrary.Misc
 {
 	/// <summary>
-	/// ÀsŠÔŒv‘ª—p‚ÌƒgƒŒ[ƒXƒNƒ‰ƒXB
-	///ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ğg‚Á‚ÄÀsŠÔ‚ğ•]‰¿B
+	/// å®Ÿè¡Œæ™‚é–“è¨ˆæ¸¬ç”¨ã®ãƒˆãƒ¬ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã€‚
+	///ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ã‚’ä½¿ã£ã¦å®Ÿè¡Œæ™‚é–“ã‚’è©•ä¾¡ã€‚
 	/// </summary>
 	public class Trace : IDisposable
 	{
@@ -18,7 +18,7 @@ namespace SoundLibrary.Misc
 		public extern static short QueryPerformanceFrequency(ref long x);
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		string message;
 		long time;
@@ -26,7 +26,7 @@ namespace SoundLibrary.Misc
 		string format;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Trace() : this(string.Empty) {}
 		public Trace(string message) : this(message, Console.Error, "{0}: {1}\n") {}
@@ -42,7 +42,7 @@ namespace SoundLibrary.Misc
 		}
 
 		#endregion
-		#region IDisposable ƒƒ“ƒo
+		#region IDisposable ãƒ¡ãƒ³ãƒ
 
 		public void Dispose()
 		{

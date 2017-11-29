@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 
 namespace Filter
 {
 	/// <summary>
-	/// ‰¹ºˆ——pƒtƒBƒ‹ƒ^ƒCƒ“ƒ^[ƒtƒF[ƒXB
+	/// éŸ³å£°å‡¦ç†ç”¨ãƒ•ã‚£ãƒ«ã‚¿ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
 	/// </summary>
 	public interface IFilter
 	{
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ðs‚¢A‚»‚ÌŒ‹‰Ê‚ð•Ô‚·B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã„ã€ãã®çµæžœã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—ÍB</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›ã€‚</returns>
 		double GetValue(double x);
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì“à•”ó‘Ô‚ðƒNƒŠƒA‚·‚éB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®å†…éƒ¨çŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
 		/// </summary>
 		void Clear();
 	}

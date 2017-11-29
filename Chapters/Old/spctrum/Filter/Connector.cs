@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace Filter
 {
 	/// <summary>
-	/// Connector ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Connector ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class SerialConnector : IFilter
 	{
@@ -29,7 +29,7 @@ namespace Filter
 	}//class SerialConnector
 
 	/// <summary>
-	/// Connector ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Connector ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class PallarelConnector : IFilter
 	{
@@ -56,7 +56,7 @@ namespace Filter
 	}//class PallarelConnector
 
 	/// <summary>
-	/// Connector ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Connector ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class Mixer : IFilter
 	{

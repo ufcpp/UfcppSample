@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Filter.Equalizer;
 
 namespace SoundLibrary.Pipe.Stereo
 {
 	/// <summary>
-	/// ƒsƒbƒ`ƒVƒtƒg‚ğs‚¤ƒNƒ‰ƒXB
-	/// ˆÚ’²{ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX{ŠÔLkB
+	/// ãƒ”ãƒƒãƒã‚·ãƒ•ãƒˆã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã€‚
+	/// ç§»èª¿ï¼‹ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼‹æ™‚é–“ä¼¸ç¸®ã€‚
 	/// </summary>
 	public class PitchShifter : Pipe
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
-		TimeStretcher  ts; // ŠÔLk
+		TimeStretcher  ts; // æ™‚é–“ä¼¸ç¸®
 		RateTransposer rt; // 
 		FilteredPipe   fp;
 
-		// rate >= 1 ‚Ì‚Æ‚«AŠÔLk¨ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX¨ˆÚ’²B
-		// rate <  1 ‚Ì‚Æ‚«AˆÚ’²¨ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX¨ŠÔLkB
+		// rate >= 1 ã®ã¨ãã€æ™‚é–“ä¼¸ç¸®â†’ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹â†’ç§»èª¿ã€‚
+		// rate <  1 ã®ã¨ãã€ç§»èª¿â†’ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹â†’æ™‚é–“ä¼¸ç¸®ã€‚
 		CascadePipe cp;
 		Pipe[] pipes;
 
@@ -25,11 +25,11 @@ namespace SoundLibrary.Pipe.Stereo
 		Queue temp2;
 
 		ParametricEqualizer fl, fr;
-		Coefficient[] cd, cap; // fl, fr ‚ÌŒW”‚ÆA‚»‚ÌƒAƒiƒƒOƒvƒƒgƒ^ƒCƒvB
+		Coefficient[] cd, cap; // fl, fr ã®ä¿‚æ•°ã¨ã€ãã®ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã€‚
 		ParametricEqualizer.Parameter[] peq;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public PitchShifter(Queue input, Queue temp1, Queue temp2, Queue output, int size, int overlap, double rate)
 			: this(input, temp1, temp2, output, size, overlap, rate, TimeStretcher.DEFAULT_MAXSKIP)
@@ -88,7 +88,7 @@ namespace SoundLibrary.Pipe.Stereo
 		}
 
 		#endregion
-		#region ˆ—
+		#region å‡¦ç†
 
 		public override void Process()
 		{

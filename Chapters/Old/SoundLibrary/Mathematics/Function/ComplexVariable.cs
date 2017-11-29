@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	/// <summary>
-	/// •¡‘f”•Ï”B
+	/// è¤‡ç´ æ•°å¤‰æ•°ã€‚
 	/// </summary>
 	public class ComplexVariable : Variable
 	{
 		public ComplexVariable(IComparable id) : base(id) {}
 
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		/// <summary>
-		/// À•”B
+		/// å®Ÿéƒ¨ã€‚
 		/// </summary>
 		public Variable Re
 		{
@@ -20,7 +20,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <summary>
-		/// ‹••”B
+		/// è™šéƒ¨ã€‚
 		/// </summary>
 		public Variable Im
 		{
@@ -37,13 +37,13 @@ namespace SoundLibrary.Mathematics.Function
 	}
 
 	/// <summary>
-	/// ƒ‹•”•Ï”B
+	/// ç´”è™šæ•°å¤‰æ•°ã€‚
 	/// </summary>
 	public class ImaginaryVariable : Variable
 	{
 		public ImaginaryVariable(IComparable id) : base(id) {}
 
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -55,16 +55,16 @@ namespace SoundLibrary.Mathematics.Function
 	}
 
 	/// <summary>
-	/// Variable ‚ğ•¡‘f”‘Î‰‰»‚·‚é‚½‚ß‚ÌƒNƒ‰ƒXB
-	/// Variable x ‚ª id 'x' ‚ğ‚Â‚Æ‚«A
-	/// x.GetComplexPart(out re, out im); ‚ÌŒ‹‰Ê re, im ‚ğ
-	/// re ‚Ì id = ComplexId(Re, 'x'),
-	/// im ‚Ì id = ComplexId(Im, 'x')
-	/// ‚É‚·‚éB
+	/// Variable ã‚’è¤‡ç´ æ•°å¯¾å¿œåŒ–ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã€‚
+	/// Variable x ãŒ id 'x' ã‚’æŒã¤ã¨ãã€
+	/// x.GetComplexPart(out re, out im); ã®çµæœ re, im ã‚’
+	/// re ã® id = ComplexId(Re, 'x'),
+	/// im ã® id = ComplexId(Im, 'x')
+	/// ã«ã™ã‚‹ã€‚
 	/// </summary>
 	internal struct ComplexId : IComparable
 	{
-		#region “à•”Œ^
+		#region å†…éƒ¨å‹
 
 		public enum ReIm
 		{
@@ -72,13 +72,13 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		public ReIm ri;
 		public IComparable id;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public ComplexId(ReIm ri, IComparable id)
 		{
@@ -113,7 +113,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region IComparable ƒƒ“ƒo
+		#region IComparable ãƒ¡ãƒ³ãƒ
 
 		public int CompareTo(object obj)
 		{

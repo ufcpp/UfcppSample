@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Data
 {
 	/// <summary>
-	/// ƒ‰ƒ“ƒvŠÖ”¶¬
+	/// ãƒ©ãƒ³ãƒ—é–¢æ•°ç”Ÿæˆ
 	/// </summary>
 	public class RampGenerator : IDataGenerator
 	{

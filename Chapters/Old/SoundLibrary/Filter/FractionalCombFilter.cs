@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Filter
 {
 	/// <summary>
-	/// •ª”’x‰„ƒRƒ€ƒtƒBƒ‹ƒ^B
+	/// åˆ†æ•°é…å»¶ã‚³ãƒ ãƒ•ã‚£ãƒ«ã‚¿ã€‚
 	/// </summary>
-	[Obsolete("SoundLibrary.Filter.Misc.CombFilter ‚ğg‚Á‚Ä‚­‚¾‚³‚¢B")]
+	[Obsolete("SoundLibrary.Filter.Misc.CombFilter ã‚’ä½¿ã£ã¦ãã ã•ã„ã€‚")]
 	public class FractionalCombFilter : IFilter
 	{
 		double direct;
@@ -14,12 +14,12 @@ namespace SoundLibrary.Filter
 		Delay.FractionalDelay delay;
 
 		/// <summary>
-		/// ‰Šú‰»B
+		/// åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="direct">ƒ_ƒCƒŒƒNƒgƒQƒCƒ“</param>
-		/// <param name="effect">ƒGƒtƒFƒNƒgƒQƒCƒ“</param>
-		/// <param name="feedback">ƒtƒB[ƒhƒoƒbƒNƒQƒCƒ“</param>
-		/// <param name="buffer">ƒoƒbƒtƒ@ƒTƒCƒY</param>
+		/// <param name="direct">ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚²ã‚¤ãƒ³</param>
+		/// <param name="effect">ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚²ã‚¤ãƒ³</param>
+		/// <param name="feedback">ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ã‚²ã‚¤ãƒ³</param>
+		/// <param name="buffer">ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º</param>
 		public FractionalCombFilter(double direct, double effect, double feedback, double buffer)
 		{
 			--buffer;
@@ -45,12 +45,12 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
+		/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 		/// </summary>
-		/// <param name="direct">ƒ_ƒCƒŒƒNƒgƒQƒCƒ“</param>
-		/// <param name="effect">ƒGƒtƒFƒNƒgƒQƒCƒ“</param>
-		/// <param name="feedback">ƒtƒB[ƒhƒoƒbƒNƒQƒCƒ“</param>
-		/// <param name="buffer">’x‰„ŠÔ</param>
+		/// <param name="direct">ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚²ã‚¤ãƒ³</param>
+		/// <param name="effect">ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚²ã‚¤ãƒ³</param>
+		/// <param name="feedback">ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ã‚²ã‚¤ãƒ³</param>
+		/// <param name="buffer">é…å»¶æ™‚é–“</param>
 		public void SetParameter(double direct, double effect, double feedback, double buffer)
 		{
 			this.DirectGain   = direct;
@@ -60,7 +60,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒ_ƒCƒŒƒNƒgƒQƒCƒ“
+		/// ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚²ã‚¤ãƒ³
 		/// </summary>
 		public double DirectGain
 		{
@@ -69,7 +69,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒGƒtƒFƒNƒgƒQƒCƒ“
+		/// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚²ã‚¤ãƒ³
 		/// </summary>
 		public double EffectGain
 		{
@@ -78,7 +78,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒB[ƒhƒoƒbƒNƒQƒCƒ“
+		/// ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ã‚²ã‚¤ãƒ³
 		/// </summary>
 		public double FeedbackGain
 		{
@@ -88,7 +88,7 @@ namespace SoundLibrary.Filter
 
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@ƒTƒCƒY
+		/// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 		/// </summary>
 		public double DelayBuffer
 		{
@@ -102,10 +102,10 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğs‚¤B
+		/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã€‚
 		/// </summary>
-		/// <param name="x">ƒtƒBƒ‹ƒ^“ü—ÍB</param>
-		/// <returns>ƒtƒBƒ‹ƒ^o—Í</returns>
+		/// <param name="x">ãƒ•ã‚£ãƒ«ã‚¿å…¥åŠ›ã€‚</param>
+		/// <returns>ãƒ•ã‚£ãƒ«ã‚¿å‡ºåŠ›</returns>
 		public double GetValue(double x)
 		{
 			double t = this.delay.GetValue();
@@ -115,7 +115,7 @@ namespace SoundLibrary.Filter
 		}
 
 		/// <summary>
-		/// “à•”ó‘Ô‚ÌƒNƒŠƒA
+		/// å†…éƒ¨çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{

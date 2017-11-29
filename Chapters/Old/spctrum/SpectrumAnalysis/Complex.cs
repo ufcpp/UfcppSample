@@ -1,26 +1,26 @@
-using System;
+ï»¿using System;
 
 namespace SpectrumAnalysis
 {
 	/// <summary>
-	/// •¡‘f”ƒNƒ‰ƒXB
+	/// è¤‡ç´ æ•°ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public struct Complex
 	{
-		double re; // À•”
-		double im; // ‹••”
+		double re; // å®Ÿéƒ¨
+		double im; // è™šéƒ¨
 
 		/// <summary>
-		/// À•”‚ğw’è‚µ‚Ä\’zB
+		/// å®Ÿéƒ¨ã‚’æŒ‡å®šã—ã¦æ§‹ç¯‰ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
+		/// <param name="re">å®Ÿéƒ¨</param>
 		public Complex(double re) : this(re, 0){}
 
 		/// <summary>
-		/// À•”A‹••”‚ğw’è‚µ‚Ä\’zB
+		/// å®Ÿéƒ¨ã€è™šéƒ¨ã‚’æŒ‡å®šã—ã¦æ§‹ç¯‰ã€‚
 		/// </summary>
-		/// <param name="re">À•”</param>
-		/// <param name="im">‹••”</param>
+		/// <param name="re">å®Ÿéƒ¨</param>
+		/// <param name="im">è™šéƒ¨</param>
 		public Complex(double re, double im)
 		{
 			this.re = re;
@@ -28,9 +28,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+		/// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
 		/// </summary>
-		/// <param name="z">ƒRƒs[Œ³</param>
+		/// <param name="z">ã‚³ãƒ”ãƒ¼å…ƒ</param>
 		public Complex(Complex z)
 		{
 			this.re = z.re;
@@ -38,17 +38,17 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// double ¨ Complex ‚ÌˆÃ–Ù‚Ì•û•ÏŠ·B
+		/// double â†’ Complex ã®æš—é»™ã®æ–¹å¤‰æ›ã€‚
 		/// </summary>
-		/// <param name="x">double ’l</param>
-		/// <returns>x ‚ğ Complex ‰»‚µ‚½‚à‚Ì</returns>
+		/// <param name="x">double å€¤</param>
+		/// <returns>x ã‚’ Complex åŒ–ã—ãŸã‚‚ã®</returns>
 		public static implicit operator Complex(double x)
 		{
 			return new Complex(x);
 		}
 
 		/// <summary>
-		/// À•”
+		/// å®Ÿéƒ¨
 		/// </summary>
 		public double Re
 		{
@@ -57,7 +57,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‹••”
+		/// è™šéƒ¨
 		/// </summary>
 		public double Im
 		{
@@ -66,7 +66,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒpƒ[(â‘Î’l‚Ì“ñæ)‚ÌƒŠƒjƒA’lB
+		/// ãƒ‘ãƒ¯ãƒ¼(çµ¶å¯¾å€¤ã®äºŒä¹—)ã®ãƒªãƒ‹ã‚¢å€¤ã€‚
 		/// </summary>
 		public double LinearPower
 		{
@@ -74,7 +74,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ƒpƒ[(â‘Î’l‚Ì“ñæ)‚Ì dB ’lB
+		/// ãƒ‘ãƒ¯ãƒ¼(çµ¶å¯¾å€¤ã®äºŒä¹—)ã® dB å€¤ã€‚
 		/// </summary>
 		public double Power
 		{
@@ -82,7 +82,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// â‘Î’l
+		/// çµ¶å¯¾å€¤
 		/// </summary>
 		public double Abs
 		{
@@ -90,7 +90,7 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// •ÎŠp
+		/// åè§’
 		/// </summary>
 		public double Arg
 		{
@@ -98,18 +98,18 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‹¤–ğ•¡‘f”B
+		/// å…±å½¹è¤‡ç´ æ•°ã€‚
 		/// </summary>
-		/// <returns>this ‚Ì‹¤–ğ</returns>
+		/// <returns>this ã®å…±å½¹</returns>
 		public Complex Conjugate()
 		{
 			return new Complex(this.re, -this.im);
 		}
 
 		/// <summary>
-		/// ‹t”B
+		/// é€†æ•°ã€‚
 		/// </summary>
-		/// <returns>this ‚Ì‹t”</returns>
+		/// <returns>this ã®é€†æ•°</returns>
 		public Complex Invert()
 		{
 			double pow = this.LinearPower;
@@ -117,9 +117,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ’P€+B
+		/// å˜é …+ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>+a</returns>
 		public static Complex operator+ (Complex a)
 		{
@@ -127,9 +127,9 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ’P€-B
+		/// å˜é …-ã€‚
 		/// </summary>
-		/// <param name="a">ƒIƒyƒ‰ƒ“ƒh</param>
+		/// <param name="a">ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
 		/// <returns>-a</returns>
 		public static Complex operator- (Complex a)
 		{
@@ -137,11 +137,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// ‰ÁZB
+		/// åŠ ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>‰ÁZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>åŠ ç®—çµæœ</returns>
 		public static Complex operator+ (Complex a, Complex b)
 		{
 			double re = a.re + b.re;
@@ -162,11 +162,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// Œ¸ZB
+		/// æ¸›ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>Œ¸ZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>æ¸›ç®—çµæœ</returns>
 		public static Complex operator- (Complex a, Complex b)
 		{
 			double re = a.re - b.re;
@@ -187,11 +187,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// æZB
+		/// ä¹—ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>æZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>ä¹—ç®—çµæœ</returns>
 		public static Complex operator* (Complex a, Complex b)
 		{
 			double re = a.re * b.re - a.im * b.im;
@@ -212,11 +212,11 @@ namespace SpectrumAnalysis
 		}
 
 		/// <summary>
-		/// œZB
+		/// é™¤ç®—ã€‚
 		/// </summary>
-		/// <param name="a">¶ƒIƒyƒ‰ƒ“ƒh</param>
-		/// <param name="b">‰EƒIƒyƒ‰ƒ“ƒh</param>
-		/// <returns>œZŒ‹‰Ê</returns>
+		/// <param name="a">å·¦ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <param name="b">å³ã‚ªãƒšãƒ©ãƒ³ãƒ‰</param>
+		/// <returns>é™¤ç®—çµæœ</returns>
 		public static Complex operator/ (Complex a, Complex b)
 		{
 			return a * b.Invert();

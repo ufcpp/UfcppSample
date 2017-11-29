@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 using SpectrumAnalysis;
 using Wave;
@@ -6,7 +6,7 @@ using Wave;
 namespace WaveAnalysis
 {
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public abstract class WaveData
 	{
@@ -51,11 +51,11 @@ namespace WaveAnalysis
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Á«‚ğæ“¾B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="spectrum">ƒXƒyƒNƒgƒ‹</param>
-		/// <param name="type">“Á«‚Ìí—Ş</param>
-		/// <returns>“Á«</returns>
+		/// <param name="spectrum">ã‚¹ãƒšã‚¯ãƒˆãƒ«</param>
+		/// <param name="type">ç‰¹æ€§ã®ç¨®é¡</param>
+		/// <returns>ç‰¹æ€§</returns>
 		public static double[] GetData(Spectrum spectrum, Property type)
 		{
 			switch(type)
@@ -108,11 +108,11 @@ namespace WaveAnalysis
 		}//GetData
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì“Á«‚ğæ“¾B
+		/// ãƒ‡ãƒ¼ã‚¿ã®ç‰¹æ€§ã‚’å–å¾—ã€‚
 		/// </summary>
-		/// <param name="channel">æ“¾‚µ‚½‚¢ƒ`ƒƒƒlƒ‹</param>
-		/// <param name="type">æ“¾‚µ‚½‚¢“Á«</param>
-		/// <returns>“Á«</returns>
+		/// <param name="channel">å–å¾—ã—ãŸã„ãƒãƒ£ãƒãƒ«</param>
+		/// <param name="type">å–å¾—ã—ãŸã„ç‰¹æ€§</param>
+		/// <returns>ç‰¹æ€§</returns>
 		public double[] GetData(Channel channel, Property type)
 		{
 			switch(channel)
@@ -130,10 +130,10 @@ namespace WaveAnalysis
 		}//GetData
 
 		/// <summary>
-		/// ƒXƒyƒNƒgƒ‹‚Ìæ“¾B
+		/// ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®å–å¾—ã€‚
 		/// </summary>
-		/// <param name="channel">æ“¾‚µ‚½‚¢ƒ`ƒƒƒlƒ‹</param>
-		/// <returns>ƒXƒyƒNƒgƒ‹</returns>
+		/// <param name="channel">å–å¾—ã—ãŸã„ãƒãƒ£ãƒãƒ«</param>
+		/// <returns>ã‚¹ãƒšã‚¯ãƒˆãƒ«</returns>
 		public Spectrum GetSpectrum(Channel channel)
 		{
 			switch(channel)
@@ -152,13 +152,13 @@ namespace WaveAnalysis
 	}//class Wave
 
 	/// <summary>
-	/// Wave ƒf[ƒ^Ši”[—pƒNƒ‰ƒXB
-	/// Œn—ñ‚Åƒf[ƒ^‚ğ•ÛB
+	/// Wave ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚¯ãƒ©ã‚¹ã€‚
+	/// æ™‚ç³»åˆ—ã§ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã€‚
 	/// </summary>
 	class WaveTime : WaveData
 	{
-		double[] l;  // L ch Œn—ñ
-		double[] r;  // R ch Œn—ñ
+		double[] l;  // L ch æ™‚ç³»åˆ—
+		double[] r;  // R ch æ™‚ç³»åˆ—
 
 		public WaveTime(){}
 
@@ -194,31 +194,31 @@ namespace WaveAnalysis
 	}//class WaveTime
 
 	/// <summary>
-	/// ƒ`ƒƒƒlƒ‹‚Ìƒ^ƒCƒvB
+	/// ãƒãƒ£ãƒãƒ«ã®ã‚¿ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public enum Channel
 	{
-		Left,   // L ƒ`ƒƒƒlƒ‹
-		Right,  // R ƒ`ƒƒƒlƒ‹
+		Left,   // L ãƒãƒ£ãƒãƒ«
+		Right,  // R ãƒãƒ£ãƒãƒ«
 		LR,     // Left / Right
 		RL,     // Right / Left
-		Middle, // M ƒ`ƒƒƒlƒ‹
-		Side,   // S ƒ`ƒƒƒlƒ‹
+		Middle, // M ãƒãƒ£ãƒãƒ«
+		Side,   // S ãƒãƒ£ãƒãƒ«
 		MS,     // Middle / Side
 		SM,     // Side / Middle
 	}
 
 	/// <summary>
-	/// “Á«‚Ìƒ^ƒCƒvB
+	/// ç‰¹æ€§ã®ã‚¿ã‚¤ãƒ—ã€‚
 	/// </summary>
 	public enum Property
 	{
-		Amplitude,    // U•“Á«
-		Phase,        // ˆÊ‘Š“Á«
-		PhaseDelay,   // ˆÊ‘Š’x‰„“Á«
-		GroupDelay,   // ŒQ’x‰„“Á«
-		MinimumPhase, // Å¬ˆÊ‘Š“Á«
-		AllPassPhase, // ƒI[ƒ‹ƒpƒXˆÊ‘Š“Á«
-		TimeSequence, // Œn—ñƒf[ƒ^
+		Amplitude,    // æŒ¯å¹…ç‰¹æ€§
+		Phase,        // ä½ç›¸ç‰¹æ€§
+		PhaseDelay,   // ä½ç›¸é…å»¶ç‰¹æ€§
+		GroupDelay,   // ç¾¤é…å»¶ç‰¹æ€§
+		MinimumPhase, // æœ€å°ä½ç›¸ç‰¹æ€§
+		AllPassPhase, // ã‚ªãƒ¼ãƒ«ãƒ‘ã‚¹ä½ç›¸ç‰¹æ€§
+		TimeSequence, // æ™‚ç³»åˆ—ãƒ‡ãƒ¼ã‚¿
 	}
 }//namespace WaveAnalysis

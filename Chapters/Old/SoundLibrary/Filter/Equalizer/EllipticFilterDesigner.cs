@@ -1,28 +1,28 @@
-using System;
+ï»¿using System;
 
 using SoundLibrary.Mathematics;
 
 namespace SoundLibrary.Filter.Equalizer
 {
 	/// <summary>
-	/// ‘È‰~ƒtƒBƒ‹ƒ^İŒvB
+	/// æ¥•å††ãƒ•ã‚£ãƒ«ã‚¿è¨­è¨ˆã€‚
 	/// </summary>
 	public class EllipticFilterDesigner : FilterDesigner
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// ƒÃ
+		/// Îµ
 		/// </summary>
 		double epsilon;
 
 		/// <summary>
-		/// ‘È‰~ŠÖ”‚Ì—¦ k1 ‚Ì2æ
+		/// æ¥•å††é–¢æ•°ã®ç‡ k1 ã®2ä¹—
 		/// </summary>
 		double m1;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public EllipticFilterDesigner(int order, double rp, double rs) : base(order)
 		{
@@ -30,13 +30,13 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒpƒ‰ƒ[ƒ^İ’è
+		#region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 
 		/// <summary>
-		/// ƒpƒXƒoƒ“ƒhƒŠƒvƒ‹‚ÆƒXƒgƒbƒvƒoƒ“ƒhƒŠƒvƒ‹‚©‚çƒpƒ‰ƒ[ƒ^ŒvZB
+		/// ãƒ‘ã‚¹ãƒãƒ³ãƒ‰ãƒªãƒ—ãƒ«ã¨ã‚¹ãƒˆãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒªãƒ—ãƒ«ã‹ã‚‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="rp">ƒpƒXƒoƒ“ƒhƒŠƒvƒ‹</param>
-		/// <param name="rs">ƒXƒgƒbƒvƒoƒ“ƒhƒŠƒvƒ‹</param>
+		/// <param name="rp">ãƒ‘ã‚¹ãƒãƒ³ãƒ‰ãƒªãƒ—ãƒ«</param>
+		/// <param name="rs">ã‚¹ãƒˆãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒªãƒ—ãƒ«</param>
 		public void SetParameter(double rp, double rs)
 		{
 			rp *= rp;
@@ -58,12 +58,12 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region —ë“_/‹É‚ÌŒvZ
+		#region é›¶ç‚¹/æ¥µã®è¨ˆç®—
 
 		/// <summary>
-		/// ƒtƒBƒ‹ƒ^‚Ì—ë“_/‹É‚ğŒvZB
+		/// ãƒ•ã‚£ãƒ«ã‚¿ã®é›¶ç‚¹/æ¥µã‚’è¨ˆç®—ã€‚
 		/// </summary>
-		/// <param name="roots">—ë“_/‹Éˆê——‚ÌŠi”[æ</param>
+		/// <param name="roots">é›¶ç‚¹/æ¥µä¸€è¦§ã®æ ¼ç´å…ˆ</param>
 		public override void GetZeroPole(ZeroPole[] roots)
 		{
 			double m1 = this.m1;
@@ -112,7 +112,7 @@ namespace SoundLibrary.Filter.Equalizer
 		}
 
 		#endregion
-		#region ƒAƒiƒƒOƒvƒƒgƒ^ƒCƒv
+		#region ã‚¢ãƒŠãƒ­ã‚°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 
 		public override void GetAnalogPrototype(Coefficient[] coefs)
 //		public void GetAnalogPrototype2(Coefficient[] coefs)

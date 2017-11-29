@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 
 namespace SoundLibrary.Mathematics.Function
 {
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// •Ï”B
+	/// å¤‰æ•°ã€‚
 	/// </summary>
 	public class Variable : Function, IComparable
 	{
-		#region ƒtƒB[ƒ‹ƒh
+		#region ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 
 		/// <summary>
-		/// •Ï”“¯m‚ğ‹æ•Ê‚·‚é‚½‚ß‚Ì idB
+		/// å¤‰æ•°åŒå£«ã‚’åŒºåˆ¥ã™ã‚‹ãŸã‚ã® idã€‚
 		/// </summary>
 		protected IComparable id;
 
 		#endregion
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Variable() : this((int)0){}
 
@@ -27,7 +27,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l
+		#region å€¤
 
 		public IComparable ID
 		{
@@ -35,7 +35,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -53,7 +53,7 @@ namespace SoundLibrary.Mathematics.Function
 					return p.val;
 				}
 			}
-			return 0; //! ƒGƒ‰[
+			return 0; //! ã‚¨ãƒ©ãƒ¼
 		}
 
 		public override Function Bind(params Parameter[] x)
@@ -69,7 +69,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -78,7 +78,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰Zq
+		#region æ¼”ç®—å­
 
 		public override Function Add(Function f)
 		{
@@ -113,7 +113,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		public override Function Differentiate(Variable x)
 		{
@@ -159,7 +159,7 @@ namespace SoundLibrary.Mathematics.Function
 
 
 		#endregion
-		#region IComparable ƒƒ“ƒo
+		#region IComparable ãƒ¡ãƒ³ãƒ
 
 		public int CompareTo(object obj)
 		{

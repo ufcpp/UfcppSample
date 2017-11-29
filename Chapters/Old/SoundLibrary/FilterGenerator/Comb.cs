@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Xml;
 
 namespace SoundLibrary.Filter
@@ -6,15 +6,15 @@ namespace SoundLibrary.Filter
 	using CombFilter = SoundLibrary.Filter.Misc.CombFilter;
 
 	/// <summary>
-	/// CombFilter ‚ğì¬‚·‚éB
+	/// CombFilter ã‚’ä½œæˆã™ã‚‹ã€‚
 	/// </summary>
 	public class CombFilterGenerator : FilterGenerator
 	{
-		const string FilterName = "ƒRƒ€ƒtƒBƒ‹ƒ^";
-		const string DirectGainName = "ƒ_ƒCƒŒƒNƒg‘•—¦";
-		const string EffectGainName = "ƒGƒtƒFƒNƒg‘•—¦";
-		const string FeedbackName   = "ƒtƒB[ƒhƒoƒbƒN‘•—¦";
-		const string DelayName  = "’x‰„ƒTƒ“ƒvƒ‹”";
+		const string FilterName = "ã‚³ãƒ ãƒ•ã‚£ãƒ«ã‚¿";
+		const string DirectGainName = "ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå¢—å¹…ç‡";
+		const string EffectGainName = "ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¢—å¹…ç‡";
+		const string FeedbackName   = "ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯å¢—å¹…ç‡";
+		const string DelayName  = "é…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°";
 
 		public CombFilterGenerator()
 		{

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 
 namespace SoundLibrary.Mathematics.Function
@@ -6,17 +6,17 @@ namespace SoundLibrary.Mathematics.Function
 	using ValueType = System.Double;
 
 	/// <summary>
-	/// ŠÖ”‚ÌÏB
+	/// é–¢æ•°ã®ç©ã€‚
 	/// </summary>
 	public class Product : Series
 	{
-		#region ‰Šú‰»
+		#region åˆæœŸåŒ–
 
 		public Product(params Function[] functions) : base(functions) {}
 		public Product(ArrayList functions) : base(functions) {}
 
 		#endregion
-		#region ’l‚ÌŒvZ
+		#region å€¤ã®è¨ˆç®—
 
 		public override System.Collections.ArrayList GetVariableList()
 		{
@@ -55,7 +55,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region •¡‘f”‘Î‰
+		#region è¤‡ç´ æ•°å¯¾å¿œ
 
 		public override void GetComplexPart(out Function re, out Function im)
 		{
@@ -78,7 +78,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region ‰‰Z
+		#region æ¼”ç®—
 
 		public override Function Multiply(Function f)
 		{
@@ -93,13 +93,13 @@ namespace SoundLibrary.Mathematics.Function
 			{
 				h.AddList(f);
 			}
-			// f ‚ª 0 ‚Ì‚Æ‚«‚ÌÅ“K‰»B
+			// f ãŒ 0 ã®ã¨ãã®æœ€é©åŒ–ã€‚
 
 			return h;
 		}
 
 		#endregion
-		#region ”÷•ª
+		#region å¾®åˆ†
 
 		public override Function Differentiate(Variable x)
 		{
@@ -118,7 +118,7 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		#endregion
-		#region “à•”\‘¢‚ÌÅ“K‰»
+		#region å†…éƒ¨æ§‹é€ ã®æœ€é©åŒ–
 
 		static Function Sort(Function f)
 		{
@@ -129,15 +129,15 @@ namespace SoundLibrary.Mathematics.Function
 		}
 
 		/// <remarks>
-		/// “¯‚¶í—Ş‚ÌŠÖ”‚²‚Æ‚ÉŠ|‚¯‚Ä‚¢‚Á‚½•û‚ªÅ“K‚È\‘¢‚ª“¾‚ç‚ê‚é‚½‚ßA
-		/// ŠÖ”‚ÌƒŠƒXƒg‚ğˆê“xƒ\[ƒg‚µ‚Ä‚©‚çŠ|‚¯‚È‚¨‚·B
-		/// ‚ ‚ÆAConstant ‚Æ‚© Variable ‚Æ‚© Function ‚Ì•Ó‚è‚ÌæZ‚ğÅ“K‰»B
+		/// åŒã˜ç¨®é¡ã®é–¢æ•°ã”ã¨ã«æ›ã‘ã¦ã„ã£ãŸæ–¹ãŒæœ€é©ãªæ§‹é€ ãŒå¾—ã‚‰ã‚Œã‚‹ãŸã‚ã€
+		/// é–¢æ•°ã®ãƒªã‚¹ãƒˆã‚’ä¸€åº¦ã‚½ãƒ¼ãƒˆã—ã¦ã‹ã‚‰æ›ã‘ãªãŠã™ã€‚
+		/// ã‚ã¨ã€Constant ã¨ã‹ Variable ã¨ã‹ Function ã®è¾ºã‚Šã®ä¹—ç®—ã‚’æœ€é©åŒ–ã€‚
 		/// </remarks>
 		public override Function Optimize()
 		{
 			Hashtable table = new Hashtable();
 
-			// í—Ş‚í‚¯
+			// ç¨®é¡ã‚ã‘
 			foreach(Function f in this.functions)
 			{
 				Function g = f.Optimize();
@@ -153,7 +153,7 @@ namespace SoundLibrary.Mathematics.Function
 				}
 			}
 
-			// Œq‚¬‚È‚¨‚·
+			// ç¹‹ããªãŠã™
 			Constant c = table[typeof(Constant)] as Constant;
 
 			if(c != null && c.Equals((Constant)0))
@@ -203,7 +203,7 @@ namespace SoundLibrary.Mathematics.Function
 				}
 			}
 
-			// “Áê‚Èê‡
+			// ç‰¹æ®Šãªå ´åˆ
 			if(c == null)
 			{
 				if(func.Count == 0)
@@ -213,7 +213,7 @@ namespace SoundLibrary.Mathematics.Function
 					return func[0] as Function;
 			}
 
-			// Š|‚¯‚È‚¨‚·B
+			// æ›ã‘ãªãŠã™ã€‚
 			h = func[0] as Function;
 			for(int i=1; i<func.Count; ++i)
 			{
