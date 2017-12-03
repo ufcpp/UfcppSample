@@ -37,6 +37,7 @@ class OverloadSample
     static void F(int x) { }
     static void F(string x) { }
 
+#if InvalidCode
     // G は、引数の型まで一緒で、名前だけ違う。これはコンパイル エラー
     static void G(int x) { }
     static void G(int y) { }
@@ -44,4 +45,5 @@ class OverloadSample
     // H は、引数が一致していて、戻り値だけ違う。これもコンパイル エラー
     static int H() => 1;
     static string H() => "";
+#endif
 }

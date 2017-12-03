@@ -1,4 +1,6 @@
-﻿namespace ByRef.InParameter.InCopy
+﻿#pragma warning disable 649
+
+namespace ByRef.InParameter.InCopy
 {
     // 作りとしては readonly を意図しているので、何も書き換えしない
     // でも、struct 自体には readonly が付いていない

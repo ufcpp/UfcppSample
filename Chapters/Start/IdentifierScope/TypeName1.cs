@@ -1,4 +1,6 @@
-﻿namespace TypeName1
+﻿#pragma warning disable 219
+
+namespace TypeName1
 {
     using System;
 

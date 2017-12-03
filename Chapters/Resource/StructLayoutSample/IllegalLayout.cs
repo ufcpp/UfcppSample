@@ -1,4 +1,6 @@
-﻿namespace StructLayoutSample.IllegalLayout
+﻿#pragma warning disable 219
+
+namespace StructLayoutSample.IllegalLayout
 {
     using System.Runtime.InteropServices;
 

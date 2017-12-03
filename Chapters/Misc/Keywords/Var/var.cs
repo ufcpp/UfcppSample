@@ -1,4 +1,6 @@
-﻿namespace Keywords.Var
+﻿#pragma warning disable 219
+
+namespace Keywords.Var
 {
     class Inferred
     {

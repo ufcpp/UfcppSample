@@ -1,12 +1,15 @@
-﻿using System.Runtime.InteropServices;
-
-class Program
+﻿namespace InteropArglist
 {
-    static void Main(string[] args)
-    {
-        printf("%d, %s, %c, %f", __arglist(1, "aaa", 'x', 1.5));
-    }
+    using System.Runtime.InteropServices;
 
-    [DllImport("msvcrt", CallingConvention = CallingConvention.Cdecl)]
-    static extern int printf(string format, __arglist);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            printf("%d, %s, %c, %f", __arglist(1, "aaa", 'x', 1.5));
+        }
+
+        [DllImport("msvcrt", CallingConvention = CallingConvention.Cdecl)]
+        static extern int printf(string format, __arglist);
+    }
 }

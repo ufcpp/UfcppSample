@@ -1,15 +1,16 @@
-﻿namespace IdentifierScope.EmbeddedStatement
+﻿#pragma warning disable 219
+#pragma warning disable 642
+#pragma warning disable 649
+
+namespace IdentifierScope.EmbeddedStatement
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     class Program
     {
         static void DeclarationInEmbeddedStatement()
         {
-#if false
+#if InvalidCode
             if (true)
                 int x = 10; // コンパイル エラー
 #endif
@@ -19,7 +20,7 @@
                 int x = 10; // これなら OK
             }
 
-#if false
+#if InvalidCode
             foreach (var n in new[] { 1 })
                 int x = 10; // コンパイル エラー
 #endif
@@ -83,7 +84,7 @@
                 obj = "";
             }
 
-#if false
+#if InvalidCode
             // どの x ももうスコープ外。コンパイル エラー
             x = 10;
 #endif
@@ -110,7 +111,7 @@
             Console.WriteLine(x1); // ここも x1 のスコープ
         }
 
-#if false
+#if InvalidCode
         static int _field = int.TryParse("123", out var x) ? x : 0;
 #endif
     }

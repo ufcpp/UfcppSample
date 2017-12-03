@@ -1,4 +1,6 @@
-﻿namespace StructLayoutSample.IllegalAddress
+﻿#pragma warning disable 649
+
+namespace StructLayoutSample.IllegalAddress
 {
     using System;
 

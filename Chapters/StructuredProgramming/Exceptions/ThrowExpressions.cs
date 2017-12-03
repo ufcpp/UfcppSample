@@ -18,6 +18,7 @@
                 throw new InvalidOperationException("too long");
         }
 
+#if InvalidCode
         static void C()
         {
             // コンパイル エラー。この文脈に throw 式は書けない
@@ -32,5 +33,6 @@
             // コンパイル エラー。throw 式同士を並べると型が決まらない。
             var y = true ? throw new InvalidOperationException() : throw new NotSupportedException();
         }
+#endif
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable 219
+#pragma warning disable 414
+
+using System;
 
 namespace Expressions
 {

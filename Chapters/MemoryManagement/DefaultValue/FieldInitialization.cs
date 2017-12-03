@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable 649
+
+using System;
 
 class FieldInitialization
 {

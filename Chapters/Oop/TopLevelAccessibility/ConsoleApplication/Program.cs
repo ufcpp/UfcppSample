@@ -1,4 +1,6 @@
-﻿namespace ConsoleApplication
+﻿#pragma warning disable 219
+
+namespace ConsoleApplication
 {
     class Program
     {
