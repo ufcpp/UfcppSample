@@ -5,14 +5,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataSource\ẠṇạḷỵẓẹṛUnitTests\EmptySource\Source\Class1.csx" />
+    <None Remove="DataSource\ẠṇạḷỵẓẹṛUnitTests\LowercaseLetters\Expected\Class1.csx" />
+    <None Remove="DataSource\ẠṇạḷỵẓẹṛUnitTests\LowercaseLetters\Source\Class1.csx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DataSource\ẠṇạḷỵẓẹṛUnitTests\EmptySource\Source\Class1.csx" />
+    <Compile Include="DataSource\ẠṇạḷỵẓẹṛUnitTests\LowercaseLetters\Expected\Class1.csx" />
+    <Compile Include="DataSource\ẠṇạḷỵẓẹṛUnitTests\LowercaseLetters\Source\Class1.csx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.4.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ạṇạḷỵẓẹṛ\Ạṇạḷỵẓẹṛ.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties DataSource_4ẠṇạḷỵẓẹṛUnitTests_4LowercaseLetters_4Diagnostic_4Results_1json__JSONSchema="result-schama-v2" /></VisualStudio></ProjectExtensions>
 
 </Project>

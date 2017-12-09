@@ -1,0 +1,10 @@
+﻿[
+  {
+    "id": "Ạṇạḷỵẓẹṛ",
+    "sevirity": "Warning",
+    "line": 10,
+    "column": 11,
+    "path": "Class1.csx",
+    "message-args": ["TypeName"]
+  }
+]

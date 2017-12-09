@@ -73,7 +73,7 @@ namespace TestHelper
         /// </summary>
         /// <param name="document">The Document to be converted to a string</param>
         /// <returns>A string containing the syntax of the Document after formatting</returns>
-        private static string GetStringFromDocument(Document document)
+        public static string GetStringFromDocument(Document document)
         {
             var simplifiedDoc = Simplifier.ReduceAsync(document, Simplifier.Annotation).Result;
             var root = simplifiedDoc.GetSyntaxRootAsync().Result;
