@@ -29,7 +29,7 @@ public struct InternalStruct { }
         ShowTypeInfo(sem, (FieldDeclarationSyntax)classX.Members[0]);
 
         // X.i (struct InternalStruct)
-        ShowTypeInfo(sem, (FieldDeclarationSyntax)classX.Members[0]);
+        ShowTypeInfo(sem, (FieldDeclarationSyntax)classX.Members[1]);
 
         // X.d (struct DateTime)
         ShowTypeInfo(sem, (FieldDeclarationSyntax)classX.Members[2]);
@@ -37,12 +37,12 @@ public struct InternalStruct { }
 /* results
 # with net47:
 Struct ExternalStruct
-Struct ExternalStruct
+Struct InternalStruct
 Struct DateTime
 
 # with netcoreapp2.0:
 Class ExternalStruct
-Class ExternalStruct
+Struct InternalStruct
 Struct DateTime
 */
     }
