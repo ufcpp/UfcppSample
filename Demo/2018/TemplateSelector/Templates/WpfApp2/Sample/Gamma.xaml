@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp2.Templates.System">
+
+    <DataTemplate x:Key="Summary">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="γ id: " />
+            <TextBlock Text="{Binding Id}" Foreground="Green" />
+            <TextBlock Text=", name: " />
+            <TextBlock Text="{Binding}" Foreground="Green" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Detail">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="γ" Grid.Row="0" Grid.ColumnSpan="2" Foreground="Green"/>
+
+            <TextBlock Text="Id" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="{Binding Id}" Grid.Row="1" Grid.Column="1"/>
+
+            <TextBlock Text="Id" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock Text="{Binding Name}" Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

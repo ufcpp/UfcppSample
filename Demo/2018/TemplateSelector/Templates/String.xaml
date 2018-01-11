@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp2.Templates.System">
+
+    <DataTemplate x:Key="Summary">
+        <TextBlock Text="{Binding}" Foreground="Blue" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="Detail">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="string: " />
+            <TextBox Text="{Binding Mode=OneWay}" IsReadOnly="True" />
+        </StackPanel>
+    </DataTemplate>
+
+</ResourceDictionary>
