@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 //using StringManipulation.Classic;
-//using StringManipulation.Unsafe;
-using StringManipulation.SafeStackalloc;
+using StringManipulation.Unsafe;
+//using StringManipulation.SafeStackalloc;
 
 namespace StringManipulation
 {
@@ -13,10 +13,15 @@ namespace StringManipulation
             //var s = "DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName";
             var s = "InternalFrameInternalFrameTitlePaneInternalFrameTitlePaneMaximizeButtonWindowNotFocusedState";
 
-            Console.WriteLine(s.ToInitialLower());
-            Console.WriteLine(s.ToInitialUpper());
-            Console.WriteLine(s.CamelToSnake());
-            Console.WriteLine(s.CamelToSnake().SnakeToCamel());
+            Console.WriteLine(s);
+
+            var snake = s.CamelToSnake();
+            Console.WriteLine(snake);
+
+            var camel = snake.SnakeToCamel();
+            Console.WriteLine(camel);
+
+            Console.WriteLine(s == camel);
 
             //foreach (var word in new Unsafe.UpperCaseSplitter(s))
             //{

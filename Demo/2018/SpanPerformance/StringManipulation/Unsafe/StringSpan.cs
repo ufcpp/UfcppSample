@@ -3,6 +3,10 @@
     /// <summary>
     /// 文字列中の一定区間。
     /// </summary>
+    /// <remarks>
+    /// <see cref="System.Span{T}"/> を持っているわけじゃないので ref struct にしなくてもこの型自体のコンパイルはできるんだけども。
+    /// 用途的には Span と同じで、ref struct にしておかないとほんとに unsafe なので。
+    /// </remarks>
     public unsafe readonly ref struct StringSpan
     {
         /// <summary>
@@ -21,7 +25,11 @@
             Length = length;
         }
 
-        public char this[int index] => Pointer[index];
+        // せっかく unsafe なんだし範囲チェックさぼる。
+        public ref char this[int index] => ref Pointer[index];
+
+        public StringSpan Slice(int startIndex) => new StringSpan(Pointer + startIndex, Length - startIndex);
+        public StringSpan Slice(int startIndex, int length) => new StringSpan(Pointer + startIndex, length);
 
         public override string ToString() =>
             Pointer == null ? null :

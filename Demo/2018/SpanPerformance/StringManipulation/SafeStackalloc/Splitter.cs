@@ -26,9 +26,8 @@ namespace StringManipulation.SafeStackalloc
             while (++i < p.Length && p[i] != _delimiter) ;
 
             span = p.Slice(0, i);
-
-            if (i == p.Length) _p = default;
-            else _p = p.Slice(i + 1);
+            if (i != p.Length) ++i;
+            _p = p.Slice(i);
 
             return true;
         }

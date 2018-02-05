@@ -1,34 +1,27 @@
 ﻿namespace StringManipulation.Unsafe
 {
-    public unsafe ref struct Splitter
+    public struct Splitter : IStringSplitter
     {
-        private char* _p;
-        private readonly char* _end;
         private readonly char _delimiter;
-        public Splitter(char* p, int length, char delimiter)
-        {
-            _p = p;
-            _end = p + length;
-            _delimiter = delimiter;
-        }
+        public Splitter(char delimiter) => _delimiter = delimiter;
 
-        public bool TryMoveNext(out StringSpan segment)
+        public unsafe bool TryMoveNext(ref StringSpan state, out StringSpan word)
         {
-            var p = _p;
-            var end = _end;
+            var p = state.Pointer;
+            var end = p + state.Length;
 
             if (p >= end)
             {
-                segment = default;
+                word = default;
                 return false;
             }
 
             while (++p < end && *p != _delimiter) ;
 
-            var len = (int)(p - _p);
-            segment = new StringSpan(_p, len);
-
-            _p = p + 1;
+            var len = (int)(p - state.Pointer);
+            word = state.Slice(0, len);
+            if (len != state.Length) ++len;
+            state = state.Slice(len);
 
             return true;
         }

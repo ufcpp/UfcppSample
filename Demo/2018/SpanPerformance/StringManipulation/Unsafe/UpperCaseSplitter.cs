@@ -1,32 +1,26 @@
 ﻿namespace StringManipulation.Unsafe
 {
-    public unsafe ref struct UpperCaseSplitter
+    /// <summary>
+    /// 文字列を大文字になっている個所で文字列を分割。
+    /// </summary>
+    public struct UpperCaseSplitter : IStringSplitter
     {
-        private char* _p;
-        private readonly char* _end;
-        public UpperCaseSplitter(char* p, int length)
+        public unsafe bool TryMoveNext(ref StringSpan state, out StringSpan word)
         {
-            _p = p;
-            _end = p + length;
-        }
-
-        public bool TryMoveNext(out StringSpan segment)
-        {
-            var p = _p;
-            var end = _end;
+            var p = state.Pointer;
+            var end = p + state.Length;
 
             if (p >= end)
             {
-                segment = default;
+                word = default;
                 return false;
             }
 
             while (++p < end && !char.IsUpper(*p)) ;
 
-            var len = (int)(p - _p);
-            segment = new StringSpan(_p, len);
-
-            _p = p;
+            var len = (int)(p - state.Pointer);
+            word = state.Slice(0, len);
+            state = state.Slice(len);
 
             return true;
         }
