@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringManipulation", "StringManipulation\StringManipulation.csproj", "{87DC6DFB-7D38-4AF5-8190-711B33E74773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringManipulation.Test", "StringManipulation.Test\StringManipulation.Test.csproj", "{04B55175-BD72-404D-B242-203C45E3CCFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringManipulation.Test", "StringManipulation.Test\StringManipulation.Test.csproj", "{04B55175-BD72-404D-B242-203C45E3CCFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringManipulation.Benchmark", "StringManipulation.Benchmark\StringManipulation.Benchmark.csproj", "{C4EFABB1-11F0-4E8F-AE7B-E1824C7EB620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{04B55175-BD72-404D-B242-203C45E3CCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04B55175-BD72-404D-B242-203C45E3CCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04B55175-BD72-404D-B242-203C45E3CCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4EFABB1-11F0-4E8F-AE7B-E1824C7EB620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4EFABB1-11F0-4E8F-AE7B-E1824C7EB620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4EFABB1-11F0-4E8F-AE7B-E1824C7EB620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4EFABB1-11F0-4E8F-AE7B-E1824C7EB620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
