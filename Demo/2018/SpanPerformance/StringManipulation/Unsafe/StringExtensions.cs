@@ -12,7 +12,7 @@ namespace StringManipulation.Unsafe
         /// </summary>
         /// <param name="s">元の文字列。</param>
         /// <param name="buffer">書き込み先。</param>
-        public unsafe static void ToInitialUpper(StringSegment s, char* buffer)
+        public unsafe static void ToInitialUpper(StringSpan s, char* buffer)
         {
             *buffer = char.ToUpper(*s.Pointer);
             var size = sizeof(char) * (s.Length - 1);
@@ -24,7 +24,7 @@ namespace StringManipulation.Unsafe
         /// </summary>
         /// <param name="s">元の文字列。</param>
         /// <param name="buffer">書き込み先。</param>
-        public unsafe static void ToInitialLower(StringSegment s, char* buffer)
+        public unsafe static void ToInitialLower(StringSpan s, char* buffer)
         {
             *buffer = char.ToLower(*s.Pointer);
             var size = sizeof(char) * (s.Length - 1);
@@ -40,7 +40,7 @@ namespace StringManipulation.Unsafe
             if (s.Length == 0) return "";
 
             var buffer = stackalloc char[s.Length];
-            fixed (char* p = s) ToInitialUpper(new StringSegment(p, s.Length), buffer);
+            fixed (char* p = s) ToInitialUpper(new StringSpan(p, s.Length), buffer);
             return new string(buffer, 0, s.Length);
         }
 
@@ -53,7 +53,7 @@ namespace StringManipulation.Unsafe
             if (s.Length == 0) return "";
 
             var buffer = stackalloc char[s.Length];
-            fixed (char* p = s) ToInitialLower(new StringSegment(p, s.Length), buffer);
+            fixed (char* p = s) ToInitialLower(new StringSpan(p, s.Length), buffer);
             return new string(buffer, 0, s.Length);
         }
 

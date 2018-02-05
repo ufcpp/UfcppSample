@@ -3,7 +3,7 @@
     /// <summary>
     /// 文字列中の一定区間。
     /// </summary>
-    public unsafe readonly ref struct StringSegment
+    public unsafe readonly ref struct StringSpan
     {
         /// <summary>
         /// 元の文字列。
@@ -15,7 +15,7 @@
         /// </summary>
         public readonly int Length;
 
-        public StringSegment(char* p, int length)
+        public StringSpan(char* p, int length)
         {
             Pointer = p;
             Length = length;

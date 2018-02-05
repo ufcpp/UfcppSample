@@ -12,7 +12,7 @@
             _delimiter = delimiter;
         }
 
-        public bool TryMoveNext(out StringSegment segment)
+        public bool TryMoveNext(out StringSpan segment)
         {
             var p = _p;
             var end = _end;
@@ -26,7 +26,7 @@
             while (++p < end && *p != _delimiter) ;
 
             var len = (int)(p - _p);
-            segment = new StringSegment(_p, len);
+            segment = new StringSpan(_p, len);
 
             _p = p + 1;
 
