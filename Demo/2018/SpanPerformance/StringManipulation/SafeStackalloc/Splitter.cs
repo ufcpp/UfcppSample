@@ -2,32 +2,27 @@
 
 namespace StringManipulation.SafeStackalloc
 {
-    public ref struct Splitter
+    public struct Splitter : IStringSplitter
     {
-        private ReadOnlySpan<char> _p;
         private readonly char _delimiter;
-        public Splitter(string s, char delimiter)
-        {
-            _p = s;
-            _delimiter = delimiter;
-        }
+        public Splitter(char delimiter) => _delimiter = delimiter;
 
-        public bool TryMoveNext(out ReadOnlySpan<char> span)
+        public unsafe bool TryMoveNext(ref ReadOnlySpan<char> state, out ReadOnlySpan<char> word)
         {
-            var p = _p;
+            var p = state;
 
             if (p.Length == 0)
             {
-                span = default;
+                word = default;
                 return false;
             }
 
             var i = 0;
             while (++i < p.Length && p[i] != _delimiter) ;
 
-            span = p.Slice(0, i);
+            word = p.Slice(0, i);
             if (i != p.Length) ++i;
-            _p = p.Slice(i);
+            state = p.Slice(i);
 
             return true;
         }

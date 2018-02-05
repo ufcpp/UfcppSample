@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 //using StringManipulation.Classic;
-using StringManipulation.Unsafe;
-//using StringManipulation.SafeStackalloc;
+//using StringManipulation.Unsafe;
+using StringManipulation.SafeStackalloc;
 
 namespace StringManipulation
 {
@@ -10,9 +10,13 @@ namespace StringManipulation
     {
         static void Main(string[] args)
         {
-            //var s = "DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName";
-            var s = "InternalFrameInternalFrameTitlePaneInternalFrameTitlePaneMaximizeButtonWindowNotFocusedState";
+            NewMethod("DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName");
+            NewMethod("InternalFrameInternalFrameTitlePaneInternalFrameTitlePaneMaximizeButtonWindowNotFocusedState");
+            NewMethod("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        }
 
+        private static void NewMethod(string s)
+        {
             Console.WriteLine(s);
 
             var snake = s.CamelToSnake();
@@ -22,20 +26,6 @@ namespace StringManipulation
             Console.WriteLine(camel);
 
             Console.WriteLine(s == camel);
-
-            //foreach (var word in new Unsafe.UpperCaseSplitter(s))
-            //{
-            //    Console.WriteLine(word);
-            //}
-
-            //Console.WriteLine("----");
-
-            //foreach (var word in new SafeStackalloc.UpperCaseSplitter(s))
-            //{
-            //    Console.WriteLine(new string(word));
-            //}
-
-            //File.OpenRead().Read()
         }
     }
 }

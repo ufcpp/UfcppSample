@@ -9,80 +9,41 @@ namespace StringManipulation.SafeStackalloc
     public static class StringExtensions
     {
         /// <summary>
-        /// 先頭だけ <see cref="char.ToUpper(char)"/>。
+        /// <paramref name="s"/>を<paramref name="splitter"/>で分割して<paramref name="formatter"/>で結合する。
         /// </summary>
         /// <param name="s">元の文字列。</param>
         /// <param name="buffer">書き込み先。</param>
-        /// <returns><paramref name="buffer"/>の書き込んだところ以降。</returns>
-        public static Span<char> ToInitialUpper(ReadOnlySpan<char> s, Span<char> buffer)
+        /// <param name="splitter">分割用。</param>
+        /// <param name="formatter">結合用。</param>
+        public static void Join<TSplitter, TFormatter>(this string s, ref Span<char> buffer, TSplitter splitter = default, TFormatter formatter = default)
+            where TSplitter : IStringSplitter
+            where TFormatter : IStringFormatter
         {
-            buffer[0] = char.ToUpper(s[0]);
-            s.Slice(1).CopyTo(buffer.Slice(1));
-            return buffer.Slice(s.Length);
+            ReadOnlySpan<char> span = s;
+
+            while (splitter.TryMoveNext(ref span, out var word))
+            {
+                formatter.Write(word, ref buffer);
+            }
         }
 
-        /// <summary>
-        /// 先頭だけ <see cref="char.ToLower(char)"/>。
-        /// </summary>
-        /// <param name="s">元の文字列。</param>
-        /// <param name="buffer">書き込み先。</param>
-        /// <returns><paramref name="buffer"/>の書き込んだところ以降。</returns>
-        public static Span<char> ToInitialLower(ReadOnlySpan<char> s, Span<char> buffer)
-        {
-            buffer[0] = char.ToLower(s[0]);
-            s.Slice(1).CopyTo(buffer.Slice(1));
-            return buffer.Slice(s.Length);
-        }
-
-        /// <summary>
-        /// 先頭文字を大文字にする。
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ToInitialUpper(this string s)
-        {
-            if (s == null) return null;
-            if (string.IsNullOrEmpty(s)) return string.Empty;
-
-            Span<char> buf = stackalloc char[s.Length];
-            ToInitialUpper(s, buf);
-            return new string(buf);
-        }
-
-        /// <summary>
-        /// 先頭文字を小文字にする。
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ToInitialLower(this string s)
-        {
-            if (s == null) return null;
-            if (string.IsNullOrEmpty(s)) return string.Empty;
-
-
-            Span<char> buf = stackalloc char[s.Length];
-            ToInitialLower(s, buf);
-            return new string(buf);
-        }
+        static int Offset(Span<char> origin, Span<char> target)
+            => (int)System.Runtime.CompilerServices.Unsafe.ByteOffset(
+                ref System.Runtime.InteropServices.MemoryMarshal.GetReference(origin),
+                ref System.Runtime.InteropServices.MemoryMarshal.GetReference(target))
+            / sizeof(char);
 
         /// <summary>
         /// snake_case_string を CamelCaseString にする。
         /// </summary>
         public static string SnakeToCamel(this string snake)
         {
-            Span<char> buf = stackalloc char[snake.Length];
+            Span<char> p = stackalloc char[snake.Length];
+            var buffer = p;
 
-            var p1 = buf;
-            var len = 0;
+            Join(snake, ref buffer, new Splitter('_'), new ToCamel());
 
-            var splitter = new Splitter(snake, '_');
-            while (splitter.TryMoveNext(out var s))
-            {
-                ToInitialUpper(s, p1);
-                p1 = p1.Slice(s.Length);
-                len += s.Length;
-            }
-            return new string(buf.Slice(0, len));
+            return new string(p.Slice(0, Offset(p, buffer)));
         }
 
         /// <summary>
@@ -90,28 +51,13 @@ namespace StringManipulation.SafeStackalloc
         /// </summary>
         public static string CamelToSnake(this string camel)
         {
-            Span<char> buf = stackalloc char[camel.Length * 2];
+            // 全部大文字の時がワーストケースで、元の長さの2倍。
+            Span<char> p = stackalloc char[camel.Length * 2];
+            var buffer = p;
 
-            var p1 = buf;
-            var len = 0;
+            Join(camel, ref buffer, new UpperCaseSplitter(), default(ToSnake));
 
-            var splitter = new UpperCaseSplitter(camel);
-            bool first = true;
-            while (splitter.TryMoveNext(out var s))
-            {
-                if (first) first = false;
-                else
-                {
-                    p1[0] = '_';
-                    p1 = p1.Slice(1);
-                    ++len;
-                }
-
-                ToInitialLower(s, p1);
-                p1 = p1.Slice(s.Length);
-                len += s.Length;
-            }
-            return new string(buf.Slice(0, len));
+            return new string(p.Slice(0, Offset(p, buffer)));
         }
     }
 }

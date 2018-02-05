@@ -2,26 +2,27 @@
 
 namespace StringManipulation.SafeStackalloc
 {
-    public ref struct UpperCaseSplitter
+    /// <summary>
+    /// 文字列を大文字になっている個所で文字列を分割。
+    /// </summary>
+    public struct UpperCaseSplitter : IStringSplitter
     {
-        private ReadOnlySpan<char> _p;
-        public UpperCaseSplitter(string s) => _p = s;
-
-        public bool TryMoveNext(out ReadOnlySpan<char> span)
+        public unsafe bool TryMoveNext(ref ReadOnlySpan<char> state, out ReadOnlySpan<char> word)
         {
-            var p = _p;
+            var p = state;
 
             if (p.Length == 0)
             {
-                span = default;
+                word = default;
                 return false;
             }
 
             var i = 0;
             while (++i < p.Length && !char.IsUpper(p[i])) ;
 
-            span = p.Slice(0, i);
-            _p = p.Slice(i);
+            word = p.Slice(0, i);
+            state = p.Slice(i);
+
             return true;
         }
     }
