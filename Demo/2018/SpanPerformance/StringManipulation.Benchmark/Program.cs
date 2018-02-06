@@ -52,6 +52,15 @@ namespace StringManipulation.Benchmark
             sw.Stop();
             System.Console.WriteLine(sw.Elapsed);
             sw.Reset();
+
+            sw.Start();
+            for (int i = 0; i < N; i++)
+            {
+                benchmark.FullyTuned();
+            }
+            sw.Stop();
+            System.Console.WriteLine(sw.Elapsed);
+            sw.Reset();
         }
     }
 

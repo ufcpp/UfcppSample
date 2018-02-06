@@ -9,6 +9,7 @@ namespace StringManipulation
             new Classic.Manipulater(),
             new Unsafe.Manipulater(),
             new SafeStackalloc.Manipulater(),
+            new FullyTuned.Manipulater(),
         };
 
         [Theory]

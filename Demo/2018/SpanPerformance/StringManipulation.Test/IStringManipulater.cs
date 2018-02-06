@@ -39,4 +39,13 @@
             public string SnakeToCamel(string s) => s.SnakeToCamel();
         }
     }
+
+    namespace FullyTuned
+    {
+        struct Manipulater : IStringManipulater
+        {
+            public string CamelToSnake(string s) => s.CamelToSnake();
+            public string SnakeToCamel(string s) => s.SnakeToCamel();
+        }
+    }
 }

@@ -25,6 +25,7 @@ namespace StringManipulation.Benchmark
         [Benchmark] public void Classic() => Run<Classic.Manipulater>();
         [Benchmark] public void Unsafe() => Run<Unsafe.Manipulater>();
         [Benchmark] public void SafeStackalloc() => Run<SafeStackalloc.Manipulater>();
+        [Benchmark] public void FullyTuned() => Run<FullyTuned.Manipulater>();
 
         void Run<M>()
             where M : struct, IStringManipulater
