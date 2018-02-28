@@ -1,9 +1,12 @@
 ﻿using BenchmarkDotNet.Running;
+using System.Runtime.Intrinsics.X86;
 
 class Program
 {
     static void Main()
     {
+        System.Console.WriteLine(Sse.IsSupported);
+
         var b = new MatrixBenchmark();
         var x = b.ByValue();
         var y = b.ByRef();

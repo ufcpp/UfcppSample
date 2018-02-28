@@ -56,43 +56,51 @@ namespace Simd
             }
         }
 
-        public unsafe static Matrix operator +(in Matrix a, in Matrix b)
+        public static Matrix operator +(in Matrix a, in Matrix b)
         {
             if (Sse.IsSupported)
             {
-                fixed (float* pa = &a.M11)
-                fixed (float* pb = &b.M11)
-                {
-                    var c = default(Matrix);
-                    var pc = (float*)&c;
-                    Sse.Store(pc, Sse.Add(Sse.LoadVector128(pa), Sse.LoadVector128(pb)));
-                    Sse.Store(pc + 4, Sse.Add(Sse.LoadVector128(pa + 4), Sse.LoadVector128(pb + 4)));
-                    Sse.Store(pc + 8, Sse.Add(Sse.LoadVector128(pa + 8), Sse.LoadVector128(pb + 8)));
-                    Sse.Store(pc + 12, Sse.Add(Sse.LoadVector128(pa + 12), Sse.LoadVector128(pb + 12)));
-                    return c;
-                }
+                return SseAdd(a, b);
             }
             else
             {
-                return new Matrix(
-                    a.M11 + b.M11,
-                    a.M21 + b.M21,
-                    a.M31 + b.M31,
-                    a.M41 + b.M41,
-                    a.M12 + b.M12,
-                    a.M22 + b.M22,
-                    a.M32 + b.M32,
-                    a.M42 + b.M42,
-                    a.M13 + b.M13,
-                    a.M23 + b.M23,
-                    a.M33 + b.M33,
-                    a.M43 + b.M43,
-                    a.M14 + b.M14,
-                    a.M24 + b.M24,
-                    a.M34 + b.M34,
-                    a.M44 + b.M44);
+                return Add(a, b);
             }
         }
+
+        private unsafe static Matrix SseAdd(in Matrix a, in Matrix b)
+        {
+            fixed (float* pa = &a.M11)
+            fixed (float* pb = &b.M11)
+            {
+                var c = default(Matrix);
+                var pc = (float*)&c;
+                Sse.Store(pc, Sse.Add(Sse.LoadVector128(pa), Sse.LoadVector128(pb)));
+                Sse.Store(pc + 4, Sse.Add(Sse.LoadVector128(pa + 4), Sse.LoadVector128(pb + 4)));
+                Sse.Store(pc + 8, Sse.Add(Sse.LoadVector128(pa + 8), Sse.LoadVector128(pb + 8)));
+                Sse.Store(pc + 12, Sse.Add(Sse.LoadVector128(pa + 12), Sse.LoadVector128(pb + 12)));
+                return c;
+            }
+        }
+
+        private static Matrix Add(in Matrix a, in Matrix b)
+            => new Matrix(
+                a.M11 + b.M11,
+                a.M21 + b.M21,
+                a.M31 + b.M31,
+                a.M41 + b.M41,
+                a.M12 + b.M12,
+                a.M22 + b.M22,
+                a.M32 + b.M32,
+                a.M42 + b.M42,
+                a.M13 + b.M13,
+                a.M23 + b.M23,
+                a.M33 + b.M33,
+                a.M43 + b.M43,
+                a.M14 + b.M14,
+                a.M24 + b.M24,
+                a.M34 + b.M34,
+                a.M44 + b.M44);
 
         // linear combination:
         // a[0] * B.row[0] + a[1] * B.row[1] + a[2] * B.row[2] + a[3] * B.row[3]
@@ -106,49 +114,59 @@ namespace Simd
             return result;
         }
 
-        public unsafe static Matrix operator *(in Matrix a, in Matrix b)
+        public static Matrix operator *(in Matrix a, in Matrix b)
         {
             if (Sse.IsSupported)
             {
-                fixed (float* pa = &a.M11)
-                fixed (float* pb = &b.M11)
-                {
-                    var c = default(Matrix);
-                    var pc = (float*)&c;
-
-                    Sse.Store(pc, LinearCombination(Sse.LoadVector128(pa), pb));
-                    Sse.Store(pc + 4, LinearCombination(Sse.LoadVector128(pa + 4), pb));
-                    Sse.Store(pc + 8, LinearCombination(Sse.LoadVector128(pa + 8), pb));
-                    Sse.Store(pc + 12, LinearCombination(Sse.LoadVector128(pa + 12), pb));
-
-                    return c;
-                }
+                return SseMultiply(a, b);
             }
             else
             {
-                float m11 = a.M11 * b.M11 + a.M21 * b.M12 + a.M31 * b.M13 + a.M41 * b.M14;
-                float m21 = a.M11 * b.M21 + a.M21 * b.M22 + a.M31 * b.M23 + a.M41 * b.M24;
-                float m31 = a.M11 * b.M31 + a.M21 * b.M32 + a.M31 * b.M33 + a.M41 * b.M34;
-                float m41 = a.M11 * b.M41 + a.M21 * b.M42 + a.M31 * b.M43 + a.M41 * b.M44;
-                float m12 = a.M12 * b.M11 + a.M22 * b.M12 + a.M32 * b.M13 + a.M42 * b.M14;
-                float m22 = a.M12 * b.M21 + a.M22 * b.M22 + a.M32 * b.M23 + a.M42 * b.M24;
-                float m32 = a.M12 * b.M31 + a.M22 * b.M32 + a.M32 * b.M33 + a.M42 * b.M34;
-                float m42 = a.M12 * b.M41 + a.M22 * b.M42 + a.M32 * b.M43 + a.M42 * b.M44;
-                float m13 = a.M13 * b.M11 + a.M23 * b.M12 + a.M33 * b.M13 + a.M43 * b.M14;
-                float m23 = a.M13 * b.M21 + a.M23 * b.M22 + a.M33 * b.M23 + a.M43 * b.M24;
-                float m33 = a.M13 * b.M31 + a.M23 * b.M32 + a.M33 * b.M33 + a.M43 * b.M34;
-                float m43 = a.M13 * b.M41 + a.M23 * b.M42 + a.M33 * b.M43 + a.M43 * b.M44;
-                float m14 = a.M14 * b.M11 + a.M24 * b.M12 + a.M34 * b.M13 + a.M44 * b.M14;
-                float m24 = a.M14 * b.M21 + a.M24 * b.M22 + a.M34 * b.M23 + a.M44 * b.M24;
-                float m34 = a.M14 * b.M31 + a.M24 * b.M32 + a.M34 * b.M33 + a.M44 * b.M34;
-                float m44 = a.M14 * b.M41 + a.M24 * b.M42 + a.M34 * b.M43 + a.M44 * b.M44;
-
-                return new Matrix(
-                    m11, m21, m31, m41,
-                    m12, m22, m32, m42,
-                    m13, m23, m33, m43,
-                    m14, m24, m34, m44);
+                return Multiply(a, b);
             }
+        }
+
+        private unsafe static Matrix SseMultiply(in Matrix a, in Matrix b)
+        {
+            fixed (float* pa = &a.M11)
+            fixed (float* pb = &b.M11)
+            {
+                var c = default(Matrix);
+                var pc = (float*)&c;
+
+                Sse.Store(pc, LinearCombination(Sse.LoadVector128(pa), pb));
+                Sse.Store(pc + 4, LinearCombination(Sse.LoadVector128(pa + 4), pb));
+                Sse.Store(pc + 8, LinearCombination(Sse.LoadVector128(pa + 8), pb));
+                Sse.Store(pc + 12, LinearCombination(Sse.LoadVector128(pa + 12), pb));
+
+                return c;
+            }
+        }
+
+        private static Matrix Multiply(in Matrix a, in Matrix b)
+        {
+            float m11 = a.M11 * b.M11 + a.M21 * b.M12 + a.M31 * b.M13 + a.M41 * b.M14;
+            float m21 = a.M11 * b.M21 + a.M21 * b.M22 + a.M31 * b.M23 + a.M41 * b.M24;
+            float m31 = a.M11 * b.M31 + a.M21 * b.M32 + a.M31 * b.M33 + a.M41 * b.M34;
+            float m41 = a.M11 * b.M41 + a.M21 * b.M42 + a.M31 * b.M43 + a.M41 * b.M44;
+            float m12 = a.M12 * b.M11 + a.M22 * b.M12 + a.M32 * b.M13 + a.M42 * b.M14;
+            float m22 = a.M12 * b.M21 + a.M22 * b.M22 + a.M32 * b.M23 + a.M42 * b.M24;
+            float m32 = a.M12 * b.M31 + a.M22 * b.M32 + a.M32 * b.M33 + a.M42 * b.M34;
+            float m42 = a.M12 * b.M41 + a.M22 * b.M42 + a.M32 * b.M43 + a.M42 * b.M44;
+            float m13 = a.M13 * b.M11 + a.M23 * b.M12 + a.M33 * b.M13 + a.M43 * b.M14;
+            float m23 = a.M13 * b.M21 + a.M23 * b.M22 + a.M33 * b.M23 + a.M43 * b.M24;
+            float m33 = a.M13 * b.M31 + a.M23 * b.M32 + a.M33 * b.M33 + a.M43 * b.M34;
+            float m43 = a.M13 * b.M41 + a.M23 * b.M42 + a.M33 * b.M43 + a.M43 * b.M44;
+            float m14 = a.M14 * b.M11 + a.M24 * b.M12 + a.M34 * b.M13 + a.M44 * b.M14;
+            float m24 = a.M14 * b.M21 + a.M24 * b.M22 + a.M34 * b.M23 + a.M44 * b.M24;
+            float m34 = a.M14 * b.M31 + a.M24 * b.M32 + a.M34 * b.M33 + a.M44 * b.M34;
+            float m44 = a.M14 * b.M41 + a.M24 * b.M42 + a.M34 * b.M43 + a.M44 * b.M44;
+
+            return new Matrix(
+                m11, m21, m31, m41,
+                m12, m22, m32, m42,
+                m13, m23, m33, m43,
+                m14, m24, m34, m44);
         }
     }
 }
