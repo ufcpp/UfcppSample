@@ -5,6 +5,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
     <PackageVersion>0.1.0</PackageVersion>
+    <Description>C# implementation of unzip</Description>
+    <Company />
+    <Authors>Nobuyuki Iwanaga</Authors>
+    <Version>0.1.0</Version>
+    <PackageProjectUrl>https://github.com/ufcpp/UfcppSample/tree/master/Demo/2018/DotNetGlobalTools/cszip</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ufcpp/UfcppSample/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>
