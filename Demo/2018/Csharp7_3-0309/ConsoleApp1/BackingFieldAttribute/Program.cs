@@ -34,6 +34,9 @@ namespace ConsoleApp1.BackingFieldAttribute
         public int X { get; set; }
     }
 
+    /// <summary>
+    /// <see cref="MyClass.X"/> の属性を確認してみる。
+    /// </summary>
     class Program
     {
         static void Main()
