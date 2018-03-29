@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
-namespace ConsoleApp1.UnmanagedConstraint
+namespace ConsoleApp1.Constraints.Unmanaged
 {
     /// <summary>
     /// これまで、ジェネリックな型に対してポインターは作れなかった。

@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.UnmanagedConstraint
+﻿namespace ConsoleApp1.Constraints.Unmanaged
 {
     /// <summary>
     /// プリミティブ型しか含まない構造体。
