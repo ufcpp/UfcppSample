@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <StartupObject>ConsoleApp1.Ref.Program</StartupObject>
+    <StartupObject>ConsoleApp1.BackingFieldAttribute.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
