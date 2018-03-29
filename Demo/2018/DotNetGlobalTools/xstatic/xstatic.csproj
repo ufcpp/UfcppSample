@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Version>0.1.0</Version>
+    <Authors>Nobuyuki Iwanaga</Authors>
+    <PackageProjectUrl>https://github.com/ufcpp/UfcppSample/tree/master/Demo/2018/DotNetGlobalTools/xstatic</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ufcpp/UfcppSample/blob/master/LICENSE</PackageLicenseUrl>
+    <Company />
+  </PropertyGroup>
+
+</Project>

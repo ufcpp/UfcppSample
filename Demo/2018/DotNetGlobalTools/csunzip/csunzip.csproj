@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Authors>Nobuyuki Iwanaga</Authors>
+    <Company />
+    <Description>C# implementation of unzip</Description>
+    <Version>0.1.0</Version>
+    <PackageProjectUrl>https://github.com/ufcpp/UfcppSample/tree/master/Demo/2018/DotNetGlobalTools/csunzip</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ufcpp/UfcppSample/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+</Project>
