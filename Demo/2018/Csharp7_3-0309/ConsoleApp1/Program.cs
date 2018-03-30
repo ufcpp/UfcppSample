@@ -11,12 +11,12 @@ todo:
 - [x] Attribute on backing field
 - [x] Ref Reassignment
 - [ ] Stackalloc initializers
-- [ ] Custom fixed	custom-fixed
+- [ ] Custom fixed
 - [ ] Indexing movable fixed buffers
 - Improved overload candidates
-  - [ ] generic constraints
+  - [x] generic constraints
   - [ ] static/instance
-  - [ ] method group return type
+  - [x] method group return type
 - [ ] Expression variables
  */
 
