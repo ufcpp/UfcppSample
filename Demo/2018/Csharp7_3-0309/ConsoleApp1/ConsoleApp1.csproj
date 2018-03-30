@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Net.Compilers" Version="2.9.0-beta3-62727-05" />
+    <PackageReference Include="Microsoft.Net.Compilers" Version="2.9.0-beta3-62729-10" />
   </ItemGroup>
 
 </Project>

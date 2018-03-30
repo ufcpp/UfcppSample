@@ -29,7 +29,9 @@ namespace ConsoleApp1.Constraints.Unmanaged
         static void Main()
         {
             var point = new Point { X = 1, Y = 2, Z = 2 };
+#if Uncompilable
             string s = "abc";
+#endif
 
             unsafe
             {
