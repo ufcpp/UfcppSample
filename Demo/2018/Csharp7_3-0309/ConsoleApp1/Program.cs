@@ -4,7 +4,7 @@
 todo:
 - generic constraints
   - [x] unmanaged
-  - [ ] Enum
+  - [x] Enum
   - [ ] Delegate
 - [ ] Support == and != for tuples
 - [ ] strongname
