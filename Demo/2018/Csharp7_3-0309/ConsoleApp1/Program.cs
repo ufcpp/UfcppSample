@@ -5,7 +5,7 @@ todo:
 - generic constraints
   - [x] unmanaged
   - [x] Enum
-  - [ ] Delegate
+  - [x] Delegate
 - [ ] Support == and != for tuples
 - [ ] strongname
 - [x] Attribute on backing field
