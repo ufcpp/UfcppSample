@@ -15,7 +15,7 @@ todo:
 - [ ] Indexing movable fixed buffers
 - Improved overload candidates
   - [x] generic constraints
-  - [ ] static/instance
+  - [x] static/instance
   - [x] method group return type
 - [ ] Expression variables
  */

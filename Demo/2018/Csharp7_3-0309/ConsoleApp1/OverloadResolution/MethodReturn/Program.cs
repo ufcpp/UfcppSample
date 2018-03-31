@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ConsoleApp1.Constraints.MethodReturn
+namespace ConsoleApp1.OverloadResolution.MethodReturn
 {
     class Program
     {
