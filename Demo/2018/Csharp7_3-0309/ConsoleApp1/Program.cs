@@ -10,7 +10,7 @@ todo:
 - [ ] strongname
 - [x] Attribute on backing field
 - [x] Ref Reassignment
-- [ ] Stackalloc initializers
+- [x] Stackalloc initializers
 - [ ] Custom fixed
 - [ ] Indexing movable fixed buffers
 - Improved overload candidates
