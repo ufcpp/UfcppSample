@@ -12,7 +12,7 @@ todo:
 - [x] Ref Reassignment
 - [x] Stackalloc initializers
 - [x] Custom fixed
-- [ ] Indexing movable fixed buffers
+- [x] Indexing movable fixed buffers
 - Improved overload candidates
   - [x] generic constraints
   - [x] static/instance
