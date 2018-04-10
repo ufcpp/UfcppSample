@@ -5,7 +5,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <StartupObject>ConsoleApp1.ExpressionVariables.QueryExpressions</StartupObject>
+    <StartupObject>ConsoleApp1.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Net.Compilers" Version="2.9.0-beta4-62809-06" />
+  </ItemGroup>
 
 </Project>

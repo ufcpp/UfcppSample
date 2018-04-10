@@ -11,7 +11,7 @@ todo:
 - [x] Attribute on backing field
 - [x] Ref Reassignment
 - [x] Stackalloc initializers
-- [ ] Custom fixed
+- [x] Custom fixed
 - [ ] Indexing movable fixed buffers
 - Improved overload candidates
   - [x] generic constraints
