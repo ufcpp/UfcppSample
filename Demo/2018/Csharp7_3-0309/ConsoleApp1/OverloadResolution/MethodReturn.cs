@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApp1.Constraints.MethodReturn
+namespace ConsoleApp1.OverloadResolution.MethodReturn
 {
     class Program
     {

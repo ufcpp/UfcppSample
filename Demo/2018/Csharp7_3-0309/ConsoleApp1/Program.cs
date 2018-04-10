@@ -4,20 +4,20 @@
 todo:
 - generic constraints
   - [x] unmanaged
-  - [ ] Enum
-  - [ ] Delegate
-- [ ] Support == and != for tuples
-- [ ] strongname
+  - [x] Enum
+  - [x] Delegate
+- [x] Support == and != for tuples
+- [?] strongname ←署名入りのDLLをRoslynが読めなかったという不具合修正っぽいんだけども。署名したことないからわかんない…
 - [x] Attribute on backing field
 - [x] Ref Reassignment
-- [ ] Stackalloc initializers
+- [x] Stackalloc initializers
 - [ ] Custom fixed
 - [ ] Indexing movable fixed buffers
 - Improved overload candidates
   - [x] generic constraints
-  - [ ] static/instance
+  - [x] static/instance
   - [x] method group return type
-- [ ] Expression variables
+- [x] Expression variables
  */
 
 namespace ConsoleApp1
@@ -26,7 +26,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
