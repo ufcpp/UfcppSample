@@ -18,6 +18,9 @@ todo:
   - [x] static/instance
   - [x] method group return type
 - [x] Expression variables
+
+custom fixed, movable fixed buffers は、Preview 3時点でも未実装だった。
+Roslyn の、dev15.7-preview3 ブランチには入ってなくて、dev15.7.x ブランチには入ってること確認済み。
  */
 
 namespace ConsoleApp1
