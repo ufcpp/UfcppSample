@@ -37,5 +37,10 @@ namespace ConsoleApp1.Fixed.CustomFixed
         public ref T this[int index] => ref _array[index];
         public int Length => _array.Length;
         public ref T GetPinnableReference() => ref _array[0];
+
+        // 正確には↓みたいな書き方しないといけないんだけど。
+        // 空配列の場合は null ポインターを返す。
+        // 見ての通り、「null ポインターの参照を返す」っていう黒魔術に Unsafe クラス必須。
+        //public unsafe ref T GetPinnableReference() => ref (_array.Length == 0 ? ref System.Runtime.CompilerServices.Unsafe.AsRef<T>(null) : ref _array[0]);
     }
 }
