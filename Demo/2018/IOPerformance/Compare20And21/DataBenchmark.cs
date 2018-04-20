@@ -43,14 +43,15 @@ namespace app
         public void Run()
         {
             var testData = Load();
-
-            var results = testData
-                .Select(d => (d.a, z: MultiplyToInt(d.x, d.y)))
-                .GroupBy(d => d.a)
-                .Select(g => new ResultData { a = g.Key, sum = g.Sum(x => x.z) });
-
+            var results = Reduce(testData);
             Serialize(results);
         }
+
+        private static IEnumerable<ResultData> Reduce(IEnumerable<TestData> testData)
+            => testData
+            .Select(d => (d.a, z: MultiplyToInt(d.x, d.y)))
+            .GroupBy(d => d.a)
+            .Select(g => new ResultData { a = g.Key, sum = g.Sum(x => x.z) });
 
         private static int MultiplyToInt(double x, double y)
         {
