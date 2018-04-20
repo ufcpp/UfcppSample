@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Newtonsoft.Json;
@@ -35,7 +34,7 @@ namespace app
         {
             using (var file = File.CreateText("result.json"))
             {
-            var serializer = new JsonSerializer();
+                var serializer = new JsonSerializer();
                 serializer.Serialize(file, data);
             }
         }
