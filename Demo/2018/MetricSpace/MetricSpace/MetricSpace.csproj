@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <StartupObject>Unsafe.CustomFixed.Program</StartupObject>
+    <StartupObject>MetricSpace.Devirtualized3.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

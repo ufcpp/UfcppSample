@@ -17,21 +17,19 @@
         unsafe static void Main()
         {
             var buffer = new Buffer();
-            buffer.A[0] = 1; // これは元々 OK
+            buffer.A[0] = 1; // 元々 OK
 
-            _buffer.A[0] = 2; // これは C# 7.3 から OK
+            _buffer.A[0] = 2; // C# 7.3 から OK
 
             RefFixedBuffer(ref buffer);
 
-            System.Console.WriteLine(buffer.A[0]);
-            System.Console.WriteLine(buffer.A[1]);
-            System.Console.WriteLine(_buffer.A[0]); // これも C# 7.3 から OK
+            System.Console.WriteLine(buffer.A[0]);  // 元々 OK
+            System.Console.WriteLine(_buffer.A[0]); // C# 7.3 から OK
         }
 
-        // unsafe は C# 7.3 でも必須
         unsafe static void RefFixedBuffer(ref Buffer buffer)
         {
-            buffer.A[1] = 3; // これも C# 7.3 から OK
+            buffer.A[1] = 3; // C# 7.3 から OK
         }
     }
 }
