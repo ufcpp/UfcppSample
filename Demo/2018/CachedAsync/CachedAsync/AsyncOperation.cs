@@ -10,21 +10,21 @@ namespace CachedAsync
     internal class AsyncOperation
     {
         /// <summary>Sentinel object used in a field to indicate the operation is available for use.</summary>
-        protected static readonly Action<object> s_availableSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_availableSentinel)} invoked with {s}."));
+        internal static readonly Action<object> s_availableSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_availableSentinel)} invoked with {s}."));
         /// <summary>Sentinel object used in a field to indicate the operation has completed.</summary>
-        protected static readonly Action<object> s_completedSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_completedSentinel)} invoked with {s}"));
+        internal static readonly Action<object> s_completedSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_completedSentinel)} invoked with {s}"));
 
-        protected static void ThrowIncompleteOperationException() =>
+        internal static void ThrowIncompleteOperationException() =>
             throw new InvalidOperationException("the operation's result was accessed before the operation completed.");
 
-        protected static void ThrowMultipleContinuations() =>
+        internal static void ThrowMultipleContinuations() =>
             throw new InvalidOperationException("multiple continuations can't be set for the same operation.");
 
-        protected static void ThrowIncorrectCurrentIdException() =>
+        internal static void ThrowIncorrectCurrentIdException() =>
             throw new InvalidOperationException("the operation was used after it was supposed to be used.");
     }
 
-    internal class AsyncOperation<TResult> : AsyncOperation, IValueTaskSource, IValueTaskSource<TResult>
+    public class AsyncOperation<TResult> : IValueTaskSource, IValueTaskSource<TResult>
     {
         /// <summary>The result of the operation.</summary>
         private TResult _result;
@@ -37,7 +37,7 @@ namespace CachedAsync
         /// This may be null if the operation is pending.
         /// This may be another callback if the operation has had a callback hooked up with OnCompleted.
         /// </remarks>
-        private Action<object> _continuation = s_availableSentinel;
+        private Action<object> _continuation = AsyncOperation.s_availableSentinel;
         /// <summary>State object to be passed to <see cref="_continuation"/>.</summary>
         private object _continuationState;
         /// <summary>The token value associated with the current operation.</summary>
@@ -65,7 +65,7 @@ namespace CachedAsync
                     ValueTaskSourceStatus.Faulted;
             }
 
-            ThrowIncorrectCurrentIdException();
+            AsyncOperation.ThrowIncorrectCurrentIdException();
             return default; // just to satisfy compiler
         }
 
@@ -83,7 +83,7 @@ namespace CachedAsync
         /// only considered the continuation, then we have issues if OnCompleted is used before
         /// the operation completes, as the continuation will be 
         /// </remarks>
-        internal bool IsCompleted => ReferenceEquals(_continuation, s_completedSentinel);
+        internal bool IsCompleted => ReferenceEquals(_continuation, AsyncOperation.s_completedSentinel);
 
         /// <summary>Gets the result of the operation.</summary>
         /// <param name="token">The token that must match <see cref="_currentId"/>.</param>
@@ -91,19 +91,19 @@ namespace CachedAsync
         {
             if (_currentId != token)
             {
-                ThrowIncorrectCurrentIdException();
+                AsyncOperation.ThrowIncorrectCurrentIdException();
             }
 
             if (!IsCompleted)
             {
-                ThrowIncompleteOperationException();
+                AsyncOperation.ThrowIncompleteOperationException();
             }
 
             ExceptionDispatchInfo error = _error;
             TResult result = _result;
             _currentId++;
 
-            Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
+            Volatile.Write(ref _continuation, AsyncOperation.s_availableSentinel); // only after fetching all needed data
 
             error?.Throw();
             return result;
@@ -115,18 +115,18 @@ namespace CachedAsync
         {
             if (_currentId != token)
             {
-                ThrowIncorrectCurrentIdException();
+                AsyncOperation.ThrowIncorrectCurrentIdException();
             }
 
             if (!IsCompleted)
             {
-                ThrowIncompleteOperationException();
+                AsyncOperation.ThrowIncompleteOperationException();
             }
 
             ExceptionDispatchInfo error = _error;
             _currentId++;
 
-            Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
+            Volatile.Write(ref _continuation, AsyncOperation.s_availableSentinel); // only after fetching all needed data
 
             error?.Throw();
         }
@@ -135,7 +135,7 @@ namespace CachedAsync
         /// <returns>true if the instance is now owned by the caller, in which case its state has been reset; otherwise, false.</returns>
         public bool TryOwnAndReset()
         {
-            if (ReferenceEquals(Interlocked.CompareExchange(ref _continuation, null, s_availableSentinel), s_availableSentinel))
+            if (ReferenceEquals(Interlocked.CompareExchange(ref _continuation, null, AsyncOperation.s_availableSentinel), AsyncOperation.s_availableSentinel))
             {
                 _continuationState = null;
                 _result = default;
@@ -155,7 +155,7 @@ namespace CachedAsync
         {
             if (_currentId != token)
             {
-                ThrowIncorrectCurrentIdException();
+                AsyncOperation.ThrowIncorrectCurrentIdException();
             }
 
             // We need to store the state before the CompareExchange, so that if it completes immediately
@@ -164,7 +164,7 @@ namespace CachedAsync
             // Make a best-effort attempt to catch such misuse.
             if (_continuationState != null)
             {
-                ThrowMultipleContinuations();
+                AsyncOperation.ThrowMultipleContinuations();
             }
             _continuationState = state;
 
@@ -180,10 +180,10 @@ namespace CachedAsync
                 // something other than s_completedSentinel, something went wrong, which should only happen if
                 // the instance was erroneously used, likely to hook up multiple continuations.
                 Debug.Assert(IsCompleted, $"Expected IsCompleted");
-                if (!ReferenceEquals(prevContinuation, s_completedSentinel))
+                if (!ReferenceEquals(prevContinuation, AsyncOperation.s_completedSentinel))
                 {
-                    Debug.Assert(prevContinuation != s_availableSentinel, "Continuation was the available sentinel.");
-                    ThrowMultipleContinuations();
+                    Debug.Assert(prevContinuation != AsyncOperation.s_availableSentinel, "Continuation was the available sentinel.");
+                    AsyncOperation.ThrowMultipleContinuations();
                 }
 
                 //// Queue the continuation.
@@ -225,13 +225,13 @@ namespace CachedAsync
         /// <summary>Signals to a registered continuation that the operation has now completed.</summary>
         private void SignalCompletion()
         {
-            if (_continuation != null || Interlocked.CompareExchange(ref _continuation, s_completedSentinel, null) != null)
+            if (_continuation != null || Interlocked.CompareExchange(ref _continuation, AsyncOperation.s_completedSentinel, null) != null)
             {
-                Debug.Assert(_continuation != s_completedSentinel, $"The continuation was the completion sentinel.");
-                Debug.Assert(_continuation != s_availableSentinel, $"The continuation was the available sentinel.");
+                Debug.Assert(_continuation != AsyncOperation.s_completedSentinel, $"The continuation was the completion sentinel.");
+                Debug.Assert(_continuation != AsyncOperation.s_availableSentinel, $"The continuation was the available sentinel.");
 
                 Action<object> c = _continuation;
-                _continuation = s_completedSentinel;
+                _continuation = AsyncOperation.s_completedSentinel;
                 c(_continuationState);
             }
         }
