@@ -194,8 +194,9 @@ namespace CachedAsync
                     ThrowMultipleContinuations();
                 }
 
-                // Queue the continuation.
-                Task.Factory.StartNew(continuation, state, CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+                //// Queue the continuation.
+                //Task.Factory.StartNew(continuation, state, CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+                continuation(state);
             }
         }
 
