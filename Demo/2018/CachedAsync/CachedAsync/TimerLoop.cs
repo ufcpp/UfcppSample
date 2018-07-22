@@ -40,7 +40,7 @@ namespace CachedAsync
         public ValueTask<int> XAsync()
         {
             if (!_cache.TryOwnAndReset()) Throw();
-            return _cache.ValueTaskOfT;
+            return _cache.Task;
         }
     }
 }

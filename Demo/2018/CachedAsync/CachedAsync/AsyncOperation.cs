@@ -24,7 +24,7 @@ namespace CachedAsync
             throw new InvalidOperationException("the operation was used after it was supposed to be used.");
     }
 
-    public class AsyncOperation<TResult> : IValueTaskSource, IValueTaskSource<TResult>
+    public class AsyncOperation<TResult> : IValueTaskSource<TResult>
     {
         /// <summary>The result of the operation.</summary>
         private TResult _result;
@@ -47,10 +47,8 @@ namespace CachedAsync
         /// </remarks>
         private short _currentId;
 
-        /// <summary>Gets a <see cref="ValueTask"/> backed by this instance and its current token.</summary>
-        public ValueTask ValueTask => new ValueTask(this, _currentId);
         /// <summary>Gets a <see cref="ValueTask{TResult}"/> backed by this instance and its current token.</summary>
-        public ValueTask<TResult> ValueTaskOfT => new ValueTask<TResult>(this, _currentId);
+        public ValueTask<TResult> Task => new ValueTask<TResult>(this, _currentId);
 
         /// <summary>Gets the current status of the operation.</summary>
         /// <param name="token">The token that must match <see cref="_currentId"/>.</param>
@@ -107,28 +105,6 @@ namespace CachedAsync
 
             error?.Throw();
             return result;
-        }
-
-        /// <summary>Gets the result of the operation.</summary>
-        /// <param name="token">The token that must match <see cref="_currentId"/>.</param>
-        void IValueTaskSource.GetResult(short token)
-        {
-            if (_currentId != token)
-            {
-                AsyncOperation.ThrowIncorrectCurrentIdException();
-            }
-
-            if (!IsCompleted)
-            {
-                AsyncOperation.ThrowIncompleteOperationException();
-            }
-
-            ExceptionDispatchInfo error = _error;
-            _currentId++;
-
-            Volatile.Write(ref _continuation, AsyncOperation.s_availableSentinel); // only after fetching all needed data
-
-            error?.Throw();
         }
 
         /// <summary>Attempts to take ownership of the pooled instance.</summary>
