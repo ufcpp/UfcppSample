@@ -37,7 +37,7 @@ namespace CachedAsync
         /// This may be null if the operation is pending.
         /// This may be another callback if the operation has had a callback hooked up with OnCompleted.
         /// </remarks>
-        private Action<object> _continuation;
+        private Action<object> _continuation = s_availableSentinel;
         /// <summary>State object to be passed to <see cref="_continuation"/>.</summary>
         private object _continuationState;
         /// <summary>The token value associated with the current operation.</summary>
@@ -47,14 +47,6 @@ namespace CachedAsync
         /// </remarks>
         private short _currentId;
 
-        /// <summary>Initializes the interactor.</summary>
-        public AsyncOperation()
-        {
-            _continuation = s_availableSentinel;
-        }
-
-        /// <summary>Gets or sets the next operation in the linked list of operations.</summary>
-        public AsyncOperation<TResult> Next { get; set; }
         /// <summary>Gets a <see cref="ValueTask"/> backed by this instance and its current token.</summary>
         public ValueTask ValueTask => new ValueTask(this, _currentId);
         /// <summary>Gets a <see cref="ValueTask{TResult}"/> backed by this instance and its current token.</summary>
@@ -235,19 +227,13 @@ namespace CachedAsync
         {
             if (_continuation != null || Interlocked.CompareExchange(ref _continuation, s_completedSentinel, null) != null)
             {
-                SignalCompletionCore();
+                Debug.Assert(_continuation != s_completedSentinel, $"The continuation was the completion sentinel.");
+                Debug.Assert(_continuation != s_availableSentinel, $"The continuation was the available sentinel.");
+
+                Action<object> c = _continuation;
+                _continuation = s_completedSentinel;
+                c(_continuationState);
             }
-        }
-
-        /// <summary>Invokes the registered continuation; separated out of SignalCompletion for convenience so that it may be invoked on multiple code paths.</summary>
-        private void SignalCompletionCore()
-        {
-            Debug.Assert(_continuation != s_completedSentinel, $"The continuation was the completion sentinel.");
-            Debug.Assert(_continuation != s_availableSentinel, $"The continuation was the available sentinel.");
-
-            Action<object> c = _continuation;
-            _continuation = s_completedSentinel;
-            c(_continuationState);
         }
     }
 }
