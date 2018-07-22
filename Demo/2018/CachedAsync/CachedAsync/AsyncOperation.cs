@@ -26,8 +26,6 @@ namespace CachedAsync
 
     internal class AsyncOperation<TResult> : AsyncOperation, IValueTaskSource, IValueTaskSource<TResult>
     {
-        /// <summary>Registration with a provided cancellation token.</summary>
-        private readonly CancellationTokenRegistration _registration;
         /// <summary>true if this object is pooled and reused; otherwise, false.</summary>
         /// <remarks>
         /// If the operation is cancelable, then it can't be pooled.  And if it's poolable, there must never be race conditions to complete it,
@@ -38,8 +36,6 @@ namespace CachedAsync
         /// <summary>Whether continuations should be forced to run asynchronously.</summary>
         private readonly bool _runContinuationsAsynchronously;
 
-        /// <summary>Only relevant to cancelable operations; 0 if the operation hasn't had completion reserved, 1 if it has.</summary>
-        private volatile int _completionReserved = 0;
         /// <summary>The result of the operation.</summary>
         private TResult _result;
         /// <summary>Any error that occurred during the operation.</summary>
@@ -67,29 +63,16 @@ namespace CachedAsync
 
         /// <summary>Initializes the interactor.</summary>
         /// <param name="runContinuationsAsynchronously">true if continuations should be forced to run asynchronously; otherwise, false.</param>
-        /// <param name="cancellationToken">The cancellation token used to cancel the operation.</param>
         /// <param name="pooled">Whether this instance is pooled and reused.</param>
-        public AsyncOperation(bool runContinuationsAsynchronously, CancellationToken cancellationToken = default, bool pooled = false)
+        public AsyncOperation(bool runContinuationsAsynchronously, bool pooled = false)
         {
             _continuation = pooled ? s_availableSentinel : null;
             _pooled = pooled;
             _runContinuationsAsynchronously = runContinuationsAsynchronously;
-            if (cancellationToken.CanBeCanceled)
-            {
-                Debug.Assert(!_pooled, "Cancelable operations can't be pooled");
-                CancellationToken = cancellationToken;
-                _registration = cancellationToken.Register(s =>
-                {
-                    var thisRef = (AsyncOperation<TResult>)s;
-                    thisRef.TrySetCanceled(thisRef.CancellationToken);
-                }, this);
-            }
         }
 
         /// <summary>Gets or sets the next operation in the linked list of operations.</summary>
         public AsyncOperation<TResult> Next { get; set; }
-        /// <summary>Gets the cancellation token associated with this operation.</summary>
-        public CancellationToken CancellationToken { get; }
         /// <summary>Gets a <see cref="ValueTask"/> backed by this instance and its current token.</summary>
         public ValueTask ValueTask => new ValueTask(this, _currentId);
         /// <summary>Gets a <see cref="ValueTask{TResult}"/> backed by this instance and its current token.</summary>
@@ -282,31 +265,14 @@ namespace CachedAsync
             }
         }
 
-        /// <summary>Unregisters from cancellation.</summary>
-        /// <remarks>
-        /// This is important for two reasons:
-        /// 1. To avoid leaking a registration into a token, so it must be done prior to completing the operation.
-        /// 2. To avoid having to worry about concurrent completion; once invoked, the caller can be guaranteed
-        /// that no one else will try to complete the operation (assuming the caller is properly constructed
-        /// and themselves guarantees only a single completer other than through cancellation). 
-        /// </remarks>
-        public void UnregisterCancellation() => _registration.Dispose();
-
         /// <summary>Completes the operation with a success state and the specified result.</summary>
         /// <param name="item">The result value.</param>
         /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
         public bool TrySetResult(TResult item)
         {
-            UnregisterCancellation();
-
-            if (TryReserveCompletionIfCancelable())
-            {
-                _result = item;
-                SignalCompletion();
-                return true;
-            }
-
-            return false;
+            _result = item;
+            SignalCompletion();
+            return true;
         }
 
         /// <summary>Completes the operation with a failed state and the specified error.</summary>
@@ -314,16 +280,9 @@ namespace CachedAsync
         /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
         public bool TrySetException(Exception exception)
         {
-            UnregisterCancellation();
-
-            if (TryReserveCompletionIfCancelable())
-            {
-                _error = ExceptionDispatchInfo.Capture(exception);
-                SignalCompletion();
-                return true;
-            }
-
-            return false;
+            _error = ExceptionDispatchInfo.Capture(exception);
+            SignalCompletion();
+            return true;
         }
 
         /// <summary>Completes the operation with a failed state and a cancellation error.</summary>
@@ -331,25 +290,10 @@ namespace CachedAsync
         /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
         public bool TrySetCanceled(CancellationToken cancellationToken = default)
         {
-            if (TryReserveCompletionIfCancelable())
-            {
-                _error = ExceptionDispatchInfo.Capture(new OperationCanceledException(cancellationToken));
-                SignalCompletion();
-                return true;
-            }
-
-            return false;
+            _error = ExceptionDispatchInfo.Capture(new OperationCanceledException(cancellationToken));
+            SignalCompletion();
+            return true;
         }
-
-        /// <summary>Attempts to reserve this instance for completion.</summary>
-        /// <remarks>
-        /// This will always return true for non-cancelable objects, as they only ever have a single owner
-        /// responsible for completion.  For cancelable operations, this will attempt to atomically transition
-        /// from Initialized to CompletionReserved.
-        /// </remarks>
-        private bool TryReserveCompletionIfCancelable() =>
-            !CancellationToken.CanBeCanceled ||
-            Interlocked.CompareExchange(ref _completionReserved, 1, 0) == 0;
 
         /// <summary>Signals to a registered continuation that the operation has now completed.</summary>
         private void SignalCompletion()
