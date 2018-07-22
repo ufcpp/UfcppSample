@@ -7,11 +7,17 @@ using System.Threading.Tasks.Sources;
 
 namespace CachedAsync
 {
+    /// <summary>
+    /// <see cref="AsyncOperation{TResult}"/>から使う静的メンバー。
+    /// 全ての型引数に対して共通のインスタンスを使いたいので、分離。
+    /// 元々は protected にして、<see cref="AsyncOperation{TResult}"/> が <see cref="AsyncOperation"/> を継承してた。
+    /// 元は <see cref="AsyncOperation{TResult}"/> の方も internal だったからそれでよかったけど、public にするには不都合なので。
+    /// </summary>
     internal class AsyncOperation
     {
-        /// <summary>Sentinel object used in a field to indicate the operation is available for use.</summary>
+        /// <summary>いわゆる「番兵」。1インスタンスを使いまわす想定なので、「使われてない」を表す状態が必要。continuation にこの Action インスタンスを入れることで表現。</summary>
         internal static readonly Action<object> s_availableSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_availableSentinel)} invoked with {s}."));
-        /// <summary>Sentinel object used in a field to indicate the operation has completed.</summary>
+        /// <summary>こっちは「完了済み」を表す番兵。</summary>
         internal static readonly Action<object> s_completedSentinel = new Action<object>(s => Debug.Fail($"{nameof(AsyncOperation)}.{nameof(s_completedSentinel)} invoked with {s}"));
 
         internal static void ThrowIncompleteOperationException() =>
@@ -24,35 +30,40 @@ namespace CachedAsync
             throw new InvalidOperationException("the operation was used after it was supposed to be used.");
     }
 
+    /// <summary>
+    /// https://github.com/dotnet/corefx/blob/master/src/System.Threading.Channels/src/System/Threading/Channels/AsyncOperation.cs から、
+    /// デモに必要な最低限だけ残して削ったもの。
+    ///
+    /// - 常にプール前提
+    /// - <see cref="ExecutionContext"/>、<see cref="SynchronizationContext"/> を使わない
+    /// - コンストラクターで <see cref="CancellationToken"/> を渡してキャンセルする口をなくした
+    /// - 完了処理のとき、<see cref="TaskFactory.StartNew(Action{object}, object)"/> せずに直呼び
+    /// - 型引数なしの <see cref="IValueTaskSource"/> は削った
+    ///
+    /// あと、コメントの和訳。
+    /// </summary>
+    /// <typeparam name="TResult"></typeparam>
     public class AsyncOperation<TResult> : IValueTaskSource<TResult>
     {
-        /// <summary>The result of the operation.</summary>
         private TResult _result;
-        /// <summary>Any error that occurred during the operation.</summary>
         private ExceptionDispatchInfo _error;
-        /// <summary>The continuation callback.</summary>
-        /// <remarks>
-        /// This may be the completion sentinel if the operation has already completed.
-        /// This may be the available sentinel if the operation is being pooled and is available for use.
-        /// This may be null if the operation is pending.
-        /// This may be another callback if the operation has had a callback hooked up with OnCompleted.
-        /// </remarks>
         private Action<object> _continuation = AsyncOperation.s_availableSentinel;
-        /// <summary>State object to be passed to <see cref="_continuation"/>.</summary>
         private object _continuationState;
-        /// <summary>The token value associated with the current operation.</summary>
+
+        /// <summary>現在の非同期操作に紐づいてる値。</summary>
         /// <remarks>
-        /// IValueTaskSource operations on this instance are only valid if the provided token matches this value,
-        /// which is incremented once GetResult is called to avoid multiple awaits on the same instance.
+        /// <see cref="IValueTaskSource{TResult}.GetResult(short)"/>
+        /// キャッシュしてるインスタンスが想定外の使われ方すると token がずれるはずなので、それの検出用。
+        /// GetResult が呼ばれるたびにインクリメントする。
         /// </remarks>
         private short _currentId;
 
-        /// <summary>Gets a <see cref="ValueTask{TResult}"/> backed by this instance and its current token.</summary>
+        /// <summary>このインスタンスと現在の token から作った <see cref="ValueTask{TResult}"/> を返す。</summary>
         public ValueTask<TResult> Task => new ValueTask<TResult>(this, _currentId);
 
-        /// <summary>Gets the current status of the operation.</summary>
-        /// <param name="token">The token that must match <see cref="_currentId"/>.</param>
-        public ValueTaskSourceStatus GetStatus(short token)
+        /// <summary>非同期操作の現在の状態を取得。</summary>
+        /// <param name="token"><see cref="_currentId"/> と一致している必要あり。</param>
+        ValueTaskSourceStatus IValueTaskSource<TResult>.GetStatus(short token)
         {
             if (_currentId == token)
             {
@@ -64,28 +75,15 @@ namespace CachedAsync
             }
 
             AsyncOperation.ThrowIncorrectCurrentIdException();
-            return default; // just to satisfy compiler
+            return default; //↑ が常に throw してるってのはコンパイラーにはわからないので、追加で return。
         }
 
-        /// <summary>Gets whether the operation has completed.</summary>
-        /// <remarks>
-        /// The operation is considered completed if both a) it's in the completed state,
-        /// AND b) it has a non-null continuation.  We need to consider both because they're
-        /// not set atomically.  If we only considered the state, then if we set the state to
-        /// completed and then set the continuation, it's possible for an awaiter to check
-        /// IsCompleted, see true, call GetResult, and return the object to the pool, and only
-        /// then do we try to store the continuation into an object we no longer own.  If we
-        /// only considered the state, then if we set the continuation and then set the state,
-        /// a racing awaiter could see the continuation set before the state has transitioned
-        /// to completed and could end up calling GetResult in an incomplete state.  And if we
-        /// only considered the continuation, then we have issues if OnCompleted is used before
-        /// the operation completes, as the continuation will be 
-        /// </remarks>
+        /// <summary>非同期操作が完了しているかを取得。</summary>
         internal bool IsCompleted => ReferenceEquals(_continuation, AsyncOperation.s_completedSentinel);
 
-        /// <summary>Gets the result of the operation.</summary>
-        /// <param name="token">The token that must match <see cref="_currentId"/>.</param>
-        public TResult GetResult(short token)
+        /// <summary>非同期操作の結果を取得。</summary>
+        /// <param name="token"><see cref="_currentId"/> と一致している必要あり。</param>
+        TResult IValueTaskSource<TResult>.GetResult(short token)
         {
             if (_currentId != token)
             {
@@ -101,14 +99,14 @@ namespace CachedAsync
             TResult result = _result;
             _currentId++;
 
-            Volatile.Write(ref _continuation, AsyncOperation.s_availableSentinel); // only after fetching all needed data
+            Volatile.Write(ref _continuation, AsyncOperation.s_availableSentinel); // result とかの他のデータをフェッチしてから出ないとダメ
 
             error?.Throw();
             return result;
         }
 
-        /// <summary>Attempts to take ownership of the pooled instance.</summary>
-        /// <returns>true if the instance is now owned by the caller, in which case its state has been reset; otherwise, false.</returns>
+        /// <summary>キャッシュしている値の所有権取得を試みる。</summary>
+        /// <returns>呼び出し元が所有権を取れたら true。この場合、ステートを取得する。取れなかったら false。</returns>
         public bool TryOwnAndReset()
         {
             if (ReferenceEquals(Interlocked.CompareExchange(ref _continuation, null, AsyncOperation.s_availableSentinel), AsyncOperation.s_availableSentinel))
@@ -122,39 +120,39 @@ namespace CachedAsync
             return false;
         }
 
-        /// <summary>Hooks up a continuation callback for when the operation has completed.</summary>
-        /// <param name="continuation">The callback.</param>
-        /// <param name="state">The state to pass to the callback.</param>
-        /// <param name="token">The current token that must match <see cref="_currentId"/>.</param>
-        /// <param name="flags">Flags that influence the behavior of the callback.</param>
-        public void OnCompleted(Action<object> continuation, object state, short token, ValueTaskSourceOnCompletedFlags flags)
+        /// <summary>非同期操作の完了時に読んでもらうコールバックを登録する。</summary>
+        /// <remarks>
+        /// すでに完了済みの状態で呼ばれた場合、
+        /// 元々の実装では <see cref="TaskFactory.StartNew(Action{object}, object)"/> してた。
+        /// この実装は単に同期で continuation(state) 呼び出し。
+        /// オーバーヘッドは掛からないけども、スタックが深くなるので注意。
+        /// </remarks>
+        void IValueTaskSource<TResult>.OnCompleted(Action<object> continuation, object state, short token, ValueTaskSourceOnCompletedFlags flags)
         {
             if (_currentId != token)
             {
                 AsyncOperation.ThrowIncorrectCurrentIdException();
             }
 
-            // We need to store the state before the CompareExchange, so that if it completes immediately
-            // after the CompareExchange, it'll find the state already stored.  If someone misuses this
-            // and schedules multiple continuations erroneously, we could end up using the wrong state.
-            // Make a best-effort attempt to catch such misuse.
+            // CompareExchange 直後に完了している場合に備えて、CompareExchange より前にステートを書き込まないとダメ。
+            // こちらの意図に反して誰かが複数の continuation を間違えてスケジューリングしようとした場合、間違ったステートを使ってしまうことになる。
+            // できる限りはそういう誤用を拾いたい。
             if (_continuationState != null)
             {
                 AsyncOperation.ThrowMultipleContinuations();
             }
             _continuationState = state;
 
-            // Try to set the provided continuation into _continuation.  If this succeeds, that means the operation
-            // has not yet completed, and the completer will be responsible for invoking the callback.  If this fails,
-            // that means the operation has already completed, and we must invoke the callback, but because we're still
-            // inside the awaiter's OnCompleted method and we want to avoid possible stack dives, we must invoke
-            // the continuation asynchronously rather than synchronously.
+            // 引数の continuation をフィールド _continuation にセットするのを試みる。
+            // 成功は、非同期操作がまだ未完了ということになる。completer (完了処理の債務を負ってる人)は後々コールバックを呼ぶ責任がある。
+            // 失敗は、非同期操作がすでに完了していることになる。ここで continuation を呼び出す必要がある。
+            //
+            // ただ、ここは awaiter の OnCompleted の中から呼ばれているはずで、スタックが詰まれるのを避けたい。
+            // なので、(元々の実装では)continuation は非同期に読ぶ。
             Action<object> prevContinuation = Interlocked.CompareExchange(ref _continuation, continuation, null);
             if (prevContinuation != null)
             {
-                // If the set failed because there's already a delegate in _continuation, but that delegate is
-                // something other than s_completedSentinel, something went wrong, which should only happen if
-                // the instance was erroneously used, likely to hook up multiple continuations.
+                // ここに入った時点で完了済みのはずだけど、何か誤用があった場合には想定外の状態になってることがあるので確認。
                 Debug.Assert(IsCompleted, $"Expected IsCompleted");
                 if (!ReferenceEquals(prevContinuation, AsyncOperation.s_completedSentinel))
                 {
@@ -162,15 +160,14 @@ namespace CachedAsync
                     AsyncOperation.ThrowMultipleContinuations();
                 }
 
-                //// Queue the continuation.
+                //// 元の実装だと StartNew してスレッドプールに enqueue。
                 //Task.Factory.StartNew(continuation, state, CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
                 continuation(state);
             }
         }
 
-        /// <summary>Completes the operation with a success state and the specified result.</summary>
-        /// <param name="item">The result value.</param>
-        /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
+        /// <summary>非同期操作を完了させる(成功時)</summary>
+        /// <returns>この実装だと常に true に。 SetResult に変更してもよかったかも。</returns>
         public bool TrySetResult(TResult item)
         {
             _result = item;
@@ -178,9 +175,8 @@ namespace CachedAsync
             return true;
         }
 
-        /// <summary>Completes the operation with a failed state and the specified error.</summary>
-        /// <param name="exception">The error.</param>
-        /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
+        /// <summary>非同期操作を完了させる(失敗時)</summary>
+        /// <returns>この実装だと常に true に。 SetException に変更してもよかったかも。</returns>
         public bool TrySetException(Exception exception)
         {
             _error = ExceptionDispatchInfo.Capture(exception);
@@ -188,9 +184,8 @@ namespace CachedAsync
             return true;
         }
 
-        /// <summary>Completes the operation with a failed state and a cancellation error.</summary>
-        /// <param name="cancellationToken">The cancellation token that caused the cancellation.</param>
-        /// <returns>true if the operation could be successfully transitioned to a completed state; false if it was already completed.</returns>
+        /// <summary>非同期操作を完了させる(キャンセル時)</summary>
+        /// <returns>この実装だと常に true に。 SetCancel に変更してもよかったかも。</returns>
         public bool TrySetCanceled(CancellationToken cancellationToken = default)
         {
             _error = ExceptionDispatchInfo.Capture(new OperationCanceledException(cancellationToken));
@@ -198,7 +193,7 @@ namespace CachedAsync
             return true;
         }
 
-        /// <summary>Signals to a registered continuation that the operation has now completed.</summary>
+        /// <summary>登録された continuation を呼び出す。</summary>
         private void SignalCompletion()
         {
             if (_continuation != null || Interlocked.CompareExchange(ref _continuation, AsyncOperation.s_completedSentinel, null) != null)
