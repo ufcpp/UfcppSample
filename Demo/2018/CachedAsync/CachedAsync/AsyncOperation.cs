@@ -26,13 +26,6 @@ namespace CachedAsync
 
     internal class AsyncOperation<TResult> : AsyncOperation, IValueTaskSource, IValueTaskSource<TResult>
     {
-        /// <summary>true if this object is pooled and reused; otherwise, false.</summary>
-        /// <remarks>
-        /// If the operation is cancelable, then it can't be pooled.  And if it's poolable, there must never be race conditions to complete it,
-        /// which is the main reason poolable objects can't be cancelable, as then cancellation could fire, the object could get reused,
-        /// and then we may end up trying to complete an object that's used by someone else.
-        /// </remarks>
-        private readonly bool _pooled;
         /// <summary>Whether continuations should be forced to run asynchronously.</summary>
         private readonly bool _runContinuationsAsynchronously;
 
@@ -64,10 +57,9 @@ namespace CachedAsync
         /// <summary>Initializes the interactor.</summary>
         /// <param name="runContinuationsAsynchronously">true if continuations should be forced to run asynchronously; otherwise, false.</param>
         /// <param name="pooled">Whether this instance is pooled and reused.</param>
-        public AsyncOperation(bool runContinuationsAsynchronously, bool pooled = false)
+        public AsyncOperation(bool runContinuationsAsynchronously)
         {
-            _continuation = pooled ? s_availableSentinel : null;
-            _pooled = pooled;
+            _continuation = s_availableSentinel;
             _runContinuationsAsynchronously = runContinuationsAsynchronously;
         }
 
@@ -129,10 +121,7 @@ namespace CachedAsync
             TResult result = _result;
             _currentId++;
 
-            if (_pooled)
-            {
-                Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
-            }
+            Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
 
             error?.Throw();
             return result;
@@ -155,10 +144,7 @@ namespace CachedAsync
             ExceptionDispatchInfo error = _error;
             _currentId++;
 
-            if (_pooled)
-            {
-                Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
-            }
+            Volatile.Write(ref _continuation, s_availableSentinel); // only after fetching all needed data
 
             error?.Throw();
         }
@@ -167,7 +153,6 @@ namespace CachedAsync
         /// <returns>true if the instance is now owned by the caller, in which case its state has been reset; otherwise, false.</returns>
         public bool TryOwnAndReset()
         {
-            Debug.Assert(_pooled, "Should only be used for pooled objects");
             if (ReferenceEquals(Interlocked.CompareExchange(ref _continuation, null, s_availableSentinel), s_availableSentinel))
             {
                 _continuationState = null;

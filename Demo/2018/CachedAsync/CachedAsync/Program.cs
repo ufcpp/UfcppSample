@@ -9,7 +9,7 @@ namespace CachedAsync
     {
         static async Task Main()
         {
-            var x = new TimerLoop(500);
+            var x = new TimerLoop(300);
             await ReadAsync(x);
             await x.StopAsync();
         }
