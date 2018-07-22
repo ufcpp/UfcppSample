@@ -45,8 +45,6 @@ namespace CachedAsync
         private object _continuationState;
         /// <summary>Scheduling context (a <see cref="SynchronizationContext"/> or <see cref="TaskScheduler"/>) to which to queue the continuation. May be null.</summary>
         private object _schedulingContext;
-        /// <summary>Execution context to use when invoking <see cref="_continuation"/>. May be null.</summary>
-        private ExecutionContext _executionContext;
         /// <summary>The token value associated with the current operation.</summary>
         /// <remarks>
         /// IValueTaskSource operations on this instance are only valid if the provided token matches this value,
@@ -159,7 +157,6 @@ namespace CachedAsync
                 _result = default;
                 _error = null;
                 _schedulingContext = null;
-                _executionContext = null;
                 return true;
             }
 
@@ -187,13 +184,6 @@ namespace CachedAsync
                 ThrowMultipleContinuations();
             }
             _continuationState = state;
-
-            // Capture the execution context if necessary.
-            Debug.Assert(_executionContext == null);
-            if ((flags & ValueTaskSourceOnCompletedFlags.FlowExecutionContext) != 0)
-            {
-                _executionContext = ExecutionContext.Capture();
-            }
 
             // Capture the scheduling context if necessary.
             Debug.Assert(_schedulingContext == null);
@@ -285,15 +275,7 @@ namespace CachedAsync
         {
             if (_continuation != null || Interlocked.CompareExchange(ref _continuation, s_completedSentinel, null) != null)
             {
-                ExecutionContext ec = _executionContext;
-                if (ec != null)
-                {
-                    ExecutionContext.Run(ec, s => ((AsyncOperation<TResult>)s).SignalCompletionCore(), this);
-                }
-                else
-                {
-                    SignalCompletionCore();
-                }
+                SignalCompletionCore();
             }
         }
 
