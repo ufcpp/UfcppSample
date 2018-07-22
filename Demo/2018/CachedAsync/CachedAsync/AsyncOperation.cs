@@ -26,9 +26,6 @@ namespace CachedAsync
 
     internal class AsyncOperation<TResult> : AsyncOperation, IValueTaskSource, IValueTaskSource<TResult>
     {
-        /// <summary>Whether continuations should be forced to run asynchronously.</summary>
-        private readonly bool _runContinuationsAsynchronously;
-
         /// <summary>The result of the operation.</summary>
         private TResult _result;
         /// <summary>Any error that occurred during the operation.</summary>
@@ -43,8 +40,6 @@ namespace CachedAsync
         private Action<object> _continuation;
         /// <summary>State object to be passed to <see cref="_continuation"/>.</summary>
         private object _continuationState;
-        /// <summary>Scheduling context (a <see cref="SynchronizationContext"/> or <see cref="TaskScheduler"/>) to which to queue the continuation. May be null.</summary>
-        private object _schedulingContext;
         /// <summary>The token value associated with the current operation.</summary>
         /// <remarks>
         /// IValueTaskSource operations on this instance are only valid if the provided token matches this value,
@@ -53,12 +48,9 @@ namespace CachedAsync
         private short _currentId;
 
         /// <summary>Initializes the interactor.</summary>
-        /// <param name="runContinuationsAsynchronously">true if continuations should be forced to run asynchronously; otherwise, false.</param>
-        /// <param name="pooled">Whether this instance is pooled and reused.</param>
-        public AsyncOperation(bool runContinuationsAsynchronously)
+        public AsyncOperation()
         {
             _continuation = s_availableSentinel;
-            _runContinuationsAsynchronously = runContinuationsAsynchronously;
         }
 
         /// <summary>Gets or sets the next operation in the linked list of operations.</summary>
@@ -156,7 +148,6 @@ namespace CachedAsync
                 _continuationState = null;
                 _result = default;
                 _error = null;
-                _schedulingContext = null;
                 return true;
             }
 
@@ -185,27 +176,6 @@ namespace CachedAsync
             }
             _continuationState = state;
 
-            // Capture the scheduling context if necessary.
-            Debug.Assert(_schedulingContext == null);
-            SynchronizationContext sc = null;
-            TaskScheduler ts = null;
-            if ((flags & ValueTaskSourceOnCompletedFlags.UseSchedulingContext) != 0)
-            {
-                sc = SynchronizationContext.Current;
-                if (sc != null && sc.GetType() != typeof(SynchronizationContext))
-                {
-                    _schedulingContext = sc;
-                }
-                else
-                {
-                    ts = TaskScheduler.Current;
-                    if (ts != TaskScheduler.Default)
-                    {
-                        _schedulingContext = ts;
-                    }
-                }
-            }
-
             // Try to set the provided continuation into _continuation.  If this succeeds, that means the operation
             // has not yet completed, and the completer will be responsible for invoking the callback.  If this fails,
             // that means the operation has already completed, and we must invoke the callback, but because we're still
@@ -225,18 +195,7 @@ namespace CachedAsync
                 }
 
                 // Queue the continuation.
-                if (sc != null)
-                {
-                    sc.Post(s =>
-                    {
-                        var t = (Tuple<Action<object>, object>)s;
-                        t.Item1(t.Item2);
-                    }, Tuple.Create(continuation, state));
-                }
-                else
-                {
-                    Task.Factory.StartNew(continuation, state, CancellationToken.None, TaskCreationOptions.DenyChildAttach, ts ?? TaskScheduler.Default);
-                }
+                Task.Factory.StartNew(continuation, state, CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
             }
         }
 
@@ -285,49 +244,6 @@ namespace CachedAsync
             Debug.Assert(_continuation != s_completedSentinel, $"The continuation was the completion sentinel.");
             Debug.Assert(_continuation != s_availableSentinel, $"The continuation was the available sentinel.");
 
-            if (_schedulingContext == null)
-            {
-                // There's no captured scheduling context.  If we're forced to run continuations asynchronously, queue it.
-                // Otherwise fall through to invoke it synchronously.
-                if (_runContinuationsAsynchronously)
-                {
-                    Task.Factory.StartNew(s => ((AsyncOperation<TResult>)s).SetCompletionAndInvokeContinuation(), this,
-                        CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
-                    return;
-                }
-            }
-            else if (_schedulingContext is SynchronizationContext sc)
-            {
-                // There's a captured synchronization context.  If we're forced to run continuations asynchronously,
-                // or if there's a current synchronization context that's not the one we're targeting, queue it.
-                // Otherwise fall through to invoke it synchronously.
-                if (_runContinuationsAsynchronously || sc != SynchronizationContext.Current)
-                {
-                    sc.Post(s => ((AsyncOperation<TResult>)s).SetCompletionAndInvokeContinuation(), this);
-                    return;
-                }
-            }
-            else
-            {
-                // There's a captured TaskScheduler.  If we're forced to run continuations asynchronously,
-                // or if there's a current scheduler that's not the one we're targeting, queue it.
-                // Otherwise fall through to invoke it synchronously.
-                TaskScheduler ts = (TaskScheduler)_schedulingContext;
-                Debug.Assert(ts != null, "Expected a TaskScheduler");
-                if (_runContinuationsAsynchronously || ts != TaskScheduler.Current)
-                {
-                    Task.Factory.StartNew(s => ((AsyncOperation<TResult>)s).SetCompletionAndInvokeContinuation(), this,
-                        CancellationToken.None, TaskCreationOptions.DenyChildAttach, ts);
-                    return;
-                }
-            }
-
-            // Invoke the continuation synchronously.
-            SetCompletionAndInvokeContinuation();
-        }
-
-        private void SetCompletionAndInvokeContinuation()
-        {
             Action<object> c = _continuation;
             _continuation = s_completedSentinel;
             c(_continuationState);

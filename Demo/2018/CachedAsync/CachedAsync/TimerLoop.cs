@@ -6,7 +6,7 @@ namespace CachedAsync
 {
     class TimerLoop
     {
-        private readonly AsyncOperation<int> _cache = new AsyncOperation<int>(false);
+        private readonly AsyncOperation<int> _cache = new AsyncOperation<int>();
         private readonly int _intervalMillisecond;
         private readonly CancellationTokenSource _cts;
         private readonly Task _loop;
