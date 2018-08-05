@@ -6,26 +6,31 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // Step1: foreach とかは、if, goto に展開
+        // Step2: メソッド全体を包む匿名なクラスを生成(ここではラムダ式で代用)
         public static async Task<IEnumerable<string>> GetContents()
         {
-            var indexes = await GetIndex();
+            void a()
+            {
+                var indexes = await GetIndex();
 
-            var selectedIndexes = await SelectIndex(indexes);
+                var selectedIndexes = await SelectIndex(indexes);
 
-            var contents = new List<string>();
-            var e = selectedIndexes.GetEnumerator();
+                var contents = new List<string>();
+                var e = selectedIndexes.GetEnumerator();
 
-            goto EndLoop;
-            BeginLoop:
-            var content = await GetContent(e.Current);
-            contents.Add(content);
-            EndLoop:
-            if (e.MoveNext()) goto BeginLoop;
+                goto EndLoop;
+                BeginLoop:
+                var content = await GetContent(e.Current);
+                contents.Add(content);
+                EndLoop:
+                if (e.MoveNext()) goto BeginLoop;
 
-            e.Dispose();
+                e.Dispose();
 
-            return contents;
+                return contents;
+            }
+
+            a();
         }
 
         static async Task<IEnumerable<string>> GetIndex()
