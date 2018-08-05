@@ -6,10 +6,12 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // Step3: state 導入。await のところに state 更新と goto 用ラベルを追加
+        // Step4: await をまたぐ変数はフィールドに昇格(今回はラムダ式でやっているのでクロージャ化)
         public static async Task<IEnumerable<string>> GetContents()
         {
             var state = 0;
+            List<string> contents = null;
+            IEnumerator<string> e = null;
 
             void a()
             {
@@ -21,8 +23,8 @@ namespace AsyncInternal
                 var selectedIndexes = await SelectIndex(indexes);
                 Case2:
 
-                var contents = new List<string>();
-                var e = selectedIndexes.GetEnumerator();
+                contents = new List<string>();
+                e = selectedIndexes.GetEnumerator();
 
                 goto EndLoop;
                 BeginLoop:
