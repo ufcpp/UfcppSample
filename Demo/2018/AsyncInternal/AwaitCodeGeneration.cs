@@ -7,20 +7,28 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // パターン化: AsyncMethodBuilder 導入(Task 型以外の戻り値を返せるように)
+        // 実際のコード生成に近づける: ラムダ式で代用するのをやめて、型を1個作る
         public static Task<IEnumerable<string>> GetContents()
         {
-            var state = 0;
-            List<string> contents = null;
-            IEnumerator<string> e = null;
+            GetContentsStateMachine stateMachine = default;
+            stateMachine.builder = AsyncTaskMethodBuilder<IEnumerable<string>>.Create();
+            stateMachine.builder.Start(ref stateMachine);
+            return stateMachine.builder.Task;
+        }
 
-            TaskAwaiter<IEnumerable<string>> tIndexes = default;
-            TaskAwaiter<IEnumerable<string>> tSelectedIndexes = default;
-            TaskAwaiter<string> tContent = default;
+        struct GetContentsStateMachine : IAsyncStateMachine
+        {
+            int state;
+            List<string> contents;
+            IEnumerator<string> e;
 
-            AsyncTaskMethodBuilder<IEnumerable<string>> builder;
+            TaskAwaiter<IEnumerable<string>> tIndexes;
+            TaskAwaiter<IEnumerable<string>> tSelectedIndexes;
+            TaskAwaiter<string> tContent;
 
-            void a()
+            public AsyncTaskMethodBuilder<IEnumerable<string>> builder;
+
+            public void MoveNext()
             {
                 switch (state)
                 {
@@ -32,7 +40,7 @@ namespace AsyncInternal
                 tIndexes = GetIndex().GetAwaiter();
                 if (!tIndexes.IsCompleted)
                 {
-                    tIndexes.OnCompleted(a); // 本当は builder.AwaitOnCompleted
+                    builder.AwaitOnCompleted(ref tIndexes, ref this);
                     return;
                 }
                 Case1:
@@ -43,7 +51,7 @@ namespace AsyncInternal
                 tSelectedIndexes = SelectIndex(indexes).GetAwaiter();
                 if (!tSelectedIndexes.IsCompleted)
                 {
-                    tSelectedIndexes.OnCompleted(a); // 本当は builder.AwaitOnCompleted
+                    builder.AwaitOnCompleted(ref tSelectedIndexes, ref this);
                     return;
                 }
                 Case2:
@@ -59,7 +67,7 @@ namespace AsyncInternal
                 tContent = GetContent(e.Current).GetAwaiter();
                 if (!tContent.IsCompleted)
                 {
-                    tContent.OnCompleted(a); // 本当は builder.AwaitOnCompleted
+                    builder.AwaitOnCompleted(ref tContent, ref this);
                     return;
                 }
                 Case3:
@@ -75,9 +83,7 @@ namespace AsyncInternal
                 builder.SetResult(contents);
             }
 
-            a();
-
-            return builder.Task;
+            public void SetStateMachine(IAsyncStateMachine stateMachine) => builder.SetStateMachine(stateMachine);
         }
 
         static async Task<IEnumerable<string>> GetIndex()
