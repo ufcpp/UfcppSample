@@ -6,21 +6,24 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
+        // Step1: foreach とかは、if, goto に展開
         public static async Task<IEnumerable<string>> GetContents()
         {
-            // インデックスをどこかから取って来て
             var indexes = await GetIndex();
 
-            // その中の一部分を選んで
             var selectedIndexes = await SelectIndex(indexes);
 
-            // 選んだものの中身を取得
             var contents = new List<string>();
-            foreach (var index in selectedIndexes)
-            {
-                var content = await GetContent(index);
-                contents.Add(content);
-            }
+            var e = selectedIndexes.GetEnumerator();
+
+            goto EndLoop;
+            BeginLoop:
+            var content = await GetContent(e.Current);
+            contents.Add(content);
+            EndLoop:
+            if (e.MoveNext()) goto BeginLoop;
+
+            e.Dispose();
 
             return contents;
         }
