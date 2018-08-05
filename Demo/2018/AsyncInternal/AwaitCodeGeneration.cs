@@ -6,7 +6,7 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // Step5: await のところに ContinueWith を仕込む
+        // Step6: 先頭に switch goto を仕込む
         public static async Task<IEnumerable<string>> GetContents()
         {
             var state = 0;
@@ -19,6 +19,12 @@ namespace AsyncInternal
 
             void a()
             {
+                switch (state)
+                {
+                    case 1: goto Case1;
+                    case 2: goto Case2;
+                    case 3: goto Case3;
+                }
                 state = 1;
                 tIndexes = GetIndex();
                 tIndexes.ContinueWith(_ => a());
