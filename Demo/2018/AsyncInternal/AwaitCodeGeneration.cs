@@ -7,7 +7,7 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // パターン化: GetAwaiter, OnComplete, GetResult 経由(Awaitable パターン)に
+        // パターン化: AsyncMethodBuilder 導入(Task 型以外の戻り値を返せるように)
         public static Task<IEnumerable<string>> GetContents()
         {
             var state = 0;
@@ -18,7 +18,7 @@ namespace AsyncInternal
             TaskAwaiter<IEnumerable<string>> tSelectedIndexes = default;
             TaskAwaiter<string> tContent = default;
 
-            var tcs = new TaskCompletionSource<IEnumerable<string>>();
+            AsyncTaskMethodBuilder<IEnumerable<string>> builder;
 
             void a()
             {
@@ -32,7 +32,7 @@ namespace AsyncInternal
                 tIndexes = GetIndex().GetAwaiter();
                 if (!tIndexes.IsCompleted)
                 {
-                    tIndexes.OnCompleted(a);
+                    tIndexes.OnCompleted(a); // 本当は builder.AwaitOnCompleted
                     return;
                 }
                 Case1:
@@ -43,7 +43,7 @@ namespace AsyncInternal
                 tSelectedIndexes = SelectIndex(indexes).GetAwaiter();
                 if (!tSelectedIndexes.IsCompleted)
                 {
-                    tSelectedIndexes.OnCompleted(a);
+                    tSelectedIndexes.OnCompleted(a); // 本当は builder.AwaitOnCompleted
                     return;
                 }
                 Case2:
@@ -59,7 +59,7 @@ namespace AsyncInternal
                 tContent = GetContent(e.Current).GetAwaiter();
                 if (!tContent.IsCompleted)
                 {
-                    tContent.OnCompleted(a);
+                    tContent.OnCompleted(a); // 本当は builder.AwaitOnCompleted
                     return;
                 }
                 Case3:
@@ -72,12 +72,12 @@ namespace AsyncInternal
 
                 e.Dispose();
 
-                tcs.SetResult(contents);
+                builder.SetResult(contents);
             }
 
             a();
 
-            return tcs.Task;
+            return builder.Task;
         }
 
         static async Task<IEnumerable<string>> GetIndex()
