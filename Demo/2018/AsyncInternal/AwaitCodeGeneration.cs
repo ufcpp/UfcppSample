@@ -6,8 +6,8 @@ namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // Step6: 先頭に switch goto を仕込む
-        public static async Task<IEnumerable<string>> GetContents()
+        // Step7: 戻り値は TaskCompletionSouce 越しに返す
+        public static Task<IEnumerable<string>> GetContents()
         {
             var state = 0;
             List<string> contents = null;
@@ -16,6 +16,8 @@ namespace AsyncInternal
             Task<IEnumerable<string>> tIndexes = null;
             Task<IEnumerable<string>> tSelectedIndexes = null;
             Task<string> tContent = null;
+
+            var tcs = new TaskCompletionSource<IEnumerable<string>>();
 
             void a()
             {
@@ -56,10 +58,12 @@ namespace AsyncInternal
 
                 e.Dispose();
 
-                return contents;
+                tcs.SetResult(contents);
             }
 
             a();
+
+            return tcs.Task;
         }
 
         static async Task<IEnumerable<string>> GetIndex()
