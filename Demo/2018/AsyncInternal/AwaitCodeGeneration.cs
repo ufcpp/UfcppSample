@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace AsyncInternal
 {
     class AwaitCodeGeneration
     {
-        // 最適化: 未完了 Task だけを ContinueWith、終わったあと null 上書き
+        // パターン化: GetAwaiter, OnComplete, GetResult 経由(Awaitable パターン)に
         public static Task<IEnumerable<string>> GetContents()
         {
             var state = 0;
             List<string> contents = null;
             IEnumerator<string> e = null;
 
-            Task<IEnumerable<string>> tIndexes = null;
-            Task<IEnumerable<string>> tSelectedIndexes = null;
-            Task<string> tContent = null;
+            TaskAwaiter<IEnumerable<string>> tIndexes = default;
+            TaskAwaiter<IEnumerable<string>> tSelectedIndexes = default;
+            TaskAwaiter<string> tContent = default;
 
             var tcs = new TaskCompletionSource<IEnumerable<string>>();
 
@@ -28,26 +29,26 @@ namespace AsyncInternal
                     case 3: goto Case3;
                 }
                 state = 1;
-                tIndexes = GetIndex();
+                tIndexes = GetIndex().GetAwaiter();
                 if (!tIndexes.IsCompleted)
                 {
-                    tIndexes.ContinueWith(_ => a());
+                    tIndexes.OnCompleted(a);
                     return;
                 }
                 Case1:
-                var indexes = tIndexes.Result;
-                tIndexes = null;
+                var indexes = tIndexes.GetResult();
+                tIndexes = default;
 
                 state = 2;
-                tSelectedIndexes = SelectIndex(indexes);
+                tSelectedIndexes = SelectIndex(indexes).GetAwaiter();
                 if (!tSelectedIndexes.IsCompleted)
                 {
-                    tSelectedIndexes.ContinueWith(_ => a());
+                    tSelectedIndexes.OnCompleted(a);
                     return;
                 }
                 Case2:
-                var selectedIndexes = tSelectedIndexes.Result;
-                tSelectedIndexes = null;
+                var selectedIndexes = tSelectedIndexes.GetResult();
+                tSelectedIndexes = default;
 
                 contents = new List<string>();
                 e = selectedIndexes.GetEnumerator();
@@ -55,15 +56,15 @@ namespace AsyncInternal
                 goto EndLoop;
                 BeginLoop:
                 state = 3;
-                tContent = GetContent(e.Current);
+                tContent = GetContent(e.Current).GetAwaiter();
                 if (!tContent.IsCompleted)
                 {
-                    tContent.ContinueWith(_ => a());
+                    tContent.OnCompleted(a);
                     return;
                 }
                 Case3:
-                var content = tContent.Result;
-                tContent = null;
+                var content = tContent.GetResult();
+                tContent = default;
 
                 contents.Add(content);
                 EndLoop:
