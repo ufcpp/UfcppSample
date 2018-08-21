@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <LanguageTargets Condition="Exists('$(MSBuildProjectDirectory)\$(AssemblyName).csproj')">$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net471</TargetFramework>
+    <StartupObject>WpfNewCsproj1.App</StartupObject>
+    <AssemblyName>WpfNewCsproj1</AssemblyName>
+    <RootNamespace>WpfNewCsproj1</RootNamespace>
+    <Version>1.0.0</Version>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <!-- App.xaml -->
+    <ApplicationDefinition Include="App.xaml" SubType="Designer" Generator="MSBuild:XamlIntelliSenseFileGenerator" />
+    <!-- XAML elements -->
+    <Page Include="**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" Exclude="App.xaml" />
+    <Compile Update="**\*.xaml.cs" SubType="Designer" DependentUpon="%(Filename)" />
+    <Compile Update="$(IntermediateOutputPath)**\*.g.cs" Visible="false" />
+  </ItemGroup>
+</Project>
