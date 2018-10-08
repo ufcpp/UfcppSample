@@ -1,7 +1,7 @@
 ﻿//#define GENERIC
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Utf8StringA = UtfString.ArrayImplementation.Utf8.String;
 using Utf16StringA = UtfString.ArrayImplementation.Utf16.String;
 using Utf8String = UtfString.Utf8.String;
@@ -20,19 +20,18 @@ using UtfString;
 
 namespace UnitTestUtfString
 {
-    [TestClass]
     public partial class TestString
     {
-        [TestMethod]
+        [Fact]
         public void ShouldBeIdentical()
         {
             foreach (var item in TestData.Data)
             {
-                ShouldBeIdentical(item);
+                ShouldBeIdenticalInternal(item);
             }
         }
 
-        private void ShouldBeIdentical(TestData s)
+        private void ShouldBeIdenticalInternal(TestData s)
         {
             ShouldBeIdentical1(new Utf8String(s.Utf8), s.Utf32I);
             ShouldBeIdentical1(new Utf8StringA(s.Utf8), s.Utf32I);
@@ -67,39 +66,39 @@ namespace UnitTestUtfString
             var codePoints = ((IEnumerable<CodePoint>)s).ToArray();
             var indexes = ((IEnumerable<TIndex>)s.Indexes).ToArray();
 
-            Assert.AreEqual(codePoints.Length, indexes.Length);
+            Assert.Equal(codePoints.Length, indexes.Length);
 
             for (int i = 0; i < codePoints.Length; i++)
             {
-                Assert.AreEqual(expected[i], codePoints[i].Value);
-                Assert.AreEqual(expected[i], s[indexes[i]].Value);
-                Assert.AreEqual(codePoints[i], s[indexes[i]]);
+                Assert.Equal(expected[i], codePoints[i].Value);
+                Assert.Equal(expected[i], s[indexes[i]].Value);
+                Assert.Equal(codePoints[i], s[indexes[i]]);
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void NoAllocationWithForeach()
         {
             foreach (var item in TestData.Data)
             {
-                NoAllocationWithForeach(item);
+                NoAllocationWithForeachInternal(item);
             }
         }
 
-        private void NoAllocationWithForeach(TestData s)
+        private void NoAllocationWithForeachInternal(TestData s)
         {
             const int N = 1000;
 
-            NoAllocationWithForeach(new Utf8String(s.Utf8), N);
-            NoAllocationWithForeach(new Utf8StringA(s.Utf8), N);
-            NoAllocationWithForeach(new Utf16StringA(s.Utf16S), N);
-            NoAllocationWithForeach(new Utf16StringU(s.Utf16B), N);
-            NoAllocationWithForeach(new Utf32String(s.Utf32B), N);
+            NoAllocationWithForeachInternal(new Utf8String(s.Utf8), N);
+            NoAllocationWithForeachInternal(new Utf8StringA(s.Utf8), N);
+            NoAllocationWithForeachInternal(new Utf16StringA(s.Utf16S), N);
+            NoAllocationWithForeachInternal(new Utf16StringU(s.Utf16B), N);
+            NoAllocationWithForeachInternal(new Utf32String(s.Utf32B), N);
 
-            NoAllocationWithForeach(new CompactString(true, s.Utf16B), N);
+            NoAllocationWithForeachInternal(new CompactString(true, s.Utf16B), N);
             if (s.Latin1 != null)
             {
-                NoAllocationWithForeach(new CompactString(false, s.Latin1), N);
+                NoAllocationWithForeachInternal(new CompactString(false, s.Latin1), N);
             }
 
 #if GENERIC
@@ -114,7 +113,7 @@ namespace UnitTestUtfString
 #endif
         }
 
-        private static void NoAllocationWithForeach<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator>(IString<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator> s, int n)
+        private static void NoAllocationWithForeachInternal<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator>(IString<TIndex, TEnumerator, TIndexEnumerable, TIndexEnumerator> s, int n)
             where TIndex : struct
             where TEnumerator : struct, IEnumerator<CodePoint>
             where TIndexEnumerator : struct, IEnumerator<TIndex>
@@ -134,7 +133,7 @@ namespace UnitTestUtfString
 
             var end = GC.GetTotalMemory(false);
 
-            Assert.AreEqual(start, end);
+            Assert.Equal(start, end);
         }
     }
 }
