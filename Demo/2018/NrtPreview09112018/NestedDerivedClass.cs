@@ -13,7 +13,7 @@ abstract class Base<T> : I<T>
     }
 }
 
-abstract class Base : Base<string>
+class Outer : Base<string>
 {
     public override string[]? X => null; // No warning
 }
