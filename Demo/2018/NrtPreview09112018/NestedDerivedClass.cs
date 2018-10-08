@@ -1,9 +1,4 @@
-﻿interface I<T>
-{
-    T[]? X { get; }
-}
-
-abstract class Base<T> : I<T>
+﻿abstract class Base<T>
 {
     public virtual T[]? X => null;
 
