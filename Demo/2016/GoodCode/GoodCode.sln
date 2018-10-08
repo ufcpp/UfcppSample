@@ -1,24 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D044DC9B-7C8F-441B-8F33-BFF6E75F0382}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72615509-E3AE-4F30-9EEA-BF30B28B0022}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertySample", "src\PropertySample\PropertySample.csproj", "{05810A6F-49C9-4984-8D68-AA230965503B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PropertySample", "src\PropertySample\PropertySample.xproj", "{05810A6F-49C9-4984-8D68-AA230965503B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IteratorSample", "src\IteratorSample\IteratorSample.csproj", "{07B73698-4EF3-43B9-BC3F-7C3D1CE859DE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IteratorSample", "src\IteratorSample\IteratorSample.xproj", "{07B73698-4EF3-43B9-BC3F-7C3D1CE859DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqSample", "src\LinqSample\LinqSample.csproj", "{238281C9-FB98-49BF-A045-0B5DEFAF6737}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LinqSample", "src\LinqSample\LinqSample.xproj", "{238281C9-FB98-49BF-A045-0B5DEFAF6737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NullabilitySample", "src\NullabilitySample\NullabilitySample.csproj", "{6506FA46-BB5D-43A9-9075-78E98CDED8F2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NullabilitySample", "src\NullabilitySample\NullabilitySample.xproj", "{6506FA46-BB5D-43A9-9075-78E98CDED8F2}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AsyncSample", "src\AsyncSample\AsyncSample.xproj", "{C20521F2-2959-4625-9AEF-1D61768BE863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncSample", "src\AsyncSample\AsyncSample.csproj", "{C20521F2-2959-4625-9AEF-1D61768BE863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,5 +51,8 @@ Global
 		{238281C9-FB98-49BF-A045-0B5DEFAF6737} = {D044DC9B-7C8F-441B-8F33-BFF6E75F0382}
 		{6506FA46-BB5D-43A9-9075-78E98CDED8F2} = {D044DC9B-7C8F-441B-8F33-BFF6E75F0382}
 		{C20521F2-2959-4625-9AEF-1D61768BE863} = {D044DC9B-7C8F-441B-8F33-BFF6E75F0382}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7BD831D-3E50-4E06-AFDC-C1215D53AE5B}
 	EndGlobalSection
 EndGlobal
