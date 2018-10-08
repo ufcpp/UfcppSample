@@ -7,7 +7,7 @@ namespace IntTemplateParameter
     /// </summary>
     /// <typeparam name="N">有限体のモジュロ。</typeparam>
     public struct GaloisField<N> : IEquatable<GaloisField<N>>
-        where N : IConstant<int>
+        where N : struct, IConstant<int>
     {
         /// <summary>
         /// 有限体のモジュロ。
