@@ -8,8 +8,8 @@ namespace TableMath
     /// </summary>
     /// <remarks>
     /// sin/cos の角度の解像度は 256/1周。
-    /// 剰余演算を &amp; 0xff で代用したいので、360度/1周 とかにはしない。
-    /// sin/cos の値の精度的には、一番ずれてるところで2%以下くらいっぽい。
+    /// 剰余演算を (x &amp; 0xff) で代用したいので、360度/1周 とかにはしない。
+    /// sin/cos の値の精度的には、一番ずれてるところで1.3%以下くらいっぽい。
     /// </remarks>
     public static class SinCosTable
     {
