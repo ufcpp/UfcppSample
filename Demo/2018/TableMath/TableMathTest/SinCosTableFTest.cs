@@ -27,7 +27,7 @@ namespace TableMathTest
         }
 
         [Fact]
-        public void テーブル上にある値は6ケタ程度の精度で取れる()
+        public void テーブル上にある値は6桁精度で取れる()
         {
             for (int i = -256; i <= 256; i++)
             {

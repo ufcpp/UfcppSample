@@ -23,7 +23,7 @@ namespace TableMathTest
         }
 
         [Fact]
-        public void テーブル上にある値は8ケタ程度の精度で取れる()
+        public void テーブル上にある値は15桁精度で取れる()
         {
             for (int i = -256; i <= 256; i++)
             {
@@ -33,8 +33,8 @@ namespace TableMathTest
                 var s2 = Math.Sin(theta);
                 var c2 = Math.Cos(theta);
 
-                Assert.True(Math.Abs(s1 - s2) < 1e-8);
-                Assert.True(Math.Abs(c1 - c2) < 1e-8);
+                Assert.True(Math.Abs(s1 - s2) < 1e-15);
+                Assert.True(Math.Abs(c1 - c2) < 1e-15);
             }
         }
 
