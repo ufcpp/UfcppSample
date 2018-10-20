@@ -53,8 +53,8 @@ namespace TableMathTest
                 var s2 = MathF.Sin(theta);
                 var c2 = MathF.Cos(theta);
 
-                Assert.True(MathF.Abs(s1 - s2) < 2e-2);
-                Assert.True(MathF.Abs(c1 - c2) < 2e-2);
+                Assert.True(MathF.Abs(s1 - s2) < 1.3e-2);
+                Assert.True(MathF.Abs(c1 - c2) < 1.3e-2);
             }
         }
     }
