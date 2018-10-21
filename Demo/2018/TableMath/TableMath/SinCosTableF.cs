@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 
 // この2行以外 double 版と全く同じ。
 using M = System.MathF;
@@ -15,13 +16,13 @@ namespace TableMath
         private const T PI = M.PI;
         private const T CosTableFactor = 128 / PI; // 2π で 256
         private const T AtanTableFactor = 255; // y/x == 1 で 255
+        private const T invCosTableFactor = 1 / CosTableFactor;
+        private const T invAtanTableFactor = 1 / AtanTableFactor;
         private static readonly T[] _cosTable;
         private static readonly T[] _atanTable;
 
         static SinCosTableF()
         {
-            const T invCosTableFactor = 1 / CosTableFactor;
-            const T invAtanTableFactor = 1 / AtanTableFactor;
             var ct = new T[256];
             var att = new T[256];
             for (int i = 0; i < ct.Length; i++)
@@ -107,6 +108,54 @@ namespace TableMath
             if (negY) atan = -atan;
 
             return atan;
+        }
+
+        public readonly struct Angle : IEquatable<Angle>
+        {
+            internal readonly byte _index;
+            public Angle(byte index) => _index = index;
+
+            public T ToRadian() => _index * invCosTableFactor;
+            public static Angle FromRadian(T angle) => new Angle(unchecked((byte)Round(angle * CosTableFactor)));
+            public static Angle FromDegree(T angle) => new Angle(unchecked((byte)Round(angle * 256 / 360)));
+            public static explicit operator Angle(T angle) => FromRadian(angle);
+
+            public bool Equals(Angle other) => _index == other._index;
+            public override bool Equals(object obj) => obj is Angle other && Equals(other);
+            public override int GetHashCode() => _index;
+            public static bool operator ==(Angle x, Angle y) => x._index == y._index;
+            public static bool operator !=(Angle x, Angle y) => x._index != y._index;
+        }
+
+        /// <summary>
+        /// cos。
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T Cos(Angle angle)
+        {
+            var i = angle._index;
+            return _cosTable[i];
+        }
+
+        /// <summary>
+        /// sin。
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T Sin(Angle angle)
+        {
+            var i = angle._index;
+            return _cosTable[(i - 64) & 0xff];
+        }
+
+        /// <summary>
+        /// sin/cos を同時計算。
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SinCos(Angle angle, out T sin, out T cos)
+        {
+            var i = angle._index;
+            var t = _cosTable;
+            (sin, cos) = (t[(i - 64) & 0xff], t[i]);
         }
     }
 }

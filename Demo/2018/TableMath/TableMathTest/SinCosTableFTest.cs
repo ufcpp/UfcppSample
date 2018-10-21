@@ -138,5 +138,45 @@ namespace TableMathTest
                 for (int y = -1; y <= 1; y++)
                     assertYX(x, y);
         }
+
+        [Fact]
+        public void Angleでの値は6桁精度で取れる()
+        {
+            void assert(Table.Angle angle)
+            {
+                var s1 = Table.Sin(angle);
+                var c1 = Table.Cos(angle);
+                var theta = angle.ToRadian();
+                var s2 = M.Sin(theta);
+                var c2 = M.Cos(theta);
+
+                Assert.True(M.Abs(s1 - s2) < 1e-6f);
+                Assert.True(M.Abs(c1 - c2) < 1e-6f);
+            }
+
+            for (int i = 0; i < 256; i++)
+            {
+                assert(new Table.Angle((byte)i));
+            }
+        }
+
+        [Fact]
+        public void SinCosからAtan2で元のAngleを復元()
+        {
+            void assert(Table.Angle angle)
+            {
+                var s1 = Table.Sin(angle);
+                var c1 = Table.Cos(angle);
+                var atan = Table.Atan2(s1, c1);
+                var a1 = Table.Angle.FromRadian(atan);
+
+                Assert.Equal(angle, a1);
+            }
+
+            for (int i = 0; i < 256; i++)
+            {
+                assert(new Table.Angle((byte)i));
+            }
+        }
     }
 }
