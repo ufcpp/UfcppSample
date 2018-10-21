@@ -5,8 +5,7 @@ namespace TableMath
 {
     /// <summary>
     /// unsafe で配列の range check さぼって速くできないかとやってみたやつ。
-    /// 全然速くならなかった。
-    /// t[i &amp; 255] で range check 消える最適化掛かるのかな、 .NET Core。
+    /// そんなに速くならなかった。
     /// </summary>
     public unsafe static class SinCosTableUnsafeF
     {
