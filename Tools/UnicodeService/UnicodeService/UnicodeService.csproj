@@ -1,17 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>89c35890-905a-421b-b335-8fdd0859397c</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GraphemeSplitter">
-      <Version>1.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design">
-      <Version>2.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <PackageReference Include="GraphemeSplitter" Version ="1.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 </Project>

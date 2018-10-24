@@ -5,7 +5,7 @@ namespace TupleMutableStruct.MemoryLayout
 {
     public class VectorPerformance
     {
-        [Setup]
+        [GlobalSetup]
         public void Setup()
         {
             data = new(byte a, byte b, byte c, byte d, byte e, byte f, byte g, byte h)[N];

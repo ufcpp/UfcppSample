@@ -1,92 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{81D52D56-9A3D-42D7-8C90-F39F9360DBAD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TupleMutableStruct</RootNamespace>
-    <AssemblyName>TupleMutableStruct</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
     <StartupObject>TupleMutableStruct.Program</StartupObject>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Data\Circular.cs" />
-    <Compile Include="Data\Point.cs" />
-    <Compile Include="Data\VirtualPoint.cs" />
-    <Compile Include="MemoryLayout\Benchmark.cs" />
-    <Compile Include="MemoryLayout\PointerAdd.cs" />
-    <Compile Include="MemoryLayout\Program.cs" />
-    <Compile Include="MemoryLayout\RandomExtensions.cs" />
-    <Compile Include="MemoryLayout\RefReturns.cs" />
-    <Compile Include="MemoryLayout\SafeAdd.cs" />
-    <Compile Include="MemoryLayout\Test.cs" />
-    <Compile Include="MemoryLayout\Vector.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StructProperties\GetSet.cs" />
-    <Compile Include="StructProperties\RefReturns.cs" />
-    <Compile Include="Usage\BindableBase.cs" />
-    <Compile Include="Usage\Field.cs" />
-    <Compile Include="Usage\LooselyTyped.cs" />
-    <Compile Include="Usage\Program.cs" />
-    <Compile Include="Usage\Tuple.cs" />
-    <Compile Include="ValueObject\MutableClass.cs" />
-    <Compile Include="ValueObject\MutableStruct.cs" />
-    <Compile Include="ValueTuple.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet">
-      <Version>0.10.3</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ValueTuple">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="xunit">
-      <Version>2.2.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

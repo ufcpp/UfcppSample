@@ -1,8 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
     <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
   </PropertyGroup>
 

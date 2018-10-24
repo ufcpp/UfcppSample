@@ -32,7 +32,7 @@
                 // インデックスでの文字取得はできない。s[0] は byte 単位のアクセスになる
                 // コード ポイントの取り出しには CodePoints を使う
                 // foreach もすべて構造体で展開されるのでヒープ確保不要
-                foreach (var c in s.CodePoints)
+                foreach (var c in s)
                 {
                     Console.WriteLine(c);
                 }
@@ -40,7 +40,7 @@
                 // Substring もコピー不要な実装になっている
                 var sub = s.Substring(10, 8);
 
-                foreach (var c in sub.CodePoints)
+                foreach (var c in sub)
                 {
                     Console.WriteLine(c);
                 }
