@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../PackageReferences.props" />
-
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net35;net46</TargetFrameworks>
-  </PropertyGroup>
-
-</Project>
