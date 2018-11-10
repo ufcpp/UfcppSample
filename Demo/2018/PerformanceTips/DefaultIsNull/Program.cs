@@ -4,6 +4,6 @@ class Program
 {
     static void Main()
     {
-        BenchmarkRunner.Run<VirtualCallBanchmark>(new MultipleRuntimesConfig());
+        BenchmarkRunner.Run<DefaultIsNullBenchmark>(new MultipleRuntimesConfig());
     }
 }
