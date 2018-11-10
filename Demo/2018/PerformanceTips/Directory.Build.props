@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.11.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
   </ItemGroup>
 
 </Project>
