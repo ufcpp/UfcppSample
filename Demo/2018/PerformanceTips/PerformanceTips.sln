@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayDowncast", "ArrayDownc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualCall", "VirtualCall\VirtualCall.csproj", "{C8E27C10-9D43-4EE7-8398-34FE2EF65AD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultIsNull", "DefaultIsNull\DefaultIsNull.csproj", "{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefaultIsNull", "DefaultIsNull\DefaultIsNull.csproj", "{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumHasFlag", "EnumHasFlag\EnumHasFlag.csproj", "{4B438495-60A1-4D89-B6A1-323A2126B19B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumHasFlag", "EnumHasFlag\EnumHasFlag.csproj", "{4B438495-60A1-4D89-B6A1-323A2126B19B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualityComparerDefault", "EqualityComparerDefault\EqualityComparerDefault.csproj", "{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
