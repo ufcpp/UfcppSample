@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enumeration", "Enumeration\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayDowncast", "ArrayDowncast\ArrayDowncast.csproj", "{C812F193-9005-428B-86B5-AF10249E714D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCall", "VirtualCall\VirtualCall.csproj", "{C8E27C10-9D43-4EE7-8398-34FE2EF65AD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualCall", "VirtualCall\VirtualCall.csproj", "{C8E27C10-9D43-4EE7-8398-34FE2EF65AD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultIsNull", "DefaultIsNull\DefaultIsNull.csproj", "{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumHasFlag", "EnumHasFlag\EnumHasFlag.csproj", "{4B438495-60A1-4D89-B6A1-323A2126B19B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4CAC103-C8AD-4C85-95F5-894C55E2D4A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B438495-60A1-4D89-B6A1-323A2126B19B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
