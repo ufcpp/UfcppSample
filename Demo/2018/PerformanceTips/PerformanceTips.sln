@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefaultIsNull", "DefaultIsN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumHasFlag", "EnumHasFlag\EnumHasFlag.csproj", "{4B438495-60A1-4D89-B6A1-323A2126B19B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualityComparerDefault", "EqualityComparerDefault\EqualityComparerDefault.csproj", "{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqualityComparerDefault", "EqualityComparerDefault\EqualityComparerDefault.csproj", "{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscriminatedUnion", "DiscriminatedUnion\DiscriminatedUnion.csproj", "{5BCCBE9E-8321-461D-8C20-81AA68A2727A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2954ABDF-751C-4D79-BF0C-A28EF0F3C116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCCBE9E-8321-461D-8C20-81AA68A2727A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCCBE9E-8321-461D-8C20-81AA68A2727A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCCBE9E-8321-461D-8C20-81AA68A2727A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCCBE9E-8321-461D-8C20-81AA68A2727A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
