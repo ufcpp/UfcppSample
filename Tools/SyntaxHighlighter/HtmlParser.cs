@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SyntaxHighlighter
@@ -11,6 +9,10 @@ namespace SyntaxHighlighter
     /// Productivity Power Tool が出力する HTML を読み込む。
     /// 改行文字は &lt;br/&gt; タグになってる前提。
     /// </summary>
+    /// <remarks>
+    /// https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.CopyAsHtml
+    /// こいつをインストールしてる前提。
+    /// </remarks>
     class HtmlParser : IParser
     {
         public static IDictionary<string, string> ColorToTagNameCsharp = new Dictionary<string, string>
@@ -66,10 +68,14 @@ namespace SyntaxHighlighter
             converted = regSpan.Replace(converted, m =>
             {
                 var c = m.Groups["color"].Value;
-                var tag = ColorToTagNameMap[c];
                 var body = m.Groups["body"].Value;
-
-                return "<" + tag + ">" + body + "</" + tag + ">";
+                if (ColorToTagNameMap.TryGetValue(c, out var tag))
+                {
+                    return $"<span class=\"{tag}\">{body}</span>";
+                }
+                // VS 2019 から、エスケープシーケンスとかがかなりカラフルに表示されるようになった。
+                // そこまで class を用意するのもしんどいので、とりあえず素通しすることに。
+                return m.Value;
             });
 
             converted = converted
