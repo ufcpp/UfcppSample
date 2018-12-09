@@ -6,19 +6,22 @@
     {
         static void Main()
         {
-            var data = new[] { 0, 1, 2, 3, 4, 5 };
+            Span<int> data = new[] { 0, 1, 2, 3, 4, 5 };
 
             // 1～2要素目。2 は exclusive。なので、表示されるのは 1 だけ。
-            Write(Slice(data, 1..2));
+            Write(data[1..2]);
 
-            // 先頭から1～末尾から1。表示されるのは 1, 2, 3, 4
-            Write(Slice(data, 1..^1));
+            // 先頭から1～末尾から1。 1, 2, 3, 4
+            Write(data[1..^1]);
 
-            // 先頭～末尾から1。表示されるのは 0, 1, 2, 3, 4
-            Write(Slice(data, ..^1));
+            // 先頭～末尾から1。 0, 1, 2, 3, 4
+            Write(data[..^1]);
 
-            // 先頭から1～末尾。表示されるのは 1, 2, 3, 4, 5
-            Write(Slice(data, 1..));
+            // 先頭から1～末尾。 1, 2, 3, 4, 5
+            Write(data[1..]);
+
+            // 全体。0, 1, 2, 3, 4, 5
+            Write(data[..]);
         }
 
         // .NET Core 3.0 には Span<int> に Range 型を受け取るインデクサーが入る予定。
