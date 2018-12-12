@@ -108,6 +108,15 @@ public class CallBenchmark
 
     #endregion
 
+    /* ちなみに、結果の一例:
+    Method |     Mean |     Error |    StdDev |
+---------- |---------:|----------:|----------:|
+ CallVirtA | 60.30 us | 0.6552 us | 0.6129 us |
+ CallVirtB | 61.44 us | 1.1861 us | 1.1649 us |
+ BranchesA | 55.22 us | 0.8354 us | 0.7815 us |
+ BranchesB | 18.29 us | 0.3577 us | 0.5130 us |
+     */
+
     [Benchmark] public void CallVirtA() => CallVirt(_dataA);
     [Benchmark] public void CallVirtB() => CallVirt(_dataB);
     [Benchmark] public void BranchesA() => BranchesA(_dataA);
