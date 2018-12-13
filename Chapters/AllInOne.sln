@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27128.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Async", "Async", "{2ED58793-4F5C-43C8-95B2-ACE56426DF10}"
 EndProject
@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interop", "Interop", "{48EB
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Dll", "Interop\Win32Dll\Win32Dll.vcxproj", "{4C367220-4A86-4F8F-94A4-E303A882EC38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unsafe", "Interop\Unsafe\Unsafe\Unsafe.csproj", "{F9244ECD-9764-466C-8346-BFC5DDB7AAD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unsafe", "Interop\Unsafe\Unsafe\Unsafe.csproj", "{F9244ECD-9764-466C-8346-BFC5DDB7AAD9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypedReference", "Interop\TypedReference\TypedReference.csproj", "{FFB96C42-7EF5-4A9D-9D50-DBBD001D840A}"
 EndProject
@@ -113,9 +113,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Params", "StructuredProgram
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "StructuredProgramming\Tuples\Tuples.csproj", "{33BE0F4E-B7DC-45F1-8386-CC79EAD1E185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaInternal", "Functional\LambdaInternal\LambdaInternal.csproj", "{7C9B9329-6ADC-4BCB-860A-312F727F0DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaInternal", "Functional\LambdaInternal\LambdaInternal.csproj", "{7C9B9329-6ADC-4BCB-860A-312F727F0DAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateInternal", "Functional\DelegateInternal\DelegateInternal.csproj", "{D83A7939-277A-4AA6-8EFC-1A0ABEAAD638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateInternal", "Functional\DelegateInternal\DelegateInternal.csproj", "{D83A7939-277A-4AA6-8EFC-1A0ABEAAD638}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -351,14 +351,14 @@ Global
 		{BFFD4218-2CD6-488E-A01F-77B4DA544F20}.Release|x86.Build.0 = Release|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x64.ActiveCfg = Debug|x64
-		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x64.Build.0 = Debug|x64
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x64.Build.0 = Debug|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Debug|x86.Build.0 = Debug|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x64.ActiveCfg = Release|x64
-		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x64.Build.0 = Release|x64
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x64.ActiveCfg = Release|Any CPU
+		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x64.Build.0 = Release|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x86.ActiveCfg = Release|Any CPU
 		{AC426EA1-3118-4A20-BC62-0EAB2F82A17A}.Release|x86.Build.0 = Release|Any CPU
 		{491A0653-DCF1-43A9-8589-E5422E7C9279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

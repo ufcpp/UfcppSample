@@ -11,7 +11,7 @@ namespace Span.Substring
             var s = "abcあいう亜以宇";
 
             var sub = s.Substring(3, 3);
-            var span = s.AsReadOnlySpan().Slice(3, 3);
+            var span = s.AsSpan().Slice(3, 3);
 
             for (int i = 0; i < 3; i++)
             {

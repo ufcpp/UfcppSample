@@ -124,7 +124,7 @@ namespace Span.Pointer.Span
             unsafe
             {
                 // 結局内部的には unsafe にしてポインターを使った方が速い場合あり
-                fixed (byte* pin = &span.DangerousGetPinnableReference())
+                fixed (byte* pin = span)
                 {
                     var p = pin;
                     var last = p + span.Length;

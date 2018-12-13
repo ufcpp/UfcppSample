@@ -1,23 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <StartupObject>Span.SafeStackalloc.Program</StartupObject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.IO">
-      <Version>4.4.0-beta-24913-02</Version>
-    </PackageReference>
-    <PackageReference Include="System.IO.Pipelines.File">
-      <Version>0.1.0-e171108-2</Version>
-    </PackageReference>
-    <PackageReference Include="System.Memory">
-      <Version>4.5.0-preview2-25707-02</Version>
-    </PackageReference>
-  </ItemGroup>
 
 </Project>

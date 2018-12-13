@@ -11,7 +11,7 @@
             Span<int> array = new int[8].AsSpan().Slice(2, 3);
 
             // 文字列
-            ReadOnlySpan<char> str = "abcdefgh".AsReadOnlySpan().Slice(2, 3);
+            ReadOnlySpan<char> str = "abcdefgh".AsSpan().Slice(2, 3);
 
             // スタック領域
             Span<int> stack = stackalloc int[8];

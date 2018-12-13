@@ -1,24 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <Description>ClassOrStruct Console Application</Description>
     <Authors>Nobuyuki</Authors>
     <AssemblyName>ClassOrStruct</AssemblyName>
     <PackageId>ClassOrStruct</PackageId>
   </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dnx451' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dnxcore50' ">
-    <PackageReference Include="System.Collections" Version="4.0.11" />
-    <PackageReference Include="System.Console" Version="4.0.0" />
-    <PackageReference Include="System.Linq" Version="4.1.0" />
-    <PackageReference Include="System.Threading" Version="4.0.11" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
-  </ItemGroup>
 
 </Project>
