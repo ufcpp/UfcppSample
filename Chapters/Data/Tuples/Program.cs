@@ -1,8 +1,8 @@
-﻿using System;
+﻿#pragma warning disable 219
+#pragma warning disable 8123
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tuples
 {

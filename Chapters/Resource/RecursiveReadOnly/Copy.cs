@@ -1,4 +1,6 @@
-﻿namespace RecursiveReadOnly.Copy
+﻿#pragma warning disable 649
+
+namespace RecursiveReadOnly.Copy
 {
     using System;
 

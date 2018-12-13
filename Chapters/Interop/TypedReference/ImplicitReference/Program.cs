@@ -1,4 +1,6 @@
-﻿namespace InplicitReference
+﻿#pragma warning disable 649
+
+namespace InplicitReference
 {
     using System;
 

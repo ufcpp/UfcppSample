@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS0168
+#pragma warning disable CS8321
 
 namespace LocalFunctions.Lambda
 {

@@ -1,4 +1,6 @@
-﻿namespace Observable.EventInternal
+﻿#pragma warning disable 67
+
+namespace Observable.EventInternal
 {
     using System;
 

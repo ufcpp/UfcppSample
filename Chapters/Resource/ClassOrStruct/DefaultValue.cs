@@ -1,4 +1,6 @@
-﻿namespace DefaultValue
+﻿#pragma warning disable 649
+
+namespace DefaultValue
 {
     using System;
 

@@ -1,4 +1,7 @@
-﻿namespace Tuples.OutParams
+﻿#pragma warning disable 1998
+#pragma warning disable 649
+
+namespace Tuples.OutParams
 {
     using System;
     using System.Threading.Tasks;

@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS0168
+#pragma warning disable CS8321
 
 using System;
 using System.Collections.Generic;
