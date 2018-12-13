@@ -8,9 +8,12 @@
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
             <Button Content="貼り付け" Click="Button_Click" Padding="10 2 10 2" Margin="2"/>
-            <ComboBox x:Name="comboType" SelectedIndex="0" Width="60" Margin="2">
-                <TextBlock Text="C#"/>
-                <TextBlock Text="XML"/>
+            <ComboBox x:Name="comboType" ItemsSource="{Binding}" SelectedIndex="0" Width="60" Margin="2">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
         <TextBox x:Name="block" />

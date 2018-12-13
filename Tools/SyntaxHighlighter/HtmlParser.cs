@@ -39,17 +39,8 @@ namespace SyntaxHighlighter
 
         public HtmlParser(Mode mode)
         {
-            switch (mode)
-            {
-                case Mode.Csharp:
-                    ColorToTagNameMap = ColorToTagNameCsharp;
-                    break;
-                case Mode.Xml:
-                    ColorToTagNameMap = ColorToTagNameXml;
-                    break;
-                default:
-                    break;
-            }
+            if (mode == Mode.Csharp) ColorToTagNameMap = ColorToTagNameCsharp;
+            else if (mode == Mode.Xml) ColorToTagNameMap = ColorToTagNameXml;
         }
 
         static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SyntaxHighlighter
@@ -9,12 +7,6 @@ namespace SyntaxHighlighter
     interface IParser
     {
         string Parse(string text);
-    }
-
-    enum Mode
-    {
-        Csharp,
-        Xml,
     }
 
     /// <summary>
@@ -61,17 +53,8 @@ namespace SyntaxHighlighter
 
         public RtfParser(Mode mode)
         {
-            switch (mode)
-            {
-                case Mode.Csharp:
-                    ColorToTagNameMap = ColorToTagNameCsharp;
-                    break;
-                case Mode.Xml:
-                    ColorToTagNameMap = ColorToTagNameXml;
-                    break;
-                default:
-                    break;
-            }
+            if (mode == Mode.Csharp) ColorToTagNameMap = ColorToTagNameCsharp;
+            else if (mode == Mode.Xml) ColorToTagNameMap = ColorToTagNameXml;
         }
 
         /// <summary>
