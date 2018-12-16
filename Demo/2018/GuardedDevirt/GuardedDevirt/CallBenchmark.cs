@@ -51,11 +51,13 @@ public class CallBenchmark
     {
         foreach (var i in data)
         {
-            var t = GetObjectMethodTablePointer(i);
-            if (t == A1TablePointer) Unbox<A1>(i).M();
-            else if (t == A2TablePointer) Unbox<A2>(i).M();
-            else if (t == A3TablePointer) Unbox<A3>(i).M();
-            else if (t == A4TablePointer) Unbox<A4>(i).M();
+            // ここの i.GetType() は毎度 i.GetType() を呼ぶ方が高速。
+            // var t = i.GetType() と変数に受けちゃうと Type 型のインスタンスが作られる。
+            // 直接 typeof との比較をする場合、単なる仮想メソッド テーブル ポインターの比較になるっぽい。
+            if (i.GetType() == typeof(A1)) Unbox<A1>(i).M();
+            else if (i.GetType() == typeof(A2)) Unbox<A2>(i).M();
+            else if (i.GetType() == typeof(A3)) Unbox<A3>(i).M();
+            else if (i.GetType() == typeof(A4)) Unbox<A4>(i).M();
             else i.M();
         }
     }
@@ -75,11 +77,10 @@ public class CallBenchmark
     {
         foreach (var i in data)
         {
-            var t = GetObjectMethodTablePointer(i);
-            if (t == B1TablePointer) Unbox<B1>(i).M();
-            else if (t == B2TablePointer) Unbox<B2>(i).M();
-            else if (t == B3TablePointer) Unbox<B3>(i).M();
-            else if (t == B4TablePointer) Unbox<B4>(i).M();
+            if (i.GetType() == typeof(B1)) Unbox<B1>(i).M();
+            else if (i.GetType() == typeof(B2)) Unbox<B2>(i).M();
+            else if (i.GetType() == typeof(B3)) Unbox<B3>(i).M();
+            else if (i.GetType() == typeof(B4)) Unbox<B4>(i).M();
             else i.M();
         }
     }
@@ -100,20 +101,7 @@ public class CallBenchmark
 
     #region 黒魔術
 
-    // is とかキャストのコスト避けるために邪悪な手段を使って型判定したり unbox したり。
-
-    private static readonly IntPtr A1TablePointer = GetObjectMethodTablePointer(new A1());
-    private static readonly IntPtr A2TablePointer = GetObjectMethodTablePointer(new A2());
-    private static readonly IntPtr A3TablePointer = GetObjectMethodTablePointer(new A3());
-    private static readonly IntPtr A4TablePointer = GetObjectMethodTablePointer(new A4());
-    private static readonly IntPtr B1TablePointer = GetObjectMethodTablePointer(new B1());
-    private static readonly IntPtr B2TablePointer = GetObjectMethodTablePointer(new B2());
-    private static readonly IntPtr B3TablePointer = GetObjectMethodTablePointer(new B3());
-    private static readonly IntPtr B4TablePointer = GetObjectMethodTablePointer(new B4());
-
-    // https://github.com/dotnet/coreclr/blob/ef93a727984dbc5b8925a0c2d723be6580d20460/src/System.Private.CoreLib/src/System/Runtime/CompilerServices/RuntimeHelpers.cs#L222)
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static IntPtr GetObjectMethodTablePointer(object obj) => Unsafe.Add(ref Unsafe.As<byte, IntPtr>(ref Unsafe.As<object, PinningHelper>(ref obj).data), -1);
+    // キャストのコスト避けるために邪悪な手段を使って型判定したり unbox したり。
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static ref T Unbox<T>(object obj) => ref Unsafe.As<byte, T>(ref Unsafe.As<object, PinningHelper>(ref obj).data);
