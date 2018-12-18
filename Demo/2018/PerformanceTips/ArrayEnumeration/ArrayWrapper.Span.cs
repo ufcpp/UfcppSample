@@ -5,8 +5,8 @@ namespace ArrayEnumeration
 {
     public partial struct ArrayWrapper<T>
     {
-        // インデクサーも使いたいとき用、その1。
-        // ReadOnlySpan<T> を介してみる。
+        // インデクサーも使いたいとき用、その2。
+        // Span<T> を介してみる。
         // パフォーマンスに焦点が当たってた .NET Core 2.1 世代の型だけあって、かなり速い。
         public ReadOnlySpan<T> AsSpan() => Array;
     }

@@ -5,17 +5,18 @@ namespace ArrayEnumeration
 {
     public partial struct ArrayWrapper<T>
     {
-        // インデクサーも使いたいとき用、その1。
-        // ReadOnlyCollection<T> を介してみる。
-        // .NET Framework 2.0 時代のクラスなので、パフォーマンスへの考慮がまるでなく、相当遅い。
+        // インデクサーも使いたいとき用、その3。
+        // ImmutableArray<T> を介してみる。
+        // 実装を見てる感じ、少なくとも struct Enumerator と同じスピードは出そうなものなのに…
+        // なんかなぜか遅い…
         public ImmutableArray<T> AsImmurable() => ImmutableArray.Create(Array);
     }
 
     public partial class ArrayEnumerationBenchmark
     {
         // AsImmurable<T> 列挙。
-        // InterfaceEnumeration 以上に遅い。とにかく遅い。
-        // ReadOnlyCollection<T> は内部的に IList<T> 越しに配列アクセスするので、それがほんとに遅い。
+        // なんで遅いのかわからない…
+        // (といっても、Interface 列挙や ReadOnlyCollection<T> 列挙よりは速い。)
         [Benchmark]
         public int ImmutableArrayEnumeration()
         {
