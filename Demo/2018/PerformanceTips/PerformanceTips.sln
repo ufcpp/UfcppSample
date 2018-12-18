@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscriminatedUnion", "Discr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastEnumeration", "FastEnumeration\FastEnumeration.csproj", "{5F37011A-0AEA-4BAD-BFF1-F08948D1BE2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayEnumeration", "ArrayEnumeration\ArrayEnumeration.csproj", "{1B76FB6D-156F-4B7E-A813-A2BFD7400495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{5F37011A-0AEA-4BAD-BFF1-F08948D1BE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F37011A-0AEA-4BAD-BFF1-F08948D1BE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F37011A-0AEA-4BAD-BFF1-F08948D1BE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B76FB6D-156F-4B7E-A813-A2BFD7400495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B76FB6D-156F-4B7E-A813-A2BFD7400495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B76FB6D-156F-4B7E-A813-A2BFD7400495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B76FB6D-156F-4B7E-A813-A2BFD7400495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
