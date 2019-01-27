@@ -22,7 +22,10 @@ namespace SyntaxHighlighter
             { "#2b91af", "type" },
             { "#a31515", "string" },
             { "gray", "inactive" },
-            { "maroon", "string" }
+            { "maroon", "string" },
+            { "#74531f", "method" },
+            { "#1f377f", "variable" },
+            { "#8f08c4", "control" },
         };
 
         public static IDictionary<string, string> ColorToTagNameXml = new Dictionary<string, string>
@@ -44,7 +47,8 @@ namespace SyntaxHighlighter
         }
 
         static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);
-        static readonly Regex regSpan = new Regex(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        static readonly Regex regColorSpan = new Regex(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        static readonly Regex regEmptySpan = new Regex(@"\<span style="""">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
 
         public string Parse(string text)
         {
@@ -54,9 +58,11 @@ namespace SyntaxHighlighter
                 return string.Empty;
             }
 
-            string converted = mBody.Groups["body"].Value;
+            string converted = mBody.Groups["body"].Value
+                .Replace("font-weight:bold;", "")
+                ;
 
-            converted = regSpan.Replace(converted, m =>
+            converted = regColorSpan.Replace(converted, m =>
             {
                 var c = m.Groups["color"].Value;
                 var body = m.Groups["body"].Value;
@@ -68,6 +74,8 @@ namespace SyntaxHighlighter
                 // そこまで class を用意するのもしんどいので、とりあえず素通しすることに。
                 return m.Value;
             });
+
+            converted = regEmptySpan.Replace(converted, m => m.Groups["body"].Value);
 
             converted = converted
                 .Replace(" <br/>", Environment.NewLine)
