@@ -1,0 +1,10 @@
+[package]
+name = "convert"
+version = "0.1.0"
+authors = ["ufcpp"]
+
+[lib]
+name="lib"
+crate-type = ["dylib"]
+
+[dependencies]
