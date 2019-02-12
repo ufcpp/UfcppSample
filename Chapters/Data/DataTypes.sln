@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26014.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28531.58
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "Tuples\Tuples.csproj", "{9851C940-EF7D-414C-89DC-441A3B22B5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuples", "Tuples\Tuples.csproj", "{9851C940-EF7D-414C-89DC-441A3B22B5B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deconstruction", "Deconstruction\Deconstruction.csproj", "{A3E46235-D020-4AEC-918A-F315DA6E9012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deconstruction", "Deconstruction\Deconstruction.csproj", "{A3E46235-D020-4AEC-918A-F315DA6E9012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutVar", "OutVar\OutVar.csproj", "{4A20CE71-0214-4289-A730-0D90C5E009B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutVar", "OutVar\OutVar.csproj", "{4A20CE71-0214-4289-A730-0D90C5E009B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeSwitch", "TypeSwitch\TypeSwitch.csproj", "{A953159C-7BFB-4BF2-897D-45FE4886C2F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypeSwitch", "TypeSwitch\TypeSwitch.csproj", "{A953159C-7BFB-4BF2-897D-45FE4886C2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discards", "Discards\Discards.csproj", "{80197711-36D4-4A93-B75B-3B6DDD4799A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discards", "Discards\Discards.csproj", "{80197711-36D4-4A93-B75B-3B6DDD4799A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{8212E7CA-2F62-4D24-92B3-ACA19EFFBD4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +41,15 @@ Global
 		{80197711-36D4-4A93-B75B-3B6DDD4799A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80197711-36D4-4A93-B75B-3B6DDD4799A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80197711-36D4-4A93-B75B-3B6DDD4799A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8212E7CA-2F62-4D24-92B3-ACA19EFFBD4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8212E7CA-2F62-4D24-92B3-ACA19EFFBD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8212E7CA-2F62-4D24-92B3-ACA19EFFBD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8212E7CA-2F62-4D24-92B3-ACA19EFFBD4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6DEAD6E-2EF9-4D4F-847D-D50925152DEB}
 	EndGlobalSection
 EndGlobal
