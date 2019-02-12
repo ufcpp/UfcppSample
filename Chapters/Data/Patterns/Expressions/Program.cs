@@ -2,7 +2,7 @@
 {
     using System;
 
-    public static class C
+    public static class Program
     {
         public static int Calculate(this Node n, int x)
             => n switch
@@ -20,19 +20,19 @@
             Add (var l, var r) => (l.Simplify(), r.Simplify()) switch
             {
                 // 0 を足しても変わらない
-                (Const (0), var r1) => r1,
-                (var l1, Const (0)) => l1,
+                (Const(0), var r1) => r1,
+                (var l1, Const(0)) => l1,
                 // 他
                 (var l1, var r1) => new Add(l1, r1)
             },
             Mul (var l, var r) => (l.Simplify(), r.Simplify()) switch
             {
                 // 0 を掛けたら 0
-                (Const (0) c, _) => c,
-                (_, Const (0) c) => c,
+                (Const(0) c, _) => c,
+                (_, Const(0) c) => c,
                 // 1 を掛けても変わらない
-                (Const (1), var r1) => r1,
-                (var l1, Const (1)) => l1,
+                (Const(1), var r1) => r1,
+                (var l1, Const(1)) => l1,
                 // 他
                 (var l1, var r1) => new Mul(l1, r1)
             },
