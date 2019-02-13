@@ -30,7 +30,7 @@ Northwind に入ってるデータは、
 Products が77件、Categories が8件。
 ベンチマークでは `categoryName` に Confections, Beverages, Produce, Seafood の4つを渡して実行。
 
-ベンチマークの結果の一例は以下の通り。
+ローカルで動いてる SqlServer に対して実行した場合のベンチマーク結果の一例は以下の通り。
 
 |           Method |     Mean |     Error |    StdDev |   Median | Allocated Memory/Op |
 | ---------------- |---------:|----------:|----------:|---------:|--------------------:|
