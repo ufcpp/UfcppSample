@@ -22,7 +22,7 @@ namespace Collections
     /// <summary>
     /// 初期最大容量を指定して初期化。
     /// </summary>
-    /// <param name="capacity">初期載大容量</param>
+    /// <param name="capacity">初期最大容量</param>
     public CircularBuffer(int capacity)
     {
       capacity = Pow2((uint)capacity);

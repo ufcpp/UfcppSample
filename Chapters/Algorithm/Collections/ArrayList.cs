@@ -21,7 +21,7 @@ namespace Collections
     /// <summary>
     /// 初期最大容量を指定して初期化。
     /// </summary>
-    /// <param name="capacity">初期載大容量</param>
+    /// <param name="capacity">初期最大容量</param>
     public ArrayList(int capacity)
     {
       this.data = new T[capacity];
