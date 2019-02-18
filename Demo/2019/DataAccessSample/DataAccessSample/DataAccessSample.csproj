@@ -3,17 +3,26 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);MYSQL</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.11.4" />
     <PackageReference Include="Dapper" Version="1.50.7" />
-    <PackageReference Include="Dapper.Microsoft.Sql" Version="0.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="!$(DefineConstants.Contains(';MYSQL'))">
+    <PackageReference Include="Dapper.Microsoft.Sql" Version="0.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(DefineConstants.Contains(';MYSQL'))">
+    <PackageReference Include="Dapper.Rainbow.MySql" Version="0.10.1" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.15" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,11 @@ namespace DataAccessSample
 {
     class Program
     {
+#if MYSQL
+        public static readonly string ConnectionString = @"Server=localhost;Port=3306;Database=Northwind;Uid=root;Pwd=mypassword;";
+#else
         public static readonly string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+#endif
         static void Main()
         {
 #if DEBUG

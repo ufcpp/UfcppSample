@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessSample.Models
 {
@@ -28,10 +26,598 @@ namespace DataAccessSample.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#if MYSQL
+                optionsBuilder.UseMySQL(Program.ConnectionString);
+#else
                 optionsBuilder.UseSqlServer(Program.ConnectionString);
+#endif
             }
         }
 
+#if MYSQL
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+
+            modelBuilder.Entity<Categories>(entity =>
+            {
+                entity.HasKey(e => e.CategoryId);
+
+                entity.ToTable("categories", "northwind");
+
+                entity.HasIndex(e => e.CategoryName)
+                    .HasName("CategoryName");
+
+                entity.Property(e => e.CategoryId)
+                    .HasColumnName("CategoryID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CategoryName)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).HasColumnType("longtext");
+
+                entity.Property(e => e.Picture).HasColumnType("longblob");
+            });
+
+            modelBuilder.Entity<CustomerCustomerDemo>(entity =>
+            {
+                entity.HasKey(e => new { e.CustomerId, e.CustomerTypeId });
+
+                entity.ToTable("customercustomerdemo", "northwind");
+
+                entity.HasIndex(e => e.CustomerTypeId)
+                    .HasName("FK_CustomerCustomerDemo");
+
+                entity.Property(e => e.CustomerId)
+                    .HasColumnName("CustomerID")
+                    .HasColumnType("char(5)");
+
+                entity.Property(e => e.CustomerTypeId)
+                    .HasColumnName("CustomerTypeID")
+                    .HasColumnType("char(10)");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.CustomerCustomerDemo)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomerCustomerDemo_Customers");
+
+                entity.HasOne(d => d.CustomerType)
+                    .WithMany(p => p.CustomerCustomerDemo)
+                    .HasForeignKey(d => d.CustomerTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomerCustomerDemo");
+            });
+
+            modelBuilder.Entity<CustomerDemographics>(entity =>
+            {
+                entity.HasKey(e => e.CustomerTypeId);
+
+                entity.ToTable("customerdemographics", "northwind");
+
+                entity.Property(e => e.CustomerTypeId)
+                    .HasColumnName("CustomerTypeID")
+                    .HasColumnType("char(10)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CustomerDesc).HasColumnType("longtext");
+            });
+
+            modelBuilder.Entity<Customers>(entity =>
+            {
+                entity.HasKey(e => e.CustomerId);
+
+                entity.ToTable("customers", "northwind");
+
+                entity.HasIndex(e => e.City)
+                    .HasName("City");
+
+                entity.HasIndex(e => e.CompanyName)
+                    .HasName("CompanyName");
+
+                entity.HasIndex(e => e.PostalCode)
+                    .HasName("PostalCode");
+
+                entity.HasIndex(e => e.Region)
+                    .HasName("Region");
+
+                entity.Property(e => e.CustomerId)
+                    .HasColumnName("CustomerID")
+                    .HasColumnType("char(5)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.City)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactName)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactTitle)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fax)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Employees>(entity =>
+            {
+                entity.HasKey(e => e.EmployeeId);
+
+                entity.ToTable("employees", "northwind");
+
+                entity.HasIndex(e => e.LastName)
+                    .HasName("LastName");
+
+                entity.HasIndex(e => e.PostalCode)
+                    .HasName("PostalCode");
+
+                entity.HasIndex(e => e.ReportsTo)
+                    .HasName("FK_Employees_Employees");
+
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("EmployeeID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BirthDate).HasColumnType("datetime(6)");
+
+                entity.Property(e => e.City)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Extension)
+                    .HasMaxLength(4)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HireDate).HasColumnType("datetime(6)");
+
+                entity.Property(e => e.HomePhone)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Notes).HasColumnType("longtext");
+
+                entity.Property(e => e.Photo).HasColumnType("longblob");
+
+                entity.Property(e => e.PhotoPath)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReportsTo).HasColumnType("int(11)");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TitleOfCourtesy)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ReportsToNavigation)
+                    .WithMany(p => p.InverseReportsToNavigation)
+                    .HasForeignKey(d => d.ReportsTo)
+                    .HasConstraintName("FK_Employees_Employees");
+            });
+
+            modelBuilder.Entity<EmployeeTerritories>(entity =>
+            {
+                entity.HasKey(e => new { e.EmployeeId, e.TerritoryId });
+
+                entity.ToTable("employeeterritories", "northwind");
+
+                entity.HasIndex(e => e.TerritoryId)
+                    .HasName("FK_EmployeeTerritories_Territories");
+
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("EmployeeID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.TerritoryId)
+                    .HasColumnName("TerritoryID")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.EmployeeTerritories)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeTerritories_Employees");
+
+                entity.HasOne(d => d.Territory)
+                    .WithMany(p => p.EmployeeTerritories)
+                    .HasForeignKey(d => d.TerritoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeTerritories_Territories");
+            });
+
+            modelBuilder.Entity<OrderDetails>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.ProductId });
+
+                entity.ToTable("order details", "northwind");
+
+                entity.HasIndex(e => e.OrderId)
+                    .HasName("OrdersOrder_Details");
+
+                entity.HasIndex(e => e.ProductId)
+                    .HasName("ProductsOrder_Details");
+
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("OrderID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ProductId)
+                    .HasColumnName("ProductID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Discount)
+                    .HasColumnType("float(24,0)")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.Quantity)
+                    .HasColumnType("smallint(6)")
+                    .HasDefaultValueSql("1");
+
+                entity.Property(e => e.UnitPrice)
+                    .HasColumnType("decimal(19,4)")
+                    .HasDefaultValueSql("0.0000");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Order_Details_Orders");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Order_Details_Products");
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.HasKey(e => e.OrderId);
+
+                entity.ToTable("orders", "northwind");
+
+                entity.HasIndex(e => e.CustomerId)
+                    .HasName("CustomersOrders");
+
+                entity.HasIndex(e => e.EmployeeId)
+                    .HasName("EmployeesOrders");
+
+                entity.HasIndex(e => e.OrderDate)
+                    .HasName("OrderDate");
+
+                entity.HasIndex(e => e.ShipPostalCode)
+                    .HasName("ShipPostalCode");
+
+                entity.HasIndex(e => e.ShipVia)
+                    .HasName("ShippersOrders");
+
+                entity.HasIndex(e => e.ShippedDate)
+                    .HasName("ShippedDate");
+
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("OrderID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CustomerId)
+                    .HasColumnName("CustomerID")
+                    .HasColumnType("char(5)");
+
+                entity.Property(e => e.EmployeeId)
+                    .HasColumnName("EmployeeID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Freight)
+                    .HasColumnType("decimal(19,4)")
+                    .HasDefaultValueSql("0.0000");
+
+                entity.Property(e => e.OrderDate).HasColumnType("datetime(6)");
+
+                entity.Property(e => e.RequiredDate).HasColumnType("datetime(6)");
+
+                entity.Property(e => e.ShipAddress)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipCity)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipCountry)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipName)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipPostalCode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipRegion)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipVia).HasColumnType("int(11)");
+
+                entity.Property(e => e.ShippedDate).HasColumnType("datetime(6)");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_Orders_Customers");
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .HasConstraintName("FK_Orders_Employees");
+
+                entity.HasOne(d => d.ShipViaNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.ShipVia)
+                    .HasConstraintName("FK_Orders_Shippers");
+            });
+
+            modelBuilder.Entity<Products>(entity =>
+            {
+                entity.HasKey(e => e.ProductId);
+
+                entity.ToTable("products", "northwind");
+
+                entity.HasIndex(e => e.CategoryId)
+                    .HasName("CategoryID");
+
+                entity.HasIndex(e => e.ProductName)
+                    .HasName("ProductName");
+
+                entity.HasIndex(e => e.SupplierId)
+                    .HasName("SuppliersProducts");
+
+                entity.Property(e => e.ProductId)
+                    .HasColumnName("ProductID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CategoryId)
+                    .HasColumnName("CategoryID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Discontinued)
+                    .HasColumnType("tinyint(1)")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.ProductName)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QuantityPerUnit)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReorderLevel)
+                    .HasColumnType("smallint(6)")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.SupplierId)
+                    .HasColumnName("SupplierID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.UnitPrice)
+                    .HasColumnType("decimal(19,4)")
+                    .HasDefaultValueSql("0.0000");
+
+                entity.Property(e => e.UnitsInStock)
+                    .HasColumnType("smallint(6)")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.UnitsOnOrder)
+                    .HasColumnType("smallint(6)")
+                    .HasDefaultValueSql("0");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_Products_Categories");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.SupplierId)
+                    .HasConstraintName("FK_Products_Suppliers");
+            });
+
+            modelBuilder.Entity<Region>(entity =>
+            {
+                entity.ToTable("region", "northwind");
+
+                entity.Property(e => e.RegionId)
+                    .HasColumnName("RegionID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.RegionDescription)
+                    .IsRequired()
+                    .HasColumnType("char(50)");
+            });
+
+            modelBuilder.Entity<Shippers>(entity =>
+            {
+                entity.HasKey(e => e.ShipperId);
+
+                entity.ToTable("shippers", "northwind");
+
+                entity.Property(e => e.ShipperId)
+                    .HasColumnName("ShipperID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Suppliers>(entity =>
+            {
+                entity.HasKey(e => e.SupplierId);
+
+                entity.ToTable("suppliers", "northwind");
+
+                entity.HasIndex(e => e.CompanyName)
+                    .HasName("CompanyName");
+
+                entity.HasIndex(e => e.PostalCode)
+                    .HasName("PostalCode");
+
+                entity.Property(e => e.SupplierId)
+                    .HasColumnName("SupplierID")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.City)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactName)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactTitle)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fax)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HomePage).HasColumnType("longtext");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(24)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Territories>(entity =>
+            {
+                entity.HasKey(e => e.TerritoryId);
+
+                entity.ToTable("territories", "northwind");
+
+                entity.HasIndex(e => e.RegionId)
+                    .HasName("FK_Territories_Region");
+
+                entity.Property(e => e.TerritoryId)
+                    .HasColumnName("TerritoryID")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.RegionId)
+                    .HasColumnName("RegionID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.TerritoryDescription)
+                    .IsRequired()
+                    .HasColumnType("char(50)");
+
+                entity.HasOne(d => d.Region)
+                    .WithMany(p => p.Territories)
+                    .HasForeignKey(d => d.RegionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Territories_Region");
+            });
+        }
+#else
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
@@ -450,5 +1036,6 @@ namespace DataAccessSample.Models
                     .HasConstraintName("FK_Territories_Region");
             });
         }
+#endif
     }
 }
