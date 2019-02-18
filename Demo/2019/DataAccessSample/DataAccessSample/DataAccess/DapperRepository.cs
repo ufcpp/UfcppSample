@@ -17,21 +17,11 @@ namespace DataAccessSample
 #endif
                 )
             {
-                return db.Query<Products>(
-#if MYSQL
-@"SELECT * From `Northwind`.`Products` as `b`
-LEFT JOIN `Northwind`.`Categories` as `c` ON `c`.`CategoryID` = `b`.`CategoryID`
-WHERE `c`.`CategoryName` = @CategoryName
-ORDER BY `b`.`ProductName`
-"
-#else
-@"SELECT * From [Products] as [b]
-LEFT JOIN [Categories] as [c] ON [c].[CategoryID] = [b].[CategoryID]
-WHERE [c].[CategoryName] = @CategoryName
-ORDER BY [b].[ProductName]
-"
-#endif
-, new { CategoryName = categoryName })
+                return db.Query<Products>(@"SELECT * From Products as b
+LEFT JOIN Categories as c ON c.CategoryID = b.CategoryID
+WHERE c.CategoryName = @CategoryName
+ORDER BY b.ProductName
+", new { CategoryName = categoryName })
 .ToArray();
 
             }
