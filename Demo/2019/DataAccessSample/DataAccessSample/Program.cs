@@ -1,5 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-using DataAccessSample.Models;
+﻿using DataAccessSample.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace DataAccessSample
 #if DEBUG
             Test();
 #else
-            BenchmarkRunner.Run<DataAccessBenchmark>();
+            BenchmarkDotNet.Running.BenchmarkRunner.Run<DataAccessBenchmark>();
 #endif
         }
 
@@ -26,7 +25,7 @@ namespace DataAccessSample
                     .Where(b => b.CategoryId == 1)
                     .OrderBy(b => b.ProductId)
                     .Include(p => p.Category);
-                var xx = products.ToSql();
+                Console.WriteLine(products.ToSql());
             }
 
             WriteProducts<EFCoreRepository>();
