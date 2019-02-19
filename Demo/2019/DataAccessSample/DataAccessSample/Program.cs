@@ -8,9 +8,9 @@ namespace DataAccessSample
     class Program
     {
 #if MYSQL
-        public static readonly string ConnectionString = @"Server=localhost;Port=3306;Database=Northwind;Uid=root;Pwd=mypassword;";
+        public static readonly string ConnectionString = @"Server=localhost;Port=3306;Database=Northwind;Uid=root;Pwd=mypassword;Max Pool Size=200;";
 #else
-        public static readonly string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static readonly string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Max Pool Size=200";
 #endif
         static void Main()
         {
