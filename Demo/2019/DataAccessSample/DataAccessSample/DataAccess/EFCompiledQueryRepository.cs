@@ -16,13 +16,10 @@ namespace DataAccessSample
                 .Select(x => x)
                 );
 
-        public Products[] GetAllProductsByCategory(string categoryName)
+        public Products[] GetAllProductsByCategory(NorthwindContext db, string categoryName)
         {
-            using (var db = new NorthwindContext())
-            {
-                return _createQuery(db, categoryName)
-                    .ToArray();
-            }
+            return _createQuery(db, categoryName)
+                .ToArray();
         }
     }
 }

@@ -30,20 +30,20 @@ namespace DataAccessSample
                     .OrderBy(b => b.ProductId)
                     .Include(p => p.Category);
                 Console.WriteLine(products.ToSql());
-            }
 
-            WriteProducts<EFCoreRepository>();
-            WriteProducts<EFCompiledQueryRepository>();
-            WriteProducts<EFFromSqlRepository>();
-            WriteProducts<DapperRepository>();
+                WriteProducts<EFCoreRepository>(db);
+                WriteProducts<EFCompiledQueryRepository>(db);
+                WriteProducts<EFFromSqlRepository>(db);
+                WriteProducts<DapperRepository>(db);
+            }
         }
 
-        private static void WriteProducts<T>()
+        private static void WriteProducts<T>(NorthwindContext db)
             where T : struct, IDataSource
         {
             Console.WriteLine(typeof(T).Name);
 
-            foreach (var p in default(T).GetAllProductsByCategory("Confections"))
+            foreach (var p in default(T).GetAllProductsByCategory(db, "Confections"))
             {
                 Console.Write("    ");
                 Console.WriteLine(p.ProductName);

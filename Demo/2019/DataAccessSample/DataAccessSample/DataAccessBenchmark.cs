@@ -9,13 +9,20 @@ namespace DataAccessSample
     {
         private Products[][] GetProducts<T>()
             where T : struct, IDataSource
-            => new[]
+        {
+            var shape = default(T);
+
+            using (var db = new NorthwindContext())
             {
-                default(T).GetAllProductsByCategory("Confections"),
-                default(T).GetAllProductsByCategory("Beverages"),
-                default(T).GetAllProductsByCategory("Produce"),
-                default(T).GetAllProductsByCategory("Seafood"),
-            };
+                return new[]
+                {
+                    shape.GetAllProductsByCategory(db, "Confections"),
+                    shape.GetAllProductsByCategory(db, "Beverages"),
+                    shape.GetAllProductsByCategory(db, "Produce"),
+                    shape.GetAllProductsByCategory(db, "Seafood"),
+                };
+            }
+        }
 
         [Benchmark] public Products[][] EFCore() => GetProducts<EFCoreRepository>();
         [Benchmark] public Products[][] EFCompiledQuery() => GetProducts<EFCompiledQueryRepository>();

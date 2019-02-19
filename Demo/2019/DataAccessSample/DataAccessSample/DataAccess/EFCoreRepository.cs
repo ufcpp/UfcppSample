@@ -5,15 +5,12 @@ namespace DataAccessSample
 {
     public struct EFCoreRepository : IDataSource
     {
-        public Products[] GetAllProductsByCategory(string categoryName)
+        public Products[] GetAllProductsByCategory(NorthwindContext db, string categoryName)
         {
-            using (var db = new NorthwindContext())
-            {
-                return db.Products
-                    .Where(b => b.Category.CategoryName == categoryName)
-                    .OrderBy(b => b.ProductName)
-                    .ToArray();
-            }
+            return db.Products
+                .Where(b => b.Category.CategoryName == categoryName)
+                .OrderBy(b => b.ProductName)
+                .ToArray();
         }
     }
 }

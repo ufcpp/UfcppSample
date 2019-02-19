@@ -4,6 +4,6 @@ namespace DataAccessSample
 {
     public interface IDataSource
     {
-        Products[] GetAllProductsByCategory(string categoryName);
+        Products[] GetAllProductsByCategory(NorthwindContext context, string categoryName);
     }
 }
