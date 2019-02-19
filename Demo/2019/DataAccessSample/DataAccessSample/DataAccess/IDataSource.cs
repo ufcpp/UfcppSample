@@ -1,9 +1,11 @@
 ﻿using DataAccessSample.Models;
+using System.Threading.Tasks;
 
 namespace DataAccessSample
 {
     public interface IDataSource
     {
-        Products[] GetAllProductsByCategory(NorthwindContext context, string categoryName);
+        Products[] GetAllProductsByCategory(NorthwindContext db, string categoryName);
+        Task<Products[]> GetAllProductsByCategoryAsync(NorthwindContext db, string categoryName);
     }
 }

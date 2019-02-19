@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using DataAccessSample.Models;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,16 +9,21 @@ namespace DataAccessSample
     [MemoryDiagnoser]
     public class DataAccessBenchmark
     {
+        const int Parallelism = 100;
+        const int LoopCount = 100;
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            ThreadPool.SetMinThreads(Parallelism, Parallelism);
+        }
+
         private void GetProducts<T>()
             where T : struct, IDataSource
         {
-            const int parallelism = 100;
-            const int loopCount = 100;
             var shape = default(T);
 
-            ThreadPool.SetMinThreads(parallelism, parallelism);
-
-            Parallel.For(0, loopCount, new ParallelOptions { MaxDegreeOfParallelism = parallelism },
+            Parallel.For(0, LoopCount, new ParallelOptions { MaxDegreeOfParallelism = Parallelism },
                 () => new NorthwindContext(),
                 (_, state, db) =>
                 {
@@ -35,5 +41,28 @@ namespace DataAccessSample
         [Benchmark] public void EFCompiledQuery() => GetProducts<EFCompiledQueryRepository>();
         [Benchmark] public void EFFromSql() => GetProducts<EFFromSqlRepository>();
         [Benchmark] public void Dapper() => GetProducts<DapperRepository>();
+
+        private async Task GetProductsAsync<T>()
+        where T : struct, IDataSource
+        {
+            var shape = default(T);
+
+            using (var db = new NorthwindContext())
+            {
+                await Task.WhenAll(Enumerable.Range(0, LoopCount)
+                    .SelectMany(_ => new[]
+                    {
+                        shape.GetAllProductsByCategoryAsync(db, "Confections"),
+                        shape.GetAllProductsByCategoryAsync(db, "Beverages"),
+                        shape.GetAllProductsByCategoryAsync(db, "Produce"),
+                        shape.GetAllProductsByCategoryAsync(db, "Seafood"),
+                    }));
+            }
+        }
+
+        [Benchmark] public Task EFCoreAsync() => GetProductsAsync<EFCoreRepository>();
+        [Benchmark] public Task EFCompiledQueryAsync() => GetProductsAsync<EFCompiledQueryRepository>();
+        [Benchmark] public Task EFFromSqlAsync() => GetProductsAsync<EFFromSqlRepository>();
+        [Benchmark] public Task DapperAsync() => GetProductsAsync<DapperRepository>();
     }
 }
