@@ -1,13 +1,34 @@
 # EFCore のベンチマーク
 
+## データ
+
 データは [Northwind](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)を使ってる。
 [instnwnd.sql](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)を実行した状態そのままでクエリ掛けてる。
+
+MySQL は、MySQL Workbench の「Database → Migration Wizard」で上記 SQL Server から MySQL にデータを移植。
+
+## Scaffolding
 
 EF は、DB First で、以下のコマンドで C# クラスを生成。
 
 ```PowerShell
 Scaffold-DbContext "Data Source=[Database Name];Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
+
+SQL Server からと、MySQL からで、Scaffolding した時の `OnModelCreating` の中身(`HasColumnType` とかの制約の内容)が違うので、そこだけ `#if MYSQL` で条件コンパイルするように手書きで修正。
+
+## データベース プロバイダー
+
+Microsoft SQL Server と MySQL で動作確認済み。
+
+単一バイナリで両方に接続するのは上記の `OnModelCreating` の `#if` 分岐のせいで断念。
+`#if` 分岐が掛かってるのは以下の3点
+
+- 参照している NuGet パッケージ(`Microsoft.EntityFrameworkCore.SqlServer`/`MySql.Data.EntityFrameworkCore`)
+- 接続文字列と `DbContextOptions` を作ってるところ(`UseSqlServer`/`UseMySQL`)
+- `DbContext.OnModelCreating` の中身(`HasColumnType` とかの制約が違う)
+
+## クエリ
 
 以下のクエリを実行。
 
@@ -18,7 +39,7 @@ db.Products
     .ToArray();
 ```
 
-これと同じ結果を得るために、以下の4通りのコードを比較。
+これと同じ結果を得るために、以下の4通りの方法を比較。
 
 - Entity Framework Core を利用
   - EFCore: 普通に `IQueryable` の `Where`, `OrderBy` を使って O/R マップ
@@ -26,9 +47,17 @@ db.Products
   - EFFromSql: `FromSql(FromattableString)` を使う
 - Dapper: Dapper を利用
 
+同期版と非同期版があって、4×2 = 8通り。
+
+## ベンチマーク
+
 Northwind に入ってるデータは、
 Products が77件、Categories が8件。
 ベンチマークでは `categoryName` に Confections, Beverages, Produce, Seafood の4つを渡して実行。
+
+`Parallel.For` とか `Task.WhenAll` で50回同じクエリを実行。
+
+## 結果
 
 ローカルで動いてる SqlServer, MySQL に対して実行した場合のベンチマーク結果の一例は以下の通り。
 
