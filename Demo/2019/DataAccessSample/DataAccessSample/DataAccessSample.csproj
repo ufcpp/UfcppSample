@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <!--<DefineConstants>$(DefineConstants);MYSQL</DefineConstants>-->
+    <DefineConstants>$(DefineConstants);MYSQL</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>

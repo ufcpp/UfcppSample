@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using DataAccessSample.Models;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ namespace DataAccessSample
     [MemoryDiagnoser]
     public class DataAccessBenchmark
     {
-        const int Parallelism = 100;
+        const int Parallelism = 50;
         const int LoopCount = 100;
 
         [GlobalSetup]
@@ -21,20 +20,18 @@ namespace DataAccessSample
         private void GetProducts<T>()
             where T : struct, IDataSource
         {
-            var shape = default(T);
-
             Parallel.For(0, LoopCount, new ParallelOptions { MaxDegreeOfParallelism = Parallelism },
-                () => new NorthwindContext(),
-                (_, state, db) =>
+                _ =>
                 {
-                    shape.GetAllProductsByCategory(db, "Confections");
-                    shape.GetAllProductsByCategory(db, "Beverages");
-                    shape.GetAllProductsByCategory(db, "Produce");
-                    shape.GetAllProductsByCategory(db, "Seafood");
-
-                    return db;
-                },
-                db => db.Dispose());
+                    using (var lease = Connection.Rent())
+                    {
+                        var db = lease.Context;
+                        default(T).GetAllProductsByCategory(db, "Confections");
+                        default(T).GetAllProductsByCategory(db, "Beverages");
+                        default(T).GetAllProductsByCategory(db, "Produce");
+                        default(T).GetAllProductsByCategory(db, "Seafood");
+                    }
+                });
         }
 
         [Benchmark] public void EFCore() => GetProducts<EFCoreRepository>();
@@ -45,19 +42,21 @@ namespace DataAccessSample
         private async Task GetProductsAsync<T>()
         where T : struct, IDataSource
         {
-            var shape = default(T);
-
-            using (var db = new NorthwindContext())
-            {
-                await Task.WhenAll(Enumerable.Range(0, LoopCount)
-                    .SelectMany(_ => new[]
+            await Task.WhenAll(Enumerable.Range(0, LoopCount)
+                .Select(async _ =>
+                {
+                    using (var lease = Connection.Rent())
                     {
-                        shape.GetAllProductsByCategoryAsync(db, "Confections"),
-                        shape.GetAllProductsByCategoryAsync(db, "Beverages"),
-                        shape.GetAllProductsByCategoryAsync(db, "Produce"),
-                        shape.GetAllProductsByCategoryAsync(db, "Seafood"),
-                    }));
-            }
+                        var db = lease.Context;
+                        return new[]
+                        {
+                            await default(T).GetAllProductsByCategoryAsync(db, "Confections"),
+                            await default(T).GetAllProductsByCategoryAsync(db, "Beverages"),
+                            await default(T).GetAllProductsByCategoryAsync(db, "Produce"),
+                            await default(T).GetAllProductsByCategoryAsync(db, "Seafood"),
+                        };
+                    }
+                }));
         }
 
         [Benchmark] public Task EFCoreAsync() => GetProductsAsync<EFCoreRepository>();

@@ -4,9 +4,7 @@ namespace DataAccessSample.Models
 {
     public partial class NorthwindContext : DbContext
     {
-        public NorthwindContext()
-        {
-        }
+        public NorthwindContext(DbContextOptions<NorthwindContext> options) : base(options) { }
 
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<CustomerCustomerDemo> CustomerCustomerDemo { get; set; }
@@ -21,18 +19,6 @@ namespace DataAccessSample.Models
         public virtual DbSet<Shippers> Shippers { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Territories> Territories { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#if MYSQL
-                optionsBuilder.UseMySQL(Program.ConnectionString);
-#else
-                optionsBuilder.UseSqlServer(Program.ConnectionString);
-#endif
-            }
-        }
 
 #if MYSQL
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -7,11 +7,6 @@ namespace DataAccessSample
 {
     class Program
     {
-#if MYSQL
-        public static readonly string ConnectionString = @"Server=localhost;Port=3306;Database=Northwind;Uid=root;Pwd=mypassword;Max Pool Size=100;";
-#else
-        public static readonly string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Max Pool Size=100";
-#endif
         static void Main()
         {
 #if DEBUG
@@ -23,8 +18,9 @@ namespace DataAccessSample
 
         private static void Test()
         {
-            using (var db = new NorthwindContext())
+            using (var lease = Connection.Rent())
             {
+                var db = lease.Context;
                 var products = db.Products
                     .Where(b => b.CategoryId == 1)
                     .OrderBy(b => b.ProductId)
