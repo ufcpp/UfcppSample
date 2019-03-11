@@ -1,6 +1,4 @@
-﻿// たぶん、GetAsyncEnumerator(CancellationToken) の引数がないから。
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
