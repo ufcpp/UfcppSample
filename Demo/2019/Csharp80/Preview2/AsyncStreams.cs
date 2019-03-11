@@ -1,5 +1,4 @@
-﻿#if false // .NET Core 3.0 の方に更新が来ないとまだコンパイル通らなさそう。
-// たぶん、GetAsyncEnumerator(CancellationToken) の引数がないから。
+﻿// たぶん、GetAsyncEnumerator(CancellationToken) の引数がないから。
 
 using System;
 using System.Collections.Generic;
@@ -33,4 +32,3 @@ namespace Cs8InVs2019P1.AsyncStreams
         }
     }
 }
-#endif
