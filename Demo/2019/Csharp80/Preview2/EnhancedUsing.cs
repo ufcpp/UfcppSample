@@ -11,6 +11,8 @@
         // ただ、既存コードを壊さないようにするためには、ref struct の場合限定らしい。
         // 普通のクラス・構造体の場合、IDisposable インターフェイス実装が必須。
         public void Dispose() => Console.WriteLine(_message);
+
+        // ちなみに、int x = 0 とか params int[] x とか、オプション引数があっても OK。ちゃんと using で使えて、 Dispose が呼ばれる。
     }
 
     class Program
