@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathMap", "PathMap\PathMap.csproj", "{BB837752-7B29-44F0-B123-0B866103A382}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB837752-7B29-44F0-B123-0B866103A382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB837752-7B29-44F0-B123-0B866103A382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB837752-7B29-44F0-B123-0B866103A382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB837752-7B29-44F0-B123-0B866103A382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8D0DC90-5EAE-4F57-9020-8F38B2D92193}
+	EndGlobalSection
+EndGlobal
