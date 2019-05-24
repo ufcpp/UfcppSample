@@ -11,12 +11,10 @@ namespace SwitchStatementToExpression
         }
 
         static int M(bool x)
-        {
-            switch(x)
+            => x switch
             {
-                case true: return 1;
-                case false: return 0;
-            }
-        }
+                true => 1,
+                false => 0,
+            };
     }
 }
