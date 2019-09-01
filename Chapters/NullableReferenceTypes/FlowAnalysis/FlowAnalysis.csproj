@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <StartupObject>FlowAnalysis.Attributes.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>
