@@ -35,7 +35,7 @@ namespace LambdaInternal.StaticMethod
             class AnonymousClass
             {
                 public static readonly AnonymousClass Singleton = new AnonymousClass();
-                public static Func<int> Cache1;
+                public static Func<int>? Cache1;
 
                 internal int AnonymousMethod1()
                 {
@@ -45,11 +45,7 @@ namespace LambdaInternal.StaticMethod
 
             static void Main(string[] args)
             {
-                if (AnonymousClass.Cache1 == null)
-                {
-                    AnonymousClass.Cache1 = AnonymousClass.Singleton.AnonymousMethod1;
-                }
-                Func<int> f1 = AnonymousClass.Cache1;
+                Func<int> f1 = AnonymousClass.Cache1 ??= AnonymousClass.Singleton.AnonymousMethod1;
                 f1();
             }
         }

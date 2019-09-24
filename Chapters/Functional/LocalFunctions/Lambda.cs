@@ -42,7 +42,7 @@ namespace LocalFunctions.Lambda
             int f1(int n) => n >= 1 ? n * f1(n - 1) : 1;
 
             // 匿名関数はひと手間必要
-            Func<int, int> f2 = null;
+            Func<int, int> f2 = null!;
             f2 = n => n >= 1 ? n * f2(n - 1) : 1;
         }
 

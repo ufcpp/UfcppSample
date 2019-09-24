@@ -20,12 +20,8 @@
             Console.WriteLine(await LoadAsync());
         }
 
-        static Task<string> LoadAsync()
-        {
-            _loadCache = _loadCache ?? LoadAsyncInternal();
-            return _loadCache;
-        }
-        static Task<string> _loadCache;
+        static Task<string> LoadAsync() => _loadCache ??= LoadAsyncInternal();
+        static Task<string>? _loadCache;
 
         static async Task<string> LoadAsyncInternal()
         {

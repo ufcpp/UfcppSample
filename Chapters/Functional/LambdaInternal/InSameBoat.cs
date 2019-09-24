@@ -22,7 +22,7 @@
             f2(0);
 
             // f2 の寿命が長いと問題なので用が済み次第消す
-            f2 = null;
+            f2 = null!;
 
             await Task.Delay(TimeSpan.FromHours(10));
 
