@@ -2,7 +2,7 @@
 {
     public class Wrapper<T>
     {
-        public T Value;
+        public T Value = default!; // object initializer で初期化するつもり
     }
 
     class Program
