@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(SolutionDir)bin\$(Configuration)\Win32Dll.dll">
+    <None Include="$(ProjectDir)\..\Win32Dll\bin\$(Configuration)\Win32Dll.dll">
       <Link>%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
