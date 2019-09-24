@@ -82,8 +82,7 @@ namespace TypeSwitch
                 { 9, "nine" },
             };
 
-            string s;
-            if (map.TryGetValue(n, out s)) return s;
+            if (map.TryGetValue(n, out var s)) return s;
             else return "other";
         }
     }
