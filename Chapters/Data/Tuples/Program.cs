@@ -78,7 +78,7 @@ namespace Tuples
         private static void MemberTypeInference()
         {
             // これは左辺から型推論が聞くので、null も書ける
-            (string s, int i) t1 = (null, 1);
+            (string? s, int i) t1 = (null, 1);
 
 #if false
             // これはダメ。null の型が決まらない。

@@ -43,7 +43,7 @@ namespace IdentifierScope.Foreach
 
         public static void M1()
         {
-            Action a = null;
+            Action a = null!;
 
             foreach (var i in Enumerable.Range(0, 10))
             {

@@ -8,7 +8,7 @@
 
     // IDisposable, IComparable な型を用意
     struct Disposable : IDisposable { public void Dispose() { } }
-    struct Comparable : IComparable { public int CompareTo(object x) => 0; }
+    struct Comparable : IComparable { public int CompareTo(object? x) => 0; }
 
     class Program
     {

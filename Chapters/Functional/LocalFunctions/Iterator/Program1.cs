@@ -7,7 +7,7 @@
     {
         static void Main()
         {
-            IEnumerable<string> input = null;
+            IEnumerable<string> input = null!;
 
             // input が null なので例外を投げてほしい
             // 多くの人がそれを期待する

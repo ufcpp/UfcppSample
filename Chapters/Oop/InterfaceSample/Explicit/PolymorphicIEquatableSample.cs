@@ -14,7 +14,7 @@
 
         public override bool Equals(Shape other) => Equals(other as Rectangle);
 
-        public bool Equals(Rectangle other)
+        public bool Equals(Rectangle? other)
             => other != null && Width == other.Width && Height == other.Height;
     }
 
@@ -24,7 +24,7 @@
 
         public override bool Equals(Shape other) => Equals(other as Circle);
 
-        public bool Equals(Circle other)
+        public bool Equals(Circle? other)
             => other != null && Radius == other.Radius;
     }
 

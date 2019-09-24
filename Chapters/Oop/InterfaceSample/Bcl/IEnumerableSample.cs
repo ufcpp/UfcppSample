@@ -13,10 +13,10 @@
     class LinkedList<T> : IEnumerable<T>
     {
         public T Value { get; }
-        public LinkedList<T> Next { get; }
+        public LinkedList<T>? Next { get; }
 
         public LinkedList(T value) : this(value, null) { }
-        private LinkedList(T value, LinkedList<T> next) { Value = value; Next = next; }
+        private LinkedList(T value, LinkedList<T>? next) { Value = value; Next = next; }
 
         public LinkedList<T> Add(T value) => new LinkedList<T>(value, this);
 

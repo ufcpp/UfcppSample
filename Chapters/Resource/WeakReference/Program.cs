@@ -19,7 +19,7 @@ namespace WeakReferenceSample
 
         static void InvokeMain(Type t)
         {
-            t.GetMethod(nameof(Main), BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
+            t.GetMethod(nameof(Main), BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, null);
         }
     }
 }

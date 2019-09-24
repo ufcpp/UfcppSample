@@ -34,7 +34,7 @@
             M(new A(x => x));
         }
 
-        static void M(A x) => Console.WriteLine("A");
-        static void M(B x) => Console.WriteLine("B");
+        static void M(A? x) => Console.WriteLine("A");
+        static void M(B? x) => Console.WriteLine("B");
     }
 }

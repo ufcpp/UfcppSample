@@ -20,7 +20,7 @@
             return 0;
         }
 
-        static Task<int> _cache;
+        static Task<int>? _cache;
 
         // キャッシュしてるものなので、少し時間がたてば、確実に完了済みになる。
         static Task<int> CachedX => _cache ?? (_cache = Task.Run(() => 1));

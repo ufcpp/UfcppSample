@@ -18,13 +18,12 @@ namespace WeakReferenceSample.WeakEvent
         {
             return Observable.Create((IObserver<T> observer) =>
             {
-                WeakReference<IDisposable> weakSubscription = null;
-                IDisposable subscription = null;
+                WeakReference<IDisposable> weakSubscription = null!;
+                IDisposable subscription = null!;
 
                 subscription = observable.Subscribe(x =>
                 {
-                    IDisposable d;
-                    if (!weakSubscription.TryGetTarget(out d))
+                    if (!weakSubscription.TryGetTarget(out var d))
                     {
                         subscription.Dispose();
                         return;

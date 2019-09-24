@@ -23,7 +23,7 @@
 
         public static void M1()
         {
-            Action a = null;
+            Action a = null!;
 
             for (int i = 0; i < 10; i++)
             {
@@ -37,7 +37,7 @@
 
         public static void M2()
         {
-            Action a = null;
+            Action a = null!;
 
             for (int i = 0; i < 10; i++)
             {

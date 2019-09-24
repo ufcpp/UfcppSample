@@ -3,8 +3,8 @@
     // 使った分だけそれぞれ別の型に展開
     public class Wrapper_int { public int Value; }
     public class Wrapper_byte { public byte Value; }
-    public class Wrapper_string { public string Value; }
-    public class Wrapper_Array_int { public int[] Value; }
+    public class Wrapper_string { public string Value = null!; } // object initializer で初期化するつもり
+    public class Wrapper_Array_int { public int[] Value = null!; } // 同上
 
     class Program
     {

@@ -17,7 +17,6 @@
         /// </summary>
         public event KeyboadEventHandler OnKeyDown;
 
-        public KeyboardEventLoop() { }
         public KeyboardEventLoop(KeyboadEventHandler onKeyDown)
         {
             OnKeyDown += onKeyDown;

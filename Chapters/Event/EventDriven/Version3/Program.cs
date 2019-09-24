@@ -11,7 +11,7 @@
         const string DATE = "yyyy/dd/MM\n";
         const string TIME = "hh:mm:ss\n";
 
-        static KeyboardEventLoop eventLoop;
+        static KeyboardEventLoop eventLoop = null!; // Main で初期化
         static bool isSuspended = true;  // プログラムの一時停止フラグ。
         static string timeFormat = TIME; // 時刻の表示形式。
 

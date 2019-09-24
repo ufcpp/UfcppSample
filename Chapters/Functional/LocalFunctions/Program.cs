@@ -32,9 +32,9 @@ namespace LocalFunctions
             }
         }
 
-        public static Sample operator+(Sample x)
+        public static Sample? operator+(Sample x)
         {
-            int f(int n) => n * n;
+            static int f(int n) => n * n;
             return null;
         }
     }

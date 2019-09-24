@@ -17,7 +17,7 @@
 
             // 2.5秒後にオブジェクトを消す
             await Task.Delay(2500);
-            obj = null;
+            obj = null!;
             GC.Collect();
 
             await t;
@@ -28,8 +28,7 @@
         {
             while (true)
             {
-                object obj;
-                if (r.TryGetTarget(out obj))
+                if (r.TryGetTarget(out var obj))
                 {
                     Console.WriteLine(obj + " を参照中");
                 }

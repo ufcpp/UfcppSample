@@ -2,7 +2,7 @@
 {
     // object 型な1つのクラスに集約
     // 元の型情報を残さない = 型消去
-    public class Wrapper { public object Value; }
+    public class Wrapper { public object Value = null!; } // object initializer で初期化するつもり
 
     class Program
     {

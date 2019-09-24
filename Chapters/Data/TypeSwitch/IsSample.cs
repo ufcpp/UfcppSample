@@ -45,7 +45,7 @@ namespace TypeSwitch
 
         static void NullCheck()
         {
-            string x = null;
+            string x = null!;
 
             if (x is string)
             {

@@ -74,7 +74,7 @@ namespace DelegateInternal.StaticVsCurriedDelegate
         static int F(int x) => 2 * x;
 
         // わざわざ使いもしない第1引数を増やして、拡張メソッドに変更
-        static int F(this object dummy, int x) => 2 * x;
+        static int F(this object? dummy, int x) => 2 * x;
 
         static void Main()
         {
