@@ -15,7 +15,9 @@
             M(x => (double)x);
 
             // この場合、引数と戻り値が一致してるという条件では int なのか string なのか区別できなくてエラー
+#if false
             N(x => x);
+#endif
         }
 
         static void M(Func<int, int> x) => Console.WriteLine("int → int");

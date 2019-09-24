@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <MrsPath>..\x64\Debug\NativeLib.dll</MrsPath>
+    <MrsPath>..\NativeLib\x64\Debug\NativeLib.dll</MrsPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <MrsPath>..\x64\Release\NativeLib.dll</MrsPath>
+    <MrsPath>..\NativeLib\x64\Release\NativeLib.dll</MrsPath>
   </PropertyGroup>
 
   <ItemGroup>
