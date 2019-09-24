@@ -44,6 +44,7 @@ namespace SyntaxHighlighter
         {
             if (mode == Mode.Csharp) ColorToTagNameMap = ColorToTagNameCsharp;
             else if (mode == Mode.Xml) ColorToTagNameMap = ColorToTagNameXml;
+            else throw new InvalidOperationException();
         }
 
         static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);

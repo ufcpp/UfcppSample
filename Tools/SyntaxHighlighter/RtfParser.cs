@@ -55,6 +55,7 @@ namespace SyntaxHighlighter
         {
             if (mode == Mode.Csharp) ColorToTagNameMap = ColorToTagNameCsharp;
             else if (mode == Mode.Xml) ColorToTagNameMap = ColorToTagNameXml;
+            else throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -164,7 +165,7 @@ namespace SyntaxHighlighter
         /// </summary>
         Regex regBody = new Regex(@"\\f0\s*\\fs\d*\s?(?<body>.*?)(?<=[^\\])\}", RegexOptions.Singleline | RegexOptions.Compiled);
 
-        string prevTag_ = null;
+        string? prevTag_ = null;
 
         /// <summary>
         /// &lt; &gt; &amp; にしたり、

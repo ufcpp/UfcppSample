@@ -46,7 +46,7 @@ namespace SyntaxHighlighter
             }
         }
 
-        private string Parse(IDataObject data, Mode mode)
+        private string? Parse(IDataObject data, Mode mode)
         {
             if (mode == Mode.Asm)
             {
