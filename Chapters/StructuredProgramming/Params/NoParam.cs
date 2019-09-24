@@ -44,7 +44,7 @@ namespace Params.NoParam.BrakingChange
             Console.WriteLine(y); // ターゲットによって結果が変わる
         }
 
-        static int[] prev;
+        static int[] prev = null!;
 
         static bool IsCached(params int[] source)
         {

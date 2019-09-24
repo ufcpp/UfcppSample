@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <StartupObject>OverloadResolution.Paremeter.Program</StartupObject>
   </PropertyGroup>
 
