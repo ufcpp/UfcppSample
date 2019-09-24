@@ -22,5 +22,5 @@ class DefaultValues
     public double x;
     public char c;
     public bool b;
-    public string s;
+    public string? s;
 }
