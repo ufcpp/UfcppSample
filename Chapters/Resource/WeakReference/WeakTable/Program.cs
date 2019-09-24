@@ -33,8 +33,7 @@
 
             foreach (var p in people)
             {
-                string location;
-                if (locations.TryGetValue(p, out location))
+                if (locations.TryGetValue(p, out var location))
                     Console.WriteLine(p.Name + " at " + location);
             }
         }
@@ -60,8 +59,7 @@
 
             foreach (var p in people)
             {
-                string location;
-                if (locations.TryGetValue(p, out location))
+                if (locations.TryGetValue(p, out var location))
                     Console.WriteLine(p.Name + " at " + location);
             }
         }

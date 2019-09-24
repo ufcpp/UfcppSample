@@ -32,6 +32,8 @@
             return union.Bool;
         }
 
+#pragma warning disable 162 // C# 8.0 から警告が出るコードなんだけど、意図的にやってるので warrning disable
+
         static void Write(bool x)
         {
             switch (x)

@@ -21,13 +21,12 @@
         /// </remarks>
         public static IDisposable WeakSubscribe<T>(this IObservable<T> observable, Action<T> onNext)
         {
-            WeakReference<IDisposable> weakSubscription = null;
-            IDisposable subscription = null;
+            WeakReference<IDisposable> weakSubscription = null!;
+            IDisposable subscription = null!;
 
             subscription = observable.Subscribe(x =>
             {
-                IDisposable d;
-                if (!weakSubscription.TryGetTarget(out d))
+                if (!weakSubscription.TryGetTarget(out var d))
                 {
                     // 弱参照のターゲットが消えてたらイベント購読解除。
                     subscription.Dispose();

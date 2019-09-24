@@ -46,7 +46,12 @@
         }
 
         // 使う側に unsafe を求めないために要するオーバーロードいろいろ
-        static void Clear(ArraySegment<byte> segment) => Clear(segment.Array, segment.Offset, segment.Count);
+        static void Clear(ArraySegment<byte> segment)
+        {
+            if (segment.Array is null) throw new ArgumentNullException(nameof(segment));
+            Clear(segment.Array, segment.Offset, segment.Count);
+        }
+
         static void Clear(byte[] array, int offset = 0) => Clear(array, offset, array.Length - offset);
         static void Clear(byte[] array, int offset, int length)
         {
@@ -71,7 +76,12 @@ namespace Span.Pointer.Copy
         // コピー(コピー元とコピー先)とか、2つになるとだいぶ面倒に。
 
         static void Copy(ArraySegment<byte> source, ArraySegment<byte> destination)
-            => Copy(source.Array, source.Offset, destination.Array, destination.Offset, source.Count);
+        {
+            if (source.Array is null) throw new ArgumentNullException(nameof(source));
+            if (destination.Array is null) throw new ArgumentNullException(nameof(destination));
+            Copy(source.Array, source.Offset, destination.Array, destination.Offset, source.Count);
+        }
+
         static void Copy(byte[] source, int sourceOffset, byte[] destination, int destinationOffset)
             => Copy(source, sourceOffset, destination, destinationOffset, source.Length - sourceOffset);
         static void Copy(byte[] source, int sourceOffset, byte[] destination, int destinationOffset, int length)

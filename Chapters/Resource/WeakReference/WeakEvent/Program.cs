@@ -45,8 +45,8 @@
                 // d1 は、Subscribe 内で参照を握っているので GC 対象にならない。メモリ リーク。
                 // d2 は、WeakSubscribe 内は弱参照なので、こっちの参照なくせば GC 対象。
                 // 以後、イベントは subscribe 側にだけ届く。
-                d1 = null;
-                d2 = null;
+                d1 = null!;
+                d2 = null!;
                 GC.Collect();
             }
 
