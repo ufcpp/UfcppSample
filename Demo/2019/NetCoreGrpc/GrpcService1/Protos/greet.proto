@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService1";
+
+package Sample;
+
+service Sample {
+  rpc GetValues(stream SampleRequest) returns (stream SampleResponse);
+}
+
+message SampleRequest {
+  int32 bits = 1;
+  int32 length = 2;
+}
+
+message SampleResponse {
+  repeated int32 values = 1;
+}
