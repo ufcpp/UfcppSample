@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FlowAnalysis.Equality
 {
@@ -13,6 +14,18 @@ namespace FlowAnalysis.Equality
         private static void Equality(string x, string? y)
         {
             if (x == y)
+            {
+                Console.WriteLine(y.Length);
+            }
+            else
+            {
+                Console.WriteLine(y.Length);
+            }
+        }
+
+        private static void SpecialEquality(string x, string? y)
+        {
+            if (EqualityComparer<string>.Default.Equals(x, y))
             {
                 Console.WriteLine(y.Length);
             }

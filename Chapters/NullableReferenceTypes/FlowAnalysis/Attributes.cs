@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Xml.Schema;
 
 namespace FlowAnalysis.Attributes
 {
@@ -40,6 +43,38 @@ namespace FlowAnalysis.Attributes
             int[]? array = null;
             Array.Resize(ref array, 1);
             Console.WriteLine(array.Length);
+        }
+
+        private static void MaybeNullWhenAttribute(Dictionary<int, string> map)
+        {
+            if (map.TryGetValue(1, out var s)) Console.WriteLine(s.Length);
+            else Console.WriteLine(s.Length);
+        }
+
+        private static void NotNullWhenAttribute(string? s)
+        {
+            if (string.IsNullOrEmpty(s)) Console.WriteLine(s.Length);
+            else Console.WriteLine(s.Length);
+        }
+
+        private static void NotNullIfNotNullAttribute()
+        {
+            var l1 = Path.GetFileName("sample.txt").Length;
+            var l2 = Path.GetFileName(null).Length;
+        }
+
+        private static void DoesNotReturnAttribute(bool flag)
+        {
+            string? s = null;
+            if (flag) s = "abc";
+            else Environment.FailFast("fail");
+            Console.WriteLine(s.Length);
+        }
+
+        private static void DoesNotReturnIfAttribute(string? s)
+        {
+            Debug.Assert(s != null);
+            Console.WriteLine(s.Length);
         }
     }
 }
