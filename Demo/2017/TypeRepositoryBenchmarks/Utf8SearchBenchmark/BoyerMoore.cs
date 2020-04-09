@@ -43,7 +43,7 @@ unsafe static class BoyerMoore
     {
         int lastPrefixIndex = 1;
 
-        for (var p = patternLength; p > 0; p--)
+        for (var p = patternLength - 1; p >= 0; p--)
         {
             if (IsPrefix(pattern, patternLength, p)) lastPrefixIndex = p;
             delta2[p] = (patternLength - p) + lastPrefixIndex;
