@@ -10,19 +10,7 @@ namespace ReadModReq
         static void Main()
         {
             const string refPath = "../../../../ref/LibModReq.dll";
-
-            const string source = @"
-using LibModReq;
-
-class Program
-{
-    static void Main()
-    {
-        var c = new Class1();
-        c.UnamanagedConstraint<int>();
-        c.InParameter(1);
-    }
-}";
+            var source = File.ReadAllText("../../../../UseModReq.cs");
 
             var compilation = Compile(refPath, source);
 
