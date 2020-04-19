@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- 確か Roslyn 3.0 の頃 preview で C# 8.0 が追加されて、latest が C# 8.0 になったのが 3.3 の頃 -->
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
     <Compile Include="../ReadModReq/**/*.cs" Exclude="../ReadModReq/obj/**/*.cs" />
   </ItemGroup>

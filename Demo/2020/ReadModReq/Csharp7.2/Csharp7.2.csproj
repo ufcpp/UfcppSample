@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- 確か C# 7.2 のとき、Roslyn は 2.6.0 -->
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.6.0" />
     <Compile Include="../ReadModReq/**/*.cs" Exclude="../ReadModReq/obj/**/*.cs" />
   </ItemGroup>
