@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>テキスト Canvas レンダリング</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <table title="テキストを Canvas にレンダリングします">
+        <tr>
+            <td title="レンダリングしたい文字を直接入力します">直接入力</td>
+            <td><input type="text" id="rawText" size="70" onfocus="this.select()" value="👨‍👩‍👧‍👦"></td>
+            <td><input type="button" id="rawButton" value="run"></td>
+        </tr>
+        <tr title="スペース区切りの16進数でコードポイントを並べて入力します">
+            <td>コードポイント</td>
+            <td><input type="text" id="cpText" size="70" onfocus="this.select()" value=""></td>
+            <td><input type="button" id="cpButton" value="run"></td>
+        </tr>
+    </table>
+    <div title="Canvas 背景を transparent にしてあるので、「画像をコピー」で透過画像化できます">
+        <canvas id="canvas" width="150" height="120" style="background-color: transparent; padding: 0; margin: 0; font-size: 80px;"></canvas>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        context.font = "80px sans-serif";
+
+        function runRaw(){
+            var raw = $("#rawText").val();
+            var codePoints = [...raw];
+
+            var encoded = "";
+            codePoints.forEach(x => {
+                if (encoded != "") { encoded += ' '; }
+                encoded += x.codePointAt().toString(16);
+            });
+
+            context.clearRect(0, 0, 150, 120);
+            context.fillText(raw, 0, 90);
+
+            $("#cpText").val(encoded);
+        }
+
+        function runCp(){
+            var s = $("#cpText").val();
+            var seq = s.split(' ');
+            var codePoints = [];
+
+            seq.forEach(x => {
+                codePoints.push(parseInt(x, 16));
+            });
+            var decoded = String.fromCodePoint(...codePoints);
+
+            context.clearRect(0, 0, 150, 120);
+            context.fillText(decoded, 0, 90);
+
+            $("#rawText").val(decoded);
+        }
+
+        $("#rawText").keydown(() => { if( window.event.keyCode == 13 ) { runRaw(); } });
+        $("#cpText").keydown(() => { if( window.event.keyCode == 13 ) { runCp(); } });
+        $("#rawButton").click(runRaw);
+        $("#cpButton").click(runCp);
+
+        runRaw();
+    </script>
+</body>
+</html>
