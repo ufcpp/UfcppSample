@@ -7,10 +7,6 @@ namespace UserInputSample
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void RaisePropertyChanged(string propertyName)
-        {
-            var d = PropertyChanged;
-            if (d != null)
-                d(this, new PropertyChangedEventArgs(propertyName));
-        }
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -8,7 +8,7 @@ namespace UserInputSample
         {
             InitializeComponent();
 
-            this.DataContext = new InputData();
+            DataContext = new InputData();
         }
     }
 }

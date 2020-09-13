@@ -5,27 +5,19 @@ namespace UserInputSample
 {
     public class DelegateCommand : ICommand
     {
-        Action executer;
+        private readonly Action _executer;
 
-        public DelegateCommand(Action executer) { this.executer = executer; }
+        public DelegateCommand(Action executer) { _executer = executer; }
 
-        public void Execute(object parameter)
-        {
-            executer();
-        }
+        public void Execute(object? parameter) => _executer();
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object? parameter) => true;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public void RaiseCanExecuteChanged()
         {
-            var d = CanExecuteChanged;
-            if (d != null)
-                d(this, null);
+            CanExecuteChanged?.Invoke(this, null!);
         }
     }
 }
