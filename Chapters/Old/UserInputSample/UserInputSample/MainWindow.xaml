@@ -1,0 +1,49 @@
+﻿<Window x:Class="UserInputSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="演習問題用ひな形" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="A" Grid.Row="0" />
+        <TextBox Text="{Binding A}" Grid.Row="0" Grid.Column="1" />
+
+        <TextBlock Text="B" Grid.Row="1" />
+        <TextBox Text="{Binding B}" Grid.Row="1" Grid.Column="1" />
+
+        <TextBlock Text="C" Grid.Row="2" />
+        <TextBox Text="{Binding C}" Grid.Row="2" Grid.Column="1" />
+
+        <TextBlock Text="D" Grid.Row="3" />
+        <TextBox Text="{Binding D}" Grid.Row="3" Grid.Column="1" />
+
+        <TextBlock Text="E" Grid.Row="4" />
+        <TextBox Text="{Binding E}" Grid.Row="4" Grid.Column="1" />
+        
+        <Button Content="実行"
+                Command="{Binding RunCommand}"
+                IsDefault="True"
+                Grid.ColumnSpan="2" Grid.Row="5" />
+
+        <TextBlock Text="結果" Grid.Row="6" />
+        <TextBox Text="{Binding Result}" Grid.Row="6" Grid.Column="1" />
+    </Grid>
+</Window>
