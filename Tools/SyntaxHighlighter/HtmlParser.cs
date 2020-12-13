@@ -13,7 +13,7 @@ namespace SyntaxHighlighter
     /// https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.CopyAsHtml
     /// こいつをインストールしてる前提。
     /// </remarks>
-    class HtmlParser : IParser
+    internal class HtmlParser : IParser
     {
         public static IDictionary<string, string> ColorToTagNameCsharp = new Dictionary<string, string>
         {
@@ -38,7 +38,7 @@ namespace SyntaxHighlighter
             { "#a31515", "element" },
         };
 
-        private IDictionary<string, string> ColorToTagNameMap;
+        private readonly IDictionary<string, string> ColorToTagNameMap;
 
         public HtmlParser(Mode mode)
         {
@@ -47,9 +47,9 @@ namespace SyntaxHighlighter
             else throw new InvalidOperationException();
         }
 
-        static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);
-        static readonly Regex regColorSpan = new Regex(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
-        static readonly Regex regEmptySpan = new Regex(@"\<span style="""">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regColorSpan = new Regex(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regEmptySpan = new Regex(@"\<span style="""">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
 
         public string Parse(string text)
         {

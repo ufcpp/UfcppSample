@@ -13,7 +13,7 @@ namespace SyntaxHighlighter
     [Serializable]
     public struct Color
     {
-        uint v_;
+        private uint v_;
 
         public byte R
         {
@@ -31,7 +31,7 @@ namespace SyntaxHighlighter
             set { v_ = (v_ & 0x00ffff) | (((uint)value) << 16); }
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (!(obj is Color))
                 return false;
@@ -43,5 +43,8 @@ namespace SyntaxHighlighter
         {
             return v_.GetHashCode();
         }
+
+        public static bool operator ==(Color left, Color right) => left.Equals(right);
+        public static bool operator !=(Color left, Color right) => !(left == right);
     }
 }

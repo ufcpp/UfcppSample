@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace SyntaxHighlighter
 {
-    interface IParser
+    internal interface IParser
     {
         string Parse(string text);
     }
@@ -13,7 +13,7 @@ namespace SyntaxHighlighter
     /// 簡易 RTF パーサー。
     /// ぶっちゃけ、Visual Studio のテキストエディターが出力する RTF 以外対応する気まるでなし。
     /// </summary>
-    class RtfParser : IParser
+    internal class RtfParser : IParser
     {
         #region public メソッド
 
@@ -61,7 +61,8 @@ namespace SyntaxHighlighter
         /// <summary>
         /// 色と XML タグの対応表。
         /// </summary>
-        private IDictionary<Color, string> ColorToTagNameMap;
+        private readonly IDictionary<Color, string> ColorToTagNameMap;
+
         // ↑シリアライズできるようにしといた方がいいかも。
 
         #endregion
@@ -71,12 +72,12 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の {\colortbl ...} を抽出。
         /// </summary>
-        Regex regColortbl = new Regex(@"\{\\colortbl\s*;(?<items>.*?)\}", RegexOptions.Compiled);
+        private readonly Regex regColortbl = new Regex(@"\{\\colortbl\s*;(?<items>.*?)\}", RegexOptions.Compiled);
 
         /// <summary>
         /// RTF の {\colortbl ...} の中身から色情報を抽出。
         /// </summary>
-        Regex regColortblItem = new Regex(@"\\red(?<r>\d*)\\green(?<g>\d*)\\blue(?<b>\d*)", RegexOptions.Compiled);
+        private readonly Regex regColortblItem = new Regex(@"\\red(?<r>\d*)\\green(?<g>\d*)\\blue(?<b>\d*)", RegexOptions.Compiled);
 
         /// <summary>
         /// RTF のヘッダー情報を読み込む。
@@ -114,9 +115,9 @@ namespace SyntaxHighlighter
         /// <summary>
         /// VS のはきだす RTF は日本語が \input2\u***** ** みたいな変な状態になってるのでそれをもとに戻す。
         /// </summary>
-        Regex regU = new Regex(@"\\uinput2\\u(?<code>-?\d*)\s..", RegexOptions.Compiled);
+        private readonly Regex regU = new Regex(@"\\uinput2\\u(?<code>-?\d*)\s..", RegexOptions.Compiled);
 
-        string DecodeU(Match m)
+        private string DecodeU(Match m)
         {
             return new string((char)int.Parse(m.Groups["code"].Value), 1);
         }
@@ -124,17 +125,17 @@ namespace SyntaxHighlighter
         /// <summary>
         /// 改行文字のところが \par になってるので、それを抽出。
         /// </summary>
-        Regex regPar = new Regex(@"(?<=[^\\])\\par\s?", RegexOptions.Compiled);
+        private readonly Regex regPar = new Regex(@"(?<=[^\\])\\par\s?", RegexOptions.Compiled);
 
         /// <summary>
         /// 末尾の空白。
         /// </summary>
-        Regex regTailWhite = new Regex(@"\s*$", RegexOptions.Singleline | RegexOptions.Compiled);
+        private readonly Regex regTailWhite = new Regex(@"\s*$", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// 未対応のタグ削除用。
         /// </summary>
-        Regex regOther = new Regex(@"\\\w+\s", RegexOptions.Singleline | RegexOptions.Compiled);
+        private readonly Regex regOther = new Regex(@"\\\w+\s", RegexOptions.Singleline | RegexOptions.Compiled);
 
         #endregion
         #region RTF の \cf* → XML タグ
@@ -142,11 +143,12 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の \cf* の色番号をどの XML タグに変換するかの一覧。
         /// </summary>
-        string[] colorTable_;
+        private string[]? colorTable_;
 
         private string GetTag(Match m)
         {
             var i = GetCfNumber(m);
+            System.Diagnostics.Debug.Assert(colorTable_ is not null);
             var tag = colorTable_[i];
             return tag;
         }
@@ -163,9 +165,8 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF のうち、文章本体を抽出。
         /// </summary>
-        Regex regBody = new Regex(@"\\f0\s*\\fs\d*\s?(?<body>.*?)(?<=[^\\])\}", RegexOptions.Singleline | RegexOptions.Compiled);
-
-        string? prevTag_ = null;
+        private readonly Regex regBody = new Regex(@"\\f0\s*\\fs\d*\s?(?<body>.*?)(?<=[^\\])\}", RegexOptions.Singleline | RegexOptions.Compiled);
+        private string? prevTag_ = null;
 
         /// <summary>
         /// &lt; &gt; &amp; にしたり、
@@ -224,7 +225,7 @@ namespace SyntaxHighlighter
         /// ]]>
         /// みたいな構造を抽出。
         /// </summary>
-        Regex regPairTag1 = new Regex(@"<(?<open>[^>]*?)>(?<content>\s*?)</(?<close>[^>]*?)>", RegexOptions.Singleline | RegexOptions.Compiled);
+        private readonly Regex regPairTag1 = new Regex(@"<(?<open>[^>]*?)>(?<content>\s*?)</(?<close>[^>]*?)>", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// <![CDATA[
@@ -232,14 +233,14 @@ namespace SyntaxHighlighter
         /// ]]>
         /// みたいな構造を抽出。
         /// </summary>
-        Regex regPairTag2 = new Regex(@"</(?<close>[^>]*?)>(?<content>\s*?)<(?<open>[^>]*?)>", RegexOptions.Singleline | RegexOptions.Compiled);
+        private readonly Regex regPairTag2 = new Regex(@"</(?<close>[^>]*?)>(?<content>\s*?)<(?<open>[^>]*?)>", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// 中に空白文字しかないタグを消す。
         /// </summary>
         /// <param name="m">マッチ結果</param>
         /// <returns>変換結果</returns>
-        string RemoveWhiteSpaceElement(Match m)
+        private string RemoveWhiteSpaceElement(Match m)
         {
             if (m.Groups["open"].Value == m.Groups["close"].Value)
                 return m.Groups["content"].Value;
@@ -253,7 +254,7 @@ namespace SyntaxHighlighter
         /// <summary>
         /// RTF の \cf* を抽出。
         /// </summary>
-        static Regex regCf = new Regex(@"(^|(?<=[^\\]))\\cf(?<n>\d+)? ", RegexOptions.Singleline | RegexOptions.Compiled);
+        private static readonly Regex regCf = new Regex(@"(^|(?<=[^\\]))\\cf(?<n>\d+)? ", RegexOptions.Singleline | RegexOptions.Compiled);
 
 
 
@@ -262,7 +263,7 @@ namespace SyntaxHighlighter
         /// </summary>
         /// <param name="m">マッチ結果</param>
         /// <returns>変換結果</returns>
-        string InsertTag(Match m)
+        private string InsertTag(Match m)
         {
             var tag = GetTag(m);
 
