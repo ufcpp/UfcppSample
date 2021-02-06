@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NonCopyableAnalyzer" Version="0.6.0" />
+    <PackageReference Include="StringLiteralGenerator" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>
