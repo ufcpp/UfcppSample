@@ -18,7 +18,7 @@ Console.WriteLine(TypeRepository.CreateInstance("A")); // A
 Console.WriteLine(TypeRepository.CreateInstance("B")); // B
 
 // あまり手書きはしたくないものの、Source Generator がある今、
-// 必要な型に大して以下のようなコード生成をするのは十分現実的。
+// 必要な型に対して以下のようなコード生成をするのは十分現実的。
 // ただ、静的コンストラクターは呼ばれるタイミングに問題があって…
 class A
 {
