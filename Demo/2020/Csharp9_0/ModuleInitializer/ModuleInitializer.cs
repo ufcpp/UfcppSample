@@ -23,4 +23,21 @@ class B
     public static void Init() => TypeRepository.Register(nameof(B), () => new B());
 }
 
+// ただ、ジェネリックな型に対して同じことをしようとすると…
+class Generic<T>
+{
+}
+
+// 非ジェネリックなものを1個用意して、
+class Generic
+{
+    [ModuleInitializer]
+    public static void Init()
+    {
+        TypeRepository.Register(typeof(Generic<>) + "<int>", () => new Generic<int>());
+        TypeRepository.Register(typeof(Generic<>) + "<string>", () => new Generic<string>());
+        // 以下、使うことがわかっている限りの具象型を並べる必要がある。
+    }
+}
+
 #endif
