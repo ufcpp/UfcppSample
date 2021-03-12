@@ -58,5 +58,43 @@ namespace RgiSequenceFinder
                 _ => 0,
             };
         }
+
+        /// <summary>
+        /// 国旗を判定。
+        /// 参考: http://unicode.org/reports/tr51/#def_std_emoji_flag_sequence_set
+        /// </summary>
+        /// <returns>
+        /// 国旗絵文字が存在したらその文字列長を、
+        /// なければ0を返す。
+        ///
+        /// これも2文字固定の仕様で、これは今後多分 Unicode 的にも変更不可能なレベルの仕様だと思うので、
+        /// <see cref="IsKeycap(ReadOnlySpan{char})"/> 以上の確度で0か2しか返さない。
+        /// </returns>
+        /// <remarks>
+        /// キャリア絵文字の闇その1。
+        ///
+        /// 他の grapheme 判定と違って「特定の範囲の文字が2文字並んでいるときに区切る」っていう特殊仕様。
+        /// (他は正規表現でいうところの * (0個以上)判定)。
+        ///
+        /// 他の仕様と完全に独立だし、「必ず2文字で区切る」って処理がかなり変なのでこれも先に判定。
+        ///
+        /// Regional Indicator っていう 1F1E6-1F1FF の26文字を使う。
+        /// UTF-16 の場合、
+        /// high surrogate が D83C 固定で、
+        /// low surrogate が DDE6-DDFF。
+        /// </remarks>
+        public static int IsFlag(ReadOnlySpan<char> s)
+        {
+            if (s.Length < 4) return 0;
+
+            if (s[0] != 0xD83C || s[2] != 0xD83C) return 0;
+
+            if (!isRegionalIndicatorLowSurrogate(s[1])) return 0;
+            if (!isRegionalIndicatorLowSurrogate(s[3])) return 0;
+
+            return 2;
+
+            static bool isRegionalIndicatorLowSurrogate(char c) => c is >= (char)0xDDE6 and <= (char)0xDDFF;
+        }
     }
 }

@@ -1,9 +1,14 @@
 ﻿using RgiSequenceFinder;
+using System;
 
+var count = 0;
 foreach (var s in Data.RgiEmojiSequenceList)
 {
-    if (GraphemeBreak.IsKeycap(s) > 0)
+    if (GraphemeBreak.IsFlag(s) > 0)
     {
-        System.Console.WriteLine(s);
+        ++count;
+        Console.WriteLine(s);
     }
 }
+
+Console.WriteLine(count);
