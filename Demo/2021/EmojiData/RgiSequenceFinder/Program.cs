@@ -2,5 +2,8 @@
 
 foreach (var s in Data.RgiEmojiSequenceList)
 {
-    System.Console.WriteLine(s);
+    if (GraphemeBreak.IsKeycap(s) > 0)
+    {
+        System.Console.WriteLine(s);
+    }
 }
