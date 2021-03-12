@@ -4,7 +4,7 @@ using System;
 var count = 0;
 foreach (var s in Data.RgiEmojiSequenceList)
 {
-    if (GraphemeBreak.IsFlag(s) > 0)
+    if (GraphemeBreak.IsKeycap(s))
     {
         ++count;
         Console.WriteLine(s);

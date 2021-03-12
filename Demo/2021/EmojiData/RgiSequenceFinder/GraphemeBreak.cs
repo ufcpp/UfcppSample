@@ -31,32 +31,24 @@ namespace RgiSequenceFinder
         /// </summary>
         /// <param name="s">判定対象</param>
         /// <returns>
-        /// keycap が存在したらその文字列長を、
-        /// なければ0を返す。
+        /// keycap だったら true。
         ///
-        /// 現状の仕様だともし見つかるなら3文字固定だし、
-        /// 今後こんな変な仕様の絵文字を増やすとは思えないので、
-        /// 実質的には0か3しか返さない。
+        /// keycap みたいな変な仕様、今後追加されるとは思えないので「3文字固定」だと思って扱うことにする。
         /// </returns>
         /// <remarks>
         /// 唯一 ASCII 文字開始の絵文字シーケンスでたちが悪いので先に判定。
         /// </remarks>
-        public static int IsKeycap(ReadOnlySpan<char> s)
+        public static bool IsKeycap(ReadOnlySpan<char> s)
         {
-            if (s.Length < 3) return 0;
+            if (s.Length < 3) return false;
 
             // combining enclosing keycap
-            if (s[2] != 0x20E3) return 0;
+            if (s[2] != 0x20E3) return false;
 
             // variation selector-16
-            if (s[1] != 0xFE0F) return 0;
+            if (s[1] != 0xFE0F) return false;
 
-            return s[0] switch
-            {
-                >= '0' and <= '9' => 3,
-                '#' or '*' => 3,
-                _ => 0,
-            };
+            return s[0] is (>= '0' and <= '9') or '#' or '*';
         }
 
         /// <summary>
