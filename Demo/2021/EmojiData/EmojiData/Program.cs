@@ -14,4 +14,7 @@ var emojiSequenceList = EmojiSequence.EnumerateRgiEmojiSequence(doc).ToArray();
 //Inspector.CountRunes(emojiSequenceList);
 //Inspector.Keycaps(emojiSequenceList);
 //Inspector.Category(emojiSequenceList);
-Inspector.GraphemeBreak(emojiSequenceList);
+//Inspector.GraphemeBreak(emojiSequenceList);
+
+//SourceGenerator.WriteLineTest(emojiSequenceList);
+SourceGenerator.WriteStringArray(emojiSequenceList, "RgiList.cs");
