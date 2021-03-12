@@ -56,11 +56,11 @@ namespace RgiSequenceFinder
         /// 参考: http://unicode.org/reports/tr51/#def_std_emoji_flag_sequence_set
         /// </summary>
         /// <returns>
-        /// 国旗絵文字が存在したらその文字列長を、
-        /// なければ0を返す。
+        /// 国旗絵文字が存在したら国コードに対応する数値(<see cref="RegionalCode"/>)を、
+        /// なければ-1を返す。
         ///
-        /// これも2文字固定の仕様で、これは今後多分 Unicode 的にも変更不可能なレベルの仕様だと思うので、
-        /// <see cref="IsKeycap(ReadOnlySpan{char})"/> 以上の確度で0か2しか返さない。
+        /// これも2文字固定の仕様で、これは今後多分 Unicode 的にも変更不可能なレベルの仕様だと思うので、文字列長は返さなくていいはず。
+        /// 戻り値を int とか short にしちゃうと他のメソッドの「grapheme cluster 長を返す」って仕様と混ざるのが怖いので専用の型を作った。
         /// </returns>
         /// <remarks>
         /// キャリア絵文字の闇その1。
@@ -75,16 +75,16 @@ namespace RgiSequenceFinder
         /// high surrogate が D83C 固定で、
         /// low surrogate が DDE6-DDFF。
         /// </remarks>
-        public static int IsFlag(ReadOnlySpan<char> s)
+        public static RegionalCode IsFlag(ReadOnlySpan<char> s)
         {
-            if (s.Length < 4) return 0;
+            if (s.Length < 4) return RegionalCode.Invalid;
 
-            if (s[0] != 0xD83C || s[2] != 0xD83C) return 0;
+            if (s[0] != 0xD83C || s[2] != 0xD83C) return RegionalCode.Invalid;
 
-            if (!isRegionalIndicatorLowSurrogate(s[1])) return 0;
-            if (!isRegionalIndicatorLowSurrogate(s[3])) return 0;
+            if (!isRegionalIndicatorLowSurrogate(s[1])) return RegionalCode.Invalid;
+            if (!isRegionalIndicatorLowSurrogate(s[3])) return RegionalCode.Invalid;
 
-            return 2;
+            return new(s[1], s[3]);
 
             static bool isRegionalIndicatorLowSurrogate(char c) => c is >= (char)0xDDE6 and <= (char)0xDDFF;
         }
