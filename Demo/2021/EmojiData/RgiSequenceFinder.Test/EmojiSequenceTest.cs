@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -38,15 +38,15 @@ namespace RgiSequenceFinder.Test
                 }
             }
 
-            // Regional Indicator ‚ğg‚Á‚½•¶š‚ª‚±‚êˆÈã‘‚¦‚é‚Æ‚Ív‚¦‚È‚¢‚¯‚ÇAˆê‰ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Ä•Ï‚í‚é‰Â”\«‚Í‚ ‚é‚Ì‚Å’ˆÓB
-            // ­‚È‚­‚Æ‚à Emoji 2.0 (Unicode 6.0) ` Unicode 13.1 ‚Å‚Í258•¶š‚Ì‚Í‚¸B
+            // Regional Indicator ã‚’ä½¿ã£ãŸæ–‡å­—ãŒã“ã‚Œä»¥ä¸Šå¢—ãˆã‚‹ã¨ã¯æ€ãˆãªã„ã‘ã©ã€ä¸€å¿œãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹å¯èƒ½æ€§ã¯ã‚ã‚‹ã®ã§æ³¨æ„ã€‚
+            // å°‘ãªãã¨ã‚‚ Emoji 2.0 (Unicode 6.0) ï½ Unicode 13.1 ã§ã¯258æ–‡å­—ã®ã¯ãšã€‚
             Assert.Equal(258, count);
         }
 
         [Fact]
         public void TestTagSequence()
         {
-            // Œ»s‚Ì RGI ‚¾‚Æ gbeng, gbsct, gbwls ‚Ì3‚Â‚¾‚¯‚Ì‚Í‚¸B
+            // ç¾è¡Œã® RGI ã ã¨ gbeng, gbsct, gbwls ã®3ã¤ã ã‘ã®ã¯ãšã€‚
             var subdivitions = new HashSet<TagSequence>(new[] { TagSequence.FromAscii("gbeng"), TagSequence.FromAscii("gbsct"), TagSequence.FromAscii("gbwls") });
 
             var count = 0;
@@ -65,10 +65,10 @@ namespace RgiSequenceFinder.Test
         }
 
         /// <summary>
-        /// <see cref="Data.RgiEmojiSequenceList"/> ‚É“ü‚ê‚½•¶š‚Í‘S•”uÅŒã‚Ü‚Å1‚Â‚È‚¬‚ÌŠG•¶šƒV[ƒPƒ“ƒXv”»’è‚ğó‚¯‚é‚Í‚¸B
+        /// <see cref="Data.RgiEmojiSequenceList"/> ã«å…¥ã‚ŒãŸæ–‡å­—ã¯å…¨éƒ¨ã€Œæœ€å¾Œã¾ã§1ã¤ãªãã®çµµæ–‡å­—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€åˆ¤å®šã‚’å—ã‘ã‚‹ã¯ãšã€‚
         /// </summary>
         [Fact]
-        public void RgiŠG•¶šƒV[ƒPƒ“ƒX‘S‘Ì‚ğGetEmojiSequenceLength‚É‚©‚¯‚é()
+        public void Rgiçµµæ–‡å­—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å…¨ä½“ã‚’GetEmojiSequenceLengthã«ã‹ã‘ã‚‹()
         {
             foreach (var s in Data.RgiEmojiSequenceList)
             {
@@ -79,10 +79,10 @@ namespace RgiSequenceFinder.Test
         }
 
         /// <summary>
-        /// <see cref="Data.RgiEmojiSequenceList"/> ‘OŒã‚É–³ŠÖŒW‚Ì•¶š‚ğ‹²‚ñ‚Å‚İ‚ÄA‚¿‚á‚ñ‚ÆŠG•¶šƒV[ƒPƒ“ƒX‚Ì•”•ª‚¾‚¯”²‚«o‚³‚ê‚Ä‚é‚©Œ©‚Ä‚İ‚éB
+        /// <see cref="Data.RgiEmojiSequenceList"/> å‰å¾Œã«ç„¡é–¢ä¿‚ã®æ–‡å­—ã‚’æŒŸã‚“ã§ã¿ã¦ã€ã¡ã‚ƒã‚“ã¨çµµæ–‡å­—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®éƒ¨åˆ†ã ã‘æŠœãå‡ºã•ã‚Œã¦ã‚‹ã‹è¦‹ã¦ã¿ã‚‹ã€‚
         /// </summary>
         [Fact]
-        public void RgiŠG•¶šƒV[ƒPƒ“ƒX‚Ì‘OŒã‚ÉAscii‚ğ‹²‚ñ‚Å‚©‚çGetEmojiSequenceLength‚É‚©‚¯‚é()
+        public void Rgiçµµæ–‡å­—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å‰å¾Œã«Asciiã‚’æŒŸã‚“ã§ã‹ã‚‰GetEmojiSequenceLengthã«ã‹ã‘ã‚‹()
         {
             const string NonEmoji = "abc";
             foreach (var s in Data.RgiEmojiSequenceList)
@@ -92,7 +92,7 @@ namespace RgiSequenceFinder.Test
 
                 var span = s2.AsSpan();
 
-                // ”ñŠG•¶š•”•ªAí‚É0‚ª•Ô‚Á‚Ä‚«‚Ä1•¶ši‚ß‚ê‚Î‚¢‚¢‚Í‚¸B
+                // éçµµæ–‡å­—éƒ¨åˆ†ã€å¸¸ã«0ãŒè¿”ã£ã¦ãã¦1æ–‡å­—é€²ã‚ã‚Œã°ã„ã„ã¯ãšã€‚
                 for (int i = 0; i < NonEmoji.Length; i++)
                 {
                     emoji = GraphemeBreak.GetEmojiSequence(span);
@@ -100,13 +100,13 @@ namespace RgiSequenceFinder.Test
                     span = span.Slice(emoji.LengthInUtf16);
                 }
 
-                // ŠG•¶š•”•ªAŒ³‚Ì•¶š—ñ‚Æ“¯‚¶‚Í‚¸B
+                // çµµæ–‡å­—éƒ¨åˆ†ã€å…ƒã®æ–‡å­—åˆ—ã¨åŒã˜ã¯ãšã€‚
                 emoji = GraphemeBreak.GetEmojiSequence(span);
                 Assert.NotEqual(EmojiSequenceType.NotEmoji, emoji.Type);
                 Assert.Equal(s.Length, emoji.LengthInUtf16);
                 span = span.Slice(emoji.LengthInUtf16);
 
-                // ”ñŠG•¶š•”•ªAí‚É0‚ª•Ô‚Á‚Ä‚«‚Ä1•¶ši‚ß‚ê‚Î‚¢‚¢‚Í‚¸B
+                // éçµµæ–‡å­—éƒ¨åˆ†ã€å¸¸ã«0ãŒè¿”ã£ã¦ãã¦1æ–‡å­—é€²ã‚ã‚Œã°ã„ã„ã¯ãšã€‚
                 for (int i = 0; i < NonEmoji.Length; i++)
                 {
                     emoji = GraphemeBreak.GetEmojiSequence(span);
@@ -114,7 +114,7 @@ namespace RgiSequenceFinder.Test
                     span = span.Slice(emoji.LengthInUtf16);
                 }
 
-                // ÅŒã‚Ü‚Å“Ç‚İØ‚Á‚½‚Í‚¸B
+                // æœ€å¾Œã¾ã§èª­ã¿åˆ‡ã£ãŸã¯ãšã€‚
                 Assert.Equal(0, span.Length);
             }
         }
