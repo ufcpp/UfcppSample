@@ -39,27 +39,30 @@ namespace RgiSequenceFinder
         /// Estimate (大体の予測)って名前が付いているのからお察しな通り、本来の grapheme cluster 分割よりもだいぶ荒い。
         /// 「この後 RGI 絵文字シーケンスの判定はどの道テーブルを引くしかないから正確な判定はそっちできるはず」という前提。
         /// </remarks>
-        public static int GetEmojiSequenceLength(ReadOnlySpan<char> s)
+        public static (EmojiSequenceType type, int length) GetEmojiSequenceLength(ReadOnlySpan<char> s)
         {
             // パフォーマンス用。 empty 時に early return。
-            if (s.Length == 0) return 0;
+            if (s.Length == 0) return (EmojiSequenceType.NotEmoji, 0);
 
-            if (IsKeycap(s)) return 3;
+            if (IsKeycap(s)) return (EmojiSequenceType.Keycap, 3);
 
             // パフォーマンス用。keycap 以外に ASCII 出てこないので ASCII 用 fast path。
-            if (s[0] < 0x80) return 0;
+            if (s[0] < 0x80) return (EmojiSequenceType.NotEmoji, 1);
 
             // ここから下の判定に入らないこと荒く判定できるんで、それで先にはじいちゃう fast path。
-            if (!CanBePictgraphic(s[0])) return 0;
+            if (!CanBePictgraphic(s[0])) return (EmojiSequenceType.NotEmoji, 1);
 
             // RI 国旗。
-            if (IsFlagSequence(s) is { Value: >= 0 }) return 4;
+            if (IsFlagSequence(s) is { Value: >= 0 }) return (EmojiSequenceType.Flag, 4);
 
             // Tag 国旗。
             var count = IsTagSequence(s);
-            if (count > 0) return count;
+            if (count > 0) return (EmojiSequenceType.Tag, count);
 
-            return IsZwjSequence(s);
+            count = IsZwjSequence(s);
+
+            if (count == 0) return (EmojiSequenceType.NotEmoji, 1);
+            else return (EmojiSequenceType.Other, count);
         }
 
         /// <summary>
