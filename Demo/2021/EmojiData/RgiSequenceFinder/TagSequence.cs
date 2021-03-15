@@ -86,7 +86,8 @@ namespace RgiSequenceFinder
                 s = s.Slice(2);
             }
 
-            // Tag が付いてないときは 0 にしないと 1F3F4-200D-2620-FE0F (海賊旗)とかを拾っちゃう。
+            // 🏴 だけあって Tag が付いてないときと、🏴 もない時の区別は多分要らないと思う。
+            // 1F3F4-200D-2620-FE0F (海賊旗)みたいな文字があるけど、それは ZWJ シーケンス判定の方で拾う。
             return (i, tags);
 
             static bool isTagLowSurrogate(char c) => c is >= (char)0xDC00 and <= (char)0xDC7F;
@@ -94,8 +95,7 @@ namespace RgiSequenceFinder
 
         public override string ToString()
         {
-            if (Tag0 == 0) return "NONE";
-            if (Tag0 == 255) return "TOO LONG";
+            if (Tag0 == 0) return "";
 
             var sb = new StringBuilder();
             var span = this.AsSpan();
