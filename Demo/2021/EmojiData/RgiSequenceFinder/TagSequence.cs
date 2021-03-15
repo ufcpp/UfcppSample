@@ -19,7 +19,7 @@ namespace RgiSequenceFinder
     /// 先頭の文字(現状の RGI では 🏴 (1F3F4) 以外ありえない)は今、単に削除しちゃってる。
     /// 先頭文字を残すかどうかは後々というか、実際のところあり得ないとは思うけども、旗以外の emoji tag sequence が追加されたらまた改めて考える。
     /// </remarks>
-    public struct Tags
+    public struct TagSequence
     {
         // 現状、emoji tag sequence のタグが6文字以上の RGI 絵文字はないんだけど、
         // どうせ alignment で8に揃えられたりするので8バイト取っとく。
@@ -34,7 +34,7 @@ namespace RgiSequenceFinder
 
         public const int TagMaxLength = 8;
 
-        public static readonly Tags TooLong = new() { Tag0 = 255 };
+        public static readonly TagSequence TooLong = new() { Tag0 = 255 };
 
         /// <summary>
         /// 🏴 始まりの emoji tag sequence かどうかを判定。
@@ -60,7 +60,7 @@ namespace RgiSequenceFinder
         ///
         /// タグ文字を使う仕様がこいつだけなので、これも先に判定してしまえば他の絵文字シーケンス処理から E0000 台の判定を消せる。
         /// </remarks>
-        public static (int count, Tags tags) FromFlagSequence(ReadOnlySpan<char> s)
+        public static (int count, TagSequence tags) FromFlagSequence(ReadOnlySpan<char> s)
         {
             if (s.Length < 2) return default;
 
@@ -68,7 +68,7 @@ namespace RgiSequenceFinder
             if (s[1] != 0xDFF4) return default;
 
             var i = 0;
-            Tags tags = default;
+            TagSequence tags = default;
             var tagsSpan = tags.AsSpan();
 
             s = s.Slice(2);
@@ -111,6 +111,6 @@ namespace RgiSequenceFinder
 
     internal static class TagSequenceExtensions
     {
-        public static Span<byte> AsSpan(ref this Tags tags) => MemoryMarshal.CreateSpan(ref tags.Tag0, 8);
+        public static Span<byte> AsSpan(ref this TagSequence tags) => MemoryMarshal.CreateSpan(ref tags.Tag0, 8);
     }
 }

@@ -56,10 +56,10 @@ namespace RgiSequenceFinder
             if (RegionalIndicator.Create(s) is { First: not 0 }) return (EmojiSequenceType.Flag, 4);
 
             // Tag 国旗。
-            var (tagCount, _) = Tags.FromFlagSequence(s);
+            var (tagCount, _) = TagSequence.FromFlagSequence(s);
             if (tagCount != 0)
             {
-                var type = tagCount > Tags.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag;
+                var type = tagCount > TagSequence.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag;
                 return (type, 2 * tagCount + 2);
             }
 

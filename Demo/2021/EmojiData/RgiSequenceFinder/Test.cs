@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RgiSequenceFinder
 {
@@ -11,7 +7,7 @@ namespace RgiSequenceFinder
     /// </summary>
     class Test
     {
-        public static void Keycap()
+        public static void TestKeycap()
         {
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
@@ -25,7 +21,7 @@ namespace RgiSequenceFinder
             Console.WriteLine(count);
         }
 
-        public static void FlagSequence()
+        public static void TestFlagSequence()
         {
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
@@ -39,12 +35,12 @@ namespace RgiSequenceFinder
             Console.WriteLine(count);
         }
 
-        public static void TagSequence()
+        public static void TestTagSequence()
         {
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                var (tagCount, tags) = Tags.FromFlagSequence(s);
+                var (tagCount, tags) = TagSequence.FromFlagSequence(s);
                 if (tagCount > 0)
                 {
                     ++count;
