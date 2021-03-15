@@ -12,7 +12,7 @@ namespace RgiSequenceFinder
     /// 1F3F4-E0067-E0062-E0073-E0063-E0074-E007F であれば gbsct [ESC] の6文字。
     ///
     /// タグ数が <see cref="TagMaxLength"/> 以上のときは情報が切り捨てられるので注意
-    /// (<see cref="GraphemeBreak"/> 側で <see cref="EmojiSequenceType.MoreBufferRequired"/> 化してる)。
+    /// (<see cref="EmojiSequence"/> 側で <see cref="EmojiSequenceType.MoreBufferRequired"/> 化してる)。
     ///
     /// 逆にタグ数が  <see cref="TagMaxLength"/> より少ない時(というか、現状6しかあり得ない)、後ろの方(現状、末尾2文字)は0詰め。
     ///

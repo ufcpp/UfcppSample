@@ -59,7 +59,7 @@ namespace RgiSequenceFinder
         {
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                var (type, length) = GraphemeBreak.GetEmojiSequenceLength(s);
+                var (type, length) = GraphemeBreak.GetEmojiSequence(s);
                 if (length != s.Length)
                 {
                     Console.WriteLine("error0 " + s);
@@ -80,33 +80,33 @@ namespace RgiSequenceFinder
             foreach (var s in Data.RgiEmojiSequenceList)
             {
                 var s2 = NonEmoji + s + NonEmoji;
-                (EmojiSequenceType type, int length) len;
+                EmojiSequence len;
 
                 var span = s2.AsSpan();
 
                 // 非絵文字部分、常に0が返ってきて1文字進めればいいはず。
                 for (int i = 0; i < NonEmoji.Length; i++)
                 {
-                    len = GraphemeBreak.GetEmojiSequenceLength(span);
-                    if (len.type != EmojiSequenceType.NotEmoji) Console.WriteLine("error1 " + s);
-                    span = span.Slice(len.length);
+                    len = GraphemeBreak.GetEmojiSequence(span);
+                    if (len.Type != EmojiSequenceType.NotEmoji) Console.WriteLine("error1 " + s);
+                    span = span.Slice(len.LengthInUtf16);
                 }
 
                 // 絵文字部分、元の文字列と同じはず。
-                len = GraphemeBreak.GetEmojiSequenceLength(span);
-                if (len.type == EmojiSequenceType.NotEmoji) Console.WriteLine("error2 " + s);
-                if (len.length != s.Length)
+                len = GraphemeBreak.GetEmojiSequence(span);
+                if (len.Type == EmojiSequenceType.NotEmoji) Console.WriteLine("error2 " + s);
+                if (len.LengthInUtf16 != s.Length)
                 {
                     Console.WriteLine("error3 " + s);
                 }
-                span = span.Slice(len.length);
+                span = span.Slice(len.LengthInUtf16);
 
                 // 非絵文字部分、常に0が返ってきて1文字進めればいいはず。
                 for (int i = 0; i < NonEmoji.Length; i++)
                 {
-                    len = GraphemeBreak.GetEmojiSequenceLength(span);
-                    if (len.type != EmojiSequenceType.NotEmoji) Console.WriteLine("error4 " + s);
-                    span = span.Slice(len.length);
+                    len = GraphemeBreak.GetEmojiSequence(span);
+                    if (len.Type != EmojiSequenceType.NotEmoji) Console.WriteLine("error4 " + s);
+                    span = span.Slice(len.LengthInUtf16);
                 }
 
                 // 最後まで読み切ったはず。

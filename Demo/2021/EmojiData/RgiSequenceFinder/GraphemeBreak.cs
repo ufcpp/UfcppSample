@@ -40,34 +40,30 @@ namespace RgiSequenceFinder
         /// Estimate (大体の予測)って名前が付いているのからお察しな通り、本来の grapheme cluster 分割よりもだいぶ荒い。
         /// 「この後 RGI 絵文字シーケンスの判定はどの道テーブルを引くしかないから正確な判定はそっちできるはず」という前提。
         /// </remarks>
-        public static (EmojiSequenceType type, int length) GetEmojiSequenceLength(ReadOnlySpan<char> s)
+        public static EmojiSequence GetEmojiSequence(ReadOnlySpan<char> s)
         {
             // パフォーマンス用。 empty 時に early return。
-            if (s.Length == 0) return (EmojiSequenceType.NotEmoji, 0);
+            if (s.Length == 0) return default;
 
-            if (Keycap.Create(s) is { Value: not 0 }) return (EmojiSequenceType.Keycap, 3);
+            if (Keycap.Create(s) is { Value: not 0 } key) return new(key);
 
             // パフォーマンス用。keycap 以外に ASCII 出てこないので ASCII 用 fast path。
-            if (s[0] < 0x80) return (EmojiSequenceType.NotEmoji, 1);
+            if (s[0] < 0x80) return EmojiSequence.NotEmoji;
 
             // ここから下の判定に入らないこと荒く判定できるんで、それで先にはじいちゃう fast path。
-            if (!CanBePictgraphic(s[0])) return (EmojiSequenceType.NotEmoji, 1);
+            if (!CanBePictgraphic(s[0])) return EmojiSequence.NotEmoji;
 
             // RI 国旗。
-            if (RegionalIndicator.Create(s) is { First: not 0 }) return (EmojiSequenceType.Flag, 4);
+            if (RegionalIndicator.Create(s) is { First: not 0 } r) return new(r);
 
             // Tag 国旗。
-            var (tagCount, _) = TagSequence.FromFlagSequence(s);
-            if (tagCount != 0)
-            {
-                var type = tagCount > TagSequence.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag;
-                return (type, 2 * tagCount + 2);
-            }
+            var (tagCount, tags) = TagSequence.FromFlagSequence(s);
+            if (tagCount != 0) return new(tagCount, tags);
 
             var count = IsZwjSequence(s);
 
-            if (count == 0) return (EmojiSequenceType.NotEmoji, 1);
-            else return (EmojiSequenceType.Other, count);
+            if (count == 0) return EmojiSequence.NotEmoji;
+            else return new(EmojiSequenceType.Other, count);
         }
 
         /// <summary>
@@ -104,7 +100,7 @@ namespace RgiSequenceFinder
         }
 
         /// <summary>
-        /// <see cref="GetEmojiSequenceLength(ReadOnlySpan{char})"/> の ZWJ シーケンス判定ループに入る前に1文字限り見て early return するためのさらに荒い判定。
+        /// <see cref="GetEmojiSequence(ReadOnlySpan{char})"/> の ZWJ シーケンス判定ループに入る前に1文字限り見て early return するためのさらに荒い判定。
         /// 「サロゲートペアだから1文字後ろを読んで判定」みたいな処理が重たいので、サロゲートペア素通しな判定を1回やる。
         /// </summary>
         private static bool CanBePictgraphic(char c) => CanBePictgraphicBmp(c) || char.IsHighSurrogate(c);
@@ -161,7 +157,7 @@ namespace RgiSequenceFinder
         }
 
         /// <summary>
-        /// <see cref="GetEmojiSequenceLength(ReadOnlySpan{char})"/> の主要処理。
+        /// <see cref="GetEmojiSequence(ReadOnlySpan{char})"/> の主要処理。
         /// 「keycap と国旗を除けばだいぶシンプルになる」前提の Emoji ZWJ sequence 判定。
         /// </summary>
         private static int IsZwjSequence(ReadOnlySpan<char> s)
