@@ -56,10 +56,14 @@ namespace RgiSequenceFinder
             if (IsFlagSequence(s) is { First: not 0 }) return (EmojiSequenceType.Flag, 4);
 
             // Tag 国旗。
-            var count = IsTagSequence(s);
-            if (count > 0) return (EmojiSequenceType.Tag, count);
+            var (tagCount, _) = Tags.FromFlagSequence(s);
+            if (tagCount != 0)
+            {
+                var type = tagCount > Tags.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag;
+                return (type, 2 * tagCount + 2);
+            }
 
-            count = IsZwjSequence(s);
+            var count = IsZwjSequence(s);
 
             if (count == 0) return (EmojiSequenceType.NotEmoji, 1);
             else return (EmojiSequenceType.Other, count);
@@ -128,58 +132,6 @@ namespace RgiSequenceFinder
             return new(s[1], s[3]);
 
             static bool isRegionalIndicatorLowSurrogate(char c) => c is >= (char)0xDDE6 and <= (char)0xDDFF;
-        }
-
-        /// <summary>
-        /// Emoji tag sequence (RGI に限らない)を判定。
-        /// 参考: http://unicode.org/reports/tr51/#def_std_emoji_tag_sequence_set
-        ///
-        /// 実質的には地域旗(subdivision flags)専用の仕様。
-        /// </summary>
-        /// <returns>tag sequence だったらシーケンス長を、そうでなければ0を返す。</returns>
-        /// <remarks>
-        /// 絵文字の闇その2。
-        ///
-        /// <see cref="IsFlag(ReadOnlySpan{char})"/> の仕様では表せない地域からクレーム入ったという話。
-        /// ISO 3166-1 (ラテン文字2文字で表現する国コード)で表されてる「国または地域」の旗だけ用意したらそりゃ怒られるよね。
-        /// ISO 3166-2 (ラテン文字4～5文字で表現する行政区画コード)で旗を出す。
-        ///
-        /// 🏴 (U+1F3F4、黒旗、UTF-16 で D83C DFF4)の後ろに「タグ文字」っていう特殊な記号を並べる仕様。
-        /// タグ文字は E0000 の辺りに並んでる。
-        /// 通常、0-9、a-z 相当の36文字 + cancel 文字(E007F)しか使わないと思うけど、
-        /// 一応、E0000-E007F で判定しとく。
-        /// high surrogate が DB40、
-        /// low surrogate が DC00-DC7F。
-        ///
-        /// 将来他の用途でも使うかもしれないので「flag sequence」じゃなくて「tag sequence」になってる。
-        /// 一応原理上は「東京都の旗」(🏴JP13)とかも出せる。
-        /// RGI に入ってるのはグレートブリテン島の3カントリーだけ(というかこのカントリー旗のためにこの仕様が入った)。
-        ///
-        /// タグ文字を使う仕様がこいつだけなので、これも先に判定してしまえば 後続の処理から E0000 台の判定を消せる。
-        /// </remarks>
-        public static int IsTagSequence(ReadOnlySpan<char> s)
-        {
-            if (s.Length < 2) return 0;
-
-            if (s[0] != 0xD83C) return 0;
-            if (s[1] != 0xDFF4) return 0;
-
-            var count = 0;
-            s = s.Slice(2);
-
-            while (s.Length >= 2)
-            {
-                if (s[0] != 0xDB40) break;
-                if (!isTagLowSurrogate(s[1])) break;
-
-                count += 2;
-                s = s.Slice(2);
-            }
-
-            // Tag が付いてないときは 0 にしないと 1F3F4-200D-2620-FE0F (海賊旗)とかを拾っちゃう。
-            return count > 0 ? 2 + count : 0;
-
-            static bool isTagLowSurrogate(char c) => c is >= (char)0xDC00 and <= (char)0xDC7F;
         }
 
         /// <summary>

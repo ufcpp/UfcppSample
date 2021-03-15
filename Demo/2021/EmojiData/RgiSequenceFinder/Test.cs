@@ -44,20 +44,13 @@ namespace RgiSequenceFinder
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                if (GraphemeBreak.IsTagSequence(s) is var len && len > 0)
+                var (tagCount, tags) = Tags.FromFlagSequence(s);
+                if (tagCount > 0)
                 {
                     ++count;
 
                     // 現行の RGI だと gbeng, gbsct, gbwls の3つだけのはず。
-                    var span = s.AsSpan(2);
-                    while (span.Length >= 2)
-                    {
-                        // tag 文字 → 対応する ASCII に変換。
-                        // high surrogate 無視。
-                        Console.Write((char)(span[1] - 0xDC00));
-                        span = span.Slice(2);
-                    }
-                    Console.WriteLine();
+                    Console.WriteLine(tags);
                 }
             }
             Console.WriteLine(count);
