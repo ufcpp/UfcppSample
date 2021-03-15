@@ -53,7 +53,7 @@ namespace RgiSequenceFinder
             if (!CanBePictgraphic(s[0])) return (EmojiSequenceType.NotEmoji, 1);
 
             // RI 国旗。
-            if (IsFlagSequence(s) is { Value: >= 0 }) return (EmojiSequenceType.Flag, 4);
+            if (IsFlagSequence(s) is { First: not 0 }) return (EmojiSequenceType.Flag, 4);
 
             // Tag 国旗。
             var count = IsTagSequence(s);
@@ -96,7 +96,7 @@ namespace RgiSequenceFinder
         /// 参考: http://unicode.org/reports/tr51/#def_std_emoji_flag_sequence_set
         /// </summary>
         /// <returns>
-        /// 国旗絵文字が存在したら国コードに対応する数値(<see cref="RegionalCode"/>)を、
+        /// 国旗絵文字が存在したら国コードに対応する数値(<see cref="RegionalIndicator"/>)を、
         /// なければ-1を返す。
         ///
         /// これも2文字固定(UTF-16 だと4文字固定)なので、文字列長は返さなくていいはず。
@@ -116,14 +116,14 @@ namespace RgiSequenceFinder
         /// high surrogate が D83C 固定で、
         /// low surrogate が DDE6-DDFF。
         /// </remarks>
-        public static RegionalCode IsFlagSequence(ReadOnlySpan<char> s)
+        public static RegionalIndicator IsFlagSequence(ReadOnlySpan<char> s)
         {
-            if (s.Length < 4) return RegionalCode.Invalid;
+            if (s.Length < 4) return RegionalIndicator.Invalid;
 
-            if (s[0] != 0xD83C || s[2] != 0xD83C) return RegionalCode.Invalid;
+            if (s[0] != 0xD83C || s[2] != 0xD83C) return RegionalIndicator.Invalid;
 
-            if (!isRegionalIndicatorLowSurrogate(s[1])) return RegionalCode.Invalid;
-            if (!isRegionalIndicatorLowSurrogate(s[3])) return RegionalCode.Invalid;
+            if (!isRegionalIndicatorLowSurrogate(s[1])) return RegionalIndicator.Invalid;
+            if (!isRegionalIndicatorLowSurrogate(s[3])) return RegionalIndicator.Invalid;
 
             return new(s[1], s[3]);
 

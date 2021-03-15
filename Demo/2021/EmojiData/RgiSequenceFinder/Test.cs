@@ -30,7 +30,7 @@ namespace RgiSequenceFinder
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                if (GraphemeBreak.IsFlagSequence(s) is { Value: >= 0 } code)
+                if (GraphemeBreak.IsFlagSequence(s) is { First: not 0 } code)
                 {
                     ++count;
                     Console.WriteLine(code);
