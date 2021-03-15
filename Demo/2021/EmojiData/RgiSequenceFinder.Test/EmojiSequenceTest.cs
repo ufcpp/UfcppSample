@@ -47,7 +47,7 @@ namespace RgiSequenceFinder.Test
         public void TestTagSequence()
         {
             // åªçsÇÃ RGI ÇæÇ∆ gbeng, gbsct, gbwls ÇÃ3Ç¬ÇæÇØÇÃÇÕÇ∏ÅB
-            var subdivitions = new HashSet<string>(new[] { "gbeng", "gbsct", "gbwls" });
+            var subdivitions = new HashSet<TagSequence>(new[] { TagSequence.FromAscii("gbeng"), TagSequence.FromAscii("gbsct"), TagSequence.FromAscii("gbwls") });
 
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
@@ -57,7 +57,7 @@ namespace RgiSequenceFinder.Test
                 {
                     ++count;
 
-                    Assert.Contains(tags.ToString(), subdivitions);
+                    Assert.Contains(tags, subdivitions);
                 }
             }
 

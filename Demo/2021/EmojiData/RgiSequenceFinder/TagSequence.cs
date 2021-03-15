@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Buffers.Binary;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -19,7 +21,7 @@ namespace RgiSequenceFinder
     /// 先頭の文字(現状の RGI では 🏴 (1F3F4) 以外ありえない)は今、単に削除しちゃってる。
     /// 先頭文字を残すかどうかは後々というか、実際のところあり得ないとは思うけども、旗以外の emoji tag sequence が追加されたらまた改めて考える。
     /// </remarks>
-    public struct TagSequence
+    public struct TagSequence : IEquatable<TagSequence>
     {
         // 現状、emoji tag sequence のタグが6文字以上の RGI 絵文字はないんだけど、
         // どうせ alignment で8に揃えられたりするので8バイト取っとく。
@@ -35,6 +37,14 @@ namespace RgiSequenceFinder
         public const int TagMaxLength = 8;
 
         public static readonly TagSequence TooLong = new() { Tag0 = 255 };
+
+        /// <summary>
+        /// 比較とかを1命令でやるために ulong 化。
+        /// </summary>
+        /// <remarks>
+        /// 一応 little endian で読むようにしてる。
+        /// </remarks>
+        public ulong LongValue => BinaryPrimitives.ReadUInt64LittleEndian(this.AsSpan());
 
         /// <summary>
         /// 🏴 始まりの emoji tag sequence かどうかを判定。
@@ -93,6 +103,26 @@ namespace RgiSequenceFinder
             static bool isTagLowSurrogate(char c) => c is >= (char)0xDC00 and <= (char)0xDC7F;
         }
 
+        /// <summary>
+        /// 普通に "gbsct" みたいな文字列から E0067-E0062-E0073-E0063-E0074-E007F に相当する <see cref="TagSequence"/> を作る。
+        /// (末尾に Cancel タグ(ESC 文字)も入れる。)
+        /// </summary>
+        public static TagSequence FromAscii(ReadOnlySpan<char> s)
+        {
+            TagSequence tags = default;
+            var tagsSpan = tags.AsSpan();
+
+            int i = 0;
+            for (; i < s.Length && i < 7; i++)
+            {
+                tagsSpan[i] = (byte)s[i];
+            }
+
+            tagsSpan[i] = 0x7F;
+
+            return tags;
+        }
+
         public override string ToString()
         {
             if (Tag0 == 0) return "";
@@ -107,6 +137,12 @@ namespace RgiSequenceFinder
             }
             return sb.ToString();
         }
+
+        public bool Equals(TagSequence other) => LongValue == other.LongValue;
+        public override bool Equals(object? obj) => obj is TagSequence other && Equals(other);
+        public override int GetHashCode() => LongValue.GetHashCode();
+        public static bool operator ==(TagSequence x, TagSequence y) => x.Equals(y);
+        public static bool operator !=(TagSequence x, TagSequence y) => !x.Equals(y);
     }
 
     internal static class TagSequenceExtensions
