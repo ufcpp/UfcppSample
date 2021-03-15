@@ -41,11 +41,11 @@ for (int i = 0; i < data.Length; i++)
     }
 }
 
-using var writer = new StreamWriter("RgiTable.cs", false, Encoding.UTF8);
+using var writer = new StreamWriter("RgiTable.Generated.cs", false, Encoding.UTF8);
 
 writer.Write(@"namespace RgiSequenceFinder
 {
-    class RgiTable
+    partial class RgiTable
     {
         private static int FindKeycap(Keycap key) => key switch
         {
@@ -108,13 +108,35 @@ foreach (var (tags, index) in tagFlags)
 ");
 }
 
+// other 分、いったん Dictionary 実装する。
+// switch のネストになるようにコード生成したい。
+
 writer.Write(@"            _ => -1,
         };
+
+        private static System.Collections.Generic.Dictionary<string, int> _otherTable = new()
+        {
 ");
 
-writer.Write(@"
+foreach (var (s, index) in others)
+{
+    writer.Write("            { \"");
+
+    foreach (var c in s)
+    {
+        writer.Write("\\u");
+        writer.Write(((int)c).ToString("X4"));
+    }
+
+    writer.Write("\", ");
+    writer.Write(index);
+    writer.Write(@" },
+");
+}
+
+writer.Write(@"        };
+
+        private static int FindOther(string s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
     }
 }
 ");
-
-//Console.WriteLine(others.Count);
