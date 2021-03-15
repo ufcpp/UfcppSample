@@ -63,12 +63,12 @@ namespace RgiSequenceFinder
         {
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                var len = GraphemeBreak.GetEmojiSequenceLength(s);
-                if (len.length != s.Length)
+                var (type, length) = GraphemeBreak.GetEmojiSequenceLength(s);
+                if (length != s.Length)
                 {
                     Console.WriteLine("error0 " + s);
                 }
-                if (len.type == EmojiSequenceType.NotEmoji)
+                if (type == EmojiSequenceType.NotEmoji)
                 {
                     Console.WriteLine("error1 " + s);
                 }
