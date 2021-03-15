@@ -12,10 +12,10 @@ namespace RgiSequenceFinder
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
             {
-                if (GraphemeBreak.IsKeycap(s))
+                if (Keycap.Create(s) is { Value: not 0 } key)
                 {
                     ++count;
-                    Console.WriteLine(s);
+                    Console.WriteLine(key);
                 }
             }
             Console.WriteLine(count);

@@ -8,6 +8,7 @@ namespace RgiSequenceFinder
     /// 参考: https://unicode.org/reports/tr29/
     ///
     /// これ、絵文字に限定すればここまで複雑な処理必要ないはずなので、簡易版みたいな判定をする。
+    /// (サンスクリット、タイ文字、ハングル向けの処理不要＆ Extended_Pictographic の判定(辞書必須)をさぼれる。)
     ///
     /// 文字数を返すメソッドが多くなるけど、全部 UTF-16 code unit 数(C# の string.Length)。
     /// (UTF-8 byte 数、rune 数、grapheme 数ではない。)
@@ -44,7 +45,7 @@ namespace RgiSequenceFinder
             // パフォーマンス用。 empty 時に early return。
             if (s.Length == 0) return (EmojiSequenceType.NotEmoji, 0);
 
-            if (IsKeycap(s)) return (EmojiSequenceType.Keycap, 3);
+            if (Keycap.Create(s) is { Value: not 0 }) return (EmojiSequenceType.Keycap, 3);
 
             // パフォーマンス用。keycap 以外に ASCII 出てこないので ASCII 用 fast path。
             if (s[0] < 0x80) return (EmojiSequenceType.NotEmoji, 1);
@@ -67,32 +68,6 @@ namespace RgiSequenceFinder
 
             if (count == 0) return (EmojiSequenceType.NotEmoji, 1);
             else return (EmojiSequenceType.Other, count);
-        }
-
-        /// <summary>
-        /// RGI emoji keycap sequence を判定。
-        /// 参考: https://unicode.org/reports/tr51/#def_std_emoji_keycap_sequence_set
-        /// </summary>
-        /// <param name="s">判定対象</param>
-        /// <returns>
-        /// keycap だったら true。
-        ///
-        /// keycap みたいな変な仕様、今後追加されるとは思えないので「3文字固定」だと思って扱うことにする。
-        /// </returns>
-        /// <remarks>
-        /// 唯一 ASCII 文字開始の絵文字シーケンスでたちが悪いので先に判定。
-        /// </remarks>
-        public static bool IsKeycap(ReadOnlySpan<char> s)
-        {
-            if (s.Length < 3) return false;
-
-            // combining enclosing keycap
-            if (s[2] != 0x20E3) return false;
-
-            // variation selector-16
-            if (s[1] != 0xFE0F) return false;
-
-            return s[0] is (>= '0' and <= '9') or '#' or '*';
         }
 
         /// <summary>
