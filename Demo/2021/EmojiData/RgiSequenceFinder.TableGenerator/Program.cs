@@ -47,7 +47,7 @@ writer.Write(@"namespace RgiSequenceFinder
 {
     partial class RgiTable
     {
-        private static int FindKeycap(Keycap key) => key switch
+        private static int FindKeycap(Keycap key) => key.Value switch
         {
 ");
 
@@ -110,6 +110,9 @@ foreach (var (tags, index) in tagFlags)
 
 // other 分、いったん Dictionary 実装する。
 // switch のネストになるようにコード生成したい。
+// \uD83D から始まる文字(1F000 台の文字の high surrogate)ばっかりなのでものすごいデータ量減るはずなのと、
+// 今の Dictionary 実装だと Substring (新規 string インスタンスのアロケーション)が発生するので避けたい。
+// (今のこの Dictionary 実装だと 80 KB くらいバイナリサイズが膨らむ。)
 
 writer.Write(@"            _ => -1,
         };
