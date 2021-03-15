@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 var data = Data.RgiEmojiSequenceList;
@@ -59,12 +60,61 @@ foreach (var (key, index) in keycaps)
     writer.Write(@",
 ");
 }
-//Console.WriteLine(riFlags.Count);
-//Console.WriteLine(tagFlags.Count);
-//Console.WriteLine(others.Count);
 
 writer.Write(@"            _ => -1,
         };
+
+        private static int FindRegion(RegionalIndicator region) => region.First switch
+        {
+");
+
+foreach (var g in riFlags.GroupBy(x => x.code.First))
+{
+    writer.Write("            (byte)'");
+    writer.Write((char)g.Key);
+    writer.Write(@"' => region.Second switch
+            {
+");
+
+    foreach (var (ri, index) in g)
+    {
+        writer.Write("                (byte)'");
+        writer.Write((char)ri.Second);
+        writer.Write("' => ");
+        writer.Write(index);
+        writer.Write(@",
+");
+    }
+
+    writer.Write(@"                _ => -1,
+            },
+");
+}
+
+writer.Write(@"            _ => -1,
+        };
+
+        private static int FindTag(TagSequence tags) => tags.LongValue switch
+        {
+");
+
+foreach (var (tags, index) in tagFlags)
+{
+    writer.Write("            0x");
+    writer.Write(tags.LongValue.ToString("X"));
+    writer.Write("UL => ");
+    writer.Write(index);
+    writer.Write(@",
+");
+}
+
+writer.Write(@"            _ => -1,
+        };
+");
+
+writer.Write(@"
     }
 }
 ");
+
+//Console.WriteLine(others.Count);
