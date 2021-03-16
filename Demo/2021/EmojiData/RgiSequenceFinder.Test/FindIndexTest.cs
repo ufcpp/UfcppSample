@@ -10,21 +10,26 @@ namespace RgiSequenceFinder.Test
         [Fact]
         public void Rgi絵文字シーケンス自体のインデックスは必ず見つかる()
         {
+            Span<int> indexes = stackalloc int[1];
+
             var data = Data.RgiEmojiSequenceList;
 
             for (int i = 0; i < data.Length; i++)
             {
                 var s = data[i];
-                var (len, index) = RgiTable.Find(s);
+                var (len, indexWritten) = RgiTable.Find(s, indexes);
 
+                Assert.Equal(1, indexWritten);
                 Assert.Equal(s.Length, len);
-                Assert.Equal(i, index);
+                Assert.Equal(i, indexes[0]);
             }
         }
 
         [Fact]
         public void Rgi絵文字シーケンスの前後にASCII文字挟んでみる()
         {
+            Span<int> indexes = stackalloc int[1];
+
             var data = Data.RgiEmojiSequenceList;
 
             for (int i = 0; i < data.Length; i++)
@@ -32,20 +37,21 @@ namespace RgiSequenceFinder.Test
                 var s = data[i];
                 var s2 = "a" + s + "a";
 
-                var (len, index) = RgiTable.Find(s2);
+                var (len, indexWritten) = RgiTable.Find(s2, indexes);
 
                 Assert.Equal(1, len);
-                Assert.Equal(-1, index);
+                Assert.Equal(0, indexWritten);
 
-                (len, index) = RgiTable.Find(s2.AsSpan(1));
+                (len, indexWritten) = RgiTable.Find(s2.AsSpan(1), indexes);
 
+                Assert.Equal(1, indexWritten);
                 Assert.Equal(s.Length, len);
-                Assert.Equal(i, index);
+                Assert.Equal(i, indexes[0]);
 
-                (len, index) = RgiTable.Find(s2.AsSpan(1 + len));
+                (len, indexWritten) = RgiTable.Find(s2.AsSpan(1 + len), indexes);
 
                 Assert.Equal(1, len);
-                Assert.Equal(-1, index);
+                Assert.Equal(0, indexWritten);
             }
         }
 
@@ -54,6 +60,7 @@ namespace RgiSequenceFinder.Test
         {
             // 間に何も挟まずに Concat するバージョンも欲しいものの… 肌色セレクターが邪魔。
             // 1F3FB～1F3FF は単体で RgiTable.Find に含まれているものの、GraphemeBreak 的には1個前の絵文字にくっついちゃう。
+            Span<int> indexes = stackalloc int[1];
 
             var data = Data.RgiEmojiSequenceList;
             var sb = new StringBuilder();
@@ -73,7 +80,7 @@ namespace RgiSequenceFinder.Test
             {
                 if (cat.Length == 0) break;
 
-                var (len, index) = RgiTable.Find(cat);
+                var (len, _) = RgiTable.Find(cat, indexes);
 
                 if (odd)
                 {
