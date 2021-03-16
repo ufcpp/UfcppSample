@@ -76,12 +76,15 @@ namespace RgiSequenceFinder
                     {
                         var i = FindTag(emoji.Tags);
 
-                        //todo: 見つからなかった時、タグ文字を削って再検索する？
+                        // 見つからなかった時、タグ文字を削って再検索する。
                         // 例えば 1F3F4 E006A E0070 E0031 E0033 E007F (原理的にはあり得る「東京都(JP13)の旗」)を 1F3F4 (🏴) だけにして返すみたいなの。
-                        // (Unicode の推奨としては 🏴 に ? を重ねた絵を表示しろということになってる。)
                         //
-                        // やるなら、↓この行のコメントアウトを外すだけでいいはず。
-                        //if (i < 0) i = FindOther(s.Slice(0, 2));
+                        // http://unicode.org/reports/tr51/#DisplayInvalidEmojiTagSeqs 曰く、
+                        // 推奨としては、「未サポートな旗」であることがわかるように黒旗に ? マークを重ねるか、黒旗 + ? で表示しろとのこと。
+                        // ただ、タグ文字を解釈できないときには黒旗だけの表示も認めてそう。
+                        //
+                        // この実装では黒旗だけの表示をすることにする。
+                        if (i < 0) i = FindOther(s.Slice(0, 2));
 
                         if (i < 0) return (emoji.LengthInUtf16, 0);
 
