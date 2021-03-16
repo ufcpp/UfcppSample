@@ -6,6 +6,8 @@ using System.Text;
 // RgiEmojiSequenceList はそんな複雑なデータでもないんで、こっちも emoji-data.json から直接読み込んでもいいんだけど。
 // 2段くらいなら大した負担でもないし、とうめん2段コード生成する。
 
+//RgiSequenceFinder.TableGenerator.Experimental.HashCode.CollisionCount(); return;
+
 var emojis = GroupedEmojis.Create();
 
 using var writer = new StreamWriter("RgiTable.Generated.cs", false, Encoding.UTF8);
