@@ -147,5 +147,73 @@ namespace RgiSequenceFinder
         private static int FindOther(string s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
 ");
         }
+
+#if false
+// こういう実装も試してみたという形跡。
+//
+// ReadOnlySpan<char> 引数を付けつけできるように switch 化したもの。
+// そんなに (a, b, c, ...) switch { ... } みたいなやつ、「1文字目が同じなら1つの if になる」みたいな最適化は掛かるけど、
+// 代わりに goto が大量にあるコードになって、バイナリサイズは Dictionary<string, int> を持つ実装よりもでかくなった。
+// 線形探索になりそうだし Dictionary 実装よりも遅そう。
+//
+// 素直に、TryGetValue(ReadOnlySpan<char>) ができる StringDictionary を書いた方がよさそう。
+
+        private static void WriteOthers(StreamWriter writer, List<(string emoji, int index)> others)
+        {
+            writer.Write(@"        private static int FindOther(System.ReadOnlySpan<char> emoji) => emoji.Length switch
+        {
+");
+
+            foreach (var g in others.GroupBy(x => x.emoji.Length).OrderBy(g => g.Key))
+            {
+                var length = g.Key;
+
+                writer.Write("            ");
+                writer.Write(length);
+                writer.Write(" => ");
+
+                for (int i = 0; i < length; i++)
+                {
+                    if (i == 0) writer.Write('(');
+                    else writer.Write(", ");
+                    writer.Write("emoji[");
+                    writer.Write(i);
+                    writer.Write("]");
+                }
+
+                writer.Write(@") switch
+            {
+");
+
+                foreach (var (emoji, index) in g)
+                {
+                    writer.Write("                ");
+
+                    for (int i = 0; i < length; i++)
+                    {
+                        if (i == 0) writer.Write('(');
+                        else writer.Write(", ");
+                        writer.Write("'\\u");
+                        writer.Write(((int)emoji[i]).ToString("X4"));
+                        writer.Write("'");
+                    }
+
+                    writer.Write(") => ");
+                    writer.Write(index);
+                    writer.Write(@",
+");
+                }
+
+                writer.Write(@"                _ => -1,
+            },
+");
+            }
+
+            writer.Write(@"            _ => -1,
+        };
+
+");
+        }
+#endif
     }
 }
