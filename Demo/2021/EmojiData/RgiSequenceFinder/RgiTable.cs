@@ -15,7 +15,7 @@ namespace RgiSequenceFinder
 
             var index = emoji.Type switch
             {
-                EmojiSequenceType.Other => FindOther(s.Slice(0, emoji.LengthInUtf16).ToString()),
+                EmojiSequenceType.Other => FindOther(s.Slice(0, emoji.LengthInUtf16)),
                 EmojiSequenceType.Flag => FindRegion(emoji.Region),
                 EmojiSequenceType.Tag => FindTag(emoji.Tags),
                 EmojiSequenceType.Keycap => FindKeycap(emoji.Keycap),

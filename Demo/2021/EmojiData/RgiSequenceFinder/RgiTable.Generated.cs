@@ -398,7 +398,7 @@ namespace RgiSequenceFinder
             _ => -1,
         };
 
-        private static System.Collections.Generic.Dictionary<string, int> _otherTable = new()
+        private static StringDictionary _otherTable = new()
         {
             { "\u00A9\uFE0F", 12 },
             { "\u00AE\uFE0F", 13 },
@@ -3429,6 +3429,6 @@ namespace RgiSequenceFinder
             { "\u3299\uFE0F", 3299 },
         };
 
-        private static int FindOther(string s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
+        private static int FindOther(System.ReadOnlySpan<char> s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
     }
 }

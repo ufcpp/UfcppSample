@@ -122,7 +122,7 @@ namespace RgiSequenceFinder
             // 今の Dictionary 実装だと Substring (新規 string インスタンスのアロケーション)が発生するので避けたい。
             // (今のこの Dictionary 実装だと 80 KB くらいバイナリサイズが膨らむ。)
 
-            writer.Write(@"        private static System.Collections.Generic.Dictionary<string, int> _otherTable = new()
+            writer.Write(@"        private static StringDictionary _otherTable = new()
         {
 ");
 
@@ -144,7 +144,7 @@ namespace RgiSequenceFinder
 
             writer.Write(@"        };
 
-        private static int FindOther(string s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
+        private static int FindOther(System.ReadOnlySpan<char> s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
 ");
         }
 
