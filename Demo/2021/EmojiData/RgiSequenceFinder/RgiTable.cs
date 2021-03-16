@@ -26,6 +26,17 @@ namespace RgiSequenceFinder
                     {
                         var i = FindOther(s.Slice(0, emoji.LengthInUtf16));
 
+                        if (i < 0)
+                        {
+                            // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
+                            // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。
+                            if (s[emoji.LengthInUtf16 - 1] == '\uFE0F')
+                            {
+                                // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
+                                i = FindOther(s.Slice(0, emoji.LengthInUtf16 - 1));
+                            }
+                        }
+
                         //todo: -1 の時の再検索
                         // - ZWJ で分割して再検索
                         // - FE0F(異体字セレクター16)を消してみて再検索
