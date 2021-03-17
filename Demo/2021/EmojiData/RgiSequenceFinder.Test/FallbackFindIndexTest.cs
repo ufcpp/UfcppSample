@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using Xunit;
 
 namespace RgiSequenceFinder.Test
@@ -67,6 +70,60 @@ namespace RgiSequenceFinder.Test
             Assert.Equal(1, indexWritten);
             Assert.Equal(unsupported.Length, len);
             Assert.Equal(fallbackIndex, indexes[0]);
+        }
+
+        [Fact]
+        public void 未サポート肌色修飾()
+        {
+            // 肌色が関係ない基本絵文字、動物とかを適当に選んだもの。
+            var emojis = new[]
+            {
+                "♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓",
+                "🐭", "🐮", "🐯", "🐰", "🐲", "🐍", "🐴", "🐏", "🐵", "🐔", "🐶", "🐗",
+            };
+
+            var skinTones = new[] { "🏻", "🏼", "🏽", "🏾", "🏿", };
+
+            // 基本絵文字と skin tone を交互に並べる。
+            string concat()
+            {
+                var sb = new StringBuilder();
+
+                for (int i = 0; i < emojis.Length; i++)
+                {
+                    sb.Append(emojis[i]);
+                    sb.Append(skinTones[i % skinTones.Length]);
+                }
+
+                return sb.ToString();
+            }
+
+            static HashSet<int> toIndex(string[] strings)
+            {
+                Span<int> indexes = stackalloc int[1];
+                var set = new HashSet<int>();
+                foreach (var st in strings)
+                {
+                    RgiTable.Find(st, indexes);
+                    set.Add(indexes[0]);
+                }
+                return set;
+            }
+
+            var s = concat().AsSpan();
+            var skinToneIndexes = toIndex(skinTones);
+            Span<int> indexes = stackalloc int[2];
+
+            while (true)
+            {
+                // RGI に含まれていないので、基本絵文字と skin tone の2文字分返ってくる。
+                var (len, indexWritten) = RgiTable.Find(s, indexes);
+                Assert.Equal(2, indexWritten);
+                Assert.Contains(indexes[1], skinToneIndexes);
+
+                s = s.Slice(len);
+                if (s.Length == 0) break;
+            }
         }
     }
 }

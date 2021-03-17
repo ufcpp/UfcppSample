@@ -69,13 +69,28 @@ namespace RgiSequenceFinder
             // IsPictgraphicEstimate が処理をちょっとさぼってるのでここに来る。
             if (count == 2)
             {
-                if (s[0] == 0xD83C && s[1] is >= (char)0xDFFB and <= (char)0xDFFF)
+                var st = IsSkinTone(s);
+                if (st >= 0)
                 {
-                    return new(count, (SkinTone)(s[1] - 0xDFFB));
+                    return new(count, st);
                 }
             }
 
             return new(count, zwjs);
+        }
+
+        /// <summary>
+        /// skin tone の時に対応する <see cref="SkinTone"/> 値を、
+        /// そうでないとき -1 を返す。
+        /// </summary>
+        public static SkinTone IsSkinTone(ReadOnlySpan<char> s)
+        {
+            if (s[0] == 0xD83C && s[1] is >= (char)0xDFFB and <= (char)0xDFFF)
+            {
+                return (SkinTone)(s[1] - 0xDFFB);
+            }
+
+            return (SkinTone)(-1);
         }
 
         /// <summary>
