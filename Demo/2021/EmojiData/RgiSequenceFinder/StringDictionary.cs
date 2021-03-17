@@ -46,7 +46,7 @@ namespace RgiSequenceFinder
             public bool HasValue => Key is not null;
         }
 
-        private Bucket[] _buckets = new Bucket[Capacity];
+        private readonly Bucket[] _buckets = new Bucket[Capacity];
 
         /// <summary>
         /// 要素の追加。
