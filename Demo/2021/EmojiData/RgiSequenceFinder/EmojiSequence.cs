@@ -33,6 +33,9 @@ namespace RgiSequenceFinder
         [FieldOffset(8)]
         public readonly TagSequence Tags;
 
+        [FieldOffset(8)]
+        public readonly Byte8 ZwjPositions;
+
         public EmojiSequence(EmojiSequenceType type, int length) : this()
         {
             Type = type;
@@ -51,10 +54,15 @@ namespace RgiSequenceFinder
 
         public EmojiSequence(int tagLength, TagSequence tags)
             : this(
-                  tagLength > TagSequence.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag,
+                  tagLength > Byte8.MaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag,
                   2 * tagLength + 2)
         {
             Tags = tags;
+        }
+
+        public EmojiSequence(int count, Byte8 zwjPositions) : this(EmojiSequenceType.Other, count)
+        {
+            ZwjPositions = zwjPositions;
         }
 
         /// <summary>

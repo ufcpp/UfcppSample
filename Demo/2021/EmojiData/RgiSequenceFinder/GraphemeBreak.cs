@@ -63,7 +63,7 @@ namespace RgiSequenceFinder
             var (count, zwjs) = IsZwjSequence(s);
 
             if (count == 0) return EmojiSequence.NotEmoji;
-            else return new(EmojiSequenceType.Other, count);
+            else return new(count, zwjs);
         }
 
         /// <summary>

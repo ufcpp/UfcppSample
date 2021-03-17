@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace RgiSequenceFinder.Test
@@ -116,6 +117,68 @@ namespace RgiSequenceFinder.Test
 
                 // 最後まで読み切ったはず。
                 Assert.Equal(0, span.Length);
+            }
+        }
+
+        [Fact]
+        public void Zwjの位置を記録()
+        {
+            // keycap、国旗以外で、 ZWJ を含んでない絵文字を適当にいくつか
+            var emojis = new[]
+            {
+                "\u00AE\uFE0F",
+                "\U0001F194",
+                "\U0001F202\uFE0F",
+                "\U0001F385\U0001F3FB",
+                "\U0001F466\U0001F3FF",
+                "\u270D\U0001F3FB",
+                "\u270F\uFE0F",
+            };
+
+            const char zwj = '\u200D';
+
+            var s = string.Join(zwj, emojis);
+
+            var emoji = GraphemeBreak.GetEmojiSequence(s);
+
+            Assert.Equal(EmojiSequenceType.Other, emoji.Type);
+            Assert.Equal(s.Length, emoji.LengthInUtf16);
+
+            // string 中を IndexOf した結果と改めて一致確認。
+            var pos = -1;
+            var i = 0;
+            for (; i < emojis.Length - 1; i++)
+            {
+                pos = s.IndexOf(zwj, pos + 1);
+                Assert.Equal(pos, emoji.ZwjPositions[i]);
+            }
+
+            // 不要分は0詰めのはず。
+            for (; i < 8; i++)
+            {
+                Assert.Equal(0, emoji.ZwjPositions[i]);
+            }
+        }
+
+        [Fact]
+        public void 未対応個数のZwjが含まれていてもIndexOutOfRangeにはならない()
+        {
+            const string someEmoji = "\U0001F385";
+            const char zwj = '\u200D';
+
+            foreach (var excess in new[] { 0, 1, 10, 100 })
+            {
+                var s = string.Join(zwj, Enumerable.Range(0, Byte8.MaxLength + 1 + excess).Select(_ => someEmoji));
+
+                var emoji = GraphemeBreak.GetEmojiSequence(s);
+
+                Assert.Equal(EmojiSequenceType.Other, emoji.Type);
+                Assert.Equal(s.Length, emoji.LengthInUtf16);
+
+                for (int i = 0; i < Byte8.MaxLength; i++)
+                {
+                    Assert.NotEqual(0, emoji.ZwjPositions[i]);
+                }
             }
         }
     }
