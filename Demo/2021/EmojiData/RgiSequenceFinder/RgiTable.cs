@@ -26,84 +26,15 @@ namespace RgiSequenceFinder
                     {
                         var i = FindOther(s.Slice(0, emoji.LengthInUtf16));
 
-                        // variation selector 16 削り。
-                        if (i < 0)
+                        if (i >= 0)
                         {
-                            // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
-                            // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。
-                            if (s[emoji.LengthInUtf16 - 1] == '\uFE0F')
-                            {
-                                // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
-                                i = FindOther(s.Slice(0, emoji.LengthInUtf16 - 1));
-                            }
+                            indexes[0] = i;
+                            return (emoji.LengthInUtf16, 1);
                         }
 
-                        // 肌色。
-                        // skin tone よりも後ろに ZWJ を挟まず何かがくっついてることないはず。
-                        // この実装ではあっても無視。
-                        // 2個以上 skin tone が並んでるとかも無視。
-                        if (i < 0)
-                        {
-                            // BMP + skin tone の可能性
-                            if (emoji.LengthInUtf16 >= 3)
-                            {
-                                var st = GraphemeBreak.IsSkinTone(s.Slice(1));
-                                if (st >= 0)
-                                {
-                                    i = FindOther(s.Slice(0, 1));
-
-                                    if (i < 0)
-                                    {
-                                        indexes[0] = FindSkinTone(st);
-                                        return (emoji.LengthInUtf16, 1);
-                                    }
-                                    else
-                                    {
-                                        indexes[0] = i;
-                                        if (indexes.Length > 1) indexes[1] = FindSkinTone(st);
-                                        return (emoji.LengthInUtf16, 2);
-                                    }
-                                }
-                            }
-
-                            // SMP + skin tone の可能性
-                            if (emoji.LengthInUtf16 >= 4)
-                            {
-                                var st = GraphemeBreak.IsSkinTone(s.Slice(2));
-                                if (st >= 0)
-                                {
-                                    i = FindOther(s.Slice(0, 2));
-
-                                    if (i < 0)
-                                    {
-                                        indexes[0] = FindSkinTone(st);
-                                        return (emoji.LengthInUtf16, 1);
-                                    }
-                                    else
-                                    {
-                                        indexes[0] = i;
-                                        if (indexes.Length > 1) indexes[1] = FindSkinTone(st);
-                                        return (emoji.LengthInUtf16, 2);
-                                    }
-                                }
-                            }
-                        }
-
-                        //todo: -1 の時の再検索
-                        // - ZWJ で分割して再検索
-                        // - FE0F(異体字セレクター16)を消してみて再検索
-                        // - 1F3FB～1F3FF (肌色選択)を消してみて再検索 + 肌色自体の絵
-                        //
-                        // テストに使えそうな絵文字:
-                        // - Windows オリジナルキャラ: 🐱‍👤🐱‍🏍🐱‍💻🐱‍🐉🐱‍👓🐱‍🚀
-                        // 1F431 200D の後ろにそれぞれ 1F464, 1F3CD, 1F4BB, 1F409, 1F453, 1F680
-                        // - Windows は頑張ってレンダリングしてる4人家族×肌色: 👩🏻‍👩🏿‍👧🏼‍👧🏾
-                        // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
-
-                        if (i < 0) return (emoji.LengthInUtf16, 0);
-
-                        indexes[0] = i;
-                        return (emoji.LengthInUtf16, 1);
+                        var written = ReduceExtends(emoji, s.Slice(0, emoji.LengthInUtf16), indexes);
+                        
+                        return (emoji.LengthInUtf16, written);
                     }
                 case EmojiSequenceType.Keycap:
                     {
@@ -155,6 +86,91 @@ namespace RgiSequenceFinder
                     // MoreBufferRequired の時は throw する？
                     return (emoji.LengthInUtf16, 0);
             }
+        }
+
+        //todo: -1 の時の再検索
+        // - ZWJ で分割して再検索
+        // - FE0F(異体字セレクター16)を消してみて再検索
+        // - 1F3FB～1F3FF (肌色選択)を消してみて再検索 + 肌色自体の絵
+        //
+        // テストに使えそうな絵文字:
+        // - Windows オリジナルキャラ: 🐱‍👤🐱‍🏍🐱‍💻🐱‍🐉🐱‍👓🐱‍🚀
+        // 1F431 200D の後ろにそれぞれ 1F464, 1F3CD, 1F4BB, 1F409, 1F453, 1F680
+        // - Windows は頑張ってレンダリングしてる4人家族×肌色: 👩🏻‍👩🏿‍👧🏼‍👧🏾
+        // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
+
+        /// <summary>
+        /// Extend (FE0F と skin tone) 削り。
+        /// FE0F → ただ消す。
+        /// skin tone → 基本絵文字 + 肌色四角に分解。
+        /// </summary>
+        private static int ReduceExtends(EmojiSequence emoji, ReadOnlySpan<char> s, Span<int> indexes)
+        {
+            // variation selector 16 削り。
+            // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
+            // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。
+            if (s[emoji.LengthInUtf16 - 1] == '\uFE0F')
+            {
+                // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
+                var i = FindOther(s.Slice(0, emoji.LengthInUtf16 - 1));
+
+                if (i >= 0)
+                {
+                    if (indexes.Length > 0) indexes[0] = i;
+                    return 1;
+                }
+            }
+
+            // 肌色。
+            // skin tone よりも後ろに ZWJ を挟まず何かがくっついてることないはず。
+            // この実装ではあっても無視。
+            // 2個以上 skin tone が並んでるとかも無視。
+            // 間に FEOF が挟まってる場合とかも未サポート。
+            // BMP + skin tone の可能性
+            if (emoji.LengthInUtf16 >= 3)
+            {
+                var st = GraphemeBreak.IsSkinTone(s.Slice(1));
+                if (st >= 0)
+                {
+                    var i = FindOther(s.Slice(0, 1));
+
+                    if (i < 0)
+                    {
+                        if (indexes.Length > 0) indexes[0] = FindSkinTone(st);
+                        return 1;
+                    }
+                    else
+                    {
+                        if (indexes.Length > 0) indexes[0] = i;
+                        if (indexes.Length > 1) indexes[1] = FindSkinTone(st);
+                        return 2;
+                    }
+                }
+            }
+
+            // SMP + skin tone の可能性
+            if (emoji.LengthInUtf16 >= 4)
+            {
+                var st = GraphemeBreak.IsSkinTone(s.Slice(2));
+                if (st >= 0)
+                {
+                    var i = FindOther(s.Slice(0, 2));
+
+                    if (i < 0)
+                    {
+                        if (indexes.Length > 0) indexes[0] = FindSkinTone(st);
+                        return 1;
+                    }
+                    else
+                    {
+                        if (indexes.Length > 0) indexes[0] = i;
+                        if (indexes.Length > 1) indexes[1] = FindSkinTone(st);
+                        return 2;
+                    }
+                }
+            }
+
+            return 0;
         }
     }
 }
