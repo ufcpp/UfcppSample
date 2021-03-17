@@ -9,6 +9,7 @@ namespace RgiSequenceFinder
     /// <remarks>
     /// 条件:
     /// - たかだか4000文字程度(Unicode 13.0 で3300文字)
+    /// - 半分以上が <see cref="CharDictionary"/> に流せる
     /// - 最長の文字数もわかってる(Unicode 13.0 で UTF-16 14文字)
     ///
     /// なので、
@@ -21,10 +22,10 @@ namespace RgiSequenceFinder
     {
         /// <summary>
         /// 辞書容量。
-        /// RGI 絵文字シーケンスが3000～4000文字しかないので、それの倍程度の容量あれば十分。
-        /// 13ビット(容量8192)にするか14ビット(容量16384)にするかはちょっと迷う。
+        /// RGI 絵文字シーケンスが3300文字程度、その半分以上が <see cref="CharDictionary"/> 行きでこっちには来ないので、残り1700文字程度。
+        /// 12ビット(4096)あれば十分。
         /// </summary>
-        private const int Bits = 13;
+        private const int Bits = 12;
         private const int Capacity = 1 << Bits;
         private const int Mask = Capacity - 1;
 
