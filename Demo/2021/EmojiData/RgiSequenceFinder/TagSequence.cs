@@ -104,7 +104,7 @@ namespace RgiSequenceFinder
 
         public static string ToString(Byte8 tags)
         {
-            if (tags.Tag0 == 0) return "";
+            if (tags.V0 == 0) return "";
 
             var sb = new StringBuilder();
             var span = tags.AsSpan();

@@ -15,14 +15,14 @@ namespace RgiSequenceFinder
     /// </remarks>
     public struct Byte8 : IEquatable<Byte8>
     {
-        public byte Tag0;
-        public byte Tag1;
-        public byte Tag2;
-        public byte Tag3;
-        public byte Tag4;
-        public byte Tag5;
-        public byte Tag6;
-        public byte Tag7;
+        public byte V0;
+        public byte V1;
+        public byte V2;
+        public byte V3;
+        public byte V4;
+        public byte V5;
+        public byte V6;
+        public byte V7;
 
         /// <summary>
         /// 比較とかを1命令でやるために ulong 化。
@@ -31,6 +31,8 @@ namespace RgiSequenceFinder
         /// 一応 little endian で読むようにしてる。
         /// </remarks>
         public ulong LongValue => BinaryPrimitives.ReadUInt64LittleEndian(this.AsSpan());
+
+        public byte this[int index] => this.AsSpan()[index];
 
         public bool Equals(Byte8 other) => LongValue == other.LongValue;
         public override bool Equals(object? obj) => obj is Byte8 other && Equals(other);
@@ -41,6 +43,6 @@ namespace RgiSequenceFinder
 
     internal static class Byte8Extensions
     {
-        public static Span<byte> AsSpan(ref this Byte8 tags) => MemoryMarshal.CreateSpan(ref tags.Tag0, 8);
+        public static Span<byte> AsSpan(ref this Byte8 tags) => MemoryMarshal.CreateSpan(ref tags.V0, 8);
     }
 }
