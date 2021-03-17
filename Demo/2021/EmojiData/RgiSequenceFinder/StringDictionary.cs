@@ -17,7 +17,7 @@ namespace RgiSequenceFinder
     /// - バケットを最初に固定長で取って、以後、resize 一切なし
     /// - GetHashCode の実装も「16文字以下」みたいな条件で計算する
     /// </remarks>
-    class StringDictionary : System.Collections.IEnumerable
+    class StringDictionary
     {
         /// <summary>
         /// 辞書容量。
@@ -125,9 +125,5 @@ namespace RgiSequenceFinder
                 hash = (hash + Skip) & Mask;
             }
         }
-
-        // コレクション初期化子を使いたいがためだけに IEnumerable で、実際に列挙はしないので空実装。
-        // ぬるぽ上等。
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => null!;
     }
 }
