@@ -24,7 +24,8 @@ namespace RgiSequenceFinder
             {
                 case EmojiSequenceType.Other:
                     {
-                        var i = FindOther(s.Slice(0, emoji.LengthInUtf16));
+                        var span = s.Slice(0, emoji.LengthInUtf16);
+                        var i = FindOther(span);
 
                         if (i >= 0)
                         {
@@ -32,7 +33,7 @@ namespace RgiSequenceFinder
                             return (emoji.LengthInUtf16, 1);
                         }
 
-                        var written = ReduceExtends(emoji, s.Slice(0, emoji.LengthInUtf16), indexes);
+                        var written = ReduceExtends(span, indexes);
                         
                         return (emoji.LengthInUtf16, written);
                     }
@@ -104,15 +105,15 @@ namespace RgiSequenceFinder
         /// FE0F → ただ消す。
         /// skin tone → 基本絵文字 + 肌色四角に分解。
         /// </summary>
-        private static int ReduceExtends(EmojiSequence emoji, ReadOnlySpan<char> s, Span<int> indexes)
+        private static int ReduceExtends(ReadOnlySpan<char> s, Span<int> indexes)
         {
             // variation selector 16 削り。
             // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
             // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。
-            if (s[emoji.LengthInUtf16 - 1] == '\uFE0F')
+            if (s[s.Length - 1] == '\uFE0F')
             {
                 // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
-                var i = FindOther(s.Slice(0, emoji.LengthInUtf16 - 1));
+                var i = FindOther(s.Slice(0, s.Length - 1));
 
                 if (i >= 0)
                 {
@@ -127,7 +128,7 @@ namespace RgiSequenceFinder
             // 2個以上 skin tone が並んでるとかも無視。
             // 間に FEOF が挟まってる場合とかも未サポート。
             // BMP + skin tone の可能性
-            if (emoji.LengthInUtf16 >= 3)
+            if (s.Length >= 3)
             {
                 var st = GraphemeBreak.IsSkinTone(s.Slice(1));
                 if (st >= 0)
@@ -149,7 +150,7 @@ namespace RgiSequenceFinder
             }
 
             // SMP + skin tone の可能性
-            if (emoji.LengthInUtf16 >= 4)
+            if (s.Length >= 4)
             {
                 var st = GraphemeBreak.IsSkinTone(s.Slice(2));
                 if (st >= 0)
