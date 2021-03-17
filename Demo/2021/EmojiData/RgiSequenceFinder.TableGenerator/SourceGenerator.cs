@@ -136,31 +136,6 @@ namespace RgiSequenceFinder
 
         private static void WriterOthers(StreamWriter writer, List<(char c, int index)>?[,] singulars, List<(string emoji, int index)> others)
         {
-            // other 分、いったん Dictionary 実装する。
-            // string → int で型が固定、容量も固定、キー検索に ReadOnlySpan<char> 受付可能な自作ハッシュテーブル(StringDictionary)は用意してある。
-            //
-            // 今のこの Dictionary 実装だと 80 KB くらいバイナリサイズが膨らむ。
-
-#if false
-/* いくつかもうちょっと絵文字の事前知識使ってもいいかも:
-
-(UTF - 16 で) 1文字のものは char → short なハッシュテーブルも別に用意するとアロケーション減るかも。
-
-- 1文字のシーケンスは 2000～3300 付近にしかない
-
-(UTF-16 で) 2文字、3文字のシーケンスも実質1文字のテーブルにできるものあり。
-
-- 2文字のシーケンス
-    - 2文字目が FE0F(異体字セレクター16)なもの多数
-      - \u00A9\uFE0F と \u00AE\uFE0F 以外は全部 2000～3300 付近
-    - 1文字目が D83C～D83F(1F000 台の符号点の high surrogate)な物がほとんど
-- 3文字のシーケンス
-    - 1文字目が D83C～D83F、3文字目が FE0F なもの多数
-
-それ以上の長さのものも、1文字目が D83C～D83F の率やっぱりだいぶ高め
-*/
-#endif
-
             writer.Write(@"        private static CharDictionary[,] _singularTable = new CharDictionary[,]
         {
 ");

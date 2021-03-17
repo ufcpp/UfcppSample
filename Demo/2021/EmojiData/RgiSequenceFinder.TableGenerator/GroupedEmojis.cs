@@ -12,11 +12,15 @@ namespace RgiSequenceFinder.TableGenerator
 
         /// <summary>
         /// いったん残すけど、<see cref="Singlulars"/> の考え方でうまくいったら消す。
+        /// <see cref="Plurals"/> を Concat したのと同じになってるはず。
         /// </summary>
         public List<(string emoji, int index)> Others { get; }
 
         /// <summary>
-        /// RGI 絵文字シーケンスのうち半分以上は、
+        /// https://www.unicode.org/Public/emoji/13.1/emoji-sequences.txt で Basic_Emoji になってるやつはこのパターンになるはず。
+        /// (なので「1文字の」(singular)とか言わず、Basics とか BasicEmojis でもいいかも。)
+        ///
+        /// RGI 絵文字シーケンスのうち半分くらいは、
         /// - 1文字で絵文字判定を受ける
         /// - 1文字 + FE0F で絵文字判定を受ける
         /// のどちらかなので、char キーの辞書に置き換えたい(string アロケーション/参照/GetHashCode除けのため)。
@@ -33,11 +37,38 @@ namespace RgiSequenceFinder.TableGenerator
         public List<(char c, int index)>?[,] Singlulars { get; }
 
         /// <summary>
+        /// RGI_Emoji_Modifier_Sequence と RGI_Emoji_ZWJ_Sequence だけが残ってるはず。
+        /// (なので「複数の」(plural)とか言わず、Zwjs とか ZwjSequences でもいいかも。)
+        ///
         /// <see cref="Singlulars"/> に収まらないものは大半が 1F000 台の文字なので。
         /// 同じく BMP or UTF-16 で D83C, D83D, D83E 開始の4つに分類してみる。
         /// BMP 文字なら 0、D83C 開始文字なら 1, D83D 開始文字なら 2, D83E 開始文字なら 3。
         /// </summary>
         public List<(string emoji, int index)>?[] Plurals { get; }
+
+        //↑ RGI_Emoji_Modifier_Sequence は2符号点目が skin tone 固定なので、さらに別テーブル管理する方がいいかも。
+        // 590 文字くらい。
+        //
+        // Role 系、Gendered 系、Hair 系の ZWJ sequence もパターン決まってるので分けた方がいいかも。
+        //
+        // Roke 系     = (1F468 | 1F469 | 1F9D1) (1F3FB-1F3FF)+ 200D (職業)
+        // Gendered 系 = (人系絵文字) (1F3FB-1F3FF | FE0F)+ 200D (2640 | 2642) FE0F
+        // Hair 系     = (1F468 | 1F469 | 1F9D1) (1F3FB-1F3FF)+ 200D (1F9B0-1F9B3)
+        //
+        // 家族絵文字みたいに skin tone が複数紛れてるものでなければ、emoji-data.json 上のインデックスは肌色で連番だと思ってよさげ。
+        // (emoji-data.json の skin_variations の並びは 1F3FB-1F3FF 順で歯抜けもないかも。)
+        //
+        // Gendered 系で2文字目に FE0F が付いてるのは 26F9 FE0F (person bounsing ball)だけっぽい。
+        //
+        // 2人家族系の絵文字も両端が (1F468 | 1F469 | 1F9D1) (1F3FB-1F3FF)+
+        // (これも、emoji-data.json 内、両端の 1F3FB-1F3FF に合わせて一定順序で skin_variations 並んでるかも。)
+        //
+        // 1F468 👨 man
+        // 1F469 👩 woman
+        // 1F9D1 🧑 person (gender neutral)
+        //
+        // 2640 ♀ female sign
+        // 2642 ♂ male sign
 
         public static GroupedEmojis Create() => new(Data.RgiEmojiSequenceList);
 
