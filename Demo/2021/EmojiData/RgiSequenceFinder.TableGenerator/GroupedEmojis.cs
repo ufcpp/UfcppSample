@@ -66,22 +66,35 @@ namespace RgiSequenceFinder.TableGenerator
                     case EmojiSequenceType.NotEmoji:
                         throw new InvalidOperationException("ないはず");
                     case EmojiSequenceType.Other:
+                        List<(char, int)>? singular = null;
+                        char c = '\0';
+
                         if (seq.Length == 1)
                         {
-                            (singulars[0, 0] ??= new()).Add((seq[0], i));
+                            singular = (singulars[0, 0] ??= new());
+                            c = seq[0];
                         }
                         else if (seq.Length == 2)
                         {
-                            if (seq[1] == '\uFE0F') (singulars[1, 0] ??= new()).Add((seq[0], i));
-                            else if (seq[0] == '\uD83C') (singulars[0, 1] ??= new()).Add((seq[1], i));
-                            else if (seq[0] == '\uD83D') (singulars[0, 2] ??= new()).Add((seq[1], i));
-                            else if (seq[0] == '\uD83E') (singulars[0, 3] ??= new()).Add((seq[1], i));
+                            if (seq[1] == '\uFE0F')
+                            {
+                                singular = (singulars[1, 0] ??= new());
+                                c = seq[0];
+                            }
+                            else
+                            {
+                                if (seq[0] == '\uD83C') singular = (singulars[0, 1] ??= new());
+                                else if (seq[0] == '\uD83D') singular = (singulars[0, 2] ??= new());
+                                else if (seq[0] == '\uD83E') singular = (singulars[0, 3] ??= new());
+                                c = seq[1];
+                            }
                         }
                         else if (seq.Length == 3 && seq[2] == '\uFE0F')
                         {
-                            if (seq[0] == '\uD83C') (singulars[1, 1] ??= new()).Add((seq[1], i));
-                            else if (seq[0] == '\uD83D') (singulars[1, 2] ??= new()).Add((seq[1], i));
-                            else if (seq[0] == '\uD83E') (singulars[1, 3] ??= new()).Add((seq[1], i));
+                            if (seq[0] == '\uD83C') singular = (singulars[1, 1] ??= new());
+                            else if (seq[0] == '\uD83D') singular = (singulars[1, 2] ??= new());
+                            else if (seq[0] == '\uD83E') singular = (singulars[1, 3] ??= new());
+                            c = seq[1];
                         }
                         else
                         {
@@ -91,7 +104,8 @@ namespace RgiSequenceFinder.TableGenerator
                             else if(!char.IsSurrogate(seq[0])) (plurals[0] ??= new()).Add((seq, i));
                         }
 
-                        others.Add((seq, i));
+                        if (singular is not null) singular.Add((c, i));
+                        else others.Add((seq, i));
                         break;
                     case EmojiSequenceType.Keycap:
                         keycaps.Add((emoji.Keycap, i));
