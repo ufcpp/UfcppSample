@@ -7,8 +7,7 @@ namespace RgiSequenceFinder
         /// <summary>
         /// <see cref="GraphemeBreak"/> 的に 1 grapheme 判定を受けてるシーケンスが、絵文字表示的には複数文字になることがある。
         /// いったん、1絵文字1インデックス想定な構造で作成。
-        /// 実際には ZWJ シーケンスの場合、「見つからなかったら ZWJ でスプリットしてから再検索」とかやるので、
-        /// 1絵文字が複数のインデックスになる予定。
+        /// 実際には ZWJ シーケンスの場合、「見つからなかったら ZWJ でスプリットしてから再検索」とかやるので、1絵文字が複数のインデックスになる。
         /// </summary>
         /// <param name="s">絵文字シーケンスを検出したい文字列。</param>
         /// <param name="indexes">表示する絵文字画像のインデックスの書き込み先。</param>
@@ -16,6 +15,19 @@ namespace RgiSequenceFinder
         /// charRead: <paramref name="s"/> の先頭なん文字を読んだか(UTF-16 長)。
         /// indexWritten: <paramref name="indexes"/> に何文字書き込んだか。 RGI 絵文字シーケンスが見つからなかった時は0。
         /// </returns>
+        /// <remarks>
+        /// 要検討:
+        /// 今のところ「テーブル中になければ -1」とか「無視」とかやってるんだけど、
+        /// 1符号点の時は Rune.Value を返してもいいかも。
+        /// インデックスと混ざらないように ~Rune.Value とかにして。
+        ///
+        /// 例えば、🐱‍🏍 は 1F431 200D 1F3CD の3符号点からなる非 RGI 絵文字なんだけど、
+        /// 1F431 (🐱) はいいとして、1F3CD (🏍) が「FE0D が付いてるときだけ絵文字扱い」な文字になってて、RGI テーブル中にない。
+        /// こういうときに ~1F3CD を返しとくとかやってもいいかも。
+        ///
+        /// あと、非 RGI flag sequence とかも、1F1E6 1F1E6 (AA) に対して ASCII の "AA" (0041 0041) を表示してもいいんだけど、現状それができない。
+        /// これも、 ~41 ~41 とかを返すようにすれば "AA" への復元は可能。
+        /// </remarks>
         public static (int charRead, int indexWritten) Find(ReadOnlySpan<char> s, Span<int> indexes)
         {
             var emoji = GraphemeBreak.GetEmojiSequence(s);
