@@ -18,8 +18,18 @@ namespace RgiSequenceFinder
     /// 先頭の文字(現状の RGI では 🏴 (1F3F4) 以外ありえない)は今、単に削除しちゃってる。
     /// 先頭文字を残すかどうかは後々というか、実際のところあり得ないとは思うけども、旗以外の emoji tag sequence が追加されたらまた改めて考える。
     /// </remarks>
-    public static class TagSequence
+    public readonly struct TagSequence : IEquatable<TagSequence>
     {
+        private readonly Byte8 _bytes;
+        private TagSequence(Byte8 bytes) => _bytes = bytes;
+
+        public ulong LongValue => _bytes.LongValue;
+        public bool Equals(TagSequence other) => _bytes == other._bytes;
+        public override bool Equals(object? obj) => obj is TagSequence other && Equals(other);
+        public override int GetHashCode() => _bytes.GetHashCode();
+        public static bool operator ==(TagSequence x, TagSequence y) => x.Equals(y);
+        public static bool operator !=(TagSequence x, TagSequence y) => !x.Equals(y);
+
         // 現状、emoji tag sequence のタグが6文字以上の RGI 絵文字はないんだけど、
         // どうせ alignment で8に揃えられたりするので8バイト取っとく。
 
@@ -49,7 +59,7 @@ namespace RgiSequenceFinder
         ///
         /// タグ文字を使う仕様がこいつだけなので、これも先に判定してしまえば他の絵文字シーケンス処理から E0000 台の判定を消せる。
         /// </remarks>
-        public static (int tagLength, Byte8 tags) FromFlagSequence(ReadOnlySpan<char> s)
+        public static (int tagLength, TagSequence tags) FromFlagSequence(ReadOnlySpan<char> s)
         {
             if (s.Length < 2) return default;
 
@@ -77,7 +87,7 @@ namespace RgiSequenceFinder
 
             // 🏴 だけあって Tag が付いてないときと、🏴 もない時の区別は多分要らないと思う。
             // 1F3F4-200D-2620-FE0F (海賊旗)みたいな文字があるけど、それは ZWJ シーケンス判定の方で拾う。
-            return (i, tags);
+            return (i, new(tags));
 
             static bool isTagLowSurrogate(char c) => c is >= (char)0xDC00 and <= (char)0xDC7F;
         }
@@ -86,7 +96,7 @@ namespace RgiSequenceFinder
         /// 普通に "gbsct" みたいな文字列から E0067-E0062-E0073-E0063-E0074-E007F に相当する <see cref="TagSequence"/> を作る。
         /// (末尾に Cancel タグ(ESC 文字)も入れる。)
         /// </summary>
-        public static Byte8 FromAscii(ReadOnlySpan<char> s)
+        public static TagSequence FromAscii(ReadOnlySpan<char> s)
         {
             Byte8 tags = default;
             var tagsSpan = tags.AsSpan();
@@ -99,7 +109,7 @@ namespace RgiSequenceFinder
 
             tagsSpan[i] = 0x7F;
 
-            return tags;
+            return new(tags);
         }
 
         public static string ToString(Byte8 tags)

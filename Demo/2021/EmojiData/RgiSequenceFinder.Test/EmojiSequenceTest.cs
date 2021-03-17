@@ -47,7 +47,7 @@ namespace RgiSequenceFinder.Test
         public void TestTagSequence()
         {
             // 現行の RGI だと gbeng, gbsct, gbwls の3つだけのはず。
-            var subdivitions = new HashSet<Byte8>(new[] { TagSequence.FromAscii("gbeng"), TagSequence.FromAscii("gbsct"), TagSequence.FromAscii("gbwls") });
+            var subdivitions = new HashSet<TagSequence>(new[] { TagSequence.FromAscii("gbeng"), TagSequence.FromAscii("gbsct"), TagSequence.FromAscii("gbwls") });
 
             var count = 0;
             foreach (var s in Data.RgiEmojiSequenceList)
