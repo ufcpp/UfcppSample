@@ -126,6 +126,22 @@ namespace RgiSequenceFinder.Test
             }
         }
 
+        private static int FindAll(ReadOnlySpan<char> s, Span<int> indexes)
+        {
+            int totalWritten = 0;
+            while (true)
+            {
+                var (read, written) = RgiTable.Find(s, indexes);
+
+                totalWritten += written;
+                s = s[read..];
+                indexes = indexes[written..];
+
+                if (s.Length == 0) break;
+            }
+            return totalWritten;
+        }
+
         [Fact]
         public void 未サポートZWJシーケンス()
         {
@@ -156,30 +172,41 @@ namespace RgiSequenceFinder.Test
             // 未対応 ZWJ sequence は、ZWJ を消し去ったのと同じ結果を産むはず。
             Span<int> indexes1 = stackalloc int[12];
             var concat = string.Concat(ninjaCats);
-            FindAll(concat, indexes1);
+            var written1 = FindAll(concat, indexes1);
+            Assert.Equal(ninjaCats.Length * 2, written1);
 
             Span<int> indexes2 = stackalloc int[12];
             var zwjRemoved = concat.Replace("\u200D", "");
-            FindAll(zwjRemoved, indexes2);
+            var written2 = FindAll(zwjRemoved, indexes2);
+            Assert.Equal(ninjaCats.Length * 2, written2);
 
             Assert.True(indexes1.SequenceEqual(indexes2));
-
-            static void FindAll(ReadOnlySpan<char> s, Span<int> indexes)
-            {
-                while (true)
-                {
-                    var (read, written) = RgiTable.Find(s, indexes);
-
-                    s = s[read..];
-                    indexes = indexes[written..];
-
-                    if (s.Length == 0) break;
-                }
-            }
         }
 
-        // テストに使えそうな絵文字:
-        // - Windows は頑張ってレンダリングしてる4人家族×肌色: 👩🏻‍👩🏿‍👧🏼‍👧🏾
-        // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
+        [Fact]
+        public void 未サポートZWJ肌色シーケンス()
+        {
+            // 👩🏻‍👩🏿‍👧🏼‍👧🏾
+            // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
+            // 肌色違いの4人家族。
+            // Windows はむっちゃ頑張って指定した肌色で家族くっつけてレンダリングする。
+            //
+            // 一方で、 RGI 的には Unicode 12.0 以降、カップル絵文字までは肌色の組み合わせ(5×5)に対応したけど、さすがに3人以上の家族絵文字は適用外。
+            // この場合、👩🏻👩🏿👧🏼👧🏾 (ZWJ を除去したもの)と同じ結果を生んでほしい。
+
+            var family = "👩🏻‍👩🏿‍👧🏼‍👧🏾";
+
+            // 未対応 ZWJ sequence は、ZWJ を消し去ったのと同じ結果を産むはず。
+            Span<int> indexes1 = stackalloc int[12];
+            var written1 = FindAll(family, indexes1);
+            Assert.Equal(4, written1);
+
+            Span<int> indexes2 = stackalloc int[12];
+            var zwjRemoved = family.Replace("\u200D", "");
+            var written2 = FindAll(zwjRemoved, indexes2);
+            Assert.Equal(4, written2);
+
+            Assert.True(indexes1.SequenceEqual(indexes2));
+        }
     }
 }
