@@ -33,7 +33,11 @@ namespace RgiSequenceFinder
                             return (emoji.LengthInUtf16, 1);
                         }
 
-                        var written = ReduceExtends(span, indexes);
+                        // 素直に見つからなかったときの再検索
+                        // - ZWJ で分割して再検索
+                        // - FE0F(異体字セレクター16)を消してみて再検索
+                        // - 1F3FB～1F3FF (肌色選択)を消してみて再検索 + 肌色自体の絵
+                        var written = SplitZqjSequence(emoji.ZwjPositions, span, indexes);
                         
                         return (emoji.LengthInUtf16, written);
                     }
@@ -89,24 +93,56 @@ namespace RgiSequenceFinder
             }
         }
 
-        //todo: -1 の時の再検索
-        // - ZWJ で分割して再検索
-        // - FE0F(異体字セレクター16)を消してみて再検索
-        // - 1F3FB～1F3FF (肌色選択)を消してみて再検索 + 肌色自体の絵
-        //
-        // テストに使えそうな絵文字:
-        // - Windows オリジナルキャラ: 🐱‍👤🐱‍🏍🐱‍💻🐱‍🐉🐱‍👓🐱‍🚀
-        // 1F431 200D の後ろにそれぞれ 1F464, 1F3CD, 1F4BB, 1F409, 1F453, 1F680
-        // - Windows は頑張ってレンダリングしてる4人家族×肌色: 👩🏻‍👩🏿‍👧🏼‍👧🏾
-        // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
+        /// <summary>
+        /// RGI にない ZWJ sequence が来た時、ZWJ で分割してそれぞれ <see cref="FindOther(ReadOnlySpan{char})"/> してみる。
+        /// </summary>
+        /// <returns><paramref name="indexes"/> に書き込んだ長さ。</returns>
+        /// <remarks>
+        /// さすがに <see cref="Find(ReadOnlySpan{char}, Span{int})"/> からの再起は要らないと思う。たぶん。
+        /// <see cref="FindOther(ReadOnlySpan{char})"/> しか見ないので、国旗 + ZWJ とかは受け付けない。
+        /// </remarks>
+        private static int SplitZqjSequence(Byte8 zwjPositions, ReadOnlySpan<char> s, Span<int> indexes)
+        {
+            var totalWritten = 0;
+            var prevPos = 0;
+
+            for (int j = 0; j < Byte8.MaxLength; j++)
+            {
+                var pos = zwjPositions[j];
+                if (pos == 0) break;
+
+                var written = ReduceExtends(s.Slice(prevPos, pos - prevPos), indexes);
+                totalWritten += written;
+                indexes = indexes.Slice(written);
+                prevPos = pos + 1;
+            }
+
+            totalWritten += ReduceExtends(s.Slice(prevPos), indexes);
+
+            return totalWritten;
+        }
+
 
         /// <summary>
         /// Extend (FE0F と skin tone) 削り。
         /// FE0F → ただ消す。
         /// skin tone → 基本絵文字 + 肌色四角に分解。
         /// </summary>
+        /// <returns><paramref name="indexes"/> に書き込んだ長さ。</returns>
         private static int ReduceExtends(ReadOnlySpan<char> s, Span<int> indexes)
         {
+            // ZWJ 付きじゃないときに2度同じ処理してることになるけど、避けようと思うと結構大変なので妥協。
+            // そんなに高頻度で来ないはずなので問題にもならないと思う。
+            {
+                var i = FindOther(s);
+
+                if (i >= 0)
+                {
+                    if (indexes.Length > 0) indexes[0] = i;
+                    return 1;
+                }
+            }
+
             // variation selector 16 削り。
             // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
             // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。

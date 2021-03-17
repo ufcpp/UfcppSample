@@ -125,5 +125,61 @@ namespace RgiSequenceFinder.Test
                 if (s.Length == 0) break;
             }
         }
+
+        [Fact]
+        public void 未サポートZWJシーケンス()
+        {
+            Span<int> indexes = stackalloc int[2];
+
+            RgiTable.Find("🐱", indexes);
+            var catIndex = indexes[0];
+
+            // 🐱‍👤🐱‍🏍🐱‍💻🐱‍🐉🐱‍👓🐱‍🚀
+            // Windows オリジナルキャラの忍者猫。
+            // Microsoft 内で使ってたマスコットだったらしい。
+            // 1F431 200D の後ろにそれぞれ 1F464, 1F3CD, 1F4BB, 1F409, 1F453, 1F680
+            // 当然 RGI には入ってないのでちょうどいいので未サポート ZWJ sequence のテストデータに使う。
+            //
+            // 🐱‍🏍 は今の判定ロジックだと拾えなさそう。
+            // 🏍 (1F3CD)が「FE0F がついてるときだけ絵文字扱い」の文字なので、テーブル中になくて除外される。
+            var ninjaCats = new[] { "🐱‍👤", "🐱‍💻", "🐱‍🐉", "🐱‍👓", "🐱‍🚀" };
+
+            foreach (var cat in ninjaCats)
+            {
+                var (read, written) = RgiTable.Find(cat, indexes);
+
+                Assert.Equal(5, read);
+                Assert.Equal(2, written);
+                Assert.Equal(catIndex, indexes[0]);
+            }
+
+            // 未対応 ZWJ sequence は、ZWJ を消し去ったのと同じ結果を産むはず。
+            Span<int> indexes1 = stackalloc int[12];
+            var concat = string.Concat(ninjaCats);
+            FindAll(concat, indexes1);
+
+            Span<int> indexes2 = stackalloc int[12];
+            var zwjRemoved = concat.Replace("\u200D", "");
+            FindAll(zwjRemoved, indexes2);
+
+            Assert.True(indexes1.SequenceEqual(indexes2));
+
+            static void FindAll(ReadOnlySpan<char> s, Span<int> indexes)
+            {
+                while (true)
+                {
+                    var (read, written) = RgiTable.Find(s, indexes);
+
+                    s = s[read..];
+                    indexes = indexes[written..];
+
+                    if (s.Length == 0) break;
+                }
+            }
+        }
+
+        // テストに使えそうな絵文字:
+        // - Windows は頑張ってレンダリングしてる4人家族×肌色: 👩🏻‍👩🏿‍👧🏼‍👧🏾
+        // 1F469 1F3FB 200D 1F469 1F3FF 200D 1F467 1F3FC 200D 1F467 1F3FE
     }
 }
