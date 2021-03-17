@@ -45,8 +45,8 @@ namespace RgiSequenceFinder
         internal struct Bucket
         {
             public ushort KeyStart;
-            public ushort KeyLength;
-            public int Value;
+            public ushort KeyLength; // 空文字列がこないので、これの == 0 で空判定。
+            public ushort Value;
             public bool HasValue => KeyLength != 0;
         }
 
@@ -78,14 +78,15 @@ namespace RgiSequenceFinder
         /// 最初に想定している以上に追加すると永久ループする可能性があるので注意。
         /// (<see cref="CompactDictionary{TKey, TValue, TComparer}.CompactDictionary(int)"/>の引数で与えた数字の2倍を超えると可能性あり)
         /// </remarks>
-        public void Add(ReadOnlySpan<char> s, ushort keyStart, ushort keyLength, int value)
+        public void Add(ReadOnlySpan<char> s, ushort keyStart, ushort keyLength, ushort value)
         {
             var key = s.Slice(keyStart, keyLength);
             var hash = GetHashCode(key) & Mask;
+            var buckets = _buckets;
 
             while (true)
             {
-                ref var b = ref _buckets[hash];
+                ref var b = ref buckets[hash];
 
                 if (!b.HasValue)
                 {
@@ -103,13 +104,14 @@ namespace RgiSequenceFinder
         /// 値の取得。
         /// キーが見つからなかったら false を返す。
         /// </summary>
-        public bool TryGetValue(ReadOnlySpan<char> key, out int value)
+        public bool TryGetValue(ReadOnlySpan<char> key, out ushort value)
         {
             var hash = GetHashCode(key) & Mask;
+            var buckets = _buckets;
 
             while (true)
             {
-                ref var b = ref _buckets[hash];
+                var b = buckets[hash];
 
                 if (!b.HasValue)
                 {
