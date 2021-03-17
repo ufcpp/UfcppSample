@@ -221,5 +221,41 @@ namespace RgiSequenceFinder
 
             return 0;
         }
+
+        private static int FindOther(ReadOnlySpan<char> s)
+        {
+            CharDictionary? singular = null;
+            char c = '\0';
+            if (s.Length == 1)
+            {
+                singular = _singularTable[0, 0];
+                c = s[0];
+            }
+            else if (s.Length == 2)
+            {
+                if (s[1] == '\uFE0F')
+                {
+                    singular = _singularTable[1, 0];
+                    c = s[0];
+                }
+                else
+                {
+                    if (s[0] == '\uD83C') singular = _singularTable[0, 1];
+                    else if (s[0] == '\uD83D') singular = _singularTable[0, 2];
+                    else if (s[0] == '\uD83E') singular = _singularTable[0, 3];
+                    c = s[1];
+                }
+            }
+            else if (s.Length == 3 && s[2] == '\uFE0F')
+            {
+                if (s[0] == '\uD83C') singular = _singularTable[1, 1];
+                else if (s[0] == '\uD83D') singular = _singularTable[1, 2];
+                else if (s[0] == '\uD83E') singular = _singularTable[1, 3];
+                c = s[1];
+            }
+
+            if (singular is not null) return singular.TryGetValue(c, out var v) ? v : -1;
+            else return _otherTable.TryGetValue(s, out var v) ? v : -1;
+        }
     }
 }

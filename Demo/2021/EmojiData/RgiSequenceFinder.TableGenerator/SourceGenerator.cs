@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace RgiSequenceFinder.TableGenerator
             WriteRegionFlags(writer, emojis.RegionFlags);
             WriteTagFlags(writer, emojis.TagFlags);
             WriteSkinTones(writer, emojis.SkinTones);
-            WriterOthers(writer, emojis.Others);
+            WriterOthers(writer, emojis.Singlulars, emojis.Others);
             WriteFooter(writer);
         }
 
@@ -133,7 +134,7 @@ namespace RgiSequenceFinder
 ");
         }
 
-        private static void WriterOthers(StreamWriter writer, List<(string emoji, int index)> others)
+        private static void WriterOthers(StreamWriter writer, List<(char c, int index)>?[,] singulars, List<(string emoji, int index)> others)
         {
             // other 分、いったん Dictionary 実装する。
             // string → int で型が固定、容量も固定、キー検索に ReadOnlySpan<char> 受付可能な自作ハッシュテーブル(StringDictionary)は用意してある。
@@ -159,6 +160,64 @@ namespace RgiSequenceFinder
 それ以上の長さのものも、1文字目が D83C～D83F の率やっぱりだいぶ高め
 */
 #endif
+
+            writer.Write(@"        private static CharDictionary[,] _singularTable = new CharDictionary[,]
+        {
+");
+
+            for (int fe0f = 0; fe0f < 2; fe0f++)
+            {
+                writer.Write(@"            {
+");
+
+                for (int bmp = 0; bmp < 4; bmp++)
+                {
+                    var list = singulars[fe0f, bmp];
+
+                    if (list is null)
+                    {
+                        writer.Write(@"                null,
+");
+                    }
+                    else
+                    {
+                        var count = list.Count;
+                        var bits = (int)Math.Round(Math.Log2(count));
+
+                        // ビット数削るほど被り率上がるので、256/512 を境にビット数増やしてる。
+                        bits = bits <= 7 ? bits + 2 : bits + 1;
+                        var capacity = 1 << bits;
+
+                        writer.Write(@"                new(");
+                        writer.Write(capacity);
+                        writer.Write(@",
+                    """);
+                        foreach (var (c, _) in list)
+                        {
+                            writer.Write("\\u");
+                            writer.Write(((int)c).ToString("X4"));
+                        }
+                        writer.Write(@""",
+                    new ushort[] { ");
+
+                        foreach (var (_, index) in list)
+                        {
+                            writer.Write(index);
+                            writer.Write(", ");
+                        }
+
+                        writer.Write(@"}),
+");
+                    }
+                }
+
+                writer.Write(@"            },
+");
+            }
+
+            writer.Write(@"        };
+");
+
 
             writer.Write(@"        private static StringDictionary _otherTable = new(
             """);
@@ -192,8 +251,6 @@ namespace RgiSequenceFinder
 
             writer.Write(@"}
             );
-
-        private static int FindOther(System.ReadOnlySpan<char> s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
 ");
         }
 
