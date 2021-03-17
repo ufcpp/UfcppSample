@@ -60,7 +60,7 @@ namespace RgiSequenceFinder
             var (tagCount, tags) = TagSequence.FromFlagSequence(s);
             if (tagCount != 0) return new(tagCount, tags);
 
-            var count = IsZwjSequence(s);
+            var (count, zwjs) = IsZwjSequence(s);
 
             if (count == 0) return EmojiSequence.NotEmoji;
             else return new(EmojiSequenceType.Other, count);
@@ -160,10 +160,14 @@ namespace RgiSequenceFinder
         /// <see cref="GetEmojiSequence(ReadOnlySpan{char})"/> の主要処理。
         /// 「keycap と国旗を除けばだいぶシンプルになる」前提の Emoji ZWJ sequence 判定。
         /// </summary>
-        private static int IsZwjSequence(ReadOnlySpan<char> s)
+        private static (int count, Byte8 zwjPositions) IsZwjSequence(ReadOnlySpan<char> s)
         {
             // ZWJ シーケンス。
             var count = 0;
+            Byte8 zwjPositions = default;
+            var zwjIndex = 0;
+            var span = zwjPositions.AsSpan();
+
             while (true)
             {
                 var pict = IsPictgraphicEstimate(s);
@@ -185,13 +189,19 @@ namespace RgiSequenceFinder
 
                 if (s.Length >= 1 && s[0] == (char)0x200D)
                 {
+                    if(zwjIndex < span.Length)
+                    {
+                        span[zwjIndex] = (byte)count;
+                        ++zwjIndex;
+                    }
+
                     ++count;
                     s = s.Slice(1);
                 }
                 else break;
             }
 
-            return count;
+            return (count, zwjPositions);
         }
     }
 }
