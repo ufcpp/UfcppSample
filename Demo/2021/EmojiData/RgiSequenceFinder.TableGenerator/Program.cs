@@ -7,6 +7,7 @@ using System.Text;
 // 2段くらいなら大した負担でもないし、とうめん2段コード生成する。
 
 //RgiSequenceFinder.TableGenerator.Experimental.HashCode.CollisionCount(); return;
+//RgiSequenceFinder.TableGenerator.Experimental.SingularEmoji.CheckCount(); return;
 
 var emojis = GroupedEmojis.Create();
 
