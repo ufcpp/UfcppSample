@@ -398,6 +398,10 @@ namespace RgiSequenceFinder
             _ => -1,
         };
 
+        private static readonly int[] _skinToneIndexes = { 651, 652, 653, 654, 655, };
+
+        private static int FindSkinTone(SkinTone skinTone) => _skinToneIndexes[(int)skinTone];
+
         private static StringDictionary _otherTable = new()
         {
             { "\u00A9\uFE0F", 12 },
@@ -778,11 +782,6 @@ namespace RgiSequenceFinder
             { "\uD83C\uDFF8", 648 },
             { "\uD83C\uDFF9", 649 },
             { "\uD83C\uDFFA", 650 },
-            { "\uD83C\uDFFB", 651 },
-            { "\uD83C\uDFFC", 652 },
-            { "\uD83C\uDFFD", 653 },
-            { "\uD83C\uDFFE", 654 },
-            { "\uD83C\uDFFF", 655 },
             { "\uD83D\uDC00", 656 },
             { "\uD83D\uDC01", 657 },
             { "\uD83D\uDC02", 658 },

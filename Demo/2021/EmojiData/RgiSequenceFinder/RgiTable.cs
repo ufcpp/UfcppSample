@@ -91,6 +91,12 @@ namespace RgiSequenceFinder
                         indexes[0] = i;
                         return (emoji.LengthInUtf16, 1);
                     }
+                case EmojiSequenceType.SkinTone:
+                    {
+                        var i = FindSkinTone(emoji.SkinTone);
+                        indexes[0] = i;
+                        return (2, 1);
+                    }
                 default:
                 case EmojiSequenceType.NotEmoji:
                 case EmojiSequenceType.MoreBufferRequired:

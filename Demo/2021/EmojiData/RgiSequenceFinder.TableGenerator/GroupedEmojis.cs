@@ -8,6 +8,7 @@ namespace RgiSequenceFinder.TableGenerator
         public List<(Keycap key, int index)> Keycaps { get; }
         public List<(RegionalIndicator code, int index)> RegionFlags { get; }
         public List<(TagSequence tag, int index)> TagFlags { get; }
+        public int[] SkinTones { get; }
         public List<(string emoji, int index)> Others { get; }
 
         public static GroupedEmojis Create() => new(Data.RgiEmojiSequenceList);
@@ -17,6 +18,7 @@ namespace RgiSequenceFinder.TableGenerator
             var keycaps = new List<(Keycap key, int index)>();
             var regionFlags = new List<(RegionalIndicator code, int index)>();
             var tagFlags = new List<(TagSequence tag, int index)>();
+            var skinTones = new int[5];
             var others = new List<(string emoji, int index)>();
 
             for (int i = 0; i < data.Length; i++)
@@ -42,6 +44,9 @@ namespace RgiSequenceFinder.TableGenerator
                     case EmojiSequenceType.Flag:
                         regionFlags.Add((emoji.Region, i));
                         break;
+                    case EmojiSequenceType.SkinTone:
+                        skinTones[(int)emoji.SkinTone] = i;
+                        break;
                     case EmojiSequenceType.Tag:
                         tagFlags.Add((emoji.Tags, i));
                         break;
@@ -51,6 +56,7 @@ namespace RgiSequenceFinder.TableGenerator
             Keycaps = keycaps;
             RegionFlags = regionFlags;
             TagFlags = tagFlags;
+            SkinTones = skinTones;
             Others = others;
         }
     }

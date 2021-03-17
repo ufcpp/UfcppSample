@@ -8,6 +8,8 @@ namespace RgiSequenceFinder
     /// 参考: http://unicode.org/reports/tr51/#def_std_emoji_tag_sequence_set
     /// </summary>
     /// <remarks>
+    /// 絵文字の闇その2。
+    ///
     /// 1F3F4-E0067-E0062-E0073-E0063-E0074-E007F であれば gbsct [ESC] の6文字。
     ///
     /// タグ数が <see cref="Byte8.MaxLength"/> 以上のときは情報が切り捨てられるので注意
@@ -37,8 +39,6 @@ namespace RgiSequenceFinder
         /// そうなってないときは count == 0 を返す。
         /// </summary>
         /// <remarks>
-        /// 絵文字の闇その2。
-        ///
         /// <see cref="IsFlag(ReadOnlySpan{char})"/> の仕様では表せない地域からクレーム入ったという話。
         /// ISO 3166-1 (ラテン文字2文字で表現する国コード)で表されてる「国または地域」の旗だけ用意したらそりゃ怒られるよね。
         /// ISO 3166-2 (ラテン文字4～5文字で表現する行政区画コード)で旗を出す。

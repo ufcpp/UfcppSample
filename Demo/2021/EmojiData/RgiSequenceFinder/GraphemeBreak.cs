@@ -63,7 +63,19 @@ namespace RgiSequenceFinder
             var (count, zwjs) = IsZwjSequence(s);
 
             if (count == 0) return EmojiSequence.NotEmoji;
-            else return new(count, zwjs);
+
+            // skin tone だけ別枠。
+            // 本来、skin tone は IsZwjSequence に引っかからない仕様なんだけど、
+            // IsPictgraphicEstimate が処理をちょっとさぼってるのでここに来る。
+            if (count == 2)
+            {
+                if (s[0] == 0xD83C && s[1] is >= (char)0xDFFB and <= (char)0xDFFF)
+                {
+                    return new(count, (SkinTone)(s[1] - 0xDFFB));
+                }
+            }
+
+            return new(count, zwjs);
         }
 
         /// <summary>
@@ -139,7 +151,7 @@ namespace RgiSequenceFinder
         {
             if (s.Length >= 2)
             {
-                if (s[0] == 0xD83C && isFitzpatrickLowSurrogate(s[1]))
+                if (s[0] == 0xD83C && isSkinToneLowSurrogate(s[1]))
                 {
                     return 2;
                 }
@@ -153,7 +165,7 @@ namespace RgiSequenceFinder
             }
             return 0;
 
-            static bool isFitzpatrickLowSurrogate(char c) => c is >= (char)0xDFFB and <= (char)0xDFFF;
+            static bool isSkinToneLowSurrogate(char c) => c is >= (char)0xDFFB and <= (char)0xDFFF;
         }
 
         /// <summary>

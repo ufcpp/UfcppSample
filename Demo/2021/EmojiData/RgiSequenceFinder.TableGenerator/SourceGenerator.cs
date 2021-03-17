@@ -12,6 +12,7 @@ namespace RgiSequenceFinder.TableGenerator
             WriteKeycaps(writer, emojis.Keycaps);
             WriteRegionFlags(writer, emojis.RegionFlags);
             WriteTagFlags(writer, emojis.TagFlags);
+            WriteSkinTones(writer, emojis.SkinTones);
             WriterOthers(writer, emojis.Others);
             WriteFooter(writer);
         }
@@ -110,6 +111,24 @@ namespace RgiSequenceFinder
 
             writer.Write(@"            _ => -1,
         };
+
+");
+        }
+
+        private static void WriteSkinTones(StreamWriter writer, int[] skinToneIndexes)
+        {
+            writer.Write(@"        private static readonly int[] _skinToneIndexes = { ");
+
+            foreach (var index in skinToneIndexes)
+            {
+                writer.Write(index);
+                writer.Write(", ");
+            }
+
+
+            writer.Write(@"};
+
+        private static int FindSkinTone(SkinTone skinTone) => _skinToneIndexes[(int)skinTone];
 
 ");
         }

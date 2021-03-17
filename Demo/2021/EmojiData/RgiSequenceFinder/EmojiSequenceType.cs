@@ -24,20 +24,28 @@
         /// <summary>
         /// keycap sequence。
         /// 0-9, *. # だけで判定できる。
+        /// <see cref="RgiSequenceFinder.Keycap"/>
         /// </summary>
         Keycap,
 
         /// <summary>
         /// Regional Indicator 2文字の国旗。
         /// Regional Indicator に相当する ASCII 2文字でテーブル引く想定。
+        /// <see cref="RegionalIndicator"/>
         /// </summary>
         Flag,
 
         /// <summary>
         /// emoji tag sequence。
         /// Tag 文字に相当する ASCII 数文字でテーブル引く想定。
+        /// <see cref="TagSequence"/>
         /// </summary>
         Tag,
+
+        /// <summary>
+        /// <see cref="RgiSequenceFinder.SkinTone"/>
+        /// </remarks>
+        SkinTone,
 
         /// <summary>
         /// 想定よりも長い絵文字シーケンスが来て対応できないとき。

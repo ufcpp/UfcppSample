@@ -6,6 +6,8 @@ namespace RgiSequenceFinder
     /// Regional Indicator 2文字を単純な数値化したもの。
     /// </summary>
     /// <remarks>
+    /// 絵文字の闇その1。
+    ///
     /// 国旗は Regional Indicator っていう A～Z に相当する特殊記号26文字があって、それ2個(固定長)の組み合わせで表現されてる。
     /// 原理上26×26が上限(これよりも複雑な国旗は emoji tag sequence っていう別の仕様を使って表現することになってる)。
     ///
@@ -43,8 +45,6 @@ namespace RgiSequenceFinder
         /// 戻り値を int とか short にしちゃうと他のメソッドの「grapheme cluster 長を返す」って仕様と混ざるのが怖いので専用の型を作った。
         /// </returns>
         /// <remarks>
-        /// 絵文字の闇その1。
-        ///
         /// 他の grapheme 判定と違って「特定の範囲の文字が2文字並んでいるときに区切る」っていう特殊仕様。
         /// (奇数個並んでると絵文字にならないという嫌な仕様。
         /// 他は正規表現でいうところの * (0個以上)判定。)
