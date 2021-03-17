@@ -11,8 +11,11 @@ namespace RgiSequenceFinder
     /// - たかだか4000文字程度(Unicode 13.0 で3300文字)
     /// - 最長の文字数もわかってる(Unicode 13.0 で UTF-16 14文字)
     ///
-    /// バケットを最初に固定長で取って、以後、resize 一切なし。
-    /// GetHashCode の実装も「16文字以下」みたいな条件で計算してる。
+    /// なので、
+    /// - 文字列リテラルは全部連結したものを1個だけ渡す
+    ///   - キーの代わりに文字数一覧を渡す
+    /// - バケットを最初に固定長で取って、以後、resize 一切なし
+    /// - GetHashCode の実装も「16文字以下」みたいな条件で計算する
     /// </remarks>
     class StringDictionary : System.Collections.IEnumerable
     {
@@ -41,12 +44,32 @@ namespace RgiSequenceFinder
 
         internal struct Bucket
         {
-            public string Key;
+            public ushort KeyStart;
+            public ushort KeyLength;
             public int Value;
-            public bool HasValue => Key is not null;
+            public bool HasValue => KeyLength != 0;
         }
 
+        private readonly string _concatinatedString;
         private readonly Bucket[] _buckets = new Bucket[Capacity];
+
+        private StringDictionary() { _concatinatedString = null!; }
+
+        public StringDictionary(string concatinatedString, ReadOnlySpan<byte> lengths, ReadOnlySpan<ushort> indexes)
+        {
+            if (lengths.Length != indexes.Length) throw new ArgumentException("length mismatched");
+
+            _concatinatedString = concatinatedString;
+
+            var span = concatinatedString.AsSpan();
+            ushort total = 0;
+            for (int i = 0; i < lengths.Length; i++)
+            {
+                var len = lengths[i];
+                Add(span, total, len, indexes[i]);
+                total += len;
+            }
+        }
 
         /// <summary>
         /// 要素の追加。
@@ -55,8 +78,9 @@ namespace RgiSequenceFinder
         /// 最初に想定している以上に追加すると永久ループする可能性があるので注意。
         /// (<see cref="CompactDictionary{TKey, TValue, TComparer}.CompactDictionary(int)"/>の引数で与えた数字の2倍を超えると可能性あり)
         /// </remarks>
-        public void Add(string key, int value)
+        public void Add(ReadOnlySpan<char> s, ushort keyStart, ushort keyLength, int value)
         {
+            var key = s.Slice(keyStart, keyLength);
             var hash = GetHashCode(key) & Mask;
 
             while (true)
@@ -65,7 +89,8 @@ namespace RgiSequenceFinder
 
                 if (!b.HasValue)
                 {
-                    b.Key = key;
+                    b.KeyStart = keyStart;
+                    b.KeyLength = keyLength;
                     b.Value = value;
                     break;
                 }
@@ -91,7 +116,7 @@ namespace RgiSequenceFinder
                     value = 0;
                     return false;
                 }
-                else if (b.Key != null && key.SequenceEqual(b.Key))
+                else if (b.KeyLength != 0 && key.SequenceEqual(_concatinatedString.AsSpan(b.KeyStart, b.KeyLength)))
                 {
                     value = b.Value;
                     return true;

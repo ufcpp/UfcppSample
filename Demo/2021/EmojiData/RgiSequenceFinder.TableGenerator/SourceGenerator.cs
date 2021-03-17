@@ -160,27 +160,38 @@ namespace RgiSequenceFinder
 */
 #endif
 
-            writer.Write(@"        private static StringDictionary _otherTable = new()
-        {
-");
+            writer.Write(@"        private static StringDictionary _otherTable = new(
+            """);
 
-            foreach (var (s, index) in others)
+            foreach (var (s, _) in others)
             {
-                writer.Write("            { \"");
-
                 foreach (var c in s)
                 {
                     writer.Write("\\u");
                     writer.Write(((int)c).ToString("X4"));
                 }
-
-                writer.Write("\", ");
-                writer.Write(index);
-                writer.Write(@" },
-");
             }
 
-            writer.Write(@"        };
+            writer.Write(@""",
+            new byte[] { ");
+
+            foreach (var (s, _) in others)
+            {
+                writer.Write(s.Length);
+                writer.Write(", ");
+            }
+
+            writer.Write(@"},
+            new ushort[] { ");
+
+            foreach (var (_, index) in others)
+            {
+                writer.Write(index);
+                writer.Write(", ");
+            }
+
+            writer.Write(@"}
+            );
 
         private static int FindOther(System.ReadOnlySpan<char> s) => _otherTable.TryGetValue(s, out var v) ? v : -1;
 ");
