@@ -10,16 +10,18 @@ namespace RgiSequenceFinder
     /// <remarks>
     /// 1F3F4-E0067-E0062-E0073-E0063-E0074-E007F であれば gbsct [ESC] の6文字。
     ///
-    /// タグ数が <see cref="TagMaxLength"/> 以上のときは情報が切り捨てられるので注意
+    /// タグ数が <see cref="Byte8.MaxLength"/> 以上のときは情報が切り捨てられるので注意
     /// (<see cref="EmojiSequence"/> 側で <see cref="EmojiSequenceType.MoreBufferRequired"/> 化してる)。
     ///
-    /// 逆にタグ数が  <see cref="TagMaxLength"/> より少ない時(というか、現状6しかあり得ない)、後ろの方(現状、末尾2文字)は0詰め。
+    /// 逆にタグ数が  <see cref="Byte8.MaxLength"/> より少ない時(というか、現状6しかあり得ない)、後ろの方(現状、末尾2文字)は0詰め。
     ///
     /// 先頭の文字(現状の RGI では 🏴 (1F3F4) 以外ありえない)は今、単に削除しちゃってる。
     /// 先頭文字を残すかどうかは後々というか、実際のところあり得ないとは思うけども、旗以外の emoji tag sequence が追加されたらまた改めて考える。
     /// </remarks>
     public readonly struct TagSequence : IEquatable<TagSequence>
     {
+        // 現状、emoji tag sequence のタグが6文字以上の RGI 絵文字はないんだけど、
+        // どうせ alignment で8に揃えられたりするので8バイト取っとく。
         private readonly Byte8 _bytes;
         private TagSequence(Byte8 bytes) => _bytes = bytes;
 
@@ -29,11 +31,6 @@ namespace RgiSequenceFinder
         public override int GetHashCode() => _bytes.GetHashCode();
         public static bool operator ==(TagSequence x, TagSequence y) => x.Equals(y);
         public static bool operator !=(TagSequence x, TagSequence y) => !x.Equals(y);
-
-        // 現状、emoji tag sequence のタグが6文字以上の RGI 絵文字はないんだけど、
-        // どうせ alignment で8に揃えられたりするので8バイト取っとく。
-
-        public const int TagMaxLength = 8;
 
         /// <summary>
         /// 🏴 始まりの emoji tag sequence かどうかを判定。
