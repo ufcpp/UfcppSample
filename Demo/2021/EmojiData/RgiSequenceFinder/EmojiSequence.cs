@@ -31,7 +31,7 @@ namespace RgiSequenceFinder
         public readonly RegionalIndicator Region;
 
         [FieldOffset(8)]
-        public readonly TagSequence Tags;
+        public readonly Byte8 Tags;
 
         public EmojiSequence(EmojiSequenceType type, int length) : this()
         {
@@ -49,7 +49,7 @@ namespace RgiSequenceFinder
             Region = region;
         }
 
-        public EmojiSequence(int tagLength, TagSequence tags)
+        public EmojiSequence(int tagLength, Byte8 tags)
             : this(
                   tagLength > TagSequence.TagMaxLength ? EmojiSequenceType.MoreBufferRequired : EmojiSequenceType.Tag,
                   2 * tagLength + 2)

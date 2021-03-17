@@ -390,7 +390,7 @@ namespace RgiSequenceFinder
             _ => -1,
         };
 
-        private static int FindTag(TagSequence tags) => tags.LongValue switch
+        private static int FindTag(Byte8 tags) => tags.LongValue switch
         {
             0x7F676E656267UL => 642,
             0x7F7463736267UL => 643,

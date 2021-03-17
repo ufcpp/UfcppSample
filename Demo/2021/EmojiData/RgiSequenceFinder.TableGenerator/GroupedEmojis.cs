@@ -7,7 +7,7 @@ namespace RgiSequenceFinder.TableGenerator
     {
         public List<(Keycap key, int index)> Keycaps { get; }
         public List<(RegionalIndicator code, int index)> RegionFlags { get; }
-        public List<(TagSequence tag, int index)> TagFlags { get; }
+        public List<(Byte8 tag, int index)> TagFlags { get; }
         public List<(string emoji, int index)> Others { get; }
 
         public static GroupedEmojis Create() => new(Data.RgiEmojiSequenceList);
@@ -16,7 +16,7 @@ namespace RgiSequenceFinder.TableGenerator
         {
             var keycaps = new List<(Keycap key, int index)>();
             var regionFlags = new List<(RegionalIndicator code, int index)>();
-            var tagFlags = new List<(TagSequence tag, int index)>();
+            var tagFlags = new List<(Byte8 tag, int index)>();
             var others = new List<(string emoji, int index)>();
 
             for (int i = 0; i < data.Length; i++)

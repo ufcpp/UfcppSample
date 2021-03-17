@@ -93,9 +93,9 @@ namespace RgiSequenceFinder
 ");
         }
 
-        private static void WriteTagFlags(StreamWriter writer, List<(TagSequence tag, int index)> tagFlags)
+        private static void WriteTagFlags(StreamWriter writer, List<(Byte8 tag, int index)> tagFlags)
         {
-            writer.Write(@"        private static int FindTag(TagSequence tags) => tags.LongValue switch
+            writer.Write(@"        private static int FindTag(Byte8 tags) => tags.LongValue switch
         {
 ");
             foreach (var (tags, index) in tagFlags)
