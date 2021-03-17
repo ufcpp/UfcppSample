@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -76,6 +77,8 @@ namespace EmojiData
             var regSkinTone = new Regex(@"\-1F3F[B-F]");
             var regFe0f = new Regex(@"\-FE0F");
 
+            int getSkinTone(Match m) => m.Value.Last() - 'B';
+
             string readUnified(JsonElement elem)
             {
                 if (elem.TryGetProperty("unified", out var unified) && unified.GetString() is { } us)
@@ -95,6 +98,7 @@ namespace EmojiData
                 {
                     var specialPattern = false;
 
+                    var offset = 0;
                     foreach (var variation in skinVariations.EnumerateObject())
                     {
                         var unified = readUnified(variation.Value);
@@ -102,7 +106,67 @@ namespace EmojiData
                         var m = regSkinTone.Matches(unified);
                         var mc = m.Count;
 
-                        if(mc > 2)
+                        if (mc == 1)
+                        {
+                            // skin tone が1個のやつ、1F3FB～1F3FF が漏れなくこの順で並んでる。
+                            var tone1 = getSkinTone(m[0]);
+
+                            if (offset != tone1)
+                            {
+                                Console.WriteLine("来ないはず");
+                            }
+                        }
+                        else if (mc == 2)
+                        {
+                            var tone1 = getSkinTone(m[0]);
+                            var tone2 = getSkinTone(m[1]);
+
+                            var offsetFromTone = tone2 + 5 * tone1;
+
+                            if (baseUnified is "1F46B" or "1F46C" or "1F46D")
+                            {
+                                // やべーやつらのオフセットだけ計算難しい…
+                                // tone1 == tone2 なのを除いて並んでる。
+                                // 一応計算で出せはするみたいなので、
+                                //
+                                // 1F46B → 1F469-200D-1F91D-200D-1F468
+                                // 1F46C → 1F468-200D-1F91D-200D-1F468
+                                // 1F46D → 1F469-200D-1F91D-200D-1F469
+                                //
+                                // の3文字を追加で入れておけば絵は出せそう。
+                                offsetFromTone = 5 + (tone1, tone2) switch
+                                {
+                                    (0, 1) => 0,
+                                    (0, 2) => 1,
+                                    (0, 3) => 2,
+                                    (0, 4) => 3,
+                                    (1, 0) => 4,
+                                    (1, 2) => 5,
+                                    (1, 3) => 6,
+                                    (1, 4) => 7,
+                                    (2, 0) => 8,
+                                    (2, 1) => 9,
+                                    (2, 3) => 10,
+                                    (2, 4) => 11,
+                                    (3, 0) => 12,
+                                    (3, 1) => 13,
+                                    (3, 2) => 14,
+                                    (3, 4) => 15,
+                                    (4, 0) => 16,
+                                    (4, 1) => 17,
+                                    (4, 2) => 18,
+                                    (4, 3) => 19,
+                                    _ => -1,
+                                };
+                            }
+
+                            if (offset != offsetFromTone)
+                            {
+                                Console.WriteLine("来ないはず");
+                            }
+                        }
+
+                        if (mc > 2)
                         {
                             Console.WriteLine("RGI 内に2個以上の skin tone の入ったシーケンスないはず");
                         }
@@ -128,6 +192,8 @@ namespace EmojiData
                                 }
                             }
                         }
+
+                        ++offset;
                     }
 
                     if (specialPattern)
