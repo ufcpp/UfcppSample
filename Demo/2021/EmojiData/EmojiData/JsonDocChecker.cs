@@ -121,11 +121,11 @@ namespace EmojiData
                             var tone1 = getSkinTone(m[0]);
                             var tone2 = getSkinTone(m[1]);
 
-                            var offsetFromTone = tone2 + 5 * tone1;
+                            var offsetFromTone = 5 * tone1 + tone2;
 
                             if (baseUnified is "1F46B" or "1F46C" or "1F46D")
                             {
-                                // やべーやつらのオフセットだけ計算難しい…
+                                // やべーやつらのオフセットだけ別計算…
                                 // tone1 == tone2 なのを除いて並んでる。
                                 // 一応計算で出せはするみたいなので、
                                 //
@@ -134,30 +134,9 @@ namespace EmojiData
                                 // 1F46D → 1F469-200D-1F91D-200D-1F469
                                 //
                                 // の3文字を追加で入れておけば絵は出せそう。
-                                offsetFromTone = 5 + (tone1, tone2) switch
-                                {
-                                    (0, 1) => 0,
-                                    (0, 2) => 1,
-                                    (0, 3) => 2,
-                                    (0, 4) => 3,
-                                    (1, 0) => 4,
-                                    (1, 2) => 5,
-                                    (1, 3) => 6,
-                                    (1, 4) => 7,
-                                    (2, 0) => 8,
-                                    (2, 1) => 9,
-                                    (2, 3) => 10,
-                                    (2, 4) => 11,
-                                    (3, 0) => 12,
-                                    (3, 1) => 13,
-                                    (3, 2) => 14,
-                                    (3, 4) => 15,
-                                    (4, 0) => 16,
-                                    (4, 1) => 17,
-                                    (4, 2) => 18,
-                                    (4, 3) => 19,
-                                    _ => -1,
-                                };
+                                offsetFromTone =
+                                    5 // 1F46B とかに直接 skin tone が付いてる分5つ
+                                    + 4 * tone1 + tone2 - (tone1 < tone2 ? 1 : 0); // tone1 == tone2 の時を除いた4×4個
                             }
 
                             if (offset != offsetFromTone)
