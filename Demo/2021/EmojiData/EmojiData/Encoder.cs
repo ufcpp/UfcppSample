@@ -20,12 +20,12 @@ namespace EmojiData
                     if (r.IsBmp)
                     {
                         buffer[0] = (char)r.Value;
-                        buffer = buffer.Slice(1);
+                        buffer = buffer[1..];
                     }
                     else
                     {
                         r.EncodeToUtf16(buffer);
-                        buffer = buffer.Slice(2);
+                        buffer = buffer[2..];
                     }
                 }
             });
@@ -56,7 +56,7 @@ namespace EmojiData
                         buffer[3] = Hex(0xF & (r.Value >> 8));
                         buffer[4] = Hex(0xF & (r.Value >> 4));
                         buffer[5] = Hex(0xF & (r.Value));
-                        buffer = buffer.Slice(6);
+                        buffer = buffer[6..];
                     }
                     else
                     {
@@ -69,7 +69,7 @@ namespace EmojiData
                         buffer[7] = Hex(0xF & (r.Value >> 8));
                         buffer[8] = Hex(0xF & (r.Value >> 4));
                         buffer[9] = Hex(0xF & (r.Value));
-                        buffer = buffer.Slice(10);
+                        buffer = buffer[10..];
                     }
                 }
             });

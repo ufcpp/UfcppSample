@@ -98,21 +98,21 @@ namespace RgiSequenceFinder.Test
                 {
                     emoji = GraphemeBreak.GetEmojiSequence(span);
                     Assert.Equal(EmojiSequenceType.NotEmoji, emoji.Type);
-                    span = span.Slice(emoji.LengthInUtf16);
+                    span = span[emoji.LengthInUtf16..];
                 }
 
                 // 絵文字部分、元の文字列と同じはず。
                 emoji = GraphemeBreak.GetEmojiSequence(span);
                 Assert.NotEqual(EmojiSequenceType.NotEmoji, emoji.Type);
                 Assert.Equal(s.Length, emoji.LengthInUtf16);
-                span = span.Slice(emoji.LengthInUtf16);
+                span = span[emoji.LengthInUtf16..];
 
                 // 非絵文字部分、常に0が返ってきて1文字進めればいいはず。
                 for (int i = 0; i < NonEmoji.Length; i++)
                 {
                     emoji = GraphemeBreak.GetEmojiSequence(span);
                     Assert.Equal(EmojiSequenceType.NotEmoji, emoji.Type);
-                    span = span.Slice(emoji.LengthInUtf16);
+                    span = span[emoji.LengthInUtf16..];
                 }
 
                 // 最後まで読み切ったはず。

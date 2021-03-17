@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    
+    <!-- 後々 Unity 向けに netstandard2.0 化の可能性あって Range/Index リファクタリングは出したくない -->
+    <NoWarn>IDE0057</NoWarn>
   </PropertyGroup>
 
 </Project>
