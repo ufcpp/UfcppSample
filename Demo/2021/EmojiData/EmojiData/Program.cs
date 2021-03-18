@@ -6,7 +6,7 @@ using System.Linq;
 
 var doc = await Loader.LoadJsonDocAsync();
 //JsonDocChecker.Check(doc);
-//JsonDocChecker.CheckSkinVariations(doc); return;
+JsonDocChecker.CheckSkinVariations(doc); return;
 
 var emojiSequenceList = EmojiSequence.EnumerateRgiEmojiSequence(doc).ToArray();
 

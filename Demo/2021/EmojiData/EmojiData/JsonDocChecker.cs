@@ -106,15 +106,13 @@ namespace EmojiData
                         var m = regSkinTone.Matches(unified);
                         var mc = m.Count;
 
+                        // 元になる文字 + skin tone でインデックスを計算できそう。
                         if (mc == 1)
                         {
                             // skin tone が1個のやつ、1F3FB～1F3FF が漏れなくこの順で並んでる。
                             var tone1 = getSkinTone(m[0]);
 
-                            if (offset != tone1)
-                            {
-                                Console.WriteLine("来ないはず");
-                            }
+                            Debug.Assert(offset == tone1, "offset が期待通りか");
                         }
                         else if (mc == 2)
                         {
@@ -139,15 +137,31 @@ namespace EmojiData
                                     + 4 * tone1 + tone2 - (tone1 < tone2 ? 1 : 0); // tone1 == tone2 の時を除いた4×4個
                             }
 
-                            if (offset != offsetFromTone)
+                            Debug.Assert(offset == offsetFromTone, "offset が期待通りか");
+                        }
+
+                        Debug.Assert(mc <= 2, "RGI 内に2個以上の skin tone の入ったシーケンスないはず");
+
+                        // skin tone 1個目は必ず2文字目。
+                        if (mc >= 1)
+                        {
+                            // この場合、skin tone の位置は必ず2文字目。
+                            if (unified.StartsWith("1F"))
                             {
-                                Console.WriteLine("来ないはず");
+                                // SMP (1F000 台)の後ろなので - の位置が5
+                                Debug.Assert(m[0].Index == 5);
+                            }
+                            else
+                            {
+                                // BMP (2000 台)の後ろなので - の位置が4
+                                Debug.Assert(m[0].Index == 4);
                             }
                         }
 
-                        if (mc > 2)
+                        // skin tone 2個目は必ず末尾。
+                        if (mc >= 2)
                         {
-                            Console.WriteLine("RGI 内に2個以上の skin tone の入ったシーケンスないはず");
+                            Debug.Assert(m[1].Index + m[1].Length == unified.Length);
                         }
 
                         var variationRemoved = regSkinTone.Replace(unified, "");
@@ -164,11 +178,7 @@ namespace EmojiData
                                 // 👫 みたいにポリコレ仕様が入る前からある「固定の性別・固定の肌色」に1符号点割当たってるやつだと思う。
                                 specialPattern = true;
 
-                                // そのやべーやつは 200D-1F91D-200D (ZWJ 🤝 ZWJ) を含むはず。
-                                if (!unified.Contains("200D-1F91D-200D"))
-                                {
-                                    Console.WriteLine("来ないはず");
-                                }
+                                Debug.Assert(unified.Contains("200D-1F91D-200D"), "特殊対応が必要な文字は 200D-1F91D-200D (ZWJ 🤝 ZWJ) を含むはず");
                             }
                         }
 
@@ -177,10 +187,7 @@ namespace EmojiData
 
                     if (specialPattern)
                     {
-                        if (baseUnified is not "1F46B" and not "1F46C" and not "1F46D")
-                        {
-                            Console.WriteLine("やべーやつは 👫 (IF46B) 👬 (1F46C) 👭 (1F46D) の3文字だけっぽい");
-                        }
+                        Debug.Assert(baseUnified is "1F46B" or "1F46C" or "1F46D", "特殊対応した文字は 👫 (IF46B) 👬 (1F46C) 👭 (1F46D) のどれかのはず");
                     }
                 }
             }
