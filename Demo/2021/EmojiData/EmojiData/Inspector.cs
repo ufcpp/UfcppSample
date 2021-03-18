@@ -288,6 +288,10 @@ namespace EmojiData
 
         public static void Compare(Rune[][] emojiSequenceList, (Rune[] runes, int index, int variationType)[] unvariedEmojiSequenceList)
         {
+            int toneToOffset1(Rune tone) => tone.Value - 0x1F3FB;
+            int toneToOffset2(Rune tone1, Rune tone2) => 5 * toneToOffset1(tone1) + toneToOffset1(tone2);
+            int toneToOffset3(Rune tone1, Rune tone2) => 4 * toneToOffset1(tone1) + toneToOffset1(tone2) - (tone1.Value < tone2.Value ? 1 : 0);
+
             var unvariedIndex = 0;
 
             for (int index = 0; index < emojiSequenceList.Length;)
@@ -297,6 +301,7 @@ namespace EmojiData
                 var unvaried = unvariedEmojiSequenceList[unvariedIndex];
 
                 Debug.Assert(emoji.SequenceEqual(unvaried.runes));
+                Debug.Assert(index == unvaried.index);
 
                 switch (unvaried.variationType)
                 {
@@ -309,7 +314,7 @@ namespace EmojiData
                             var varied = emojiSequenceList[index + i + 1];
                             var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
 
-                            // skin tone == i
+                            Debug.Assert(i == toneToOffset1(varied[1]));
                             Debug.Assert(emoji.SequenceEqual(skinToneRemoved));
                         }
                         index += 6;
@@ -322,7 +327,7 @@ namespace EmojiData
                             var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
                             var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
 
-                            // skin tone == i
+                            Debug.Assert(i == toneToOffset1(varied[1]));
                             Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
                         }
                         index += 6;
@@ -333,7 +338,7 @@ namespace EmojiData
                             var varied = emojiSequenceList[index + i + 1];
                             var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
 
-                            // skin tone == i
+                            Debug.Assert(i == toneToOffset2(varied[1], varied[^1]));
                             Debug.Assert(emoji.SequenceEqual(skinToneRemoved));
                         }
                         index += 26;
@@ -346,7 +351,7 @@ namespace EmojiData
                             var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
                             var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
 
-                            // skin tone == i
+                            Debug.Assert(i == toneToOffset2(varied[1], varied[^1]));
                             Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
                         }
                         index += 26;
@@ -367,10 +372,10 @@ namespace EmojiData
 
                         for (int i = 0; i < 16; i++)
                         {
-                            var varied = emojiSequenceList[index + i + 1];
+                            var varied = emojiSequenceList[index + i];
                             var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
 
-                            // skin tone == i
+                            Debug.Assert(i == toneToOffset3(varied[1], varied[^1]));
                             Debug.Assert(unvaried.runes.SequenceEqual(skinToneRemoved));
                         }
                         index += 20;

@@ -105,21 +105,21 @@ namespace EmojiData
                     {
                         yield return (runes, index, 1);
                         yield return (replace1F46B, index, 5);
-                        index += 21;
+                        index += 26;
                         continue;
                     }
                     if (runes[0].Value == 0x1F46C)
                     {
                         yield return (runes, index, 1);
                         yield return (replace1F46C, index, 5);
-                        index += 21;
+                        index += 26;
                         continue;
                     }
                     if (runes[0].Value == 0x1F46D)
                     {
                         yield return (runes, index, 1);
                         yield return (replace1F46D, index, 5);
-                        index += 21;
+                        index += 26;
                         continue;
                     }
                 }
@@ -142,7 +142,7 @@ namespace EmojiData
                     {
                         yield return (runes, index, 1);
                     }
-                    index += 5;
+                    index += 6;
                 }
                 else if (count == 25)
                 {
@@ -154,7 +154,7 @@ namespace EmojiData
                     {
                         yield return (runes, index, 3);
                     }
-                    index += 25;
+                    index += 26;
                 }
                 else
                 {
