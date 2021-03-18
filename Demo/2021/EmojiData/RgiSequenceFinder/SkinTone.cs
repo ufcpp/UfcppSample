@@ -27,5 +27,10 @@
         Type4,
         Type5,
         Type6,
+
+        /// <summary>
+        /// 構造体にぎちぎちにパッキングしたいことがあるので <see cref="System.Nullable{T}"/> を避けて、「skin tone が見つからなかった時は負」みたいな運用する。
+        /// </summary>
+        None = -1,
     }
 }

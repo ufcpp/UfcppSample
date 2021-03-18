@@ -90,7 +90,7 @@ namespace RgiSequenceFinder
                 return (SkinTone)(s[1] - 0xDFFB);
             }
 
-            return (SkinTone)(-1);
+            return SkinTone.None;
         }
 
         /// <summary>
