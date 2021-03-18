@@ -77,11 +77,9 @@ namespace EmojiData
         /// (種類だけわかれば、元の文字と skin tone からインデックスを機械的に計算可能。)
         ///
         /// 0: バリエーションなし
-        /// 1: skin tone 1個、FE0F なし
-        /// 2: skin tone 1個、skin tone を削る際に FE0F への置き換えが必要
-        /// 3: skin tone 2個 (通常)、FE0F なし
-        /// 4: skin tone 2個 (通常)、skin tone の1個目を削る際に FE0F への置き換えが必要
-        /// 5: 👫👬👭 skin tone 2個なんだけど、バリエーションの持ち方が特殊
+        /// 1: skin tone 1個
+        /// 2: skin tone 2個
+        /// 3: 👫👬👭 skin tone 2個なんだけど、バリエーションの持ち方が特殊
         ///
         /// 👫👬👭 は、それ自体は 2 のパターン。
         /// それとは別に、
@@ -104,21 +102,21 @@ namespace EmojiData
                     if (runes[0].Value == 0x1F46B)
                     {
                         yield return (runes, index, 1);
-                        yield return (replace1F46B, index, 5);
+                        yield return (replace1F46B, index, 3);
                         index += 26;
                         continue;
                     }
                     if (runes[0].Value == 0x1F46C)
                     {
                         yield return (runes, index, 1);
-                        yield return (replace1F46C, index, 5);
+                        yield return (replace1F46C, index, 3);
                         index += 26;
                         continue;
                     }
                     if (runes[0].Value == 0x1F46D)
                     {
                         yield return (runes, index, 1);
-                        yield return (replace1F46D, index, 5);
+                        yield return (replace1F46D, index, 3);
                         index += 26;
                         continue;
                     }
@@ -136,7 +134,8 @@ namespace EmojiData
                 {
                     if (runes.Length >= 2 && runes[1].Value == 0xFE0F)
                     {
-                        yield return (runes, index, 2);
+                        yield return (runes, index, 1);
+                        yield return (runes[2..].Prepend(runes[0]).ToArray(), index, 1); // 2文字目の FE0F を削った物も出力しておく。
                     }
                     else
                     {
@@ -148,11 +147,12 @@ namespace EmojiData
                 {
                     if (runes.Length >= 2 && runes[1].Value == 0xFE0F)
                     {
-                        yield return (runes, index, 4);
+                        yield return (runes, index, 2);
+                        yield return (runes[2..].Prepend(runes[0]).ToArray(), index, 2); // 2文字目の FE0F を削った物も出力しておく。
                     }
                     else
                     {
-                        yield return (runes, index, 3);
+                        yield return (runes, index, 2);
                     }
                     index += 26;
                 }

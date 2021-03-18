@@ -312,6 +312,15 @@ namespace EmojiData
                         for (int i = 0; i < 5; i++)
                         {
                             var varied = emojiSequenceList[index + i + 1];
+
+                            // 2文字目が FE0F のやつは FE0F を削る
+                            // & 削ったやつが1個後ろに並んでるはずなので1個インデックスずらす。
+                            if(emoji.Length >= 2 && emoji[1].Value == 0xFE0F)
+                            {
+                                ++unvariedIndex;
+                                emoji = emoji[2..].Prepend(emoji[0]).ToArray();
+                            }
+
                             var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
 
                             Debug.Assert(i == toneToOffset1(varied[1]));
@@ -320,39 +329,22 @@ namespace EmojiData
                         index += 6;
                         break;
                     case 2:
-                        for (int i = 0; i < 5; i++)
-                        {
-                            var varied = emojiSequenceList[index + i + 1];
-                            Debug.Assert(emoji[1].Value == 0xFE0F);
-                            var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
-                            var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
-
-                            Debug.Assert(i == toneToOffset1(varied[1]));
-                            Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
-                        }
-                        index += 6;
-                        break;
-                    case 3:
                         for (int i = 0; i < 25; i++)
                         {
                             var varied = emojiSequenceList[index + i + 1];
+
+                            // 2文字目が FE0F のやつは FE0F を削る
+                            // & 削ったやつが1個後ろに並んでるはずなので1個インデックスずらす。
+                            if (emoji.Length >= 2 && emoji[1].Value == 0xFE0F)
+                            {
+                                ++unvariedIndex;
+                                emoji = emoji[2..].Prepend(emoji[0]).ToArray();
+                            }
+
                             var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
 
                             Debug.Assert(i == toneToOffset2(varied[1], varied[^1]));
                             Debug.Assert(emoji.SequenceEqual(skinToneRemoved));
-                        }
-                        index += 26;
-                        break;
-                    case 4:
-                        for (int i = 0; i < 25; i++)
-                        {
-                            var varied = emojiSequenceList[index + i + 1];
-                            Debug.Assert(emoji[1].Value == 0xFE0F);
-                            var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
-                            var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
-
-                            Debug.Assert(i == toneToOffset2(varied[1], varied[^1]));
-                            Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
                         }
                         index += 26;
                         break;
@@ -368,7 +360,7 @@ namespace EmojiData
                         ++unvariedIndex;
                         unvaried = unvariedEmojiSequenceList[unvariedIndex];
 
-                        Debug.Assert(unvaried.variationType == 5);
+                        Debug.Assert(unvaried.variationType == 3);
 
                         for (int i = 0; i < 16; i++)
                         {
