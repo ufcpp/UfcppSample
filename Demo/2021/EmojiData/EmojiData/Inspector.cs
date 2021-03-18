@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -282,6 +283,101 @@ namespace EmojiData
                 {
                     Console.WriteLine("    " + r.Value.ToString("X"));
                 }
+            }
+        }
+
+        public static void Compare(Rune[][] emojiSequenceList, (Rune[] runes, int index, int variationType)[] unvariedEmojiSequenceList)
+        {
+            var unvariedIndex = 0;
+
+            for (int index = 0; index < emojiSequenceList.Length;)
+            {
+                var emoji = emojiSequenceList[index];
+
+                var unvaried = unvariedEmojiSequenceList[unvariedIndex];
+
+                Debug.Assert(emoji.SequenceEqual(unvaried.runes));
+
+                switch (unvaried.variationType)
+                {
+                    case 0:
+                        ++index;
+                        break;
+                    case 1:
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var varied = emojiSequenceList[index + i + 1];
+                            var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
+
+                            // skin tone == i
+                            Debug.Assert(emoji.SequenceEqual(skinToneRemoved));
+                        }
+                        index += 6;
+                        break;
+                    case 2:
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var varied = emojiSequenceList[index + i + 1];
+                            Debug.Assert(emoji[1].Value == 0xFE0F);
+                            var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
+                            var skinToneRemoved = varied[2..].Prepend(varied[0]).ToArray();
+
+                            // skin tone == i
+                            Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
+                        }
+                        index += 6;
+                        break;
+                    case 3:
+                        for (int i = 0; i < 25; i++)
+                        {
+                            var varied = emojiSequenceList[index + i + 1];
+                            var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
+
+                            // skin tone == i
+                            Debug.Assert(emoji.SequenceEqual(skinToneRemoved));
+                        }
+                        index += 26;
+                        break;
+                    case 4:
+                        for (int i = 0; i < 25; i++)
+                        {
+                            var varied = emojiSequenceList[index + i + 1];
+                            Debug.Assert(emoji[1].Value == 0xFE0F);
+                            var fe0fRemoved = emoji[2..].Prepend(emoji[0]).ToArray();
+                            var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
+
+                            // skin tone == i
+                            Debug.Assert(fe0fRemoved.SequenceEqual(skinToneRemoved));
+                        }
+                        index += 26;
+                        break;
+                    default:
+                        Debug.Assert(false, "来ないはず");
+                        break;
+                }
+
+                if (emoji.Length == 1)
+                {
+                    if (emoji[0].Value is 0x1F46B or 0x1F46C or 0x1F46D)
+                    {
+                        ++unvariedIndex;
+                        unvaried = unvariedEmojiSequenceList[unvariedIndex];
+
+                        Debug.Assert(unvaried.variationType == 5);
+
+                        for (int i = 0; i < 16; i++)
+                        {
+                            var varied = emojiSequenceList[index + i + 1];
+                            var skinToneRemoved = varied[2..^1].Prepend(varied[0]).ToArray();
+
+                            // skin tone == i
+                            Debug.Assert(unvaried.runes.SequenceEqual(skinToneRemoved));
+                        }
+                        index += 20;
+                    }
+                }
+
+                ++unvariedIndex;
             }
         }
     }

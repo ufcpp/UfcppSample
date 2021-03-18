@@ -64,5 +64,114 @@ namespace EmojiData
                 return Parse(readUnified(elem)).ToArray();
             }
         }
+
+        private static readonly Rune[] replace1F46B = new[] { 0x1F469, 0x200D, 0x1F91D, 0x200D, 0x1F468 }.Select(x => new Rune(x)).ToArray();
+        private static readonly Rune[] replace1F46C = new[] { 0x1F468, 0x200D, 0x1F91D, 0x200D, 0x1F468 }.Select(x => new Rune(x)).ToArray();
+        private static readonly Rune[] replace1F46D = new[] { 0x1F469, 0x200D, 0x1F91D, 0x200D, 0x1F469 }.Select(x => new Rune(x)).ToArray();
+
+        /// <summary>
+        /// emoji.json の unified 行を読んで <see cref="Rune"/> 配列化したものを列挙。
+        /// <see cref="EnumerateRgiEmojiSequence(JsonDocument)"/> は skin tone バリエーションも平坦化して列挙したけど、
+        /// こっちはバリエーションの列挙はなし。
+        /// その代わり、バリエーションの種類を返す。
+        /// (種類だけわかれば、元の文字と skin tone からインデックスを機械的に計算可能。)
+        ///
+        /// 0: バリエーションなし
+        /// 1: skin tone 1個、FE0F なし
+        /// 2: skin tone 1個、skin tone を削る際に FE0F への置き換えが必要
+        /// 3: skin tone 2個 (通常)、FE0F なし
+        /// 4: skin tone 2個 (通常)、skin tone の1個目を削る際に FE0F への置き換えが必要
+        /// 5: 👫👬👭 skin tone 2個なんだけど、バリエーションの持ち方が特殊
+        ///
+        /// 👫👬👭 は、それ自体は 2 のパターン。
+        /// それとは別に、
+        ///
+        /// 1F46B → 1F469-200D-1F91D-200D-1F468
+        /// 1F46C → 1F468-200D-1F91D-200D-1F468
+        /// 1F46D → 1F469-200D-1F91D-200D-1F469
+        ///
+        /// に置き換えた絵文字を RGI と同列に扱った上で、これ専用のインデックス計算が必要。
+        /// </summary>
+        public static IEnumerable<(Rune[] runes, int index, int variationType)> EnumerateUnvariedRgiEmojiSequence(JsonDocument doc)
+        {
+            var index = 0;
+            foreach (var elem in doc.RootElement.EnumerateArray())
+            {
+                var runes = parseUnified(elem);
+
+                if (runes.Length == 1)
+                {
+                    if (runes[0].Value == 0x1F46B)
+                    {
+                        yield return (runes, index, 1);
+                        yield return (replace1F46B, index, 5);
+                        index += 21;
+                        continue;
+                    }
+                    if (runes[0].Value == 0x1F46C)
+                    {
+                        yield return (runes, index, 1);
+                        yield return (replace1F46C, index, 5);
+                        index += 21;
+                        continue;
+                    }
+                    if (runes[0].Value == 0x1F46D)
+                    {
+                        yield return (runes, index, 1);
+                        yield return (replace1F46D, index, 5);
+                        index += 21;
+                        continue;
+                    }
+                }
+
+                if (!elem.TryGetProperty("skin_variations", out var skinVariations))
+                {
+                    yield return (runes, index, 0);
+                    ++index;
+                    continue;
+                }
+
+                var count = skinVariations.EnumerateObject().Count();
+                if (count == 5)
+                {
+                    if (runes.Length >= 2 && runes[1].Value == 0xFE0F)
+                    {
+                        yield return (runes, index, 2);
+                    }
+                    else
+                    {
+                        yield return (runes, index, 1);
+                    }
+                    index += 5;
+                }
+                else if (count == 25)
+                {
+                    if (runes.Length >= 2 && runes[1].Value == 0xFE0F)
+                    {
+                        yield return (runes, index, 4);
+                    }
+                    else
+                    {
+                        yield return (runes, index, 3);
+                    }
+                    index += 25;
+                }
+                else
+                {
+                    throw new System.Exception("来ないはず");
+                }
+            }
+
+            string readUnified(JsonElement elem)
+            {
+                if (elem.TryGetProperty("unified", out var unified) && unified.GetString() is { } us) return us;
+                throw new KeyNotFoundException();
+            }
+
+            Rune[] parseUnified(JsonElement elem)
+            {
+                return Parse(readUnified(elem)).ToArray();
+            }
+        }
     }
 }

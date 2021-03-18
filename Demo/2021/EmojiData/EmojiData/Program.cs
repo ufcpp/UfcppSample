@@ -6,9 +6,10 @@ using System.Linq;
 
 var doc = await Loader.LoadJsonDocAsync();
 //JsonDocChecker.Check(doc);
-JsonDocChecker.CheckSkinVariations(doc); return;
+//JsonDocChecker.CheckSkinVariations(doc); return;
 
 var emojiSequenceList = EmojiSequence.EnumerateRgiEmojiSequence(doc).ToArray();
+var unvariedEmojiSequenceList = EmojiSequence.EnumerateUnvariedRgiEmojiSequence(doc).ToArray();
 
 //System.Console.WriteLine(emojiSequenceList.Length);
 
@@ -16,6 +17,7 @@ var emojiSequenceList = EmojiSequence.EnumerateRgiEmojiSequence(doc).ToArray();
 //Inspector.Keycaps(emojiSequenceList);
 //Inspector.Category(emojiSequenceList);
 //Inspector.GraphemeBreak(emojiSequenceList);
+Inspector.Compare(emojiSequenceList, unvariedEmojiSequenceList); return;
 
 //SourceGenerator.WriteLineTest(emojiSequenceList);
-SourceGenerator.WriteStringArray(emojiSequenceList, "RgiList.cs");
+SourceGenerator.WriteRgiEmojiSequenceList(emojiSequenceList, "RgiList.cs");
