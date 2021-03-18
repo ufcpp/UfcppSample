@@ -20,7 +20,7 @@
     ///
     /// 後々追加された髪型選択 1F9B0～1F9B3 は単独表示しなくてもよさそうなんで、Unicode 仕様上も skin tone だけ浮いてたりする。
     /// </remarks>
-    public enum SkinTone
+    public enum SkinTone : sbyte
     {
         Type2,
         Type3,

@@ -11,12 +11,6 @@ namespace RgiSequenceFinder.TableGenerator
         public int[] SkinTones { get; }
 
         /// <summary>
-        /// いったん残すけど、<see cref="Singlulars"/> の考え方でうまくいったら消す。
-        /// <see cref="Plurals"/> を Concat したのと同じになってるはず。
-        /// </summary>
-        public List<(string emoji, int index)> Others { get; }
-
-        /// <summary>
         /// https://www.unicode.org/Public/emoji/13.1/emoji-sequences.txt で Basic_Emoji になってるやつはこのパターンになるはず。
         /// (なので「1文字の」(singular)とか言わず、Basics とか BasicEmojis でもいいかも。)
         ///
@@ -38,17 +32,12 @@ namespace RgiSequenceFinder.TableGenerator
 
         /// <summary>
         /// RGI_Emoji_Modifier_Sequence と RGI_Emoji_ZWJ_Sequence だけが残ってるはず。
-        /// (なので「複数の」(plural)とか言わず、Zwjs とか ZwjSequences でもいいかも。)
-        ///
-        /// <see cref="Singlulars"/> に収まらないものは大半が 1F000 台の文字なので。
-        /// 同じく BMP or UTF-16 で D83C, D83D, D83E 開始の4つに分類してみる。
-        /// BMP 文字なら 0、D83C 開始文字なら 1, D83D 開始文字なら 2, D83E 開始文字なら 3。
         /// </summary>
-        public List<(string emoji, int index)>?[] Plurals { get; }
+        /// <remarks>
+        /// skin tone によるバリエーションは <see cref="Data.UnvariedRgiEmojiSequenceList"/> を作る側で処理済み。
+        /// </remarks>
+        public List<(string emoji, int index, byte skinVariationType)> Others { get; }
 
-        //↑ RGI_Emoji_Modifier_Sequence は2符号点目が skin tone 固定なので、さらに別テーブル管理する方がいいかも。
-        // 590 文字くらい。
-        //
         // Role 系、Gendered 系、Hair 系の ZWJ sequence もパターン決まってるので分けた方がいいかも。
         //
         // Roke 系     = (1F468 | 1F469 | 1F9D1) (1F3FB-1F3FF)+ 200D (職業)
@@ -70,9 +59,9 @@ namespace RgiSequenceFinder.TableGenerator
         // 2640 ♀ female sign
         // 2642 ♂ male sign
 
-        public static GroupedEmojis Create() => new(Data.RgiEmojiSequenceList);
+        public static GroupedEmojis Create() => new(Data.UnvariedRgiEmojiSequenceList);
 
-        public GroupedEmojis(string[] data)
+        public GroupedEmojis((string emoji, ushort index, byte variationType)[] data)
         {
             var keycaps = Keycaps = new();
             var regionFlags = RegionFlags= new();
@@ -80,11 +69,10 @@ namespace RgiSequenceFinder.TableGenerator
             var skinTones = SkinTones = new int[5];
             var others = Others = new();
             var singulars = Singlulars = new List<(char, int)>[2, 4];
-            var plurals = Plurals = new List<(string, int)>[4];
 
             for (int i = 0; i < data.Length; i++)
             {
-                var seq = data[i];
+                var seq = data[i].emoji;
 
                 var emoji = GraphemeBreak.GetEmojiSequence(seq);
                 var (type, len) = emoji;
@@ -127,28 +115,23 @@ namespace RgiSequenceFinder.TableGenerator
                             else if (seq[0] == '\uD83E') singular = (singulars[1, 3] ??= new());
                             c = seq[1];
                         }
-                        else
-                        {
-                            if (seq[0] == '\uD83C') (plurals[1] ??= new()).Add((seq, i));
-                            else if (seq[0] == '\uD83D') (plurals[2] ??= new()).Add((seq, i));
-                            else if (seq[0] == '\uD83E') (plurals[3] ??= new()).Add((seq, i));
-                            else if(!char.IsSurrogate(seq[0])) (plurals[0] ??= new()).Add((seq, i));
-                        }
 
-                        if (singular is not null) singular.Add((c, i));
-                        else others.Add((seq, i));
+                        if (singular is not null) singular.Add((c, data[i].index));
+
+                        // singular テーブルに含めた場合でも、variationType を持ってる文字は others に入れる。
+                        if (singular is null || data[i].variationType > 0) others.Add((seq, data[i].index, data[i].variationType));
                         break;
                     case EmojiSequenceType.Keycap:
-                        keycaps.Add((emoji.Keycap, i));
+                        keycaps.Add((emoji.Keycap, data[i].index));
                         break;
                     case EmojiSequenceType.Flag:
-                        regionFlags.Add((emoji.Region, i));
+                        regionFlags.Add((emoji.Region, data[i].index));
                         break;
                     case EmojiSequenceType.SkinTone:
-                        skinTones[(int)emoji.SkinTone] = i;
+                        skinTones[(int)emoji.SkinTone] = data[i].index;
                         break;
                     case EmojiSequenceType.Tag:
-                        tagFlags.Add((emoji.Tags, i));
+                        tagFlags.Add((emoji.Tags, data[i].index));
                         break;
                 }
             }

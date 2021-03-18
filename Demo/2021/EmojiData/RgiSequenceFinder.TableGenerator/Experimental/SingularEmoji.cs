@@ -30,13 +30,7 @@ namespace RgiSequenceFinder.TableGenerator.Experimental
                 }
             }
 
-            for (int i = 0; i < 4; i++)
-            {
-                Console.Write($"{i}: ");
-                w(emojis.Plurals[i]?.Count ?? 0);
-            }
-
-            // 前提があってれば以下の2つの数字そろうはず。
+            // 前提があってれば以下の2つの数字そろうはず。(仕様変更でそろわなくなってる)
             Console.WriteLine((count, emojis.Others.Count));
         }
 

@@ -134,7 +134,7 @@ namespace RgiSequenceFinder
 ");
         }
 
-        private static void WriterOthers(StreamWriter writer, List<(char c, int index)>?[,] singulars, List<(string emoji, int index)> others)
+        private static void WriterOthers(StreamWriter writer, List<(char c, int index)>?[,] singulars, List<(string emoji, int index, byte skinVariationType)> others)
         {
             writer.Write(@"        private static CharDictionary[,] _singularTable = new CharDictionary[,]
         {
@@ -197,7 +197,7 @@ namespace RgiSequenceFinder
             writer.Write(@"        private static StringDictionary _otherTable = new(
             """);
 
-            foreach (var (s, _) in others)
+            foreach (var (s, _, _) in others)
             {
                 foreach (var c in s)
                 {
@@ -209,7 +209,7 @@ namespace RgiSequenceFinder
             writer.Write(@""",
             new byte[] { ");
 
-            foreach (var (s, _) in others)
+            foreach (var (s, _, _) in others)
             {
                 writer.Write(s.Length);
                 writer.Write(", ");
@@ -218,9 +218,18 @@ namespace RgiSequenceFinder
             writer.Write(@"},
             new ushort[] { ");
 
-            foreach (var (_, index) in others)
+            foreach (var (_, index, _) in others)
             {
                 writer.Write(index);
+                writer.Write(", ");
+            }
+
+            writer.Write(@"},
+            new byte[] { ");
+
+            foreach (var (_, _, variation) in others)
+            {
+                writer.Write(variation);
                 writer.Write(", ");
             }
 

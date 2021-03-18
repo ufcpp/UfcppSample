@@ -47,7 +47,8 @@ namespace RgiSequenceFinder
         {
             public ushort KeyStart;
             public ushort KeyLength; // 空文字列がこないので、これの == 0 で空判定。
-            public ushort Value;
+            public ushort Index;
+            public byte SkinVariationType;
             public bool HasValue => KeyLength != 0;
         }
 
@@ -56,9 +57,10 @@ namespace RgiSequenceFinder
 
         private StringDictionary() { _concatinatedString = null!; }
 
-        public StringDictionary(string concatinatedString, ReadOnlySpan<byte> lengths, ReadOnlySpan<ushort> indexes)
+        public StringDictionary(string concatinatedString, ReadOnlySpan<byte> lengths, ReadOnlySpan<ushort> indexes, ReadOnlySpan<byte> types)
         {
             if (lengths.Length != indexes.Length) throw new ArgumentException("length mismatched");
+            if (lengths.Length != types.Length) throw new ArgumentException("length mismatched");
 
             _concatinatedString = concatinatedString;
 
@@ -67,7 +69,7 @@ namespace RgiSequenceFinder
             for (int i = 0; i < lengths.Length; i++)
             {
                 var len = lengths[i];
-                Add(span, total, len, indexes[i]);
+                Add(span, total, len, indexes[i], types[i]);
                 total += len;
             }
         }
@@ -79,7 +81,7 @@ namespace RgiSequenceFinder
         /// 最初に想定している以上に追加すると永久ループする可能性があるので注意。
         /// (<see cref="CompactDictionary{TKey, TValue, TComparer}.CompactDictionary(int)"/>の引数で与えた数字の2倍を超えると可能性あり)
         /// </remarks>
-        public void Add(ReadOnlySpan<char> s, ushort keyStart, ushort keyLength, ushort value)
+        public void Add(ReadOnlySpan<char> s, ushort keyStart, ushort keyLength, ushort index, byte type)
         {
             var key = s.Slice(keyStart, keyLength);
             var hash = GetHashCode(key) & Mask;
@@ -93,7 +95,8 @@ namespace RgiSequenceFinder
                 {
                     b.KeyStart = keyStart;
                     b.KeyLength = keyLength;
-                    b.Value = value;
+                    b.Index = index;
+                    b.SkinVariationType = type;
                     break;
                 }
 
@@ -105,7 +108,7 @@ namespace RgiSequenceFinder
         /// 値の取得。
         /// キーが見つからなかったら false を返す。
         /// </summary>
-        public bool TryGetValue(ReadOnlySpan<char> key, out ushort value)
+        public bool TryGetValue(ReadOnlySpan<char> key, out (ushort index, byte skinVariationType) value)
         {
             var hash = GetHashCode(key) & Mask;
             var buckets = _buckets;
@@ -116,12 +119,12 @@ namespace RgiSequenceFinder
 
                 if (!b.HasValue)
                 {
-                    value = 0;
+                    value = default;
                     return false;
                 }
                 else if (b.KeyLength != 0 && key.SequenceEqual(_concatinatedString.AsSpan(b.KeyStart, b.KeyLength)))
                 {
-                    value = b.Value;
+                    value = (b.Index, b.SkinVariationType);
                     return true;
                 }
 

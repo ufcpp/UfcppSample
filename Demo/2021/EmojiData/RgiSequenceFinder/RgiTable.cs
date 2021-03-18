@@ -224,8 +224,72 @@ namespace RgiSequenceFinder
 
         private static int FindOther(ReadOnlySpan<char> s)
         {
+            var (singular, c) = GetSingularTable(s);
+
+            if (singular is not null) return singular.TryGetValue(c, out var v) ? v : -1;
+
+            var (toneCount, tone1, tone2) = GetSkinTone(s);
+
+            if (toneCount > 0) return FindeOtherWithSkinTone(s, toneCount, tone1, tone2);
+            else return _otherTable.TryGetValue(s, out var v) ? v.index : -1;
+        }
+
+        private static int FindeOtherWithSkinTone(ReadOnlySpan<char> s, byte toneCount, SkinTone tone1, SkinTone tone2)
+        {
+            Span<char> skinToneRemoved = stackalloc char[s.Length];
+            int length = s.Length;
+
+            if (toneCount == 1)
+            {
+                if (char.IsSurrogate(s[0]))
+                {
+                    skinToneRemoved[0] = s[0];
+                    skinToneRemoved[1] = s[1];
+                    s.Slice(4).CopyTo(skinToneRemoved.Slice(2));
+                    length -= 2;
+                }
+                else
+                {
+                    skinToneRemoved[0] = s[0];
+                    s.Slice(3).CopyTo(skinToneRemoved.Slice(1));
+                    length -= 2;
+                }
+            }
+            else if (toneCount == 2)
+            {
+                if (char.IsSurrogate(s[0]))
+                {
+                    skinToneRemoved[0] = s[0];
+                    skinToneRemoved[1] = s[1];
+                    s.Slice(4, s.Length - 6).CopyTo(skinToneRemoved.Slice(2));
+                    length -= 4;
+                }
+                else
+                {
+                    skinToneRemoved[0] = s[0];
+                    s.Slice(3, s.Length - 5).CopyTo(skinToneRemoved.Slice(1));
+                    length -= 4;
+                }
+            }
+
+            if (_otherTable.TryGetValue(skinToneRemoved.Slice(0, length), out var t))
+            {
+                var offset = OffsetFromSkinTone(t.skinVariationType, tone1, tone2);
+                return t.index + offset;
+            }
+
+            // ちゃんとしたテーブルを作ってればここには来ないはずだけど一応。
+            return _otherTable.TryGetValue(s, out var v) ? v.index : -1;
+        }
+
+        /// <summary>
+        /// 1文字だけとか「1文字 + FE0F」の絵文字は特別扱いして char キーの辞書を作ってるので、そっちを引けるかの判定。
+        /// </summary>
+        private static (CharDictionary? singular, char c) GetSingularTable(ReadOnlySpan<char> s)
+        {
             CharDictionary? singular = null;
             char c = '\0';
+
             if (s.Length == 1)
             {
                 singular = _singularTable[0, 0];
@@ -254,8 +318,73 @@ namespace RgiSequenceFinder
                 c = s[1];
             }
 
-            if (singular is not null) return singular.TryGetValue(c, out var v) ? v : -1;
-            else return _otherTable.TryGetValue(s, out var v) ? v : -1;
+            return (singular, c);
+        }
+
+        /// <summary>
+        /// emoji-data.json の並び的に、 skin_variations の並びは skin tone から機械的に決定できる。
+        /// ただ、3パターンある。
+        /// </summary>
+        private static int OffsetFromSkinTone(byte type, SkinTone tone1, SkinTone tone2)
+        {
+            var t1 = (int)tone1;
+            var t2 = (int)tone2;
+
+            return type switch
+            {
+                // skin tone 1つ持ち
+                1 => t1 + 1,
+                // skin tone 2つ持ち(2人家族系)
+                2 => 5 * t1 + t2 + 1,
+                // 👫👬👭 用特殊処理
+                3 => t1 == t2
+                    ? t1 + 1
+                    : 4 * t1 + t2 - (t1 < t2 ? 1 : 0) + 6,
+                _ => 0, // 来ないはずだけど
+            };
+        }
+
+        /// <summary>
+        /// 絵文字シーケンス中含まれる skin tone を検索。
+        /// </summary>
+        /// <remarks>
+        /// skin variation (skin tone 1F3FB-1F3FF で肌色変更)系の絵文字、RGI に入ってるやつは、
+        /// - 1個目の skin tone は2文字目
+        /// - 2個目の skin tone は末尾
+        /// で固定。
+        /// この前提で判定。
+        ///
+        /// この場合、skin tone を削った ZWJ sequence を検索してインデックスを取得した上で、
+        /// skin tone から計算できるオフセットを足してインデックス計算できる。
+        /// これをやれば skin tone の組み合わせ分(1個の絵文字シーケンス5倍、2個のやつなら25倍)テーブルデータ量を減らせるので頑張って計算することに。
+        /// </remarks>
+        private static (byte count, SkinTone tone1, SkinTone tone2) GetSkinTone(ReadOnlySpan<char> s)
+        {
+            SkinTone tone1;
+
+            // 2文字目を調べる。
+            if (char.IsHighSurrogate(s[0]))
+            {
+                // SMP + skin tone の場合も、
+                if (s.Length < 4) return default;
+                tone1 = GraphemeBreak.IsSkinTone(s.Slice(2));
+                if (tone1 < 0) return default;
+            }
+            else
+            {
+                // BMP + skin tone の場合もある。
+                if (s.Length < 3) return default;
+                tone1 = GraphemeBreak.IsSkinTone(s.Slice(1));
+                if (tone1 < 0) return default;
+            }
+
+            // tone1 が「2文字目、かつ、末尾」になってるときに tone2 と誤認しないように。
+            if (s.Length < 5) return (1, tone1, 0);
+
+            // 末尾調べる。
+            var tone2 = GraphemeBreak.IsSkinTone(s.Slice(s.Length - 2));
+            if (tone2 < 0) return (1, tone1, 0);
+            return (2, tone1, tone2);
         }
     }
 }
