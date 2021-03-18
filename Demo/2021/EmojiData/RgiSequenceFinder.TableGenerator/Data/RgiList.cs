@@ -4,7 +4,7 @@
 
 namespace RgiSequenceFinder
 {
-    class Data
+    partial class Data
     {
         public static readonly string[] RgiEmojiSequenceList = new[]
         {

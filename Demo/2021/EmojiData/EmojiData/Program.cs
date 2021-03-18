@@ -17,7 +17,8 @@ var unvariedEmojiSequenceList = EmojiSequence.EnumerateUnvariedRgiEmojiSequence(
 //Inspector.Keycaps(emojiSequenceList);
 //Inspector.Category(emojiSequenceList);
 //Inspector.GraphemeBreak(emojiSequenceList);
-Inspector.Compare(emojiSequenceList, unvariedEmojiSequenceList); return;
+//Inspector.Compare(emojiSequenceList, unvariedEmojiSequenceList); return;
 
 //SourceGenerator.WriteLineTest(emojiSequenceList);
 SourceGenerator.WriteRgiEmojiSequenceList(emojiSequenceList, "RgiList.cs");
+SourceGenerator.WriteUnvariedRgiEmojiSequenceList(unvariedEmojiSequenceList, "RgiList.Unvaried.cs");
