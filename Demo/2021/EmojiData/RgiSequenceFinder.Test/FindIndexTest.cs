@@ -10,7 +10,7 @@ namespace RgiSequenceFinder.Test
         [Fact]
         public void Rgi絵文字シーケンス自体のインデックスは必ず見つかる()
         {
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 
             var data = Data.RgiEmojiSequenceList;
 
@@ -28,7 +28,7 @@ namespace RgiSequenceFinder.Test
         [Fact]
         public void Rgi絵文字シーケンスの前後にASCII文字挟んでみる()
         {
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 
             var data = Data.RgiEmojiSequenceList;
 
@@ -60,7 +60,7 @@ namespace RgiSequenceFinder.Test
         {
             // 間に何も挟まずに Concat するバージョンも欲しいものの… 肌色セレクターが邪魔。
             // 1F3FB～1F3FF は単体で RgiTable.Find に含まれているものの、GraphemeBreak 的には1個前の絵文字にくっついちゃう。
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 
             var data = Data.RgiEmojiSequenceList;
             var sb = new StringBuilder();
@@ -104,7 +104,7 @@ namespace RgiSequenceFinder.Test
         [InlineData("🏍")] // 1F3CD。バイク。これはむしろなぜデフォルトが非絵文字(白黒表示)なのか意味が分からない
         public void FE0Fが付いてるときだけ絵文字扱いの文字(string s)
         {
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
             var (len, written) = RgiTable.Find(s, indexes);
 
             Assert.Equal(0, written);

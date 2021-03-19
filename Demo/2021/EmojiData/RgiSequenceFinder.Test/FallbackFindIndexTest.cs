@@ -18,7 +18,7 @@ namespace RgiSequenceFinder.Test
         [InlineData("🐈")] // 1F408, Cat
         public void 末尾FE0Fを削る(string emoji)
         {
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 
             // 単独で RGI になってるものをあえて選んでるはずなのを一応確認。
             var (len, indexWritten) = RgiTable.Find(emoji, indexes);
@@ -42,7 +42,7 @@ namespace RgiSequenceFinder.Test
         [Fact]
         public void 未サポート旗()
         {
-            Span<int> indexes = stackalloc int[1];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 
             // 未サポート旗、黒旗だけの絵文字に fallback するように作った。
             var (len, indexWritten) = RgiTable.Find("\U0001F3F4", indexes);
@@ -99,33 +99,33 @@ namespace RgiSequenceFinder.Test
 
             static HashSet<int> toIndex(string[] strings)
             {
-                Span<int> indexes = stackalloc int[1];
+                Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
                 var set = new HashSet<int>();
                 foreach (var st in strings)
                 {
                     RgiTable.Find(st, indexes);
-                    set.Add(indexes[0]);
+                    set.Add(indexes[0].Index);
                 }
                 return set;
             }
 
             var s = concat().AsSpan();
             var skinToneIndexes = toIndex(skinTones);
-            Span<int> indexes = stackalloc int[2];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[2];
 
             while (true)
             {
                 // RGI に含まれていないので、基本絵文字と skin tone の2文字分返ってくる。
                 var (len, indexWritten) = RgiTable.Find(s, indexes);
                 Assert.Equal(2, indexWritten);
-                Assert.Contains(indexes[1], skinToneIndexes);
+                Assert.Contains(indexes[1].Index, skinToneIndexes);
 
                 s = s[len..];
                 if (s.Length == 0) break;
             }
         }
 
-        private static int FindAll(ReadOnlySpan<char> s, Span<int> indexes)
+        private static int FindAll(ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
         {
             int totalWritten = 0;
             while (true)
@@ -144,7 +144,7 @@ namespace RgiSequenceFinder.Test
         [Fact]
         public void 未サポートZWJシーケンス()
         {
-            Span<int> indexes = stackalloc int[2];
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[2];
 
             RgiTable.Find("🐱", indexes);
             var catIndex = indexes[0];
@@ -169,12 +169,12 @@ namespace RgiSequenceFinder.Test
             }
 
             // 未対応 ZWJ sequence は、ZWJ を消し去ったのと同じ結果を産むはず。
-            Span<int> indexes1 = stackalloc int[12];
+            Span<EmojiIndex> indexes1 = stackalloc EmojiIndex[12];
             var concat = string.Concat(ninjaCats);
             var written1 = FindAll(concat, indexes1);
             Assert.Equal(ninjaCats.Length * 2, written1);
 
-            Span<int> indexes2 = stackalloc int[12];
+            Span<EmojiIndex> indexes2 = stackalloc EmojiIndex[12];
             var zwjRemoved = concat.Replace("\u200D", "");
             var written2 = FindAll(zwjRemoved, indexes2);
             Assert.Equal(ninjaCats.Length * 2, written2);
@@ -196,11 +196,11 @@ namespace RgiSequenceFinder.Test
             var family = "👩🏻‍👩🏿‍👧🏼‍👧🏾";
 
             // 未対応 ZWJ sequence は、ZWJ を消し去ったのと同じ結果を産むはず。
-            Span<int> indexes1 = stackalloc int[12];
+            Span<EmojiIndex> indexes1 = stackalloc EmojiIndex[12];
             var written1 = FindAll(family, indexes1);
             Assert.Equal(4, written1);
 
-            Span<int> indexes2 = stackalloc int[12];
+            Span<EmojiIndex> indexes2 = stackalloc EmojiIndex[12];
             var zwjRemoved = family.Replace("\u200D", "");
             var written2 = FindAll(zwjRemoved, indexes2);
             Assert.Equal(4, written2);

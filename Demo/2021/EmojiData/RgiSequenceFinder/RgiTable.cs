@@ -28,7 +28,7 @@ namespace RgiSequenceFinder
         /// あと、非 RGI flag sequence とかも、1F1E6 1F1E6 (AA) に対して ASCII の "AA" (0041 0041) を表示してもいいんだけど、現状それができない。
         /// これも、 ~41 ~41 とかを返すようにすれば "AA" への復元は可能。
         /// </remarks>
-        public static (int charRead, int indexWritten) Find(ReadOnlySpan<char> s, Span<int> indexes)
+        public static (int charRead, int indexWritten) Find(ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
         {
             var emoji = GraphemeBreak.GetEmojiSequence(s);
 
@@ -113,7 +113,7 @@ namespace RgiSequenceFinder
         /// さすがに <see cref="Find(ReadOnlySpan{char}, Span{int})"/> からの再起は要らないと思う。たぶん。
         /// <see cref="FindOther(ReadOnlySpan{char})"/> しか見ないので、国旗 + ZWJ とかは受け付けない。
         /// </remarks>
-        private static int SplitZqjSequence(ZwjSplitResult zwjPositions, ReadOnlySpan<char> s, Span<int> indexes)
+        private static int SplitZqjSequence(ZwjSplitResult zwjPositions, ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
         {
             var totalWritten = 0;
             var prevPos = 0;
@@ -141,7 +141,7 @@ namespace RgiSequenceFinder
         /// skin tone → 基本絵文字 + 肌色四角に分解。
         /// </summary>
         /// <returns><paramref name="indexes"/> に書き込んだ長さ。</returns>
-        private static int ReduceExtends(ReadOnlySpan<char> s, Span<int> indexes)
+        private static int ReduceExtends(ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
         {
             if (s.Length == 0) return 0;
 
