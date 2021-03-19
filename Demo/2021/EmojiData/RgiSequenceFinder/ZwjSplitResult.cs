@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RgiSequenceFinder
+﻿namespace RgiSequenceFinder
 {
     /// <summary>
     /// ZWJ 分割するときに一緒に skin tone の抽出をしておいた方が2度手間にならなくて計算量お得なので一緒に詰め込む。
