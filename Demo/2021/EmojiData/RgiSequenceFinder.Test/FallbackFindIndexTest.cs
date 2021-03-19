@@ -40,7 +40,27 @@ namespace RgiSequenceFinder.Test
         }
 
         [Fact]
-        public void 未サポート旗()
+        public void 未サポート旗Region()
+        {
+            Span<EmojiIndex> indexes = stackalloc EmojiIndex[2];
+            Span<char> fallbackChars = stackalloc char[1];
+
+            // 未サポート旗、ASCII の A～Z 2文字に fallback するように作った。
+            var (len, indexWritten) = RgiTable.Find("\U0001F1E6\U0001F1E7", indexes);
+            Assert.Equal(2, indexWritten);
+
+            Assert.Equal(1, indexes[0].WriteUtf16(fallbackChars));
+            Assert.Equal('A', fallbackChars[0]);
+            Assert.Equal(1, indexes[1].WriteUtf16(fallbackChars));
+            Assert.Equal('B', fallbackChars[0]);
+
+            // 別途 EmojiIndex の単体テストを書けという感じはするけども…
+            Assert.Equal(new Rune('A'), indexes[0].Rune);
+            Assert.Equal(new Rune('B'), indexes[1].Rune);
+        }
+
+        [Fact]
+        public void 未サポート旗Tag()
         {
             Span<EmojiIndex> indexes = stackalloc EmojiIndex[1];
 

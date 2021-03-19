@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using System.Text.Unicode;
 
 namespace RgiSequenceFinder
 {
@@ -30,8 +32,9 @@ namespace RgiSequenceFinder
 
         public static implicit operator EmojiIndex(int index) => new(index);
 
-        //todo: public EmojiIndex(char c)
-        //todo: public EmojiIndex(char high, char low)
+        public EmojiIndex(char c) => _value = ~c;
+
+        public EmojiIndex(char high, char low) => _value = ~(new Rune(high, low).Value);
 
         public int Index =>
 #if DEBUG
@@ -40,10 +43,22 @@ namespace RgiSequenceFinder
             _value;
 #endif
 
+        public Rune Rune =>
+#if DEBUG
+            _value < 0 ? new Rune(~_value) : throw new IndexOutOfRangeException();
+#else
+            new Rune(~_value);
+#endif
+
         public bool IsIndex => _value >= 0;
 
-        //todo: bool IsIndex
-        //todo: int WriteUtf16(Span<char> buffer)
+        public int WriteUtf16(Span<char> buffer)
+        {
+            if (_value >= 0) return 0;
+
+            var r = new Rune(~_value);
+            return r.EncodeToUtf16(buffer);
+        }
 
         public bool Equals(EmojiIndex other) => _value == other._value;
         public override bool Equals(object? obj) => obj is EmojiIndex other && Equals(other);

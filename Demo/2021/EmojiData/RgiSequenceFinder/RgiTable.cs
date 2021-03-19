@@ -30,6 +30,9 @@ namespace RgiSequenceFinder
         /// </remarks>
         public static (int charRead, int indexWritten) Find(ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
         {
+            // 以下のコード、 Length チェックなしで indexex[0] を書いちゃってるんで、
+            // 最初に if (Length == 0) return した方がいいかも。
+
             var emoji = GraphemeBreak.GetEmojiSequence(s);
 
             switch (emoji.Type)
@@ -64,8 +67,19 @@ namespace RgiSequenceFinder
                     {
                         var i = FindRegion(emoji.Region);
 
-                        //todo: 見つからなかった時、ASCII 化する？
-                        // AA (対応する地域コードなし)を "AA" に置き換えるみたいなの。
+                        // ほんとは正確な仕様ではないものの、未対応の Flag sequence は ASCII 2文字に展開しちゃう。
+                        //
+                        // Unicode 的には「Regional Indicator の片割れは絵文字候補じゃない」扱いだし表示しなくていいと思う。
+                        // が、ポリティカルな理由で意図的に国旗を表示しない某 OS は全ての Flag sequence をアルファベット2文字で表示してるし、
+                        // たいていのプラットフォームは RI の片割れを「四角囲みのアルファベット」の絵で表示してる。
+                        // 四角囲みのアルファベットは emoji-data.json にデータがないので、うちは ASCII 2文字に変換してしまうことに。
+
+                        if(i < 0)
+                        {
+                            indexes[0] = new((char)emoji.Region.First);
+                            if (indexes.Length > 1) indexes[1] = new((char)emoji.Region.Second);
+                            return (4, 2);
+                        }
 
                         if (i < 0) return (4, 0);
 
