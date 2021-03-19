@@ -143,23 +143,23 @@ namespace RgiSequenceFinder
         /// <returns><paramref name="indexes"/> に書き込んだ長さ。</returns>
         private static int ReduceExtends(ReadOnlySpan<char> s, Span<int> indexes)
         {
-            // ZWJ 付きじゃないときに2度同じ処理してることになるけど、避けようと思うと結構大変なので妥協。
-            // そんなに高頻度で来ないはずなので問題にもならないと思う。
-            {
-                var (_, written) = Find(s, indexes);
-                return written;
-            }
+            if (s.Length == 0) return 0;
+
+            var firstChar = char.IsSurrogate(s[0]) ? 2 : 1;
 
             // variation selector 16 削り。
             // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
             // RGI 的には FE0F なしで絵文字になってるものに余計に FE0F がくっついてても絵文字扱いしていい。
-            if (s[s.Length - 1] == '\uFE0F')
+            if (s.Length >= firstChar + 1 && s[s.Length - 1] == '\uFE0F')
             {
                 // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
                 var i = FindOther(s.Slice(0, s.Length - 1));
 
-                var (_, written) = Find(s.Slice(0, s.Length - 1), indexes);
-                return written;
+                if (i >= 0)
+                {
+                    if (indexes.Length > 0) indexes[0] = i;
+                    return 1;
+                }
             }
 
             // 肌色。
@@ -168,12 +168,24 @@ namespace RgiSequenceFinder
             // 2個以上 skin tone が並んでるとかも無視。
             // 間に FEOF が挟まってる場合とかも未サポート。
             // BMP + skin tone の可能性
-            if (s.Length >= 3)
+
+            if (s.Length >= firstChar + 2)
             {
-                var st = GraphemeBreak.IsSkinTone(s.Slice(1));
+                var st = GraphemeBreak.IsSkinTone(s.Slice(firstChar));
                 if (st >= 0)
                 {
-                    var i = FindOther(s.Slice(0, 1));
+                    // ZWJ 分割後に RGI になってる部分があるので再検索。
+                    // 最初にやった「ZWJ 分割のついでに skin tone 記録」も使えないので作り直す。
+                    var i = FindOther(s.Slice(0, firstChar + 2), new(st, SkinTone.None));
+
+                    if (i >= 0)
+                    {
+                        if (indexes.Length > 0) indexes[0] = i;
+                        return 1;
+                    }
+
+                    // なければ元の絵 + 肌色四角を返す。
+                    i = FindOther(s.Slice(0, firstChar));
 
                     if (i < 0)
                     {
@@ -189,25 +201,15 @@ namespace RgiSequenceFinder
                 }
             }
 
-            // SMP + skin tone の可能性
-            if (s.Length >= 4)
+            // ZWJ 付きじゃないときに2度同じ処理してることになるけど、避けようと思うと結構大変なので妥協。
+            // そんなに高頻度で来ないはずなので問題にもならないと思う。
             {
-                var st = GraphemeBreak.IsSkinTone(s.Slice(2));
-                if (st >= 0)
-                {
-                    var i = FindOther(s.Slice(0, 2));
+                var i = FindOther(s);
 
-                    if (i < 0)
-                    {
-                        if (indexes.Length > 0) indexes[0] = FindSkinTone(st);
-                        return 1;
-                    }
-                    else
-                    {
-                        if (indexes.Length > 0) indexes[0] = i;
-                        if (indexes.Length > 1) indexes[1] = FindSkinTone(st);
-                        return 2;
-                    }
+                if (i >= 0)
+                {
+                    if (indexes.Length > 0) indexes[0] = i;
+                    return 1;
                 }
             }
 
