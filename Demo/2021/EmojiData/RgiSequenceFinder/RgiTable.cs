@@ -145,7 +145,7 @@ namespace RgiSequenceFinder
         {
             if (s.Length == 0) return 0;
 
-            var firstChar = char.IsSurrogate(s[0]) ? 2 : 1;
+            var firstChar = char.IsHighSurrogate(s[0]) ? 2 : 1;
 
             // variation selector 16 削り。
             // FE0F (variation selector 16)は「絵文字扱いする」という意味なので、
@@ -201,8 +201,7 @@ namespace RgiSequenceFinder
                 }
             }
 
-            // ZWJ 付きじゃないときに2度同じ処理してることになるけど、避けようと思うと結構大変なので妥協。
-            // そんなに高頻度で来ないはずなので問題にもならないと思う。
+            // ZWJ 分割後が普通に skin tone も FE0F も付いてない絵文字なことは多々あるので再検索。
             {
                 var i = FindOther(s);
 
@@ -233,7 +232,7 @@ namespace RgiSequenceFinder
 
             if (tones.Length == 1)
             {
-                if (char.IsSurrogate(s[0]))
+                if (char.IsHighSurrogate(s[0]))
                 {
                     skinToneRemoved[0] = s[0];
                     skinToneRemoved[1] = s[1];
@@ -249,7 +248,7 @@ namespace RgiSequenceFinder
             }
             else if (tones.Length == 2)
             {
-                if (char.IsSurrogate(s[0]))
+                if (char.IsHighSurrogate(s[0]))
                 {
                     skinToneRemoved[0] = s[0];
                     skinToneRemoved[1] = s[1];
