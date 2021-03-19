@@ -230,37 +230,16 @@ namespace RgiSequenceFinder
             Span<char> skinToneRemoved = stackalloc char[s.Length];
             int length = s.Length;
 
-            if (tones.Length == 1)
+            var toneLength = tones.Length;
+
+            if (toneLength > 0)
             {
-                if (char.IsHighSurrogate(s[0]))
-                {
-                    skinToneRemoved[0] = s[0];
-                    skinToneRemoved[1] = s[1];
-                    s.Slice(4).CopyTo(skinToneRemoved.Slice(2));
-                    length -= 2;
-                }
-                else
-                {
-                    skinToneRemoved[0] = s[0];
-                    s.Slice(3).CopyTo(skinToneRemoved.Slice(1));
-                    length -= 2;
-                }
-            }
-            else if (tones.Length == 2)
-            {
-                if (char.IsHighSurrogate(s[0]))
-                {
-                    skinToneRemoved[0] = s[0];
-                    skinToneRemoved[1] = s[1];
-                    s.Slice(4, s.Length - 6).CopyTo(skinToneRemoved.Slice(2));
-                    length -= 4;
-                }
-                else
-                {
-                    skinToneRemoved[0] = s[0];
-                    s.Slice(3, s.Length - 5).CopyTo(skinToneRemoved.Slice(1));
-                    length -= 4;
-                }
+                var firstChar = char.IsHighSurrogate(s[0]) ? 2 : 1; // UTF-16 なので、「2文字目」と言いつつサロゲートペアで個数分岐。
+                var lastRemoveChar = toneLength == 1 ? 0 : 2; // skin tone 2つの時は末尾を UTF-16 2個分削る。
+
+                s.Slice(0, firstChar).CopyTo(skinToneRemoved);
+                s.Slice(2 + firstChar, s.Length - 2 - firstChar - lastRemoveChar).CopyTo(skinToneRemoved.Slice(firstChar));
+                length -= 2 + lastRemoveChar;
             }
 
             if (_otherTable.TryGetValue(skinToneRemoved.Slice(0, length), out var t))
