@@ -37,7 +37,7 @@ namespace RgiSequenceFinder
         public readonly SkinTone SkinTone;
 
         [FieldOffset(8)]
-        public readonly Byte8 ZwjPositions;
+        public readonly ZwjSplitResult ZwjPositions;
 
         public EmojiSequence(EmojiSequenceType type, int length) : this()
         {
@@ -68,7 +68,7 @@ namespace RgiSequenceFinder
             SkinTone = skinTone;
         }
 
-        public EmojiSequence(int count, Byte8 zwjPositions) : this(EmojiSequenceType.Other, count)
+        public EmojiSequence(int count, ZwjSplitResult zwjPositions) : this(EmojiSequenceType.Other, count)
         {
             ZwjPositions = zwjPositions;
         }

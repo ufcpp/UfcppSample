@@ -37,7 +37,7 @@ namespace RgiSequenceFinder
                 case EmojiSequenceType.Other:
                     {
                         var span = s.Slice(0, emoji.LengthInUtf16);
-                        var i = FindOther(span);
+                        var i = FindOther(span, emoji.ZwjPositions.SkinTones);
 
                         if (i >= 0)
                         {
@@ -113,12 +113,12 @@ namespace RgiSequenceFinder
         /// さすがに <see cref="Find(ReadOnlySpan{char}, Span{int})"/> からの再起は要らないと思う。たぶん。
         /// <see cref="FindOther(ReadOnlySpan{char})"/> しか見ないので、国旗 + ZWJ とかは受け付けない。
         /// </remarks>
-        private static int SplitZqjSequence(Byte8 zwjPositions, ReadOnlySpan<char> s, Span<int> indexes)
+        private static int SplitZqjSequence(ZwjSplitResult zwjPositions, ReadOnlySpan<char> s, Span<int> indexes)
         {
             var totalWritten = 0;
             var prevPos = 0;
 
-            for (int j = 0; j < Byte8.MaxLength; j++)
+            for (int j = 0; j < ZwjSplitResult.MaxLength; j++)
             {
                 var pos = zwjPositions[j];
                 if (pos == 0) break;
@@ -146,13 +146,8 @@ namespace RgiSequenceFinder
             // ZWJ 付きじゃないときに2度同じ処理してることになるけど、避けようと思うと結構大変なので妥協。
             // そんなに高頻度で来ないはずなので問題にもならないと思う。
             {
-                var i = FindOther(s);
-
-                if (i >= 0)
-                {
-                    if (indexes.Length > 0) indexes[0] = i;
-                    return 1;
-                }
+                var (_, written) = Find(s, indexes);
+                return written;
             }
 
             // variation selector 16 削り。
@@ -163,11 +158,8 @@ namespace RgiSequenceFinder
                 // Find から再起するか(国旗 + FE0F とか、FE0F 複数個並べるとかに対応)までやるかどうか…
                 var i = FindOther(s.Slice(0, s.Length - 1));
 
-                if (i >= 0)
-                {
-                    if (indexes.Length > 0) indexes[0] = i;
-                    return 1;
-                }
+                var (_, written) = Find(s.Slice(0, s.Length - 1), indexes);
+                return written;
             }
 
             // 肌色。
@@ -222,24 +214,22 @@ namespace RgiSequenceFinder
             return 0;
         }
 
-        private static int FindOther(ReadOnlySpan<char> s)
+        private static int FindOther(ReadOnlySpan<char> s, SkinTonePair skinTones = default)
         {
             var (singular, c) = GetSingularTable(s);
 
             if (singular is not null) return singular.TryGetValue(c, out var v) ? v : -1;
 
-            var (toneCount, tone1, tone2) = GetSkinTone(s);
-
-            if (toneCount > 0) return FindeOtherWithSkinTone(s, toneCount, tone1, tone2);
+            if (skinTones.Length > 0) return FindeOtherWithSkinTone(s, skinTones);
             else return _otherTable.TryGetValue(s, out var v) ? v.index : -1;
         }
 
-        private static int FindeOtherWithSkinTone(ReadOnlySpan<char> s, byte toneCount, SkinTone tone1, SkinTone tone2)
+        private static int FindeOtherWithSkinTone(ReadOnlySpan<char> s, SkinTonePair tones)
         {
             Span<char> skinToneRemoved = stackalloc char[s.Length];
             int length = s.Length;
 
-            if (toneCount == 1)
+            if (tones.Length == 1)
             {
                 if (char.IsSurrogate(s[0]))
                 {
@@ -255,7 +245,7 @@ namespace RgiSequenceFinder
                     length -= 2;
                 }
             }
-            else if (toneCount == 2)
+            else if (tones.Length == 2)
             {
                 if (char.IsSurrogate(s[0]))
                 {
@@ -274,7 +264,7 @@ namespace RgiSequenceFinder
 
             if (_otherTable.TryGetValue(skinToneRemoved.Slice(0, length), out var t))
             {
-                var offset = OffsetFromSkinTone(t.skinVariationType, tone1, tone2);
+                var offset = OffsetFromSkinTone(t.skinVariationType, tones.Tone1, tones.Tone2);
                 return t.index + offset;
             }
 

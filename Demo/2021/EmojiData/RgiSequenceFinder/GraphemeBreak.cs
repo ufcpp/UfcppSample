@@ -163,16 +163,20 @@ namespace RgiSequenceFinder
         /// <see cref="GetEmojiSequence(ReadOnlySpan{char})"/> の主要処理。
         /// 「keycap と国旗を除けばだいぶシンプルになる」前提の Emoji ZWJ sequence 判定。
         /// </summary>
-        private static (int count, Byte8 zwjPositions) IsZwjSequence(ReadOnlySpan<char> s)
+        private static (int count, ZwjSplitResult zwjPositions) IsZwjSequence(ReadOnlySpan<char> s)
         {
             // ZWJ シーケンス。
             var count = 0;
             Byte8 zwjPositions = default;
             var zwjIndex = 0;
             var span = zwjPositions.AsSpan();
+            var tone1 = SkinTone.None;
+            SkinTone tone2;
 
             while (true)
             {
+                tone2 = SkinTone.None;
+
                 var pict = IsPictgraphicEstimate(s);
 
                 if (pict == 0) break;
@@ -182,17 +186,26 @@ namespace RgiSequenceFinder
 
                 while (true)
                 {
-                    var ext = IsExtendEstimate(s);
+                    var skinTone = IsSkinTone(s);
+                    if (skinTone >= 0)
+                    {
+                        if (zwjIndex == 0) tone1 = skinTone;
+                        else tone2 = skinTone;
 
-                    if (ext == 0) break;
-
-                    count += ext;
-                    s = s.Slice(ext);
+                        count += 2;
+                        s = s.Slice(2);
+                    }
+                    else if (s.Length >= 1 && s[0] == 0xFE0F)
+                    {
+                        ++count;
+                        s = s.Slice(1);
+                    }
+                    else break;
                 }
 
                 if (s.Length >= 1 && s[0] == (char)0x200D)
                 {
-                    if(zwjIndex < span.Length)
+                    if(zwjIndex < ZwjSplitResult.MaxLength)
                     {
                         span[zwjIndex] = (byte)count;
                         ++zwjIndex;
@@ -204,7 +217,7 @@ namespace RgiSequenceFinder
                 else break;
             }
 
-            return (count, zwjPositions);
+            return (count, new(zwjPositions, new(tone1, tone2)));
         }
     }
 }

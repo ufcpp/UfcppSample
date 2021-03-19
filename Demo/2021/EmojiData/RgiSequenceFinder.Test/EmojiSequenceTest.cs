@@ -154,7 +154,7 @@ namespace RgiSequenceFinder.Test
             }
 
             // 不要分は0詰めのはず。
-            for (; i < 8; i++)
+            for (; i < ZwjSplitResult.MaxLength; i++)
             {
                 Assert.Equal(0, emoji.ZwjPositions[i]);
             }
@@ -175,7 +175,7 @@ namespace RgiSequenceFinder.Test
                 Assert.Equal(EmojiSequenceType.Other, emoji.Type);
                 Assert.Equal(s.Length, emoji.LengthInUtf16);
 
-                for (int i = 0; i < Byte8.MaxLength; i++)
+                for (int i = 0; i < ZwjSplitResult.MaxLength; i++)
                 {
                     Assert.NotEqual(0, emoji.ZwjPositions[i]);
                 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers.Binary;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace RgiSequenceFinder
@@ -43,7 +44,7 @@ namespace RgiSequenceFinder
         /// </remarks>
         public ulong LongValue => BinaryPrimitives.ReadUInt64LittleEndian(this.AsSpan());
 
-        public byte this[int index] => this.AsSpan()[index];
+        public readonly byte this[int index] => this.AsReadOnlySpan()[index];
 
         public bool Equals(Byte8 other) => LongValue == other.LongValue;
         public override bool Equals(object? obj) => obj is Byte8 other && Equals(other);
@@ -55,5 +56,6 @@ namespace RgiSequenceFinder
     internal static class Byte8Extensions
     {
         public static Span<byte> AsSpan(ref this Byte8 tags) => MemoryMarshal.CreateSpan(ref tags.V0, 8);
+        public static ReadOnlySpan<byte> AsReadOnlySpan(in this Byte8 tags) => MemoryMarshal.CreateReadOnlySpan(ref Unsafe.AsRef(in tags.V0), 8);
     }
 }

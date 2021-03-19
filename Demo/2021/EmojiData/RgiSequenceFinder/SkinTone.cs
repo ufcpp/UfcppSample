@@ -33,4 +33,67 @@
         /// </summary>
         None = -1,
     }
+
+    /// <summary>
+    /// <see cref="SkinTone"/> 0～2個詰め込んだ構造体。
+    /// </summary>
+    /// <remarks>
+    /// <see cref="SkinTone"/> の使い方、RGI テーブルを引くときには、
+    /// - まず skin tone を抽出
+    /// - skin tone を削った文字列でテーブル引き
+    /// - skin tone から計算できるオフセットを足す
+    /// - RGI ZWJ sequence 中にある skin tone は1個か2個
+    /// みたいな前提があるし、他のデータと一緒に1つの構造体にパッキングするんで1バイトに2 <see cref="SkinTone"/> を詰め込むことに。
+    ///
+    /// 長さ(0, 1, 2) 2ビット、2個目の tone 3ビット、1個目の tone 3ビットでパッキング。
+    /// </remarks>
+    public readonly struct SkinTonePair
+    {
+        public readonly byte Value;
+
+        public SkinTonePair(byte value) => Value = value;
+
+        public SkinTonePair(SkinTone tone1, SkinTone tone2)
+        {
+            if (tone1 < 0)
+            {
+                Value = 0;
+            }
+            else if (tone2 < 0)
+            {
+                Value = (byte)(
+                    0b0100_0000
+                    | (byte)tone1);
+            }
+            else
+            {
+                Value = (byte)(
+                    0b1000_0000
+                    | (byte)tone1
+                    | ((byte)tone2 << 3));
+            }
+        }
+
+        /// <summary>
+        /// 長さ。0～2。
+        /// </summary>
+        /// <remarks>
+        /// この構造体が default のときに 0 になるようにしてある。
+        /// </remarks>
+        public int Length => Value >> 6;
+
+        /// <summary>
+        /// <see cref="SkinTone"/> 1個目。
+        /// カップル絵文字とかで前の人の肌色。
+        /// ZWJ sequence 的に、2符号点目に出てくる。
+        /// </summary>
+        public SkinTone Tone1 => (SkinTone)(Value & 0b111);
+
+        /// <summary>
+        /// <see cref="SkinTone"/> 2個目。
+        /// カップル絵文字とかで後の人の肌色。
+        /// ZWJ sequence 的に、最後の符号点に出てくる。
+        /// </summary>
+        public SkinTone Tone2 => (SkinTone)((Value >> 3) & 0b111);
+    }
 }
