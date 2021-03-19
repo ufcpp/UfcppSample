@@ -98,5 +98,24 @@ namespace RgiSequenceFinder.Test
                 cat = cat[len..];
             }
         }
+
+        [Theory]
+        [InlineData("㊙")] // 3299。これを(FE0F を付けて)カラー表示しようとしてること自体ちょっとどうかと思うけど
+        [InlineData("🏍")] // 1F3CD。バイク。これはむしろなぜデフォルトが非絵文字(白黒表示)なのか意味が分からない
+        public void FE0Fが付いてるときだけ絵文字扱いの文字(string s)
+        {
+            Span<int> indexes = stackalloc int[1];
+            var (len, written) = RgiTable.Find(s, indexes);
+
+            Assert.Equal(0, written);
+            Assert.Equal(s.Length, len);
+
+            var fe0fAdded = s + "\uFE0F";
+
+            (len, written) = RgiTable.Find(fe0fAdded, indexes);
+
+            Assert.Equal(1, written);
+            Assert.Equal(fe0fAdded.Length, len);
+        }
     }
 }
