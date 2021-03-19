@@ -132,18 +132,24 @@ namespace RgiSequenceFinder
             var totalWritten = 0;
             var prevPos = 0;
 
+            // ZWJ なしの単体。
+            if(zwjPositions[0] == 0)
+            {
+                return ReduceExtends(s, indexes, false);
+            }
+
             for (int j = 0; j < ZwjSplitResult.MaxLength; j++)
             {
                 var pos = zwjPositions[j];
                 if (pos == 0) break;
 
-                var written = ReduceExtends(s.Slice(prevPos, pos - prevPos), indexes);
+                var written = ReduceExtends(s.Slice(prevPos, pos - prevPos), indexes, true);
                 totalWritten += written;
                 indexes = indexes.Slice(written);
                 prevPos = pos + 1;
             }
 
-            totalWritten += ReduceExtends(s.Slice(prevPos), indexes);
+            totalWritten += ReduceExtends(s.Slice(prevPos), indexes, true);
 
             return totalWritten;
         }
@@ -155,7 +161,7 @@ namespace RgiSequenceFinder
         /// skin tone → 基本絵文字 + 肌色四角に分解。
         /// </summary>
         /// <returns><paramref name="indexes"/> に書き込んだ長さ。</returns>
-        private static int ReduceExtends(ReadOnlySpan<char> s, Span<EmojiIndex> indexes)
+        private static int ReduceExtends(ReadOnlySpan<char> s, Span<EmojiIndex> indexes, bool allowCharFallback)
         {
             if (s.Length == 0) return 0;
 
@@ -226,7 +232,38 @@ namespace RgiSequenceFinder
                 }
             }
 
-            return 0;
+            if (allowCharFallback)
+            {
+                // ZWJ sequence のときだけ文字素通ししたいので分岐。
+                indexes[0] = GetChar(s);
+                return 1;
+            }
+            else return 0;
+        }
+
+        /// <summary>
+        /// 文字素通し <see cref="EmojiIndex"/> を返す。
+        /// </summary>
+        /// <remarks>
+        /// ZWJ 分割後は非絵文字が混ざることがある。
+        /// 一部の「単独だと絵文字扱いをうけないけども FE0F が付いてれば絵文字」な類の文字が、
+        /// ZWJ Sequence 内では単独で出てきたりする。
+        /// その場合、その文字を単体で返す。
+        /// </remarks>
+        private static EmojiIndex GetChar(ReadOnlySpan<char> s)
+        {
+            if (char.IsHighSurrogate(s[0]))
+            {
+                // 不正な UTF-16 の時どうしよう。例外の方がいい？
+                if (s.Length < 2 || !char.IsLowSurrogate(s[1]))
+                    return new('\0');
+
+                return new(s[0], s[1]);
+            }
+            else
+            {
+                return new(s[0]);
+            }
         }
 
         private static int FindOther(ReadOnlySpan<char> s, SkinTonePair skinTones = default)

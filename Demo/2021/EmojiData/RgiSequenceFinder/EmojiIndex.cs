@@ -56,6 +56,8 @@ namespace RgiSequenceFinder
         {
             if (_value >= 0) return 0;
 
+            // 内部的に UTF-16 なものを1度符号点にしたのを割とすぐ再度 UTF-16 エンコードする作りなのがちょっともったいない感じはするものの。
+            // そんなに高頻度でここには来ないと思うし、サロゲートペア2個を int にパッキングすると Index との区別が面倒になりそうだしやめとく。
             var r = new Rune(~_value);
             return r.EncodeToUtf16(buffer);
         }
