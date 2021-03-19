@@ -313,48 +313,5 @@ namespace RgiSequenceFinder
                 _ => 0, // 来ないはずだけど
             };
         }
-
-        /// <summary>
-        /// 絵文字シーケンス中含まれる skin tone を検索。
-        /// </summary>
-        /// <remarks>
-        /// skin variation (skin tone 1F3FB-1F3FF で肌色変更)系の絵文字、RGI に入ってるやつは、
-        /// - 1個目の skin tone は2文字目
-        /// - 2個目の skin tone は末尾
-        /// で固定。
-        /// この前提で判定。
-        ///
-        /// この場合、skin tone を削った ZWJ sequence を検索してインデックスを取得した上で、
-        /// skin tone から計算できるオフセットを足してインデックス計算できる。
-        /// これをやれば skin tone の組み合わせ分(1個の絵文字シーケンス5倍、2個のやつなら25倍)テーブルデータ量を減らせるので頑張って計算することに。
-        /// </remarks>
-        private static (byte count, SkinTone tone1, SkinTone tone2) GetSkinTone(ReadOnlySpan<char> s)
-        {
-            SkinTone tone1;
-
-            // 2文字目を調べる。
-            if (char.IsHighSurrogate(s[0]))
-            {
-                // SMP + skin tone の場合も、
-                if (s.Length < 4) return default;
-                tone1 = GraphemeBreak.IsSkinTone(s.Slice(2));
-                if (tone1 < 0) return default;
-            }
-            else
-            {
-                // BMP + skin tone の場合もある。
-                if (s.Length < 3) return default;
-                tone1 = GraphemeBreak.IsSkinTone(s.Slice(1));
-                if (tone1 < 0) return default;
-            }
-
-            // tone1 が「2文字目、かつ、末尾」になってるときに tone2 と誤認しないように。
-            if (s.Length < 5) return (1, tone1, 0);
-
-            // 末尾調べる。
-            var tone2 = GraphemeBreak.IsSkinTone(s.Slice(s.Length - 2));
-            if (tone2 < 0) return (1, tone1, 0);
-            return (2, tone1, tone2);
-        }
     }
 }
