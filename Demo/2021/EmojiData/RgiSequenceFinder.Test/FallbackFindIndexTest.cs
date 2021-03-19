@@ -121,7 +121,7 @@ namespace RgiSequenceFinder.Test
                 Assert.Equal(2, indexWritten);
                 Assert.Contains(indexes[1], skinToneIndexes);
 
-                s = s.Slice(len);
+                s = s[len..];
                 if (s.Length == 0) break;
             }
         }

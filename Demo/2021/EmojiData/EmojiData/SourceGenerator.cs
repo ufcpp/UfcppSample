@@ -76,15 +76,15 @@ namespace RgiSequenceFinder
         {
 ");
 
-            foreach (var seq in emojiSequenceList)
+            foreach (var (runes, index, variationType) in emojiSequenceList)
             {
-                var s = Encoder.ToEscapedString(seq.runes);
+                var s = Encoder.ToEscapedString(runes);
                 writer.Write(@"            (""");
                 writer.Write(s);
                 writer.Write("\", ");
-                writer.Write(seq.index);
+                writer.Write(index);
                 writer.Write(", ");
-                writer.Write(seq.variationType);
+                writer.Write(variationType);
                 writer.Write(@"),
 ");
             }
