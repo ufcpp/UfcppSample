@@ -55,8 +55,8 @@ namespace RgiSequenceFinder.Test
             Assert.Equal('B', fallbackChars[0]);
 
             // 別途 EmojiIndex の単体テストを書けという感じはするけども…
-            Assert.Equal(new Rune('A'), indexes[0].Rune);
-            Assert.Equal(new Rune('B'), indexes[1].Rune);
+            Assert.Equal(new Rune('A').Value, (int)indexes[0].Rune);
+            Assert.Equal(new Rune('B').Value, (int)indexes[1].Rune);
         }
 
         [Fact]

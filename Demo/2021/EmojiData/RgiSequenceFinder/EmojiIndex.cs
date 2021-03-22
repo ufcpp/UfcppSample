@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Text.Unicode;
 
 namespace RgiSequenceFinder
 {
@@ -34,7 +32,7 @@ namespace RgiSequenceFinder
 
         public EmojiIndex(char c) => _value = ~c;
 
-        public EmojiIndex(char high, char low) => _value = ~(new Rune(high, low).Value);
+        public EmojiIndex(char high, char low) => _value = ~(char.ConvertToUtf32(high, low));
 
         public int Index =>
 #if DEBUG
@@ -43,9 +41,9 @@ namespace RgiSequenceFinder
             _value;
 #endif
 
-        public Rune Rune =>
+        public uint Rune =>
 #if DEBUG
-            _value < 0 ? new Rune(~_value) : throw new IndexOutOfRangeException();
+            _value < 0 ? (uint)(~_value) : throw new IndexOutOfRangeException();
 #else
             new Rune(~_value);
 #endif
@@ -58,8 +56,27 @@ namespace RgiSequenceFinder
 
             // 内部的に UTF-16 なものを1度符号点にしたのを割とすぐ再度 UTF-16 エンコードする作りなのがちょっともったいない感じはするものの。
             // そんなに高頻度でここには来ないと思うし、サロゲートペア2個を int にパッキングすると Index との区別が面倒になりそうだしやめとく。
-            var r = new Rune(~_value);
-            return r.EncodeToUtf16(buffer);
+
+            // net5.0 とかなら UnicodeUtility とか Rune とかを使えるけど、netstandard2.0 に同様のものあったか思い出せず。
+            // 見つからなかったし書くの簡単なのでべた書き。
+
+            var value = Rune;
+
+            if (value <= 0xFFFF && buffer.Length >= 1)
+            {
+                buffer[0] = (char)value;
+                return 1;
+            }
+
+            var high = (char)((value + ((0xD800u - 0x40u) << 10)) >> 10);
+            var low = (char)((value & 0x3FFu) + 0xDC00u);
+
+            if (buffer.Length == 0 || !char.IsHighSurrogate(high)) return 0;
+            if (buffer.Length == 1 || !char.IsLowSurrogate(low)) return 0;
+
+            buffer[0] = high;
+            buffer[1] = low;
+            return 2;
         }
 
         public bool Equals(EmojiIndex other) => _value == other._value;
