@@ -114,7 +114,7 @@ namespace RgiSequenceFinder.Test
             var cat = sb.ToString().AsSpan();
 
             var buffer = new char[cat.Length];
-            var written = RgiTable.Replace(cat, buffer);
+            var written = Finder.Replace(cat, buffer);
 
             foreach (var c in buffer[..written])
             {
