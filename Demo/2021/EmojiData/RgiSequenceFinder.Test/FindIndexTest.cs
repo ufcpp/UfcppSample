@@ -99,6 +99,29 @@ namespace RgiSequenceFinder.Test
             }
         }
 
+        [Fact]
+        public void 全RGI絵文字をConcatしたものをReplaceにかける()
+        {
+            var data = Data.RgiEmojiSequenceList;
+            var sb = new StringBuilder();
+
+            foreach (var s in data)
+            {
+                sb.Append(s);
+                sb.Append('a');
+            }
+
+            var cat = sb.ToString().AsSpan();
+
+            var buffer = new char[cat.Length];
+            var written = RgiTable.Replace(cat, buffer);
+
+            foreach (var c in buffer[..written])
+            {
+                Assert.True(c is 'a' or (>= '\uE000' and < '\uF900'));
+            }
+        }
+
         [Theory]
         [InlineData("㊙")] // 3299。これを(FE0F を付けて)カラー表示しようとしてること自体ちょっとどうかと思うけど
         [InlineData("🏍")] // 1F3CD。バイク。これはむしろなぜデフォルトが非絵文字(白黒表示)なのか意味が分からない
