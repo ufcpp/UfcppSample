@@ -166,13 +166,14 @@ namespace RgiSequenceFinder
                         writer.Write(@"                new(");
                         writer.Write(capacity);
                         writer.Write(@",
-                    """);
+                    new ushort[] { ");
                         foreach (var (c, _) in list)
                         {
-                            writer.Write("\\u");
+                            writer.Write("0x");
                             writer.Write(((int)c).ToString("X4"));
+                            writer.Write(", ");
                         }
-                        writer.Write(@""",
+                        writer.Write(@"},
                     new ushort[] { ");
 
                         foreach (var (_, index) in list)

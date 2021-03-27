@@ -17,14 +17,19 @@ namespace RgiSequenceFinder
 
         internal struct Bucket
         {
-            public char Key; // ヌル文字が来ないことわかってるので == 0 で空判定 OK。
+            // Key は char なんだけど、「low surrogate のみ記録」みたいな UTF-16 として不正なことやるので char を避ける。
+            // どうも、iOS で imcomplete surrogate が U+FFFD に置換されてそう。
+            // (.NET は不正な UTF-16 認めてるともって油断してた。IL2CPP のせいかも。)
+            //
+            // あと、ヌル文字が来ないことわかってるので == 0 で空判定 OK。
+            public ushort Key;
             public ushort Value;
         }
 
         private readonly int _mask;
         private readonly Bucket[] _buckets;
 
-        public CharDictionary(int capacity, ReadOnlySpan<char> keys, ReadOnlySpan<ushort> indexes)
+        public CharDictionary(int capacity, ReadOnlySpan<ushort> keys, ReadOnlySpan<ushort> indexes)
         {
             //todo: capacity が2のべき乗になってるか確認
 
@@ -44,7 +49,7 @@ namespace RgiSequenceFinder
         /// <remarks>
         /// 最初に想定している以上に追加すると永久ループする可能性があるので注意。
         /// </remarks>
-        public void Add(char key, ushort value)
+        public void Add(ushort key, ushort value)
         {
             var mask = _mask;
             var hash = key & mask;
@@ -69,7 +74,7 @@ namespace RgiSequenceFinder
         /// 値の取得。
         /// キーが見つからなかったら false を返す。
         /// </summary>
-        public bool TryGetValue(char key, out ushort value)
+        public bool TryGetValue(ushort key, out ushort value)
         {
             var mask = _mask;
             var hash = key & mask;

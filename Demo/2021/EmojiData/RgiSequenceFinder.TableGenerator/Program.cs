@@ -12,6 +12,6 @@ using System.Text;
 
 var emojis = GroupedEmojis.Create();
 
-using var writer = new StreamWriter("RgiTable.Generated.cs", false, Encoding.UTF8);
+using var writer = new StreamWriter("../../../../RgiSequenceFinder/RgiTable.Generated.cs", false, Encoding.UTF8);
 
 SourceGenerator.Write(writer, emojis);
