@@ -45,7 +45,7 @@ namespace RgiSequenceFinder
 #if DEBUG
             _value < 0 ? (uint)(~_value) : throw new IndexOutOfRangeException();
 #else
-            new Rune(~_value);
+            (uint)(~_value);
 #endif
 
         public bool IsIndex => _value >= 0;
