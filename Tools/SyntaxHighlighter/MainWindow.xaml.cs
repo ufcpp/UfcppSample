@@ -48,6 +48,8 @@ namespace SyntaxHighlighter
 
         private string? Parse(IDataObject data, Mode mode)
         {
+            var xxx = data.GetFormats();
+
             if (mode == Mode.Asm)
             {
                 if (data.GetData(DataFormats.Text) is string text)
