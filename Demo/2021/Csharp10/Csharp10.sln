@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31606.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterlessConstructors", "ParameterlessConstructors\ParameterlessConstructors.csproj", "{89188EC1-7463-417F-A7C0-9D98118B3195}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMath", "GenericMath\GenericMath.csproj", "{3F736CAD-4CBA-402E-BA92-339B41CA5B10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{89188EC1-7463-417F-A7C0-9D98118B3195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89188EC1-7463-417F-A7C0-9D98118B3195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89188EC1-7463-417F-A7C0-9D98118B3195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
