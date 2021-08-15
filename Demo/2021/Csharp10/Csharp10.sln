@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMath", "GenericMath\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivatorBug", "ActivatorBug\ActivatorBug.csproj", "{C78E035E-79E7-4C61-82BA-F101E72D8489}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateInstanceBenchmark", "CreateInstanceBenchmark\CreateInstanceBenchmark.csproj", "{5F3220D2-B5A8-48CA-850E-E5B1827C2213}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3220D2-B5A8-48CA-850E-E5B1827C2213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3220D2-B5A8-48CA-850E-E5B1827C2213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3220D2-B5A8-48CA-850E-E5B1827C2213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3220D2-B5A8-48CA-850E-E5B1827C2213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
