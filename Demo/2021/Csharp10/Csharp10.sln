@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterlessConstructors",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMath", "GenericMath\GenericMath.csproj", "{3F736CAD-4CBA-402E-BA92-339B41CA5B10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivatorBug", "ActivatorBug\ActivatorBug.csproj", "{C78E035E-79E7-4C61-82BA-F101E72D8489}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F736CAD-4CBA-402E-BA92-339B41CA5B10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78E035E-79E7-4C61-82BA-F101E72D8489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
