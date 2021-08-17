@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecordStruct", "RecordStruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordStruct", "RecordStruct\RecordStruct\RecordStruct.csproj", "{21CDCD25-C900-4742-8B4D-A62EF8FB729E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterpolatedStrings", "InterpolatedStrings", "{A73FA307-E8C2-45BE-87C3-488C4E90E153}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "InterpolatedStrings\Benchmark\Benchmark.csproj", "{67355A52-DF8C-40F4-95BC-2F1D80267DA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67355A52-DF8C-40F4-95BC-2F1D80267DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67355A52-DF8C-40F4-95BC-2F1D80267DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67355A52-DF8C-40F4-95BC-2F1D80267DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67355A52-DF8C-40F4-95BC-2F1D80267DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 		{5CA37315-7DEE-4F66-B011-8F02D7E8FF6E} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
 		{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
 		{21CDCD25-C900-4742-8B4D-A62EF8FB729E} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
+		{67355A52-DF8C-40F4-95BC-2F1D80267DA2} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
