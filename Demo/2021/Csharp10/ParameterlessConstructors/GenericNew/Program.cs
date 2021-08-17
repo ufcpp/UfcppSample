@@ -1,4 +1,4 @@
-﻿static T New<T>() where T : new() => new T();
+﻿static T New<T>() where T : new() => new();
 
 Console.WriteLine(New<Class>().X); // 0
 Console.WriteLine(New<A>().X); // 0
