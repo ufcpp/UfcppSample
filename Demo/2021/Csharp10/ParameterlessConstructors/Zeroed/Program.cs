@@ -1,13 +1,5 @@
-﻿namespace ParameterlessConstructors;
-
-class Zeroed
-{
-    public static void M()
-    {
-        Console.WriteLine(new Zeroed1(1).Y);
-        Console.WriteLine(new Zeroed2(1).Y);
-    }
-}
+﻿Console.WriteLine(new Zeroed1(1).Y);
+Console.WriteLine(new Zeroed2(1).Y);
 
 // これは今までも書けた記法:
 struct Zeroed1
