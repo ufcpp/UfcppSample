@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonPublicConstructor", "Par
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImmutableArray", "ParameterlessConstructors\ImmutableArray\ImmutableArray.csproj", "{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecordStruct", "RecordStruct", "{593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordStruct", "RecordStruct\RecordStruct\RecordStruct.csproj", "{21CDCD25-C900-4742-8B4D-A62EF8FB729E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CDCD25-C900-4742-8B4D-A62EF8FB729E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +96,7 @@ Global
 		{CCFE3BE4-0668-43A3-8FBC-264CAFA0F076} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
 		{5CA37315-7DEE-4F66-B011-8F02D7E8FF6E} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
 		{738FB3E5-7F2F-44C4-AEB8-3F99F1244D61} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
+		{21CDCD25-C900-4742-8B4D-A62EF8FB729E} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
