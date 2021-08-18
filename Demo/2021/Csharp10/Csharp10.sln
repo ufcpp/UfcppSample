@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParamsDictionary", "Interpo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedInterpolatedStrings", "InterpolatedStrings\ImprovedInterpolatedStrings\ImprovedInterpolatedStrings.csproj", "{D524F574-482D-4AF3-BBF3-74DF47646ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvariantGlobalization", "InterpolatedStrings\InvariantGlobalization\InvariantGlobalization.csproj", "{8F740CFB-BA24-4F1E-8531-852255B587CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{D524F574-482D-4AF3-BBF3-74DF47646ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D524F574-482D-4AF3-BBF3-74DF47646ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D524F574-482D-4AF3-BBF3-74DF47646ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F740CFB-BA24-4F1E-8531-852255B587CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F740CFB-BA24-4F1E-8531-852255B587CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F740CFB-BA24-4F1E-8531-852255B587CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F740CFB-BA24-4F1E-8531-852255B587CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +126,7 @@ Global
 		{67355A52-DF8C-40F4-95BC-2F1D80267DA2} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{3F5FAC7F-5A7C-4F6A-97DA-941255FE9B5D} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{D524F574-482D-4AF3-BBF3-74DF47646ACF} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
+		{8F740CFB-BA24-4F1E-8531-852255B587CB} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
