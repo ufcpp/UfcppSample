@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsClass", "RecordStruct\VsC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsNormalStruct", "RecordStruct\VsNormalStruct\VsNormalStruct.csproj", "{458915AC-A140-49E5-A66B-5895C42150A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidingField", "RecordStruct\HidingField\HidingField.csproj", "{B5092AEF-FF02-4C85-B5B1-5A3869387AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{458915AC-A140-49E5-A66B-5895C42150A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{458915AC-A140-49E5-A66B-5895C42150A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{458915AC-A140-49E5-A66B-5895C42150A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5092AEF-FF02-4C85-B5B1-5A3869387AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5092AEF-FF02-4C85-B5B1-5A3869387AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5092AEF-FF02-4C85-B5B1-5A3869387AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5092AEF-FF02-4C85-B5B1-5A3869387AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 		{458915AC-A140-49E5-A66B-5895C42150A3} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
+		{B5092AEF-FF02-4C85-B5B1-5A3869387AD3} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
