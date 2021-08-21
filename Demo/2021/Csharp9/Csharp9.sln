@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Record", "Record", "{504DCEF9-E855-4D44-BAB3-700C41F8C27F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InParams", "Record\InParams\InParams.csproj", "{8D7554AE-74A1-4910-B6BE-EED1E432188B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D7554AE-74A1-4910-B6BE-EED1E432188B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7554AE-74A1-4910-B6BE-EED1E432188B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7554AE-74A1-4910-B6BE-EED1E432188B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7554AE-74A1-4910-B6BE-EED1E432188B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D7554AE-74A1-4910-B6BE-EED1E432188B} = {504DCEF9-E855-4D44-BAB3-700C41F8C27F}
+	EndGlobalSection
+EndGlobal
