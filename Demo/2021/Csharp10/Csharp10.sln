@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metadata", "RecordStruct\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "With", "RecordStruct\With\With.csproj", "{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsClass", "RecordStruct\VsClass\VsClass.csproj", "{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +147,7 @@ Global
 		{8F740CFB-BA24-4F1E-8531-852255B587CB} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{D24AA5E5-7261-4D49-9286-B3E41EDE1708} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 		{8C54A9FF-38A2-4513-8FA8-DA17DD73F9DA} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
+		{56654A8E-9A78-4CDE-8EB7-41EBEE5E2FA2} = {593AE9AD-F21B-4063-AEF7-D2F2A61F63BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
