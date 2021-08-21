@@ -48,3 +48,14 @@ struct NormalStruct
 }
 
 record struct RecordStruct(int X, int Y);
+
+// おまけ:
+// 「通常の構造体でも、元々あるクローン機構を使って with 式に対応」という判断とセットで、
+// 「手書きで Clone を書いてもそれは呼ばない」ということになり、
+// 「呼ばれそうに見えるけど呼ばれない」と言うのが怖いので、「record struct に Clone メソッドは書けない」という縛りを入れたみたい。
+#if false
+record struct R
+{
+    public R Clone() => new R(); // コンパイル エラーになる。
+}
+#endif
