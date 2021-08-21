@@ -1,29 +1,8 @@
 ﻿// Point が X, Y プロパティを持ってる(get; set;)
-using System.Reflection;
 
 var p1 = new Point(1, 2);
 p1.X = 3; // 普通に書き換え可能。
 Console.WriteLine(p1); // ToString とかは record class と一緒。
-
-// 一応リフレクションで確認。
-var t = typeof(Point);
-
-foreach (var p in t.GetProperties())
-{
-    var isInitOnly = p.GetSetMethod()?.ReturnParameter.GetRequiredCustomModifiers().Any(x => x.Name == "IsExternalInit");
-    Console.WriteLine((p.Name, isInitOnly));
-}
-
-// readonly が付いていない record struct でも、プロパティの get メソッドとかには readonly が付く。
-
-static bool isReadOnly(MethodInfo? method)
-    => method?.CustomAttributes.Any(a => a.AttributeType.Name == "IsReadOnlyAttribute") == true;
-
-Console.WriteLine(isReadOnly(t.GetProperty("X")?.GetGetMethod()));
-
-// PrintMembers、GetHashCode とかにも付くはず(.NET 6 Preview 7 時点ではまだっぽい？)
-//Console.WriteLine(isReadOnly(t.GetMethod("PrintMembers", BindingFlags.NonPublic | BindingFlags.Instance)));
-//Console.WriteLine(isReadOnly(t.GetMethod("GetHashCode")));
 
 // ReadOnlyPoint も X, Y プロパティを持ってるけど、get; init;
 var p2 = new ReadOnlyPoint(1, 2)
@@ -32,13 +11,6 @@ var p2 = new ReadOnlyPoint(1, 2)
 };
 //p2.X = 3; // これはダメ。
 Console.WriteLine(p2);
-
-// 一応リフレクションで確認。
-foreach (var p in typeof(ReadOnlyPoint).GetProperties())
-{
-    var isInitOnly = p.GetSetMethod()?.ReturnParameter.GetRequiredCustomModifiers().Any(x => x.Name == "IsExternalInit");
-    Console.WriteLine((p.Name, isInitOnly));
-}
 
 // ほぼ (classs の) record と一緒。
 // X, Y に対応するプロパティが生成される。
