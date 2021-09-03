@@ -46,9 +46,11 @@ namespace SyntaxHighlighter
             }
         }
 
-        private string? Parse(IDataObject data, Mode mode)
+        private static string? Parse(IDataObject data, Mode mode)
         {
+#pragma warning disable IDE0059
             var xxx = data.GetFormats();
+#pragma warning restore IDE0059
 
             if (mode == Mode.Asm)
             {
