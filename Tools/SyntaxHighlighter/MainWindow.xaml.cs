@@ -50,6 +50,7 @@ namespace SyntaxHighlighter
         {
 #pragma warning disable IDE0059
             var xxx = data.GetFormats();
+            var yyy = data.GetData(DataFormats.Text);
 #pragma warning restore IDE0059
 
             if (mode == Mode.Asm)

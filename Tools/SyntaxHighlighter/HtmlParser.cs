@@ -47,9 +47,9 @@ namespace SyntaxHighlighter
             else throw new InvalidOperationException();
         }
 
-        private static readonly Regex regPre = new Regex(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);
-        private static readonly Regex regColorSpan = new Regex(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
-        private static readonly Regex regEmptySpan = new Regex(@"\<span style="""">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regPre = new(@"\<pre(.|\s)*?\>(?<body>(.|\s)*)\</pre", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regColorSpan = new(@"\<span style=""color:(?<color>(.|\s)*?);"">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static readonly Regex regEmptySpan = new(@"\<span style="""">(?<body>(.|\s)*?)\</span\>", RegexOptions.Compiled | RegexOptions.Multiline);
 
         public string Parse(string text)
         {
