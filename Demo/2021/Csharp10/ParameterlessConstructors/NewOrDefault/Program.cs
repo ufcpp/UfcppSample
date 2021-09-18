@@ -6,6 +6,12 @@ Console.WriteLine(default(A).X); // コンストラクターも呼ばれず 0 �
 // 配列の要素は暗黙的に default…
 Console.WriteLine((new A[1])[0].X); // default(A) と同じ扱いで、X == 0 になってる。
 
+A a = new();
+Console.WriteLine(a.X); // 1
+
+a = default;
+Console.WriteLine(a.X); // 0
+
 struct A
 {
     public int X;

@@ -1,4 +1,8 @@
-﻿// これまではフィールド初期化子も書けなかった。
+﻿var f = new FieldInitializer();
+Console.WriteLine(f.X); // 1
+Console.WriteLine(f.Y); // 2
+
+// これまではフィールド初期化子も書けなかった。
 // (フィールド初期化子には暗黙的に引数なしコンストラクターが必要だった。)
 struct FieldInitializer
 {
