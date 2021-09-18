@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallerArgument", "CallerArg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultParameter", "ParameterlessConstructors\DefaultParameter\DefaultParameter.csproj", "{8191031B-E0D0-4F50-9826-945F0FBB4AFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstString", "InterpolatedStrings\ConstString\ConstString.csproj", "{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +171,10 @@ Global
 		{8191031B-E0D0-4F50-9826-945F0FBB4AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8191031B-E0D0-4F50-9826-945F0FBB4AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8191031B-E0D0-4F50-9826-945F0FBB4AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +205,7 @@ Global
 		{1A05D602-AA8E-49AB-824A-BFBF8210A283} = {19C68341-AF83-4B59-BE32-9C8910E182A4}
 		{86FCA59A-56C1-4EA4-A505-A1EA5FC23696} = {19C68341-AF83-4B59-BE32-9C8910E182A4}
 		{8191031B-E0D0-4F50-9826-945F0FBB4AFF} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
+		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
