@@ -7,15 +7,13 @@
 struct A
 {
     public int X;
-
-    private A() { } // エラー
+    private A() => X = 0; // エラー
 }
 
 struct B
 {
     public int X;
-
-    internal B() { } // エラー
+    internal B() => X = 0; // エラー
 }
 
 #endif
