@@ -12,6 +12,12 @@ Console.WriteLine(a.X); // 1
 a = default;
 Console.WriteLine(a.X); // 0
 
+Console.WriteLine(New<A>().X); // 1
+Console.WriteLine(Default<A>().X); // 0
+
+static T New<T>() where T : new() => new();
+static T? Default<T>() => default;
+
 struct A
 {
     public int X;
