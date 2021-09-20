@@ -65,6 +65,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultParameter", "Paramet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstString", "InterpolatedStrings\ConstString\ConstString.csproj", "{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{8D2F0151-62AE-4A3E-A98A-AA323D4FC7D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPropertyPetterns", "Others\ExtendedPropertyPetterns\ExtendedPropertyPetterns.csproj", "{99AC893B-5A0B-4083-85E7-406F6B02CF31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +179,10 @@ Global
 		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99AC893B-5A0B-4083-85E7-406F6B02CF31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AC893B-5A0B-4083-85E7-406F6B02CF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AC893B-5A0B-4083-85E7-406F6B02CF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AC893B-5A0B-4083-85E7-406F6B02CF31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,6 +214,7 @@ Global
 		{86FCA59A-56C1-4EA4-A505-A1EA5FC23696} = {19C68341-AF83-4B59-BE32-9C8910E182A4}
 		{8191031B-E0D0-4F50-9826-945F0FBB4AFF} = {003DCAB6-4EAE-437C-A279-566A6E47A348}
 		{D7D9B42E-87C0-460F-90B1-61FDDEA5487B} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
+		{99AC893B-5A0B-4083-85E7-406F6B02CF31} = {8D2F0151-62AE-4A3E-A98A-AA323D4FC7D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
