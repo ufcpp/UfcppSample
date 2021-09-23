@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultInterpolatedStringHa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormattingHandler", "InterpolatedStrings\FormattingHandler\FormattingHandler.csproj", "{8A6B2611-E41C-4F6A-8124-641870883D30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppendFormattedOverload", "InterpolatedStrings\AppendFormattedOverload\AppendFormattedOverload.csproj", "{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -207,6 +209,10 @@ Global
 		{8A6B2611-E41C-4F6A-8124-641870883D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A6B2611-E41C-4F6A-8124-641870883D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A6B2611-E41C-4F6A-8124-641870883D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -243,6 +249,7 @@ Global
 		{D638C55C-590E-40DE-BB88-4794227C3090} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{CA53194E-4104-47C5-9C0F-A51452348890} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{8A6B2611-E41C-4F6A-8124-641870883D30} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
+		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
