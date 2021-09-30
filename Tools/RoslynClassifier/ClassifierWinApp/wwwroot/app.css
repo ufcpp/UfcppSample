@@ -1,0 +1,70 @@
+﻿html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    padding: 5px;
+}
+
+.left { width: 20%; }
+.middle { width: 40%; }
+.right { width: 40%; }
+
+.middle pre {
+    padding: 5px;
+    border: 1pt solid #0ab4ff;
+    overflow-x: scroll;
+    font-family: 'Cascadia Mono', Consolas, monospace;
+}
+
+.right pre {
+    padding: 5px;
+    border: 1pt solid #26b050;
+    overflow: scroll;
+    font-family: 'Cascadia Mono', Consolas, monospace;
+}
+
+pre .keyword { color: #0000FF; }
+pre .control { color: #8F08C4; }
+pre .method { color: #74531F; }
+pre .type { color: #2B91AF; }
+pre .string { color: #A31515; }
+pre .variable { color: #1F377F; }
+pre .comment { color: #008000; }
+pre .excluded { color: #686868; }
+pre .preprocess { color: #686868; }

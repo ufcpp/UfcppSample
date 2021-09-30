@@ -1,0 +1,40 @@
+﻿@using ClassifierWinApp.Models
+@inject ClassfierWorkspace Workspace
+
+<div class="row">
+    <div class="column left">
+        <button @onclick="Open">Open Project</button>
+
+        <ul>
+            @foreach (var doc in @Workspace.Documents)
+            {
+                <li><button @onclick="async () => await Classify(doc)">@doc.ShortName</button></li>
+            }
+        </ul>
+    </div>
+
+    <div class="column middle">
+        <pre>@markup.Value</pre>
+    </div>
+
+    <div class="column right">
+        <pre>@markup</pre>
+    </div>
+</div>
+
+@code {
+
+    private MarkupString markup;
+
+    private async Task Open()
+    {
+        await Workspace.OpenProjectAsync();
+        StateHasChanged();
+    }
+
+    private async Task Classify(ClassfierDocument doc)
+    {
+        var x = await doc.ClassifyAsync();
+        markup = (MarkupString)x;
+    }
+}
