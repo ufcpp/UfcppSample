@@ -19,10 +19,19 @@ public class ClassfierWorkspace : IDisposable
         _workspace = MSBuildWorkspace.Create();
     }
 
+    public bool IsOpen => _project is not null;
+
     public async ValueTask OpenProjectAsync()
     {
         if (CsprojPath is not { } proj) return;
 
+        // 閉じて開きなおしでいい？
+        // ソースコードの1行書き換えただけで close → 再 open するのちょっともったいない気がするものの。
+        // Document 単位の reload 処理どこかにありそうなものの見つからず。
+        if (_project is not null)
+        {
+            _workspace.CloseSolution();
+        }
         _project = await _workspace.OpenProjectAsync(proj);
 
         var projectDirectory = Path.GetDirectoryName(Path.GetFullPath(proj)) ?? "";
