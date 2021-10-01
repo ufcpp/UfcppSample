@@ -1,5 +1,6 @@
 ﻿html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #EEEEF2;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -41,22 +42,26 @@
     padding: 5px;
 }
 
-.left { width: 20%; }
+.left {
+    width: 20%;
+    background-color: #E2E2E2;
+}
 .middle { width: 40%; }
 .right { width: 40%; }
 
-.middle pre {
+pre {
     padding: 5px;
-    border: 1pt solid #0ab4ff;
     overflow-x: scroll;
-    font-family: 'Cascadia Mono', Consolas, monospace;
+    font-family: Consolas, 'Cascadia Mono', monospace;
+    background-color: white;
+}
+
+.middle pre {
+    border: 1pt solid #004F96;
 }
 
 .right pre {
-    padding: 5px;
-    border: 1pt solid #26b050;
-    overflow: scroll;
-    font-family: 'Cascadia Mono', Consolas, monospace;
+    border: 1pt solid #1E7F1E;
 }
 
 pre .keyword { color: #0000FF; }
