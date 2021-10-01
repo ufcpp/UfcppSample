@@ -3,9 +3,6 @@ using System.Windows;
 
 namespace ClassifierWinApp;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     static MainWindow()
@@ -16,10 +13,30 @@ public partial class MainWindow : Window
         Services = serviceCollection.BuildServiceProvider();
     }
 
+    public static ServiceProvider Services { get; }
+
     public MainWindow()
     {
         InitializeComponent();
     }
 
-    public static ServiceProvider Services { get; }
+    protected override void OnInitialized(EventArgs e)
+    {
+        base.OnInitialized(e);
+
+        var settings = Settings.Load();
+
+        if (settings is not null)
+        {
+            var workspace = Services.GetService<Models.ClassfierWorkspace>()!;
+            workspace.CsprojPath = settings.CsprojPath;
+        }
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        var workspace = Services.GetService<Models.ClassfierWorkspace>()!;
+        Settings.Save(new(workspace.CsprojPath));
+        base.OnClosed(e);
+    }
 }

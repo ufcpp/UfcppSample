@@ -8,7 +8,7 @@ namespace ClassifierWinApp.Models;
 
 public class ClassfierWorkspace : IDisposable
 {
-    public string? CsprojPath { get; set; } = "../../../../SampleProject/SampleProject.csproj";
+    public string? CsprojPath { get; set; }
 
     private readonly MSBuildWorkspace _workspace;
     private Project? _project;
