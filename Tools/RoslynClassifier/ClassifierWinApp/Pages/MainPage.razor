@@ -1,6 +1,12 @@
 ﻿@using ClassifierWinApp.Models
 @inject ClassfierWorkspace Workspace
 
+<div>
+    path to csproj:
+    <input @bind="Workspace.CsprojPath" style="width: 80%;" />
+</div>
+
+
 @if (isLoading)
 {
     <div class="spinner"></div>
