@@ -1,6 +1,12 @@
 ﻿@using ClassifierWinApp.Models
 @inject ClassfierWorkspace Workspace
 
+@if (isLoading)
+{
+    <div class="spinner"></div>
+}
+else
+{
 <div class="row">
     <div class="column left">
         <button @onclick="Open">@(@Workspace.IsOpen ? "Reload" : "Open") Project</button>
@@ -21,20 +27,26 @@
         <pre>@markup</pre>
     </div>
 </div>
+}
 
 @code {
+
+    private bool isLoading;
 
     private MarkupString markup;
 
     private async Task Open()
     {
+        isLoading = true;
         await Workspace.OpenProjectAsync();
-        StateHasChanged();
+        isLoading = false;
     }
 
     private async Task Classify(ClassfierDocument doc)
     {
+        isLoading = true;
         var x = await doc.ClassifyAsync();
+        isLoading = false;
         markup = (MarkupString)x;
     }
 }
