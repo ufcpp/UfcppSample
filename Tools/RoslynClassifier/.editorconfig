@@ -1,9 +1,0 @@
-root = true
-
-[*.cs]
-
-csharp_style_namespace_declarations=file_scoped:suggestion
-dotnet_diagnostic.IDE0008.severity = silent
-dotnet_diagnostic.IDE0011.severity = silent
-dotnet_diagnostic.IDE0022.severity = silent
-dotnet_diagnostic.CA1816.severity = silent
