@@ -83,6 +83,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoolReturn", "InterpolatedS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolatedStringHandlerArgument", "InterpolatedStrings\InterpolatedStringHandlerArgument\InterpolatedStringHandlerArgument.csproj", "{B0C17640-B43D-4EA4-A0D9-B175406A432A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lambda", "Lambda", "{7E3DC008-65AB-4935-9F25-84AAD4D4E446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWeb", "Lambda\SimpleWeb\SimpleWeb.csproj", "{FA2AD8DF-D70F-488E-AB75-31919DD7270C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -225,6 +229,10 @@ Global
 		{B0C17640-B43D-4EA4-A0D9-B175406A432A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0C17640-B43D-4EA4-A0D9-B175406A432A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0C17640-B43D-4EA4-A0D9-B175406A432A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA2AD8DF-D70F-488E-AB75-31919DD7270C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA2AD8DF-D70F-488E-AB75-31919DD7270C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA2AD8DF-D70F-488E-AB75-31919DD7270C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA2AD8DF-D70F-488E-AB75-31919DD7270C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -264,6 +272,7 @@ Global
 		{6EDE3406-A6D7-4DD0-A1CE-3275C8485E43} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{7AB361FC-D756-4698-95DD-44D219E924E5} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
 		{B0C17640-B43D-4EA4-A0D9-B175406A432A} = {A73FA307-E8C2-45BE-87C3-488C4E90E153}
+		{FA2AD8DF-D70F-488E-AB75-31919DD7270C} = {7E3DC008-65AB-4935-9F25-84AAD4D4E446}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
