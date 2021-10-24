@@ -19,3 +19,9 @@ Func<int, int> f4 = int x => x;
 
 // 戻り値の型を各場所は static の後ろ。
 var f5 = static int (int x) => x;
+
+// 戻り値の型から引数の型の推論はできない。
+// 結果的に、Func<T, int> への代入はできても、自然な型決定(var などへの代入)はできない。
+#if ERROR
+var f6 = int (x) => x;
+#endif
