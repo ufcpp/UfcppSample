@@ -1,0 +1,5 @@
+﻿[*.cs]
+
+# CA1822: Mark members as static
+dotnet_diagnostic.CS8974.severity = silent
+dotnet_diagnostic.IDE0062.severity = silent
