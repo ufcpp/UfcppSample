@@ -16,3 +16,6 @@ Func<int, int> f3 = int (x) => x;
 #if ERROR
 Func<int, int> f4 = int x => x;
 #endif
+
+// 戻り値の型を各場所は static の後ろ。
+var f5 = static int (int x) => x;
