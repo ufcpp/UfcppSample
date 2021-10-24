@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWeb", "Lambda\SimpleW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeAndReturn", "Lambda\AttributeAndReturn\AttributeAndReturn.csproj", "{7B8FDE09-A11A-45CA-BF0F-F833F53F35B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleReturn", "Lambda\SimpleReturn\SimpleReturn.csproj", "{8676F0A9-B371-40F5-8925-C55AFC68DE0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,6 +247,10 @@ Global
 		{7B8FDE09-A11A-45CA-BF0F-F833F53F35B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8FDE09-A11A-45CA-BF0F-F833F53F35B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8FDE09-A11A-45CA-BF0F-F833F53F35B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8676F0A9-B371-40F5-8925-C55AFC68DE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8676F0A9-B371-40F5-8925-C55AFC68DE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8676F0A9-B371-40F5-8925-C55AFC68DE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8676F0A9-B371-40F5-8925-C55AFC68DE0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +293,7 @@ Global
 		{85F94565-A2F4-4678-9B4A-4BD3EF697E71} = {7E3DC008-65AB-4935-9F25-84AAD4D4E446}
 		{FA2AD8DF-D70F-488E-AB75-31919DD7270C} = {7E3DC008-65AB-4935-9F25-84AAD4D4E446}
 		{7B8FDE09-A11A-45CA-BF0F-F833F53F35B5} = {7E3DC008-65AB-4935-9F25-84AAD4D4E446}
+		{8676F0A9-B371-40F5-8925-C55AFC68DE0D} = {7E3DC008-65AB-4935-9F25-84AAD4D4E446}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B6A0CC-5203-434F-A0F8-1F7B1A66DE48}
