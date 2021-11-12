@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
+	<ImplicitUsings>true</ImplicitUsings>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
