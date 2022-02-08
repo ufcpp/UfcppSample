@@ -1,0 +1,7 @@
+[*.cs]
+
+csharp_style_namespace_declarations=file_scoped:suggestion
+
+[*.csproj]
+indent_size=2
+indent_style=space
