@@ -2,3 +2,20 @@ root = true
 
 [*.{cs,vb}]
 csharp_style_namespace_declarations=file_scoped:suggestion
+
+dotnet_naming_rule.private_or_internal_field_should_be_begin_with__.severity = suggestion
+dotnet_naming_rule.private_or_internal_field_should_be_begin_with__.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_begin_with__.style = begin_with__
+
+dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private
+dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
+
+dotnet_naming_style.begin_with__.required_prefix = _
+dotnet_naming_style.begin_with__.required_suffix = 
+dotnet_naming_style.begin_with__.word_separator = 
+dotnet_naming_style.begin_with__.capitalization = camel_case
+
+[*.csproj]
+indent_style = space
+indent_size = 2
