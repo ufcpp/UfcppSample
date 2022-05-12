@@ -1,4 +1,6 @@
-﻿//## >>> で論理シフト
+﻿using System.Numerics;
+
+//## >>> で論理シフト
 
 // signed な整数に対して、
 int x = -1;
