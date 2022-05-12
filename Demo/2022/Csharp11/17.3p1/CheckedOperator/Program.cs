@@ -37,3 +37,8 @@ struct Int4Bit
     // operator checked って文法で、 unchecked/checkd で別実装を持てる。
     public static Int4Bit operator checked ++(Int4Bit x) => x._value < 3 ? new(x._value + 1) : throw new Exception();
 }
+
+// dotnet/runtime で System.Int128 を足すみたいな話が出てるみたい。
+// (この文脈で checked operator の話が出て採用された。)
+// https://github.com/dotnet/runtime/pull/69204
+// https://github.com/dotnet/runtime/issues/67151
