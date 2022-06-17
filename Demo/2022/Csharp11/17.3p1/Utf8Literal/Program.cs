@@ -1,4 +1,6 @@
-﻿//## UTF-8 リテラル
+﻿#pragma warning disable CS0183, CS8321
+
+//## UTF-8 リテラル
 
 // 本音を言うなら Utf8String とか「UTF-8 を表す型」が欲しいし、
 // なんだったら string の中身を UTF-8 にしてほしいけども。
@@ -12,9 +14,9 @@
 
 var utf8 = "aあ🐈"u8;
 
-// ちなみに、var を使うと現状(17.3p1)は byte[] 型になる。
+// ちなみに、var を使うと現状(17.3p1)は ReadOnlySpan<byte> 型になる。
 // (もしかしたらリリースまでに ReadOnlySpan<byte> に変わるかも。)
-Console.WriteLine(utf8.GetType().Name); // Byte[]
+Console.WriteLine(utf8 is ReadOnlySpan<byte>); // 常に true。
 
 // aあ🐈 を UTF-8 化したものなので、
 // 61 E3 81 82 F0 9F 90 88
