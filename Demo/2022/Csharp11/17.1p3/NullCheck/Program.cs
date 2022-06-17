@@ -1,4 +1,9 @@
-﻿#pragma warning disable IDE0060
+﻿{ }
+
+#if false
+// !! は「いったん取りやめ」になって、17.3p2 でコンパイル通らなくなってる。
+
+#pragma warning disable IDE0060
 
 //## 引数の後ろに !!
 
@@ -88,3 +93,5 @@ class Derived : Base
         return 1;
     }
 }
+
+#endif
