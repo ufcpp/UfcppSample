@@ -14,11 +14,16 @@
 
 //### 制限緩和
 
+var x = new Int4Bit(3);
+var y = new Int4Bit(1);
+Console.WriteLine(x << y);
+
 // 4ビット整数(0～15)みたいなのを作ったとして、
 public struct Int4Bit
 {
     public byte Value { get; }
     public Int4Bit(int value) => Value = (byte)(0xF & value);
+    public override string ToString() => Value.ToString();
 
     // シフト演算の右オペランドも「自身の型」でやれるように。
     // (前までは int y しかダメだった。)
