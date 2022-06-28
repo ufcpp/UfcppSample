@@ -6,3 +6,6 @@ var r2 = new Rational<int>(7, -2);
 
 Console.WriteLine($"{r1} == {r2} {r1 == r2}");
 Console.WriteLine($"{r1 + r2}, {r1 - r2}, {r1 * r2}, {r1 / r2}");
+
+Console.WriteLine(r1 / 7);
+Console.WriteLine(-r1 * 2 / 3);

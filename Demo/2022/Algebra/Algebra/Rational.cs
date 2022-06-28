@@ -28,6 +28,11 @@ public readonly struct Rational<TBase>
     public TBase Numerator { get; }
     public TBase Denominator { get; }
 
+    public Rational(TBase value)
+    {
+        (Numerator, Denominator) = (value, TBase.MultiplicativeIdentity);
+    }
+
     public Rational(TBase numerator, TBase denominator)
     {
         (Numerator, Denominator) = Canonicalize(numerator, denominator);
@@ -59,6 +64,8 @@ public readonly struct Rational<TBase>
 
         return (-t, s);
     }
+
+    public static implicit operator Rational<TBase>(TBase value) => new(value);
 
     public static Rational<TBase> One { get; } = new(TBase.MultiplicativeIdentity, TBase.MultiplicativeIdentity);
     public static Rational<TBase> Zero { get; } = new(TBase.AdditiveIdentity, TBase.MultiplicativeIdentity);
