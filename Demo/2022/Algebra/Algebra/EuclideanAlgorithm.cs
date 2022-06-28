@@ -9,6 +9,20 @@ public class EuclideanAlgorithm
     /// </summary>
     public static T Gcd<T>(T a, T b)
         where T : IAdditiveIdentity<T, T>,
+        ISubtractionOperators<T, T, T>,
+        IMultiplyOperators<T, T, T>,
+        IDivisionOperators<T, T, T>,
+        IEqualityOperators<T, T>
+    {
+        while (b != T.AdditiveIdentity) (a, b) = (b, a - (a / b) * b);
+        return a;
+    }
+
+    /// <summary>
+    /// https://en.wikipedia.org/wiki/Euclidean_algorithm
+    /// </summary>
+    public static T GcdModulus<T>(T a, T b)
+        where T : IAdditiveIdentity<T, T>,
         IModulusOperators<T, T, T>,
         IEqualityOperators<T, T>
     {
