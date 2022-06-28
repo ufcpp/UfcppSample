@@ -4,15 +4,21 @@ namespace Algebra;
 
 public class EuclideanAlgorithm
 {
+    /// <summary>
+    /// https://en.wikipedia.org/wiki/Euclidean_algorithm
+    /// </summary>
     public static T Gcd<T>(T a, T b)
         where T : IAdditiveIdentity<T, T>,
         IModulusOperators<T, T, T>,
         IEqualityOperators<T, T>
     {
-        if (b == T.AdditiveIdentity) return a;
-        return Gcd(b, a % b);
+        while (b != T.AdditiveIdentity) (a, b) = (b, a % b);
+        return a;
     }
 
+    /// <summary>
+    /// https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+    /// </summary>
     public static (T gcd, T x, T y) Egcd<T>(T a, T b)
         where T : IAdditiveIdentity<T, T>,
         IMultiplicativeIdentity<T, T>,
