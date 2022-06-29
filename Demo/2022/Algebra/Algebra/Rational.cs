@@ -13,10 +13,10 @@ public readonly struct Rational<TBase>
     IMultiplyOperators<Rational<TBase>, TBase, Rational<TBase>>,
     IDivisionOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
     IDivisionOperators<Rational<TBase>, TBase, Rational<TBase>>,
-    IUnaryPlusOperators<Rational<TBase>, Rational<TBase>>,
-    IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>,
     IComparisonOperators<Rational<TBase>, Rational<TBase>>,
-    IComparisonOperators<Rational<TBase>, TBase>
+    IComparisonOperators<Rational<TBase>, TBase>,
+    IUnaryPlusOperators<Rational<TBase>, Rational<TBase>>,
+    IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>
 
     where TBase :
     IAdditiveIdentity<TBase, TBase>,
