@@ -87,6 +87,12 @@ public readonly struct Rational<TBase>
     public static Rational<TBase> operator checked +(Rational<TBase> left, TBase right)
         => checked(new(left.Numerator + left.Denominator * right, left.Denominator));
 
+    public static Rational<TBase> operator +(TBase left, Rational<TBase> right)
+        => new(left * right.Denominator + right.Numerator, right.Denominator);
+
+    public static Rational<TBase> operator checked +(TBase left, Rational<TBase> right)
+        => checked(new(left * right.Denominator + right.Numerator, right.Denominator));
+
     public static Rational<TBase> operator -(Rational<TBase> left, Rational<TBase> right)
         => new(left.Numerator * right.Denominator - left.Denominator * right.Numerator, left.Denominator * right.Denominator);
 
@@ -98,6 +104,12 @@ public readonly struct Rational<TBase>
 
     public static Rational<TBase> operator checked -(Rational<TBase> left, TBase right)
         => checked(new(left.Numerator - left.Denominator * right, left.Denominator));
+
+    public static Rational<TBase> operator -(TBase left, Rational<TBase> right)
+        => new(left * right.Denominator - right.Numerator, right.Denominator);
+
+    public static Rational<TBase> operator checked -(TBase left, Rational<TBase> right)
+        => checked(new(left * right.Denominator - right.Numerator, right.Denominator));
 
     public static Rational<TBase> operator *(Rational<TBase> left, Rational<TBase> right)
         => new(left.Numerator * right.Numerator, left.Denominator * right.Denominator);
@@ -111,6 +123,12 @@ public readonly struct Rational<TBase>
     public static Rational<TBase> operator checked *(Rational<TBase> left, TBase right)
         => checked(new(left.Numerator * right, left.Denominator));
 
+    public static Rational<TBase> operator *(TBase left, Rational<TBase> right)
+        => new(left * right.Numerator, right.Denominator);
+
+    public static Rational<TBase> operator checked *(TBase left, Rational<TBase> right)
+        => checked(new(left * right.Numerator, right.Denominator));
+
     public static Rational<TBase> operator /(Rational<TBase> left, Rational<TBase> right)
         => checked(new(left.Numerator * right.Denominator, left.Denominator * right.Numerator));
 
@@ -122,6 +140,12 @@ public readonly struct Rational<TBase>
 
     public static Rational<TBase> operator checked /(Rational<TBase> left, TBase right)
         => checked(new(left.Numerator, left.Denominator * right));
+
+    public static Rational<TBase> operator /(TBase left, Rational<TBase> right)
+        => checked(new(left * right.Denominator, right.Numerator));
+
+    public static Rational<TBase> operator checked /(TBase left, Rational<TBase> right)
+        => checked(new(left * right.Denominator, right.Numerator));
 
     public static bool operator ==(Rational<TBase> left, Rational<TBase> right) => left.Equals(right);
 

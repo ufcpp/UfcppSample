@@ -47,26 +47,26 @@ public readonly struct QuadraticField<TBase, D>
     public static QuadraticField<TBase, D> operator checked +(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
         => checked(new(left.X + right.X, left.Y + right.Y));
 
-    public static QuadraticField<TBase, D> operator checked -(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator -(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
         => new(left.X - right.X, left.Y - right.Y);
 
-    public static QuadraticField<TBase, D> operator -(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator checked -(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
         => checked(new(left.X - right.X, left.Y - right.Y));
 
-    public static QuadraticField<TBase, D> operator checked *(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator *(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
         => new(left.X * right.X + D.Value * left.Y * right.Y, left.X * right.Y + left.Y * right.X);
 
-    public static QuadraticField<TBase, D> operator *(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator checked *(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
         => checked(new(left.X * right.X + D.Value * left.Y * right.Y, left.X * right.Y + left.Y * right.X));
 
-    public static QuadraticField<TBase, D> operator checked /(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator /(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
     {
         var n = right.Norm();
         var t = left * right.Conjugate();
         return new(t.X / n, t.Y / n);
     }
 
-    public static QuadraticField<TBase, D> operator /(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
+    public static QuadraticField<TBase, D> operator checked /(QuadraticField<TBase, D> left, QuadraticField<TBase, D> right)
     {
         checked
         {
