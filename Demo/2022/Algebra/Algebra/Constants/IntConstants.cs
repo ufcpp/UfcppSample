@@ -1,4 +1,4 @@
-﻿namespace Algebra;
+﻿namespace Algebra.Constants;
 
 public struct _0 : IConstant<int> { public static int Value => 0; }
 public struct _1 : IConstant<int> { public static int Value => 1; }
@@ -100,3 +100,13 @@ public struct _96 : IConstant<int> { public static int Value => 96; }
 public struct _97 : IConstant<int> { public static int Value => 97; }
 public struct _98 : IConstant<int> { public static int Value => 98; }
 public struct _99 : IConstant<int> { public static int Value => 99; }
+
+public struct M1 : IConstant<int> { public static int Value => -1; }
+public struct M2 : IConstant<int> { public static int Value => -2; }
+public struct M3 : IConstant<int> { public static int Value => -3; }
+public struct M4 : IConstant<int> { public static int Value => -4; }
+public struct M5 : IConstant<int> { public static int Value => -5; }
+public struct M6 : IConstant<int> { public static int Value => -6; }
+public struct M7 : IConstant<int> { public static int Value => -7; }
+public struct M8 : IConstant<int> { public static int Value => -8; }
+public struct M9 : IConstant<int> { public static int Value => -9; }

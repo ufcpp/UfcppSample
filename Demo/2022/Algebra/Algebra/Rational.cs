@@ -20,8 +20,6 @@ public readonly struct Rational<TBase>
     ISubtractionOperators<TBase, TBase, TBase>,
     IMultiplyOperators<TBase, TBase, TBase>,
     IDivisionOperators<TBase, TBase, TBase>,
-    IEqualityOperators<TBase, TBase>,
-    IUnaryPlusOperators<TBase, TBase>,
     IUnaryNegationOperators<TBase, TBase>,
     IComparisonOperators<TBase, TBase>
 {

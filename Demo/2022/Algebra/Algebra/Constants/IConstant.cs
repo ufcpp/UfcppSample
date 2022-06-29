@@ -1,4 +1,4 @@
-﻿namespace Algebra;
+﻿namespace Algebra.Constants;
 
 public interface IConstant<T>
 {
