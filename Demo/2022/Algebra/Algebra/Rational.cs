@@ -13,12 +13,13 @@ public readonly struct Rational<TBase>
     IMultiplyOperators<Rational<TBase>, TBase, Rational<TBase>>,
     IDivisionOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
     IDivisionOperators<Rational<TBase>, TBase, Rational<TBase>>,
-    IEqualityOperators<Rational<TBase>, Rational<TBase>>,
     IUnaryPlusOperators<Rational<TBase>, Rational<TBase>>,
     IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>,
-    IComparisonOperators<Rational<TBase>, Rational<TBase>>
+    IComparisonOperators<Rational<TBase>, Rational<TBase>>,
+    IComparisonOperators<Rational<TBase>, TBase>
 
-    where TBase : IAdditiveIdentity<TBase, TBase>,
+    where TBase :
+    IAdditiveIdentity<TBase, TBase>,
     IMultiplicativeIdentity<TBase, TBase>,
     IAdditionOperators<TBase, TBase, TBase>,
     ISubtractionOperators<TBase, TBase, TBase>,
@@ -147,40 +148,41 @@ public readonly struct Rational<TBase>
     public static Rational<TBase> operator checked /(TBase left, Rational<TBase> right)
         => checked(new(left * right.Denominator, right.Numerator));
 
-    public static bool operator ==(Rational<TBase> left, Rational<TBase> right) => left.Equals(right);
-
-    public static bool operator !=(Rational<TBase> left, Rational<TBase> right) => !left.Equals(right);
-
     public static Rational<TBase> operator +(Rational<TBase> value) => value;
 
     public static Rational<TBase> operator checked -(Rational<TBase> value) => checked(new(-value.Numerator, value.Denominator));
 
     public static Rational<TBase> operator -(Rational<TBase> value) => new(-value.Numerator, value.Denominator);
 
-    public static bool operator >(Rational<TBase> left, Rational<TBase> right)
-        => left.Numerator * right.Denominator > left.Denominator * right.Denominator;
+    public static bool operator ==(Rational<TBase> left, Rational<TBase> right) => left.Equals(right);
+    public static bool operator !=(Rational<TBase> left, Rational<TBase> right) => !left.Equals(right);
+    public static bool operator >(Rational<TBase> left, Rational<TBase> right) => left.Numerator * right.Denominator > left.Denominator * right.Numerator;
+    public static bool operator >=(Rational<TBase> left, Rational<TBase> right) => left.Numerator * right.Denominator >= left.Denominator * right.Numerator;
+    public static bool operator <(Rational<TBase> left, Rational<TBase> right) => left.Numerator * right.Denominator < left.Denominator * right.Numerator;
+    public static bool operator <=(Rational<TBase> left, Rational<TBase> right) => left.Numerator * right.Denominator <= left.Denominator * right.Numerator;
+    public bool Equals(Rational<TBase> other) => Numerator * other.Denominator == Denominator * other.Numerator;
+    public int CompareTo(Rational<TBase> other) => (Numerator * other.Denominator).CompareTo(Denominator * other.Denominator);
 
-    public static bool operator >=(Rational<TBase> left, Rational<TBase> right)
-        => left.Numerator * right.Denominator >= left.Denominator * right.Denominator;
+    public static bool operator ==(Rational<TBase> left, TBase right) => left.Equals(right);
+    public static bool operator !=(Rational<TBase> left, TBase right) => !left.Equals(right);
+    public static bool operator >(Rational<TBase> left, TBase right) => left.Numerator > left.Denominator * right;
+    public static bool operator >=(Rational<TBase> left, TBase right) => left.Numerator >= left.Denominator * right;
+    public static bool operator <(Rational<TBase> left, TBase right) => left.Numerator < left.Denominator * right;
+    public static bool operator <=(Rational<TBase> left, TBase right) => left.Numerator <= left.Denominator * right;
+    public bool Equals(TBase? other) => Numerator == Denominator * other!;
+    public int CompareTo(TBase? other) => Numerator.CompareTo(Denominator * other!);
 
-    public static bool operator <(Rational<TBase> left, Rational<TBase> right)
-        => left.Numerator * right.Denominator < left.Denominator * right.Denominator;
-
-    public static bool operator <=(Rational<TBase> left, Rational<TBase> right)
-        => left.Numerator * right.Denominator <= left.Denominator * right.Denominator;
-
-    public bool Equals(Rational<TBase> other)
-        => Numerator * other.Denominator == Denominator * other.Numerator;
+    public static bool operator ==(TBase left, Rational<TBase> right) => left.Equals(right);
+    public static bool operator !=(TBase left, Rational<TBase> right) => !left.Equals(right);
+    public static bool operator >(TBase left, Rational<TBase> right) => left * right.Denominator > right.Numerator;
+    public static bool operator >=(TBase left, Rational<TBase> right) => left * right.Denominator >= right.Numerator;
+    public static bool operator <(TBase left, Rational<TBase> right) => left * right.Denominator < right.Numerator;
+    public static bool operator <=(TBase left, Rational<TBase> right) => left * right.Denominator <= right.Numerator;
 
     public override bool Equals(object? obj) => obj is Rational<TBase> other && Equals(other);
-
     public override int GetHashCode() => HashCode.Combine(Numerator, Denominator);
-
+    public int CompareTo(object? obj) => obj is Rational<TBase> other ? CompareTo(other) : -1;
     public override string ToString() => Denominator == TBase.MultiplicativeIdentity
         ? Numerator.ToString()!
         : $"{Numerator}/{Denominator}";
-
-    public int CompareTo(object? obj) => obj is Rational<TBase> other ? CompareTo(other) : -1;
-
-    public int CompareTo(Rational<TBase> other) => (Numerator * other.Denominator).CompareTo(Denominator * other.Denominator);
 }
