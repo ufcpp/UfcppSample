@@ -1,18 +1,13 @@
 ﻿using Algebra;
-using Algebra.Constants;
 using System.Numerics;
 
 using Q2 = Algebra.QuadraticField<
     Algebra.Rational<short>,
-    Algebra.Constants.RationalConstant<short,
-        Algebra.Constants.IntegerConstant<short,
-            Algebra.Constants._2>>>;
+    Algebra.Constants.RationalConstants<short>._2>;
 
 using C = Algebra.QuadraticField<
     Algebra.Rational<short>,
-    Algebra.Constants.RationalConstant<short,
-        Algebra.Constants.IntegerConstant<short,
-            Algebra.Constants.M1>>>;
+    Algebra.Constants.RationalConstants<short>.M1>;
 
 using static Algebra.RationalQuadraticField<long, Algebra.Constants.M1>;
 
