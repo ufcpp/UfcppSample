@@ -14,6 +14,8 @@ using C = Algebra.QuadraticField<
         Algebra.Constants.IntegerConstant<short,
             Algebra.Constants.M1>>>;
 
+using static Algebra.RationalQuadraticField<long, Algebra.Constants.M1>;
+
 {
     var r1 = new Rational<BigInteger>(-35, 10);
     var r2 = new Rational<BigInteger>(7, -2);
@@ -62,4 +64,16 @@ Console.WriteLine("-----");
     Console.WriteLine(z);
     Console.WriteLine(z * z);
     Console.WriteLine(z / new C(3, 5));
+}
+
+{
+    var x = 3 + I * 2;
+    var y = -4 + I * 3;
+
+    Console.WriteLine(x);
+    Console.WriteLine(y);
+    Console.WriteLine(x + y);
+    Console.WriteLine(x - y);
+    Console.WriteLine(x * y);
+    Console.WriteLine(x / y);
 }

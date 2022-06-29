@@ -43,6 +43,7 @@ public readonly struct QuadraticField<TBase, D>
 
     public static QuadraticField<TBase, D> One { get; } = new(TBase.MultiplicativeIdentity, TBase.AdditiveIdentity);
     public static QuadraticField<TBase, D> Zero { get; } = new(TBase.AdditiveIdentity, TBase.AdditiveIdentity);
+    public static QuadraticField<TBase, D> I { get; } = new(TBase.AdditiveIdentity, TBase.MultiplicativeIdentity);
 
     static QuadraticField<TBase, D> IAdditiveIdentity<QuadraticField<TBase, D>, QuadraticField<TBase, D>>.AdditiveIdentity => Zero;
     static QuadraticField<TBase, D> IMultiplicativeIdentity<QuadraticField<TBase, D>, QuadraticField<TBase, D>>.MultiplicativeIdentity => One;
