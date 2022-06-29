@@ -6,9 +6,13 @@ public readonly struct Rational<TBase>
     : IAdditiveIdentity<Rational<TBase>, Rational<TBase>>,
     IMultiplicativeIdentity<Rational<TBase>, Rational<TBase>>,
     IAdditionOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
+    IAdditionOperators<Rational<TBase>, TBase, Rational<TBase>>,
     ISubtractionOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
+    ISubtractionOperators<Rational<TBase>, TBase, Rational<TBase>>,
     IMultiplyOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
+    IMultiplyOperators<Rational<TBase>, TBase, Rational<TBase>>,
     IDivisionOperators<Rational<TBase>, Rational<TBase>, Rational<TBase>>,
+    IDivisionOperators<Rational<TBase>, TBase, Rational<TBase>>,
     IEqualityOperators<Rational<TBase>, Rational<TBase>>,
     IUnaryPlusOperators<Rational<TBase>, Rational<TBase>>,
     IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>,
@@ -77,23 +81,47 @@ public readonly struct Rational<TBase>
     public static Rational<TBase> operator checked +(Rational<TBase> left, Rational<TBase> right)
         => checked(new(left.Numerator * right.Denominator + left.Denominator * right.Numerator, left.Denominator * right.Denominator));
 
-    public static Rational<TBase> operator checked -(Rational<TBase> left, Rational<TBase> right)
-        => new(left.Numerator * right.Denominator - left.Denominator * right.Numerator, left.Denominator * right.Denominator);
+    public static Rational<TBase> operator +(Rational<TBase> left, TBase right)
+        => new(left.Numerator + left.Denominator * right, left.Denominator);
+
+    public static Rational<TBase> operator checked +(Rational<TBase> left, TBase right)
+        => checked(new(left.Numerator + left.Denominator * right, left.Denominator));
 
     public static Rational<TBase> operator -(Rational<TBase> left, Rational<TBase> right)
+        => new(left.Numerator * right.Denominator - left.Denominator * right.Numerator, left.Denominator * right.Denominator);
+
+    public static Rational<TBase> operator checked -(Rational<TBase> left, Rational<TBase> right)
         => checked(new(left.Numerator * right.Denominator - left.Denominator * right.Numerator, left.Denominator * right.Denominator));
 
-    public static Rational<TBase> operator checked *(Rational<TBase> left, Rational<TBase> right)
-        => new(left.Numerator * right.Numerator, left.Denominator * right.Denominator);
+    public static Rational<TBase> operator -(Rational<TBase> left, TBase right)
+        => new(left.Numerator - left.Denominator * right, left.Denominator);
+
+    public static Rational<TBase> operator checked -(Rational<TBase> left, TBase right)
+        => checked(new(left.Numerator - left.Denominator * right, left.Denominator));
 
     public static Rational<TBase> operator *(Rational<TBase> left, Rational<TBase> right)
+        => new(left.Numerator * right.Numerator, left.Denominator * right.Denominator);
+
+    public static Rational<TBase> operator checked *(Rational<TBase> left, Rational<TBase> right)
         => checked(new(left.Numerator * right.Numerator, left.Denominator * right.Denominator));
 
-    public static Rational<TBase> operator checked /(Rational<TBase> left, Rational<TBase> right)
-        => new(left.Numerator * right.Denominator, left.Denominator * right.Numerator);
+    public static Rational<TBase> operator *(Rational<TBase> left, TBase right)
+        => new(left.Numerator * right, left.Denominator);
+
+    public static Rational<TBase> operator checked *(Rational<TBase> left, TBase right)
+        => checked(new(left.Numerator * right, left.Denominator));
 
     public static Rational<TBase> operator /(Rational<TBase> left, Rational<TBase> right)
         => checked(new(left.Numerator * right.Denominator, left.Denominator * right.Numerator));
+
+    public static Rational<TBase> operator checked /(Rational<TBase> left, Rational<TBase> right)
+        => checked(new(left.Numerator * right.Denominator, left.Denominator * right.Numerator));
+
+    public static Rational<TBase> operator /(Rational<TBase> left, TBase right)
+        => new(left.Numerator, left.Denominator * right);
+
+    public static Rational<TBase> operator checked /(Rational<TBase> left, TBase right)
+        => checked(new(left.Numerator, left.Denominator * right));
 
     public static bool operator ==(Rational<TBase> left, Rational<TBase> right) => left.Equals(right);
 

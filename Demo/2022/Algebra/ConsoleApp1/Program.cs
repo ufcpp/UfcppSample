@@ -14,15 +14,26 @@ using C = Algebra.QuadraticField<
         Algebra.Constants.IntegerConstant<short,
             Algebra.Constants.M1>>>;
 
-//var r1 = new Rational<int>(-35, 10);
-//var r2 = new Rational<int>(7, -2);
+{
+    var r1 = new Rational<BigInteger>(-35, 10);
+    var r2 = new Rational<BigInteger>(7, -2);
 
-//Console.WriteLine($"{r1} == {r2} {r1 == r2}");
-//Console.WriteLine($"{r1 + r2}, {r1 - r2}, {r1 * r2}, {r1 / r2}");
+    Console.WriteLine($"{r1} == {r2} {r1 == r2}");
+    Console.WriteLine($"{r1 + r2}, {r1 - r2}, {r1 * r2}, {r1 / r2}");
 
-//Console.WriteLine(r1 / 7);
-//Console.WriteLine(-r1 * 2 / 3);
+    Console.WriteLine(r1 / 7);
+    Console.WriteLine(-r1 * 2 / 3);
+}
+{
+    var r1 = new Rational<int>(-35, 10);
+    var r2 = new Rational<int>(7, -2);
 
+    Console.WriteLine($"{r1} == {r2} {r1 == r2}");
+    Console.WriteLine($"{r1 + r2}, {r1 - r2}, {r1 * r2}, {r1 / r2}");
+
+    Console.WriteLine(r1 / 7);
+    Console.WriteLine(-r1 * 2 / 3);
+}
 {
     var x = new Q2(1);
     var y = new Q2(0, -1);
