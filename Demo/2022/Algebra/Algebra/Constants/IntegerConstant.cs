@@ -9,6 +9,18 @@ public struct IntegerConstant<T, N> : IConstant<T>
     public static T Value { get; } = T.CreateChecked(N.Value);
 }
 
+public struct Byte<N> : IConstant<byte> where N : IConstant<int> { public static byte Value => (byte)N.Value; }
+public struct SByte<N> : IConstant<sbyte> where N : IConstant<int> { public static sbyte Value => (sbyte)N.Value; }
+public struct Int16<N> : IConstant<short> where N : IConstant<int> { public static short Value => (short)N.Value; }
+public struct UInt16<N> : IConstant<ushort> where N : IConstant<int> { public static ushort Value => (ushort)N.Value; }
+public struct Int32<N> : IConstant<int> where N : IConstant<int> { public static int Value => N.Value; }
+public struct UInt32<N> : IConstant<uint> where N : IConstant<int> { public static uint Value => (uint)N.Value; }
+public struct Int64<N> : IConstant<long> where N : IConstant<int> { public static long Value => N.Value; }
+public struct UInt64<N> : IConstant<ulong> where N : IConstant<int> { public static ulong Value => (ulong)N.Value; }
+public struct Int128<N> : IConstant<Int128> where N : IConstant<int> { public static Int128 Value => N.Value; }
+public struct UInt128<N> : IConstant<UInt128> where N : IConstant<int> { public static UInt128 Value => (UInt128)N.Value; }
+public struct BigInteger<N> : IConstant<BigInteger> where N : IConstant<int> { public static BigInteger Value => N.Value; }
+
 public static class IntegerConstants<T>
     where T : INumberBase<T>
 {

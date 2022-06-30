@@ -17,7 +17,8 @@ public readonly struct QuadraticField<TBase, D>
     IEqualityOperators<QuadraticField<TBase, D>, QuadraticField<TBase, D>>,
     IEqualityOperators<QuadraticField<TBase, D>, TBase>,
     IUnaryPlusOperators<QuadraticField<TBase, D>, QuadraticField<TBase, D>>,
-    IUnaryNegationOperators<QuadraticField<TBase, D>, QuadraticField<TBase, D>>
+    IUnaryNegationOperators<QuadraticField<TBase, D>, QuadraticField<TBase, D>>,
+    IImplicitConversion<QuadraticField<TBase, D>, TBase>
 
     where TBase : IAdditiveIdentity<TBase, TBase>,
     IMultiplicativeIdentity<TBase, TBase>,

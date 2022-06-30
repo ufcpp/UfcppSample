@@ -10,7 +10,7 @@ using C = Algebra.QuadraticField<
     Algebra.Constants.RationalConstants<short>.M1>;
 
 using static Algebra.RationalQuadraticField<long, Algebra.Constants.M1>;
-
+using Algebra.Constants;
 {
     var r1 = new Rational<BigInteger>(-35, 10);
     var r2 = new Rational<BigInteger>(7, -2);
@@ -71,4 +71,47 @@ Console.WriteLine("-----");
     Console.WriteLine(x - y);
     Console.WriteLine(x * y);
     Console.WriteLine(x / y);
+}
+
+{
+    var q = 1.AsQ();
+
+    var q1 = 1.AsQ(new _5());
+    //var q2 = q1.AsQ(new _7());
+}
+
+static class Ex
+{
+    public static Rational<TBase> AsQ<TBase>(this TBase x)
+        where TBase :
+        IAdditiveIdentity<TBase, TBase>,
+        IMultiplicativeIdentity<TBase, TBase>,
+        IAdditionOperators<TBase, TBase, TBase>,
+        ISubtractionOperators<TBase, TBase, TBase>,
+        IMultiplyOperators<TBase, TBase, TBase>,
+        IDivisionOperators<TBase, TBase, TBase>,
+        IUnaryNegationOperators<TBase, TBase>,
+        IComparisonOperators<TBase, TBase>
+        => new(x);
+
+    public static QuadraticField<Rational<TBase>, RationalConstant<TBase, IntegerConstant<TBase, N>>> AsQ<TBase, N>(this TBase x, N _)
+        where TBase : INumber<TBase>
+        where N : IConstant<int>
+        => new(new(x));
+}
+
+public static class ConstantTypeBuilder
+{
+    public static Constant<Rational<TBase>, TBase, N> Rational<TBase, N>()
+        where TBase :
+        IAdditiveIdentity<TBase, TBase>,
+        IMultiplicativeIdentity<TBase, TBase>,
+        IAdditionOperators<TBase, TBase, TBase>,
+        ISubtractionOperators<TBase, TBase, TBase>,
+        IMultiplyOperators<TBase, TBase, TBase>,
+        IDivisionOperators<TBase, TBase, TBase>,
+        IUnaryNegationOperators<TBase, TBase>,
+        IComparisonOperators<TBase, TBase>
+        where N : IConstant<TBase>
+        => default;
 }

@@ -16,7 +16,8 @@ public readonly struct Rational<TBase>
     IComparisonOperators<Rational<TBase>, Rational<TBase>>,
     IComparisonOperators<Rational<TBase>, TBase>,
     IUnaryPlusOperators<Rational<TBase>, Rational<TBase>>,
-    IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>
+    IUnaryNegationOperators<Rational<TBase>, Rational<TBase>>,
+    IImplicitConversion<Rational<TBase>, TBase>
 
     where TBase :
     IAdditiveIdentity<TBase, TBase>,
