@@ -24,7 +24,7 @@ Console.WriteLine(m<ushort>(0xffff)); // 0x0ff0
 Console.WriteLine(m<short>(-1)); // 0xfff0
 
 static T m<T>(T x)
-    where T : IShiftOperators<T, T>
+    where T : IShiftOperators<T, int, T>
 {
     // 適当に「両端4ビットずつの値を消す」みたいなことをシフトでやるとして、
     x <<= 8;
