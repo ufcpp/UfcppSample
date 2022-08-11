@@ -1,7 +1,6 @@
 <Project>
 
   <PropertyGroup>
-    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

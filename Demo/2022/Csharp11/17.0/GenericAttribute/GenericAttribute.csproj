@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net7.0</TargetFramework>
+
+    <!-- .NET 7 Preview 7 時点で、generic attributes の preview 外し忘れてる(11に変更し忘れてる)みたい。 -->
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
 </Project>
