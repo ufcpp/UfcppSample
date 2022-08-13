@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿// object を介することによる box 化を、TypedReference もどきで回避できないかという試み。
+
+using System.Runtime.CompilerServices;
 
 namespace RefField;
 
