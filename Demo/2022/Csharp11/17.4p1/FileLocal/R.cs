@@ -6,7 +6,7 @@ internal partial class R
 {
     // file 修飾子、Source Generator で使う需要が高い。
     // 例えば、RegexGenerator は早速使ってる。
-    [RegexGenerator(@"\d+")]
+    [GeneratedRegex(@"\d+")]
     public static partial Regex M();
 
     // ↑このメソッドから、
