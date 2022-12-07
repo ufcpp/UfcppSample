@@ -1,0 +1,18 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+namespace <#= _type.Namespace #>;
+
+public partial static class <#= _type.Name #>Extensions
+{
+<#
+foreach (var f in _type.GetFields())
+{
+#>
+    public void Set<#= f.Name #>(this <#= _type.Name #> x, object value) => x.<#= f.Name #> = (<#= f.FieldType.FullName #>)value;
+<#
+}
+#>
+}
