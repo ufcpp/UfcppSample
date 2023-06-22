@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- *.cs でビルドシステムに完全にお任せ。 -->
+  <ItemGroup>
+    <Compile Include="../*.cs" />
+  </ItemGroup>
+
+</Project>

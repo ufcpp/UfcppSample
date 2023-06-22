@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- 全部のファイルの順序を明示。 A → B。 -->
+  <ItemGroup>
+    <Compile Include="../Program.cs" />
+    <Compile Include="../A.cs" />
+    <Compile Include="../B.cs" />
+  </ItemGroup>
+
+</Project>

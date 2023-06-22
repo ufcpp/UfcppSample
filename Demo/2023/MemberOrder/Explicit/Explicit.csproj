@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- 一部のファイルの順序を明示。 -->
+  <ItemGroup>
+    <Compile Include="../*.cs" />
+
+    <!-- *.cs の後でも、1度 Remove Add すれば順序を明示できる。 -->
+    <Compile Remove="../A.cs" />
+    <Compile Include="../A.cs" />
+  </ItemGroup>
+
+</Project>
