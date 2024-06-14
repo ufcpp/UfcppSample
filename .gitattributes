@@ -3,6 +3,14 @@
 ###############################################################################
 * text=auto
 
+.editorconfig	text eol=lf
+*.cs	text eol=lf
+*.csproj	text eol=lf
+*.props	text eol=lf
+*.sln	text eol=lf
+*.slnx	text eol=lf
+*.md	text eol=lf
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
