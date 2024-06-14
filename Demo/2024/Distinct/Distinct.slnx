@@ -1,0 +1,13 @@
+<Solution>
+  <Properties Name="Visual Studio">
+    <Property Name="OpenWith" Value="17" />
+  </Properties>
+  <Project Path="DistinctBenchmark\DistinctBenchmark.csproj" Type="C#" />
+  <Project Path="DistinctTest\DistinctTest.csproj" Type="C#" />
+  <Project Path="Distinct\Distinct.csproj" />
+  <Folder Name="/solution items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="readme.md" />
+  </Folder>
+</Solution>
