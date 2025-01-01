@@ -1,0 +1,80 @@
+pre {
+    border: 2px solid #ccf;
+    font-family: Consolas, "Courier New", Courier, Monospace;
+    font-size: 14px;
+    line-height: 1.3em !important;
+    padding: .2em;
+    overflow: auto
+}
+
+pre code {
+    border: 0;
+    margin: 0;
+    padding: 0
+}
+
+pre.source, pre.source code {
+    color: #000;
+    margin: 1em 0;
+    background-color: #fff;
+}
+
+pre.source.partial, pre.source.partial code {
+    border-style: dashed solid dashed solid;
+}
+
+pre.console, pre.console code {
+    color: #fff;
+    margin: 1em 0;
+    background-color: #606060;
+    border: 1px solid transparent
+}
+
+pre.console em, pre.console code em {
+    color: #fff;
+    background-color: #606060 !important;
+    border-bottom: 1pt solid #ff8080 !important
+}
+
+.static { font-weight: bold; }
+.reserved{color:#0000e1}
+.control{color:#8f08c4}
+.inactive{color:#808080}
+.comment{color:#008000}
+.type{color:#2b91af}
+.type.struct{color:#007ACC;}
+.method{color:#74531F}
+.variable{color:#1f377f}
+.string{color:#a31515}
+.literal{color:#a52a2a}
+.input{color:#ff8030;font-weight:bold}
+.excluded{color:#686868;}
+.preprocess{color:#686868;}
+.number{color:#254370}
+.operator{color:#000080}
+.warning{border-bottom:dotted medium #008000}
+.error{border-bottom:dotted medium #f00}
+.suggestion{opacity:.7}
+.element{color:#a51410}
+.attribute{color:#f00}
+.attvalue{color:#00f}
+.bracket{color:#00f}
+.prompt{color:#60ff60}
+.console .comment{color:#ffa0a0}
+
+.version{display:flexbox;margin-left:8px;border-left:8px solid #b0b0c0;padding-left:8px}
+.version2{color:#f00;border-color:#ff8e8e}
+.version3{color:#0c0;border-color:#8ecc8e}
+.version4{color:#00c;border-color:#8e8ecc}
+.version5{color:#c0c;border-color:#dd8ecc}
+.version6{color:#bb0;border-color:#dddd66}
+.version7{color:#0ac;border-color:#66ccdd}
+.version7_1{color:#00f;border-color:#66ccdd}
+.version7_2{color:#0c0;border-color:#66ccdd}
+.version7_3{color:#a00;border-color:#66ccdd}
+.version8{color:#f00;border-color:#ff8e8e;border-left-style:ridge}
+.version9{color:#0c0;border-color:#8ecc8e;border-left-style:ridge}
+.version10{color:#00c;border-color:#8e8ecc;border-left-style:ridge}
+.version11{color:#c0c;border-color:#dd8ecc;border-left-style:ridge}
+.version12{color:#bb0;border-color:#dddd66;border-left-style:ridge}
+.version13{color:#0ac;border-color:#66ccdd;border-left-style:ridge}
