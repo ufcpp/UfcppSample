@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BenchmarkInPlaceGroupBy/BenchmarkInPlaceGroupBy.csproj" Id="6964974f-b77a-42f7-8c80-5ad9a4595a43" />
+  <Project Path="InPlaceGroupBy/InPlaceGroupBy.csproj" Id="852225a0-e903-4d69-bec2-c9ea24607280" />
+  <Project Path="TestInPlaceGroupBy/TestInPlaceGroupBy.csproj" Id="cb9d56bd-0431-484e-9414-37bf232801f3" />
+</Solution>
