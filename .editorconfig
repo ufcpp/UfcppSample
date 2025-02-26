@@ -16,6 +16,6 @@ dotnet_naming_style.begin_with__.required_suffix =
 dotnet_naming_style.begin_with__.word_separator = 
 dotnet_naming_style.begin_with__.capitalization = camel_case
 
-[*.csproj]
+[*.{csproj,props,slnx}]
 indent_style = space
 indent_size = 2
