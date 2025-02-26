@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BenchmarkPseudoDictionary/BenchmarkPseudoDictionary.csproj" Id="531b5f6c-3d56-4711-8015-bc5c1fe5088a" />
+  <Project Path="PseudoDictionary/PseudoDictionary.csproj" />
+  <Project Path="TestPseudoDictionary/TestPseudoDictionary.csproj" Id="1389302d-f840-4199-a492-89875769b894" />
+</Solution>
