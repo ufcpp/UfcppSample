@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/.solution items/">
+    <File Path="Directory.build.props" />
+  </Folder>
+  <Project Path="DataSectionAscii/DataSectionAscii.csproj" />
+  <Project Path="DataSectionJapanese/DataSectionJapanese.csproj" />
+  <Project Path="NormalAscii/NormalAscii.csproj" />
+  <Project Path="NormalJapanese/NormalJapanese.csproj" />
+</Solution>
