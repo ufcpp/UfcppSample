@@ -1,6 +1,8 @@
 root = true
 
 [*.{cs,vb}]
+charset = utf-8
+end_of_line = lf
 csharp_style_namespace_declarations=file_scoped:suggestion
 
 dotnet_naming_rule.private_or_internal_field_should_be_begin_with__.severity = suggestion
@@ -17,5 +19,7 @@ dotnet_naming_style.begin_with__.word_separator =
 dotnet_naming_style.begin_with__.capitalization = camel_case
 
 [*.{csproj,props,slnx}]
+charset = utf-8
+end_of_line = lf
 indent_style = space
 indent_size = 2
