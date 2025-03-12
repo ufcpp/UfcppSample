@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 namespace ConsoleApp1;
 
@@ -17,5 +17,10 @@ public readonly ref struct UnsafeRef(ref byte r)
     public ref T As<T>()
     {
         return ref Unsafe.As<byte, T>(ref UnsafeReference);
+    }
+
+    public static UnsafeRef Create<T>(ref T value)
+    {
+        return new UnsafeRef(ref Unsafe.As<T, byte>(ref value));
     }
 }
