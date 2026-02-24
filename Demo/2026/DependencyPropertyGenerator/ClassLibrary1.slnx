@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ClassLibrary1/ClassLibrary1.csproj" />
+  <Project Path="Generator.UnitTests/Generator.UnitTests.csproj" />
+  <Project Path="Generator/Generator.csproj" />
+</Solution>
